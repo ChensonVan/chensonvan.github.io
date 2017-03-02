@@ -158,6 +158,197 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Machine" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/02/Machine/">Machine</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/02/Machine/" class="archive-article-date">
+  	<time datetime="2017-03-02T10:16:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="9-Recommender-Systems"><a href="#9-Recommender-Systems" class="headerlink" title="9 Recommender Systems"></a>9 Recommender Systems</h3><h4 id="9-1"><a href="#9-1" class="headerlink" title="9.1"></a>9.1</h4><p><img src="http://i1.piimg.com/567571/aa7db7ebd8562ccf.png" alt=""></p>
+<h4 id="9-2-Problems"><a href="#9-2-Problems" class="headerlink" title="9.2 Problems"></a>9.2 Problems</h4><h5 id="9-2-1"><a href="#9-2-1" class="headerlink" title="9.2.1"></a>9.2.1</h5><table>
+<thead>
+<tr>
+<th>Movies</th>
+<th style="text-align:center">Alice - θ(1)</th>
+<th style="text-align:center">Bob - θ(2)</th>
+<th style="text-align:center">Carol - θ(3)</th>
+<th style="text-align:center">Dave - θ(4)</th>
+<th style="text-align:center">romance - x1</th>
+<th style="text-align:center">action -x2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Love at last</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">0.0</td>
+</tr>
+<tr>
+<td>Romance forever</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0.9</td>
+<td style="text-align:center">0.1</td>
+</tr>
+<tr>
+<td>Cute puppies of love</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">0.99</td>
+<td style="text-align:center">0.01</td>
+</tr>
+<tr>
+<td>Nonstop car chases</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0.0</td>
+<td style="text-align:center">1.0</td>
+</tr>
+<tr>
+<td>Sword vs. karate</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">0.2</td>
+<td style="text-align:center">0.8</td>
+</tr>
+</tbody>
+</table>
+<h5 id="9-2-2-Purpose"><a href="#9-2-2-Purpose" class="headerlink" title="9.2.2 Purpose"></a>9.2.2 Purpose</h5><p>Actually, we can assume that we have known all features about the all movies, that is x1, x2, …, xn. And we want to initiate some random values for all theta for all users. As the feature values was fixed, we training the training set by minimizing cost function to get right value of theta.</p>
+<h4 id="9-3-Algorithm"><a href="#9-3-Algorithm" class="headerlink" title="9.3 Algorithm"></a>9.3 Algorithm</h4><h5 id="9-3-1-Optimization-Objective"><a href="#9-3-1-Optimization-Objective" class="headerlink" title="9.3.1 Optimization Objective"></a>9.3.1 Optimization Objective</h5><p><img src="http://p1.bqimg.com/567571/7480a00094b686af.png" alt=""></p>
+<h5 id="9-3-2-Gradient-descent-update"><a href="#9-3-2-Gradient-descent-update" class="headerlink" title="9.3.2 Gradient descent update"></a>9.3.2 Gradient descent update</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Question:</div><div class="line">	1. Why we don&apos;t need (1/m)</div><div class="line">		Anwser: As there are only ***one user***</div><div class="line">	2. Reguration</div><div class="line">		Answer: (λ/1) = λ</div></pre></td></tr></table></figure>
+<p><img src="http://p1.bqimg.com/567571/fdc2b5b0affa21ef.png" alt=""></p>
+<h5 id="9-3-3-Gradient-descent-in-Logistic-Regression"><a href="#9-3-3-Gradient-descent-in-Logistic-Regression" class="headerlink" title="9.3.3 Gradient descent in Logistic Regression"></a>9.3.3 Gradient descent in Logistic Regression</h5><p><img src="http://p1.bpimg.com/567571/9680507237900090.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Question:</div><div class="line">	However, in the above example, we have known the values of all features, but for sometime, we have no idea about that. It means that we have to *** learn theta and features at the same time ***</div></pre></td></tr></table></figure>
+<h4 id="9-4-Collaborative-filtering"><a href="#9-4-Collaborative-filtering" class="headerlink" title="9.4 Collaborative filtering"></a>9.4 Collaborative filtering</h4><h5 id="9-4-1-Proble-motivation"><a href="#9-4-1-Proble-motivation" class="headerlink" title="9.4.1 Proble motivation"></a>9.4.1 Proble motivation</h5><table>
+<thead>
+<tr>
+<th>Movies</th>
+<th style="text-align:center">Alice - θ(1)</th>
+<th style="text-align:center">Bob - θ(2)</th>
+<th style="text-align:center">Carol - θ(3)</th>
+<th style="text-align:center">Dave - θ(4)</th>
+<th style="text-align:center">romance - x1</th>
+<th style="text-align:center">action - x2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x(1) - Love at last</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">?</td>
+</tr>
+<tr>
+<td>x(2) -Romance forever</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">?</td>
+</tr>
+<tr>
+<td>x(3) -Cute puppies of love</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">?</td>
+</tr>
+<tr>
+<td>x(4) -Nonstop car chases</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">?</td>
+</tr>
+<tr>
+<td>x(5) -Sword vs. karate</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">?</td>
+</tr>
+</tbody>
+</table>
+<h5 id="9-4-2-How-to-do"><a href="#9-4-2-How-to-do" class="headerlink" title="9.4.2 How to do"></a>9.4.2 How to do</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Question:</div><div class="line">	How can we get the value of x?</div></pre></td></tr></table></figure>
+<p>Assume:<br>$$<br>\theta^{(1)} = \begin{bmatrix} 0 \ 5 \ 0 \end{bmatrix},  \space\space<br>\theta^{(2)} = \begin{bmatrix} 0 \ 5 \ 0 \end{bmatrix},  \space\space<br>\theta^{(3)} = \begin{bmatrix} 0 \ 0 \ 5 \end{bmatrix},  \space\space<br>\theta^{(4)} = \begin{bmatrix} 0 \ 0 \ 5 \end{bmatrix},  \space\space<br>x^{(1)} = \begin{bmatrix} 1 \ 1.0 \ 0.0 \end{bmatrix}<br>$$<br>For Movie 1, we can calculate the result of Movie1 rating by all users.<br>$$<br>\theta^{(1)} <em> x^{(1)} \approx 5    \<br>\theta^{(2)} </em> x^{(1)} \approx 5    \<br>\theta^{(3)} <em> x^{(1)} \approx 0    \<br>\theta^{(4)} </em> x^{(1)} \approx 0<br>$$</p>
+<h5 id="9-4-3-Optimization-Algorithm"><a href="#9-4-3-Optimization-Algorithm" class="headerlink" title="9.4.3 Optimization Algorithm"></a>9.4.3 Optimization Algorithm</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Idea: </div><div class="line">	For a given value of theta, we can minimize the cost function to learn the value of xi</div><div class="line">	For a given value of xi, we can also do that to learn the value of theata.</div><div class="line">	θ --&gt; x --&gt; θ --&gt; x --&gt; θ --&gt; x --&gt; θ --&gt; x --&gt; ...</div><div class="line">	But this two steps, we shoud do that *** simultaneously ***</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>Origional Algorithm</strong></li>
+</ul>
+<p><img src="http://p1.bqimg.com/567571/fa32ae15048c3b75.png" alt=""></p>
+<ul>
+<li><strong>Collaborative filterin Optimization Algorithm</strong></li>
+<li>​</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/02/Machine/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-My-First-Post" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
