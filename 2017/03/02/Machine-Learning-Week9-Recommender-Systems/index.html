@@ -6,17 +6,123 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://chenson.com">
-  <title>Archives: 2017/3 | Vane&#39;s Blog</title>
+  <title>Machine Learning Week9 - Recommender Systems  | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Stay Hungry. Stay Foolish">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Vane's Blog">
-<meta property="og:url" content="http://chenson.com/archives/2017/03/index.html">
+  <meta name="description" content="9 Recommender Systems9.1
+9.2 Problems9.2.1
+
+
+Movies
+Alice - θ(1)
+Bob - θ(2)
+Carol - θ(3)
+Dave - θ(4)
+romance - x1
+action -x2
+
+
+
+
+Love at last
+5
+5
+0
+0
+1.0
+0.0
+
+
+Romance forever
+5
+?
+?
+0
+0.9
+0.1
+
+
+Cute p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine Learning Week9 - Recommender Systems ">
+<meta property="og:url" content="http://chenson.com/2017/03/02/Machine-Learning-Week9-Recommender-Systems/index.html">
 <meta property="og:site_name" content="Vane's Blog">
-<meta property="og:description" content="Stay Hungry. Stay Foolish">
+<meta property="og:description" content="9 Recommender Systems9.1
+9.2 Problems9.2.1
+
+
+Movies
+Alice - θ(1)
+Bob - θ(2)
+Carol - θ(3)
+Dave - θ(4)
+romance - x1
+action -x2
+
+
+
+
+Love at last
+5
+5
+0
+0
+1.0
+0.0
+
+
+Romance forever
+5
+?
+?
+0
+0.9
+0.1
+
+
+Cute p">
+<meta property="og:image" content="http://i1.piimg.com/567571/aa7db7ebd8562ccf.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/7480a00094b686af.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/fdc2b5b0affa21ef.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/9680507237900090.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/fa32ae15048c3b75.png">
+<meta property="og:updated_time" content="2017-03-02T11:05:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vane's Blog">
-<meta name="twitter:description" content="Stay Hungry. Stay Foolish">
+<meta name="twitter:title" content="Machine Learning Week9 - Recommender Systems ">
+<meta name="twitter:description" content="9 Recommender Systems9.1
+9.2 Problems9.2.1
+
+
+Movies
+Alice - θ(1)
+Bob - θ(2)
+Carol - θ(3)
+Dave - θ(4)
+romance - x1
+action -x2
+
+
+
+
+Love at last
+5
+5
+0
+0
+1.0
+0.0
+
+
+Romance forever
+5
+?
+?
+0
+0.9
+0.1
+
+
+Cute p">
+<meta name="twitter:image" content="http://i1.piimg.com/567571/aa7db7ebd8562ccf.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -150,36 +256,198 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Machine-Learning-Week9-Recommender-Systems" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Machine Learning Week9 - Recommender Systems 
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/02/Machine-Learning-Week9-Recommender-Systems/" class="archive-article-date">
+
+        
+        <a href="/2017/03/02/Machine-Learning-Week9-Recommender-Systems/" class="archive-article-date">
   	<time datetime="2017-03-02T11:05:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-02</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/02/Machine-Learning-Week9-Recommender-Systems/">Machine Learning Week9 - Recommender Systems </a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="9-Recommender-Systems"><a href="#9-Recommender-Systems" class="headerlink" title="9 Recommender Systems"></a>9 Recommender Systems</h3><h4 id="9-1"><a href="#9-1" class="headerlink" title="9.1"></a>9.1</h4><p><img src="http://i1.piimg.com/567571/aa7db7ebd8562ccf.png" alt=""></p>
+<h4 id="9-2-Problems"><a href="#9-2-Problems" class="headerlink" title="9.2 Problems"></a>9.2 Problems</h4><h5 id="9-2-1"><a href="#9-2-1" class="headerlink" title="9.2.1"></a>9.2.1</h5><table>
+<thead>
+<tr>
+<th>Movies</th>
+<th style="text-align:center">Alice - θ(1)</th>
+<th style="text-align:center">Bob - θ(2)</th>
+<th style="text-align:center">Carol - θ(3)</th>
+<th style="text-align:center">Dave - θ(4)</th>
+<th style="text-align:center">romance - x1</th>
+<th style="text-align:center">action -x2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Love at last</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">0.0</td>
+</tr>
+<tr>
+<td>Romance forever</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0.9</td>
+<td style="text-align:center">0.1</td>
+</tr>
+<tr>
+<td>Cute puppies of love</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">0.99</td>
+<td style="text-align:center">0.01</td>
+</tr>
+<tr>
+<td>Nonstop car chases</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0.0</td>
+<td style="text-align:center">1.0</td>
+</tr>
+<tr>
+<td>Sword vs. karate</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">0.2</td>
+<td style="text-align:center">0.8</td>
+</tr>
+</tbody>
+</table>
+<h5 id="9-2-2-Purpose"><a href="#9-2-2-Purpose" class="headerlink" title="9.2.2 Purpose"></a>9.2.2 Purpose</h5><p>Actually, we can assume that we have known all features about the all movies, that is x1, x2, …, xn. And we want to initiate some random values for all theta for all users. As the feature values was fixed, we training the training set by minimizing cost function to get right value of theta.</p>
+<h4 id="9-3-Algorithm"><a href="#9-3-Algorithm" class="headerlink" title="9.3 Algorithm"></a>9.3 Algorithm</h4><h5 id="9-3-1-Optimization-Objective"><a href="#9-3-1-Optimization-Objective" class="headerlink" title="9.3.1 Optimization Objective"></a>9.3.1 Optimization Objective</h5><p><img src="http://p1.bqimg.com/567571/7480a00094b686af.png" alt=""></p>
+<h5 id="9-3-2-Gradient-descent-update"><a href="#9-3-2-Gradient-descent-update" class="headerlink" title="9.3.2 Gradient descent update"></a>9.3.2 Gradient descent update</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Question:</div><div class="line">	1. Why we don&apos;t need (1/m)</div><div class="line">		Anwser: As there are only ***one user***</div><div class="line">	2. Reguration</div><div class="line">		Answer: (λ/1) = λ</div></pre></td></tr></table></figure>
+<p><img src="http://p1.bqimg.com/567571/fdc2b5b0affa21ef.png" alt=""></p>
+<h5 id="9-3-3-Gradient-descent-in-Logistic-Regression"><a href="#9-3-3-Gradient-descent-in-Logistic-Regression" class="headerlink" title="9.3.3 Gradient descent in Logistic Regression"></a>9.3.3 Gradient descent in Logistic Regression</h5><p><img src="http://p1.bpimg.com/567571/9680507237900090.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Question:</div><div class="line">	However, in the above example, we have known the values of all features, but for sometime, we have no idea about that. It means that we have to *** learn theta and features at the same time ***</div></pre></td></tr></table></figure>
+<h4 id="9-4-Collaborative-filtering"><a href="#9-4-Collaborative-filtering" class="headerlink" title="9.4 Collaborative filtering"></a>9.4 Collaborative filtering</h4><h5 id="9-4-1-Proble-motivation"><a href="#9-4-1-Proble-motivation" class="headerlink" title="9.4.1 Proble motivation"></a>9.4.1 Proble motivation</h5><table>
+<thead>
+<tr>
+<th>Movies</th>
+<th style="text-align:center">Alice - θ(1)</th>
+<th style="text-align:center">Bob - θ(2)</th>
+<th style="text-align:center">Carol - θ(3)</th>
+<th style="text-align:center">Dave - θ(4)</th>
+<th style="text-align:center">romance - x1</th>
+<th style="text-align:center">action - x2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x(1) - Love at last</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">?</td>
+</tr>
+<tr>
+<td>x(2) -Romance forever</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">?</td>
+</tr>
+<tr>
+<td>x(3) -Cute puppies of love</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">?</td>
+</tr>
+<tr>
+<td>x(4) -Nonstop car chases</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">?</td>
+</tr>
+<tr>
+<td>x(5) -Sword vs. karate</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">?</td>
+</tr>
+</tbody>
+</table>
+<h5 id="9-4-2-How-to-do"><a href="#9-4-2-How-to-do" class="headerlink" title="9.4.2 How to do"></a>9.4.2 How to do</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Question:</div><div class="line">	How can we get the value of x?</div></pre></td></tr></table></figure>
+<p>Assume:<br>$$<br>\theta^{(1)} = \begin{bmatrix} 0 \ 5 \ 0 \end{bmatrix},  \space\space<br>\theta^{(2)} = \begin{bmatrix} 0 \ 5 \ 0 \end{bmatrix},  \space\space<br>\theta^{(3)} = \begin{bmatrix} 0 \ 0 \ 5 \end{bmatrix},  \space\space<br>\theta^{(4)} = \begin{bmatrix} 0 \ 0 \ 5 \end{bmatrix},  \space\space<br>x^{(1)} = \begin{bmatrix} 1 \ 1.0 \ 0.0 \end{bmatrix}<br>$$<br>For Movie 1, we can calculate the result of Movie1 rating by all users.<br>$$<br>\theta^{(1)} <em> x^{(1)} \approx 5    \<br>\theta^{(2)} </em> x^{(1)} \approx 5    \<br>\theta^{(3)} <em> x^{(1)} \approx 0    \<br>\theta^{(4)} </em> x^{(1)} \approx 0<br>$$</p>
+<h5 id="9-4-3-Optimization-Algorithm"><a href="#9-4-3-Optimization-Algorithm" class="headerlink" title="9.4.3 Optimization Algorithm"></a>9.4.3 Optimization Algorithm</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Idea: </div><div class="line">	For a given value of theta, we can minimize the cost function to learn the value of xi</div><div class="line">	For a given value of xi, we can also do that to learn the value of theata.</div><div class="line">	θ --&gt; x --&gt; θ --&gt; x --&gt; θ --&gt; x --&gt; θ --&gt; x --&gt; ...</div><div class="line">	But this two steps, we shoud do that *** simultaneously ***</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>Origional Algorithm</strong></li>
+</ul>
+<p><img src="http://p1.bqimg.com/567571/fa32ae15048c3b75.png" alt=""></p>
+<ul>
+<li><strong>Collaborative filterin Optimization Algorithm</strong></li>
+<li>​</li>
+</ul>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>Thanks for your donate.<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://i1.piimg.com/567571/a24bcde34ea6aef7.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -191,61 +459,109 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2017/03/02/Machine-Learning-Week9-Recommender-Systems/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/02/Machine-Learning-Week7-SVM/" class="archive-article-date">
-  	<time datetime="2017-03-02T11:02:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-02</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/02/Machine-Learning-Week7-SVM/">Machine Learning Week7 - SVM</a>
-    </h1>
+  
+    <a href="/2017/03/02/Machine-Learning-Week7-SVM/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Machine Learning Week7 - SVM</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Machine-Learning-Week9-Recommender-Systems" data-title="Machine Learning Week9 - Recommender Systems " data-url="http://chenson.com/2017/03/02/Machine-Learning-Week9-Recommender-Systems/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
 
 
           </div>
@@ -268,8 +584,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
