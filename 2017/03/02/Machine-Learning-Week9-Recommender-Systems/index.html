@@ -35,7 +35,7 @@
 <meta property="og:image" content="http://p1.bqimg.com/567571/6d3b0fd8406f42e4.png">
 <meta property="og:image" content="http://p1.bqimg.com/567571/7a511dff9e71cea6.png">
 <meta property="og:image" content="http://p1.bqimg.com/567571/0eb45a842e55e55f.png">
-<meta property="og:updated_time" content="2017-03-04T04:00:10.000Z">
+<meta property="og:updated_time" content="2017-03-04T04:04:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Machine Learning Week9 - Recommender Systems ">
 <meta name="twitter:description" content="9 Recommender Systems9.1 What is Recommender Systems对于推荐系统的定义，我们先举几个例子来理解一下。
@@ -206,10 +206,8 @@
 <ul>
 <li><p><strong>Content-based systems</strong></p>
 <p>Content-based，就是基于已有的信息进行推荐。具体哪些信息呢？在上面的电影推荐系统中，有两类信息需要分析。</p>
-<p>​</p>
 <p>第一，是User的评分信息，比如给爱情片评分高，给动作片评分低。</p>
 <p>第二，是Movie的特征信息，比如这部电影偏向爱情片多一些，但也有一部分搞笑。所以在A（爱情片）和B（搞笑片）中， A的权重更高，B的较低</p>
-<p>​</p>
 <p>基于以上两部分信息，我们可以给用户推荐他所喜欢的电影。</p>
 <p><img src="http://p1.bpimg.com/567571/47a077979840183f.png" alt=""></p>
 <a id="more"></a>
@@ -289,7 +287,7 @@
 <p><img src="http://i1.piimg.com/567571/aa7db7ebd8562ccf.png" alt=""></p>
 <h5 id="9-2-2-Gradient-descent-update"><a href="#9-2-2-Gradient-descent-update" class="headerlink" title="9.2.2 Gradient descent update"></a>9.2.2 Gradient descent update</h5><p><img src="http://p1.bqimg.com/567571/fdc2b5b0affa21ef.png" alt=""></p>
 <h5 id="9-2-3-Gradient-descent-in-Logistic-Regression"><a href="#9-2-3-Gradient-descent-in-Logistic-Regression" class="headerlink" title="9.2.3 Gradient descent in Logistic Regression"></a>9.2.3 Gradient descent in Logistic Regression</h5><p><img src="http://p1.bpimg.com/567571/9680507237900090.png" alt=""></p>
-<p>Question:</p>
+<p><strong>Question:</strong></p>
 <ol>
 <li><p>Why we don’t need (1/m)?</p>
 <p>Anwser: As there are only <strong><em>one user</em></strong></p>
@@ -420,19 +418,15 @@
 <h5 id="9-4-2-Collaborative-filtering-gradient"><a href="#9-4-2-Collaborative-filtering-gradient" class="headerlink" title="9.4.2 Collaborative filtering gradient"></a>9.4.2 Collaborative filtering gradient</h5><p><img src="http://p1.bqimg.com/567571/6d3b0fd8406f42e4.png" alt=""><br>$$<br>\frac {\partial J} {\partial x_k^{(1)}} , \frac {\partial J} {\partial x_k^{(2)}} , …, \frac {\partial J} {\partial x_k^{(n_m)}}     \space\space for \space each \space movie\<br>\frac {\partial J} {\partial \theta_k^{(1)}} , \frac {\partial J} {\partial \theta_k^{(2)}} , …, \frac {\partial J} {\partial \theta_k^{(n_u)}}    \space\space for \space each \space user<br>$$<br><strong>Tips：</strong></p>
 <ol>
 <li>对于使用vectorization方法，最终只有两个for-loop，一个计算X_grad，一个计算Theta_grad</li>
-</ol>
-<ol>
 <li>如何对X和Theta求<strong>偏导数</strong>？</li>
 </ol>
 <p><img src="http://p1.bqimg.com/567571/7a511dff9e71cea6.png" alt=""><br>$$<br>(Theta_{grad}(i, :))^T = \begin{bmatrix}<br>\frac {\partial J} {\partial \theta^{(i)}_1}     \<br>\frac {\partial J} {\partial \theta^{(i)}_2}    \<br>…    \<br>\frac {\partial J} {\partial \theta^{(i)}_n}<br>\end{bmatrix}<br>$$</p>
 <ol>
-<li><p>同样，我们只需考虑用户已经评分过的电影，用其作为训练样本</p>
-</li>
-<li><p>因为Vectorization非常容易搞乱各个matrix，所以建议先整理一下各个matrix的size，计算时可以根据matrix的size进行计算。</p>
-<p><img src="http://p1.bqimg.com/567571/0eb45a842e55e55f.png" alt=""></p>
-</li>
+<li>同样，我们只需考虑用户已经评分过的电影，用其作为训练样本</li>
+<li>因为Vectorization非常容易搞乱各个matrix，所以建议先整理一下各个matrix的size，计算时可以根据matrix的size进行计算。</li>
 </ol>
-<h5 id="9-4-3-Implementation"><a href="#9-4-3-Implementation" class="headerlink" title="9.4.3 Implementation"></a>9.4.3 Implementation</h5><p>注意这里并没有给出完整的代码，都只是主要的部分。</p>
+<p><img src="http://p1.bqimg.com/567571/0eb45a842e55e55f.png" alt=""></p>
+<h5 id="9-4-3-Implementation"><a href="#9-4-3-Implementation" class="headerlink" title="9.4.3 Implementation"></a>9.4.3 Implementation</h5><p>注意这里并没有给出完整的代码 (Octave/Matlab)，都只是主要的部分。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">% Theta : nu x n</div><div class="line">% X     : nm x n</div><div class="line">% Y     : nm x nu</div><div class="line">% R     : nm x nu</div><div class="line"></div><div class="line">pred = X * Theta&apos;;  %nm x nu    &apos;</div><div class="line">diff = pred - Y;</div><div class="line"></div><div class="line">% Cost Function with regularization</div><div class="line">J = 0.5 * sum(sum((diff.^2) .* R));</div><div class="line">J = J + (lambda * 0.5) * sum(sum(Theta.^2));    % regularized term of theta.</div><div class="line">J = J + (lambda * 0.5) * sum(sum(X.^2));        % regularized term of x.</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">% calculate X</div><div class="line">for i = 1 : num_movies,</div><div class="line">    % the row vector of all users that have rated movie i</div><div class="line">    idx = find(R(i, :) == 1);   % (1 * r)</div><div class="line"></div><div class="line">    % the list of users who have rated on movie i</div><div class="line">    Theta_temp = Theta(idx, :); % (r * n)</div><div class="line">    Y_temp = Y(i, idx);         % (1 * r)</div><div class="line">    X_temp = X(i, :);           % (1 * n)</div><div class="line"></div><div class="line">    %            ((1 * n) * (n * r)     -(1 * r)) * (r * n)  = (1 * n)</div><div class="line">    X_grad(i, :) = (X_temp * Theta_temp&apos; - Y_temp) * Theta_temp;   %&apos;</div><div class="line"></div><div class="line">    % regularization</div><div class="line">    X_grad(i, :) = X_grad(i, :) + lambda * X_temp;</div><div class="line">end</div><div class="line"></div><div class="line"></div><div class="line">% calculate Theta</div><div class="line">for i = 1 : num_users,</div><div class="line">    % the row vector of all movies that user i has rated</div><div class="line">    idx = find(R(:, i) == 1)&apos;;   % (1 * r)      &apos;</div><div class="line"></div><div class="line">    Theta_temp = Theta(i, :);   % (1 * n)</div><div class="line">    Y_temp = Y(idx, i);         % (r * 1)</div><div class="line">    X_temp = X(idx, :);         % (r * n)</div><div class="line"></div><div class="line">    %                ((r * n) * (n * 1)     - (r * 1)) * (r * n) = (1 * n) </div><div class="line">    Theta_grad(i, :) = (X_temp * Theta_temp&apos; - Y_temp)&apos; * X_temp; </div><div class="line"></div><div class="line">    % regularization</div><div class="line">    Theta_grad(i, :) = Theta_grad(i, :) + lambda * Theta_temp;</div><div class="line">end</div><div class="line"></div><div class="line">grad = [X_grad(:); Theta_grad(:)];</div></pre></td></tr></table></figure>
 <p>​<br>​<br>​    </p>
 
