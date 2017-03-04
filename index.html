@@ -172,7 +172,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="9-Recommender-Systems"><a href="#9-Recommender-Systems" class="headerlink" title="9 Recommender Systems"></a>9 Recommender Systems</h3><h4 id="9-1"><a href="#9-1" class="headerlink" title="9.1"></a>9.1</h4><p><img src="http://i1.piimg.com/567571/aa7db7ebd8562ccf.png" alt=""></p>
+        <h3 id="9-Recommender-Systems"><a href="#9-Recommender-Systems" class="headerlink" title="9 Recommender Systems"></a>9 Recommender Systems</h3><h4 id="9-1-What-is-Recommender-Systems"><a href="#9-1-What-is-Recommender-Systems" class="headerlink" title="9.1 What is Recommender Systems"></a>9.1 What is Recommender Systems</h4><p>对于推荐系统的定义，我们先举几个例子来理解一下。</p>
+<ul>
+<li>电影网站给用户推荐电影，可以根据该用户以往的评分，比如给浪漫爱情电影评分高，给动作片评分较低，那么系统可以根据这些信息，给用户推荐偏向浪漫爱情的电影</li>
+<li>如果是新用户呢？我们没有该用户的评分信息。那么我们可以根据整个系统中，某些电影评分较高进行推荐</li>
+<li>那么如果是新网站，新用户呢？</li>
+</ul>
+<p>以上例子，我们可以把推荐系统分成两类。</p>
+<ul>
+<li><p><strong>Content-based systems</strong></p>
+<p>Content-based，就是基于已有的信息进行推荐。具体哪些信息呢？在上面的电影推荐系统中，有两类信息需要分析。</p>
+<p>​</p>
+<p>第一，是User的评分信息，比如给爱情片评分高，给动作片评分低。</p>
+<p>第二，是Movie的特征信息，比如这部电影偏向爱情片多一些，但也有一部分搞笑。所以在A（爱情片）和B（搞笑片）中， A的权重更高，B的较低</p>
+<p>​</p>
+<p>基于以上两部分信息，我们可以给用户推荐他所喜欢的电影。</p>
+<p><img src="http://p1.bpimg.com/567571/47a077979840183f.png" alt=""></p>
         
       
 
