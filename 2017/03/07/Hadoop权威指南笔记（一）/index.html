@@ -36,7 +36,7 @@ HDFS blocks are large compared to disk blocks, and the reason is to minimize the
 <meta property="og:image" content="http://p1.bqimg.com/567571/d9048c5963587f2e.png">
 <meta property="og:image" content="http://p1.bpimg.com/567571/41e6c237b7063601.png">
 <meta property="og:image" content="http://p1.bpimg.com/567571/4e6521c2fed257a2.png">
-<meta property="og:updated_time" content="2017-03-06T13:46:13.000Z">
+<meta property="og:updated_time" content="2017-03-13T07:16:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop权威指南笔记（一）">
 <meta name="twitter:description" content="1. Hadoop1.1 初识Hadoop非常好的Tutorial 
@@ -206,6 +206,7 @@ HDFS blocks are large compared to disk blocks, and the reason is to minimize the
 <blockquote>
 <p>HDFS blocks are large compared to disk blocks, and the reason is to minimize the cost<br>of seeks. By making a block large enough, the time to transfer the data from the disk<br>can be made to be significantly larger than the time to seek to the start of the block.<br>Thus the time to transfer a large file made of multiple blocks operates at the disk transfer<br>rate.<br>A quick calculation shows that if the seek time is around 10 ms, and the transfer rate<br>is 100 MB/s, then to make the seek time 1% of the transfer time, we need to make the<br>block size around 100 MB. The default is actually 64 MB, although many HDFS installations<br>use 128 MB blocks. This figure will continue to be revised upward as transfer<br>speeds grow with new generations of disk drives.<br>This argument shouldn’t be taken too far, however. Map tasks in MapReduce normally<br>operate on one block at a time, so if you have too few tasks (fewer than nodes in the<br>cluster), your jobs will run slower than they could otherwise.</p>
 </blockquote>
+<a id="more"></a>
 </li>
 </ul>
 <ul>
@@ -258,19 +259,26 @@ HDFS blocks are large compared to disk blocks, and the reason is to minimize the
 <li><p><strong>Partition</strong></p>
 <p>当只有一个reduce的时候，map function的output当然就直接传给这个reduce了。但是当有多个reduce的时候，怎么办呢？此时map会将其输出进行partition(分区)，每一个reduce的任务都会创建一个分区，且每一个reduce task都会有一个partition (There can be many keys (and their associated values)in each partition, but the records for any given key are all in a single partition)，也就是说同一个key会在同一个partition中。</p>
 </li>
-<li><p><strong>Shuffle and sort</strong></p>
+<li><p><strong>Shuffle and Sort</strong></p>
 <p>在map和reduce之间的data flow是<strong>Shuffle</strong>，从上图可以看出，一个reduce可以接受来自多个不同的map的output，其中包含了sort，partition等过程。</p>
 </li>
 <li><p><strong>Combiner Functions</strong></p>
 <p>之前我们讨论过，data flow在map和reduce之间是通过network进行传输的，但我们知道map function的output是一个个key-value的键值对的，这些key-value paris中，有些是可以通过combiner function进行combine的，这样做的目的是减小map和reduce之间传输的数据大小，加快传输数据。</p>
-<p>Combiner Function在许多情况和reduce function是很像的，因为做的工作和reduce是比较类似的，只是处理的是局部map的output，减少data flow的size。但是对于是否调用combiner function，这个是不确定的。因为有些情况下的output是不适合进行combine，有些则又是要多次调用进行合并。对于有些特殊情况，甚至连reduce function都不需要。</p>
+<p>Combiner Function在许多情况和 Reduce Function是很像的，因为做的工作和reduce是比较类似的，只是处理的是局部map的output(因此Combiner是运行在map output端)，减少data flow的size。但是对于是否调用combiner function，这个是<strong>不确定</strong>的。因为有些情况下的output是不适合进行combine，有些则又是要多次调用进行合并。对于有些特殊情况，甚至连reduce function都不需要。</p>
 <p>举个栗子：</p>
+<ul>
+<li><strong>适用情况</strong>（Commutative &amp; Associative）</li>
+</ul>
 <p>​    <strong>Reduce Function</strong>              <strong>Combiner Function</strong></p>
 <p><img src="http://p1.bpimg.com/567571/41e6c237b7063601.png" alt=""></p>
-<p>不适用情况：</p>
-<p><img src="http://p1.bpimg.com/567571/4e6521c2fed257a2.png" alt=""></p>
+<p>​    <strong>Commutative:</strong>     max(a, b) = max(b, a)</p>
+<p>​    <strong>Associative:</strong>         max(max(a, b), c) = max(a, max(b, c))</p>
+<ul>
+<li><strong>不适用情况：</strong></li>
+</ul>
 </li>
 </ul>
+<p>  <img src="http://p1.bpimg.com/567571/4e6521c2fed257a2.png" alt=""></p>
 
       
 
@@ -314,7 +322,7 @@ HDFS blocks are large compared to disk blocks, and the reason is to minimize the
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">MyNote</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
         		</li>
       		
 		</ul>
@@ -532,15 +540,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">MyNote</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
               </li>
             
             <div class="clearfix"></div>
