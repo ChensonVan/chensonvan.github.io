@@ -8,7 +8,7 @@
   <link rel="dns-prefetch" href="http://chenson.com">
   <title>KMP算法 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参考内容：
+  <meta name="description" content="参考内容
 阮一峰 - 字符串匹配的KMP算法
 
 
@@ -17,6 +17,7 @@
 Partial Match Table
 
 
+上来先上个结论，这个先暂时不管怎么生成，用于KMP表的移动。
 
 移动位数 = 已匹配的字符数 - 对应的部分匹配值
 
@@ -27,7 +28,7 @@ Partial Match Table
 <meta property="og:title" content="KMP算法">
 <meta property="og:url" content="http://chenson.com/2017/03/15/KMP算法/index.html">
 <meta property="og:site_name" content="Vane's Blog">
-<meta property="og:description" content="参考内容：
+<meta property="og:description" content="参考内容
 阮一峰 - 字符串匹配的KMP算法
 
 
@@ -36,6 +37,7 @@ Partial Match Table
 Partial Match Table
 
 
+上来先上个结论，这个先暂时不管怎么生成，用于KMP表的移动。
 
 移动位数 = 已匹配的字符数 - 对应的部分匹配值
 
@@ -51,10 +53,10 @@ Partial Match Table
 <meta property="og:image" content="http://i1.piimg.com/567571/005d54eb172ff27e.png">
 <meta property="og:image" content="http://p1.bpimg.com/567571/c8cfb90db5bdf1e6.png">
 <meta property="og:image" content="http://i1.piimg.com/567571/472a6024ca51a4d7.png">
-<meta property="og:updated_time" content="2017-03-15T06:58:41.000Z">
+<meta property="og:updated_time" content="2017-03-15T07:03:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KMP算法">
-<meta name="twitter:description" content="参考内容：
+<meta name="twitter:description" content="参考内容
 阮一峰 - 字符串匹配的KMP算法
 
 
@@ -63,6 +65,7 @@ Partial Match Table
 Partial Match Table
 
 
+上来先上个结论，这个先暂时不管怎么生成，用于KMP表的移动。
 
 移动位数 = 已匹配的字符数 - 对应的部分匹配值
 
@@ -224,15 +227,16 @@ Partial Match Table
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>参考内容：<ul>
+<li><strong>参考内容</strong><ul>
 <li><a href="http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html" target="_blank" rel="external">阮一峰 - 字符串匹配的KMP算法</a></li>
 </ul>
 </li>
 </ul>
 <ul>
-<li>Partial Match Table</li>
+<li><strong>Partial Match Table</strong></li>
 </ul>
 <p><img src="http://p1.bpimg.com/567571/c8cfb90db5bdf1e6.png" alt=""></p>
+<p>上来先上个结论，这个先暂时不管怎么生成，用于KMP表的移动。</p>
 <blockquote>
 <p>移动位数 = 已匹配的字符数 - 对应的部分匹配值</p>
 </blockquote>
@@ -240,9 +244,72 @@ Partial Match Table
 <p>匹配到了第六个字符B，B在上表中的值是2，已经匹配的字符数是6</p>
 <p>所以移动的位数是 6 - 2 = 4，将搜索词向后移动4位。</p>
 <p><img src="http://p1.bpimg.com/567571/cbea8594445a6afe.png" alt=""></p>
-<a id="more"></a>匹配到了第三个字符C，C在上表中的值是0，已经匹配的字符数是2<br><br>所以移动的位数是 2 - 0 = 2，将搜索词向后移动2位<br><br><img src="http://i1.piimg.com/567571/baeda2575227f173.png" alt=""><br><br>因为第一个字符不匹配，就将整个字符串向后移一位<br><br><img src="http://p1.bqimg.com/567571/a88ccdf0dd364060.png" alt=""><br><br>匹配到了第六个字符B，B在上表中的值是2，已经匹配的字符数是2<br><br>所以移动的位数是 6 - 2 = 4，将搜索词向后移动4位<br><br><img src="http://i1.piimg.com/567571/578dabd2f1596006.png" alt=""><br><br>逐个比较，直到完全匹配<br><br>如果还需要继续搜索的话，D在上表中的值为0，匹配到的个数为7，移动的位数= 7 - 0 = 7，将整个字符串往后移动7位。接着就是重复之前的比较步骤了。<br><br><br><br>- 计算Partial Match Table<br><br><img src="http://i1.piimg.com/567571/005d54eb172ff27e.png" alt=""><br><br>​    这里需要理解两个概念：<strong>前缀</strong>和<strong>后缀</strong><br><br>​    <strong>“前缀”</strong> 指除了最后一个字符以外，一个字符串的全部头部组合；<br><br>​    <strong>“后缀”</strong> 指除了第一个字符以外，一个字符串的全部尾部组合。<br><br>​    而我们需要的<strong>Partial Match Table</strong>就是<strong>前缀</strong>和<strong>后缀</strong>的<strong>最长共有元素</strong>的长度<br><br><br><br>​    继续以上面的例子讲解<br><br><img src="http://p1.bpimg.com/567571/c8cfb90db5bdf1e6.png" alt=""><br><br>&gt; “A”的前缀和后缀都为空集，共有元素的长度为0；<br>&gt; “AB”的前缀为[A]，后缀为[B]，共有元素的长度为0；<br>&gt; “ABC”的前缀为[A, AB]，后缀为[BC, C]，共有元素的长度0；<br>&gt; “ABCD”的前缀为[A, AB, ABC]，后缀为[BCD, CD, D]，共有元素的长度为0；<br>&gt; “ABCDA”的前缀为[A, AB, ABC, ABCD]，后缀为[BCDA, CDA, DA, A]，共有元素为”A”，长度为1；<br>&gt; “ABCDAB”的前缀为[A, AB, ABC, ABCD, ABCDA]，后缀为[BCDAB, CDAB, DAB, AB, B]，共有元素为”AB”，长度为2；<br>&gt; “ABCDABD”的前缀为[A, AB, ABC, ABCD, ABCDA, ABCDAB]，后缀为[BCDABD, CDABD, DABD, ABD, BD, D]，共有元素的长度为0。<br><br><br><br>了解了KMP的原理之后，来看一下代码该怎么写。<br><br>举个栗子：<br><br>Text = a b a c a a b a c c a b a c a b a a b b<br><br>Pattern = a b a c a b<br><br>根据前面的<strong>Partial Match Table</strong>, 我们可以算出Pattern的这个表<br><br>|   P   |  a   |  b   |  a   |  c   |  a   |  b   |<br>| :—: | :–: | :–: | :–: | :–: | :–: | :–: |<br>| steps |  0   |  0   |  1   |  0   |  1   |  2   |<br><br><br><br>此时我们用两个指针 <strong>i</strong> 和 <strong>j</strong> 来表示 <strong>Text</strong> 和 <strong>Pattern</strong> 中的字符。<br><br>当 <strong>T[ i  :  i + j ] == P[ 1 : j ]</strong> 的时候，就是 <strong>Text</strong> 中包含了我们需要查找的 <strong>Pattern</strong><br><br><img src="http://i1.piimg.com/567571/472a6024ca51a4d7.png" alt=""><br><br>先让 <strong>i</strong> 和 <strong>j</strong> 都从 <strong>1</strong> 开始（python代码中从0开始）<br><br>当<strong>T[ i ] = P[ j ]</strong>的时候，此时指针在 <strong>Text</strong> 和 <strong>Pattern</strong> 上都往前各走一步，即<strong>j+1</strong>，<strong>i+1</strong><br><br>当 <strong>i = 6</strong>，<strong>j = 6</strong> 的时候，我们可以看出<strong>T[ i ] != P[ j ]</strong>，此时 <strong>j</strong> 就不能再继续往前走了，需要退回去几步。<br><br>那么到底是几步呢，经过上面查表，此时匹配到5，重复的字符串个数为1，意思是对于这个字符串 abaca，abac<strong>a</strong> 和 <strong>a</strong>baca 中有一个重复了，我们就不需要再比较这个，跳过这个字符，移动的个数为 <strong>6 - 1 = 5</strong>，将字符串 <strong>Pattern</strong> 向前挪5位，新的 j 就等于1了，然后重复之前的步骤。<br><br><br><br>- Python代码<br><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div></pre></td><td class="code"><pre><div class="line">DEBUG = <span class="keyword">True</span></div><div class="line">DEBUG = <span class="keyword">False</span></div><div class="line"></div><div class="line"><span class="comment"># 生成 partial match table</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">PMT</span><span class="params">(sent)</span>:</span></div><div class="line">    length = len(sent)</div><div class="line">    result = [<span class="number">0</span>]</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, length + <span class="number">1</span>):</div><div class="line">        sub_sent = sent[<span class="number">0</span> : i]</div><div class="line">        sub_len = len(sub_sent)</div><div class="line"></div><div class="line">        surfix = []</div><div class="line">        prefix = []</div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(sub_len):</div><div class="line">            prefix.append(sub_sent[<span class="number">0</span> : j])</div><div class="line">            surfix.append(sub_sent[j + <span class="number">1</span>: sub_len ])</div><div class="line">        prefix.remove(<span class="string">''</span>)</div><div class="line">        surfix.remove(<span class="string">''</span>)</div><div class="line">        all_fix = list(set(prefix + surfix))</div><div class="line">        max_len = <span class="number">0</span></div><div class="line">        com_str = <span class="string">''</span></div><div class="line"></div><div class="line">        <span class="keyword">for</span> fix <span class="keyword">in</span> all_fix:</div><div class="line">            <span class="keyword">if</span> fix <span class="keyword">in</span> prefix <span class="keyword">and</span> fix <span class="keyword">in</span> surfix:</div><div class="line">                <span class="keyword">if</span> len(fix) &gt; max_len:</div><div class="line">                    max_len = len(fix)</div><div class="line">                    com_str = fix</div><div class="line">        result.append(max_len)</div><div class="line">    <span class="keyword">return</span> result</div><div class="line"></div><div class="line"><span class="comment"># KMP算法</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">KMP</span><span class="params">(text, pattern)</span>:</span></div><div class="line">    <span class="keyword">if</span> (len(text) &lt; len(pattern)):</div><div class="line">        <span class="keyword">return</span> <span class="string">'Not Match'</span></div><div class="line"></div><div class="line">    pmt = PMT(pattern)</div><div class="line">    <span class="keyword">if</span> DEBUG:</div><div class="line">        print(<span class="string">'Current Pattern is  = '</span>, pattern)</div><div class="line">        print(<span class="string">'Partial Match Table = '</span>, pmt)</div><div class="line">    i = <span class="number">0</span></div><div class="line">    j = <span class="number">0</span></div><div class="line">    <span class="keyword">while</span>(i &lt; len(text)):</div><div class="line">        <span class="keyword">if</span> (text[i] == pattern[j]):</div><div class="line">            <span class="keyword">if</span> (j == (len(pattern) - <span class="number">1</span>)):</div><div class="line">                <span class="keyword">return</span> <span class="string">'Match, the position in text is: &#123;&#125; - &#123;&#125; = &#123;&#125;'</span>.format(i - j, i, text[i-j: i])</div><div class="line">            i += <span class="number">1</span></div><div class="line">            j += <span class="number">1</span></div><div class="line">            <span class="keyword">continue</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">if</span> j &gt;= <span class="number">1</span>:</div><div class="line">                j = pmt[j - <span class="number">1</span>]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                i += <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> <span class="string">'Not Match'</span></div><div class="line"></div><div class="line"><span class="comment"># 测试函数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(text, pattern)</span>:</span></div><div class="line">    result = KMP(text, pattern)</div><div class="line">    print(<span class="string">'Resutl  = '</span>, result)</div><div class="line">    print(<span class="string">'Pattern ='</span>, pattern)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> DEBUG:</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(text)):</div><div class="line">            print(<span class="string">'&#123;:3s&#125;'</span>.format(str(i)), end=<span class="string">'-'</span>)</div><div class="line">        print(<span class="string">''</span>)</div><div class="line"></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(text)):</div><div class="line">            print(<span class="string">'&#123;:3s&#125;'</span>.format(text[i]), end=<span class="string">'-'</span>)</div><div class="line">        print(<span class="string">''</span>)</div><div class="line">    print(<span class="string">'\n'</span>)</div><div class="line"></div><div class="line"><span class="comment"># 测试部分</span></div><div class="line">text = <span class="string">'BBC ABCDAB ABCDABCDABDE'</span></div><div class="line">pattern = <span class="string">'ABCDABD'</span></div><div class="line">test(text, pattern)</div><div class="line"></div><div class="line">text = <span class="string">'a b a c a a b a c c a b a c a b a a b b'</span></div><div class="line">pattern = <span class="string">'a b a c a b'</span></div><div class="line">test(text, pattern)</div><div class="line"></div><div class="line">text = <span class="string">'BBC ABCDAB ABCDABCDABE'</span></div><div class="line">pattern = <span class="string">'ABCDABD'</span></div><div class="line">test(text, pattern)</div><div class="line"></div><div class="line">text = <span class="string">'BBC AB'</span></div><div class="line">pattern = <span class="string">'ABCDABD'</span></div><div class="line">test(text, pattern)</div><div class="line"></div><div class="line">text = <span class="string">'ABCDABD'</span></div><div class="line">pattern = <span class="string">'ABCDABD'</span></div><div class="line">test(text, pattern)</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>匹配到了第三个字符C，C在上表中的值是0，已经匹配的字符数是2</p>
+<p>所以移动的位数是 2 - 0 = 2，将搜索词向后移动2位</p>
+<p><img src="http://i1.piimg.com/567571/baeda2575227f173.png" alt=""></p>
+<p>因为第一个字符不匹配，就将整个字符串向后移一位</p>
+<p><img src="http://p1.bqimg.com/567571/a88ccdf0dd364060.png" alt=""></p>
+<p>匹配到了第六个字符B，B在上表中的值是2，已经匹配的字符数是2</p>
+<p>所以移动的位数是 6 - 2 = 4，将搜索词向后移动4位</p>
+<p><img src="http://i1.piimg.com/567571/578dabd2f1596006.png" alt=""></p>
+<p>逐个比较，直到完全匹配</p>
+<p>如果还需要继续搜索的话，D在上表中的值为0，匹配到的个数为7，移动的位数= 7 - 0 = 7，将整个字符串往后移动7位。接着就是重复之前的比较步骤了。</p>
 <ul>
-<li>测试结果</li>
+<li><strong>计算Partial Match Table</strong></li>
+</ul>
+<p><img src="http://i1.piimg.com/567571/005d54eb172ff27e.png" alt=""></p>
+<p>​    这里需要理解两个概念：<strong>前缀</strong>和<strong>后缀</strong></p>
+<p>​    <strong>“前缀”</strong> 指除了最后一个字符以外，一个字符串的全部头部组合；</p>
+<p>​    <strong>“后缀”</strong> 指除了第一个字符以外，一个字符串的全部尾部组合。</p>
+<p>​    而我们需要的<strong>Partial Match Table</strong>就是<strong>前缀</strong>和<strong>后缀</strong>的<strong>最长共有元素</strong>的长度</p>
+<p>​    继续以上面的例子讲解</p>
+<p><img src="http://p1.bpimg.com/567571/c8cfb90db5bdf1e6.png" alt=""></p>
+<blockquote>
+<p>“A”的前缀和后缀都为空集，共有元素的长度为0；<br>“AB”的前缀为[A]，后缀为[B]，共有元素的长度为0；<br>“ABC”的前缀为[A, AB]，后缀为[BC, C]，共有元素的长度0；<br>“ABCD”的前缀为[A, AB, ABC]，后缀为[BCD, CD, D]，共有元素的长度为0；<br>“ABCDA”的前缀为[A, AB, ABC, ABCD]，后缀为[BCDA, CDA, DA, A]，共有元素为”A”，长度为1；<br>“ABCDAB”的前缀为[A, AB, ABC, ABCD, ABCDA]，后缀为[BCDAB, CDAB, DAB, AB, B]，共有元素为”AB”，长度为2；<br>“ABCDABD”的前缀为[A, AB, ABC, ABCD, ABCDA, ABCDAB]，后缀为[BCDABD, CDABD, DABD, ABD, BD, D]，共有元素的长度为0。</p>
+</blockquote>
+<p>了解了KMP的原理之后，来看一下代码该怎么写。</p>
+<p>举个栗子：</p>
+<p>Text = a b a c a a b a c c a b a c a b a a b b</p>
+<p>Pattern = a b a c a b</p>
+<p>根据前面的<strong>Partial Match Table</strong>, 我们可以算出Pattern的这个表</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">P</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">c</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">steps</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+</tr>
+</tbody>
+</table>
+<p>此时我们用两个指针 <strong>i</strong> 和 <strong>j</strong> 来表示 <strong>Text</strong> 和 <strong>Pattern</strong> 中的字符。</p>
+<p>当 <strong>T[ i  :  i + j ] == P[ 1 : j ]</strong> 的时候，就是 <strong>Text</strong> 中包含了我们需要查找的 <strong>Pattern</strong></p>
+<p><img src="http://i1.piimg.com/567571/472a6024ca51a4d7.png" alt=""></p>
+<p>先让 <strong>i</strong> 和 <strong>j</strong> 都从 <strong>1</strong> 开始（python代码中从0开始）</p>
+<p>当<strong>T[ i ] = P[ j ]</strong>的时候，此时指针在 <strong>Text</strong> 和 <strong>Pattern</strong> 上都往前各走一步，即<strong>j+1</strong>，<strong>i+1</strong></p>
+<p>当 <strong>i = 6</strong>，<strong>j = 6</strong> 的时候，我们可以看出<strong>T[ i ] != P[ j ]</strong>，此时 <strong>j</strong> 就不能再继续往前走了，需要退回去几步。</p>
+<p>那么到底是几步呢，经过上面查表，此时匹配到5，重复的字符串个数为1，意思是对于这个字符串 abaca，abac<strong>a</strong> 和 <strong>a</strong>baca 中有一个重复了，我们就不需要再比较这个，跳过这个字符，移动的个数为 <strong>6 - 1 = 5</strong>，将字符串 <strong>Pattern</strong> 向前挪5位，新的 j 就等于1了，然后重复之前的步骤。</p>
+<ul>
+<li><strong>Python代码</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div></pre></td><td class="code"><pre><div class="line">DEBUG = <span class="keyword">True</span></div><div class="line">DEBUG = <span class="keyword">False</span></div><div class="line"></div><div class="line"><span class="comment"># 生成 partial match table</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">PMT</span><span class="params">(sent)</span>:</span></div><div class="line">    length = len(sent)</div><div class="line">    result = [<span class="number">0</span>]</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, length + <span class="number">1</span>):</div><div class="line">        sub_sent = sent[<span class="number">0</span> : i]</div><div class="line">        sub_len = len(sub_sent)</div><div class="line"></div><div class="line">        surfix = []</div><div class="line">        prefix = []</div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(sub_len):</div><div class="line">            prefix.append(sub_sent[<span class="number">0</span> : j])</div><div class="line">            surfix.append(sub_sent[j + <span class="number">1</span>: sub_len ])</div><div class="line">        prefix.remove(<span class="string">''</span>)</div><div class="line">        surfix.remove(<span class="string">''</span>)</div><div class="line">        all_fix = list(set(prefix + surfix))</div><div class="line">        max_len = <span class="number">0</span></div><div class="line">        com_str = <span class="string">''</span></div><div class="line"></div><div class="line">        <span class="keyword">for</span> fix <span class="keyword">in</span> all_fix:</div><div class="line">            <span class="keyword">if</span> fix <span class="keyword">in</span> prefix <span class="keyword">and</span> fix <span class="keyword">in</span> surfix:</div><div class="line">                <span class="keyword">if</span> len(fix) &gt; max_len:</div><div class="line">                    max_len = len(fix)</div><div class="line">                    com_str = fix</div><div class="line">        result.append(max_len)</div><div class="line">    <span class="keyword">return</span> result</div><div class="line"></div><div class="line"><span class="comment"># KMP算法</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">KMP</span><span class="params">(text, pattern)</span>:</span></div><div class="line">    <span class="keyword">if</span> (len(text) &lt; len(pattern)):</div><div class="line">        <span class="keyword">return</span> <span class="string">'Not Match'</span></div><div class="line"></div><div class="line">    pmt = PMT(pattern)</div><div class="line">    <span class="keyword">if</span> DEBUG:</div><div class="line">        print(<span class="string">'Current Pattern is  = '</span>, pattern)</div><div class="line">        print(<span class="string">'Partial Match Table = '</span>, pmt)</div><div class="line">    i = <span class="number">0</span></div><div class="line">    j = <span class="number">0</span></div><div class="line">    <span class="keyword">while</span>(i &lt; len(text)):</div><div class="line">        <span class="keyword">if</span> (text[i] == pattern[j]):</div><div class="line">            <span class="keyword">if</span> (j == (len(pattern) - <span class="number">1</span>)):</div><div class="line">                <span class="keyword">return</span> <span class="string">'Match, the position in text is: &#123;&#125; - &#123;&#125; = &#123;&#125;'</span>.format(i - j, i, text[i-j: i])</div><div class="line">            i += <span class="number">1</span></div><div class="line">            j += <span class="number">1</span></div><div class="line">            <span class="keyword">continue</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">if</span> j &gt;= <span class="number">1</span>:</div><div class="line">                j = pmt[j - <span class="number">1</span>]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                i += <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> <span class="string">'Not Match'</span></div><div class="line"></div><div class="line"><span class="comment"># 测试函数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(text, pattern)</span>:</span></div><div class="line">    result = KMP(text, pattern)</div><div class="line">    print(<span class="string">'Resutl  = '</span>, result)</div><div class="line">    print(<span class="string">'Pattern ='</span>, pattern)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> DEBUG:</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(text)):</div><div class="line">            print(<span class="string">'&#123;:3s&#125;'</span>.format(str(i)), end=<span class="string">'-'</span>)</div><div class="line">        print(<span class="string">''</span>)</div><div class="line"></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(text)):</div><div class="line">            print(<span class="string">'&#123;:3s&#125;'</span>.format(text[i]), end=<span class="string">'-'</span>)</div><div class="line">        print(<span class="string">''</span>)</div><div class="line">    print(<span class="string">'\n'</span>)</div><div class="line"></div><div class="line"><span class="comment"># 测试部分</span></div><div class="line">text = <span class="string">'BBC ABCDAB ABCDABCDABDE'</span></div><div class="line">pattern = <span class="string">'ABCDABD'</span></div><div class="line">test(text, pattern)</div><div class="line"></div><div class="line">text = <span class="string">'a b a c a a b a c c a b a c a b a a b b'</span></div><div class="line">pattern = <span class="string">'a b a c a b'</span></div><div class="line">test(text, pattern)</div><div class="line"></div><div class="line">text = <span class="string">'BBC ABCDAB ABCDABCDABE'</span></div><div class="line">pattern = <span class="string">'ABCDABD'</span></div><div class="line">test(text, pattern)</div><div class="line"></div><div class="line">text = <span class="string">'BBC AB'</span></div><div class="line">pattern = <span class="string">'ABCDABD'</span></div><div class="line">test(text, pattern)</div><div class="line"></div><div class="line">text = <span class="string">'ABCDABD'</span></div><div class="line">pattern = <span class="string">'ABCDABD'</span></div><div class="line">test(text, pattern)</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>测试结果</strong></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">Text    = BBC ABCDAB ABCDABCDABDE</div><div class="line">Pattern = ABCDABD</div><div class="line">Resutl  =  Match, the position <span class="keyword">in</span> text <span class="keyword">is</span>: <span class="number">15</span> - <span class="number">21</span> = ABCDAB</div><div class="line"></div><div class="line"></div><div class="line">Text    = a b a c a a b a c c a b a c a b a a b b</div><div class="line">Pattern = a b a c a b</div><div class="line">Resutl  =  Match, the position <span class="keyword">in</span> text <span class="keyword">is</span>: <span class="number">20</span> - <span class="number">30</span> = a b a c a </div><div class="line"></div><div class="line"></div><div class="line">Text    = BBC ABCDAB ABCDABCDABE</div><div class="line">Pattern = ABCDABD</div><div class="line">Resutl  =  Not Match</div><div class="line"></div><div class="line"></div><div class="line">Text    = BBC AB</div><div class="line">Pattern = ABCDABD</div><div class="line">Resutl  =  Not Match</div><div class="line"></div><div class="line"></div><div class="line">Text    = ABCDABD</div><div class="line">Pattern = ABCDABD</div><div class="line">Resutl  =  Match, the position <span class="keyword">in</span> text <span class="keyword">is</span>: <span class="number">0</span> - <span class="number">6</span> = ABCDAB</div><div class="line"></div><div class="line">[Finished <span class="keyword">in</span> <span class="number">0.1</span>s]</div></pre></td></tr></table></figure>
       
@@ -509,19 +576,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">KMP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">KMP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
             
             <div class="clearfix"></div>
