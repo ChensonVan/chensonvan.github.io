@@ -6,17 +6,41 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://chenson.com">
-  <title>Vane&#39;s Blog</title>
+  <title>Python数据分析笔记（一） | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Stay Hungry. Stay Foolish">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Vane's Blog">
-<meta property="og:url" content="http://chenson.com/index.html">
+  <meta name="description" content="1. 常见问题
+Pandas.dataframe里面 .values, .iloc, .ix, .loc 的区别
+Different Choices for Indexing
+
+loc:  only work on index / labeliloc: work on position, from 0, 1, 2, … …ix:    You can get data from dataframe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python数据分析笔记（一）">
+<meta property="og:url" content="http://chenson.com/2016/12/15/Python数据分析笔记（一）/index.html">
 <meta property="og:site_name" content="Vane's Blog">
-<meta property="og:description" content="Stay Hungry. Stay Foolish">
+<meta property="og:description" content="1. 常见问题
+Pandas.dataframe里面 .values, .iloc, .ix, .loc 的区别
+Different Choices for Indexing
+
+loc:  only work on index / labeliloc: work on position, from 0, 1, 2, … …ix:    You can get data from dataframe">
+<meta property="og:image" content="http://i1.piimg.com/567571/fbb5bb937eb84e6a.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/ea9cb034a8f39e05.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/9b28f412c03fbde8.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/07c03beb7f27ecb9.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/df85915fe333b329.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/c43ad4ba78ccee39.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/3d208f829ffd07e1.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/648119dd1ad05475.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/eb5aa1221d00e50c.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/e575b9a3a5761959.png">
+<meta property="og:updated_time" content="2017-03-17T05:36:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vane's Blog">
-<meta name="twitter:description" content="Stay Hungry. Stay Foolish">
+<meta name="twitter:title" content="Python数据分析笔记（一）">
+<meta name="twitter:description" content="1. 常见问题
+Pandas.dataframe里面 .values, .iloc, .ix, .loc 的区别
+Different Choices for Indexing
+
+loc:  only work on index / labeliloc: work on position, from 0, 1, 2, … …ix:    You can get data from dataframe">
+<meta name="twitter:image" content="http://i1.piimg.com/567571/fbb5bb937eb84e6a.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -150,422 +174,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Machine-Learning-Linear-Regression-and-Logistic-Regression" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Python数据分析笔记（一）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/17/Machine-Learning-Linear-Regression-and-Logistic-Regression/">Machine Learning - Linear Regression and Logistic Regression</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/17/Machine-Learning-Linear-Regression-and-Logistic-Regression/" class="archive-article-date">
-  	<time datetime="2017-03-17T01:06:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-三要素"><a href="#1-三要素" class="headerlink" title="1. 三要素"></a>1. 三要素</h4><p>当一开始接触Andrew在Coursera上的ML公开课的时候，对线性回归和逻辑回归这两种模型有个大体的认识。但是在上完cs229的前三节课，初步了解了这两种模型背后的数学模型，Linear Regression和Logistic Regression背后的概率分布，了解到了这两种概率分布其实只是exponential family中的特例。但同时也开始对一些概念性的东西感觉很模糊，所以觉得有必要好好整理一下这部分的内容。</p>
-<h5 id="1-1-Hypothesis"><a href="#1-1-Hypothesis" class="headerlink" title="1. 1 Hypothesis"></a>1. 1 Hypothesis</h5><p>首先对于样本数据，输入x和输出y之间是通过Target function在转换的，也就是 Target function f(x) = y。但是我们并不知道这个f(x)都是怎样的，所以我们假设了这么一个Hypothesis function去模拟这个Target function，使得我们用同样的输入<strong>x</strong>会的一个预测值<strong>y’</strong>，使得这个<strong>y’</strong>不断逼近真实值<strong>y</strong>。</p>
-<ul>
-<li><p><strong>Linear Regression</strong><br>$$<br>H(x) = \sum_{i=0}^n \theta_i x_i = \theta^Tx<br>$$</p>
-</li>
-<li><p><strong>Logistic Regression</strong><br>$$<br>H(x) = g(\theta^Tx) = \frac 1 {1 + e^{-\theta^Tx}}<br>$$<br>等价于（即log odds，logit）<br>$$<br>ln \frac y {1 - y} = \theta^T x = ln \frac {p(y=1| x; \theta)} {p(y=0| x; \theta)}<br>$$</p>
-</li>
-</ul>
-<h5 id="1-2-Cost-function"><a href="#1-2-Cost-function" class="headerlink" title="1. 2 Cost function"></a>1. 2 Cost function</h5><p>Cost function呢，实际上也可以叫做Error function，就是用我们上面假设的Hypothe function所预测出来的值<strong>y’</strong>和真实值<strong>y</strong>之间的误差。而我们需要做的是根据假设出的Hypothesis function，取一个合适的权重值，即theta的值，使其取的一个较低的cost，也就是这预测值与真实值之间的误差最小。</p>
-<ul>
-<li><p><strong>Ordinary Least Squares</strong> (Square Loss Function)</p>
-<p>常用的方法是最小二乘法</p>
-</li>
-</ul>
-<p>$$<br>J(\theta) = \frac 1 2 \sum<em>{i=i}^m (h</em>\theta(x^{(i)}) - y^{(i)})^2<br>$$</p>
-<p>​    当然我们也可以从概率的角度来理解这个问题<br>$$<br>y^{(i)} = h_\theta(x^{(i)}) + \epsilon^{(i)}<br>$$<br>​    这里的<strong>ϵ</strong>是我们预测值与实际值之间的误差，这个问题我们会留到后面<strong>重点讲解</strong>。    </p>
-<ul>
-<li><strong>0-1 Loss Function</strong></li>
-<li><strong>Absolute Loss Function</strong></li>
-<li><strong>Log Loss Function</strong></li>
-</ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Linear Regression</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Logistic Regression</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GLM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/17/Machine-Learning-Linear-Regression-and-Logistic-Regression/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-KMP算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/15/KMP算法/">KMP算法</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/15/KMP算法/" class="archive-article-date">
-  	<time datetime="2017-03-15T06:48:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><strong>参考内容</strong><ul>
-<li><a href="http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html">阮一峰 - 字符串匹配的KMP算法</a></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><strong>Partial Match Table</strong></li>
-</ul>
-<p><img src="http://p1.bpimg.com/567571/c8cfb90db5bdf1e6.png" alt=""></p>
-<p>上来先上个结论，这个先暂时不管怎么生成，用于KMP表的移动。</p>
-<blockquote>
-<p>移动位数 = 已匹配的字符数 - 对应的部分匹配值</p>
-</blockquote>
-<p><img src="http://p1.bpimg.com/567571/0ebcc136f30708e2.png" alt=""></p>
-<p>匹配到了第六个字符B，B在上表中的值是2，已经匹配的字符数是6</p>
-<p>所以移动的位数是 6 - 2 = 4，将搜索词向后移动4位。</p>
-<p><img src="http://p1.bpimg.com/567571/cbea8594445a6afe.png" alt=""></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">KMP</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/15/KMP算法/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Hadoop权威指南笔记（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/07/Hadoop权威指南笔记（一）/">Hadoop权威指南笔记（一）</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/07/Hadoop权威指南笔记（一）/" class="archive-article-date">
-  	<time datetime="2017-03-06T13:44:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-Hadoop"><a href="#1-Hadoop" class="headerlink" title="1. Hadoop"></a>1. Hadoop</h4><h5 id="1-1-初识Hadoop"><a href="#1-1-初识Hadoop" class="headerlink" title="1.1 初识Hadoop"></a>1.1 初识Hadoop</h5><p><a href="http://hadooptutorials.co.in/tutorials/hadoop/hadoop-fundamentals.html">非常好的Tutorial</a> </p>
-<p>在学习hadoop之前，我觉得有必要了解一下hadoop的基本构成以及一些术语。</p>
-<ul>
-<li><p><strong>Block</strong></p>
-<blockquote>
-<p>HDFS blocks are large compared to disk blocks, and the reason is to minimize the cost<br>of seeks. By making a block large enough, the time to transfer the data from the disk<br>can be made to be significantly larger than the time to seek to the start of the block.<br>Thus the time to transfer a large file made of multiple blocks operates at the disk transfer<br>rate.<br>A quick calculation shows that if the seek time is around 10 ms, and the transfer rate<br>is 100 MB/s, then to make the seek time 1% of the transfer time, we need to make the<br>block size around 100 MB. The default is actually 64 MB, although many HDFS installations<br>use 128 MB blocks. This figure will continue to be revised upward as transfer<br>speeds grow with new generations of disk drives.<br>This argument shouldn’t be taken too far, however. Map tasks in MapReduce normally<br>operate on one block at a time, so if you have too few tasks (fewer than nodes in the<br>cluster), your jobs will run slower than they could otherwise.</p>
-</blockquote>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/07/Hadoop权威指南笔记（一）/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Machine-Learning-Recommender-Systems" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/02/Machine-Learning-Recommender-Systems/">Machine Learning - Recommender Systems </a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/02/Machine-Learning-Recommender-Systems/" class="archive-article-date">
-  	<time datetime="2017-03-02T11:05:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-What-is-Recommender-Systems"><a href="#1-What-is-Recommender-Systems" class="headerlink" title="1. What is Recommender Systems"></a>1. What is Recommender Systems</h4><p>对于推荐系统的定义，我们先举几个例子来理解一下。</p>
-<ul>
-<li>电影网站给用户推荐电影，可以根据该用户以往的评分，比如给浪漫爱情电影评分高，给动作片评分较低，那么系统可以根据这些信息，给用户推荐偏向浪漫爱情的电影</li>
-<li>如果是新用户呢？我们没有该用户的评分信息。那么我们可以根据整个系统中，某些电影评分较高进行推荐</li>
-<li>那么如果是新网站，新用户呢？</li>
-</ul>
-<p>以上例子，我们可以把推荐系统分成两类。</p>
-<ul>
-<li><p><strong>Content-based systems</strong></p>
-<p>Content-based，就是基于已有的信息进行推荐。具体哪些信息呢？在上面的电影推荐系统中，有两类信息需要分析。</p>
-<p>第一，是User的评分信息，比如给爱情片评分高，给动作片评分低。</p>
-<p>第二，是Movie的特征信息，比如这部电影偏向爱情片多一些，但也有一部分搞笑。所以在A（爱情片）和B（搞笑片）中， A的权重更高，B的较低</p>
-<p>基于以上两部分信息，我们可以给用户推荐他所喜欢的电影。</p>
-<p><img src="http://p1.bpimg.com/567571/47a077979840183f.png" alt=""></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/02/Machine-Learning-Recommender-Systems/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Machine-Learning-SVM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/02/Machine-Learning-SVM/">Machine Learning - SVM</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/02/Machine-Learning-SVM/" class="archive-article-date">
-  	<time datetime="2017-03-02T11:02:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-Optimisation-Objective"><a href="#1-Optimisation-Objective" class="headerlink" title="1. Optimisation Objective"></a>1. Optimisation Objective</h4><p>$$<br>h_\theta (x) = \frac 1 {1 + e^{-\theta^Tx}}    \<br>z = -\theta^Tx<br>$$</p>
-<p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.png" alt=""></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/02/Machine-Learning-SVM/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Python数据分析笔记（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/15/Python数据分析笔记（一）/">Python数据分析笔记（一）</a>
+    <h1 class="article-title" itemprop="name">
+      Python数据分析笔记（一）
     </h1>
   
 
@@ -685,6 +301,32 @@
       
 
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>Thanks for your donate.<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://i1.piimg.com/567571/a24bcde34ea6aef7.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
     </div>
     <div class="article-info article-info-index">
       
@@ -711,21 +353,78 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/15/Python数据分析笔记（一）/">MORE >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2016/12/15/Python数据分析笔记（一）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
-
-
-
+  
+<nav id="article-nav">
+  
+    <a href="/2017/03/02/Machine-Learning-SVM/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Machine Learning - SVM
+        
+      </div>
+    </a>
+  
+  
+</nav>
 
 
 
@@ -733,7 +432,31 @@
 
 
   
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Python数据分析笔记（一）" data-title="Python数据分析笔记（一）" data-url="http://chenson.com/2016/12/15/Python数据分析笔记（一）/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
+
+
+
+
+
 
 
           </div>
@@ -755,8 +478,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

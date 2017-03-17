@@ -6,46 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://chenson.com">
-  <title>Hadoop权威指南笔记（一） | Vane&#39;s Blog</title>
+  <title>Archives: 2016/12 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. Hadoop1.1 初识Hadoop非常好的Tutorial 
-在学习hadoop之前，我觉得有必要了解一下hadoop的基本构成以及一些术语。
-
-Block
-
-HDFS blocks are large compared to disk blocks, and the reason is to minimize the costof seeks. By making a block lar">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Hadoop权威指南笔记（一）">
-<meta property="og:url" content="http://chenson.com/2017/03/07/Hadoop权威指南笔记（一）/index.html">
+  <meta name="description" content="Stay Hungry. Stay Foolish">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vane's Blog">
+<meta property="og:url" content="http://chenson.com/archives/2016/12/index.html">
 <meta property="og:site_name" content="Vane's Blog">
-<meta property="og:description" content="1. Hadoop1.1 初识Hadoop非常好的Tutorial 
-在学习hadoop之前，我觉得有必要了解一下hadoop的基本构成以及一些术语。
-
-Block
-
-HDFS blocks are large compared to disk blocks, and the reason is to minimize the costof seeks. By making a block lar">
-<meta property="og:image" content="http://p1.bpimg.com/567571/3c32ed061069089b.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/f1b180f4c04949c3.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/27ee1f02518c6556.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/b469ba1aa1c029b8.png">
-<meta property="og:image" content="http://i1.piimg.com/567571/3997f1a955dd4986.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/84e67241566e0110.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/102b61976d95a0a1.png">
-<meta property="og:image" content="http://i1.piimg.com/567571/ccef143c24029185.png">
-<meta property="og:image" content="http://i1.piimg.com/567571/67773019972a0a2f.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/d9048c5963587f2e.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/41e6c237b7063601.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/4e6521c2fed257a2.png">
-<meta property="og:updated_time" content="2017-03-17T05:33:14.000Z">
+<meta property="og:description" content="Stay Hungry. Stay Foolish">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hadoop权威指南笔记（一）">
-<meta name="twitter:description" content="1. Hadoop1.1 初识Hadoop非常好的Tutorial 
-在学习hadoop之前，我觉得有必要了解一下hadoop的基本构成以及一些术语。
-
-Block
-
-HDFS blocks are large compared to disk blocks, and the reason is to minimize the costof seeks. By making a block lar">
-<meta name="twitter:image" content="http://p1.bpimg.com/567571/3c32ed061069089b.png">
+<meta name="twitter:title" content="Vane's Blog">
+<meta name="twitter:description" content="Stay Hungry. Stay Foolish">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -179,267 +150,68 @@ HDFS blocks are large compared to disk blocks, and the reason is to minimize the
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Hadoop权威指南笔记（一）" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Hadoop权威指南笔记（一）
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/12/15/Python数据分析笔记（一）/" class="archive-article-date">
+  	<time datetime="2016-12-15T11:37:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-15</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/12/15/Python数据分析笔记（一）/">Python数据分析笔记（一）</a>
     </h1>
   
 
-        
-        <a href="/2017/03/07/Hadoop权威指南笔记（一）/" class="archive-article-date">
-  	<time datetime="2017-03-06T13:44:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-Hadoop"><a href="#1-Hadoop" class="headerlink" title="1. Hadoop"></a>1. Hadoop</h4><h5 id="1-1-初识Hadoop"><a href="#1-1-初识Hadoop" class="headerlink" title="1.1 初识Hadoop"></a>1.1 初识Hadoop</h5><p><a href="http://hadooptutorials.co.in/tutorials/hadoop/hadoop-fundamentals.html" target="_blank" rel="external">非常好的Tutorial</a> </p>
-<p>在学习hadoop之前，我觉得有必要了解一下hadoop的基本构成以及一些术语。</p>
-<ul>
-<li><p><strong>Block</strong></p>
-<blockquote>
-<p>HDFS blocks are large compared to disk blocks, and the reason is to minimize the cost<br>of seeks. By making a block large enough, the time to transfer the data from the disk<br>can be made to be significantly larger than the time to seek to the start of the block.<br>Thus the time to transfer a large file made of multiple blocks operates at the disk transfer<br>rate.<br>A quick calculation shows that if the seek time is around 10 ms, and the transfer rate<br>is 100 MB/s, then to make the seek time 1% of the transfer time, we need to make the<br>block size around 100 MB. The default is actually 64 MB, although many HDFS installations<br>use 128 MB blocks. This figure will continue to be revised upward as transfer<br>speeds grow with new generations of disk drives.<br>This argument shouldn’t be taken too far, however. Map tasks in MapReduce normally<br>operate on one block at a time, so if you have too few tasks (fewer than nodes in the<br>cluster), your jobs will run slower than they could otherwise.</p>
-</blockquote>
-<a id="more"></a>
-</li>
-</ul>
-<ul>
-<li><p><strong>Node</strong></p>
-<p>简单的说就是一台主机，一台电脑。在hadoop中，有NameNode, DataNode, Secondary NameNode, JobTracker Node, TaskTracker Node, CheckpointNode 和 BackupNode。对一个cluster，NameNode只能有一个，DataNode可以有多个</p>
-</li>
-<li><p><strong>Rack</strong></p>
-<p>中文机柜/机架，就是用来存放node的storage，通常一个rack有几十个nodes组成，这些nodes存放在同一个机柜，连接一个交换机</p>
-<blockquote>
-<p>A Node is simply a computer. This is typically non-enterprise, commodity hardware for nodes that contain data. Storage of Nodes is called as rack. A rack is a collection of 30 or 40 nodes that are physically stored close together and are all connected to the same network switch. Network bandwidth between any two nodes in rack is greater than bandwidth between two nodes on different racks.A Hadoop Cluster is a collection of racks.</p>
-</blockquote>
-</li>
-</ul>
-<p><img src="http://p1.bpimg.com/567571/3c32ed061069089b.png" alt=""></p>
-<h5 id="1-2-Major-Components"><a href="#1-2-Major-Components" class="headerlink" title="1.2 Major Components"></a>1.2 Major Components</h5><ul>
-<li><strong>Distributed Filesystem</strong> — hadoop中是HDFS</li>
-<li><strong>MapReduce</strong></li>
-</ul>
-<h5 id="1-5-Install-configuration"><a href="#1-5-Install-configuration" class="headerlink" title="1.5 Install configuration"></a>1.5 Install configuration</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 待整理</div><div class="line">hadoop fs</div><div class="line">hadoop dfs</div><div class="line"></div><div class="line"># fs refers to any file system, it oucld be local or HDFS</div><div class="line"># but dfs refers to only HDFS file system</div></pre></td></tr></table></figure>
-<h4 id="2-MapReduce"><a href="#2-MapReduce" class="headerlink" title="2. MapReduce"></a>2. MapReduce</h4><h5 id="2-1-初识MapReduce"><a href="#2-1-初识MapReduce" class="headerlink" title="2.1 初识MapReduce"></a>2.1 初识MapReduce</h5><p><img src="http://p1.bqimg.com/567571/f1b180f4c04949c3.png" alt=""></p>
-<p>整个过程可以分为三个阶段，<strong>Input， MapReduce and Output</strong></p>
-<p>在input和output阶段，数据是存在HDFS文件系统中，其系统的block size大小默认是64/128MB。</p>
-<p>在MapReduce中，又可以分为两个阶段，<strong>Map and Reduce</strong>，数据从map function到reduce function是存在local disk中，(soreing in HDFS with replication would be overkill)，然后通过network传输数据.</p>
-<p>在每个阶段中，input和output的数据都是以 <strong>(key, values)</strong> 格式进行处理的，然后通过 map function 和 reduce function 进行处理。在本例中，input data的key是从数据文件开始处的行数的偏移量，但是map function输出的key是年份数据，以及reduce function输出的key是也不同的。<strong>所以这三个key-value pairs是不同的。</strong></p>
-<ul>
-<li><strong>原始数据</strong></li>
-</ul>
-<p><img src="http://p1.bqimg.com/567571/27ee1f02518c6556.png" alt=""></p>
-<ul>
-<li><strong>Key-Values</strong></li>
-</ul>
-<p><img src="http://p1.bqimg.com/567571/b469ba1aa1c029b8.png" alt=""></p>
-<p>以上为原始数据中input进来后的key-values的数据。然后map function阶段，提取出上面文件中的 <strong>1950 和 0001</strong> 之类的数据，组成新的key-values作为输出给下一阶段。</p>
-<ul>
-<li><strong>Key-Values in Map Function</strong></li>
-</ul>
-<p><img src="http://i1.piimg.com/567571/3997f1a955dd4986.png" alt=""></p>
-<p>在将Map Function的输出传给Reduce Function之前，实际上MapReduce Framework还是有对数据进行一个处理步骤。从最上的图一中，我们仍然可以看到Map和Reduce之间有一个 <strong>Shuffle</strong> 的过程。因为之前我们提到了，Map的过程中，只是实现了一个key-value匹配的过程，所有出来的数据也是无序的，而 <strong>Shuffle</strong> <del>就是对这个输出 <strong>sort &amp; group</strong> 的过程</del>，然后将输出传给 <strong>Reduce Function</strong> 进行处理</p>
-<p><img src="http://p1.bqimg.com/567571/84e67241566e0110.png" alt=""></p>
-<p>当数据从Reduce Function中处理完后出来的大概如下，<strong>注意这个reduce只是选择最大值，其他reduce function可能做的是统计或者实现其他功能。</strong></p>
-<p><img src="http://p1.bqimg.com/567571/102b61976d95a0a1.png" alt=""></p>
-<p>现在再看另外一个经典的WordCount的例子</p>
-<p><img src="http://i1.piimg.com/567571/ccef143c24029185.png" alt=""></p>
-<p>在Hadoop系统中，处理一个wordcount的任务可以大致分成四个主要阶段，input，map，reduce，output。其中 Map 和 Reduce 可以继续细分，即分成多个 <strong>map tasks</strong> 和 <strong>reduce tasks</strong>。 这些<strong>tasks</strong>然后被 <strong>YARN</strong> 给分配集群中多台不同的机器处理。这其中的细节等到往后再讨论。</p>
-<p>上面提到的分成多个tasks时，应该是input data切片分给多个maps（而不是一个大的map分成多个小的tasks）， 每个MapReduce分到一个fixed-sized 的数据，通常是64/128MB，这个过程叫做 <strong>input splits</strong>。然后每个split分配一个map task，同时运行在不同的机器上处理。这样划分的好处是有利于load-balancing，对于性能较好的机器可以处理更过是splits。</p>
-<h5 id="2-2-Data-Flow"><a href="#2-2-Data-Flow" class="headerlink" title="2.2 Data Flow"></a>2.2 Data Flow</h5><p><img src="http://i1.piimg.com/567571/67773019972a0a2f.png" alt=""></p>
-<p>上图可以看出hadoop的整个数据流向，其中<strong>虚线代表是在一个node，实线代表的是不同node之间</strong>。在同一个node之间，数据的读取存储就有速度上的优势，不同node之间，也就是不同主机之间，就必须通过network进行传输，速度较慢。</p>
-<p><img src="http://p1.bqimg.com/567571/d9048c5963587f2e.png" alt=""></p>
-<ul>
-<li><p><strong>Partition</strong></p>
-<p>当只有一个reduce的时候，map function的output当然就直接传给这个reduce了。但是当有多个reduce的时候，怎么办呢？此时map会将其输出进行partition(分区)，每一个reduce的任务都会创建一个分区，且每一个reduce task都会有一个partition (There can be many keys (and their associated values)in each partition, but the records for any given key are all in a single partition)，也就是说同一个key会在同一个partition中。</p>
-</li>
-<li><p><strong>Shuffle and Sort</strong></p>
-<p>在map和reduce之间的data flow是<strong>Shuffle</strong>，从上图可以看出，一个reduce可以接受来自多个不同的map的output，其中包含了sort，partition等过程。</p>
-</li>
-<li><p><strong>Combiner Functions</strong></p>
-<p>之前我们讨论过，data flow在map和reduce之间是通过network进行传输的，但我们知道map function的output是一个个key-value的键值对的，这些key-value paris中，有些是可以通过combiner function进行combine的，这样做的目的是减小map和reduce之间传输的数据大小，加快传输数据。</p>
-<p>Combiner Function在许多情况和 Reduce Function是很像的，因为做的工作和reduce是比较类似的，只是处理的是局部map的output(因此Combiner是运行在map output端)，减少data flow的size。但是对于是否调用combiner function，这个是<strong>不确定</strong>的。因为有些情况下的output是不适合进行combine，有些则又是要多次调用进行合并。对于有些特殊情况，甚至连reduce function都不需要。</p>
-<p>举个栗子：</p>
-<ul>
-<li><strong>适用情况</strong>（Commutative &amp; Associative）</li>
-</ul>
-<p>​    <strong>Reduce Function</strong>              <strong>Combiner Function</strong></p>
-<p><img src="http://p1.bpimg.com/567571/41e6c237b7063601.png" alt=""></p>
-<p>​    <strong>Commutative:</strong>     max(a, b) = max(b, a)</p>
-<p>​    <strong>Associative:</strong>         max(max(a, b), c) = max(a, max(b, c))</p>
-<ul>
-<li><strong>不适用情况：</strong></li>
-</ul>
-</li>
-</ul>
-<p>  <img src="http://p1.bpimg.com/567571/4e6521c2fed257a2.png" alt=""></p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>Thanks for your donate.<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="http://i1.piimg.com/567571/a24bcde34ea6aef7.png">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Numpy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Pandas</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2017/03/07/Hadoop权威指南笔记（一）/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/03/15/KMP算法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          KMP算法
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/03/02/Machine-Learning-Recommender-Systems/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Machine Learning - Recommender Systems </div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-
-  
-  <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Hadoop权威指南笔记（一）" data-title="Hadoop权威指南笔记（一）" data-url="http://chenson.com/2017/03/07/Hadoop权威指南笔记（一）/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"true"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
+    </div></section>
   
 
-
-
-
-
+    
 
 
           </div>
@@ -462,8 +234,8 @@ HDFS blocks are large compared to disk blocks, and the reason is to minimize the
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

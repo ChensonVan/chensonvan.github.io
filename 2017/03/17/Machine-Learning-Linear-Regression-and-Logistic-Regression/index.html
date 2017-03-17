@@ -6,46 +6,43 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://chenson.com">
-  <title>Hadoop权威指南笔记（一） | Vane&#39;s Blog</title>
+  <title>Machine Learning - Linear Regression and Logistic Regression | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. Hadoop1.1 初识Hadoop非常好的Tutorial 
-在学习hadoop之前，我觉得有必要了解一下hadoop的基本构成以及一些术语。
-
-Block
-
-HDFS blocks are large compared to disk blocks, and the reason is to minimize the costof seeks. By making a block lar">
+  <meta name="description" content="1. 三要素当一开始接触Andrew在Coursera上的ML公开课的时候，对线性回归和逻辑回归这两种模型有个大体的认识。但是在上完cs229的前三节课，初步了解了这两种模型背后的数学模型，Linear Regression和Logistic Regression背后的概率分布，了解到了这两种概率分布其实只是exponential family中的特例。但同时也开始对一些概念性的东西感觉很模糊，所">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hadoop权威指南笔记（一）">
-<meta property="og:url" content="http://chenson.com/2017/03/07/Hadoop权威指南笔记（一）/index.html">
+<meta property="og:title" content="Machine Learning - Linear Regression and Logistic Regression">
+<meta property="og:url" content="http://chenson.com/2017/03/17/Machine-Learning-Linear-Regression-and-Logistic-Regression/index.html">
 <meta property="og:site_name" content="Vane's Blog">
-<meta property="og:description" content="1. Hadoop1.1 初识Hadoop非常好的Tutorial 
-在学习hadoop之前，我觉得有必要了解一下hadoop的基本构成以及一些术语。
-
-Block
-
-HDFS blocks are large compared to disk blocks, and the reason is to minimize the costof seeks. By making a block lar">
-<meta property="og:image" content="http://p1.bpimg.com/567571/3c32ed061069089b.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/f1b180f4c04949c3.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/27ee1f02518c6556.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/b469ba1aa1c029b8.png">
-<meta property="og:image" content="http://i1.piimg.com/567571/3997f1a955dd4986.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/84e67241566e0110.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/102b61976d95a0a1.png">
-<meta property="og:image" content="http://i1.piimg.com/567571/ccef143c24029185.png">
-<meta property="og:image" content="http://i1.piimg.com/567571/67773019972a0a2f.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/d9048c5963587f2e.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/41e6c237b7063601.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/4e6521c2fed257a2.png">
-<meta property="og:updated_time" content="2017-03-17T05:33:14.000Z">
+<meta property="og:description" content="1. 三要素当一开始接触Andrew在Coursera上的ML公开课的时候，对线性回归和逻辑回归这两种模型有个大体的认识。但是在上完cs229的前三节课，初步了解了这两种模型背后的数学模型，Linear Regression和Logistic Regression背后的概率分布，了解到了这两种概率分布其实只是exponential family中的特例。但同时也开始对一些概念性的东西感觉很模糊，所">
+<meta property="og:image" content="http://i1.piimg.com/567571/3e44280c5f9a481a.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/4102a28822e8d82d.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/ac365873a2c41db1.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/df563668437f9cd2.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/4d973690738dbd07.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/921bd4bf10e2c24d.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/b1725955e82e43e1.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/476af6d650ad3189.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/a4c1133599472b9f.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/ea0dc5756a5213a9.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/a8792a26c35b9c97.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/be16d13c41f69b53.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/2be24a29ab62989f.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/fc540fd194be84a2.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/c2389be8197d578b.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/c11a3f9c80731d77.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/a9e59c59f78d2e3a.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/124c071fa7ab8ae7.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/a603b09778df363b.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/e34fa7cc5e289859.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/2b3eb0efbd8d719a.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/4cfa626219a53d63.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/cf422e75a9c888b6.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/2b3eb0efbd8d719a.png">
+<meta property="og:updated_time" content="2017-03-17T05:29:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hadoop权威指南笔记（一）">
-<meta name="twitter:description" content="1. Hadoop1.1 初识Hadoop非常好的Tutorial 
-在学习hadoop之前，我觉得有必要了解一下hadoop的基本构成以及一些术语。
-
-Block
-
-HDFS blocks are large compared to disk blocks, and the reason is to minimize the costof seeks. By making a block lar">
-<meta name="twitter:image" content="http://p1.bpimg.com/567571/3c32ed061069089b.png">
+<meta name="twitter:title" content="Machine Learning - Linear Regression and Logistic Regression">
+<meta name="twitter:description" content="1. 三要素当一开始接触Andrew在Coursera上的ML公开课的时候，对线性回归和逻辑回归这两种模型有个大体的认识。但是在上完cs229的前三节课，初步了解了这两种模型背后的数学模型，Linear Regression和Logistic Regression背后的概率分布，了解到了这两种概率分布其实只是exponential family中的特例。但同时也开始对一些概念性的东西感觉很模糊，所">
+<meta name="twitter:image" content="http://i1.piimg.com/567571/3e44280c5f9a481a.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -179,106 +176,149 @@ HDFS blocks are large compared to disk blocks, and the reason is to minimize the
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Hadoop权威指南笔记（一）" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Machine-Learning-Linear-Regression-and-Logistic-Regression" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hadoop权威指南笔记（一）
+      Machine Learning - Linear Regression and Logistic Regression
     </h1>
   
 
         
-        <a href="/2017/03/07/Hadoop权威指南笔记（一）/" class="archive-article-date">
-  	<time datetime="2017-03-06T13:44:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-07</time>
+        <a href="/2017/03/17/Machine-Learning-Linear-Regression-and-Logistic-Regression/" class="archive-article-date">
+  	<time datetime="2017-03-17T01:06:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-Hadoop"><a href="#1-Hadoop" class="headerlink" title="1. Hadoop"></a>1. Hadoop</h4><h5 id="1-1-初识Hadoop"><a href="#1-1-初识Hadoop" class="headerlink" title="1.1 初识Hadoop"></a>1.1 初识Hadoop</h5><p><a href="http://hadooptutorials.co.in/tutorials/hadoop/hadoop-fundamentals.html" target="_blank" rel="external">非常好的Tutorial</a> </p>
-<p>在学习hadoop之前，我觉得有必要了解一下hadoop的基本构成以及一些术语。</p>
+        <h4 id="1-三要素"><a href="#1-三要素" class="headerlink" title="1. 三要素"></a>1. 三要素</h4><p>当一开始接触Andrew在Coursera上的ML公开课的时候，对线性回归和逻辑回归这两种模型有个大体的认识。但是在上完cs229的前三节课，初步了解了这两种模型背后的数学模型，Linear Regression和Logistic Regression背后的概率分布，了解到了这两种概率分布其实只是exponential family中的特例。但同时也开始对一些概念性的东西感觉很模糊，所以觉得有必要好好整理一下这部分的内容。</p>
+<h5 id="1-1-Hypothesis"><a href="#1-1-Hypothesis" class="headerlink" title="1. 1 Hypothesis"></a>1. 1 Hypothesis</h5><p>首先对于样本数据，输入x和输出y之间是通过Target function在转换的，也就是 Target function f(x) = y。但是我们并不知道这个f(x)都是怎样的，所以我们假设了这么一个Hypothesis function去模拟这个Target function，使得我们用同样的输入<strong>x</strong>会的一个预测值<strong>y’</strong>，使得这个<strong>y’</strong>不断逼近真实值<strong>y</strong>。</p>
 <ul>
-<li><p><strong>Block</strong></p>
-<blockquote>
-<p>HDFS blocks are large compared to disk blocks, and the reason is to minimize the cost<br>of seeks. By making a block large enough, the time to transfer the data from the disk<br>can be made to be significantly larger than the time to seek to the start of the block.<br>Thus the time to transfer a large file made of multiple blocks operates at the disk transfer<br>rate.<br>A quick calculation shows that if the seek time is around 10 ms, and the transfer rate<br>is 100 MB/s, then to make the seek time 1% of the transfer time, we need to make the<br>block size around 100 MB. The default is actually 64 MB, although many HDFS installations<br>use 128 MB blocks. This figure will continue to be revised upward as transfer<br>speeds grow with new generations of disk drives.<br>This argument shouldn’t be taken too far, however. Map tasks in MapReduce normally<br>operate on one block at a time, so if you have too few tasks (fewer than nodes in the<br>cluster), your jobs will run slower than they could otherwise.</p>
-</blockquote>
+<li><p><strong>Linear Regression</strong><br>$$<br>H(x) = \sum_{i=0}^n \theta_i x_i = \theta^Tx<br>$$</p>
+</li>
+<li><p><strong>Logistic Regression</strong><br>$$<br>H(x) = g(\theta^Tx) = \frac 1 {1 + e^{-\theta^Tx}}<br>$$<br>等价于（即log odds，logit）<br>$$<br>ln \frac y {1 - y} = \theta^T x = ln \frac {p(y=1| x; \theta)} {p(y=0| x; \theta)}<br>$$</p>
+</li>
+</ul>
+<h5 id="1-2-Cost-function"><a href="#1-2-Cost-function" class="headerlink" title="1. 2 Cost function"></a>1. 2 Cost function</h5><p>Cost function呢，实际上也可以叫做Error function，就是用我们上面假设的Hypothe function所预测出来的值<strong>y’</strong>和真实值<strong>y</strong>之间的误差。而我们需要做的是根据假设出的Hypothesis function，取一个合适的权重值，即theta的值，使其取的一个较低的cost，也就是这预测值与真实值之间的误差最小。</p>
+<ul>
+<li><p><strong>Ordinary Least Squares</strong> (Square Loss Function)</p>
+<p>常用的方法是最小二乘法</p>
+</li>
+</ul>
+<p>$$<br>J(\theta) = \frac 1 2 \sum<em>{i=i}^m (h</em>\theta(x^{(i)}) - y^{(i)})^2<br>$$</p>
+<p>​    当然我们也可以从概率的角度来理解这个问题<br>$$<br>y^{(i)} = h_\theta(x^{(i)}) + \epsilon^{(i)}<br>$$<br>​    这里的<strong>ϵ</strong>是我们预测值与实际值之间的误差，这个问题我们会留到后面<strong>重点讲解</strong>。    </p>
+<ul>
+<li><strong>0-1 Loss Function</strong></li>
+<li><strong>Absolute Loss Function</strong></li>
+<li><strong>Log Loss Function</strong></li>
+</ul>
 <a id="more"></a>
+<h5 id="1-3-Algorithm"><a href="#1-3-Algorithm" class="headerlink" title="1.3 Algorithm"></a>1.3 Algorithm</h5><p>至于怎么使得上面的cost function最小呢，因为对于某些数据，其features有成千上百个，我们很难去找到这个最小的极值点，使得cost function最下，所以这个Algorithm就是用来找cost function的最小值的。常用的方法有如下</p>
+<ul>
+<li><p><strong>Gradient Descent</strong></p>
+<p>在梯度下降中，我们采用的是 <strong>LMS update rules</strong>(Least Mean Squares)<br>$$<br>\theta_j := \theta<em>j + \alpha(y^{(i)} - h</em>\theta(x^{(i)})) x_j^{(i)}<br>= \alpha <em> e^{(i)} </em> x^{(i)}<br>$$<br><img src="http://i1.piimg.com/567571/3e44280c5f9a481a.png" alt=""></p>
+<p>当我们的预测值与实际值之前的误差<strong>ϵ</strong>很小时，我们就只需要对<strong>θ</strong>做出很小的调整，反之，说明当前的<strong>θ</strong>不对，需要调整的幅度比较大。直到最后收敛为止。</p>
+<p><img src="http://p1.bpimg.com/567571/4102a28822e8d82d.png" alt=""></p>
+<p>上面Repeat中的步骤实际是等同于cost function对<strong>θ</strong>求导的过程，所以为了保证收敛的效果，cost function应该是要 convex fuction，就不会导致停留在了local optim点。</p>
+<p>推导过程如下：</p>
+<p><img src="http://p1.bqimg.com/567571/ac365873a2c41db1.png" alt=""></p>
+<p>​</p>
+<p>可视化后大概的过程如下：</p>
+<p><img src="http://p1.bpimg.com/567571/df563668437f9cd2.png" alt=""></p>
+<p><img src="http://p1.bqimg.com/567571/4d973690738dbd07.png" alt=""></p>
+<p>根据对于哪些<strong>θ</strong>求导，Gradient Descent还可以继续分成不同的几种方法</p>
+<ul>
+<li>Batch Gradient Descent</li>
+<li>Stochastic Gradient Descent</li>
+<li>Mini Batch Gradient Descent</li>
+<li>SGD with mini-batch</li>
+</ul>
+<p><strong>问题：为什么下降是 - ，θ大J一定大吗？</strong></p>
+</li>
+<li><p><strong>Normal Equation</strong> (linear regression)</p>
+<p>推导过程比较复杂，需要的数学知识比较多，这里只给出结论。想要看具体推导过程的还说看cs229的第二节课吧 ：）(cs229-notes-1, p11)<br>$$<br>\theta = (X^TX)^{-1}X^T\vec y<br>$$<br><img src="http://i1.piimg.com/567571/921bd4bf10e2c24d.png" alt=""></p>
+<p>​</p>
+</li>
+<li><p><strong>Newton </strong></p>
+</li>
+<li><p><strong>BGFS</strong></p>
+</li>
+<li><p><strong>Simulated Annealing</strong></p>
 </li>
 </ul>
+<h4 id="2-Generalized-Linear-Model-GLM-广义线性模型"><a href="#2-Generalized-Linear-Model-GLM-广义线性模型" class="headerlink" title="2. Generalized Linear Model (GLM) 广义线性模型"></a>2. Generalized Linear Model (GLM) 广义线性模型</h4><p>之前我们在cost function中提到过，我们可以从概率的角度来理解误差这个问题。对于Linear Regression和Logistic Regression，我们都可以假设：<br>$$<br>y^{(i)} = h_\theta(x^{(i)}) + \epsilon^{(i)}<br>$$<br>这里误差<strong>ϵ</strong>假设为<strong>IID</strong> (independently and identically distributed)</p>
+<h5 id="2-1-Linear-Regression"><a href="#2-1-Linear-Regression" class="headerlink" title="2.1 Linear Regression"></a>2.1 Linear Regression</h5><p>在Linear Regression中，y是连续的值，所以误差<strong>ϵ</strong>也是一个连续的值。假设误差<strong>ϵ</strong>是符合Gaussian Distribution (Normal Distribution)，所以有</p>
 <ul>
-<li><p><strong>Node</strong></p>
-<p>简单的说就是一台主机，一台电脑。在hadoop中，有NameNode, DataNode, Secondary NameNode, JobTracker Node, TaskTracker Node, CheckpointNode 和 BackupNode。对一个cluster，NameNode只能有一个，DataNode可以有多个</p>
-</li>
-<li><p><strong>Rack</strong></p>
-<p>中文机柜/机架，就是用来存放node的storage，通常一个rack有几十个nodes组成，这些nodes存放在同一个机柜，连接一个交换机</p>
-<blockquote>
-<p>A Node is simply a computer. This is typically non-enterprise, commodity hardware for nodes that contain data. Storage of Nodes is called as rack. A rack is a collection of 30 or 40 nodes that are physically stored close together and are all connected to the same network switch. Network bandwidth between any two nodes in rack is greater than bandwidth between two nodes on different racks.A Hadoop Cluster is a collection of racks.</p>
-</blockquote>
-</li>
+<li><strong>Gaussian Distribution</strong></li>
 </ul>
-<p><img src="http://p1.bpimg.com/567571/3c32ed061069089b.png" alt=""></p>
-<h5 id="1-2-Major-Components"><a href="#1-2-Major-Components" class="headerlink" title="1.2 Major Components"></a>1.2 Major Components</h5><ul>
-<li><strong>Distributed Filesystem</strong> — hadoop中是HDFS</li>
-<li><strong>MapReduce</strong></li>
-</ul>
-<h5 id="1-5-Install-configuration"><a href="#1-5-Install-configuration" class="headerlink" title="1.5 Install configuration"></a>1.5 Install configuration</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 待整理</div><div class="line">hadoop fs</div><div class="line">hadoop dfs</div><div class="line"></div><div class="line"># fs refers to any file system, it oucld be local or HDFS</div><div class="line"># but dfs refers to only HDFS file system</div></pre></td></tr></table></figure>
-<h4 id="2-MapReduce"><a href="#2-MapReduce" class="headerlink" title="2. MapReduce"></a>2. MapReduce</h4><h5 id="2-1-初识MapReduce"><a href="#2-1-初识MapReduce" class="headerlink" title="2.1 初识MapReduce"></a>2.1 初识MapReduce</h5><p><img src="http://p1.bqimg.com/567571/f1b180f4c04949c3.png" alt=""></p>
-<p>整个过程可以分为三个阶段，<strong>Input， MapReduce and Output</strong></p>
-<p>在input和output阶段，数据是存在HDFS文件系统中，其系统的block size大小默认是64/128MB。</p>
-<p>在MapReduce中，又可以分为两个阶段，<strong>Map and Reduce</strong>，数据从map function到reduce function是存在local disk中，(soreing in HDFS with replication would be overkill)，然后通过network传输数据.</p>
-<p>在每个阶段中，input和output的数据都是以 <strong>(key, values)</strong> 格式进行处理的，然后通过 map function 和 reduce function 进行处理。在本例中，input data的key是从数据文件开始处的行数的偏移量，但是map function输出的key是年份数据，以及reduce function输出的key是也不同的。<strong>所以这三个key-value pairs是不同的。</strong></p>
+<p>$$<br>y | x; \theta ∼ N (μ, σ^2)<br>$$</p>
+<p><img src="http://i1.piimg.com/567571/b1725955e82e43e1.png" alt=""></p>
+<p><img src="http://p1.bqimg.com/567571/476af6d650ad3189.png" alt=""></p>
 <ul>
-<li><strong>原始数据</strong></li>
+<li><strong>Probability of error</strong></li>
 </ul>
-<p><img src="http://p1.bqimg.com/567571/27ee1f02518c6556.png" alt=""></p>
+<p><img src="http://p1.bqimg.com/567571/a4c1133599472b9f.png" alt=""></p>
+<p>​    <strong>σ</strong>实际上是不影响概率的分布的，所以假设<strong>σ = 1</strong>，所以这里可以忽略了。因此也就是等同于如下</p>
+<p><img src="http://i1.piimg.com/567571/ea0dc5756a5213a9.png" alt=""></p>
 <ul>
-<li><strong>Key-Values</strong></li>
+<li><strong>Likelihood</strong><br>$$<br>L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)<br>$$</li>
 </ul>
-<p><img src="http://p1.bqimg.com/567571/b469ba1aa1c029b8.png" alt=""></p>
-<p>以上为原始数据中input进来后的key-values的数据。然后map function阶段，提取出上面文件中的 <strong>1950 和 0001</strong> 之类的数据，组成新的key-values作为输出给下一阶段。</p>
+<p><img src="http://i1.piimg.com/567571/a8792a26c35b9c97.png" alt=""></p>
+<p>​    以上是在给定<strong>输入x</strong>和<strong>权重θ</strong>下，我们的预测值是<strong>真实值y</strong>的概率，所以这个概率呢，当然是越高越好啦。我们就是要想办法去 <strong>maximum likelihood</strong>。</p>
+<p>​    对这个概率取个log（不影响结果），有</p>
+<p><img src="http://p1.bqimg.com/567571/be16d13c41f69b53.png" alt=""></p>
+<p>​    可以看到最终的式子里面，我们就是要<strong>求cost function的最小值</strong>。</p>
+<p><img src="http://i1.piimg.com/567571/2be24a29ab62989f.png" alt=""></p>
+<h5 id="2-2-Logistic-Regression"><a href="#2-2-Logistic-Regression" class="headerlink" title="2.2 Logistic Regression"></a>2.2 Logistic Regression</h5><p>在Logistic Regression中， y是离散的值 <strong>{0, 1}</strong>，所以误差<strong>ϵ</strong>也是一个离散的值 <strong>{0, 1}</strong>。假设误差<strong>ϵ</strong>是符合Bernoulli Distribution，所以有</p>
 <ul>
-<li><strong>Key-Values in Map Function</strong></li>
+<li><strong>Bernoulli distribution</strong></li>
 </ul>
-<p><img src="http://i1.piimg.com/567571/3997f1a955dd4986.png" alt=""></p>
-<p>在将Map Function的输出传给Reduce Function之前，实际上MapReduce Framework还是有对数据进行一个处理步骤。从最上的图一中，我们仍然可以看到Map和Reduce之间有一个 <strong>Shuffle</strong> 的过程。因为之前我们提到了，Map的过程中，只是实现了一个key-value匹配的过程，所有出来的数据也是无序的，而 <strong>Shuffle</strong> <del>就是对这个输出 <strong>sort &amp; group</strong> 的过程</del>，然后将输出传给 <strong>Reduce Function</strong> 进行处理</p>
-<p><img src="http://p1.bqimg.com/567571/84e67241566e0110.png" alt=""></p>
-<p>当数据从Reduce Function中处理完后出来的大概如下，<strong>注意这个reduce只是选择最大值，其他reduce function可能做的是统计或者实现其他功能。</strong></p>
-<p><img src="http://p1.bqimg.com/567571/102b61976d95a0a1.png" alt=""></p>
-<p>现在再看另外一个经典的WordCount的例子</p>
-<p><img src="http://i1.piimg.com/567571/ccef143c24029185.png" alt=""></p>
-<p>在Hadoop系统中，处理一个wordcount的任务可以大致分成四个主要阶段，input，map，reduce，output。其中 Map 和 Reduce 可以继续细分，即分成多个 <strong>map tasks</strong> 和 <strong>reduce tasks</strong>。 这些<strong>tasks</strong>然后被 <strong>YARN</strong> 给分配集群中多台不同的机器处理。这其中的细节等到往后再讨论。</p>
-<p>上面提到的分成多个tasks时，应该是input data切片分给多个maps（而不是一个大的map分成多个小的tasks）， 每个MapReduce分到一个fixed-sized 的数据，通常是64/128MB，这个过程叫做 <strong>input splits</strong>。然后每个split分配一个map task，同时运行在不同的机器上处理。这样划分的好处是有利于load-balancing，对于性能较好的机器可以处理更过是splits。</p>
-<h5 id="2-2-Data-Flow"><a href="#2-2-Data-Flow" class="headerlink" title="2.2 Data Flow"></a>2.2 Data Flow</h5><p><img src="http://i1.piimg.com/567571/67773019972a0a2f.png" alt=""></p>
-<p>上图可以看出hadoop的整个数据流向，其中<strong>虚线代表是在一个node，实线代表的是不同node之间</strong>。在同一个node之间，数据的读取存储就有速度上的优势，不同node之间，也就是不同主机之间，就必须通过network进行传输，速度较慢。</p>
-<p><img src="http://p1.bqimg.com/567571/d9048c5963587f2e.png" alt=""></p>
+<p><img src="http://p1.bpimg.com/567571/fc540fd194be84a2.png" alt=""></p>
+<p><img src="http://i1.piimg.com/567571/c2389be8197d578b.png" alt=""></p>
 <ul>
-<li><p><strong>Partition</strong></p>
-<p>当只有一个reduce的时候，map function的output当然就直接传给这个reduce了。但是当有多个reduce的时候，怎么办呢？此时map会将其输出进行partition(分区)，每一个reduce的任务都会创建一个分区，且每一个reduce task都会有一个partition (There can be many keys (and their associated values)in each partition, but the records for any given key are all in a single partition)，也就是说同一个key会在同一个partition中。</p>
-</li>
-<li><p><strong>Shuffle and Sort</strong></p>
-<p>在map和reduce之间的data flow是<strong>Shuffle</strong>，从上图可以看出，一个reduce可以接受来自多个不同的map的output，其中包含了sort，partition等过程。</p>
-</li>
-<li><p><strong>Combiner Functions</strong></p>
-<p>之前我们讨论过，data flow在map和reduce之间是通过network进行传输的，但我们知道map function的output是一个个key-value的键值对的，这些key-value paris中，有些是可以通过combiner function进行combine的，这样做的目的是减小map和reduce之间传输的数据大小，加快传输数据。</p>
-<p>Combiner Function在许多情况和 Reduce Function是很像的，因为做的工作和reduce是比较类似的，只是处理的是局部map的output(因此Combiner是运行在map output端)，减少data flow的size。但是对于是否调用combiner function，这个是<strong>不确定</strong>的。因为有些情况下的output是不适合进行combine，有些则又是要多次调用进行合并。对于有些特殊情况，甚至连reduce function都不需要。</p>
-<p>举个栗子：</p>
-<ul>
-<li><strong>适用情况</strong>（Commutative &amp; Associative）</li>
-</ul>
-<p>​    <strong>Reduce Function</strong>              <strong>Combiner Function</strong></p>
-<p><img src="http://p1.bpimg.com/567571/41e6c237b7063601.png" alt=""></p>
-<p>​    <strong>Commutative:</strong>     max(a, b) = max(b, a)</p>
-<p>​    <strong>Associative:</strong>         max(max(a, b), c) = max(a, max(b, c))</p>
-<ul>
-<li><strong>不适用情况：</strong></li>
-</ul>
+<li><p><strong>Probability of error</strong></p>
+<p>把误差<strong>ϵ</strong>代入到上面的bernoulli function，可得</p>
 </li>
 </ul>
-<p>  <img src="http://p1.bpimg.com/567571/4e6521c2fed257a2.png" alt=""></p>
+<p><img src="http://i1.piimg.com/567571/c11a3f9c80731d77.png" alt=""></p>
+<ul>
+<li><strong>Likelihood</strong></li>
+</ul>
+<p><img src="http://p1.bqimg.com/567571/a9e59c59f78d2e3a.png" alt=""></p>
+<p>​    同样，对上面去log之后有</p>
+<p><img src="http://p1.bpimg.com/567571/124c071fa7ab8ae7.png" alt=""></p>
+<p>​    同样，我们尽量要maximize the likelihood。和Linear Regression中一样，也可以用<strong>Gradient Ascent</strong>算法来求最大值<br>$$<br>\theta := \theta + \alpha∇_\theta l(\theta)<br>$$<br>​    注意这里是<strong>加号</strong>，在求cost function的最小值时，用的是减号。</p>
+<p>​    对其求导可得</p>
+<p><img src="http://p1.bqimg.com/567571/a603b09778df363b.png" alt=""></p>
+<p>​    所以有</p>
+<p><img src="http://i1.piimg.com/567571/e34fa7cc5e289859.png" alt="">    </p>
+<h5 id="2-3-GLM"><a href="#2-3-GLM" class="headerlink" title="2.3 GLM"></a>2.3 GLM</h5><p>似乎到现在，讲了半天都也没讲什么是广义线性模型，实际上呢，上面我们已经从误差概率的角度上来分析了线性回归和逻辑回归两种特例，因为他们误差服从的概率分布都是属于Exponential Family中的一种。</p>
+<ul>
+<li><p><strong>The Exponential Family</strong></p>
+<p><img src="http://p1.bpimg.com/567571/2b3eb0efbd8d719a.png" alt=""></p>
+<p><strong>η</strong> 被称作<strong>natural parameter</strong>，它是<strong>指数分布族唯一的参数</strong><br><strong>T(y)</strong> 被称作<strong>sufficient statistic</strong>，很多情况下<strong>T(y)=y a(η)</strong> 被称作 <strong>log partition function</strong><br><strong>T函数、a函数、b函数共同确定一种分布</strong></p>
+<p>那么这个模型和上面我们提到过的Gaussian Distribution 和Bernoulli Distribution有什么关系呢？其实上面的这几个参数取不同的值的时候，即可得到不同的分布模型</p>
+</li>
+<li><p><strong>Gaussian Distribution</strong></p>
+<p><img src="http://p1.bqimg.com/567571/4cfa626219a53d63.png" alt=""></p>
+</li>
+<li><p><strong>Bernolli Distribution</strong></p>
+<p><img src="http://p1.bpimg.com/567571/cf422e75a9c888b6.png" alt=""></p>
+</li>
+</ul>
+<h5 id="2-4-如何构建一个GLM模型"><a href="#2-4-如何构建一个GLM模型" class="headerlink" title="2.4 如何构建一个GLM模型"></a>2.4 如何构建一个GLM模型</h5><p>在上面我们只是看到了一个通用的GLM概率模型</p>
+<p><img src="http://p1.bpimg.com/567571/2b3eb0efbd8d719a.png" alt=""></p>
+<p>实际上对于构建这么一个概率模型，需要作出三个假设作为前提条件：</p>
+<ul>
+<li>p(y | x; θ) ∼ ExponentialFamily(η).  对于给定的输入x，θ和输出y需要服从某一种指数分布，这个指数分布由η 决定的</li>
+<li>对于给定的输入x，预测T(y)的值，且经常T(y) = y。而我们是预测是H(x) 需要满足 H(x) = E[y|x]</li>
+<li>对于自然参数η和输入x之间，需要存在相关性关系的，即：η = θT x</li>
+</ul>
 
       
 
@@ -318,11 +358,19 @@ HDFS blocks are large compared to disk blocks, and the reason is to minimize the
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Linear Regression</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Logistic Regression</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GLM</a>
         		</li>
       		
 		</ul>
@@ -378,7 +426,7 @@ HDFS blocks are large compared to disk blocks, and the reason is to minimize the
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2017/03/07/Hadoop权威指南笔记（一）/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2017/03/17/Machine-Learning-Linear-Regression-and-Logistic-Regression/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -392,18 +440,9 @@ HDFS blocks are large compared to disk blocks, and the reason is to minimize the
   
 <nav id="article-nav">
   
-    <a href="/2017/03/15/KMP算法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          KMP算法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/03/02/Machine-Learning-Recommender-Systems/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Machine Learning - Recommender Systems </div>
+    <a href="/2017/03/15/KMP算法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">KMP算法</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -417,7 +456,7 @@ HDFS blocks are large compared to disk blocks, and the reason is to minimize the
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Hadoop权威指南笔记（一）" data-title="Hadoop权威指南笔记（一）" data-url="http://chenson.com/2017/03/07/Hadoop权威指南笔记（一）/"></div>
+	<div class="ds-thread" data-thread-key="Machine-Learning-Linear-Regression-and-Logistic-Regression" data-title="Machine Learning - Linear Regression and Logistic Regression" data-url="http://chenson.com/2017/03/17/Machine-Learning-Linear-Regression-and-Logistic-Regression/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
