@@ -32,7 +32,7 @@ loc:  only work on index / labeliloc: work on position, from 0, 1, 2, … …ix:
 <meta property="og:image" content="http://p1.bqimg.com/567571/648119dd1ad05475.png">
 <meta property="og:image" content="http://i1.piimg.com/567571/eb5aa1221d00e50c.png">
 <meta property="og:image" content="http://i1.piimg.com/567571/e575b9a3a5761959.png">
-<meta property="og:updated_time" content="2017-03-17T05:36:26.000Z">
+<meta property="og:updated_time" content="2017-03-23T23:37:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python数据分析笔记（一）">
 <meta name="twitter:description" content="1. 常见问题
@@ -202,7 +202,7 @@ loc:  only work on index / labeliloc: work on position, from 0, 1, 2, … …ix:
 </blockquote>
 <p><img src="http://i1.piimg.com/567571/fbb5bb937eb84e6a.png" alt=""></p>
 <p><img src="http://p1.bqimg.com/567571/ea9cb034a8f39e05.png" alt=""></p>
-<p>​</p>
+<a id="more"></a>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>df = pd.DataFrame(&#123;<span class="string">'A'</span>:[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>], <span class="string">'B'</span>:[<span class="number">54</span>, <span class="number">67</span>, <span class="number">89</span>]&#125;, index=[<span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>df</div><div class="line">     A   B</div><div class="line"><span class="number">100</span>  a  <span class="number">54</span></div><div class="line"><span class="number">200</span>  b  <span class="number">67</span></div><div class="line"><span class="number">300</span>  c  <span class="number">89</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>df.iloc[<span class="number">0</span>]	<span class="comment"># 用位置来索引</span></div><div class="line">A     a</div><div class="line">B    <span class="number">54</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>df.loc[<span class="number">100</span>] <span class="comment"># 用初始化时设置的index来索引，也就是自己给row设置的label</span></div><div class="line">A     a</div><div class="line">B    <span class="number">54</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>df.loc[<span class="number">100</span>:<span class="number">300</span>]</div><div class="line">     A   B</div><div class="line"><span class="number">100</span>  a  <span class="number">54</span></div><div class="line"><span class="number">200</span>  b  <span class="number">67</span></div><div class="line"><span class="number">300</span>  c  <span class="number">89</span></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>df[<span class="string">'A'</span>]		<span class="comment"># 索引 columns</span></div><div class="line"><span class="number">100</span>    a</div><div class="line"><span class="number">200</span>    b</div><div class="line"><span class="number">300</span>    c</div><div class="line">Name: A, dtype: object</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>df.A		<span class="comment"># 索引 columns</span></div><div class="line"><span class="number">100</span>    a</div><div class="line"><span class="number">200</span>    b</div><div class="line"><span class="number">300</span>    c</div><div class="line">Name: A, dtype: object</div></pre></td></tr></table></figure>
 </li>
 <li><p>Pandas 和 Numpy之间的转换</p>
@@ -574,11 +574,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+                <a href="javascript:void(0)" class="js-tag color4">KMP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -590,11 +590,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">KMP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -607,6 +603,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GLM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
             
             <div class="clearfix"></div>

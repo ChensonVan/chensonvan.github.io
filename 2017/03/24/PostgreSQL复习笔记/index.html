@@ -6,48 +6,44 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://chenson.com">
-  <title>Hadoop权威指南笔记（一） | Vane&#39;s Blog</title>
+  <title>PostgreSQL复习笔记 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. Hadoop1.1 初识Hadoop非常好的Tutorial 
-在学习hadoop之前，我觉得有必要了解一下hadoop的基本构成以及一些术语。
-
-Block
-
-HDFS blocks are large compared to disk blocks, and the reason is to minimize the costof seeks. By making a block lar">
+  <meta name="description" content="1 常见问题1.1 匹配一致的编码规则123SET character_set_client=&amp;apos;utf8&amp;apos;;		-- gbkSET character_set_connection=&amp;apos;utf8&amp;apos;;	-- gbkSET character_set_results=&amp;apos;utf8&amp;apos;;		-- gbk
+1234-- 创建数据库时候设置CREATE">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hadoop权威指南笔记（一）">
-<meta property="og:url" content="http://chenson.com/2017/03/07/Hadoop权威指南笔记（一）/index.html">
+<meta property="og:title" content="PostgreSQL复习笔记">
+<meta property="og:url" content="http://chenson.com/2017/03/24/PostgreSQL复习笔记/index.html">
 <meta property="og:site_name" content="Vane's Blog">
-<meta property="og:description" content="1. Hadoop1.1 初识Hadoop非常好的Tutorial 
-在学习hadoop之前，我觉得有必要了解一下hadoop的基本构成以及一些术语。
-
-Block
-
-HDFS blocks are large compared to disk blocks, and the reason is to minimize the costof seeks. By making a block lar">
-<meta property="og:image" content="http://p1.bpimg.com/567571/3c32ed061069089b.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/f1b180f4c04949c3.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/27ee1f02518c6556.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/b469ba1aa1c029b8.png">
-<meta property="og:image" content="http://i1.piimg.com/567571/3997f1a955dd4986.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/84e67241566e0110.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/102b61976d95a0a1.png">
-<meta property="og:image" content="http://i1.piimg.com/567571/ccef143c24029185.png">
-<meta property="og:image" content="http://i1.piimg.com/567571/67773019972a0a2f.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/d9048c5963587f2e.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/41e6c237b7063601.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/4e6521c2fed257a2.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/e05592a0f9ef0258.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/677bdf41e9af4506.png">
-<meta property="og:updated_time" content="2017-03-19T06:07:44.000Z">
+<meta property="og:description" content="1 常见问题1.1 匹配一致的编码规则123SET character_set_client=&amp;apos;utf8&amp;apos;;		-- gbkSET character_set_connection=&amp;apos;utf8&amp;apos;;	-- gbkSET character_set_results=&amp;apos;utf8&amp;apos;;		-- gbk
+1234-- 创建数据库时候设置CREATE">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-3-23/99841509-file_1490276181019_b9c5.png">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-3-23/9741354-file_1490276232546_842e.png">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-3-23/3271941-file_1490276346383_1328f.png">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-3-23/87590364-file_1490276403326_13390.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/f923ffc7a17f5ef9.png">
+<meta property="og:image" content="http://i4.buimg.com/567571/390dda8b6493d464.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/4115f45d5621bdfb.png">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-3-23/60332952-file_1490276978581_d247.png">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-3-23/35551311-file_1490277114822_c417.png">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-3-23/81328827-file_1490277630759_13e53.png">
+<meta property="og:image" content="http://i2.buimg.com/567571/69f87e94af306558.png">
+<meta property="og:image" content="http://i2.buimg.com/567571/a6f5a62c50348675.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/c34b9f88e48352e3.png">
+<meta property="og:image" content="http://i2.buimg.com/567571/bd95424b47f7d04e.png">
+<meta property="og:image" content="http://i2.buimg.com/567571/a43935a1cd09a745.png">
+<meta property="og:image" content="http://i4.buimg.com/567571/96b32e8126dad6bb.png">
+<meta property="og:image" content="http://i2.buimg.com/567571/ae067dad8da51db3.png">
+<meta property="og:image" content="http://i2.buimg.com/567571/7224e6a4de41b2a8.png">
+<meta property="og:image" content="http://i4.buimg.com/567571/e054aa3d69b05163.png">
+<meta property="og:image" content="http://i2.buimg.com/567571/c9b3dfe7535ca322.png">
+<meta property="og:image" content="http://i4.buimg.com/567571/79d8a2a6f6b780c1.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/ed7df2ac073fc743.png">
+<meta property="og:updated_time" content="2017-03-23T23:39:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hadoop权威指南笔记（一）">
-<meta name="twitter:description" content="1. Hadoop1.1 初识Hadoop非常好的Tutorial 
-在学习hadoop之前，我觉得有必要了解一下hadoop的基本构成以及一些术语。
-
-Block
-
-HDFS blocks are large compared to disk blocks, and the reason is to minimize the costof seeks. By making a block lar">
-<meta name="twitter:image" content="http://p1.bpimg.com/567571/3c32ed061069089b.png">
+<meta name="twitter:title" content="PostgreSQL复习笔记">
+<meta name="twitter:description" content="1 常见问题1.1 匹配一致的编码规则123SET character_set_client=&amp;apos;utf8&amp;apos;;		-- gbkSET character_set_connection=&amp;apos;utf8&amp;apos;;	-- gbkSET character_set_results=&amp;apos;utf8&amp;apos;;		-- gbk
+1234-- 创建数据库时候设置CREATE">
+<meta name="twitter:image" content="http://on8r6i4gg.bkt.clouddn.com/17-3-23/99841509-file_1490276181019_b9c5.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -181,129 +177,342 @@ HDFS blocks are large compared to disk blocks, and the reason is to minimize the
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Hadoop权威指南笔记（一）" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-PostgreSQL复习笔记" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hadoop权威指南笔记（一）
+      PostgreSQL复习笔记
     </h1>
   
 
         
-        <a href="/2017/03/07/Hadoop权威指南笔记（一）/" class="archive-article-date">
-  	<time datetime="2017-03-06T13:44:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-07</time>
+        <a href="/2017/03/24/PostgreSQL复习笔记/" class="archive-article-date">
+  	<time datetime="2017-03-23T23:38:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-Hadoop"><a href="#1-Hadoop" class="headerlink" title="1. Hadoop"></a>1. Hadoop</h4><h5 id="1-1-初识Hadoop"><a href="#1-1-初识Hadoop" class="headerlink" title="1.1 初识Hadoop"></a>1.1 初识Hadoop</h5><p><a href="http://hadooptutorials.co.in/tutorials/hadoop/hadoop-fundamentals.html" target="_blank" rel="external">非常好的Tutorial</a> </p>
-<p>在学习hadoop之前，我觉得有必要了解一下hadoop的基本构成以及一些术语。</p>
+        <h4 id="1-常见问题"><a href="#1-常见问题" class="headerlink" title="1 常见问题"></a>1 常见问题</h4><h5 id="1-1-匹配一致的编码规则"><a href="#1-1-匹配一致的编码规则" class="headerlink" title="1.1 匹配一致的编码规则"></a>1.1 匹配一致的编码规则</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SET character_set_client=&apos;utf8&apos;;		-- gbk</div><div class="line">SET character_set_connection=&apos;utf8&apos;;	-- gbk</div><div class="line">SET character_set_results=&apos;utf8&apos;;		-- gbk</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-- 创建数据库时候设置</div><div class="line">CREATE DATABASE `test`</div><div class="line">CHARACTER SET &apos;utf8&apos;</div><div class="line">COLLATE &apos;utf8_general_ci&apos;;</div></pre></td></tr></table></figure>
+<h5 id="1-2-如何理解索引"><a href="#1-2-如何理解索引" class="headerlink" title="1.2 如何理解索引"></a>1.2 如何理解索引</h5><p>索引字面上理解就是对数据所建立<strong>目录</strong>，它可以<strong>加快我们的查询速度，但是同时也降低了增删改的速度。</strong></p>
 <ul>
-<li><p><strong>Block</strong></p>
-<blockquote>
-<p>HDFS blocks are large compared to disk blocks, and the reason is to minimize the cost<br>of seeks. By making a block large enough, the time to transfer the data from the disk<br>can be made to be significantly larger than the time to seek to the start of the block.<br>Thus the time to transfer a large file made of multiple blocks operates at the disk transfer<br>rate.<br>A quick calculation shows that if the seek time is around 10 ms, and the transfer rate<br>is 100 MB/s, then to make the seek time 1% of the transfer time, we need to make the<br>block size around 100 MB. The default is actually 64 MB, although many HDFS installations<br>use 128 MB blocks. This figure will continue to be revised upward as transfer<br>speeds grow with new generations of disk drives.<br>This argument shouldn’t be taken too far, however. Map tasks in MapReduce normally<br>operate on one block at a time, so if you have too few tasks (fewer than nodes in the<br>cluster), your jobs will run slower than they could otherwise.</p>
-</blockquote>
+<li><p><strong>创建原则</strong></p>
+<ul>
+<li>不要过度使用索引</li>
+<li>最好在查询频繁的列上使用索引</li>
+<li>如果构建索引，这一列尽量是离散值，而不要过于连续的区间</li>
+</ul>
+</li>
+<li><p><strong>索引的类型</strong></p>
+<ul>
+<li><p>普通的索引 index</p>
+</li>
+<li><p>唯一的索引 unique index</p>
+<p>一张表上，只能有一个主键，但是可以有一个或是多个唯一索引</p>
+</li>
+<li><p>主键索引    primary key</p>
+<p>不能重复</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-- 查看一张表上的所有索引</div><div class="line">show index from TABLE_NAMES;</div></pre></td></tr></table></figure>
+</li>
+</ul>
 <a id="more"></a>
+<h5 id="1-3-模糊查询"><a href="#1-3-模糊查询" class="headerlink" title="1.3 模糊查询"></a>1.3 模糊查询</h5><ul>
+<li><p>%     匹配任意字符</p>
+</li>
+<li><p>_      匹配单个字符</p>
+</li>
+<li><p>举个栗子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">SELECT * from TABLE_NAMES</div><div class="line">WHERE patter like &apos;%ABC%&apos;;</div><div class="line"></div><div class="line">SELECT * from TABLE_NAMES</div><div class="line">WHERE patter like &apos;%ABC&apos;;</div><div class="line"></div><div class="line">SELECT * from TABLE_NAMES</div><div class="line">WHERE patter like &apos;_ABC&apos;;</div><div class="line"></div><div class="line">SELECT * from TABLE_NAMES</div><div class="line">WHERE patter like &apos;_ABC_&apos;;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<ul>
-<li><p><strong>Node</strong></p>
-<p>简单的说就是一台主机，一台电脑。在hadoop中，有NameNode, DataNode, Secondary NameNode, JobTracker Node, TaskTracker Node, CheckpointNode 和 BackupNode。对一个cluster，NameNode只能有一个，DataNode可以有多个</p>
-</li>
-<li><p><strong>Rack</strong></p>
-<p>中文机柜/机架，就是用来存放node的storage，通常一个rack有几十个nodes组成，这些nodes存放在同一个机柜，连接一个交换机</p>
-<blockquote>
-<p>A Node is simply a computer. This is typically non-enterprise, commodity hardware for nodes that contain data. Storage of Nodes is called as rack. A rack is a collection of 30 or 40 nodes that are physically stored close together and are all connected to the same network switch. Network bandwidth between any two nodes in rack is greater than bandwidth between two nodes on different racks.A Hadoop Cluster is a collection of racks.</p>
+<h5 id="1-4-理解-COUNT"><a href="#1-4-理解-COUNT" class="headerlink" title="1.4 理解 COUNT"></a>1.4 理解 COUNT</h5><blockquote>
+<p>见<strong>3.1 聚集函数</strong></p>
 </blockquote>
+<h5 id="1-5-理解-UNION-和-UNION-ALL"><a href="#1-5-理解-UNION-和-UNION-ALL" class="headerlink" title="1.5 理解 UNION 和 UNION ALL"></a>1.5 理解 UNION 和 UNION ALL</h5><ul>
+<li><p>UNION</p>
+<p>用于合并两个或是多个SELECT语句的结果集</p>
+<p>注意：</p>
+<ul>
+<li><p>SELECT语句必须拥有相同的数量的列</p>
+</li>
+<li><p>列的需要拥有相似的数据类型</p>
+</li>
+<li><p>每条SELECT语句中的列的顺序必须是一致的</p>
+</li>
+<li><p><strong>结果不允许有重复</strong>，否则使用 <strong>UNION ALL</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">SELECT mid, sex, age</div><div class="line">FROM TABLE_1</div><div class="line">UNION				-- UNIAON ALL	-- 允许有重复的值出现在结果集中</div><div class="line">SELECT mid, sex, age</div><div class="line">FROM TABLE_2;</div><div class="line">-- ORDER BY mid;	-- 可以对其结果进行排序，注意的是排序只是针对合并后的结果集排序</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p><img src="http://p1.bpimg.com/567571/3c32ed061069089b.png" alt=""></p>
-<h5 id="1-2-Major-Components"><a href="#1-2-Major-Components" class="headerlink" title="1.2 Major Components"></a>1.2 Major Components</h5><ul>
-<li><strong>Distributed Filesystem</strong> — hadoop中是HDFS</li>
-<li><strong>MapReduce</strong></li>
-</ul>
-<h5 id="1-5-Install-configuration"><a href="#1-5-Install-configuration" class="headerlink" title="1.5 Install configuration"></a>1.5 Install configuration</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 待整理</div><div class="line">hadoop fs</div><div class="line">hadoop dfs</div><div class="line"></div><div class="line"># fs refers to any file system, it oucld be local or HDFS</div><div class="line"># but dfs refers to only HDFS file system</div></pre></td></tr></table></figure>
-<h4 id="2-MapReduce"><a href="#2-MapReduce" class="headerlink" title="2. MapReduce"></a>2. MapReduce</h4><h5 id="2-1-初识MapReduce"><a href="#2-1-初识MapReduce" class="headerlink" title="2.1 初识MapReduce"></a>2.1 初识MapReduce</h5><p><img src="http://p1.bqimg.com/567571/f1b180f4c04949c3.png" alt=""></p>
-<p>整个过程可以分为三个阶段，<strong>Input， MapReduce and Output</strong></p>
-<p>在input和output阶段，数据是存在HDFS文件系统中，其系统的block size大小默认是64/128MB。</p>
-<p>在MapReduce中，又可以分为两个阶段，<strong>Map and Reduce</strong>，数据从map function到reduce function是存在local disk中，(soreing in HDFS with replication would be overkill)，然后通过network传输数据.</p>
-<p>在每个阶段中，input和output的数据都是以 <strong>(key, values)</strong> 格式进行处理的，然后通过 map function 和 reduce function 进行处理。在本例中，input data的key是从数据文件开始处的行数的偏移量，但是map function输出的key是年份数据，以及reduce function输出的key是也不同的。<strong>所以这三个key-value pairs是不同的。</strong></p>
-<ul>
-<li><strong>原始数据</strong></li>
-</ul>
-<p><img src="http://p1.bqimg.com/567571/27ee1f02518c6556.png" alt=""></p>
-<ul>
-<li><strong>Key-Values</strong></li>
-</ul>
-<p><img src="http://p1.bqimg.com/567571/b469ba1aa1c029b8.png" alt=""></p>
-<p>以上为原始数据中input进来后的key-values的数据。然后map function阶段，提取出上面文件中的 <strong>1950 和 0001</strong> 之类的数据，组成新的key-values作为输出给下一阶段。</p>
-<ul>
-<li><strong>Key-Values in Map Function</strong></li>
-</ul>
-<p><img src="http://i1.piimg.com/567571/3997f1a955dd4986.png" alt=""></p>
-<p>在将Map Function的输出传给Reduce Function之前，实际上MapReduce Framework还是有对数据进行一个处理步骤。从最上的图一中，我们仍然可以看到Map和Reduce之间有一个 <strong>Shuffle</strong> 的过程。因为之前我们提到了，Map的过程中，只是实现了一个key-value匹配的过程，所有出来的数据也是无序的，而 <strong>Shuffle</strong> <del>就是对这个输出 <strong>sort &amp; group</strong> 的过程</del>，然后将输出传给 <strong>Reduce Function</strong> 进行处理</p>
-<p><img src="http://p1.bqimg.com/567571/84e67241566e0110.png" alt=""></p>
-<p>当数据从Reduce Function中处理完后出来的大概如下，<strong>注意这个reduce只是选择最大值，其他reduce function可能做的是统计或者实现其他功能。</strong></p>
-<p><img src="http://p1.bqimg.com/567571/102b61976d95a0a1.png" alt=""></p>
-<p>现在再看另外一个经典的WordCount的例子</p>
-<p><img src="http://i1.piimg.com/567571/ccef143c24029185.png" alt=""></p>
-<p>在Hadoop系统中，处理一个wordcount的任务可以大致分成四个主要阶段，input，map，reduce，output。其中 Map 和 Reduce 可以继续细分，即分成多个 <strong>map tasks</strong> 和 <strong>reduce tasks</strong>。 这些<strong>tasks</strong>然后被 <strong>YARN</strong> 给分配集群中多台不同的机器处理。这其中的细节等到往后再讨论。</p>
-<p>上面提到的分成多个tasks时，应该是input data切片分给多个maps（而不是一个大的map分成多个小的tasks）， 每个MapReduce分到一个fixed-sized 的数据，通常是64/128MB，这个过程叫做 <strong>input splits</strong>。然后每个split分配一个map task，同时运行在不同的机器上处理。这样划分的好处是有利于load-balancing，对于性能较好的机器可以处理更过是splits。</p>
-<h5 id="2-2-Data-Flow"><a href="#2-2-Data-Flow" class="headerlink" title="2.2 Data Flow"></a>2.2 Data Flow</h5><p><img src="http://i1.piimg.com/567571/67773019972a0a2f.png" alt=""></p>
-<p>上图可以看出hadoop的整个数据流向，其中<strong>虚线代表是在一个node，实线代表的是不同node之间</strong>。在同一个node之间，数据的读取存储就有速度上的优势，不同node之间，也就是不同主机之间，就必须通过network进行传输，速度较慢。</p>
-<p><img src="http://p1.bqimg.com/567571/d9048c5963587f2e.png" alt=""></p>
-<ul>
-<li><p><strong>Partition</strong></p>
-<p>当只有一个reduce的时候，map function的output当然就直接传给这个reduce了。但是当有多个reduce的时候，怎么办呢？此时map会将其输出进行partition(分区)，每一个reduce的任务都会创建一个分区，且每一个reduce task都会有一个partition (There can be many keys (and their associated values)in each partition, but the records for any given key are all in a single partition)，也就是说同一个key会在同一个partition中。</p>
 </li>
-<li><p><strong>Shuffle and Sort</strong></p>
-<p>在map和reduce之间的data flow是<strong>Shuffle</strong>，从上图可以看出，一个reduce可以接受来自多个不同的map的output，其中包含了sort，partition等过程。</p>
+</ul>
+<h5 id="1-6-理解-JOIN（左链接，内链接和外链接）"><a href="#1-6-理解-JOIN（左链接，内链接和外链接）" class="headerlink" title="1.6 理解 JOIN（左链接，内链接和外链接）"></a>1.6 理解 JOIN（左链接，内链接和外链接）</h5><ul>
+<li>不同的几种JOIN类型，以及之间的差异<ul>
+<li><strong>JOIN</strong>：如果表中至少有一个匹配，则返回行</li>
+<li><strong>LEFT JOIN</strong>：即使右表中没有匹配，也从<strong>左边返回所有的行</strong></li>
+<li><strong>RIGHT JOIN</strong>：即使左表中没有匹配，也从<strong>右表中返回所有的行</strong></li>
+<li><strong>FULL JOIN</strong>：只要其中一个表存在匹配，就返回行</li>
+</ul>
 </li>
-<li><p><strong>Combiner Functions</strong></p>
-<p>之前我们讨论过，data flow在map和reduce之间是通过network进行传输的，但我们知道map function的output是一个个key-value的键值对的，这些key-value paris中，有些是可以通过combiner function进行combine的，这样做的目的是减小map和reduce之间传输的数据大小，加快传输数据。</p>
-<p>Combiner Function在许多情况和 Reduce Function是很像的，因为做的工作和reduce是比较类似的，只是处理的是局部map的output(因此Combiner是运行在map output端)，减少data flow的size。但是对于是否调用combiner function，这个是<strong>不确定</strong>的。因为有些情况下的output是不适合进行combine，有些则又是要多次调用进行合并。因为这个，Combiner是可选的，即可以调用，也可以不调用，当不调用的时候，就必需不能影响程序的正常运行。<strong>所以Combiner的input和output是一样的，和Mapper的output、Reducer的input一样。</strong></p>
-<p>对于有些特殊情况，甚至连reduce function都不需要。</p>
+</ul>
+<ul>
+<li><p><strong>INNER JOIN</strong></p>
+<p>平常我们需要链接两个表的时候，可以用以下方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo</div><div class="line">FROM Persons, Orders</div><div class="line">WHERE Persons.Id_P = Orders.Id_P</div></pre></td></tr></table></figure>
+<p>同时，我们也可以使用JOIN来实现上面的语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">SELECT Person.LastName, Persons.FirstName, Orders.OrderNo</div><div class="line">FROM Persons</div><div class="line">INNER JOIN Orders</div><div class="line">ON Persons.Id_P = Orders.Id_P</div><div class="line">ORDER BY Persons.LastName</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>LEFT JOIN</strong></p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-3-23/99841509-file_1490276181019_b9c5.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo</div><div class="line">FROM Persons</div><div class="line">LEFT JOIN Orders</div><div class="line">ON Persons.Id_P=Orders.Id_P</div><div class="line">ORDER BY Persons.LastName</div></pre></td></tr></table></figure>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-3-23/9741354-file_1490276232546_842e.png" alt=""></p>
+<p><strong>注意到上面的，左边所有的行都返回了，即使没有出现在右表当中，没有的值为NULL</strong></p>
+</li>
+<li><p><strong>RIGHT JOIN</strong></p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-3-23/3271941-file_1490276346383_1328f.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo</div><div class="line">FROM Persons</div><div class="line">RIGHT JOIN Orders</div><div class="line">ON Persons.Id_P=Orders.Id_P</div><div class="line">ORDER BY Persons.LastName</div></pre></td></tr></table></figure>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-3-23/87590364-file_1490276403326_13390.png" alt=""></p>
+<p><strong>注意，即使左边没有全部匹配到右边，依然在最后的OrderNo中，返回了右表所有的行数，没有的值为NULL</strong></p>
+</li>
+</ul>
+<h5 id="1-7-理解-HAVING"><a href="#1-7-理解-HAVING" class="headerlink" title="1.7 理解 HAVING"></a>1.7 理解 HAVING</h5><blockquote>
+<p>见<strong>3.2</strong></p>
+</blockquote>
+<p>在SQL中增加HAVING子句的原因是由于<strong>WHERE中无法使用聚合函数</strong></p>
+<h4 id="2-数据库的基本操作"><a href="#2-数据库的基本操作" class="headerlink" title="2 数据库的基本操作"></a>2 数据库的基本操作</h4><h5 id="2-1-表的使用"><a href="#2-1-表的使用" class="headerlink" title="2.1 表的使用"></a>2.1 表的使用</h5><ul>
+<li><p><strong>使用列约束建表</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">CREATE [TEMPORARY] TABLE 表名 ( -- TEMPORARY 建立一张临时的表</div><div class="line">col_not_null INT NOT NULL,		-- 列名 类型 &#123;约束1 约束2 ...&#125;</div><div class="line">col_unique   INT UNIQUE,</div><div class="line">col_prikey	 INT PRIMARY KEY,	-- NOT NULL + UNIQUE 主键</div><div class="line">col_default  INT DEFAULT 42,</div><div class="line">col_check    INT CHECK(col_check &lt; 42)</div><div class="line">col_ref		 INT REFERENCES 	-- 约束这个值必须是另一独立的表的某个列中的某个值</div><div class="line">);</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>使用表级约束建表</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE 表名 (</div><div class="line">  myKey_1 INT,</div><div class="line">  myKey_2 INT,</div><div class="line">  myString varchar(15),</div><div class="line">  CONSTRAINT cs1 CHECK (myString &lt;&gt; &apos;&apos;),	-- 不能位空字符串</div><div class="line">  CONSTRAINT CS2 PRIMARY KEY (myKey_1, myKey_2)</div><div class="line">);	--</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>修改表结构</strong></p>
+<ul>
+<li><p>添加新列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ALTER TABLE 表名 ADD COLUMN 列名 类型;</div></pre></td></tr></table></figure>
+</li>
+<li><p>重命名新添加的列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ALTER TABLE 表名 RENAME COLUMN 列名 TO 新列名;</div></pre></td></tr></table></figure>
+</li>
+<li><p>改变一些约束和其他规则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ALTER TABLE 表名 DROP CONSTRAINT cs1;		-- DROP约束</div><div class="line">ALTER TABLE 表名 ADD CONSTRAINT cs3 UNIQUE(列名); --添加新的约束</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改列的类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ALTER TABLE 表名 ALTER 列名 TYPE 新类型;</div></pre></td></tr></table></figure>
+</li>
+<li><p>重命名表名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ALTER TABLE 表名 RENAME TO 新表名;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>使用临时表</strong></p>
+<p>临时表的功能基本和表是差不多的，区别在于<strong>当你的会话结束时，你与数据库连接断开后，临时表会自动被删除。</strong></p>
+</li>
+<li><p><strong>键的约束</strong></p>
+<ul>
+<li><p>作为一个<strong>列的约束</strong>的外键（列约束）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE 表名 (</div><div class="line">  ... ...</div><div class="line">  customer_id INTEGER NOT NUll REFERENCES customer(customer_id),	-- 关联到customer表</div><div class="line">  ... ...</div><div class="line">);</div><div class="line"></div><div class="line">-- REFERENCES 外表名(外表名中的列)</div></pre></td></tr></table></figure>
+</li>
+<li><p>表级约束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE 表名(</div><div class="line">  ... ...</div><div class="line">  customer_id INTEGER NOT NULL,</div><div class="line">  ... ...</div><div class="line">  CONSTRAINT 表名_列名_fk FOREIGN KEY(列名) REFERENCES 外表名(外面中的列)</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>注意：比较推荐的是使用表级约束，而不是混和私用表级和列级约束</p>
+<p>​        约束名<strong>表名_列名_fk</strong>允许外面更容易定位错误资源</p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="2-2-视图"><a href="#2-2-视图" class="headerlink" title="2.2 视图"></a>2.2 视图</h5><ul>
+<li><p><strong>建立视图</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">CREATE VIEW 视图的名字 AS select系列语句;</div><div class="line">-- 例子</div><div class="line">CREATE VIEW item_price AS SELECT item_id, description, sell_price FROM item;</div></pre></td></tr></table></figure>
+<p>当视图建立好的时候，我们可以像使用表一样来查询这个视图，可以使用SELECT或WHERE语句等。</p>
+<p><strong>每次在视图中执行SELECT时，数据都会被重建，所以数据总是最新的，而不是一个在视图被建立的时候冻结的拷贝。</strong>也就是当与之相关的表的数据发生该表的时候，VIEW里面的数据也随之改变，而不是储存了建立VIEW的时候的拷贝对象。或者也可以理解类似指针指向原先的表，当原先的表发生变化，这边的数据自然而然的就能够读取出来。</p>
+<p>当然，<strong>SELECT语句是可以在多个不同的表中提取数据的</strong>。</p>
+</li>
+<li><p><strong>删除和替换VIEW</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">DROP VIEW 名字;		-- 不影响我们已有的数据</div><div class="line">CREATE OR REPLACE VIEW 名字 AS 新的select系列语句;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>一些与VIEW常用的指令</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">\dv				-- 查看当前数据库中的所有的VIEW</div><div class="line">\d VIEW的名字	  -- 查看具体的某一个VIEW的结构</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="2-3-INSERT语句"><a href="#2-3-INSERT语句" class="headerlink" title="2.3 INSERT语句"></a>2.3 INSERT语句</h5><ul>
+<li><p><strong>基本插入语句</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">INSERT INTO 表名 VALUES (每列的值的列表);</div><div class="line"></div><div class="line">INSERT INTO customer VALUES(18, &apos;Mr&apos;, &apos;Jeff&apos;, &apos;Baggott&apos;, &apos;Midtown Street A\\33&apos;, &apos;Milltown&apos;, &apos;MT9 8NQ&apos;, &apos;746 3956&apos;);</div></pre></td></tr></table></figure>
+<p>PS：这种操作很<strong>危险</strong>，<strong>SQL注入攻击</strong></p>
+</li>
+<li><p><strong>推荐的安全方法</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">INSERT INTO 表名(列名的列表) VALUES(跟之前的列的列表对应列的数值);</div><div class="line"></div><div class="line">INSERT INTO </div><div class="line">customer(customer_id, title, fname, lname, addressline, ...)</div><div class="line">VALUES(19, &apos;Mrs&apos;, &apos;Sarah&apos;, &apos;Harvey&apos;, &apos;84 Willow Way&apos;, ...);</div></pre></td></tr></table></figure>
+<p>PS：避免在插入数据的时候为<strong>serial</strong>类型的数据提供数值，因为这个是系统自动添加的</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>访问序列生成器</strong></p>
+<p>序列生成器总 是被命名为<strong>&lt;表名&gt;_&lt;列名&gt;_seq</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">currval(&apos;序列生成器名&apos;);</div><div class="line">nextval(&apos;序列生成器名&apos;);</div><div class="line">setval(&apos;序列生成器名&apos;, 新的值);</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>插入空值</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">INSERT INTO customer VALUES(16, &apos;Mr&apos;, NULL, &apos;Smith&apos;,</div><div class="line"></div><div class="line">&apos;23 Harlestone&apos;, &apos;Milltown&apos;, &apos;MT7 7HI&apos;, &apos;746 3725&apos;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="使用-copy-命令"><a href="#使用-copy-命令" class="headerlink" title="使用 \copy 命令"></a>使用 \copy 命令</h5><ul>
+<li><p><strong>步骤</strong></p>
+<p>先生成如下格式的数据</p>
+<p><img src="http://i1.piimg.com/567571/f923ffc7a17f5ef9.png" alt="">​</p>
+<p>再生成如下格式的数据，保存成<strong>.sql</strong>拓展名的文本文件</p>
+<p><img src="http://i4.buimg.com/567571/390dda8b6493d464.png" alt="">​</p>
+<p>使用\copy命令导入数据</p>
+<p><img src="http://i1.piimg.com/567571/4115f45d5621bdfb.png" alt="">​</p>
+<p>PS：SQL 里头的 COPY 命令有一个优点：它明显比\copy 命令快，因为它直接通过服务器进程执行。\copy 命令是在客户进程中执行，有可能需要通过网络传输所有数据。而且 COPY 在发生错误的时候会更可靠。除非你有大量的数据，否则区别不会太明显。</p>
+</li>
+</ul>
+<h5 id="2-5-从数据库中删除数据"><a href="#2-5-从数据库中删除数据" class="headerlink" title="2.5 从数据库中删除数据"></a>2.5 从数据库中删除数据</h5><ul>
+<li><p><strong>DELETE语句</strong></p>
+<p>语法类似于UPDATE语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DELETE FROM 表名 WHERE 条件;</div></pre></td></tr></table></figure>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-3-23/60332952-file_1490276978581_d247.png" alt=""></p>
+</li>
+</ul>
+<ul>
+<li><p><strong>TRUNCATE语句</strong>（不推荐，因为不安全）</p>
+<p>TRUNCATE语句是把表中所有的数据都删除，但是保留这张表的结构，也就是说最后剩下了一张空表，所有的行都被删除了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TRUNCATE TABLE 表名;</div></pre></td></tr></table></figure>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-3-23/35551311-file_1490277114822_c417.png" alt=""></p>
+</li>
+<li><p><strong>DROP语句</strong></p>
+<p>DROP语句就是删除了整张表的内容，包括表的结构。DROP完之后，这张表就是不存在的了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DROP TABLE 表名;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="2-6-修改数据库中的数据"><a href="#2-6-修改数据库中的数据" class="headerlink" title="2.6 修改数据库中的数据"></a>2.6 修改数据库中的数据</h5><ul>
+<li><p><strong>UPDATE语句</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UPDATE 表名 SET 列名 = 值 WHERE 条件;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UPDATE customer SET town = &apos;Leicester&apos;, zipcode = &apos;LE4 2WQ&apos; WHERE 一些条件;</div></pre></td></tr></table></figure>
+<p>如果没有WHERE子句的话，会导致表中的很多甚至是所有的行都被同时更新了</p>
+</li>
+<li><p><strong>通过另一个表更新</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UPDATE 表名 FROM 表名 WHERE 条件;</div></pre></td></tr></table></figure>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-3-23/81328827-file_1490277630759_13e53.png" alt=""></p>
+</li>
+</ul>
+<h4 id="3-高级数据选择"><a href="#3-高级数据选择" class="headerlink" title="3 高级数据选择"></a>3 高级数据选择</h4><h5 id="3-1-聚集函数"><a href="#3-1-聚集函数" class="headerlink" title="3.1  聚集函数"></a>3.1  聚集函数</h5><p><img src="http://i2.buimg.com/567571/69f87e94af306558.png" alt=""></p>
+<ul>
+<li><p><strong>Group By and count(*)</strong></p>
+<ul>
+<li><p>错误使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT count(*), town FROM customer;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>正确使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT count(*), town FROM customer GROUP BY town;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://i2.buimg.com/567571/a6f5a62c50348675.png" alt=""></p>
+<p>结果是获得一个<strong>城镇的列表</strong>以及<strong>每个城镇的客户数量</strong>（count(*))</p>
+<p>同时我们也可以用两个columns name在GROUP BY中，然后用ORDER BY指定排列顺序。没有GROUP BY的话按照GROUP BY中的town，lname排序</p>
+<p><img src="http://i1.piimg.com/567571/c34b9f88e48352e3.png" alt=""></p>
+<ul>
+<li><p><strong>Having</strong></p>
+<p>Having是一种用于聚集函数的WHERE从句，我们使用HAVING来约束返回的结果为针对特定的聚集的条件为真的行，比如count(*) &gt; 1</p>
+<p>PS：聚集函数无法在WHERE从句中使用，<strong>只能用在HAVING从句中</strong></p>
 <p>举个栗子：</p>
+<p>选出有超过一个客户的城镇，在里使用一个HAVING从句来约束大一的行</p>
+<p><img src="http://i2.buimg.com/567571/bd95424b47f7d04e.png" alt=""></p>
 <ul>
-<li><strong>适用情况</strong>（Commutative &amp; Associative）</li>
+<li><p>SELECT中从句的优先度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">SELECT</div><div class="line">FROM </div><div class="line">WHERE</div><div class="line">GROUP BY</div><div class="line">HAVING</div><div class="line">ORDER BY	-- DESC 下降</div><div class="line">LIMIT		-- 用于限制rows是行数		mysql</div></pre></td></tr></table></figure>
+</li>
 </ul>
-<p>​    <strong>Reduce Function</strong>              <strong>Combiner Function</strong></p>
-<p><img src="http://p1.bpimg.com/567571/41e6c237b7063601.png" alt=""></p>
-<p>​    <strong>Commutative:</strong>     max(a, b) = max(b, a)</p>
-<p>​    <strong>Associative:</strong>         max(max(a, b), c) = max(a, max(b, c))</p>
+</li>
+<li><p><strong>count(Column_Name)</strong></p>
 <ul>
-<li><p><strong>不适用情况：</strong></p>
-<p><img src="http://p1.bpimg.com/567571/4e6521c2fed257a2.png" alt=""></p>
+<li><p>count(*)</p>
+<p>统计所有的行</p>
 </li>
-<li><p>伪代码</p>
+<li><p>count(column_name)</p>
+<p>统计所这个列中值不是NULL的行</p>
+</li>
+<li><p>count(Distinct column)</p>
+<p>只统计这个列中唯一的情况，不重复统计</p>
 </li>
 </ul>
-<p><img src="http://p1.bpimg.com/567571/e05592a0f9ef0258.png" alt=""></p>
 </li>
-<li><p><strong>In-Combiner Function</strong></p>
-<p><img src="http://p1.bqimg.com/567571/677bdf41e9af4506.png" alt=""></p>
+<li><p><strong>min</strong></p>
+<p>min 函数使用一个列名做参数且返回这个列中最小的值。对于 numeric 类型的列，结果应该和预期一 样。对于时态类型，例如 date 的值，它返回最小的日期，日期既可以是过去也可以是未来。对于变长的字符串（varchar 类 型），结果可能和预期有点不同：它在字符串右边添加空白后再进行比较。</p>
+<p>min 函数<strong>忽略 NULL 值</strong>。忽略 NULL 值 是<strong>所有的聚集函数</strong>的一个特点，除了 count(*)（当然，是否一个电话号码是最小值又是另一个问题了</p>
+<p>PS：小心在 varchar 类型的列中使用 min 或者 max，因为结果可能不是你预期的。</p>
+</li>
+<li><p><strong>max</strong></p>
+</li>
+<li><p><strong>sum</strong></p>
+<p>Sum 函数使用一个列名作为参数并提供列的内容的合计。和 min 和 max 一样，NULL 值被忽略。</p>
+<p>和 count 一样，sum 函数支持 DISTINCT 变体。你可以让它只统计不重复值的和，所以多条值相同的行只会被加一</p>
+<p>次</p>
+</li>
+<li><p><strong>avg</strong></p>
+<p>我们要看的最后一个聚集函数是 avg，它使用一个列名做参数并返回这个列数值的平均值。和 sum 一样，它忽略 NULL 值。这里是一个示例</p>
+<p>​</p>
+</li>
+</ul>
+<h5 id="3-2-子查询"><a href="#3-2-子查询" class="headerlink" title="3.2 子查询"></a>3.2 子查询</h5><ul>
+<li><p><strong>问题一</strong></p>
+<p>找到价格比平均价格高的商品项目</p>
 <ul>
-<li><p>Advantage</p>
-<p>相比Combiner，In-Combiner的效率更高。</p>
-<p>可以减少一些Mapper和Reducer之间的key-value pairs，可以减少处理这部分的开销。因为Combiner只是减少了一些Mapper和Reducer之间的intermediate data，但是并没减少从Mapper的output出来的key-value pairs的数量。但是In-Combiner是是Mapper 的一部分，也就是说key-value pairs在Mapper 输出前就已经减少了。</p>
-<p>减少了key-value pairs可以减少系统的object serialization and deserialization 的开销，即垃圾回收机制</p>
+<li><p>方法一（土方法）</p>
+<p><img src="http://i2.buimg.com/567571/a43935a1cd09a745.png" alt=""></p>
 </li>
-<li><p>Disadvantage</p>
+<li><p>方法二（用嵌套WHERE从句）</p>
+<p><img src="http://i4.buimg.com/567571/96b32e8126dad6bb.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p><strong>问题二</strong></p>
+<p>找到那些成本高于平均成本但售价低于平售价的产品</p>
 <ul>
-<li>内存使用，因为要保存一个array在内存中，当数据量很大的时候有可能会爆了。解决方案 有两个，第一是限制array的个数，第二是限制内存的使用。当这俩到达某一个阈值的时候，就发送给Reducer。</li>
-<li>第二是讲一个Map的过程分成几个部分，导致debug中可能出现oedering-dependent bugs，调试可能比较困难。</li>
-</ul>
+<li><p>方法一（土方法）</p>
+<p><img src="http://i2.buimg.com/567571/ae067dad8da51db3.png" alt="">    </p>
 </li>
 </ul>
 </li>
 </ul>
-<p>  ​<br>  ​<br>  ​    </p>
-
+<ul>
+<li><p>方法二（用嵌套WHERE从句）</p>
+<p><img src="http://i2.buimg.com/567571/7224e6a4de41b2a8.png" alt=""></p>
+</li>
+</ul>
+<ul>
+<li><p><strong>问题三 - 返回多行记录的子查询</strong></p>
+<p>之前的两个问题中，WHERE中的子查询中的SELECT字句返回的最后只有一个值——因为用了count()聚集函数。如果WHERE中的SELECT子句返回多个结果值呢？</p>
+<p>答案是用 <strong>WHERE  column_name IN  (RESULTS)</strong></p>
+<p>当然也可以使用<strong>NOT IN</strong> 来排出选项</p>
+<p><img src="http://i4.buimg.com/567571/e054aa3d69b05163.png" alt=""></p>
+</li>
+</ul>
+<h5 id="3-3-相关子查询"><a href="#3-3-相关子查询" class="headerlink" title="3.3 相关子查询"></a>3.3 相关子查询</h5><p>​    在之前的例子中，这里的两个SELECT实际上是不相关的，也就是在内部的SELECT的结果基础上，外部SELECT再做继续查询</p>
+<p>​    但是相关子查询则是内外的SELECT中，表与表之间是有关系的</p>
+<ul>
+<li><p>格式</p>
+<p><img src="http://i2.buimg.com/567571/c9b3dfe7535ca322.png" alt=""></p>
+<p>PS：建议在相关子查询中使用<strong>表的别名</strong></p>
+</li>
+</ul>
+<h5 id="3-4-UNION链接"><a href="#3-4-UNION链接" class="headerlink" title="3.4 UNION链接"></a>3.4 UNION链接</h5><ul>
+<li><p>格式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">SELECT town FROM tcust</div><div class="line">UNION</div><div class="line">SELECT town FROM customer;</div><div class="line"></div><div class="line">SELECT town, zipcode FROM tcust UNION SELECT town, zipcode FROM customer;</div></pre></td></tr></table></figure>
+<p>PS：UNION 连接的使用有一些限制。你要连接的两个从两个表中查找列表的列必须有<strong>相同列数</strong>，而且选择的每个列必须都有<strong>相兼容的类型</strong>。</p>
+<p><img src="http://i4.buimg.com/567571/79d8a2a6f6b780c1.png" alt=""></p>
+<p>这个查询，虽然非常<strong>无意义</strong>，但是是<strong>有效</strong>的，因为 PostgreSQL 可以连接这两个列，即使 title 是一个固定长度的列而 town 是一个变长的列，因为他们都是<strong>字符串类型</strong>。例如如果我们尝试连接 customer_id 和 town，PostgreSQL 会告诉我们 无法做到，因为这两个列的类型不同。</p>
+</li>
+</ul>
+<h5 id="3-5-自连接"><a href="#3-5-自连接" class="headerlink" title="3.5 自连接"></a>3.5 自连接</h5><p><img src="http://i1.piimg.com/567571/ed7df2ac073fc743.png" alt=""></p>
+<h5 id="3-6-外链接"><a href="#3-6-外链接" class="headerlink" title="3.6 外链接"></a>3.6 外链接</h5><h4 id="4-表的管理"><a href="#4-表的管理" class="headerlink" title="4. 表的管理"></a>4. 表的管理</h4><p>​    </p>
+<h4 id="5-事务和锁"><a href="#5-事务和锁" class="headerlink" title="5. 事务和锁"></a>5. 事务和锁</h4>
       
 
       
@@ -342,11 +551,7 @@ HDFS blocks are large compared to disk blocks, and the reason is to minimize the
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
         		</li>
       		
 		</ul>
@@ -402,7 +607,7 @@ HDFS blocks are large compared to disk blocks, and the reason is to minimize the
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2017/03/07/Hadoop权威指南笔记（一）/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2017/03/24/PostgreSQL复习笔记/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -416,18 +621,9 @@ HDFS blocks are large compared to disk blocks, and the reason is to minimize the
   
 <nav id="article-nav">
   
-    <a href="/2017/03/15/KMP算法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          KMP算法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/03/02/Machine-Learning-Recommender-Systems/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Machine Learning - Recommender Systems </div>
+    <a href="/2017/03/17/Machine-Learning-Linear-Regression-and-Logistic-Regression/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Machine Learning - Linear Regression and Logistic Regression</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -441,7 +637,7 @@ HDFS blocks are large compared to disk blocks, and the reason is to minimize the
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Hadoop权威指南笔记（一）" data-title="Hadoop权威指南笔记（一）" data-url="http://chenson.com/2017/03/07/Hadoop权威指南笔记（一）/"></div>
+	<div class="ds-thread" data-thread-key="PostgreSQL复习笔记" data-title="PostgreSQL复习笔记" data-url="http://chenson.com/2017/03/24/PostgreSQL复习笔记/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
