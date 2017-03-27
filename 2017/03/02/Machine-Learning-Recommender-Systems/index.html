@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
@@ -41,7 +41,7 @@
 <meta property="og:image" content="http://p1.bqimg.com/567571/6d3b0fd8406f42e4.png">
 <meta property="og:image" content="http://p1.bqimg.com/567571/7a511dff9e71cea6.png">
 <meta property="og:image" content="http://p1.bqimg.com/567571/0eb45a842e55e55f.png">
-<meta property="og:updated_time" content="2017-03-17T05:36:01.000Z">
+<meta property="og:updated_time" content="2017-03-27T00:32:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Machine Learning - Recommender Systems ">
 <meta name="twitter:description" content="1. What is Recommender Systems对于推荐系统的定义，我们先举几个例子来理解一下。
@@ -64,7 +64,7 @@
     #container.show {
       background: linear-gradient(200deg,#a0cfe4,#e8c37e);
     }
-  </style>
+  </style><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
   
@@ -72,7 +72,7 @@
 </head>
 
 <body>
-  <div id="container" q-class="show:isCtnShow">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
     <div class="left-col" q-class="show:isShow">
       
@@ -367,7 +367,7 @@
 <h5 id="3-2-How-to-do"><a href="#3-2-How-to-do" class="headerlink" title="3.2 How to do"></a>3.2 How to do</h5><ul>
 <li>在之前部分中，我们了解到了content-based，是<strong>已知 x 和 y，求 theta</strong>。</li>
 </ul>
-<p>Assume:<br>$$<br>\theta^{(1)} = \begin{bmatrix} 0 \ 5 \ 0 \end{bmatrix},  \space\space<br>\theta^{(2)} = \begin{bmatrix} 0 \ 5 \ 0 \end{bmatrix},  \space\space<br>\theta^{(3)} = \begin{bmatrix} 0 \ 0 \ 5 \end{bmatrix},  \space\space<br>\theta^{(4)} = \begin{bmatrix} 0 \ 0 \ 5 \end{bmatrix},  \space\space<br>x^{(1)} = \begin{bmatrix} 1 \ 1.0 \ 0.0 \end{bmatrix}<br>$$<br>For Movie 1, we can calculate the result of Movie1 rating by all users.<br>$$<br>\theta^{(1)} <em> x^{(1)} \approx 5    \<br>\theta^{(2)} </em> x^{(1)} \approx 5    \<br>\theta^{(3)} <em> x^{(1)} \approx 0    \<br>\theta^{(4)} </em> x^{(1)} \approx 0<br>$$</p>
+<p>Assume:<br>$$<br>\theta^{(1)} = \begin{bmatrix} 0 \ 5 \ 0 \end{bmatrix},  \space\space<br>\theta^{(2)} = \begin{bmatrix} 0 \ 5 \ 0 \end{bmatrix},  \space\space<br>\theta^{(3)} = \begin{bmatrix} 0 \ 0 \ 5 \end{bmatrix},  \space\space<br>\theta^{(4)} = \begin{bmatrix} 0 \ 0 \ 5 \end{bmatrix},  \space\space<br>x^{(1)} = \begin{bmatrix} 1 \ 1.0 \ 0.0 \end{bmatrix}<br>$$<br>For Movie 1, we can calculate the result of Movie1 rating by all users.<br>$$<br>\theta^{(1)} * x^{(1)} \approx 5    \\\<br>\theta^{(2)} * x^{(1)} \approx 5    \\\<br>\theta^{(3)} * x^{(1)} \approx 0    \\\<br>\theta^{(4)} * x^{(1)} \approx 0<br>$$</p>
 <ul>
 <li><p>但是对于有些情况，我们并不知道x的特征值，该怎么办呢？</p>
 <p>逆向思考，我们也可以<strong>通过 theat 和 y，来求 x 的值</strong>。</p>
@@ -416,20 +416,20 @@
 <p><img src="http://p1.bpimg.com/567571/d14e3ed20060b507.png" alt=""></p>
 <p>具体步骤如下</p>
 <p><img src="http://p1.bqimg.com/567571/5b7b9e072029ae09.png" alt=""></p>
-<h5 id="3-5-Vectorization-Low-rank-matrix-factorization"><a href="#3-5-Vectorization-Low-rank-matrix-factorization" class="headerlink" title="3.5 Vectorization: Low rank matrix factorization"></a>3.5 Vectorization: Low rank matrix factorization</h5><p>首先，我们先把评分Y用向量表示出来，同时表示为Theta和X两个矩阵的乘积<br>$$<br>Y= \begin{bmatrix} 5 &amp; 5 &amp; 0 &amp; 0 \ 5 &amp; ? &amp; ?&amp; 0 \ ? &amp; 4 &amp; 0 &amp; ? \ 0 &amp; 0 &amp; 5 &amp; 4 \ 0 &amp;  0 &amp; 5 &amp; 0\end{bmatrix}  =<br>\begin{bmatrix}<br>(\theta^{(1)})^T(x^{(1)}) &amp; (\theta^{(2)})^T(x^{(1)}) &amp; … &amp; (\theta^{(n_u)})^T(x^{(1)}) \<br>(\theta^{(1)})^T(x^{(2)}) &amp; (\theta^{(2)})^T(x^{(2)}) &amp; … &amp; (\theta^{(n_u)})^T(x^{(2)}) \<br>… &amp; … &amp; … &amp; … \<br>(\theta^{(1)})^T(x^{(n_m)}) &amp; (\theta^{(2)})^T(x^{(n_m)}) &amp; … &amp; (\theta^{(n_u)})^T(x^{(n_m)})<br>\end{bmatrix} = X * \Theta’, R \in (n_m × n_u)<br>$$</p>
-<p>$$<br>X = \begin{bmatrix}<br>—(x^{(1)})^T—     \<br>—(x^{(2)})^T—    \<br>…    \<br>—(x^{(n_m)})^T—<br>\end{bmatrix},<br>x^{(n_m)} = \begin{bmatrix}<br>x^{(n_m)}_1 \ x^{(n_m)}_2 \ … \ x^{(n_m)}_n<br>\end{bmatrix}, R \in (n_m × n)<br>$$</p>
-<p>$$<br>\Theta = \begin{bmatrix}<br>—(\theta^{(1)})^T—     \<br>—(\theta^{(2)})^T—    \<br>…    \<br>—(\theta^{(n_u)})^T—<br>\end{bmatrix},<br>\theta^{(n_u)} = \begin{bmatrix}<br>\theta^{(n_u)}_1 \ \theta^{(n_u)}_2 \ … \ \theta^{(n_u)}_n<br>\end{bmatrix}, R \in (n_u × n)<br>$$</p>
+<h5 id="3-5-Vectorization-Low-rank-matrix-factorization"><a href="#3-5-Vectorization-Low-rank-matrix-factorization" class="headerlink" title="3.5 Vectorization: Low rank matrix factorization"></a>3.5 Vectorization: Low rank matrix factorization</h5><p>首先，我们先把评分Y用向量表示出来，同时表示为Theta和X两个矩阵的乘积<br>$$<br>Y= \begin{bmatrix} 5 &amp; 5 &amp; 0 &amp; 0 \ 5 &amp; ? &amp; ?&amp; 0 \ ? &amp; 4 &amp; 0 &amp; ? \ 0 &amp; 0 &amp; 5 &amp; 4 \ 0 &amp;  0 &amp; 5 &amp; 0\end{bmatrix}  =<br>\begin{bmatrix}<br>(\theta^{(1)})^T(x^{(1)}) &amp; (\theta^{(2)})^T(x^{(1)}) &amp; … &amp; (\theta^{(n_u)})^T(x^{(1)}) \\<br>(\theta^{(1)})^T(x^{(2)}) &amp; (\theta^{(2)})^T(x^{(2)}) &amp; … &amp; (\theta^{(n_u)})^T(x^{(2)}) \\<br>… &amp; … &amp; … &amp; … \\<br>(\theta^{(1)})^T(x^{(n_m)}) &amp; (\theta^{(2)})^T(x^{(n_m)}) &amp; … &amp; (\theta^{(n_u)})^T(x^{(n_m)})<br>\end{bmatrix} = X * \Theta’, R \in (n_m × n_u)<br>$$</p>
+<p>$$<br>X = \begin{bmatrix}<br>—(x^{(1)})^T—     \\<br>—(x^{(2)})^T—    \\<br>…    \\<br>—(x^{(n_m)})^T—<br>\end{bmatrix},<br>x^{(n_m)} = \begin{bmatrix}<br>x^{(n_m)}_1 \ x^{(n_m)}_2 \ … \ x^{(n_m)}_n<br>\end{bmatrix}, R \in (n_m × n)<br>$$</p>
+<p>$$<br>\Theta = \begin{bmatrix}<br>—(\theta^{(1)})^T—     \\<br>—(\theta^{(2)})^T—    \\<br>…    \\<br>—(\theta^{(n_u)})^T—<br>\end{bmatrix},<br>\theta^{(n_u)} = \begin{bmatrix}<br>\theta^{(n_u)}_1 \ \theta^{(n_u)}_2 \ … \ \theta^{(n_u)}_n<br>\end{bmatrix}, R \in (n_u × n)<br>$$</p>
 <h5 id="3-6-Mean-Normalization"><a href="#3-6-Mean-Normalization" class="headerlink" title="3.6 Mean Normalization"></a>3.6 Mean Normalization</h5><p>对于那些新注册用户，系统中没有记录他们的偏好，则采用以下方法。</p>
 <p>先计算出每部电影评分的平均值mu，然后把所有的评分都减去平均值（此后处理过的评分平均值为0）。虽然这样做对有评分记录用户是多余的，但却可以吧没有评分记录的用户给统一进来，避免全是0的情况。</p>
 <p><img src="http://i1.piimg.com/567571/cf1b4e1d7822228e.png" alt=""></p>
 <h4 id="4-Implement-Algorithm"><a href="#4-Implement-Algorithm" class="headerlink" title="4. Implement Algorithm"></a>4. Implement Algorithm</h4><h5 id="4-1-Cost-Function-without-Regularization"><a href="#4-1-Cost-Function-without-Regularization" class="headerlink" title="4.1  Cost Function without Regularization"></a>4.1  Cost Function without Regularization</h5><p><img src="http://p1.bpimg.com/567571/049268860c169449.png" alt=""></p>
 <p><strong>Tips：</strong>这里需要计算的只是针对那些已经评分过的电影，对于用户没有评分过的不需要计算。</p>
-<h5 id="4-2-Collaborative-filtering-gradient"><a href="#4-2-Collaborative-filtering-gradient" class="headerlink" title="4.2 Collaborative filtering gradient"></a>4.2 Collaborative filtering gradient</h5><p><img src="http://p1.bqimg.com/567571/6d3b0fd8406f42e4.png" alt=""><br>$$<br>\frac {\partial J} {\partial x_k^{(1)}} , \frac {\partial J} {\partial x_k^{(2)}} , …, \frac {\partial J} {\partial x_k^{(n_m)}}     \space\space for \space each \space movie\<br>\frac {\partial J} {\partial \theta_k^{(1)}} , \frac {\partial J} {\partial \theta_k^{(2)}} , …, \frac {\partial J} {\partial \theta_k^{(n_u)}}    \space\space for \space each \space user<br>$$<br><strong>Tips：</strong></p>
+<h5 id="4-2-Collaborative-filtering-gradient"><a href="#4-2-Collaborative-filtering-gradient" class="headerlink" title="4.2 Collaborative filtering gradient"></a>4.2 Collaborative filtering gradient</h5><p><img src="http://p1.bqimg.com/567571/6d3b0fd8406f42e4.png" alt=""><br>$$<br>\frac {\partial J} {\partial x_k^{(1)}} , \frac {\partial J} {\partial x_k^{(2)}} , …, \frac {\partial J} {\partial x_k^{(n_m)}}     \space\space for \space each \space movie\\<br>\frac {\partial J} {\partial \theta_k^{(1)}} , \frac {\partial J} {\partial \theta_k^{(2)}} , …, \frac {\partial J} {\partial \theta_k^{(n_u)}}    \space\space for \space each \space user<br>$$<br><strong>Tips：</strong></p>
 <ol>
 <li>对于使用vectorization方法，最终只有两个for-loop，一个计算X_grad，一个计算Theta_grad</li>
 <li>如何对X和Theta求<strong>偏导数</strong>？</li>
 </ol>
-<p><img src="http://p1.bqimg.com/567571/7a511dff9e71cea6.png" alt=""><br>$$<br>(Theta_{grad}(i, :))^T = \begin{bmatrix}<br>\frac {\partial J} {\partial \theta^{(i)}_1}     \<br>\frac {\partial J} {\partial \theta^{(i)}_2}    \<br>…    \<br>\frac {\partial J} {\partial \theta^{(i)}_n}<br>\end{bmatrix}<br>$$</p>
+<p><img src="http://p1.bqimg.com/567571/7a511dff9e71cea6.png" alt=""><br>$$<br>(Theta_{grad}(i, :))^T = \begin{bmatrix}<br>\frac {\partial J} {\partial \theta^{(i)}_1}     \\<br>\frac {\partial J} {\partial \theta^{(i)}_2}    \\<br>…    \\<br>\frac {\partial J} {\partial \theta^{(i)}_n}<br>\end{bmatrix}<br>$$</p>
 <ol>
 <li>同样，我们只需考虑用户已经评分过的电影，用其作为训练样本</li>
 <li>因为Vectorization非常容易搞乱各个matrix，所以建议先整理一下各个matrix的size，计算时可以根据matrix的size进行计算。</li>
@@ -632,23 +632,21 @@
 
 
 <script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    }); 
 </script>
-
-<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
@@ -700,6 +698,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -712,11 +714,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">KMP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -725,10 +723,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -748,7 +742,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+                <a href="javascript:void(0)" class="js-tag color4">KMP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
             
             <div class="clearfix"></div>
@@ -872,6 +870,23 @@ MathJax.Hub.Queue(function() {
     </div>
 
 </div>
-  </div>
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>

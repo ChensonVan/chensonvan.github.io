@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://chenson.com">
   <title>Machine Learning - SVM | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. Optimisation Objective$$h_\theta (x) = \frac 1 {1 + e^{-\theta^Tx}}    \z = -\theta^Tx$$">
+  <meta name="description" content="1. Optimisation Objective$$h_\theta (x) = \frac 1 {1 + e^{-\theta^Tx}}    \\z = -\theta^Tx$$">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Machine Learning - SVM">
 <meta property="og:url" content="http://chenson.com/2017/03/02/Machine-Learning-SVM/index.html">
 <meta property="og:site_name" content="Vane's Blog">
-<meta property="og:description" content="1. Optimisation Objective$$h_\theta (x) = \frac 1 {1 + e^{-\theta^Tx}}    \z = -\theta^Tx$$">
+<meta property="og:description" content="1. Optimisation Objective$$h_\theta (x) = \frac 1 {1 + e^{-\theta^Tx}}    \\z = -\theta^Tx$$">
 <meta property="og:image" content="http://p1.bqimg.com/567571/ccebe58b8c408be2.png">
 <meta property="og:image" content="http://p1.bpimg.com/567571/08cde1201ceffdf4.png">
 <meta property="og:image" content="http://i1.piimg.com/567571/f12b34463ba1fa44.png">
@@ -28,10 +28,10 @@
 <meta property="og:image" content="http://p1.bqimg.com/567571/417a67419bd51ee7.png">
 <meta property="og:image" content="http://p1.bqimg.com/567571/24abc84b6130bec4.png">
 <meta property="og:image" content="http://i1.piimg.com/567571/3bc82f7fc83c84cd.png">
-<meta property="og:updated_time" content="2017-03-21T03:47:58.000Z">
+<meta property="og:updated_time" content="2017-03-27T00:53:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Machine Learning - SVM">
-<meta name="twitter:description" content="1. Optimisation Objective$$h_\theta (x) = \frac 1 {1 + e^{-\theta^Tx}}    \z = -\theta^Tx$$">
+<meta name="twitter:description" content="1. Optimisation Objective$$h_\theta (x) = \frac 1 {1 + e^{-\theta^Tx}}    \\z = -\theta^Tx$$">
 <meta name="twitter:image" content="http://p1.bqimg.com/567571/ccebe58b8c408be2.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
@@ -45,7 +45,7 @@
     #container.show {
       background: linear-gradient(200deg,#a0cfe4,#e8c37e);
     }
-  </style>
+  </style><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
   
@@ -53,7 +53,7 @@
 </head>
 
 <body>
-  <div id="container" q-class="show:isCtnShow">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
     <div class="left-col" q-class="show:isShow">
       
@@ -186,13 +186,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-Optimisation-Objective"><a href="#1-Optimisation-Objective" class="headerlink" title="1. Optimisation Objective"></a>1. Optimisation Objective</h4><p>$$<br>h_\theta (x) = \frac 1 {1 + e^{-\theta^Tx}}    \<br>z = -\theta^Tx<br>$$</p>
+        <h4 id="1-Optimisation-Objective"><a href="#1-Optimisation-Objective" class="headerlink" title="1. Optimisation Objective"></a>1. Optimisation Objective</h4><p>$$<br>h_\theta (x) = \frac 1 {1 + e^{-\theta^Tx}}    \\<br>z = -\theta^Tx<br>$$</p>
 <p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.png" alt=""></p>
 <a id="more"></a>
 <p><img src="http://p1.bpimg.com/567571/08cde1201ceffdf4.png" alt=""></p>
 <p><strong>Why we need do that?</strong></p>
-<h4 id="2-Hypothesis-Function"><a href="#2-Hypothesis-Function" class="headerlink" title="2. Hypothesis Function"></a>2. Hypothesis Function</h4><h5 id="2-1-Logistic-Regression"><a href="#2-1-Logistic-Regression" class="headerlink" title="2.1 Logistic Regression"></a>2.1 Logistic Regression</h5><p>$$<br>\frac 1 m \sum<em>{i=1}^m [ y^{(i)} * (-log(h</em>\theta(x^{(i)})) + (1 - y^{(i)}) * (-log(1 - h<em>\theta(x^{(i)}))) ] + \frac \lambda {2m} \sum</em>{j=1}^n \theta_j^2<br>$$</p>
-<h5 id="2-2-Support-Vector-Machine"><a href="#2-2-Support-Vector-Machine" class="headerlink" title="2.2 Support Vector Machine"></a>2.2 Support Vector Machine</h5><p>$$<br>C \sum_{i=1}^m [y^{(i)} <em> cost_1(\theta^Tx^{(i)}) + (1 - y^{(i)}) </em> cost<em>0(\theta^Tx^{(i)})] + \frac 1 2 \sum</em>{j=1}^n \theta_j^2,<br>\space \space \space \space \space C = \frac 1 \lambda<br>$$</p>
+<h4 id="2-Hypothesis-Function"><a href="#2-Hypothesis-Function" class="headerlink" title="2. Hypothesis Function"></a>2. Hypothesis Function</h4><h5 id="2-1-Logistic-Regression"><a href="#2-1-Logistic-Regression" class="headerlink" title="2.1 Logistic Regression"></a>2.1 Logistic Regression</h5><p>$$<br>\frac 1 m \sum_{i=1}^m [ y^{(i)}  (-log(h_\theta(x^{(i)})) + (1 - y^{(i)})  (-log(1 - h_\theta(x^{(i)}))) ] + \frac \lambda {2m} \sum_{j=1}^n \theta_j^2<br>$$</p>
+<h5 id="2-2-Support-Vector-Machine"><a href="#2-2-Support-Vector-Machine" class="headerlink" title="2.2 Support Vector Machine"></a>2.2 Support Vector Machine</h5><p>$$<br>C \sum_{i=1}^m [y^{(i)}  cost_1(\theta^Tx^{(i)}) + (1 - y^{(i)})  cost_0(\theta^Tx^{(i)})] + \frac 1 2 \sum_{j=1}^n \theta_j^2,<br>\space \space \space \space \space C = \frac 1 \lambda<br>$$</p>
 <p><strong>Analysis：</strong></p>
 <p>为了使得cost function取得最小值，我们令C*W + P部分中，C*W为零。即：</p>
 <ol>
@@ -215,20 +215,16 @@
 <p><strong>Note：</strong></p>
 <ol>
 <li>如何求投影p的值？</li>
+<li>当角度 &lt; 90°，p为正数。当角度 &gt; 90°时，p为负数。</li>
+<li>向量内积<br>$$<br>u^Tv = ||u|| · ||v|| · cosθ = ||u|| · p_{v,u} = ||v|| · p_{u,v} = u_1v_1+u_2v_2<br>$$</li>
 </ol>
-<ol>
-<li><p>当角度 &lt; 90°，p为正数。当角度 &gt; 90°时，p为负数。</p>
-</li>
-<li><p>$$<br>向量内积：u^Tv = ||u|| · ||v|| · cosθ = ||u|| · p<em>{v,u} = ||v|| · p</em>{u,v} = u_1v_1+u_2v_2<br>$$</p>
-</li>
-</ol>
-<h5 id="4-2-SVM-Cost-Function"><a href="#4-2-SVM-Cost-Function" class="headerlink" title="4.2 SVM Cost Function"></a>4.2 SVM Cost Function</h5><p>$$<br>C \sum_{i=1}^m [y^{(i)} <em> cost_1(\theta^Tx^{(i)}) + (1 - y^{(i)}) </em> cost<em>0(\theta^Tx^{(i)})] + \frac 1 2 \sum</em>{j=1}^n \theta_j^2,<br>\space \space \space \space \space C = \frac 1 \lambda<br>$$</p>
+<h5 id="4-2-SVM-Cost-Function"><a href="#4-2-SVM-Cost-Function" class="headerlink" title="4.2 SVM Cost Function"></a>4.2 SVM Cost Function</h5><p>$$<br>C \sum_{i=1}^m [y^{(i)}  cost_1(\theta^Tx^{(i)}) + (1 - y^{(i)})  cost_0(\theta^Tx^{(i)})] + \frac 1 2 \sum_{j=1}^n \theta_j^2,<br>\space \space \space \space \space C = \frac 1 \lambda<br>$$</p>
 <p>当C取一个一个很大的值时，cost function只剩下后面P的部分。 假设<strong>θ0 = 0</strong><br>$$<br>\frac 1 2 \sum_{j=1}^n\theta^2_j = \frac 1 2 (\theta^2_0 + \theta^2_1 + … + \theta^2_n) = \frac 1 2 (\theta^2_1 + … + \theta^2_n)<br>= \frac 1 2 ||\theta||^2<br>$$<br><img src="http://p1.bqimg.com/567571/4b804d7e42cfb375.png" alt=""></p>
-<p>所以：<br>$$<br>\theta^Tx^{(i)} = p^{(i)}||\theta||    \<br>p^{(i)}||\theta|| &gt;= 1, if \space\space y^{(i)} = 1    \<br>p^{(i)}||\theta|| &lt;= -1, if \space\space y^{(i)} = 0    \<br>p^{(i)}是点到向量\theta的projection，即点到Decision Boundary的距离<br>$$<br>上面我们讨论了，当C取到一个合适的、较大的数值时，SVM的cost function就只剩下后面P的部分，即<br>$$<br>\frac 1 2 ||\theta||^2<br>$$<br>我们要减小cost function，所以需要<strong>减小θ的值</strong>。</p>
-<p>当θ取到一个比较小的值的时候，还需要满足上面讨论的：<br>$$<br>\theta^Tx^{(i)} = p^{(i)}||\theta||    \<br>p^{(i)}||\theta|| &gt;= 1, if \space\space y^{(i)} = 1    \<br>p^{(i)}||\theta|| &lt;= -1, if \space\space y^{(i)} = 0    \<br>$$<br><strong>所以θ比较小时，只能增加p的值去满足p*||θ|| &gt;= 1 或者 p*||θ||&lt;= -1。</strong></p>
+<p>所以：<br>$$<br>\theta^Tx^{(i)} = p^{(i)}||\theta||    \\<br>p^{(i)}||\theta|| &gt;= 1, if \space\space y^{(i)} = 1    \\<br>p^{(i)}||\theta|| &lt;= -1, if \space\space y^{(i)} = 0    \\<br>p^{(i)}是点到向量\theta的projection，即点到Decision Boundary的距离<br>$$<br>上面我们讨论了，当C取到一个合适的、较大的数值时，SVM的cost function就只剩下后面P的部分，即<br>$$<br>\frac 1 2 ||\theta||^2<br>$$<br>我们要减小cost function，所以需要<strong>减小θ的值</strong>。</p>
+<p>当θ取到一个比较小的值的时候，还需要满足上面讨论的：<br>$$<br>\theta^Tx^{(i)} = p^{(i)}||\theta||    \\<br>p^{(i)}||\theta|| &gt;= 1, if \space\space y^{(i)} = 1    \\<br>p^{(i)}||\theta|| &lt;= -1, if \space\space y^{(i)} = 0    \\<br>$$<br><strong>所以θ比较小时，只能增加p的值去满足p*||θ|| &gt;= 1 或者 p*||θ||&lt;= -1。</strong></p>
 <p><strong>这样就保证了p的值比较大，即点到Decision Boundary的大间距。</strong></p>
 <h4 id="5-Kernels"><a href="#5-Kernels" class="headerlink" title="5. Kernels"></a>5. Kernels</h4><h5 id="5-1-Kernels-amp-Similarity"><a href="#5-1-Kernels-amp-Similarity" class="headerlink" title="5.1 Kernels &amp; Similarity"></a>5.1 Kernels &amp; Similarity</h5><p>首先，我们回想一下之前的logistic regression中对于non-linear 情况的拟合。</p>
-<p><strong>Predict y = 1, if</strong><br>$$<br>\theta_0 + \theta_1x_1 + \theta_2x_2 + \theta_3x_3x_2 + \theta_4x_1^2 + \theta_5x_2^2 + … &gt;= 0 \<br>\theta_0 + \theta_1f_1 + \theta_2f_2 + \theta_3f_3 + \theta_4f_4 + \theta_5f_5 + … &gt;= 0<br>$$<br>即将fn定义为x的幂次项组合，如下：<br>$$<br>f_1 = x_1, f_2 = x_2, f_3 = x_1x_2, f_4 = x_1^2, f_5 = x_2^2, …<br>$$<br><img src="http://p1.bpimg.com/567571/1dc51f091e3a45c0.png" alt=""></p>
+<p><strong>Predict y = 1, if</strong><br>$$<br>\theta_0 + \theta_1x_1 + \theta_2x_2 + \theta_3x_3x_2 + \theta_4x_1^2 + \theta_5x_2^2 + … &gt;= 0 \\<br>\theta_0 + \theta_1f_1 + \theta_2f_2 + \theta_3f_3 + \theta_4f_4 + \theta_5f_5 + … &gt;= 0<br>$$<br>即将fn定义为x的幂次项组合，如下：<br>$$<br>f_1 = x_1, f_2 = x_2, f_3 = x_1x_2, f_4 = x_1^2, f_5 = x_2^2, …<br>$$<br><img src="http://p1.bpimg.com/567571/1dc51f091e3a45c0.png" alt=""></p>
 <p>但是在SVM中，我们要重新定义fn，引入Kernel的概念，即用 kernel function来表示fn。</p>
 <p><img src="http://p1.bqimg.com/567571/220a900a536966bb.png" alt=""></p>
 <p><strong>Note:</strong></p>
@@ -258,9 +254,8 @@
 </ul>
 <h5 id="5-4-SVM-parameters"><a href="#5-4-SVM-parameters" class="headerlink" title="5.4 SVM parameters"></a>5.4 SVM parameters</h5><p><img src="http://p1.bqimg.com/567571/24abc84b6130bec4.png" alt=""></p>
 <ul>
-<li><strong>C</strong></li>
+<li><strong>C = 1/λ</strong></li>
 </ul>
-<p>$$<br>C = \frac 1 \lambda<br>$$</p>
 <table>
 <thead>
 <tr>
@@ -284,12 +279,29 @@
 </tbody>
 </table>
 <ul>
-<li><p><strong>σ</strong></p>
-<p>| Large σ     | more smoothly     | Higher Bias    | Lower Variance      | Under Fitting    |<br>| ———– | —————– | ————– | ——————- | —————- |<br>| <strong>Small σ</strong> | <strong>less smoothly</strong> | <strong>Lower Bias</strong> | <strong>Higher Variance</strong> | <strong>Over Fitting</strong> |</p>
-<p><img src="http://i1.piimg.com/567571/3bc82f7fc83c84cd.png" alt=""></p>
-<p>​</p>
-</li>
+<li><strong>σ</strong></li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>Large σ</th>
+<th>more smoothly</th>
+<th>Higher Bias</th>
+<th>Lower Variance</th>
+<th>Under Fitting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Small σ</strong></td>
+<td><strong>less smoothly</strong></td>
+<td><strong>Lower Bias</strong></td>
+<td><strong>Higher Variance</strong></td>
+<td><strong>Over Fitting</strong></td>
+</tr>
+</tbody>
+</table>
+<p><img src="http://i1.piimg.com/567571/3bc82f7fc83c84cd.png" alt=""></p>
 
       
 
@@ -488,23 +500,21 @@
 
 
 <script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    }); 
 </script>
-
-<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
@@ -556,6 +566,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -568,11 +582,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">KMP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,10 +591,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -604,7 +610,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+                <a href="javascript:void(0)" class="js-tag color4">KMP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
             
             <div class="clearfix"></div>
@@ -728,6 +738,23 @@ MathJax.Hub.Queue(function() {
     </div>
 
 </div>
-  </div>
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>
