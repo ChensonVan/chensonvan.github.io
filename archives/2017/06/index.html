@@ -1,48 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://chenson.com">
-  <title>Machine Learning Week9 - Recommender Systems  | Vane&#39;s Blog</title>
+  <title>Archives: 2017/6 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="9 Recommender Systems9.1 What is Recommender Systems对于推荐系统的定义，我们先举几个例子来理解一下。
-
-电影网站给用户推荐电影，可以根据该用户以往的评分，比如给浪漫爱情电影评分高，给动作片评分较低，那么系统可以根据这些信息，给用户推荐偏向浪漫爱情的电影
-如果是新用户呢？我们没有该用户的评分信息。那么我们可以根据整个系统中，某些电影评分较高进行推荐">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Machine Learning Week9 - Recommender Systems ">
-<meta property="og:url" content="http://chenson.com/2017/03/02/Machine-Learning-Week9-Recommender-Systems/index.html">
+  <meta name="description" content="Stay Hungry. Stay Foolish">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vane's Blog">
+<meta property="og:url" content="http://chenson.com/archives/2017/06/index.html">
 <meta property="og:site_name" content="Vane's Blog">
-<meta property="og:description" content="9 Recommender Systems9.1 What is Recommender Systems对于推荐系统的定义，我们先举几个例子来理解一下。
-
-电影网站给用户推荐电影，可以根据该用户以往的评分，比如给浪漫爱情电影评分高，给动作片评分较低，那么系统可以根据这些信息，给用户推荐偏向浪漫爱情的电影
-如果是新用户呢？我们没有该用户的评分信息。那么我们可以根据整个系统中，某些电影评分较高进行推荐">
-<meta property="og:image" content="http://p1.bpimg.com/567571/47a077979840183f.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/783c179fd4d4c3ff.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/7480a00094b686af.png">
-<meta property="og:image" content="http://i1.piimg.com/567571/aa7db7ebd8562ccf.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/fdc2b5b0affa21ef.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/9680507237900090.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/fa32ae15048c3b75.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/0afd72de7eca2c2d.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/d14e3ed20060b507.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/5b7b9e072029ae09.png">
-<meta property="og:image" content="http://i1.piimg.com/567571/cf1b4e1d7822228e.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/049268860c169449.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/6d3b0fd8406f42e4.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/7a511dff9e71cea6.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/0eb45a842e55e55f.png">
-<meta property="og:updated_time" content="2017-03-04T04:04:27.000Z">
+<meta property="og:description" content="Stay Hungry. Stay Foolish">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Machine Learning Week9 - Recommender Systems ">
-<meta name="twitter:description" content="9 Recommender Systems9.1 What is Recommender Systems对于推荐系统的定义，我们先举几个例子来理解一下。
-
-电影网站给用户推荐电影，可以根据该用户以往的评分，比如给浪漫爱情电影评分高，给动作片评分较低，那么系统可以根据这些信息，给用户推荐偏向浪漫爱情的电影
-如果是新用户呢？我们没有该用户的评分信息。那么我们可以根据整个系统中，某些电影评分较高进行推荐">
-<meta name="twitter:image" content="http://p1.bpimg.com/567571/47a077979840183f.png">
+<meta name="twitter:title" content="Vane's Blog">
+<meta name="twitter:description" content="Stay Hungry. Stay Foolish">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -55,7 +29,7 @@
     #container.show {
       background: linear-gradient(200deg,#a0cfe4,#e8c37e);
     }
-  </style>
+  </style><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
   
@@ -63,7 +37,7 @@
 </head>
 
 <body>
-  <div id="container" q-class="show:isCtnShow">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
     <div class="left-col" q-class="show:isShow">
       
@@ -176,416 +150,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Machine-Learning-Week9-Recommender-Systems" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Machine Learning Week9 - Recommender Systems 
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/06/09/Hadoop权威指南笔记（二）/" class="archive-article-date">
+  	<time datetime="2017-06-08T14:13:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-09</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/06/09/Hadoop权威指南笔记（二）/">Hadoop权威指南笔记（二）</a>
     </h1>
   
 
-        
-        <a href="/2017/03/02/Machine-Learning-Week9-Recommender-Systems/" class="archive-article-date">
-  	<time datetime="2017-03-02T11:05:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="9-Recommender-Systems"><a href="#9-Recommender-Systems" class="headerlink" title="9 Recommender Systems"></a>9 Recommender Systems</h3><h4 id="9-1-What-is-Recommender-Systems"><a href="#9-1-What-is-Recommender-Systems" class="headerlink" title="9.1 What is Recommender Systems"></a>9.1 What is Recommender Systems</h4><p>对于推荐系统的定义，我们先举几个例子来理解一下。</p>
-<ul>
-<li>电影网站给用户推荐电影，可以根据该用户以往的评分，比如给浪漫爱情电影评分高，给动作片评分较低，那么系统可以根据这些信息，给用户推荐偏向浪漫爱情的电影</li>
-<li>如果是新用户呢？我们没有该用户的评分信息。那么我们可以根据整个系统中，某些电影评分较高进行推荐</li>
-<li>那么如果是新网站，新用户呢？</li>
-</ul>
-<p>以上例子，我们可以把推荐系统分成两类。</p>
-<ul>
-<li><p><strong>Content-based systems</strong></p>
-<p>Content-based，就是基于已有的信息进行推荐。具体哪些信息呢？在上面的电影推荐系统中，有两类信息需要分析。</p>
-<p>第一，是User的评分信息，比如给爱情片评分高，给动作片评分低。</p>
-<p>第二，是Movie的特征信息，比如这部电影偏向爱情片多一些，但也有一部分搞笑。所以在A（爱情片）和B（搞笑片）中， A的权重更高，B的较低</p>
-<p>基于以上两部分信息，我们可以给用户推荐他所喜欢的电影。</p>
-<p><img src="http://p1.bpimg.com/567571/47a077979840183f.png" alt=""></p>
-<a id="more"></a>
-</li>
-<li><p><strong>Collaborative filterring systems</strong></p>
-<p>协同过滤器，则是基于用户/物品之间的相似度进行推荐的。即用户A和用户B都喜欢爱情、浪漫电影，我们就可以把用户A评分过的爱情浪漫电影，推荐给用户B。</p>
-<p><img src="http://p1.bpimg.com/567571/783c179fd4d4c3ff.png" alt=""></p>
-</li>
-</ul>
-<h4 id="9-2-Content-based-systems"><a href="#9-2-Content-based-systems" class="headerlink" title="9.2 Content-based systems"></a>9.2 Content-based systems</h4><h5 id="9-2-1-Problem-Analysis"><a href="#9-2-1-Problem-Analysis" class="headerlink" title="9.2.1 Problem Analysis"></a>9.2.1 Problem Analysis</h5><p>以电影推荐系统为例，假设我们已经对系统中的电影特征有了较为完善，即我们知道某部电影属于爱情片多少分，属于动作片多少分。</p>
-<p>那么我们现在以Alice为例，她对两部爱情片评分比较高，对于两部动作片评分为0。那么系统就可以给Alice推荐<strong>偏向爱情浪漫的，且不怎么属于动作片</strong>的电影。</p>
-<table>
-<thead>
-<tr>
-<th>Movies</th>
-<th style="text-align:center">Alice - θ(1)</th>
-<th style="text-align:center">Bob - θ(2)</th>
-<th style="text-align:center">Carol - θ(3)</th>
-<th style="text-align:center">Dave - θ(4)</th>
-<th style="text-align:center">romance - x1</th>
-<th style="text-align:center">action -x2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Love at last</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1.0</td>
-<td style="text-align:center">0.0</td>
-</tr>
-<tr>
-<td>Romance forever</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0.9</td>
-<td style="text-align:center">0.1</td>
-</tr>
-<tr>
-<td>Cute puppies of love</td>
-<td style="text-align:center">？</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">0.99</td>
-<td style="text-align:center">0.01</td>
-</tr>
-<tr>
-<td>Nonstop car chases</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">0.0</td>
-<td style="text-align:center">1.0</td>
-</tr>
-<tr>
-<td>Sword vs. karate</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">0.2</td>
-<td style="text-align:center">0.8</td>
-</tr>
-</tbody>
-</table>
-<h5 id="9-2-2-Optimization-Objective"><a href="#9-2-2-Optimization-Objective" class="headerlink" title="9.2.2 Optimization Objective"></a>9.2.2 Optimization Objective</h5><p>实际上我们已经假设之前对所有电影的特征进行了统计，所以此时有电影特征向量X，以及用户对于电影的评分Y向量。根据此时已有的信息，我们需要求出theta的值。所以能够对于那么没有评分过的电影，根据theta和x求出分数y。</p>
-<p>因为一开始theat的值是随机的，所以我们用<strong>Linear Regression</strong>的方法，不断减少cost function的值求出theta。</p>
-<p>值得注意的是，因为这里是多个用户，每一个用户我们求出一个theta值。最后对于多个用户，我们需要求出多个<strong>theta值</strong>。</p>
-<p>Actually, we can assume that we have known all features about the all movies, that is x1, x2, …, xn. And we want to initiate some random values for all theta for all users. As the feature values was fixed, we training the training set by minimizing cost function to get right value of theta.</p>
-<p><img src="http://p1.bqimg.com/567571/7480a00094b686af.png" alt=""></p>
-<p><img src="http://i1.piimg.com/567571/aa7db7ebd8562ccf.png" alt=""></p>
-<h5 id="9-2-2-Gradient-descent-update"><a href="#9-2-2-Gradient-descent-update" class="headerlink" title="9.2.2 Gradient descent update"></a>9.2.2 Gradient descent update</h5><p><img src="http://p1.bqimg.com/567571/fdc2b5b0affa21ef.png" alt=""></p>
-<h5 id="9-2-3-Gradient-descent-in-Logistic-Regression"><a href="#9-2-3-Gradient-descent-in-Logistic-Regression" class="headerlink" title="9.2.3 Gradient descent in Logistic Regression"></a>9.2.3 Gradient descent in Logistic Regression</h5><p><img src="http://p1.bpimg.com/567571/9680507237900090.png" alt=""></p>
-<p><strong>Question:</strong></p>
-<ol>
-<li><p>Why we don’t need (1/m)?</p>
-<p>Anwser: As there are only <strong><em>one user</em></strong></p>
-</li>
-<li><p>However, in the above example, we have known the values of all features, but for sometime, we have no idea about that. It means that we have to <strong><em>learn theta and features at the same time</em></strong></p>
-</li>
-</ol>
-<h4 id="9-3-Collaborative-filtering"><a href="#9-3-Collaborative-filtering" class="headerlink" title="9.3 Collaborative filtering"></a>9.3 Collaborative filtering</h4><h5 id="9-3-1-Proble-motivation"><a href="#9-3-1-Proble-motivation" class="headerlink" title="9.3.1 Proble motivation"></a>9.3.1 Proble motivation</h5><table>
-<thead>
-<tr>
-<th>Movies</th>
-<th style="text-align:center">Alice - θ(1)</th>
-<th style="text-align:center">Bob - θ(2)</th>
-<th style="text-align:center">Carol - θ(3)</th>
-<th style="text-align:center">Dave - θ(4)</th>
-<th style="text-align:center">romance - x1</th>
-<th style="text-align:center">action - x2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>x(1) - Love at last</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">?</td>
-</tr>
-<tr>
-<td>x(2) -Romance forever</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">?</td>
-</tr>
-<tr>
-<td>x(3) -Cute puppies of love</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">?</td>
-</tr>
-<tr>
-<td>x(4) -Nonstop car chases</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">?</td>
-</tr>
-<tr>
-<td>x(5) -Sword vs. karate</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">?</td>
-</tr>
-</tbody>
-</table>
-<h5 id="9-3-2-How-to-do"><a href="#9-3-2-How-to-do" class="headerlink" title="9.3.2 How to do"></a>9.3.2 How to do</h5><ul>
-<li>在之前部分中，我们了解到了content-based，是<strong>已知 x 和 y，求 theta</strong>。</li>
-</ul>
-<p>Assume:<br>$$<br>\theta^{(1)} = \begin{bmatrix} 0 \ 5 \ 0 \end{bmatrix},  \space\space<br>\theta^{(2)} = \begin{bmatrix} 0 \ 5 \ 0 \end{bmatrix},  \space\space<br>\theta^{(3)} = \begin{bmatrix} 0 \ 0 \ 5 \end{bmatrix},  \space\space<br>\theta^{(4)} = \begin{bmatrix} 0 \ 0 \ 5 \end{bmatrix},  \space\space<br>x^{(1)} = \begin{bmatrix} 1 \ 1.0 \ 0.0 \end{bmatrix}<br>$$<br>For Movie 1, we can calculate the result of Movie1 rating by all users.<br>$$<br>\theta^{(1)} <em> x^{(1)} \approx 5    \<br>\theta^{(2)} </em> x^{(1)} \approx 5    \<br>\theta^{(3)} <em> x^{(1)} \approx 0    \<br>\theta^{(4)} </em> x^{(1)} \approx 0<br>$$</p>
-<ul>
-<li><p>但是对于有些情况，我们并不知道x的特征值，该怎么办呢？</p>
-<p>逆向思考，我们也可以<strong>通过 theat 和 y，来求 x 的值</strong>。</p>
-</li>
-</ul>
-<ul>
-<li><strong>那么对于 theta和x的值都不知道的情况下呢？</strong></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">对比特征</th>
-<th style="text-align:center">Linear Regression</th>
-<th style="text-align:center">Collaborative filtering</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">特性向量X</td>
-<td style="text-align:center">已知数据</td>
-<td style="text-align:center">待求解数据</td>
-</tr>
-<tr>
-<td style="text-align:center">权重 θ</td>
-<td style="text-align:center">待求解数据</td>
-<td style="text-align:center">待求解数据</td>
-</tr>
-<tr>
-<td style="text-align:center">y值</td>
-<td style="text-align:center">已知数据</td>
-<td style="text-align:center">已知数据</td>
-</tr>
-</tbody>
-</table>
-<h5 id="9-3-3-Optimization-Algorithm"><a href="#9-3-3-Optimization-Algorithm" class="headerlink" title="9.3.3 Optimization Algorithm"></a>9.3.3 Optimization Algorithm</h5><ul>
-<li>For a given value of theta, we can <strong>minimize the cost function to learn the value of xi</strong></li>
-</ul>
-<ul>
-<li>For a given value of xi, we can also do that to <strong>learn the value of theata</strong>.</li>
-</ul>
-<p>$$<br>θ -&gt; x -&gt; θ -&gt; x -&gt; θ -&gt; x -&gt; θ -&gt; x -&gt; …<br>$$</p>
-<p>Actually, these two steps are <strong>Linear Regression</strong>, we shoud do that <strong>simultaneously</strong> to update theta and x.</p>
-<p><img src="http://p1.bqimg.com/567571/fa32ae15048c3b75.png" alt=""></p>
-<h5 id="9-3-4-Collaborative-filtering-Optimization-Algorithm"><a href="#9-3-4-Collaborative-filtering-Optimization-Algorithm" class="headerlink" title="9.3.4 Collaborative filtering Optimization Algorithm"></a>9.3.4 Collaborative filtering Optimization Algorithm</h5><p><img src="http://p1.bqimg.com/567571/0afd72de7eca2c2d.png" alt=""></p>
-<p>实际上，上面是两个 <strong>LR</strong>的问题，我们可以将上面两步合并到一起，这个就是<strong>collaborative filterring</strong>， 此时的optimizatino object 就从 J(theta) 和 J(X)  变为了 J(theta, X)。</p>
-<p><img src="http://p1.bpimg.com/567571/d14e3ed20060b507.png" alt=""></p>
-<p>具体步骤如下</p>
-<p><img src="http://p1.bqimg.com/567571/5b7b9e072029ae09.png" alt=""></p>
-<h5 id="9-3-5-Vectorization-Low-rank-matrix-factorization"><a href="#9-3-5-Vectorization-Low-rank-matrix-factorization" class="headerlink" title="9.3.5 Vectorization: Low rank matrix factorization"></a>9.3.5 Vectorization: Low rank matrix factorization</h5><p>首先，我们先把评分Y用向量表示出来，同时表示为Theta和X两个矩阵的乘积<br>$$<br>Y= \begin{bmatrix} 5 &amp; 5 &amp; 0 &amp; 0 \ 5 &amp; ? &amp; ?&amp; 0 \ ? &amp; 4 &amp; 0 &amp; ? \ 0 &amp; 0 &amp; 5 &amp; 4 \ 0 &amp;  0 &amp; 5 &amp; 0\end{bmatrix}  =<br>\begin{bmatrix}<br>(\theta^{(1)})^T(x^{(1)}) &amp; (\theta^{(2)})^T(x^{(1)}) &amp; … &amp; (\theta^{(n_u)})^T(x^{(1)}) \<br>(\theta^{(1)})^T(x^{(2)}) &amp; (\theta^{(2)})^T(x^{(2)}) &amp; … &amp; (\theta^{(n_u)})^T(x^{(2)}) \<br>… &amp; … &amp; … &amp; … \<br>(\theta^{(1)})^T(x^{(n_m)}) &amp; (\theta^{(2)})^T(x^{(n_m)}) &amp; … &amp; (\theta^{(n_u)})^T(x^{(n_m)})<br>\end{bmatrix} = X * \Theta’, R \in (n_m × n_u)<br>$$</p>
-<p>$$<br>X = \begin{bmatrix}<br>—(x^{(1)})^T—     \<br>—(x^{(2)})^T—    \<br>…    \<br>—(x^{(n_m)})^T—<br>\end{bmatrix},<br>x^{(n_m)} = \begin{bmatrix}<br>x^{(n_m)}_1 \ x^{(n_m)}_2 \ … \ x^{(n_m)}_n<br>\end{bmatrix}, R \in (n_m × n)<br>$$</p>
-<p>$$<br>\Theta = \begin{bmatrix}<br>—(\theta^{(1)})^T—     \<br>—(\theta^{(2)})^T—    \<br>…    \<br>—(\theta^{(n_u)})^T—<br>\end{bmatrix},<br>\theta^{(n_u)} = \begin{bmatrix}<br>\theta^{(n_u)}_1 \ \theta^{(n_u)}_2 \ … \ \theta^{(n_u)}_n<br>\end{bmatrix}, R \in (n_u × n)<br>$$</p>
-<h5 id="9-3-6-Mean-Normalization"><a href="#9-3-6-Mean-Normalization" class="headerlink" title="9.3.6 Mean Normalization"></a>9.3.6 Mean Normalization</h5><p>对于那些新注册用户，系统中没有记录他们的偏好，则采用以下方法。</p>
-<p>先计算出每部电影评分的平均值mu，然后把所有的评分都减去平均值（此后处理过的评分平均值为0）。虽然这样做对有评分记录用户是多余的，但却可以吧没有评分记录的用户给统一进来，避免全是0的情况。</p>
-<p><img src="http://i1.piimg.com/567571/cf1b4e1d7822228e.png" alt=""></p>
-<h4 id="9-4-Implement-Algorithm"><a href="#9-4-Implement-Algorithm" class="headerlink" title="9.4 Implement Algorithm"></a>9.4 Implement Algorithm</h4><h5 id="9-4-1-Cost-Function-without-Regularization"><a href="#9-4-1-Cost-Function-without-Regularization" class="headerlink" title="9.4.1  Cost Function without Regularization"></a>9.4.1  Cost Function without Regularization</h5><p><img src="http://p1.bpimg.com/567571/049268860c169449.png" alt=""></p>
-<p><strong>Tips：</strong>这里需要计算的只是针对那些已经评分过的电影，对于用户没有评分过的不需要计算。</p>
-<h5 id="9-4-2-Collaborative-filtering-gradient"><a href="#9-4-2-Collaborative-filtering-gradient" class="headerlink" title="9.4.2 Collaborative filtering gradient"></a>9.4.2 Collaborative filtering gradient</h5><p><img src="http://p1.bqimg.com/567571/6d3b0fd8406f42e4.png" alt=""><br>$$<br>\frac {\partial J} {\partial x_k^{(1)}} , \frac {\partial J} {\partial x_k^{(2)}} , …, \frac {\partial J} {\partial x_k^{(n_m)}}     \space\space for \space each \space movie\<br>\frac {\partial J} {\partial \theta_k^{(1)}} , \frac {\partial J} {\partial \theta_k^{(2)}} , …, \frac {\partial J} {\partial \theta_k^{(n_u)}}    \space\space for \space each \space user<br>$$<br><strong>Tips：</strong></p>
-<ol>
-<li>对于使用vectorization方法，最终只有两个for-loop，一个计算X_grad，一个计算Theta_grad</li>
-<li>如何对X和Theta求<strong>偏导数</strong>？</li>
-</ol>
-<p><img src="http://p1.bqimg.com/567571/7a511dff9e71cea6.png" alt=""><br>$$<br>(Theta_{grad}(i, :))^T = \begin{bmatrix}<br>\frac {\partial J} {\partial \theta^{(i)}_1}     \<br>\frac {\partial J} {\partial \theta^{(i)}_2}    \<br>…    \<br>\frac {\partial J} {\partial \theta^{(i)}_n}<br>\end{bmatrix}<br>$$</p>
-<ol>
-<li>同样，我们只需考虑用户已经评分过的电影，用其作为训练样本</li>
-<li>因为Vectorization非常容易搞乱各个matrix，所以建议先整理一下各个matrix的size，计算时可以根据matrix的size进行计算。</li>
-</ol>
-<p><img src="http://p1.bqimg.com/567571/0eb45a842e55e55f.png" alt=""></p>
-<h5 id="9-4-3-Implementation"><a href="#9-4-3-Implementation" class="headerlink" title="9.4.3 Implementation"></a>9.4.3 Implementation</h5><p>注意这里并没有给出完整的代码 (Octave/Matlab)，都只是主要的部分。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">% Theta : nu x n</div><div class="line">% X     : nm x n</div><div class="line">% Y     : nm x nu</div><div class="line">% R     : nm x nu</div><div class="line"></div><div class="line">pred = X * Theta&apos;;  %nm x nu    &apos;</div><div class="line">diff = pred - Y;</div><div class="line"></div><div class="line">% Cost Function with regularization</div><div class="line">J = 0.5 * sum(sum((diff.^2) .* R));</div><div class="line">J = J + (lambda * 0.5) * sum(sum(Theta.^2));    % regularized term of theta.</div><div class="line">J = J + (lambda * 0.5) * sum(sum(X.^2));        % regularized term of x.</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">% calculate X</div><div class="line">for i = 1 : num_movies,</div><div class="line">    % the row vector of all users that have rated movie i</div><div class="line">    idx = find(R(i, :) == 1);   % (1 * r)</div><div class="line"></div><div class="line">    % the list of users who have rated on movie i</div><div class="line">    Theta_temp = Theta(idx, :); % (r * n)</div><div class="line">    Y_temp = Y(i, idx);         % (1 * r)</div><div class="line">    X_temp = X(i, :);           % (1 * n)</div><div class="line"></div><div class="line">    %            ((1 * n) * (n * r)     -(1 * r)) * (r * n)  = (1 * n)</div><div class="line">    X_grad(i, :) = (X_temp * Theta_temp&apos; - Y_temp) * Theta_temp;   %&apos;</div><div class="line"></div><div class="line">    % regularization</div><div class="line">    X_grad(i, :) = X_grad(i, :) + lambda * X_temp;</div><div class="line">end</div><div class="line"></div><div class="line"></div><div class="line">% calculate Theta</div><div class="line">for i = 1 : num_users,</div><div class="line">    % the row vector of all movies that user i has rated</div><div class="line">    idx = find(R(:, i) == 1)&apos;;   % (1 * r)      &apos;</div><div class="line"></div><div class="line">    Theta_temp = Theta(i, :);   % (1 * n)</div><div class="line">    Y_temp = Y(idx, i);         % (r * 1)</div><div class="line">    X_temp = X(idx, :);         % (r * n)</div><div class="line"></div><div class="line">    %                ((r * n) * (n * 1)     - (r * 1)) * (r * n) = (1 * n) </div><div class="line">    Theta_grad(i, :) = (X_temp * Theta_temp&apos; - Y_temp)&apos; * X_temp; </div><div class="line"></div><div class="line">    % regularization</div><div class="line">    Theta_grad(i, :) = Theta_grad(i, :) + lambda * Theta_temp;</div><div class="line">end</div><div class="line"></div><div class="line">grad = [X_grad(:); Theta_grad(:)];</div></pre></td></tr></table></figure>
-<p>​<br>​<br>​    </p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>Thanks for your donate.<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="http://i1.piimg.com/567571/a24bcde34ea6aef7.png">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2017/03/02/Machine-Learning-Week9-Recommender-Systems/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/03/07/Hadoop权威指南笔记（一）/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Hadoop权威指南笔记（一）
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/03/02/Machine-Learning-Week7-SVM/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Machine Learning Week7 - SVM</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-
-  
-  <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Machine-Learning-Week9-Recommender-Systems" data-title="Machine Learning Week9 - Recommender Systems " data-url="http://chenson.com/2017/03/02/Machine-Learning-Week9-Recommender-Systems/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"true"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
+    </div></section>
   
 
-
-
-
-
+    
 
 
           </div>
@@ -608,8 +230,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
@@ -623,23 +245,21 @@
 
 
 <script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    }); 
 </script>
-
-<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
@@ -703,6 +323,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
@@ -711,19 +343,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">KMP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
             
             <div class="clearfix"></div>
@@ -847,6 +467,23 @@ MathJax.Hub.Queue(function() {
     </div>
 
 </div>
-  </div>
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>

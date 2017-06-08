@@ -1,22 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://chenson.com">
-  <title>Tag: MyNote | Vane&#39;s Blog</title>
+  <title>Hadoop权威指南笔记（二） | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Stay Hungry. Stay Foolish">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Vane's Blog">
-<meta property="og:url" content="http://chenson.com/tags/MyNote/index.html">
+  <meta name="description" content="1. Mapper
+2. Reducer
+
+3. MapReduce数据都是以 key-values pairs 的形式在Mapper和Reduce之间传递的
+Mapper输出的 key-value pairs 应该和 Reducer输入的 key-value pairs 类型是一样的
+在Reducer中，是 key-valueLists pairs  的形式
+
+4. Deriver也就是初始化配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop权威指南笔记（二）">
+<meta property="og:url" content="http://chenson.com/2017/06/09/Hadoop权威指南笔记（二）/index.html">
 <meta property="og:site_name" content="Vane's Blog">
-<meta property="og:description" content="Stay Hungry. Stay Foolish">
+<meta property="og:description" content="1. Mapper
+2. Reducer
+
+3. MapReduce数据都是以 key-values pairs 的形式在Mapper和Reduce之间传递的
+Mapper输出的 key-value pairs 应该和 Reducer输入的 key-value pairs 类型是一样的
+在Reducer中，是 key-valueLists pairs  的形式
+
+4. Deriver也就是初始化配">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-8/19227470.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-8/27839418.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-8/88687290.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-8/34067398.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-8/91188242.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-8/86758614.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-8/55787525.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-8/55069183.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-8/61403613.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-8/75201792.jpg">
+<meta property="og:updated_time" content="2017-06-08T14:14:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vane's Blog">
-<meta name="twitter:description" content="Stay Hungry. Stay Foolish">
+<meta name="twitter:title" content="Hadoop权威指南笔记（二）">
+<meta name="twitter:description" content="1. Mapper
+2. Reducer
+
+3. MapReduce数据都是以 key-values pairs 的形式在Mapper和Reduce之间传递的
+Mapper输出的 key-value pairs 应该和 Reducer输入的 key-value pairs 类型是一样的
+在Reducer中，是 key-valueLists pairs  的形式
+
+4. Deriver也就是初始化配">
+<meta name="twitter:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-8/19227470.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -29,7 +62,7 @@
     #container.show {
       background: linear-gradient(200deg,#a0cfe4,#e8c37e);
     }
-  </style>
+  </style><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
   
@@ -37,7 +70,7 @@
 </head>
 
 <body>
-  <div id="container" q-class="show:isCtnShow">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
     <div class="left-col" q-class="show:isShow">
       
@@ -150,36 +183,95 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Hadoop权威指南笔记（二）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/07/Hadoop权威指南笔记（一）/" class="archive-article-date">
-  	<time datetime="2017-03-06T13:44:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-07</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/07/Hadoop权威指南笔记（一）/">Hadoop权威指南笔记（一）</a>
+    <h1 class="article-title" itemprop="name">
+      Hadoop权威指南笔记（二）
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/06/09/Hadoop权威指南笔记（二）/" class="archive-article-date">
+  	<time datetime="2017-06-08T14:13:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="1-Mapper"><a href="#1-Mapper" class="headerlink" title="1. Mapper"></a>1. Mapper</h5><p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-8/19227470.jpg" alt=""></p>
+<h5 id="2-Reducer"><a href="#2-Reducer" class="headerlink" title="2. Reducer"></a>2. Reducer</h5><p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-8/27839418.jpg" alt=""></p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-8/88687290.jpg" alt=""></p>
+<h5 id="3-MapReduce"><a href="#3-MapReduce" class="headerlink" title="3. MapReduce"></a>3. MapReduce</h5><p>数据都是以 <strong>key-values pairs</strong> 的形式在Mapper和Reduce之间传递的</p>
+<p>Mapper输出的 key-value pairs 应该和 Reducer输入的 key-value pairs 类型是一样的</p>
+<p>在Reducer中，是 <strong>key-valueLists pairs</strong>  的形式</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-8/34067398.jpg" alt=""></p>
+<h5 id="4-Deriver"><a href="#4-Deriver" class="headerlink" title="4. Deriver"></a>4. Deriver</h5><p>也就是初始化配置MR然后调用执行，一般可以写成如下形式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 老API</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(String inputPath, String outputPath)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    JobConf conf = <span class="keyword">new</span> JobConf(WordCount.class);</div><div class="line">    conf.setJobName(<span class="string">"wordcount"</span>);</div><div class="line"></div><div class="line">    <span class="comment">// the keys are words (strings)</span></div><div class="line">    conf.setOutputKeyClass(Text.class);</div><div class="line">    <span class="comment">// the values are counts (ints)</span></div><div class="line">    conf.setOutputValueClass(IntWritable.class);</div><div class="line"></div><div class="line">    conf.setMapperClass(MapClass.class);</div><div class="line">    conf.setReducerClass(Reduce.class);</div><div class="line"></div><div class="line">    FileInputFormat.addInputPath(conf, <span class="keyword">new</span> Path(inputPath));</div><div class="line">    FileOutputFormat.setOutputPath(conf, <span class="keyword">new</span> Path(outputPath));</div><div class="line"></div><div class="line">    JobClient.runJob(conf);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 新API</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(String IN, String OUT)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    Configuration conf = <span class="keyword">new</span> Configuration();</div><div class="line">    Job job = Job.getInstance(conf, <span class="string">"word count"</span>);</div><div class="line">    job.setJarByClass(WordCount.class);</div><div class="line">    job.setMapperClass(TokenizerMapper.class);</div><div class="line">    job.setCombinerClass(IntSumReducer.class);</div><div class="line">    job.setReducerClass(IntSumReducer.class);</div><div class="line">    job.setOutputKeyClass(Text.class);</div><div class="line">    job.setOutputValueClass(IntWritable.class);</div><div class="line">    FileInputFormat.addInputPath(job, <span class="keyword">new</span> Path(args[<span class="number">0</span>]));</div><div class="line">    FileOutputFormat.setOutputPath(job, <span class="keyword">new</span> Path(args[<span class="number">1</span>]));</div><div class="line">    System.exit(job.waitForCompletion(<span class="keyword">true</span>) ? <span class="number">0</span> : <span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="5-Data-Flow"><a href="#5-Data-Flow" class="headerlink" title="5. Data Flow"></a>5. Data Flow</h5><p>在hadoop中所有的Mapper和Reducer都是独立工作的，这也是hadoop分布式能够稳定运行的原因之一(有利于容错处理)。在MapReduce整个过程中，只有一次数据相互交互，就是Mapper到Reducer这个过程。从Mapper输出的所有的intermediate data会被统一shuffle(<strong>必须要等所有MR执行完毕吗？</strong>)，然后同一个key的key-value pairs 会被分配到同一个reducer中去。</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-8/91188242.jpg" alt=""></p>
+<h5 id="6-A-Closer-Look"><a href="#6-A-Closer-Look" class="headerlink" title="6. A Closer Look"></a>6. A Closer Look</h5><p>第五部分中，我们看到的是MR的宏观流程，具体的流程具体可以分为</p>
+<p><strong><del>Map -&gt; Combiner -&gt; Partitioner -&gt; Sort -&gt; Shuffle -&gt; Sort -&gt; Reduce</del></strong>(这里对shuffle的定义有点不同，个人认为从<strong>map的输出到reduce的输入</strong>这段过程可以称之为shuffle。同时根据官方文档，combiner是在mapper最终输出前多次调用的，以及在reducer里也有调用)</p>
+<p>下图中，input files在进入到Mapper之前时，会对这些文件split，因为一个mapper一般是64MB或者128MB，当大于的时候需要对输入文件处理，然后传给RecordReaders，以key-value pairs的形式传给mapper。</p>
+<p>对于所有Mapper的output，先会对其进行parition操作，也就是决定去哪一个Reducer。当确定好哪些Reducer，这些key-value paris 就会传入到该Reducer相应的分区，然后对齐进行排序。最后将sort好的key-valueLists 传入到Reducer进行处理。</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-8/86758614.jpg" alt=""></p>
+<h5 id="7-Shuffle"><a href="#7-Shuffle" class="headerlink" title="7. Shuffle"></a>7. Shuffle</h5><p>Hadoop The Definitive Guide P197</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-8/55787525.jpg" alt=""></p>
+<ul>
+<li><p><strong>Mapper</strong></p>
+<p>根据官方图，Mapper的output出来的key-values pairs会先进入到buffer memory(默认100MB大小)，但buffer到80%容量的时候，buffer里面的内容会spill到disk去，如果此时buffer还未慢的情况下，mapper继续输出到buffer，如果满了的话mapper会被block，直到可以写入。</p>
+<p>在buffer中的内容spill到disk之前，还有一个partitioner的步骤。对这些即将写入到disk的内容分组，同一个key和同一个reducer的ker-value pairs会在一起。然后这些key-value pairs排序(sort)。如果此时我们定义了combiner function，在输出前，这些pairs会先combine，然后输出。也就是说combiner function是在partitioner之后? (Before it writes to disk, the thread first divides the data into partitions corresponding to the reducers that they will ultimately be sent to. Within each partition, the background thread performs an in-memory sort by key, and <strong>if there is a combiner function, it is run on the output of the sort</strong>. Running the combiner function makes for a more compact map output, so there is less data to write to local disk and to transfer to the reducer)</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-8/55069183.jpg" alt=""></p>
+<p>每当buffer达到那个threshold的时候，buffer里面的内容写入到disk中，此时会新建一个临时的spill文件，每次写入都会新建一个，然后这个map结束前这些spill files会被merge到一个partitioned和sorted的文件里去。除了之前partition的输出后调用了一次combiner一次之外，但合并这些个spill files( <strong>&gt;=3</strong> )的时候，会继续调用combiner去合并同一个reducer里的同一个key的value，所以combiner在output file被生成之前，会被调用许多次，以减少之后io的次数。但当spill files只是1个或则两个的时候，并不会调用combiner。注意有些情况下combiner并不适合使用，比如求<strong>平均值</strong>。</p>
+<p>而不同mapper生成的spill文件最终会被merge成 {key:[v1, v2, v3…], …}这种形式。(这里有疑问，博客图和官方图有点不一样。按照官方图的理解，一个mapper对应的是一个spill file，所以最终是多个spill files？还是这些spill files在传给Reducer之前会被merge成上述的list形式？一个cluster一个最终的output file)​</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>Reducer</strong></p>
+<p>之前mapper端的所有工作已经完成了，所有的mapper的output都已经被写入到了一个output文件里面去了。那么Reducer就是要把这个文件里面的key-valueLists pairs 分给不同的reducers，而这个过程称之为Fetch，就是将相应的key-valueList pairs 拉取到相应的reducers里面去。</p>
+<p>在Reducer阶段，每个reducer会调用线程从多个不同的cluster的output file里面fetch数据，然后对这些数据merge。这里的过程和之前的mapper有点像。reducer也有一个buffer memory(通过JVM的heap size来设置)，fetch的数据会被传到里面(如果放得下)，当buffer达到threshold的值的时候，buffer里面的内容会被merge然后spill到disk里面去(实际上有多种形式存放这个文件，这里不讨论)，如果之前我们已经定义了combiner，这里combiner也会被调用。直到所有的mapper的output file都被fetch到一个文件里去，reducer会在输入前sort里面的内容(实际上merge的时候已经sort了)，然后这个已经排好序的file就会被传到reducer里面执行，最终输出到HDFS上。</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-8/61403613.jpg" alt=""></p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-8/75201792.jpg" alt=""></p>
+</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>Thanks for your donate.<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://i1.piimg.com/567571/a24bcde34ea6aef7.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -189,25 +281,115 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">MyNote</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2017/06/09/Hadoop权威指南笔记（二）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/05/15/Machine-Learning-Recommender-Systems-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Machine Learning - Recommender Systems(2)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Hadoop权威指南笔记（二）" data-title="Hadoop权威指南笔记（二）" data-url="http://chenson.com/2017/06/09/Hadoop权威指南笔记（二）/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-    
+
+
+
+
 
 
           </div>
@@ -230,9 +412,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
@@ -245,23 +427,21 @@
 
 
 <script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    }); 
 </script>
-
-<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
@@ -313,7 +493,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -321,11 +509,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">MyNote</a>
+                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
             
             <div class="clearfix"></div>
@@ -449,6 +649,23 @@ MathJax.Hub.Queue(function() {
     </div>
 
 </div>
-  </div>
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>
