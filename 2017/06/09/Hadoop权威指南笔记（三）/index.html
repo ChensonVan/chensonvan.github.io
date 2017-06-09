@@ -16,7 +16,7 @@
 <meta property="og:description" content="1. 为什么要使用Secondary Sort在Hadoop中，从Map到Reduce的过程中，key是不断被sort的。所以从map出来的时候写入到一个intermediate output file的时候，key是有序的。然后reduce不断的从不同的cluster里面fetch里面的key-value pairs的时候，仍然多次sort这些pairs。所以最终进入到reducer的key是有">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-9/8839990.jpg">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-9/56553421.jpg">
-<meta property="og:updated_time" content="2017-06-09T06:13:00.000Z">
+<meta property="og:updated_time" content="2017-06-09T06:14:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop权威指南笔记（三）">
 <meta name="twitter:description" content="1. 为什么要使用Secondary Sort在Hadoop中，从Map到Reduce的过程中，key是不断被sort的。所以从map出来的时候写入到一个intermediate output file的时候，key是有序的。然后reduce不断的从不同的cluster里面fetch里面的key-value pairs的时候，仍然多次sort这些pairs。所以最终进入到reducer的key是有">
@@ -190,7 +190,6 @@
 <a id="more"></a>
 </li>
 </ul>
-<p>  ​</p>
 <h5 id="2-解决方案"><a href="#2-解决方案" class="headerlink" title="2. 解决方案"></a>2. 解决方案</h5><ul>
 <li><p>传统的解决方法</p>
 <p>就是进入到同一个reducer的时候，这些同一个可以的values是在一个list里面的，那么我们就可以先把这个list里面的value存到内存中去，然后在内存中将这些value排序。这个方法只适用于数据量较小的时候，当数据量很大的时候，内存并不能同时存入这些values，程序就报错无法正常运行。</p>
@@ -206,7 +205,6 @@
 <p>​</p>
 </li>
 </ul>
-<p>##### </p>
 <h5 id="3-实现过程"><a href="#3-实现过程" class="headerlink" title="3.实现过程"></a>3.实现过程</h5><ul>
 <li><p><strong>partitioner</strong>: 将natural key相同的发送到同一个reducer里去</p>
 <p>在同一个[]里面说明是一个reducer，value任然是无序的</p>
