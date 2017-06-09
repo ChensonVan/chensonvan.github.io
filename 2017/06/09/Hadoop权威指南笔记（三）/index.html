@@ -16,7 +16,7 @@
 <meta property="og:description" content="1. 为什么要使用Secondary Sort在Hadoop中，从Map到Reduce的过程中，key是不断被sort的。所以从map出来的时候写入到一个intermediate output file的时候，key是有序的。然后reduce不断的从不同的cluster里面fetch里面的key-value pairs的时候，仍然多次sort这些pairs。所以最终进入到reducer的key是有">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-9/8839990.jpg">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-9/56553421.jpg">
-<meta property="og:updated_time" content="2017-06-09T06:14:33.000Z">
+<meta property="og:updated_time" content="2017-06-09T06:15:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop权威指南笔记（三）">
 <meta name="twitter:description" content="1. 为什么要使用Secondary Sort在Hadoop中，从Map到Reduce的过程中，key是不断被sort的。所以从map出来的时候写入到一个intermediate output file的时候，key是有序的。然后reduce不断的从不同的cluster里面fetch里面的key-value pairs的时候，仍然多次sort这些pairs。所以最终进入到reducer的key是有">
@@ -193,8 +193,9 @@
 <h5 id="2-解决方案"><a href="#2-解决方案" class="headerlink" title="2. 解决方案"></a>2. 解决方案</h5><ul>
 <li><p>传统的解决方法</p>
 <p>就是进入到同一个reducer的时候，这些同一个可以的values是在一个list里面的，那么我们就可以先把这个list里面的value存到内存中去，然后在内存中将这些value排序。这个方法只适用于数据量较小的时候，当数据量很大的时候，内存并不能同时存入这些values，程序就报错无法正常运行。</p>
-<p>​</p>
 </li>
+</ul>
+<ul>
 <li><p>利用Hadoop特点的方法</p>
 <p>既然Hadoop可以对Key进行排序，那么可以利用这点，将之前的key-value pairs 组成一个新的key，让Hadoop对这些Key进行排序，栗子如下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 原先的key-value pair</div><div class="line">(2015,1)	 21</div><div class="line"></div><div class="line">// 新的composite-key-value pair</div><div class="line">((2015,1),21)	 21</div></pre></td></tr></table></figure>
@@ -527,19 +528,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
               </li>
              
               <li class="article-tag-list-item">
