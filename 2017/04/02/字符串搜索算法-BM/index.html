@@ -6,31 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://chenson.com">
-  <title>KMP算法 | Vane&#39;s Blog</title>
+  <title>字符串搜索算法 - BM | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 理解一：部分匹配表+已匹配数字1.1 Partial Match Table 上来先上个结论，这个先暂时不管怎么生成，用于KMP表的移动。  移动位数 = 已匹配的字符数 - 对应的部分匹配值   匹配到了第六个字符B，B在上表中的值是2，已经匹配的字符数是6 所以移动的位数是 6 - 2 = 4，将搜索词向后移动4位。">
-<meta name="keywords" content="Algorithm">
+  <meta name="description" content="当我们要在某一个文本中要匹配某一个字符串的时候，我们最简单的方法就是一个一个匹配，也就是从头开始匹配文本和字符串，但发现不同的时候，就把整个字符串右移一位，然后从头重新和文本比较。当全部相同的时候，则右移字符串的长度。在之前的 KMP 算法中，我们是找到尽可能右移的最大位数，而不是一位一位的移动，这样相比原先效率已经提高了很多了。但在大部分的编辑器中，“查找”功能使用的不是 KMP ， 而是 BM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="KMP算法">
-<meta property="og:url" content="http://chenson.com/2017/03/15/KMP算法/index.html">
+<meta property="og:title" content="字符串搜索算法 - BM">
+<meta property="og:url" content="http://chenson.com/2017/04/02/字符串搜索算法-BM/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="1. 理解一：部分匹配表+已匹配数字1.1 Partial Match Table 上来先上个结论，这个先暂时不管怎么生成，用于KMP表的移动。  移动位数 = 已匹配的字符数 - 对应的部分匹配值   匹配到了第六个字符B，B在上表中的值是2，已经匹配的字符数是6 所以移动的位数是 6 - 2 = 4，将搜索词向后移动4位。">
-<meta property="og:image" content="http://p1.bpimg.com/567571/c8cfb90db5bdf1e6.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/0ebcc136f30708e2.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/cbea8594445a6afe.png">
-<meta property="og:image" content="http://i1.piimg.com/567571/baeda2575227f173.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/a88ccdf0dd364060.png">
-<meta property="og:image" content="http://i1.piimg.com/567571/578dabd2f1596006.png">
-<meta property="og:image" content="http://i1.piimg.com/567571/005d54eb172ff27e.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/c8cfb90db5bdf1e6.png">
-<meta property="og:image" content="http://i1.piimg.com/567571/472a6024ca51a4d7.png">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/5426441.jpg">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/25372902.jpg">
-<meta property="og:updated_time" content="2017-06-11T02:57:53.000Z">
+<meta property="og:description" content="当我们要在某一个文本中要匹配某一个字符串的时候，我们最简单的方法就是一个一个匹配，也就是从头开始匹配文本和字符串，但发现不同的时候，就把整个字符串右移一位，然后从头重新和文本比较。当全部相同的时候，则右移字符串的长度。在之前的 KMP 算法中，我们是找到尽可能右移的最大位数，而不是一位一位的移动，这样相比原先效率已经提高了很多了。但在大部分的编辑器中，“查找”功能使用的不是 KMP ， 而是 BM">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/29129274.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/48038845.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/21040202.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/68008338.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/55480187.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/85829606.jpg">
+<meta property="og:updated_time" content="2017-06-11T04:30:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KMP算法">
-<meta name="twitter:description" content="1. 理解一：部分匹配表+已匹配数字1.1 Partial Match Table 上来先上个结论，这个先暂时不管怎么生成，用于KMP表的移动。  移动位数 = 已匹配的字符数 - 对应的部分匹配值   匹配到了第六个字符B，B在上表中的值是2，已经匹配的字符数是6 所以移动的位数是 6 - 2 = 4，将搜索词向后移动4位。">
-<meta name="twitter:image" content="http://p1.bpimg.com/567571/c8cfb90db5bdf1e6.png">
+<meta name="twitter:title" content="字符串搜索算法 - BM">
+<meta name="twitter:description" content="当我们要在某一个文本中要匹配某一个字符串的时候，我们最简单的方法就是一个一个匹配，也就是从头开始匹配文本和字符串，但发现不同的时候，就把整个字符串右移一位，然后从头重新和文本比较。当全部相同的时候，则右移字符串的长度。在之前的 KMP 算法中，我们是找到尽可能右移的最大位数，而不是一位一位的移动，这样相比原先效率已经提高了很多了。但在大部分的编辑器中，“查找”功能使用的不是 KMP ， 而是 BM">
+<meta name="twitter:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/29129274.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -164,115 +158,93 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-KMP算法" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-字符串搜索算法-BM" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      KMP算法
+      字符串搜索算法 - BM
     </h1>
   
 
         
-        <a href="/2017/03/15/KMP算法/" class="archive-article-date">
-  	<time datetime="2017-03-15T06:48:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-15</time>
+        <a href="/2017/04/02/字符串搜索算法-BM/" class="archive-article-date">
+  	<time datetime="2017-04-02T04:28:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-02</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-理解一：部分匹配表-已匹配数字"><a href="#1-理解一：部分匹配表-已匹配数字" class="headerlink" title="1. 理解一：部分匹配表+已匹配数字"></a>1. 理解一：部分匹配表+已匹配数字</h4><h5 id="1-1-Partial-Match-Table"><a href="#1-1-Partial-Match-Table" class="headerlink" title="1.1 Partial Match Table"></a>1.1 Partial Match Table</h5><p><img src="http://p1.bpimg.com/567571/c8cfb90db5bdf1e6.png" alt=""></p>
-<p>上来先上个结论，这个先暂时不管怎么生成，用于KMP表的移动。</p>
-<blockquote>
-<p>移动位数 = 已匹配的字符数 - 对应的部分匹配值</p>
-</blockquote>
-<p><img src="http://p1.bpimg.com/567571/0ebcc136f30708e2.png" alt=""></p>
-<p>匹配到了第六个字符B，B在上表中的值是2，已经匹配的字符数是6</p>
-<p>所以移动的位数是 6 - 2 = 4，将搜索词向后移动4位。</p>
-<p><img src="http://p1.bpimg.com/567571/cbea8594445a6afe.png" alt=""></p>
-<a id="more"></a>
-<p>匹配到了第三个字符C，C的前一个字符B在上表中的值是0，已经匹配的字符数是2</p>
-<p>所以移动的位数是 2 - 0 = 2，将搜索词向后移动2位</p>
-<p><img src="http://i1.piimg.com/567571/baeda2575227f173.png" alt=""></p>
-<p>因为第一个字符不匹配，就将整个字符串向后移一位</p>
-<p><img src="http://p1.bqimg.com/567571/a88ccdf0dd364060.png" alt=""></p>
-<p>匹配到了第六个字符B，B在上表中的值是2，已经匹配的字符数是6</p>
-<p>所以移动的位数是 6 - 2 = 4，将搜索词向后移动4位</p>
-<p><img src="http://i1.piimg.com/567571/578dabd2f1596006.png" alt=""></p>
-<p>逐个比较，直到完全匹配</p>
-<p>如果还需要继续搜索的话，D在上表中的值为0，匹配到的个数为7，移动的位数= 7 - 0 = 7，将整个字符串往后移动7位。接着就是重复之前的比较步骤了。</p>
-<h5 id="1-2-计算-Partial-Match-Table"><a href="#1-2-计算-Partial-Match-Table" class="headerlink" title="1.2 计算 Partial Match Table"></a>1.2 计算 Partial Match Table</h5><p><img src="http://i1.piimg.com/567571/005d54eb172ff27e.png" alt=""></p>
-<p>​    这里需要理解两个概念：<strong>前缀</strong>和<strong>后缀</strong></p>
-<p>​    <strong>“前缀”</strong> 指除了最后一个字符以外，一个字符串的全部头部组合；</p>
-<p>​    <strong>“后缀”</strong> 指除了第一个字符以外，一个字符串的全部尾部组合。</p>
-<p>​    而我们需要的<strong>Partial Match Table</strong>就是<strong>前缀</strong>和<strong>后缀</strong>的<strong>最长共有元素</strong>的长度</p>
-<p>​    继续以上面的例子讲解</p>
-<p><img src="http://p1.bpimg.com/567571/c8cfb90db5bdf1e6.png" alt=""></p>
-<blockquote>
-<p>“A”的前缀和后缀都为空集，共有元素的长度为0；<br>“AB”的前缀为[A]，后缀为[B]，共有元素的长度为0；<br>“ABC”的前缀为[A, AB]，后缀为[BC, C]，共有元素的长度0；<br>“ABCD”的前缀为[A, AB, ABC]，后缀为[BCD, CD, D]，共有元素的长度为0；<br>“ABCDA”的前缀为[A, AB, ABC, ABCD]，后缀为[BCDA, CDA, DA, A]，共有元素为”A”，长度为1；<br>“ABCDAB”的前缀为[A, AB, ABC, ABCD, ABCDA]，后缀为[BCDAB, CDAB, DAB, AB, B]，共有元素为”AB”，长度为2；<br>“ABCDABD”的前缀为[A, AB, ABC, ABCD, ABCDA, ABCDAB]，后缀为[BCDABD, CDABD, DABD, ABD, BD, D]，共有元素的长度为0。</p>
-</blockquote>
-<p>了解了KMP的原理之后，来看一下代码该怎么写。</p>
-<p>举个栗子：</p>
-<p>Text = a b a c a a b a c c a b a c a b a a b b</p>
-<p>Pattern = a b a c a b</p>
-<p>根据前面的<strong>Partial Match Table</strong>, 我们可以算出Pattern的这个表</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">P</th>
-<th style="text-align:center">a</th>
-<th style="text-align:center">b</th>
-<th style="text-align:center">a</th>
-<th style="text-align:center">c</th>
-<th style="text-align:center">a</th>
-<th style="text-align:center">b</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">steps</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">2</td>
-</tr>
-</tbody>
-</table>
-<p>此时我们用两个指针 <strong>i</strong> 和 <strong>j</strong> 来表示 <strong>Text</strong> 和 <strong>Pattern</strong> 中的字符。</p>
-<p>当 <strong>T[ i  :  i + j ] == P[ 1 : j ]</strong> 的时候，就是 <strong>Text</strong> 中包含了我们需要查找的 <strong>Pattern</strong></p>
-<p><img src="http://i1.piimg.com/567571/472a6024ca51a4d7.png" alt=""></p>
-<p>先让 <strong>i</strong> 和 <strong>j</strong> 都从 <strong>1</strong> 开始（python代码中从0开始）</p>
-<p>当<strong>T[ i ] = P[ j ]</strong>的时候，此时指针在 <strong>Text</strong> 和 <strong>Pattern</strong> 上都往前各走一步，即<strong>j+1</strong>，<strong>i+1</strong></p>
-<p>当 <strong>i = 6</strong>，<strong>j = 6</strong> 的时候，我们可以看出<strong>T[ i ] != P[ j ]</strong>，此时 <strong>j</strong> 就不能再继续往前走了，需要退回去几步。</p>
-<p>那么到底是几步呢，经过上面查表，此时匹配到5，重复的字符串个数为1，意思是对于这个字符串 abaca，abac<strong>a</strong> 和 <strong>a</strong>baca 中有一个重复了，我们就不需要再比较这个，跳过这个字符，移动的个数为 <strong>6 - 1 = 5</strong>，将字符串 <strong>Pattern</strong> 向前挪5位，新的 j 就等于1了，然后重复之前的步骤。</p>
-<h5 id="1-3-Python代码"><a href="#1-3-Python代码" class="headerlink" title="1.3 Python代码"></a>1.3 Python代码</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div></pre></td><td class="code"><pre><div class="line">DEBUG = <span class="keyword">True</span></div><div class="line">DEBUG = <span class="keyword">False</span></div><div class="line"></div><div class="line"><span class="comment"># 生成 partial match table</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">PMT</span><span class="params">(sent)</span>:</span></div><div class="line">    length = len(sent)</div><div class="line">    result = [<span class="number">0</span>]</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, length + <span class="number">1</span>):</div><div class="line">        sub_sent = sent[<span class="number">0</span> : i]</div><div class="line">        sub_len = len(sub_sent)</div><div class="line"></div><div class="line">        surfix = []</div><div class="line">        prefix = []</div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(sub_len):</div><div class="line">            prefix.append(sub_sent[<span class="number">0</span> : j])</div><div class="line">            surfix.append(sub_sent[j + <span class="number">1</span>: sub_len ])</div><div class="line">        prefix.remove(<span class="string">''</span>)</div><div class="line">        surfix.remove(<span class="string">''</span>)</div><div class="line">        all_fix = list(set(prefix + surfix))</div><div class="line">        max_len = <span class="number">0</span></div><div class="line">        com_str = <span class="string">''</span></div><div class="line"></div><div class="line">        <span class="keyword">for</span> fix <span class="keyword">in</span> all_fix:</div><div class="line">            <span class="keyword">if</span> fix <span class="keyword">in</span> prefix <span class="keyword">and</span> fix <span class="keyword">in</span> surfix:</div><div class="line">                <span class="keyword">if</span> len(fix) &gt; max_len:</div><div class="line">                    max_len = len(fix)</div><div class="line">                    com_str = fix</div><div class="line">        result.append(max_len)</div><div class="line">    <span class="keyword">return</span> result</div><div class="line"></div><div class="line"><span class="comment"># KMP算法</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">KMP</span><span class="params">(text, pattern)</span>:</span></div><div class="line">    <span class="keyword">if</span> (len(text) &lt; len(pattern)):</div><div class="line">        <span class="keyword">return</span> <span class="string">'Not Match'</span></div><div class="line"></div><div class="line">    pmt = PMT(pattern)</div><div class="line">    <span class="keyword">if</span> DEBUG:</div><div class="line">        print(<span class="string">'Current Pattern is  = '</span>, pattern)</div><div class="line">        print(<span class="string">'Partial Match Table = '</span>, pmt)</div><div class="line">    i = <span class="number">0</span></div><div class="line">    j = <span class="number">0</span></div><div class="line">    <span class="keyword">while</span>(i &lt; len(text)):</div><div class="line">        <span class="keyword">if</span> (text[i] == pattern[j]):</div><div class="line">            <span class="keyword">if</span> (j == (len(pattern) - <span class="number">1</span>)):</div><div class="line">                <span class="keyword">return</span> <span class="string">'Match, the position in text is: &#123;&#125; - &#123;&#125; = &#123;&#125;'</span>.format(i - j, i, text[i-j: i])</div><div class="line">            i += <span class="number">1</span></div><div class="line">            j += <span class="number">1</span></div><div class="line">            <span class="keyword">continue</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">if</span> j &gt;= <span class="number">1</span>:</div><div class="line">                j = pmt[j - <span class="number">1</span>]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                i += <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> <span class="string">'Not Match'</span></div><div class="line"></div><div class="line"><span class="comment"># 测试函数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(text, pattern)</span>:</span></div><div class="line">    result = KMP(text, pattern)</div><div class="line">    print(<span class="string">'Resutl  = '</span>, result)</div><div class="line">    print(<span class="string">'Pattern ='</span>, pattern)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> DEBUG:</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(text)):</div><div class="line">            print(<span class="string">'&#123;:3s&#125;'</span>.format(str(i)), end=<span class="string">'-'</span>)</div><div class="line">        print(<span class="string">''</span>)</div><div class="line"></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(text)):</div><div class="line">            print(<span class="string">'&#123;:3s&#125;'</span>.format(text[i]), end=<span class="string">'-'</span>)</div><div class="line">        print(<span class="string">''</span>)</div><div class="line">    print(<span class="string">'\n'</span>)</div><div class="line"></div><div class="line"><span class="comment"># 测试部分</span></div><div class="line">text = <span class="string">'BBC ABCDAB ABCDABCDABDE'</span></div><div class="line">pattern = <span class="string">'ABCDABD'</span></div><div class="line">test(text, pattern)</div><div class="line"></div><div class="line">text = <span class="string">'a b a c a a b a c c a b a c a b a a b b'</span></div><div class="line">pattern = <span class="string">'a b a c a b'</span></div><div class="line">test(text, pattern)</div><div class="line"></div><div class="line">text = <span class="string">'BBC ABCDAB ABCDABCDABE'</span></div><div class="line">pattern = <span class="string">'ABCDABD'</span></div><div class="line">test(text, pattern)</div><div class="line"></div><div class="line">text = <span class="string">'BBC AB'</span></div><div class="line">pattern = <span class="string">'ABCDABD'</span></div><div class="line">test(text, pattern)</div><div class="line"></div><div class="line">text = <span class="string">'ABCDABD'</span></div><div class="line">pattern = <span class="string">'ABCDABD'</span></div><div class="line">test(text, pattern)</div></pre></td></tr></table></figure>
-<h5 id="1-4-测试结果"><a href="#1-4-测试结果" class="headerlink" title="1.4 测试结果"></a>1.4 测试结果</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">Text    = BBC ABCDAB ABCDABCDABDE</div><div class="line">Pattern = ABCDABD</div><div class="line">Resutl  =  Match, the position <span class="keyword">in</span> text <span class="keyword">is</span>: <span class="number">15</span> - <span class="number">21</span> = ABCDAB</div><div class="line"></div><div class="line"></div><div class="line">Text    = a b a c a a b a c c a b a c a b a a b b</div><div class="line">Pattern = a b a c a b</div><div class="line">Resutl  =  Match, the position <span class="keyword">in</span> text <span class="keyword">is</span>: <span class="number">20</span> - <span class="number">30</span> = a b a c a </div><div class="line"></div><div class="line"></div><div class="line">Text    = BBC ABCDAB ABCDABCDABE</div><div class="line">Pattern = ABCDABD</div><div class="line">Resutl  =  Not Match</div><div class="line"></div><div class="line"></div><div class="line">Text    = BBC AB</div><div class="line">Pattern = ABCDABD</div><div class="line">Resutl  =  Not Match</div><div class="line"></div><div class="line"></div><div class="line">Text    = ABCDABD</div><div class="line">Pattern = ABCDABD</div><div class="line">Resutl  =  Match, the position <span class="keyword">in</span> text <span class="keyword">is</span>: <span class="number">0</span> - <span class="number">6</span> = ABCDAB</div><div class="line"></div><div class="line">[Finished <span class="keyword">in</span> <span class="number">0.1</span>s]</div></pre></td></tr></table></figure>
-<h5 id="1-5-参考内容"><a href="#1-5-参考内容" class="headerlink" title="1.5 参考内容"></a>1.5 参考内容</h5><p><a href="http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html" target="_blank" rel="external">阮一峰 - 字符串匹配的KMP算法</a></p>
-<h4 id="2-理解一：部分匹配表-idx"><a href="#2-理解一：部分匹配表-idx" class="headerlink" title="2. 理解一：部分匹配表+idx"></a>2. 理解一：部分匹配表+idx</h4><h5 id="2-1-Partial-Match-Table"><a href="#2-1-Partial-Match-Table" class="headerlink" title="2.1 Partial Match Table"></a>2.1 Partial Match Table</h5><p>首先生成和上面一样的前缀后缀表(0-base 和 1-base)</p>
+        <p>当我们要在某一个文本中要匹配某一个字符串的时候，我们最简单的方法就是一个一个匹配，也就是从头开始匹配文本和字符串，但发现不同的时候，就把整个字符串右移一位，然后从头重新和文本比较。当全部相同的时候，则右移字符串的长度。在之前的 <code>KMP</code> 算法中，我们是找到尽可能右移的最大位数，而不是一位一位的移动，这样相比原先效率已经提高了很多了。但在大部分的编辑器中，“查找”功能使用的不是 <code>KMP</code> ， 而是 <code>BM</code> 算法。</p>
+<h5 id="1-Boyer-Moore-Algorithm"><a href="#1-Boyer-Moore-Algorithm" class="headerlink" title="1. Boyer-Moore Algorithm"></a>1. Boyer-Moore Algorithm</h5><p>和 <code>KMP</code> 不同的是，<code>BM</code> 是从 <code>Pattern P</code> 倒着匹配上来的</p>
+<p>首先定义两个预处理的方法</p>
 <ul>
-<li><p>0-base : 指的是在原文中下标从0开始</p>
-<p>| 搜索词  |  A   |  B   |  C   |  D   |  A   |  B   |  D   |<br>| —- | :–: | :–: | :–: | :–: | :–: | :–: | :–: |<br>| 匹配值  |  -1  |  0   |  0   |  0   |  0   |  1   |  2   |</p>
+<li><p><strong>坏字符 (Bad Character Heuristic)</strong></p>
+<p>当文本 T 中的某个字符跟 <code>Pattern P</code> 的某个字符不匹配时，我们称文本 T 中的这个不匹配的字符为<strong>坏字符</strong>。</p>
 </li>
-<li><p>1-base : 指的是在原文中下标从1开始</p>
-<p>| 搜索词  |  A   |  B   |  C   |  D   |  A   |  B   |  D   |<br>| —- | :–: | :–: | :–: | :–: | :–: | :–: | :–: |<br>| 匹配值  |  0   |  0   |  0   |  0   |  1   |  2   |  0   |</p>
+<li><p><strong>好后缀 (Good Suffix Heuristic)</strong></p>
+<p>当文本 T 中的某个字符跟 <code>Pattern P</code> 的某个字符不匹配时，我们称文本 T 中的已经匹配的字符串为<strong>好后缀</strong>。(因为算法从尾巴到头部比较)</p>
+<ul>
+<li>好后缀的位置<strong>以最后一个字符为准</strong>。假定”ABCDEF”的”EF”是好后缀，则它的位置以”F”为准，即5（从0开始计算）。</li>
+<li>如果”好后缀”在搜索词中<strong>只出现一次</strong>，则它的上一次出现位置为 -1。比如，”EF”在”ABCDEF”之中只出现一次，则它的上一次出现位置为-1（即未出现）。</li>
+<li>如果”好后缀”有多个，则除了最长的那个”好后缀”，其他”好后缀”的上一次出现位置必须在头部。比如，假定”BABCDAB”的”好后缀”是”DAB”、”AB”、”B”，请问这时”好后缀”的上一次出现位置是什么？回答是，此时采用的好后缀是”B”，它的上一次出现位置是头部，即第0位。这个规则也可以这样表达：如果最长的那个”好后缀”只出现一次，则可以把搜索词改写成如下形式进行位置计算”(DA)BABCDAB”，即虚拟加入最前面的”DA”。</li>
+</ul>
 </li>
 </ul>
+<p>按照正常比较方法，当发现一个<strong>坏字符</strong>的时候，会出现一下三种情况</p>
+<ul>
+<li><p>坏字符完全不出现在 <code>Pattern P</code> 中，那么就可以完全跳过这个字符，因为我们根本不可能匹配到这个字符。 </p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/29129274.jpg" alt=""></p>
+</li>
+</ul>
+<ul>
+<li><p>坏字符出现在<strong>还未比较的前缀</strong>当中 (只出现在前缀，出现在前缀和后缀)</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/48038845.jpg" alt=""></p>
+<p>此时将 <code>Pattern P</code> 右移对齐这两个字符，然后从尾部继续比较</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/21040202.jpg" alt=""></p>
+</li>
+<li><p>坏字符<strong>只出现</strong>在之前的好后缀当中（也就是已经比较过了）</p>
+</li>
+</ul>
+<p>根据上面几种情况，我们可以总结出以下<strong>坏字符</strong>规则：</p>
 <blockquote>
-<p>找到原文和搜索词<strong>不同的那个字符</strong>里面的匹配值，然后把搜索字符串右移到idx=匹配值的位置，过程如下图</p>
+<p>后移位数 = 坏字符的位置 - 搜索词中的上一次出现位置</p>
 </blockquote>
-<p><strong>0-base</strong></p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/5426441.jpg" alt=""></p>
-<p><strong>1-base</strong></p>
+<p>这里有两种特殊情况</p>
+<ul>
+<li>如果坏字符不存在于 <code>Pattern P</code> 中，则最后一次出现的位置为 -1。</li>
+<li>如果坏字符在 <code>Pattern P</code> 中的位置位于失配位置的右侧，则此启发法不提供任何建议。</li>
+</ul>
+<p>除了坏字符，我们同样可以利用<strong>好后缀</strong>来提高查找效率</p>
 <blockquote>
-<p>与0-base不同的是，找的不是最后一个不同的字符</p>
-<p>而是<strong>最后一个相同的字符</strong>里面的匹配值，然后把搜索字符串右移到idx=匹配值的位置，过程如下图</p>
+<p>模式后移位数 = 好后缀在模式中的当前位置 - 好后缀在模式中最右出现且前缀字符不同的位置</p>
 </blockquote>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/25372902.jpg" alt=""></p>
+<p>如何计算好后缀我们之前已经提过了，继续以上面最后一个例子讲解。</p>
+<ul>
+<li><code>MPLE</code> : 未出现，最右出现的位置为 -1；</li>
+<li><code>PLE</code> : 未出现在头部，最右出现的位置为 -1；</li>
+<li><code>LE</code> : 未出现在头部，最右出现的位置为 -1；</li>
+<li><code>E</code> : 出现在头部，补充虚拟字符 ‘MPL’E，前缀字符为空，最右出现的位置为 0；</li>
+</ul>
+<p>此时，所有的”好后缀”（MPLE、PLE、LE、E）之中，只有”E”在”EXAMPLE”还出现在头部，所以后移 6 - 0 = 6位。</p>
+<p>如果之前我们只利用坏字符的话，移动的位数只有 </p>
+<p>2 - (-1) = 3位</p>
+<p>所以我们最终的移动位置，是在这<strong>两者之间取最大值</strong>来移动。</p>
+<p>所以在查找之前，我们需要预计算生成<code>坏字符规则表</code> 和 <code>好后缀规则表</code>，到时候只需要查表就可以了。继续上面的例子</p>
+<p>根据上面计算结果，我们将 <code>Pattern P</code> 右移6位。然后重新从尾部开始比较</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/68008338.jpg" alt=""></p>
+<p>文本中P不匹配，此时只能使用<strong>坏字符规则</strong>，P上一次出现的位置为4，则移动6-4=2位</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/55480187.jpg" alt=""></p>
+<p>移动2位后，发现文本中的E 与 Pattern P中的E 匹配，则继续倒序比较，直到发现全部匹配，则匹配到的第一个完整的模式 P 被发现。</p>
+<p>继续下去则是依据<strong>好后缀规则</strong>计算好后缀 “E” 的后移位置为 6 - 0 = 6 位，然后继续倒序比较时发现已超出文本 T 的范围，搜索结束。</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/85829606.jpg" alt=""></p>
+<h5 id="2-Reference"><a href="#2-Reference" class="headerlink" title="2. Reference"></a>2. Reference</h5><ul>
+<li><a href="http://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html" target="_blank" rel="external">字符串匹配的Boyer-Moore算法</a></li>
+<li><a href="http://www.cnblogs.com/gaochundong/p/boyer_moore_string_matching_algorithm.html" target="_blank" rel="external">Boyer-Moore 字符串匹配算法</a></li>
+</ul>
 
       
 
@@ -307,17 +279,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -368,7 +329,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2017/03/15/KMP算法/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2017/04/02/字符串搜索算法-BM/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -382,18 +343,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/03/17/Machine-Learning-Linear-Regression-and-Logistic-Regression/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/05/05/Hadoop权威指南笔记（二）/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Machine Learning - Linear Regression and Logistic Regression
+          Hadoop权威指南笔记（二）
         
       </div>
     </a>
   
   
-    <a href="/2017/03/07/Hadoop权威指南笔记（一）/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hadoop权威指南笔记（一）</div>
+    <a href="/2017/03/24/PostgreSQL复习笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">PostgreSQL复习笔记</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -407,7 +368,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="KMP算法" data-title="KMP算法" data-url="http://chenson.com/2017/03/15/KMP算法/"></div>
+	<div class="ds-thread" data-thread-key="字符串搜索算法-BM" data-title="字符串搜索算法 - BM" data-url="http://chenson.com/2017/04/02/字符串搜索算法-BM/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -545,11 +506,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
