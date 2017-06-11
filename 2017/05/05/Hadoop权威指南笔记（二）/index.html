@@ -8,14 +8,13 @@
   <link rel="dns-prefetch" href="http://chenson.com">
   <title>Hadoop权威指南笔记（二） | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. Mapper
-2. Reducer">
+  <meta name="description" content="1. Mapper 2. Reducer">
+<meta name="keywords" content="Hadoop,MapReduce">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hadoop权威指南笔记（二）">
 <meta property="og:url" content="http://chenson.com/2017/05/05/Hadoop权威指南笔记（二）/index.html">
-<meta property="og:site_name" content="Vane's Blog">
-<meta property="og:description" content="1. Mapper
-2. Reducer">
+<meta property="og:site_name" content="Vane&#39;s Blog">
+<meta property="og:description" content="1. Mapper 2. Reducer">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-8/19227470.jpg">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-8/27839418.jpg">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-8/88687290.jpg">
@@ -26,11 +25,10 @@
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-8/55069183.jpg">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-8/61403613.jpg">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-8/75201792.jpg">
-<meta property="og:updated_time" content="2017-06-09T06:09:55.000Z">
+<meta property="og:updated_time" content="2017-06-10T07:53:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop权威指南笔记（二）">
-<meta name="twitter:description" content="1. Mapper
-2. Reducer">
+<meta name="twitter:description" content="1. Mapper 2. Reducer">
 <meta name="twitter:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-8/19227470.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
@@ -209,7 +207,7 @@
 <p>根据官方图，Mapper的output出来的key-values pairs会先进入到buffer memory(默认100MB大小)，但buffer到80%容量的时候，buffer里面的内容会spill到disk去，如果此时buffer还未慢的情况下，mapper继续输出到buffer，如果满了的话mapper会被block，直到可以写入。</p>
 <p>在buffer中的内容spill到disk之前，还有一个partitioner的步骤。对这些即将写入到disk的内容分组，同一个key和同一个reducer的ker-value pairs会在一起。然后这些key-value pairs排序(sort)。如果此时我们定义了combiner function，在输出前，这些pairs会先combine，然后输出。也就是说combiner function是在partitioner之后? (Before it writes to disk, the thread first divides the data into partitions corresponding to the reducers that they will ultimately be sent to. Within each partition, the background thread performs an in-memory sort by key, and <strong>if there is a combiner function, it is run on the output of the sort</strong>. Running the combiner function makes for a more compact map output, so there is less data to write to local disk and to transfer to the reducer)</p>
 <p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-8/55069183.jpg" alt=""></p>
-<p>每当buffer达到那个threshold的时候，buffer里面的内容写入到disk中，此时会新建一个临时的spill文件，每次写入都会新建一个，然后这个map结束前这些spill files会被merge到一个partitioned和sorted的文件里去。除了之前partition的输出后调用了一次combiner一次之外，但合并这些个spill files( <strong>&gt;=3</strong> )的时候，会继续调用combiner去合并同一个reducer里的同一个key的value，所以combiner在output file被生成之前，会被调用许多次，以减少之后io的次数。但当spill files只是1个或则两个的时候，并不会调用combiner。注意有些情况下combiner并不适合使用，比如求<strong>平均值</strong>。</p>
+<p>每当buffer达到那个threshold的时候，buffer里面的内容写入到<strong>disk</strong>中(注意是<strong>每个cluster自己的local disk</strong>，而<strong>不是HDFS</strong>)，此时会新建一个临时的spill文件，每次写入都会新建一个，然后这个map结束前这些spill files会被merge到一个partitioned和sorted的文件里去。除了之前partition的输出后调用了一次combiner一次之外，但合并这些个spill files( <strong>&gt;=3</strong> )的时候，会继续调用combiner去合并同一个reducer里的同一个key的value，所以combiner在output file被生成之前，会被调用许多次，以减少之后io的次数。但当spill files只是1个或则两个的时候，并不会调用combiner。注意有些情况下combiner并不适合使用，比如求<strong>平均值</strong>。</p>
 <p>而不同mapper生成的spill文件最终会被merge成 {key:[v1, v2, v3…], …}这种形式。(这里有疑问，博客图和官方图有点不一样。按照官方图的理解，一个mapper对应的是一个spill file，所以最终是多个spill files？还是这些spill files在传给Reducer之前会被merge成上述的list形式？一个cluster一个最终的output file)​</p>
 </li>
 </ul>
@@ -485,6 +483,10 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -497,7 +499,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -510,10 +512,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
