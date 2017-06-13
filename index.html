@@ -152,6 +152,81 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Machine-Learning-Ensemble-Learning" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/13/Machine-Learning-Ensemble-Learning/">Machine Learning - Ensemble Learning</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/13/Machine-Learning-Ensemble-Learning/" class="archive-article-date">
+  	<time datetime="2017-06-13T04:27:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-集成学习-Ensemble-Learning"><a href="#1-集成学习-Ensemble-Learning" class="headerlink" title="1. 集成学习 (Ensemble Learning)"></a>1. 集成学习 (Ensemble Learning)</h4><p>在对新的数据实例进行分类的时候，集成学习通过训练好<strong>多个学习器</strong>，把这些分类器的的分类结果进行某种组合 (比如投票) 决定分类结果，以取得更好的结果，就是我们生活中那句话“三个臭皮匠顶个诸葛亮”，通过使用多个决策者共同决策一个实例的分类从而提高分类器的泛化能力。</p>
+<ul>
+<li><p>同质集成 (Homogeneous)</p>
+<p>需要是<strong>同种类型</strong>，比如全部是决策树或神经网络等，每个个体学习器称之为<strong>基学习器</strong> (base learner)，相应的学习算法称为<strong>基学习算法</strong> (base learning algorithm)</p>
+</li>
+<li><p>异质集成 (Heterogenous)</p>
+<p>可以由不同的学校算法生成，这时候就不再有基学习算法，每个个体学习器称为<strong>组件学习器</strong> (component learner)</p>
+</li>
+</ul>
+<p>以下我们重点讨论同质集成。</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-12/5589106.jpg" alt=""></p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/13/Machine-Learning-Ensemble-Learning/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Hadoop权威指南笔记（三）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -377,6 +452,107 @@
 
 
   
+    <article id="post-Spark笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/10/Spark笔记/">Spark笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/10/Spark笔记/" class="archive-article-date">
+  	<time datetime="2017-04-10T06:55:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="1-Resilient-Distributed-Dataset-RDD"><a href="#1-Resilient-Distributed-Dataset-RDD" class="headerlink" title="1. Resilient Distributed Dataset (RDD)"></a>1. Resilient Distributed Dataset (RDD)</h5><p>RDDs are <strong>fault-tolerant, parallel data structures</strong> that let users <strong>explicitly persist intermediate results in memory</strong>, control their partitioning <strong>to optimize data placement</strong>, and manipulate them using a rich set of operators.</p>
+<p>RDD是一个容错的、并行的数据结构，可以让用户显示地将数据存储到磁盘和内存中，并能控制数据的分区。</p>
+<ul>
+<li><p><strong>Resilient</strong></p>
+<p>RDD is a <strong>fundamental data structure</strong> of Spark. It is an immutable distributed collection of objects. Each dataset in <strong>RDD is divided into logical partitions</strong>, which may be computed on different nodes of the cluster. Formally, an RDD is a <strong>read-only, partitioned collection of records</strong>. Rdds can be created throught <strong>deterministic operations on either data on stable storage or other RDDs</strong>. RDD is a <strong>fault-tolerant collection of elements</strong> that can be operated on in parallel.</p>
+<p>There two ways to create RDDs.</p>
+<ul>
+<li><p><strong>Parallelizing</strong></p>
+<p>parallelizing an existing collection in your driver program</p>
+</li>
+<li><p><strong>Referencing</strong></p>
+<p>reference a dataset in an external storage system, such as  a shared file system, HDFS, HBase, or ant data source offering a Hadoop Input Format</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Spark提供了RDD上的两类操作：transformation 和 action</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/34167769.jpg" alt=""></p>
+<ul>
+<li><p><strong>Transformation</strong>: return a new RDD</p>
+<p>当对RDD进行transformation操作的时候，这些操作不会立刻就执行，而是将这些操作记录下来。如果有多个transformation操作时，每一次变换都是一个接着一个，此时就形成了一个<strong>有向无环图</strong>。这个图就是<strong>数据容错</strong>的关键所在。如果出现数据丢失的时候，只需要查找这个图就能根据丢失的RDD进行数据恢复</p>
+</li>
+<li><p><strong>Action</strong>: evaluates and returns a new value</p>
+<p>当对RDD做action操作的时候，这类action一般作用是返回一个值或者数组等，或者是将数据持久化到磁盘当中。此时执行action，会真正的提交job，执行之前的transformation记录的DAG。执行DAG策略中，会有多个stage，每一个stage钟有多个task，这些task就会被分配到各个nodes进行执行</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/87769198.jpg" alt=""></p>
+<ul>
+<li><p>The difference between flatMap and Map <a href="http://backtobazics.com/big-data/spark/apache-spark-flatmap-example/" target="_blank" rel="external">flatMap Example</a></p>
+<p>map: 对RDD每个元素转换，将函数用于RDD中的每个元素，将返回值构成新的RDD。<br>flatMap: 对RDD每个元素转换, 然后再<strong>扁平化</strong>（即将所有对象合并为一个对象）。将函数应用于rdd之中的每一个元素，将返回的<strong>迭代器</strong>的所有内容构成新的rdd</p>
+<p><strong>Example1：</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// data 有两行数据，第一行 a b c，第二行 1 2 3</span></div><div class="line">scala&gt; data.map(line1 =&gt; line1.split(<span class="string">","</span>)).collect()</div><div class="line">res11: <span class="type">Array</span>[<span class="type">Array</span>[<span class="type">String</span>]] = <span class="type">Array</span>(<span class="type">Array</span>(a, b, c),<span class="type">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>))</div><div class="line"></div><div class="line">scala&gt; data.flatMap(line1 =&gt; line1.split(<span class="string">","</span>)).collect()</div><div class="line">res13: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(a, b, c, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</div></pre></td></tr></table></figure>
+<p><strong>Example2：</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">scala&gt; <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">List</span>(<span class="string">"coffee panda"</span>,<span class="string">"happy panda"</span>,<span class="string">"happiest panda party"</span>))</div><div class="line"></div><div class="line">scala&gt; rdd.map(x=&gt;x).collect</div><div class="line">res0: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(coffee panda, happy panda, happiest panda party) </div><div class="line"></div><div class="line">scala&gt; rdd.map(x=&gt;x.split(<span class="string">" "</span>)).collect</div><div class="line">res1: <span class="type">Array</span>[<span class="type">Array</span>[<span class="type">String</span>]] = <span class="type">Array</span>(<span class="type">Array</span>(coffee, panda), <span class="type">Array</span>(happy, panda), <span class="type">Array</span>(happiest, panda, party))</div><div class="line"></div><div class="line"><span class="comment">// 相比之前，flatMap将几个array合并成了一个array</span></div><div class="line">scala&gt; rdd.flatMap(x=&gt;x.split(<span class="string">" "</span>)).collect</div><div class="line">res2: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(coffee, panda, happy, panda, happiest, panda, party)</div></pre></td></tr></table></figure>
+<p><img src="http://images.backtobazics.com/spark/apache-spark-flatmap-example.gif" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="2-Reference"><a href="#2-Reference" class="headerlink" title="2. Reference"></a>2. Reference</h5>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/10/Spark笔记/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-字符串搜索算法-BM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -426,6 +602,7 @@
 <p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/21040202.jpg" alt=""></p>
 </li>
 <li><p>坏字符<strong>只出现</strong>在之前的好后缀当中（也就是已经比较过了）</p>
+<p>对这种情况不做处理</p>
 </li>
 </ul>
 <p>根据上面几种情况，我们可以总结出以下<strong>坏字符</strong>规则：</p>
@@ -441,6 +618,20 @@
 <blockquote>
 <p>模式后移位数 = 好后缀在模式中的当前位置 - 好后缀在模式中最右出现且前缀字符不同的位置</p>
 </blockquote>
+<p>举个栗子计算：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Text:    H E R E _ I _ S A _ S I M P L E _ E X A M P L E</div><div class="line"></div><div class="line">Pattern:               P L E X A M P L E</div><div class="line"></div><div class="line">                       0 1 2 3 4 5 6 7 8</div></pre></td></tr></table></figure>
+<ul>
+<li><p>坏字符的移动</p>
+<p>此时坏字符的位置是4，坏字符 <code>I</code> 不在字符串当中，移动的个数为： 4 - (-1) = 5</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Text:    H E R E _ I _ S A _ S I M P L E _ E X A M P L E</div><div class="line"></div><div class="line">Pattern:                         P L E X A M P L E</div><div class="line"></div><div class="line">                                 0 1 2 3 4 5 6 7 8</div></pre></td></tr></table></figure>
+</li>
+<li><p>好后缀的移动</p>
+<p>此时好后缀是 <code>MPLE</code>，其中 <code>PLE</code> 出现在头部，最右位置为 (01) 2。</p>
+<p>此时好后缀的字符是8(以最后一个为准)，移动的个数为：8 - 2 = 6</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Text:    H E R E _ I _ S A _ S I M P L E _ E X A M P L E</div><div class="line"></div><div class="line">Pattern:                           P L E X A M P L E</div><div class="line"></div><div class="line">                                   0 1 2 3 4 5 6 7 8</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>相比之下，我们可以发现好后缀的查找效率更高。</p>
 <p>如何计算好后缀我们之前已经提过了，继续以上面最后一个例子讲解。</p>
 <ul>
 <li><code>MPLE</code> : 未出现，最右出现的位置为 -1；</li>
@@ -452,7 +643,7 @@
 <p>如果之前我们只利用坏字符的话，移动的位数只有 </p>
 <p>2 - (-1) = 3位</p>
 <p>所以我们最终的移动位置，是在这<strong>两者之间取最大值</strong>来移动。</p>
-<p>所以在查找之前，我们需要预计算生成<code>坏字符规则表</code> 和 <code>好后缀规则表</code>，到时候只需要查表就可以了。继续上面的例子</p>
+<p>所以在查找之前，我们需要预计算生成<code>坏字符规则表</code> 和 <code>好后缀规则表</code>，到时候只需要查表就可以了。继续上面的例子。</p>
 <p>根据上面计算结果，我们将 <code>Pattern P</code> 右移6位。然后重新从尾部开始比较</p>
 <p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/68008338.jpg" alt=""></p>
 <p>文本中P不匹配，此时只能使用<strong>坏字符规则</strong>，P上一次出现的位置为4，则移动6-4=2位</p>
@@ -472,6 +663,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -658,19 +860,19 @@
 
 
   
-    <article id="post-字符串搜索算法 - KMP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-字符串搜索算法-KMP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/15/字符串搜索算法 - KMP/">字符串搜索算法 - KMP</a>
+      <a class="article-title" href="/2017/03/15/字符串搜索算法-KMP/">字符串搜索算法 - KMP</a>
     </h1>
   
 
         
-        <a href="/2017/03/15/字符串搜索算法 - KMP/" class="archive-article-date">
+        <a href="/2017/03/15/字符串搜索算法-KMP/" class="archive-article-date">
   	<time datetime="2017-03-15T06:48:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-15</time>
 </a>
         
@@ -710,7 +912,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/15/字符串搜索算法 - KMP/">MORE >></a>
+          <a class="article-more-a" href="/2017/03/15/字符串搜索算法-KMP/">MORE >></a>
         </p>
       
 
@@ -786,154 +988,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/03/07/Hadoop权威指南笔记（一）/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Machine-Learning-Recommender-Systems" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/02/Machine-Learning-Recommender-Systems/">Machine Learning - Recommender Systems </a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/02/Machine-Learning-Recommender-Systems/" class="archive-article-date">
-  	<time datetime="2017-03-02T11:05:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-What-is-Recommender-Systems"><a href="#1-What-is-Recommender-Systems" class="headerlink" title="1. What is Recommender Systems"></a>1. What is Recommender Systems</h4><p>对于推荐系统的定义，我们先举几个例子来理解一下。</p>
-<ul>
-<li>电影网站给用户推荐电影，可以根据该用户以往的评分，比如给浪漫爱情电影评分高，给动作片评分较低，那么系统可以根据这些信息，给用户推荐偏向浪漫爱情的电影</li>
-<li>如果是新用户呢？我们没有该用户的评分信息。那么我们可以根据整个系统中，某些电影评分较高进行推荐</li>
-<li>那么如果是新网站，新用户呢？</li>
-</ul>
-<p>以上例子，我们可以把推荐系统分成两类。</p>
-<ul>
-<li><p><strong>Content-based systems</strong></p>
-<p>Content-based，就是基于已有的信息进行推荐。具体哪些信息呢？在上面的电影推荐系统中，有两类信息需要分析。</p>
-<p>第一，是User的评分信息，比如给爱情片评分高，给动作片评分低。</p>
-<p>第二，是Movie的特征信息，比如这部电影偏向爱情片多一些，但也有一部分搞笑。所以在A（爱情片）和B（搞笑片）中， A的权重更高，B的较低</p>
-<p>基于以上两部分信息，我们可以给用户推荐他所喜欢的电影。</p>
-<p><img src="http://p1.bpimg.com/567571/47a077979840183f.png" alt=""></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/02/Machine-Learning-Recommender-Systems/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Machine-Learning-SVM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/02/Machine-Learning-SVM/">Machine Learning - SVM</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/02/Machine-Learning-SVM/" class="archive-article-date">
-  	<time datetime="2017-03-02T11:02:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-Optimisation-Objective"><a href="#1-Optimisation-Objective" class="headerlink" title="1. Optimisation Objective"></a>1. Optimisation Objective</h4><p>$$<br>h_\theta (x) = \frac 1 {1 + e^{-\theta^Tx}}    \\<br>z = -\theta^Tx<br>$$</p>
-<p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.png" alt=""></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/02/Machine-Learning-SVM/">MORE >></a>
         </p>
       
 
@@ -1062,6 +1116,14 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -1078,14 +1140,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
@@ -1095,6 +1149,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
             
             <div class="clearfix"></div>

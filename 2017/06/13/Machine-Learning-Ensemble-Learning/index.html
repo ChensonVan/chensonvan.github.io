@@ -6,17 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://chenson.com">
-  <title>Tag: Numpy | Vane&#39;s Blog</title>
+  <title>Machine Learning - Ensemble Learning | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Stay Hungry. Stay Foolish">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Vane&#39;s Blog">
-<meta property="og:url" content="http://chenson.com/tags/Numpy/index.html">
+  <meta name="description" content="1. 集成学习 (Ensemble Learning)在对新的数据实例进行分类的时候，集成学习通过训练好多个学习器，把这些分类器的的分类结果进行某种组合 (比如投票) 决定分类结果，以取得更好的结果，就是我们生活中那句话“三个臭皮匠顶个诸葛亮”，通过使用多个决策者共同决策一个实例的分类从而提高分类器的泛化能力。  同质集成 (Homogeneous) 需要是同种类型，比如全部是决策树或神经网络等，">
+<meta name="keywords" content="Machine Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine Learning - Ensemble Learning">
+<meta property="og:url" content="http://chenson.com/2017/06/13/Machine-Learning-Ensemble-Learning/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="Stay Hungry. Stay Foolish">
+<meta property="og:description" content="1. 集成学习 (Ensemble Learning)在对新的数据实例进行分类的时候，集成学习通过训练好多个学习器，把这些分类器的的分类结果进行某种组合 (比如投票) 决定分类结果，以取得更好的结果，就是我们生活中那句话“三个臭皮匠顶个诸葛亮”，通过使用多个决策者共同决策一个实例的分类从而提高分类器的泛化能力。  同质集成 (Homogeneous) 需要是同种类型，比如全部是决策树或神经网络等，">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-12/5589106.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-12/99520564.jpg">
+<meta property="og:updated_time" content="2017-06-13T04:29:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vane&#39;s Blog">
-<meta name="twitter:description" content="Stay Hungry. Stay Foolish">
+<meta name="twitter:title" content="Machine Learning - Ensemble Learning">
+<meta name="twitter:description" content="1. 集成学习 (Ensemble Learning)在对新的数据实例进行分类的时候，集成学习通过训练好多个学习器，把这些分类器的的分类结果进行某种组合 (比如投票) 决定分类结果，以取得更好的结果，就是我们生活中那句话“三个臭皮匠顶个诸葛亮”，通过使用多个决策者共同决策一个实例的分类从而提高分类器的泛化能力。  同质集成 (Homogeneous) 需要是同种类型，比如全部是决策树或神经网络等，">
+<meta name="twitter:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-12/5589106.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -150,68 +155,295 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Machine-Learning-Ensemble-Learning" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/15/Python数据分析笔记（一）/" class="archive-article-date">
-  	<time datetime="2016-12-15T11:37:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-15</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/15/Python数据分析笔记（一）/">Python数据分析笔记（一）</a>
+    <h1 class="article-title" itemprop="name">
+      Machine Learning - Ensemble Learning
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/06/13/Machine-Learning-Ensemble-Learning/" class="archive-article-date">
+  	<time datetime="2017-06-13T04:27:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-集成学习-Ensemble-Learning"><a href="#1-集成学习-Ensemble-Learning" class="headerlink" title="1. 集成学习 (Ensemble Learning)"></a>1. 集成学习 (Ensemble Learning)</h4><p>在对新的数据实例进行分类的时候，集成学习通过训练好<strong>多个学习器</strong>，把这些分类器的的分类结果进行某种组合 (比如投票) 决定分类结果，以取得更好的结果，就是我们生活中那句话“三个臭皮匠顶个诸葛亮”，通过使用多个决策者共同决策一个实例的分类从而提高分类器的泛化能力。</p>
+<ul>
+<li><p>同质集成 (Homogeneous)</p>
+<p>需要是<strong>同种类型</strong>，比如全部是决策树或神经网络等，每个个体学习器称之为<strong>基学习器</strong> (base learner)，相应的学习算法称为<strong>基学习算法</strong> (base learning algorithm)</p>
+</li>
+<li><p>异质集成 (Heterogenous)</p>
+<p>可以由不同的学校算法生成，这时候就不再有基学习算法，每个个体学习器称为<strong>组件学习器</strong> (component learner)</p>
+</li>
+</ul>
+<p>以下我们重点讨论同质集成。</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-12/5589106.jpg" alt=""></p>
+<a id="more"></a>
+<h4 id="2-分类器的选择"><a href="#2-分类器的选择" class="headerlink" title="2. 分类器的选择"></a>2. 分类器的选择</h4><ul>
+<li><p>差异性</p>
+<ul>
+<li>问题：如何选择/构建<strong>差异性</strong>的基分类器？(ans: section 3)</li>
+</ul>
+</li>
+<li><p>精度 &gt; 0.5</p>
+<ul>
+<li>精度略高于50%的分类器称之为<strong>弱学习器</strong> (weak learner)</li>
+<li>问题：如何投票选择出最佳的预测？(ans: section 4)</li>
+</ul>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-12/99520564.jpg" alt=""></p>
+</li>
+<li><p>如何组合</p>
+<p>假设在二分类器中，这里有三个分类器在测试三个样本，每个分类器的正确率都是66%，那么组合出的结果大致可以分成以下几种</p>
+<ul>
+<li><p>集成性能提升</p>
+<p>|      | test1 | test2 | test3 |<br>| :–: | :—: | :—: | :—: |<br>|  h1  | right | right | wrong |<br>|  h2  | wrong | right | right |<br>|  h3  | right | wrong | right |</p>
+<p>如果只是简单投票法的话，在每个test中，有两个分类器是对的，一个是错的，那么投票出来的结果是对的，最终精度可以达到100%。</p>
+</li>
+<li><p>集成不起作用</p>
+<p>|      | test1 | test2 | test3 |<br>| :–: | :—: | :—: | :—: |<br>|  h1  | right | right | wrong |<br>|  h2  | right | right | wrong |<br>|  h3  | right | right | wrong |</p>
+<p>三个分类器对三个test进行预测，恰好三个分类器对test3的情况分类都是错的，而对test1和test2的结果都预测正确，那么最终的测试结果没有影响，都是66%。</p>
+</li>
+<li><p>集成起负作用</p>
+<p>|      | test1 | test2 | test3 |<br>| —- | —– | —– | —– |<br>| h1   | right | wrong | wrong |<br>| h2   | wrong | right | wrong |<br>| h3   | wrong | wrong | right |</p>
+<p>和第一种情况相反，最终的测试结果是33%</p>
+</li>
+</ul>
+<p>通过上面的例子，可以反映出一个问题，在同质集成中，如何构建多个误差是相互独立的基学习器。因为这些基学习器是用的同一种算法，基本也是使用同一组数据，解决的也是同一个问题。</p>
+<p>根据个体学期的生成方式，集成学习方法大致可以分成两大类：</p>
+<ul>
+<li><p><strong>Boosting</strong></p>
+<p>个体学习器之间<strong>存在强依赖关系</strong>，必须<strong>串行生成的序列化方法</strong></p>
+</li>
+<li><p><strong>Bagging</strong> 和 <strong>Random Forest</strong></p>
+<p>个体学习器之前<strong>不存在强依赖关系</strong>，可<strong>同时生成的并行化方</strong>法</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-构建差异性基分类器"><a href="#3-构建差异性基分类器" class="headerlink" title="3. 构建差异性基分类器"></a>3. 构建差异性基分类器</h4><p>在同一个数据集上，构建不同的，具有差异性的分类器 (<strong>好而不同</strong>)，就是通过<strong>抽样技术</strong>获取多个训练数据集，从而生成多个差异性分类器。目前主要的方法有：<strong>Bagging</strong> 和 <strong>Boosting</strong>。</p>
+<h5 id="3-1-Boosting"><a href="#3-1-Boosting" class="headerlink" title="3.1 Boosting"></a>3.1 Boosting</h5><p>提升方法是一个<strong>迭代的过程</strong>，通过<strong>改变样本分布</strong>，使得分类器聚集在那些很难分的样本上，<strong>对那些容易错分的数据加强学习，增加错分数据的权重</strong>，这样错分的数据再下一轮的迭代就有更大的作用 (对错分数据进行惩罚)。</p>
+<p>具体来说，先从初始训练集训练出一个基学习器，再根据这个基学习器的表现对<strong>训练样本分布进行调整</strong>，是的先前基学习器做错的训练样本在后续受到更多的关注，然后<strong>基于调整后的样本分布</strong>来训练下一个基学习器；如此重复进行，一直到基学习器的数目到达事先指定的T值，然后将所有的基学习器相结合。</p>
+<p>数据的权重有两个作用，<strong>一方面我们可以使用这些权值作为抽样分布，进行对数据的抽样，另一方面分类器可以使用权值学习有利于高权重样本的分类器。</strong>把一个弱分类器提升为一个强分类器，大家可以参考<strong>AdaBoost</strong>算法 (西瓜书P173)</p>
+<h5 id="3-2-Bagging"><a href="#3-2-Bagging" class="headerlink" title="3.2 Bagging"></a>3.2 Bagging</h5><p>通过对原数据集进行<strong>有放回的采样</strong> (bootstrap sampling) 构建出大小和原数据集D一样的新数据集D1，D2，D3…..，然后用这些新的数据集训练多个分类器H1，H2，H3….。因为是有放回的采样所以<strong>一些样本可能会出现多次</strong>，而其他样本会被忽略，理论上初始训练集中约有63.2%的样本会出现在采样集中。(西瓜书P27)</p>
+<ul>
+<li><p>自助采样法 (Bootstrap sampling)</p>
+<p>假设给定一个包含了m个样本的数据集D，我们需要构建一个新的数据D1，大小和D一样的。那么每次我们从D中取出一个样本入到D1中，之后把样本放回D中，重新采样，总共采样m次，那么我们可以得到一个大小为m的D1。因为我们把样本又重新放入D中，下次还有可能抽取到，导致在D1中，有些样本会出现多次，而有些样本则一次也不会出现。所以根据如下公式：<br>$$<br>lim_{m -&gt; \infty} (1 - \frac 1 m)^m -&gt; \frac 1 e \approx 0.368<br>$$<br>最终在初始样本数据集D中，有36.8%的样本是一次也没有出现的，而63.2%<strong>重复</strong>出现了，这样我们就改变了初始样本数据集的分布。所以我们可以将D1作为训练集，D\D1，即剩下的36.8%未出现在D1中的作为测试集。这样的测试结果称之为<strong>包外估计</strong> (out-of-bag-estimate)</p>
+</li>
+</ul>
+<p>Bagging通过<strong>降低基分类器方差改善了泛化能力</strong>，因此Bagging的性能<strong>依赖于基分类器的稳定性</strong>，如果基分类器是不稳定的，Bagging有助于减低训练数据的随机扰动导致的误差，但是如果基分类器是稳定的，即对数据变化不敏感，那么Bagging方法就得不到性能的提升，甚至会减低，因为新数据集只有63%。</p>
+<h5 id="3-3-Random-Forest"><a href="#3-3-Random-Forest" class="headerlink" title="3.3 Random Forest"></a>3.3 Random Forest</h5><p><strong>随机森林</strong>是Bagging的一个拓展变体。在这里，我们用的决策树与传统的决策树略有不同。</p>
+<p>传统的决策树，比如C45或者CART，每当需要划分一个属性的时候，我们会将所有的属性的都进行划分一遍，然后计算其划分之后与划分之前熵的偏差，或者计算Gini指数等，然后从中选取出最佳属性进行划分。</p>
+<p>而随机森林，对<strong>基决策树</strong>的每个结点，先从该节点的属性集合中随机选择一个包含k个属性的子集，然后再<strong>从这个子集中选取一个最优属性用于划分</strong>。这里的参数k控制了随机性的引入程度：</p>
+<ul>
+<li>若k=d，则基决策树和传统决策树相同。</li>
+<li>若k=1，则是随机选择一个属性用于划分</li>
+<li>推荐值k=log_2 d</li>
+</ul>
+<p>随机森林除了基于Bagging中对于样本的扰动，还同时对数据集中的属性划分进行了扰动，这样可以增加基学习器的多样性和差异性，使得最终集成的泛化性得到提升。</p>
+<h5 id="3-4-增强多样性"><a href="#3-4-增强多样性" class="headerlink" title="3.4 增强多样性"></a>3.4 增强多样性</h5><ul>
+<li>数据样本扰动</li>
+<li>输入属性扰动</li>
+<li>输出表示扰动</li>
+<li>算法参数扰动</li>
+</ul>
+<h4 id="4-组合策略"><a href="#4-组合策略" class="headerlink" title="4. 组合策略"></a>4. 组合策略</h4><h5 id="4-1-归回预测-数值预测"><a href="#4-1-归回预测-数值预测" class="headerlink" title="4.1 归回预测 (数值预测)"></a>4.1 归回预测 (数值预测)</h5><ul>
+<li><p>简单平均值法</p>
+<p>就是取各个分类器结果的平均值（会不会降低这里面最好的那个分类器的精度）<br>$$<br>H(x) = \frac 1 T \sum_{i=1}^T h_i(x)<br>$$</p>
+</li>
+<li><p>加权平均法</p>
+<p>给不同的分离器赋予不一样的权重值，然后求和<br>$$<br>H(x) = \sum_{i=1}^Tw_i · h_i(x)<br>$$</p>
+</li>
+</ul>
+<h5 id="4-2-分类预测-类别预测"><a href="#4-2-分类预测-类别预测" class="headerlink" title="4.2 分类预测 (类别预测)"></a>4.2 分类预测 (类别预测)</h5><ul>
+<li><p>简单投票法</p>
+<p>每个分类器的权重大小都一样，少数服从多数</p>
+<ul>
+<li><p>绝对多数投票法</p>
+<p>票数过半，否则拒绝预测</p>
+</li>
+<li><p>相对多数投票法</p>
+<p>票数最多的那个</p>
+</li>
+</ul>
+</li>
+<li><p>加权投票法</p>
+<p>给每个分类器赋予一个权重，然后根据权重来投票，得到票数高的最为输出结果</p>
+</li>
+<li><p>概率投票法（和简单分类有什么不同？）</p>
+<p>有的分类器的输出是有概率信息的，比如</p>
+<ul>
+<li>分类器A输出结果1的概率为75%</li>
+<li>分类器B输出结果0的概率为80%</li>
+<li>分类器C输出结果1的概率为52%</li>
+</ul>
+<p>最终输出的结果为？？？（概率相加还是概率的平均值，相加可能性高）</p>
+</li>
+</ul>
+<h5 id="4-3-学习法"><a href="#4-3-学习法" class="headerlink" title="4.3 学习法"></a>4.3 学习法</h5><h4 id="5-Reference"><a href="#5-Reference" class="headerlink" title="5. Reference"></a>5. Reference</h4><ul>
+<li>西瓜书第八章 - 周志华</li>
+<li>非参考，推荐阅读<ul>
+<li><a href="http://www.tuicool.com/articles/y6zYnir" target="_blank" rel="external">小菜鸟对周志华大神gcForest的理解</a></li>
+<li><a href="http://www.2cto.com/net/201703/610288.html" target="_blank" rel="external">gcForest算法理解</a></li>
+</ul>
+</li>
+</ul>
+<p>#### </p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>Thanks for your donate.<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://i1.piimg.com/567571/a24bcde34ea6aef7.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Numpy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Pandas</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2017/06/13/Machine-Learning-Ensemble-Learning/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/06/09/Hadoop权威指南笔记（三）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hadoop权威指南笔记（三）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Machine-Learning-Ensemble-Learning" data-title="Machine Learning - Ensemble Learning" data-url="http://chenson.com/2017/06/13/Machine-Learning-Ensemble-Learning/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-    
+
+
+
+
 
 
           </div>
@@ -234,9 +466,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

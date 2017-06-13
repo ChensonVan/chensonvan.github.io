@@ -6,17 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://chenson.com">
-  <title>Tag: Numpy | Vane&#39;s Blog</title>
+  <title>Spark笔记 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Stay Hungry. Stay Foolish">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Vane&#39;s Blog">
-<meta property="og:url" content="http://chenson.com/tags/Numpy/index.html">
+  <meta name="description" content="1. Resilient Distributed Dataset (RDD)RDDs are fault-tolerant, parallel data structures that let users explicitly persist intermediate results in memory, control their partitioning to optimize data pl">
+<meta name="keywords" content="Spark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark笔记">
+<meta property="og:url" content="http://chenson.com/2017/04/10/Spark笔记/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="Stay Hungry. Stay Foolish">
+<meta property="og:description" content="1. Resilient Distributed Dataset (RDD)RDDs are fault-tolerant, parallel data structures that let users explicitly persist intermediate results in memory, control their partitioning to optimize data pl">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/34167769.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/87769198.jpg">
+<meta property="og:image" content="http://images.backtobazics.com/spark/apache-spark-flatmap-example.gif">
+<meta property="og:updated_time" content="2017-06-11T06:57:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vane&#39;s Blog">
-<meta name="twitter:description" content="Stay Hungry. Stay Foolish">
+<meta name="twitter:title" content="Spark笔记">
+<meta name="twitter:description" content="1. Resilient Distributed Dataset (RDD)RDDs are fault-tolerant, parallel data structures that let users explicitly persist intermediate results in memory, control their partitioning to optimize data pl">
+<meta name="twitter:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/34167769.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -150,68 +156,220 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Spark笔记" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/15/Python数据分析笔记（一）/" class="archive-article-date">
-  	<time datetime="2016-12-15T11:37:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-15</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/15/Python数据分析笔记（一）/">Python数据分析笔记（一）</a>
+    <h1 class="article-title" itemprop="name">
+      Spark笔记
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/04/10/Spark笔记/" class="archive-article-date">
+  	<time datetime="2017-04-10T06:55:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="1-Resilient-Distributed-Dataset-RDD"><a href="#1-Resilient-Distributed-Dataset-RDD" class="headerlink" title="1. Resilient Distributed Dataset (RDD)"></a>1. Resilient Distributed Dataset (RDD)</h5><p>RDDs are <strong>fault-tolerant, parallel data structures</strong> that let users <strong>explicitly persist intermediate results in memory</strong>, control their partitioning <strong>to optimize data placement</strong>, and manipulate them using a rich set of operators.</p>
+<p>RDD是一个容错的、并行的数据结构，可以让用户显示地将数据存储到磁盘和内存中，并能控制数据的分区。</p>
+<ul>
+<li><p><strong>Resilient</strong></p>
+<p>RDD is a <strong>fundamental data structure</strong> of Spark. It is an immutable distributed collection of objects. Each dataset in <strong>RDD is divided into logical partitions</strong>, which may be computed on different nodes of the cluster. Formally, an RDD is a <strong>read-only, partitioned collection of records</strong>. Rdds can be created throught <strong>deterministic operations on either data on stable storage or other RDDs</strong>. RDD is a <strong>fault-tolerant collection of elements</strong> that can be operated on in parallel.</p>
+<p>There two ways to create RDDs.</p>
+<ul>
+<li><p><strong>Parallelizing</strong></p>
+<p>parallelizing an existing collection in your driver program</p>
+</li>
+<li><p><strong>Referencing</strong></p>
+<p>reference a dataset in an external storage system, such as  a shared file system, HDFS, HBase, or ant data source offering a Hadoop Input Format</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Spark提供了RDD上的两类操作：transformation 和 action</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/34167769.jpg" alt=""></p>
+<ul>
+<li><p><strong>Transformation</strong>: return a new RDD</p>
+<p>当对RDD进行transformation操作的时候，这些操作不会立刻就执行，而是将这些操作记录下来。如果有多个transformation操作时，每一次变换都是一个接着一个，此时就形成了一个<strong>有向无环图</strong>。这个图就是<strong>数据容错</strong>的关键所在。如果出现数据丢失的时候，只需要查找这个图就能根据丢失的RDD进行数据恢复</p>
+</li>
+<li><p><strong>Action</strong>: evaluates and returns a new value</p>
+<p>当对RDD做action操作的时候，这类action一般作用是返回一个值或者数组等，或者是将数据持久化到磁盘当中。此时执行action，会真正的提交job，执行之前的transformation记录的DAG。执行DAG策略中，会有多个stage，每一个stage钟有多个task，这些task就会被分配到各个nodes进行执行</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/87769198.jpg" alt=""></p>
+<ul>
+<li><p>The difference between flatMap and Map <a href="http://backtobazics.com/big-data/spark/apache-spark-flatmap-example/" target="_blank" rel="external">flatMap Example</a></p>
+<p>map: 对RDD每个元素转换，将函数用于RDD中的每个元素，将返回值构成新的RDD。<br>flatMap: 对RDD每个元素转换, 然后再<strong>扁平化</strong>（即将所有对象合并为一个对象）。将函数应用于rdd之中的每一个元素，将返回的<strong>迭代器</strong>的所有内容构成新的rdd</p>
+<p><strong>Example1：</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// data 有两行数据，第一行 a b c，第二行 1 2 3</span></div><div class="line">scala&gt; data.map(line1 =&gt; line1.split(<span class="string">","</span>)).collect()</div><div class="line">res11: <span class="type">Array</span>[<span class="type">Array</span>[<span class="type">String</span>]] = <span class="type">Array</span>(<span class="type">Array</span>(a, b, c),<span class="type">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>))</div><div class="line"></div><div class="line">scala&gt; data.flatMap(line1 =&gt; line1.split(<span class="string">","</span>)).collect()</div><div class="line">res13: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(a, b, c, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</div></pre></td></tr></table></figure>
+<p><strong>Example2：</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">scala&gt; <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">List</span>(<span class="string">"coffee panda"</span>,<span class="string">"happy panda"</span>,<span class="string">"happiest panda party"</span>))</div><div class="line"></div><div class="line">scala&gt; rdd.map(x=&gt;x).collect</div><div class="line">res0: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(coffee panda, happy panda, happiest panda party) </div><div class="line"></div><div class="line">scala&gt; rdd.map(x=&gt;x.split(<span class="string">" "</span>)).collect</div><div class="line">res1: <span class="type">Array</span>[<span class="type">Array</span>[<span class="type">String</span>]] = <span class="type">Array</span>(<span class="type">Array</span>(coffee, panda), <span class="type">Array</span>(happy, panda), <span class="type">Array</span>(happiest, panda, party))</div><div class="line"></div><div class="line"><span class="comment">// 相比之前，flatMap将几个array合并成了一个array</span></div><div class="line">scala&gt; rdd.flatMap(x=&gt;x.split(<span class="string">" "</span>)).collect</div><div class="line">res2: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(coffee, panda, happy, panda, happiest, panda, party)</div></pre></td></tr></table></figure>
+<p><img src="http://images.backtobazics.com/spark/apache-spark-flatmap-example.gif" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="2-Reference"><a href="#2-Reference" class="headerlink" title="2. Reference"></a>2. Reference</h5>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>Thanks for your donate.<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://i1.piimg.com/567571/a24bcde34ea6aef7.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Numpy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Pandas</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2017/04/10/Spark笔记/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/05/05/Hadoop权威指南笔记（二）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Hadoop权威指南笔记（二）
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/04/02/字符串搜索算法-BM/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">字符串搜索算法 - BM</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Spark笔记" data-title="Spark笔记" data-url="http://chenson.com/2017/04/10/Spark笔记/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-    
+
+
+
+
 
 
           </div>
@@ -234,9 +392,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

@@ -9,6 +9,7 @@
   <title>字符串搜索算法 - BM | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="当我们要在某一个文本中要匹配某一个字符串的时候，我们最简单的方法就是一个一个匹配，也就是从头开始匹配文本和字符串，但发现不同的时候，就把整个字符串右移一位，然后从头重新和文本比较。当全部相同的时候，则右移字符串的长度。在之前的 KMP 算法中，我们是找到尽可能右移的最大位数，而不是一位一位的移动，这样相比原先效率已经提高了很多了。但在大部分的编辑器中，“查找”功能使用的不是 KMP ， 而是 BM">
+<meta name="keywords" content="Algorithm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="字符串搜索算法 - BM">
 <meta property="og:url" content="http://chenson.com/2017/04/02/字符串搜索算法-BM/index.html">
@@ -20,7 +21,7 @@
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/68008338.jpg">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/55480187.jpg">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/85829606.jpg">
-<meta property="og:updated_time" content="2017-06-11T04:30:15.000Z">
+<meta property="og:updated_time" content="2017-06-11T06:21:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="字符串搜索算法 - BM">
 <meta name="twitter:description" content="当我们要在某一个文本中要匹配某一个字符串的时候，我们最简单的方法就是一个一个匹配，也就是从头开始匹配文本和字符串，但发现不同的时候，就把整个字符串右移一位，然后从头重新和文本比较。当全部相同的时候，则右移字符串的长度。在之前的 KMP 算法中，我们是找到尽可能右移的最大位数，而不是一位一位的移动，这样相比原先效率已经提高了很多了。但在大部分的编辑器中，“查找”功能使用的不是 KMP ， 而是 BM">
@@ -207,6 +208,7 @@
 <p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/21040202.jpg" alt=""></p>
 </li>
 <li><p>坏字符<strong>只出现</strong>在之前的好后缀当中（也就是已经比较过了）</p>
+<p>对这种情况不做处理</p>
 </li>
 </ul>
 <p>根据上面几种情况，我们可以总结出以下<strong>坏字符</strong>规则：</p>
@@ -222,6 +224,20 @@
 <blockquote>
 <p>模式后移位数 = 好后缀在模式中的当前位置 - 好后缀在模式中最右出现且前缀字符不同的位置</p>
 </blockquote>
+<p>举个栗子计算：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Text:    H E R E _ I _ S A _ S I M P L E _ E X A M P L E</div><div class="line"></div><div class="line">Pattern:               P L E X A M P L E</div><div class="line"></div><div class="line">                       0 1 2 3 4 5 6 7 8</div></pre></td></tr></table></figure>
+<ul>
+<li><p>坏字符的移动</p>
+<p>此时坏字符的位置是4，坏字符 <code>I</code> 不在字符串当中，移动的个数为： 4 - (-1) = 5</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Text:    H E R E _ I _ S A _ S I M P L E _ E X A M P L E</div><div class="line"></div><div class="line">Pattern:                         P L E X A M P L E</div><div class="line"></div><div class="line">                                 0 1 2 3 4 5 6 7 8</div></pre></td></tr></table></figure>
+</li>
+<li><p>好后缀的移动</p>
+<p>此时好后缀是 <code>MPLE</code>，其中 <code>PLE</code> 出现在头部，最右位置为 (01) 2。</p>
+<p>此时好后缀的字符是8(以最后一个为准)，移动的个数为：8 - 2 = 6</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Text:    H E R E _ I _ S A _ S I M P L E _ E X A M P L E</div><div class="line"></div><div class="line">Pattern:                           P L E X A M P L E</div><div class="line"></div><div class="line">                                   0 1 2 3 4 5 6 7 8</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>相比之下，我们可以发现好后缀的查找效率更高。</p>
 <p>如何计算好后缀我们之前已经提过了，继续以上面最后一个例子讲解。</p>
 <ul>
 <li><code>MPLE</code> : 未出现，最右出现的位置为 -1；</li>
@@ -233,7 +249,7 @@
 <p>如果之前我们只利用坏字符的话，移动的位数只有 </p>
 <p>2 - (-1) = 3位</p>
 <p>所以我们最终的移动位置，是在这<strong>两者之间取最大值</strong>来移动。</p>
-<p>所以在查找之前，我们需要预计算生成<code>坏字符规则表</code> 和 <code>好后缀规则表</code>，到时候只需要查表就可以了。继续上面的例子</p>
+<p>所以在查找之前，我们需要预计算生成<code>坏字符规则表</code> 和 <code>好后缀规则表</code>，到时候只需要查表就可以了。继续上面的例子。</p>
 <p>根据上面计算结果，我们将 <code>Pattern P</code> 右移6位。然后重新从尾部开始比较</p>
 <p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/68008338.jpg" alt=""></p>
 <p>文本中P不匹配，此时只能使用<strong>坏字符规则</strong>，P上一次出现的位置为4，则移动6-4=2位</p>
@@ -279,6 +295,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -343,11 +370,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/05/05/Hadoop权威指南笔记（二）/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/04/10/Spark笔记/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Hadoop权威指南笔记（二）
+          Spark笔记
         
       </div>
     </a>
@@ -494,6 +521,14 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -510,14 +545,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
@@ -527,6 +554,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
             
             <div class="clearfix"></div>
