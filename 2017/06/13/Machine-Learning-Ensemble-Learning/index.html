@@ -17,7 +17,7 @@
 <meta property="og:description" content="1. 集成学习 (Ensemble Learning)在对新的数据实例进行分类的时候，集成学习通过训练好多个学习器，把这些分类器的的分类结果进行某种组合 (比如投票) 决定分类结果，以取得更好的结果，就是我们生活中那句话“三个臭皮匠顶个诸葛亮”，通过使用多个决策者共同决策一个实例的分类从而提高分类器的泛化能力。  同质集成 (Homogeneous) 需要是同种类型，比如全部是决策树或神经网络等，">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-12/5589106.jpg">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-12/99520564.jpg">
-<meta property="og:updated_time" content="2017-06-13T04:29:08.000Z">
+<meta property="og:updated_time" content="2017-06-15T03:30:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Machine Learning - Ensemble Learning">
 <meta name="twitter:description" content="1. 集成学习 (Ensemble Learning)在对新的数据实例进行分类的时候，集成学习通过训练好多个学习器，把这些分类器的的分类结果进行某种组合 (比如投票) 决定分类结果，以取得更好的结果，就是我们生活中那句话“三个臭皮匠顶个诸葛亮”，通过使用多个决策者共同决策一个实例的分类从而提高分类器的泛化能力。  同质集成 (Homogeneous) 需要是同种类型，比如全部是决策树或神经网络等，">
@@ -230,9 +230,54 @@
 </ul>
 <h4 id="3-构建差异性基分类器"><a href="#3-构建差异性基分类器" class="headerlink" title="3. 构建差异性基分类器"></a>3. 构建差异性基分类器</h4><p>在同一个数据集上，构建不同的，具有差异性的分类器 (<strong>好而不同</strong>)，就是通过<strong>抽样技术</strong>获取多个训练数据集，从而生成多个差异性分类器。目前主要的方法有：<strong>Bagging</strong> 和 <strong>Boosting</strong>。</p>
 <h5 id="3-1-Boosting"><a href="#3-1-Boosting" class="headerlink" title="3.1 Boosting"></a>3.1 Boosting</h5><p>提升方法是一个<strong>迭代的过程</strong>，通过<strong>改变样本分布</strong>，使得分类器聚集在那些很难分的样本上，<strong>对那些容易错分的数据加强学习，增加错分数据的权重</strong>，这样错分的数据再下一轮的迭代就有更大的作用 (对错分数据进行惩罚)。</p>
-<p>具体来说，先从初始训练集训练出一个基学习器，再根据这个基学习器的表现对<strong>训练样本分布进行调整</strong>，是的先前基学习器做错的训练样本在后续受到更多的关注，然后<strong>基于调整后的样本分布</strong>来训练下一个基学习器；如此重复进行，一直到基学习器的数目到达事先指定的T值，然后将所有的基学习器相结合。</p>
+<p>具体来说，先从初始训练集训练出一个<strong>基学习器</strong>，再根据这个基学习器的表现<strong>对训练样本分布进行调整</strong>，使得先前基学习器做错的训练样本在后续受到更多的关注，然后<strong>基于调整后的样本分布</strong>来训练下一个基学习器；如此重复进行，一直到基学习器的数目到达事先指定的T值，然后将所有的基学习器相结合。(问题：如何调整分布？)</p>
 <p>数据的权重有两个作用，<strong>一方面我们可以使用这些权值作为抽样分布，进行对数据的抽样，另一方面分类器可以使用权值学习有利于高权重样本的分类器。</strong>把一个弱分类器提升为一个强分类器，大家可以参考<strong>AdaBoost</strong>算法 (西瓜书P173)</p>
-<h5 id="3-2-Bagging"><a href="#3-2-Bagging" class="headerlink" title="3.2 Bagging"></a>3.2 Bagging</h5><p>通过对原数据集进行<strong>有放回的采样</strong> (bootstrap sampling) 构建出大小和原数据集D一样的新数据集D1，D2，D3…..，然后用这些新的数据集训练多个分类器H1，H2，H3….。因为是有放回的采样所以<strong>一些样本可能会出现多次</strong>，而其他样本会被忽略，理论上初始训练集中约有63.2%的样本会出现在采样集中。(西瓜书P27)</p>
+<ul>
+<li><p><strong>Example</strong></p>
+<p>假设现在有一个线性分类器如下表</p>
+<p>|           | 预测 + | 预测 - | count |<br>| :——-: | :–: | :–: | :—: |<br>| <strong>实际 +</strong>  |  24  |  16  |  40   |<br>| <strong>实际 -</strong>  |  9   |  51  |  60   |<br>| <strong>count</strong> |  33  |  67  |  100  |</p>
+<ul>
+<li><p>错误率计算<br>$$<br>\epsilon = \frac {(9 + 16)} {100} = 0.25<br>$$</p>
+</li>
+<li><p>错分样本的权值更新<br>$$<br>w_e = \frac 1 {2*\epsilon} = 2<br>$$</p>
+</li>
+<li><p>正确样本的权值更新<br>$$<br>w_r = \frac 1 {2*(1 - \epsilon)} = \frac 2 3<br>$$</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>  所以讲权重乘以相应的数据量，得到新的数据分布，如下</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"><strong>预测 +</strong></th>
+<th style="text-align:center"><strong>预测 -</strong></th>
+<th style="text-align:center"><strong>count</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>实际 +</strong></td>
+<td style="text-align:center">24 * 2/3 = 16</td>
+<td style="text-align:center">16 * 2 = 32</td>
+<td style="text-align:center">16+32=48</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>实际 -</strong></td>
+<td style="text-align:center">9 * 2 = 18</td>
+<td style="text-align:center">51 * 2/3 = 34</td>
+<td style="text-align:center">18 + 34 = 52</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>count</strong></td>
+<td style="text-align:center">16 + 18 = 34</td>
+<td style="text-align:center">32 + 34 = 66</td>
+<td style="text-align:center">100</td>
+</tr>
+</tbody>
+</table>
+<h5 id="3-2-Bagging"><a href="#3-2-Bagging" class="headerlink" title="3.2 Bagging"></a>3.2 Bagging</h5><p>通过对原数据集进行<strong>有放回的采样</strong> (bootstrap sampling) 构建出大小和原数据集大小一样的新数据集D1，D2，D3…..，然后用这些新的数据集训练多个分类器H1，H2，H3….。因为是有放回的采样所以<strong>一些样本可能会出现多次</strong>，而其他样本会被忽略，理论上初始训练集中约有63.2%的样本会出现在采样集中。(西瓜书P27)</p>
 <ul>
 <li><p>自助采样法 (Bootstrap sampling)</p>
 <p>假设给定一个包含了m个样本的数据集D，我们需要构建一个新的数据D1，大小和D一样的。那么每次我们从D中取出一个样本入到D1中，之后把样本放回D中，重新采样，总共采样m次，那么我们可以得到一个大小为m的D1。因为我们把样本又重新放入D中，下次还有可能抽取到，导致在D1中，有些样本会出现多次，而有些样本则一次也不会出现。所以根据如下公式：<br>$$<br>lim_{m -&gt; \infty} (1 - \frac 1 m)^m -&gt; \frac 1 e \approx 0.368<br>$$<br>最终在初始样本数据集D中，有36.8%的样本是一次也没有出现的，而63.2%<strong>重复</strong>出现了，这样我们就改变了初始样本数据集的分布。所以我们可以将D1作为训练集，D\D1，即剩下的36.8%未出现在D1中的作为测试集。这样的测试结果称之为<strong>包外估计</strong> (out-of-bag-estimate)</p>
@@ -241,7 +286,7 @@
 <p>Bagging通过<strong>降低基分类器方差改善了泛化能力</strong>，因此Bagging的性能<strong>依赖于基分类器的稳定性</strong>，如果基分类器是不稳定的，Bagging有助于减低训练数据的随机扰动导致的误差，但是如果基分类器是稳定的，即对数据变化不敏感，那么Bagging方法就得不到性能的提升，甚至会减低，因为新数据集只有63%。</p>
 <h5 id="3-3-Random-Forest"><a href="#3-3-Random-Forest" class="headerlink" title="3.3 Random Forest"></a>3.3 Random Forest</h5><p><strong>随机森林</strong>是Bagging的一个拓展变体。在这里，我们用的决策树与传统的决策树略有不同。</p>
 <p>传统的决策树，比如C45或者CART，每当需要划分一个属性的时候，我们会将所有的属性的都进行划分一遍，然后计算其划分之后与划分之前熵的偏差，或者计算Gini指数等，然后从中选取出最佳属性进行划分。</p>
-<p>而随机森林，对<strong>基决策树</strong>的每个结点，先从该节点的属性集合中随机选择一个包含k个属性的子集，然后再<strong>从这个子集中选取一个最优属性用于划分</strong>。这里的参数k控制了随机性的引入程度：</p>
+<p>而随机森林，对<strong>基决策树</strong>的每个结点，先从该节点的属性集合中随机选择一个包含k个属性的子集，然后再<strong>从这个子集中选取一个最优属性用于划分</strong> (从特征的不同子集来构建树)。这里的参数k控制了随机性的引入程度：</p>
 <ul>
 <li>若k=d，则基决策树和传统决策树相同。</li>
 <li>若k=1，则是随机选择一个属性用于划分</li>
@@ -266,11 +311,9 @@
 <li><p>简单投票法</p>
 <p>每个分类器的权重大小都一样，少数服从多数</p>
 <ul>
-<li><p>绝对多数投票法</p>
-<p>票数过半，否则拒绝预测</p>
+<li><p>绝对多数投票法<br>票数过半，否则拒绝预测</p>
 </li>
-<li><p>相对多数投票法</p>
-<p>票数最多的那个</p>
+<li><p>相对多数投票法<br>票数最多的那个</p>
 </li>
 </ul>
 </li>
@@ -295,7 +338,6 @@
 </ul>
 </li>
 </ul>
-<p>#### </p>
 
       
 
@@ -404,6 +446,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/06/16/Machine-Learning-支持向量机/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Machine Learning - 支持向量机
+        
+      </div>
+    </a>
   
   
     <a href="/2017/06/09/Hadoop权威指南笔记（三）/" id="article-nav-older" class="article-nav-link-wrap">
@@ -547,14 +598,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -567,7 +610,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -580,6 +627,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
