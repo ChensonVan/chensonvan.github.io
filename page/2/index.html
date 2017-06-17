@@ -152,6 +152,79 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-字符串搜索算法-KMP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/15/字符串搜索算法-KMP/">字符串搜索算法 - KMP</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/15/字符串搜索算法-KMP/" class="archive-article-date">
+  	<time datetime="2017-03-15T06:48:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-理解一：部分匹配表-已匹配数字"><a href="#1-理解一：部分匹配表-已匹配数字" class="headerlink" title="1. 理解一：部分匹配表+已匹配数字"></a>1. 理解一：部分匹配表+已匹配数字</h4><h5 id="1-1-Partial-Match-Table"><a href="#1-1-Partial-Match-Table" class="headerlink" title="1.1 Partial Match Table"></a>1.1 Partial Match Table</h5><p><img src="http://p1.bpimg.com/567571/c8cfb90db5bdf1e6.png" alt=""></p>
+<p>上来先上个结论，这个先暂时不管怎么生成，用于KMP表的移动。</p>
+<blockquote>
+<p>移动位数 = 已匹配的字符数 - 对应的部分匹配值</p>
+</blockquote>
+<p><img src="http://p1.bpimg.com/567571/0ebcc136f30708e2.png" alt=""></p>
+<p>匹配到了第六个字符B，B在上表中的值是2，已经匹配的字符数是6</p>
+<p>所以移动的位数是 6 - 2 = 4，将搜索词向后移动4位。</p>
+<p><img src="http://p1.bpimg.com/567571/cbea8594445a6afe.png" alt=""></p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/15/字符串搜索算法-KMP/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Hadoop权威指南笔记（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -579,10 +652,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
@@ -591,7 +660,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -599,7 +668,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
             
             <div class="clearfix"></div>

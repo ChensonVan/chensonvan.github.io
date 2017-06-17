@@ -152,6 +152,150 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Machine-Learning-PCA" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/17/Machine-Learning-PCA/">Machine Learning - PCA</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/17/Machine-Learning-PCA/" class="archive-article-date">
+  	<time datetime="2017-06-17T12:59:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="1-PCA"><a href="#1-PCA" class="headerlink" title="1. PCA"></a>1. PCA</h5><p>PCA(Principal Components Analysis)是主成成分分析，之前也叫做Pricipal Factor Analysis。顾名思义就是分析数据里面的主要部分，是最常用的一种降维方法。那么为什么需要降维呢？</p>
+<p>因为在真实的训练数据中，总是会存在各种冗余的数据</p>
+<ul>
+<li>比如说拿到一个汽车的样本，里面既有以“千米/每小时”度量的最大速度特征，也有“英里/小时”的最大速度特征，显然这两个特征有一个多余</li>
+<li>拿到一个数学系的本科生期末考试成绩单，里面有三列，一列是对数学的兴趣程度，一列是复习时间，还有一列是考试成绩。我们知道要学好数学，需要有浓厚的兴趣，所以第二项与第一项强相关，第三项和第二项也是强相关。那是不是可以合并第一项和第二项呢？</li>
+<li>这个与第二个有点类似，假设在IR中我们建立的文档-词项矩阵中，有两个词项为“learn”和“study”，在传统的向量空间模型中，认为两者独立。然而从语义的角度来讲，两者是相似的，而且两者出现频率也类似，是不是可以合成为一个特征呢？</li>
+</ul>
+<p>因为这些冗余的数据，常常会导致我们的模型过度拟合。这个时候，就需要一种特征降维的方法来减少特征数，减少噪音和冗余，减少过度拟合的可能性。而PCA就是降维的算法之一，将原先的数据从n维映射到k维上(k&lt;n)。这里<strong>k维是全新的正交特征</strong>，这k维特征成为主元，是重新构造出出来的k维特征，而不是简单的从n维当中移去了(n-k)维，然后剩下主要的k维特征。</p>
+<p>那么请思考一个问题：对于正交属性空间中的样本点，如何用一个超平面(直线的高维推广)，对所有的样本进行恰当的表达？那么需要找到怎么样的一个超平面来分割呢？一般需要具备如下特征：</p>
+<ul>
+<li>最近重构性：样本点到这个超平面的距离都足够近</li>
+<li>最大可分性：样本点在这个超平面上的投影尽可能的要分开，而不是重叠一起</li>
+</ul>
+<h5 id="2-计算过程"><a href="#2-计算过程" class="headerlink" title="2. 计算过程"></a>2. 计算过程</h5><p>那么如何来构建呢？举个栗子：</p>
+<p>现在有这么一组数据，x和y是两个特征</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/80029200.jpg" alt=""></p>
+<ul>
+<li><p><strong>第一步</strong>：求出所有维度的平均值<br>上面的例子中，x的平均值是1.81，y的平均值是1.91</p>
+</li>
+<li><p><strong>第二步</strong>：中心化，即$\sumx_i=0$.<br>将所有的样本都减去这俩个平均值。比如第一个样本(2.5, 2.4) - (1.81, 1.91) = (0.69, 0.49)<br><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/5702419.jpg" alt=""></p>
+</li>
+<li><p><strong>第三步</strong>：求特征的协方差矩阵<br>如果有x, y, z三个特征，分别需要求cov(x, x), cov(x, y), cov(x, z), cov(y, y), cov(y, z), cov(z, z)这几个。</p>
+<ul>
+<li>当协方差大于0的时候，表示x和y若有一个增加，另一个也会增加。</li>
+<li>当协方差下于0的时候，表示一个增加，另一个会减少</li>
+<li>当协方差等于0的时候，表示来者之间是独立的。</li>
+<li>协方差的绝对值越大，两者对彼此的影响也就越大</li>
+</ul>
+<p>具体如下图</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/93944424.jpg" alt=""></p>
+<p>而我们上面的例子中只有x和y两个变量，即</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/81502834.jpg" alt=""></p>
+</li>
+<li><p><strong>第四步</strong>：求协方差的<strong>特征值</strong>和<strong>特征向量</strong>，得到</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/24538678.jpg" alt=""></p>
+<p>上面是两个特征值，下面是对应的特征向量。</p>
+<p>比如特征值0.0490833989对应的特征向量为(-0.735178656, 0.677873399)T，这里的特征向量都归一化为单位单位向量</p>
+<p>求协方差的步骤：</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/65604425.jpg" alt=""></p>
+</li>
+<li><p><strong>第五步</strong>：将特征值按照从大到小的顺序排列，选择其中个最大的k个，然后将其对应的k个特征向量分别作为列向量组成特征向量矩阵。</p>
+<p>上面的例子中，特征值只有两个，我们需要选择其中最大的那个。所以这里我们选择1.28402771，对应的特征向量是 (-0.677873399, -0.735178656)T.</p>
+</li>
+<li><p><strong>第六步</strong>：将样本投影到选取的特征向量上去。</p>
+<p>假设样本数量为m，特征数量为n，减去均值后的样本矩阵为DataAdjust(m*n)，协方差矩阵是n*m，选取的k个特征向量组成的矩阵为EigenVectors(n*k)。那么投影后的数据FinalData为<br>$$<br>FinalData(m\ast k) = DataAdjust(m\ast n) \times EigenVectors(n \ast k)<br>$$<br>所以上面的例子中<br>$$<br>FinalData(10\ast 1) = DataAdjust(10\ast 2) \times EigenVectors(-0.677873399, -0.735178656)^T<br>$$<br>得到的结果是</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/67007347.jpg" alt=""></p>
+<p>这样就将原始的样本数据从n维特征变成了k维特征，这k维就是原始特征在k维上的投影。</p>
+<p>下面的图描述了上面的过程：</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/59706732.jpg" alt=""></p>
+<p>原先所有数据是分布在x-y这个坐标系上，+表示的是样本数据。差不多是对角线上的两条线分别代表了两个<strong>正交的特征向量</strong>。由于<strong>协方差矩阵是对称的，因此其特征向量正交</strong>。然后我们将原有的样本数据投影到这个新的坐标系中去，得到转换后的数据：</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/19248941.jpg" alt=""></p>
+<p>从上面的图我们可以看出，在新的坐标系中，x轴基本就可以表示原有的样本数据特征。而整个过程，看起来有点像是将坐标系做了旋转。如果当k=1的时候，上面数据就只会变成一维的数据。而当原有的数据维度很高的时候，有时候为了可视化操作，我们就会对其行PCA降维。</p>
+</li>
+</ul>
+<h5 id="3-PCA理论基础"><a href="#3-PCA理论基础" class="headerlink" title="3. PCA理论基础"></a>3. PCA理论基础</h5><p>之前我们提到了，我们希望新的超平面具备<strong>最大可分性</strong>和<strong>最近重构性</strong>这两个特征。实际上根据这两个特征，能够分别得到主成分分析的两种等价推导。</p>
+<ul>
+<li><p>最大可分性：最大方差理论</p>
+<p>样本点在这个超平面上的投影尽可能尽量分开，即投影后的样本之间的方差要最大化。假设现在有五个样本分布在x-y坐标系下，如下图</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/84677005.jpg" alt=""></p>
+<p>投影的计算过程如下：</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/4638701.jpg" alt=""></p>
+<p>红色点表示某一个样本点$x^{(i)}$，蓝色点表示 $x^{(i)}$在超平面u上的投影，在这里u是直线的斜率，也是直线的方向向量，且是单位向量。蓝色的点$x^{(i)}$在u上的投影带你，离原点的距离是($x^{(i)}$, u)，即$(x^{(i))^Tu}$或者$u^Tx^{(i)}$，而<strong>蓝色点到原点的距离，就是在蓝色坐标轴上的坐标</strong>。由于这些样本点的<strong>每一维的特征均值都是0</strong>（之前归一化过），因此投影到u上的样本点的均值仍然是0.</p>
+<p>如果我们将这这五个样本投影到某一个维度上，即从二维投影到一维上。这里为了比较不同效果，分别选了一条过原点的直线表示。如下图</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/68674376.jpg" alt=""></p>
+<p>从上面两幅图可以看出，左边的图上的样本间的距离比右边的要大，即左边投影后的样本点之间的方差最大，为：</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/46965569.jpg" alt=""></p>
+<p>最后的一个等式中，中间那部分恰好是求协方差的公式(这里用m，而不是m-1)，所以我们用$\lambda$表示左边部分，即样本点之间的方差:<br>$$<br>\lambda = \frac 1 m \sum_{i=1}^m(u^Tx^{(i)})^2<br>$$<br>用$\sum$表示中间部分：<br>$$<br>\sum = \frac 1 m \sum_{i=1}^m(u^Tx^{(i)})^2<br>$$<br>那么上面的式子可以改写为：<br>$$<br>\lambda = u^T\sum u<br>$$<br>之前提到了u是超平面的单位向量，即有$u^Tu = 1$，将上面左右两边的式子都乘以u，可得：<br>$$<br>u\lambda = \lambda u= uu^T\sum u = \sum u<br>$$<br>即$\sum u = \lambda u$，所以$\lambda$就是$\sum$的特征值，u是特征向量。最佳的投影直线是特征值$\lambda$最大时对应的特征向量，其次是$\lambda$第二大对应的特征向量，依次类推。</p>
+<p>因此只需要对协方差矩阵进行特征值分解，得到的前k大特征值对应的特征向量就是最佳的k维新特征，而且这k维新特征是正交的。得到前k个u以后，就可将样例$x^{(i)}$表示为下面的新样本：</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/5170777.jpg" alt=""></p>
+<p>其中的第j维就是$x^{(i)}$在$u_j$上的投影。通过选取最大的k个u，使得方差较小的特征（如噪声）被丢弃。</p>
+</li>
+<li><p>最近重构性：最小平方误差理论</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/75243202.jpg" alt=""></p>
+<p>假设现在选的超平面是L(这个例子中是直线)，那么某一样本$x_k$到L的垂直距离为d’，那么有所有点到该直线的距离为：<br>$$<br>\sum_{k=1}^n||(x_k’ - x_k)||^2<br>$$<br>上面这个公式称作最小平方误差(Least Squared Erroe)</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PCA</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/17/Machine-Learning-PCA/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Machine-Learning-支持向量机" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -943,79 +1087,6 @@
 
 
   
-    <article id="post-字符串搜索算法-KMP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/15/字符串搜索算法-KMP/">字符串搜索算法 - KMP</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/15/字符串搜索算法-KMP/" class="archive-article-date">
-  	<time datetime="2017-03-15T06:48:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-理解一：部分匹配表-已匹配数字"><a href="#1-理解一：部分匹配表-已匹配数字" class="headerlink" title="1. 理解一：部分匹配表+已匹配数字"></a>1. 理解一：部分匹配表+已匹配数字</h4><h5 id="1-1-Partial-Match-Table"><a href="#1-1-Partial-Match-Table" class="headerlink" title="1.1 Partial Match Table"></a>1.1 Partial Match Table</h5><p><img src="http://p1.bpimg.com/567571/c8cfb90db5bdf1e6.png" alt=""></p>
-<p>上来先上个结论，这个先暂时不管怎么生成，用于KMP表的移动。</p>
-<blockquote>
-<p>移动位数 = 已匹配的字符数 - 对应的部分匹配值</p>
-</blockquote>
-<p><img src="http://p1.bpimg.com/567571/0ebcc136f30708e2.png" alt=""></p>
-<p>匹配到了第六个字符B，B在上表中的值是2，已经匹配的字符数是6</p>
-<p>所以移动的位数是 6 - 2 = 4，将搜索词向后移动4位。</p>
-<p><img src="http://p1.bpimg.com/567571/cbea8594445a6afe.png" alt=""></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/15/字符串搜索算法-KMP/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1140,10 +1211,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
@@ -1152,7 +1219,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1160,7 +1227,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
             
             <div class="clearfix"></div>

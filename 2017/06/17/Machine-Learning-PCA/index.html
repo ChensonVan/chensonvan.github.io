@@ -6,35 +6,35 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://chenson.com">
-  <title>Machine Learning - Recommender Systems  | Vane&#39;s Blog</title>
+  <title>Machine Learning - PCA | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. What is Recommender Systems对于推荐系统的定义，我们先举几个例子来理解一下。  电影网站给用户推荐电影，可以根据该用户以往的评分，比如给浪漫爱情电影评分高，给动作片评分较低，那么系统可以根据这些信息，给用户推荐偏向浪漫爱情的电影 如果是新用户呢？我们没有该用户的评分信息。那么我们可以根据整个系统中，某些电影评分较高进行推荐 那么如果是新网站，新用户呢？  以上例子，">
-<meta name="keywords" content="Machine Learning">
+  <meta name="description" content="1. PCAPCA(Principal Components Analysis)是主成成分分析，之前也叫做Pricipal Factor Analysis。顾名思义就是分析数据里面的主要部分，是最常用的一种降维方法。那么为什么需要降维呢？ 因为在真实的训练数据中，总是会存在各种冗余的数据  比如说拿到一个汽车的样本，里面既有以“千米/每小时”度量的最大速度特征，也有“英里/小时”的最大速度特征，显">
+<meta name="keywords" content="Machine Learning,PCA">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Machine Learning - Recommender Systems ">
-<meta property="og:url" content="http://chenson.com/2017/03/02/Machine-Learning-Recommender-Systems/index.html">
+<meta property="og:title" content="Machine Learning - PCA">
+<meta property="og:url" content="http://chenson.com/2017/06/17/Machine-Learning-PCA/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="1. What is Recommender Systems对于推荐系统的定义，我们先举几个例子来理解一下。  电影网站给用户推荐电影，可以根据该用户以往的评分，比如给浪漫爱情电影评分高，给动作片评分较低，那么系统可以根据这些信息，给用户推荐偏向浪漫爱情的电影 如果是新用户呢？我们没有该用户的评分信息。那么我们可以根据整个系统中，某些电影评分较高进行推荐 那么如果是新网站，新用户呢？  以上例子，">
-<meta property="og:image" content="http://p1.bpimg.com/567571/47a077979840183f.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/783c179fd4d4c3ff.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/7480a00094b686af.png">
-<meta property="og:image" content="http://i1.piimg.com/567571/aa7db7ebd8562ccf.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/fdc2b5b0affa21ef.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/9680507237900090.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/fa32ae15048c3b75.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/0afd72de7eca2c2d.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/d14e3ed20060b507.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/5b7b9e072029ae09.png">
-<meta property="og:image" content="http://i1.piimg.com/567571/cf1b4e1d7822228e.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/049268860c169449.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/6d3b0fd8406f42e4.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/7a511dff9e71cea6.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/0eb45a842e55e55f.png">
-<meta property="og:updated_time" content="2017-05-15T08:41:00.000Z">
+<meta property="og:description" content="1. PCAPCA(Principal Components Analysis)是主成成分分析，之前也叫做Pricipal Factor Analysis。顾名思义就是分析数据里面的主要部分，是最常用的一种降维方法。那么为什么需要降维呢？ 因为在真实的训练数据中，总是会存在各种冗余的数据  比如说拿到一个汽车的样本，里面既有以“千米/每小时”度量的最大速度特征，也有“英里/小时”的最大速度特征，显">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-17/80029200.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-17/5702419.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-17/93944424.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-17/81502834.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-17/24538678.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-17/65604425.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-17/67007347.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-17/59706732.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-17/19248941.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-17/84677005.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-17/4638701.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-17/68674376.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-17/46965569.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-17/5170777.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-17/75243202.jpg">
+<meta property="og:updated_time" content="2017-06-17T12:59:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Machine Learning - Recommender Systems ">
-<meta name="twitter:description" content="1. What is Recommender Systems对于推荐系统的定义，我们先举几个例子来理解一下。  电影网站给用户推荐电影，可以根据该用户以往的评分，比如给浪漫爱情电影评分高，给动作片评分较低，那么系统可以根据这些信息，给用户推荐偏向浪漫爱情的电影 如果是新用户呢？我们没有该用户的评分信息。那么我们可以根据整个系统中，某些电影评分较高进行推荐 那么如果是新网站，新用户呢？  以上例子，">
-<meta name="twitter:image" content="http://p1.bpimg.com/567571/47a077979840183f.png">
+<meta name="twitter:title" content="Machine Learning - PCA">
+<meta name="twitter:description" content="1. PCAPCA(Principal Components Analysis)是主成成分分析，之前也叫做Pricipal Factor Analysis。顾名思义就是分析数据里面的主要部分，是最常用的一种降维方法。那么为什么需要降维呢？ 因为在真实的训练数据中，总是会存在各种冗余的数据  比如说拿到一个汽车的样本，里面既有以“千米/每小时”度量的最大速度特征，也有“英里/小时”的最大速度特征，显">
+<meta name="twitter:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-17/80029200.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -168,259 +168,102 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Machine-Learning-Recommender-Systems" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Machine-Learning-PCA" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Machine Learning - Recommender Systems 
+      Machine Learning - PCA
     </h1>
   
 
         
-        <a href="/2017/03/02/Machine-Learning-Recommender-Systems/" class="archive-article-date">
-  	<time datetime="2017-03-02T11:05:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-02</time>
+        <a href="/2017/06/17/Machine-Learning-PCA/" class="archive-article-date">
+  	<time datetime="2017-06-17T12:59:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-What-is-Recommender-Systems"><a href="#1-What-is-Recommender-Systems" class="headerlink" title="1. What is Recommender Systems"></a>1. What is Recommender Systems</h4><p>对于推荐系统的定义，我们先举几个例子来理解一下。</p>
+        <h5 id="1-PCA"><a href="#1-PCA" class="headerlink" title="1. PCA"></a>1. PCA</h5><p>PCA(Principal Components Analysis)是主成成分分析，之前也叫做Pricipal Factor Analysis。顾名思义就是分析数据里面的主要部分，是最常用的一种降维方法。那么为什么需要降维呢？</p>
+<p>因为在真实的训练数据中，总是会存在各种冗余的数据</p>
 <ul>
-<li>电影网站给用户推荐电影，可以根据该用户以往的评分，比如给浪漫爱情电影评分高，给动作片评分较低，那么系统可以根据这些信息，给用户推荐偏向浪漫爱情的电影</li>
-<li>如果是新用户呢？我们没有该用户的评分信息。那么我们可以根据整个系统中，某些电影评分较高进行推荐</li>
-<li>那么如果是新网站，新用户呢？</li>
+<li>比如说拿到一个汽车的样本，里面既有以“千米/每小时”度量的最大速度特征，也有“英里/小时”的最大速度特征，显然这两个特征有一个多余</li>
+<li>拿到一个数学系的本科生期末考试成绩单，里面有三列，一列是对数学的兴趣程度，一列是复习时间，还有一列是考试成绩。我们知道要学好数学，需要有浓厚的兴趣，所以第二项与第一项强相关，第三项和第二项也是强相关。那是不是可以合并第一项和第二项呢？</li>
+<li>这个与第二个有点类似，假设在IR中我们建立的文档-词项矩阵中，有两个词项为“learn”和“study”，在传统的向量空间模型中，认为两者独立。然而从语义的角度来讲，两者是相似的，而且两者出现频率也类似，是不是可以合成为一个特征呢？</li>
 </ul>
-<p>以上例子，我们可以把推荐系统分成两类。</p>
+<p>因为这些冗余的数据，常常会导致我们的模型过度拟合。这个时候，就需要一种特征降维的方法来减少特征数，减少噪音和冗余，减少过度拟合的可能性。而PCA就是降维的算法之一，将原先的数据从n维映射到k维上(k&lt;n)。这里<strong>k维是全新的正交特征</strong>，这k维特征成为主元，是重新构造出出来的k维特征，而不是简单的从n维当中移去了(n-k)维，然后剩下主要的k维特征。</p>
+<p>那么请思考一个问题：对于正交属性空间中的样本点，如何用一个超平面(直线的高维推广)，对所有的样本进行恰当的表达？那么需要找到怎么样的一个超平面来分割呢？一般需要具备如下特征：</p>
 <ul>
-<li><p><strong>Content-based systems</strong></p>
-<p>Content-based，就是基于已有的信息进行推荐。具体哪些信息呢？在上面的电影推荐系统中，有两类信息需要分析。</p>
-<p>第一，是User的评分信息，比如给爱情片评分高，给动作片评分低。</p>
-<p>第二，是Movie的特征信息，比如这部电影偏向爱情片多一些，但也有一部分搞笑。所以在A（爱情片）和B（搞笑片）中， A的权重更高，B的较低</p>
-<p>基于以上两部分信息，我们可以给用户推荐他所喜欢的电影。</p>
-<p><img src="http://p1.bpimg.com/567571/47a077979840183f.png" alt=""></p>
-<a id="more"></a>
-</li>
-<li><p><strong>Collaborative filterring systems</strong></p>
-<p>协同过滤器，则是基于用户/物品之间的相似度进行推荐的。即用户A和用户B都喜欢爱情、浪漫电影，我们就可以把用户A评分过的爱情浪漫电影，推荐给用户B。</p>
-<p><img src="http://p1.bpimg.com/567571/783c179fd4d4c3ff.png" alt=""></p>
-</li>
+<li>最近重构性：样本点到这个超平面的距离都足够近</li>
+<li>最大可分性：样本点在这个超平面上的投影尽可能的要分开，而不是重叠一起</li>
 </ul>
-<h4 id="2-Content-based-systems"><a href="#2-Content-based-systems" class="headerlink" title="2. Content-based systems"></a>2. Content-based systems</h4><h5 id="2-1-Problem-Analysis"><a href="#2-1-Problem-Analysis" class="headerlink" title="2.1 Problem Analysis"></a>2.1 Problem Analysis</h5><p>以电影推荐系统为例，假设我们已经对系统中的电影特征有了较为完善，即我们知道某部电影属于爱情片多少分，属于动作片多少分。</p>
-<p>那么我们现在以Alice为例，她对两部爱情片评分比较高，对于两部动作片评分为0。那么系统就可以给Alice推荐<strong>偏向爱情浪漫的，且不怎么属于动作片</strong>的电影。</p>
-<table>
-<thead>
-<tr>
-<th>Movies</th>
-<th style="text-align:center">Alice - θ(1)</th>
-<th style="text-align:center">Bob - θ(2)</th>
-<th style="text-align:center">Carol - θ(3)</th>
-<th style="text-align:center">Dave - θ(4)</th>
-<th style="text-align:center">romance - x1</th>
-<th style="text-align:center">action -x2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Love at last</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1.0</td>
-<td style="text-align:center">0.0</td>
-</tr>
-<tr>
-<td>Romance forever</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0.9</td>
-<td style="text-align:center">0.1</td>
-</tr>
-<tr>
-<td>Cute puppies of love</td>
-<td style="text-align:center">？</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">0.99</td>
-<td style="text-align:center">0.01</td>
-</tr>
-<tr>
-<td>Nonstop car chases</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">0.0</td>
-<td style="text-align:center">1.0</td>
-</tr>
-<tr>
-<td>Sword vs. karate</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">0.2</td>
-<td style="text-align:center">0.8</td>
-</tr>
-</tbody>
-</table>
-<h5 id="2-2-Optimization-Objective"><a href="#2-2-Optimization-Objective" class="headerlink" title="2.2 Optimization Objective"></a>2.2 Optimization Objective</h5><p>实际上我们已经假设之前对所有电影的特征进行了统计，所以此时有电影特征向量X，以及用户对于电影的评分Y向量。根据此时已有的信息，我们需要求出theta的值。所以能够对于那么没有评分过的电影，根据theta和x求出分数y。</p>
-<p>因为一开始theat的值是随机的，所以我们用<strong>Linear Regression</strong>的方法，不断减少cost function的值求出theta。</p>
-<p>值得注意的是，因为这里是多个用户，每一个用户我们求出一个theta值。最后对于多个用户，我们需要求出多个<strong>theta值</strong>。</p>
-<p>Actually, we can assume that we have known all features about the all movies, that is x1, x2, …, xn. And we want to initiate some random values for all theta for all users. As the feature values was fixed, we training the training set by minimizing cost function to get right value of theta.</p>
-<p><img src="http://p1.bqimg.com/567571/7480a00094b686af.png" alt=""></p>
-<p><img src="http://i1.piimg.com/567571/aa7db7ebd8562ccf.png" alt=""></p>
-<h5 id="2-2-Gradient-descent-update"><a href="#2-2-Gradient-descent-update" class="headerlink" title="2.2 Gradient descent update"></a>2.2 Gradient descent update</h5><p><img src="http://p1.bqimg.com/567571/fdc2b5b0affa21ef.png" alt=""></p>
-<h5 id="2-3-Gradient-descent-in-Logistic-Regression"><a href="#2-3-Gradient-descent-in-Logistic-Regression" class="headerlink" title="2.3 Gradient descent in Logistic Regression"></a>2.3 Gradient descent in Logistic Regression</h5><p><img src="http://p1.bpimg.com/567571/9680507237900090.png" alt=""></p>
-<p><strong>Question:</strong></p>
-<ol>
-<li><p>Why we don’t need $\frac 1 m$?</p>
-<p>Anwser: As there are only <strong><em>one user</em></strong></p>
-</li>
-<li><p>However, in the above example, we have known the values of all features, but for sometime, we have no idea about that. It means that we have to <strong><em>learn theta and features at the same time</em></strong></p>
-</li>
-</ol>
-<h4 id="3-Collaborative-filtering"><a href="#3-Collaborative-filtering" class="headerlink" title="3. Collaborative filtering"></a>3. Collaborative filtering</h4><h5 id="3-1-Proble-motivation"><a href="#3-1-Proble-motivation" class="headerlink" title="3.1 Proble motivation"></a>3.1 Proble motivation</h5><table>
-<thead>
-<tr>
-<th>Movies</th>
-<th style="text-align:center">Alice - θ(1)</th>
-<th style="text-align:center">Bob - θ(2)</th>
-<th style="text-align:center">Carol - θ(3)</th>
-<th style="text-align:center">Dave - θ(4)</th>
-<th style="text-align:center">romance - x1</th>
-<th style="text-align:center">action - x2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>x(1) - Love at last</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">?</td>
-</tr>
-<tr>
-<td>x(2) -Romance forever</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">?</td>
-</tr>
-<tr>
-<td>x(3) -Cute puppies of love</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">?</td>
-</tr>
-<tr>
-<td>x(4) -Nonstop car chases</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">?</td>
-</tr>
-<tr>
-<td>x(5) -Sword vs. karate</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">?</td>
-<td style="text-align:center">?</td>
-</tr>
-</tbody>
-</table>
-<h5 id="3-2-How-to-do"><a href="#3-2-How-to-do" class="headerlink" title="3.2 How to do"></a>3.2 How to do</h5><ul>
-<li>在之前部分中，我们了解到了content-based，是<strong>已知 x 和 y，求 theta</strong>。</li>
-</ul>
-<p>Assume:<br>$$<br>\theta^{(1)} = \begin{bmatrix} 0 \ 5 \ 0 \end{bmatrix},  \space\space<br>\theta^{(2)} = \begin{bmatrix} 0 \ 5 \ 0 \end{bmatrix},  \space\space<br>\theta^{(3)} = \begin{bmatrix} 0 \ 0 \ 5 \end{bmatrix},  \space\space<br>\theta^{(4)} = \begin{bmatrix} 0 \ 0 \ 5 \end{bmatrix},  \space\space<br>x^{(1)} = \begin{bmatrix} 1 \ 1.0 \ 0.0 \end{bmatrix}<br>$$<br>For Movie 1, we can calculate the result of Movie1 rating by all users.<br>$$<br>\theta^{(1)} * x^{(1)} \approx 5    \\\<br>\theta^{(2)} * x^{(1)} \approx 5    \\\<br>\theta^{(3)} * x^{(1)} \approx 0    \\\<br>\theta^{(4)} * x^{(1)} \approx 0<br>$$</p>
+<h5 id="2-计算过程"><a href="#2-计算过程" class="headerlink" title="2. 计算过程"></a>2. 计算过程</h5><p>那么如何来构建呢？举个栗子：</p>
+<p>现在有这么一组数据，x和y是两个特征</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/80029200.jpg" alt=""></p>
 <ul>
-<li><p>但是对于有些情况，我们并不知道x的特征值，该怎么办呢？</p>
-<p>逆向思考，我们也可以<strong>通过 theat 和 y，来求 x 的值</strong>。</p>
+<li><p><strong>第一步</strong>：求出所有维度的平均值<br>上面的例子中，x的平均值是1.81，y的平均值是1.91</p>
+</li>
+<li><p><strong>第二步</strong>：中心化，即$\sumx_i=0$.<br>将所有的样本都减去这俩个平均值。比如第一个样本(2.5, 2.4) - (1.81, 1.91) = (0.69, 0.49)<br><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/5702419.jpg" alt=""></p>
+</li>
+<li><p><strong>第三步</strong>：求特征的协方差矩阵<br>如果有x, y, z三个特征，分别需要求cov(x, x), cov(x, y), cov(x, z), cov(y, y), cov(y, z), cov(z, z)这几个。</p>
+<ul>
+<li>当协方差大于0的时候，表示x和y若有一个增加，另一个也会增加。</li>
+<li>当协方差下于0的时候，表示一个增加，另一个会减少</li>
+<li>当协方差等于0的时候，表示来者之间是独立的。</li>
+<li>协方差的绝对值越大，两者对彼此的影响也就越大</li>
+</ul>
+<p>具体如下图</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/93944424.jpg" alt=""></p>
+<p>而我们上面的例子中只有x和y两个变量，即</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/81502834.jpg" alt=""></p>
+</li>
+<li><p><strong>第四步</strong>：求协方差的<strong>特征值</strong>和<strong>特征向量</strong>，得到</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/24538678.jpg" alt=""></p>
+<p>上面是两个特征值，下面是对应的特征向量。</p>
+<p>比如特征值0.0490833989对应的特征向量为(-0.735178656, 0.677873399)T，这里的特征向量都归一化为单位单位向量</p>
+<p>求协方差的步骤：</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/65604425.jpg" alt=""></p>
+</li>
+<li><p><strong>第五步</strong>：将特征值按照从大到小的顺序排列，选择其中个最大的k个，然后将其对应的k个特征向量分别作为列向量组成特征向量矩阵。</p>
+<p>上面的例子中，特征值只有两个，我们需要选择其中最大的那个。所以这里我们选择1.28402771，对应的特征向量是 (-0.677873399, -0.735178656)T.</p>
+</li>
+<li><p><strong>第六步</strong>：将样本投影到选取的特征向量上去。</p>
+<p>假设样本数量为m，特征数量为n，减去均值后的样本矩阵为DataAdjust(m*n)，协方差矩阵是n*m，选取的k个特征向量组成的矩阵为EigenVectors(n*k)。那么投影后的数据FinalData为<br>$$<br>FinalData(m\ast k) = DataAdjust(m\ast n) \times EigenVectors(n \ast k)<br>$$<br>所以上面的例子中<br>$$<br>FinalData(10\ast 1) = DataAdjust(10\ast 2) \times EigenVectors(-0.677873399, -0.735178656)^T<br>$$<br>得到的结果是</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/67007347.jpg" alt=""></p>
+<p>这样就将原始的样本数据从n维特征变成了k维特征，这k维就是原始特征在k维上的投影。</p>
+<p>下面的图描述了上面的过程：</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/59706732.jpg" alt=""></p>
+<p>原先所有数据是分布在x-y这个坐标系上，+表示的是样本数据。差不多是对角线上的两条线分别代表了两个<strong>正交的特征向量</strong>。由于<strong>协方差矩阵是对称的，因此其特征向量正交</strong>。然后我们将原有的样本数据投影到这个新的坐标系中去，得到转换后的数据：</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/19248941.jpg" alt=""></p>
+<p>从上面的图我们可以看出，在新的坐标系中，x轴基本就可以表示原有的样本数据特征。而整个过程，看起来有点像是将坐标系做了旋转。如果当k=1的时候，上面数据就只会变成一维的数据。而当原有的数据维度很高的时候，有时候为了可视化操作，我们就会对其行PCA降维。</p>
 </li>
 </ul>
+<h5 id="3-PCA理论基础"><a href="#3-PCA理论基础" class="headerlink" title="3. PCA理论基础"></a>3. PCA理论基础</h5><p>之前我们提到了，我们希望新的超平面具备<strong>最大可分性</strong>和<strong>最近重构性</strong>这两个特征。实际上根据这两个特征，能够分别得到主成分分析的两种等价推导。</p>
 <ul>
-<li><strong>那么对于 theta和x的值都不知道的情况下呢？</strong></li>
+<li><p>最大可分性：最大方差理论</p>
+<p>样本点在这个超平面上的投影尽可能尽量分开，即投影后的样本之间的方差要最大化。假设现在有五个样本分布在x-y坐标系下，如下图</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/84677005.jpg" alt=""></p>
+<p>投影的计算过程如下：</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/4638701.jpg" alt=""></p>
+<p>红色点表示某一个样本点$x^{(i)}$，蓝色点表示 $x^{(i)}$在超平面u上的投影，在这里u是直线的斜率，也是直线的方向向量，且是单位向量。蓝色的点$x^{(i)}$在u上的投影带你，离原点的距离是($x^{(i)}$, u)，即$(x^{(i))^Tu}$或者$u^Tx^{(i)}$，而<strong>蓝色点到原点的距离，就是在蓝色坐标轴上的坐标</strong>。由于这些样本点的<strong>每一维的特征均值都是0</strong>（之前归一化过），因此投影到u上的样本点的均值仍然是0.</p>
+<p>如果我们将这这五个样本投影到某一个维度上，即从二维投影到一维上。这里为了比较不同效果，分别选了一条过原点的直线表示。如下图</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/68674376.jpg" alt=""></p>
+<p>从上面两幅图可以看出，左边的图上的样本间的距离比右边的要大，即左边投影后的样本点之间的方差最大，为：</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/46965569.jpg" alt=""></p>
+<p>最后的一个等式中，中间那部分恰好是求协方差的公式(这里用m，而不是m-1)，所以我们用$\lambda$表示左边部分，即样本点之间的方差:<br>$$<br>\lambda = \frac 1 m \sum_{i=1}^m(u^Tx^{(i)})^2<br>$$<br>用$\sum$表示中间部分：<br>$$<br>\sum = \frac 1 m \sum_{i=1}^m(u^Tx^{(i)})^2<br>$$<br>那么上面的式子可以改写为：<br>$$<br>\lambda = u^T\sum u<br>$$<br>之前提到了u是超平面的单位向量，即有$u^Tu = 1$，将上面左右两边的式子都乘以u，可得：<br>$$<br>u\lambda = \lambda u= uu^T\sum u = \sum u<br>$$<br>即$\sum u = \lambda u$，所以$\lambda$就是$\sum$的特征值，u是特征向量。最佳的投影直线是特征值$\lambda$最大时对应的特征向量，其次是$\lambda$第二大对应的特征向量，依次类推。</p>
+<p>因此只需要对协方差矩阵进行特征值分解，得到的前k大特征值对应的特征向量就是最佳的k维新特征，而且这k维新特征是正交的。得到前k个u以后，就可将样例$x^{(i)}$表示为下面的新样本：</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/5170777.jpg" alt=""></p>
+<p>其中的第j维就是$x^{(i)}$在$u_j$上的投影。通过选取最大的k个u，使得方差较小的特征（如噪声）被丢弃。</p>
+</li>
+<li><p>最近重构性：最小平方误差理论</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/75243202.jpg" alt=""></p>
+<p>假设现在选的超平面是L(这个例子中是直线)，那么某一样本$x_k$到L的垂直距离为d’，那么有所有点到该直线的距离为：<br>$$<br>\sum_{k=1}^n||(x_k’ - x_k)||^2<br>$$<br>上面这个公式称作最小平方误差(Least Squared Erroe)</p>
+</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">对比特征</th>
-<th style="text-align:center">Linear Regression</th>
-<th style="text-align:center">Collaborative filtering</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">特性向量X</td>
-<td style="text-align:center">已知数据</td>
-<td style="text-align:center">待求解数据</td>
-</tr>
-<tr>
-<td style="text-align:center">权重 θ</td>
-<td style="text-align:center">待求解数据</td>
-<td style="text-align:center">待求解数据</td>
-</tr>
-<tr>
-<td style="text-align:center">y值</td>
-<td style="text-align:center">已知数据</td>
-<td style="text-align:center">已知数据</td>
-</tr>
-</tbody>
-</table>
-<h5 id="3-3-Optimization-Algorithm"><a href="#3-3-Optimization-Algorithm" class="headerlink" title="3.3 Optimization Algorithm"></a>3.3 Optimization Algorithm</h5><ul>
-<li>For a given value of theta, we can <strong>minimize the cost function to learn the value of xi</strong></li>
-</ul>
-<ul>
-<li>For a given value of xi, we can also do that to <strong>learn the value of theata</strong>.</li>
-</ul>
-<p>$$<br>θ -&gt; x -&gt; θ -&gt; x -&gt; θ -&gt; x -&gt; θ -&gt; x -&gt; …<br>$$</p>
-<p>Actually, these two steps are <strong>Linear Regression</strong>, we shoud do that <strong>simultaneously</strong> to update theta and x.</p>
-<p><img src="http://p1.bqimg.com/567571/fa32ae15048c3b75.png" alt=""></p>
-<h5 id="3-4-Collaborative-filtering-Optimization-Algorithm"><a href="#3-4-Collaborative-filtering-Optimization-Algorithm" class="headerlink" title="3.4 Collaborative filtering Optimization Algorithm"></a>3.4 Collaborative filtering Optimization Algorithm</h5><p><img src="http://p1.bqimg.com/567571/0afd72de7eca2c2d.png" alt=""></p>
-<p>实际上，上面是两个 <strong>LR</strong>的问题，我们可以将上面两步合并到一起，这个就是<strong>collaborative filterring</strong>， 此时的optimizatino object 就从 J(theta) 和 J(X)  变为了 J(theta, X)。</p>
-<p><img src="http://p1.bpimg.com/567571/d14e3ed20060b507.png" alt=""></p>
-<p>具体步骤如下</p>
-<p><img src="http://p1.bqimg.com/567571/5b7b9e072029ae09.png" alt=""></p>
-<h5 id="3-5-Vectorization-Low-rank-matrix-factorization"><a href="#3-5-Vectorization-Low-rank-matrix-factorization" class="headerlink" title="3.5 Vectorization: Low rank matrix factorization"></a>3.5 Vectorization: Low rank matrix factorization</h5><p>首先，我们先把评分Y用向量表示出来，同时表示为Theta和X两个矩阵的乘积<br>$$<br>Y= \begin{bmatrix} 5 &amp; 5 &amp; 0 &amp; 0 \ 5 &amp; ? &amp; ?&amp; 0 \ ? &amp; 4 &amp; 0 &amp; ? \ 0 &amp; 0 &amp; 5 &amp; 4 \ 0 &amp;  0 &amp; 5 &amp; 0\end{bmatrix}  =<br>\begin{bmatrix}<br>(\theta^{(1)})^T(x^{(1)}) &amp; (\theta^{(2)})^T(x^{(1)}) &amp; … &amp; (\theta^{(n_u)})^T(x^{(1)}) \\<br>(\theta^{(1)})^T(x^{(2)}) &amp; (\theta^{(2)})^T(x^{(2)}) &amp; … &amp; (\theta^{(n_u)})^T(x^{(2)}) \\<br>… &amp; … &amp; … &amp; … \\<br>(\theta^{(1)})^T(x^{(n_m)}) &amp; (\theta^{(2)})^T(x^{(n_m)}) &amp; … &amp; (\theta^{(n_u)})^T(x^{(n_m)})<br>\end{bmatrix} = X * \Theta’, R \in (n_m × n_u)<br>$$</p>
-<p>$$<br>X = \begin{bmatrix}<br>—(x^{(1)})^T—     \\<br>—(x^{(2)})^T—    \\<br>…    \\<br>—(x^{(n_m)})^T—<br>\end{bmatrix},<br>x^{(n_m)} = \begin{bmatrix}<br>x^{(n_m)}_1 \ x^{(n_m)}_2 \ … \ x^{(n_m)}_n<br>\end{bmatrix}, R \in (n_m × n)<br>$$</p>
-<p>$$<br>\Theta = \begin{bmatrix}<br>—(\theta^{(1)})^T—     \\<br>—(\theta^{(2)})^T—    \\<br>…    \\<br>—(\theta^{(n_u)})^T—<br>\end{bmatrix},<br>\theta^{(n_u)} = \begin{bmatrix}<br>\theta^{(n_u)}_1 \ \theta^{(n_u)}_2 \ … \ \theta^{(n_u)}_n<br>\end{bmatrix}, R \in (n_u × n)<br>$$</p>
-<h5 id="3-6-Mean-Normalization"><a href="#3-6-Mean-Normalization" class="headerlink" title="3.6 Mean Normalization"></a>3.6 Mean Normalization</h5><p>对于那些新注册用户，系统中没有记录他们的偏好，则采用以下方法。</p>
-<p>先计算出每部电影评分的平均值mu，然后把所有的评分都减去平均值（此后处理过的评分平均值为0）。虽然这样做对有评分记录用户是多余的，但却可以吧没有评分记录的用户给统一进来，避免全是0的情况。</p>
-<p><img src="http://i1.piimg.com/567571/cf1b4e1d7822228e.png" alt=""></p>
-<h4 id="4-Implement-Algorithm"><a href="#4-Implement-Algorithm" class="headerlink" title="4. Implement Algorithm"></a>4. Implement Algorithm</h4><h5 id="4-1-Cost-Function-without-Regularization"><a href="#4-1-Cost-Function-without-Regularization" class="headerlink" title="4.1  Cost Function without Regularization"></a>4.1  Cost Function without Regularization</h5><p><img src="http://p1.bpimg.com/567571/049268860c169449.png" alt=""></p>
-<p><strong>Tips：</strong>这里需要计算的只是针对那些已经评分过的电影，对于用户没有评分过的不需要计算。</p>
-<h5 id="4-2-Collaborative-filtering-gradient"><a href="#4-2-Collaborative-filtering-gradient" class="headerlink" title="4.2 Collaborative filtering gradient"></a>4.2 Collaborative filtering gradient</h5><p><img src="http://p1.bqimg.com/567571/6d3b0fd8406f42e4.png" alt=""><br>$$<br>\frac {\partial J} {\partial x_k^{(1)}} , \frac {\partial J} {\partial x_k^{(2)}} , …, \frac {\partial J} {\partial x_k^{(n_m)}}     \space\space for \space each \space movie\\<br>\frac {\partial J} {\partial \theta_k^{(1)}} , \frac {\partial J} {\partial \theta_k^{(2)}} , …, \frac {\partial J} {\partial \theta_k^{(n_u)}}    \space\space for \space each \space user<br>$$<br><strong>Tips：</strong></p>
-<ol>
-<li>对于使用vectorization方法，最终只有两个for-loop，一个计算$X_{grad}$，一个计算$Theta_{grad}$</li>
-<li>如何对X和Theta求<strong>偏导数</strong>？</li>
-</ol>
-<p><img src="http://p1.bqimg.com/567571/7a511dff9e71cea6.png" alt=""><br>$$<br>(Theta_{grad}(i, :))^T = \begin{bmatrix}<br>\frac {\partial J} {\partial \theta^{(i)}_1}     \\<br>\frac {\partial J} {\partial \theta^{(i)}_2}    \\<br>…    \\<br>\frac {\partial J} {\partial \theta^{(i)}_n}<br>\end{bmatrix}<br>$$</p>
-<ol>
-<li>同样，我们只需考虑用户已经评分过的电影，用其作为训练样本</li>
-<li>因为Vectorization非常容易搞乱各个matrix，所以建议先整理一下各个matrix的size，计算时可以根据matrix的size进行计算。</li>
-</ol>
-<p><img src="http://p1.bqimg.com/567571/0eb45a842e55e55f.png" alt=""></p>
-<h5 id="4-3-Implementation"><a href="#4-3-Implementation" class="headerlink" title="4.3 Implementation"></a>4.3 Implementation</h5><p>注意这里并没有给出完整的代码 (Octave/Matlab)，都只是主要的部分。</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="comment">% Theta : nu x n</span></div><div class="line"><span class="comment">% X     : nm x n</span></div><div class="line"><span class="comment">% Y     : nm x nu</span></div><div class="line"><span class="comment">% R     : nm x nu</span></div><div class="line"></div><div class="line">pred = X * Theta';  <span class="comment">%nm x nu    '</span></div><div class="line">diff = pred - Y;</div><div class="line"></div><div class="line"><span class="comment">% Cost Function with regularization</span></div><div class="line">J = <span class="number">0.5</span> * sum(sum((diff.^<span class="number">2</span>) .* R));</div><div class="line">J = J + (lambda * <span class="number">0.5</span>) * sum(sum(Theta.^<span class="number">2</span>));    <span class="comment">% regularized term of theta.</span></div><div class="line">J = J + (lambda * <span class="number">0.5</span>) * sum(sum(X.^<span class="number">2</span>));        <span class="comment">% regularized term of x.</span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">% calculate X</span></div><div class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span> : num_movies,</div><div class="line">    <span class="comment">% the row vector of all users that have rated movie i</span></div><div class="line">    idx = <span class="built_in">find</span>(R(<span class="built_in">i</span>, :) == <span class="number">1</span>);   <span class="comment">% (1 * r)</span></div><div class="line"></div><div class="line">    <span class="comment">% the list of users who have rated on movie i</span></div><div class="line">    Theta_temp = Theta(idx, :); <span class="comment">% (r * n)</span></div><div class="line">    Y_temp = Y(<span class="built_in">i</span>, idx);         <span class="comment">% (1 * r)</span></div><div class="line">    X_temp = X(<span class="built_in">i</span>, :);           <span class="comment">% (1 * n)</span></div><div class="line"></div><div class="line">    <span class="comment">%            ((1 * n) * (n * r)     -(1 * r)) * (r * n)  = (1 * n)</span></div><div class="line">    X_grad(<span class="built_in">i</span>, :) = (X_temp * Theta_temp' - Y_temp) * Theta_temp;   <span class="comment">%'</span></div><div class="line"></div><div class="line">    <span class="comment">% regularization</span></div><div class="line">    X_grad(<span class="built_in">i</span>, :) = X_grad(<span class="built_in">i</span>, :) + lambda * X_temp;</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">% calculate Theta</span></div><div class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span> : num_users,</div><div class="line">    <span class="comment">% the row vector of all movies that user i has rated</span></div><div class="line">    idx = <span class="built_in">find</span>(R(:, <span class="built_in">i</span>) == <span class="number">1</span>)';   <span class="comment">% (1 * r)      '</span></div><div class="line"></div><div class="line">    Theta_temp = Theta(<span class="built_in">i</span>, :);   <span class="comment">% (1 * n)</span></div><div class="line">    Y_temp = Y(idx, <span class="built_in">i</span>);         <span class="comment">% (r * 1)</span></div><div class="line">    X_temp = X(idx, :);         <span class="comment">% (r * n)</span></div><div class="line"></div><div class="line">    <span class="comment">%                ((r * n) * (n * 1)     - (r * 1)) * (r * n) = (1 * n) </span></div><div class="line">    Theta_grad(<span class="built_in">i</span>, :) = (X_temp * Theta_temp' - Y_temp)' * X_temp; </div><div class="line"></div><div class="line">    <span class="comment">% regularization</span></div><div class="line">    Theta_grad(<span class="built_in">i</span>, :) = Theta_grad(<span class="built_in">i</span>, :) + lambda * Theta_temp;</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">grad = [X_grad(:); Theta_grad(:)];</div></pre></td></tr></table></figure>
-<p>​<br>​<br>​    </p>
 
       
 
@@ -461,6 +304,10 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PCA</a>
         		</li>
       		
 		</ul>
@@ -516,7 +363,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2017/03/02/Machine-Learning-Recommender-Systems/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2017/06/17/Machine-Learning-PCA/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -530,18 +377,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/03/07/Hadoop权威指南笔记（一）/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Hadoop权威指南笔记（一）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/03/02/Machine-Learning-SVM/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Machine Learning - SVM</div>
+    <a href="/2017/06/16/Machine-Learning-支持向量机/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Machine Learning - 支持向量机</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -555,7 +393,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Machine-Learning-Recommender-Systems" data-title="Machine Learning - Recommender Systems " data-url="http://chenson.com/2017/03/02/Machine-Learning-Recommender-Systems/"></div>
+	<div class="ds-thread" data-thread-key="Machine-Learning-PCA" data-title="Machine Learning - PCA" data-url="http://chenson.com/2017/06/17/Machine-Learning-PCA/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
