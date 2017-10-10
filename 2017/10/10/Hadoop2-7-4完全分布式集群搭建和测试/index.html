@@ -6,17 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://chenson.com">
-  <title>Vane&#39;s Blog</title>
+  <title>Hadoop2.7.4完全分布式集群搭建和测试 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Stay Hungry. Stay Foolish">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Vane&#39;s Blog">
-<meta property="og:url" content="http://chenson.com/index.html">
+  <meta name="description" content="1. 环境配置1.1 环境说明 1.2 修改机器名称和hosts等 vi /etc/sysconfig/network   1234HOSTNAME=hadoop-masterHOSTNAME=hadoop-salve1HOSTNAME=hadoop-salve2HOSTNAME=hadoop-salve3 执行 reboot 后生效  sudo vi /etc/hostname  1234# 相">
+<meta name="keywords" content="Hadoop">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop2.7.4完全分布式集群搭建和测试">
+<meta property="og:url" content="http://chenson.com/2017/10/10/Hadoop2-7-4完全分布式集群搭建和测试/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="Stay Hungry. Stay Foolish">
+<meta property="og:description" content="1. 环境配置1.1 环境说明 1.2 修改机器名称和hosts等 vi /etc/sysconfig/network   1234HOSTNAME=hadoop-masterHOSTNAME=hadoop-salve1HOSTNAME=hadoop-salve2HOSTNAME=hadoop-salve3 执行 reboot 后生效  sudo vi /etc/hostname  1234# 相">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-10-10/2122966.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-10-10/30569181.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-10-10/39973270.jpg">
+<meta property="og:updated_time" content="2017-10-10T08:28:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vane&#39;s Blog">
-<meta name="twitter:description" content="Stay Hungry. Stay Foolish">
+<meta name="twitter:title" content="Hadoop2.7.4完全分布式集群搭建和测试">
+<meta name="twitter:description" content="1. 环境配置1.1 环境说明 1.2 修改机器名称和hosts等 vi /etc/sysconfig/network   1234HOSTNAME=hadoop-masterHOSTNAME=hadoop-salve1HOSTNAME=hadoop-salve2HOSTNAME=hadoop-salve3 执行 reboot 后生效  sudo vi /etc/hostname  1234# 相">
+<meta name="twitter:image" content="http://on8r6i4gg.bkt.clouddn.com/17-10-10/2122966.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -150,16 +156,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Hadoop2-7-4完全分布式集群搭建和测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Hadoop2-7-4完全分布式集群搭建和测试" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/10/Hadoop2-7-4完全分布式集群搭建和测试/">Hadoop2.7.4完全分布式集群搭建和测试</a>
+    <h1 class="article-title" itemprop="name">
+      Hadoop2.7.4完全分布式集群搭建和测试
     </h1>
   
 
@@ -263,315 +267,31 @@
       
 
       
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/10/Hadoop2-7-4完全分布式集群搭建和测试/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Machine-Learning-PCA" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/17/Machine-Learning-PCA/">Machine Learning - PCA</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/17/Machine-Learning-PCA/" class="archive-article-date">
-  	<time datetime="2017-06-17T12:59:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="1-PCA"><a href="#1-PCA" class="headerlink" title="1. PCA"></a>1. PCA</h5><p>PCA(Principal Components Analysis)是主成成分分析，之前也叫做Pricipal Factor Analysis。顾名思义就是分析数据里面的主要部分，是最常用的一种降维方法。那么为什么需要降维呢？</p>
-<p>因为在真实的训练数据中，总是会存在各种冗余的数据</p>
-<ul>
-<li>比如说拿到一个汽车的样本，里面既有以“千米/每小时”度量的最大速度特征，也有“英里/小时”的最大速度特征，显然这两个特征有一个多余</li>
-<li>拿到一个数学系的本科生期末考试成绩单，里面有三列，一列是对数学的兴趣程度，一列是复习时间，还有一列是考试成绩。我们知道要学好数学，需要有浓厚的兴趣，所以第二项与第一项强相关，第三项和第二项也是强相关。那是不是可以合并第一项和第二项呢？</li>
-<li>这个与第二个有点类似，假设在IR中我们建立的文档-词项矩阵中，有两个词项为“learn”和“study”，在传统的向量空间模型中，认为两者独立。然而从语义的角度来讲，两者是相似的，而且两者出现频率也类似，是不是可以合成为一个特征呢？</li>
-</ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PCA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/17/Machine-Learning-PCA/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Machine-Learning-支持向量机" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/16/Machine-Learning-支持向量机/">Machine Learning - 支持向量机</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/16/Machine-Learning-支持向量机/" class="archive-article-date">
-  	<time datetime="2017-06-16T09:21:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="1-Margins"><a href="#1-Margins" class="headerlink" title="1. Margins"></a>1. Margins</h5><ul>
-<li><p>Logistic Regression</p>
-<p>​在logistic regression中, 如果我们要判断一个点是属于0还是1概率是θ</p>
-</li>
-</ul>
-<p>$$<br>p(y=1 | x; \theta)    \\<br>h_\theta(x) = g(\theta^T x)<br>$$</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-15/22154353.jpg" alt=""></p>
-<ul>
-<li><p>logistic regression和SVM的区别</p>
-<p>由上图可知, C是非常靠近Boundary的, 而A是离Boundary最远的点. 所以我们非常有信心的说A是属于+, 而C比较有可能属于+. 所以对于那些距离边界比较近的点才是我们需要重点考虑的. 而这也正是logistic regression和SVM之间的区别. </p>
-<ul>
-<li><p>logistic regression考虑全局(如何考虑全局？ans：RMSE最小值)红线</p>
-</li>
-<li><p>SVM考虑局部(最小间隔要大于多少)绿线</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-16/68635525.jpg" alt=""></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/16/Machine-Learning-支持向量机/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Machine-Learning-Ensemble-Learning" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/13/Machine-Learning-Ensemble-Learning/">Machine Learning - Ensemble Learning</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/13/Machine-Learning-Ensemble-Learning/" class="archive-article-date">
-  	<time datetime="2017-06-13T04:27:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-集成学习-Ensemble-Learning"><a href="#1-集成学习-Ensemble-Learning" class="headerlink" title="1. 集成学习 (Ensemble Learning)"></a>1. 集成学习 (Ensemble Learning)</h4><p>在对新的数据实例进行分类的时候，集成学习通过训练好<strong>多个学习器</strong>，把这些分类器的的分类结果进行某种组合 (比如投票) 决定分类结果，以取得更好的结果，就是我们生活中那句话“三个臭皮匠顶个诸葛亮”，通过使用多个决策者共同决策一个实例的分类从而提高分类器的泛化能力。</p>
-<ul>
-<li><p>同质集成 (Homogeneous)</p>
-<p>需要是<strong>同种类型</strong>，比如全部是决策树或神经网络等，每个个体学习器称之为<strong>基学习器</strong> (base learner)，相应的学习算法称为<strong>基学习算法</strong> (base learning algorithm)</p>
-</li>
-<li><p>异质集成 (Heterogenous)</p>
-<p>可以由不同的学校算法生成，这时候就不再有基学习算法，每个个体学习器称为<strong>组件学习器</strong> (component learner)</p>
-</li>
-</ul>
-<p>以下我们重点讨论同质集成。</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-12/5589106.jpg" alt=""></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/13/Machine-Learning-Ensemble-Learning/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Hadoop权威指南笔记（三）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/09/Hadoop权威指南笔记（三）/">Hadoop权威指南笔记（三）</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/09/Hadoop权威指南笔记（三）/" class="archive-article-date">
-  	<time datetime="2017-06-09T06:08:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="1-为什么要使用Secondary-Sort"><a href="#1-为什么要使用Secondary-Sort" class="headerlink" title="1. 为什么要使用Secondary Sort"></a>1. 为什么要使用Secondary Sort</h5><p>在Hadoop中，从Map到Reduce的过程中，key是不断被sort的。所以从map出来的时候写入到一个intermediate output file的时候，key是有序的。然后reduce不断的从不同的cluster里面fetch里面的key-value pairs的时候，仍然多次sort这些pairs。所以<strong>最终进入到reducer的key是有序的，但是value是无序的</strong>。如果我们需要对value也进行排序呢？Google的MR内置了函数对value也可以排序，但是Hadoop不行，我们需要自己去定制partitioner等去实现这个功能。</p>
-<p>举个栗子：</p>
-<ul>
-<li><p>输入文件格式如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">2015,1,24</div><div class="line">2015,3,54</div><div class="line">2015,1,3</div><div class="line">2015,2,-43</div><div class="line">2015,4,5</div><div class="line">2015,3,46</div><div class="line">2014,2,64</div><div class="line">2015,1,4</div><div class="line">2015,1,21</div><div class="line">2015,2,35</div><div class="line">2015,2,20</div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>期望的输出格式如下（<strong>value是有序的</strong>）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">2014-2	64</div><div class="line">2015-1	3，4，21，24</div><div class="line">2015-2	-43，0，35</div><div class="line">2015-3	46，56</div><div class="line">2015-4	5</div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>Hadoop默认的输出格式如下（<strong>value是无序的</strong>）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">2014-2	64</div><div class="line">2015-1	21，4，3，24</div><div class="line">2015-2	0，35，-43</div><div class="line">2015-3	56，46</div><div class="line">2015-4	5</div></pre></td></tr></table></figure>
-        
-      
-
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>Thanks for your donate.<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://i1.piimg.com/567571/a24bcde34ea6aef7.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -584,10 +304,6 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
-        		</li>
       		
 		</ul>
 	</div>
@@ -595,21 +311,74 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/09/Hadoop权威指南笔记（三）/">MORE >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2017/10/10/Hadoop2-7-4完全分布式集群搭建和测试/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
-
-
-
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2017/06/17/Machine-Learning-PCA/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Machine Learning - PCA</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 
@@ -617,491 +386,31 @@
 
 
   
-    <article id="post-Machine-Learning-Recommender-Systems-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/15/Machine-Learning-Recommender-Systems-2/">Machine Learning - Recommender Systems(2)</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/15/Machine-Learning-Recommender-Systems-2/" class="archive-article-date">
-  	<time datetime="2017-05-15T08:43:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-协同过滤，给用户推荐物品"><a href="#1-协同过滤，给用户推荐物品" class="headerlink" title="1. 协同过滤，给用户推荐物品"></a>1. 协同过滤，给用户推荐物品</h4><h5 id="1-1-基于用户的协同过滤算法"><a href="#1-1-基于用户的协同过滤算法" class="headerlink" title="1.1 基于用户的协同过滤算法"></a>1.1 基于用户的协同过滤算法</h5><p>UserCF 主要通过<strong>分析用户的行为记录</strong>，<strong>计算物品之间的相似度</strong></p>
-<p>该算法认为物品A和物品B具有很大的相似度是因为喜欢物品A的用户大部分也喜欢物品B</p>
-<h5 id="1-1-1-步骤"><a href="#1-1-1-步骤" class="headerlink" title="1.1.1 步骤"></a>1.1.1 步骤</h5><ul>
-<li>找到和目标用户相似的用户集合</li>
-<li>找到这个集合中的用户喜欢，且和<strong>目标用户没有听说过的</strong>的物品推荐给目标用户</li>
-</ul>
-<h5 id="1-1-2-计算相似度"><a href="#1-1-2-计算相似度" class="headerlink" title="1.1.2 计算相似度"></a>1.1.2 计算相似度</h5><p><img src="http://i2.muimg.com/567571/b95f545d611e3a2e.png" alt=""></p>
-<p><strong>得到用户之间的兴趣相似度之后，寻找最相近的K个用户</strong></p>
-<p><img src="http://i4.buimg.com/567571/4fb60f6ed242f07b.png" alt=""></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/15/Machine-Learning-Recommender-Systems-2/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Hadoop2-7-4完全分布式集群搭建和测试" data-title="Hadoop2.7.4完全分布式集群搭建和测试" data-url="http://chenson.com/2017/10/10/Hadoop2-7-4完全分布式集群搭建和测试/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
   
-    <article id="post-Hadoop权威指南笔记（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/04/Hadoop权威指南笔记（二）/">Hadoop权威指南笔记（二）</a>
-    </h1>
-  
 
-        
-        <a href="/2017/05/04/Hadoop权威指南笔记（二）/" class="archive-article-date">
-  	<time datetime="2017-05-04T14:13:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="1-Mapper"><a href="#1-Mapper" class="headerlink" title="1. Mapper"></a>1. Mapper</h5><p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-8/19227470.jpg" alt=""></p>
-<h5 id="2-Reducer"><a href="#2-Reducer" class="headerlink" title="2. Reducer"></a>2. Reducer</h5><p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-8/27839418.jpg" alt=""></p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-8/88687290.jpg" alt=""></p>
-        
-      
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-      
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/04/Hadoop权威指南笔记（二）/">MORE >></a>
-        </p>
-      
 
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Spark笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/10/Spark笔记/">Spark笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/10/Spark笔记/" class="archive-article-date">
-  	<time datetime="2017-04-10T06:55:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="1-Resilient-Distributed-Dataset-RDD"><a href="#1-Resilient-Distributed-Dataset-RDD" class="headerlink" title="1. Resilient Distributed Dataset (RDD)"></a>1. Resilient Distributed Dataset (RDD)</h5><p>RDDs are <strong>fault-tolerant, parallel data structures</strong> that let users <strong>explicitly persist intermediate results in memory</strong>, control their partitioning <strong>to optimize data placement</strong>, and manipulate them using a rich set of operators.</p>
-<p>RDD是一个容错的、并行的数据结构，可以让用户显示地将数据存储到磁盘和内存中，并能控制数据的分区。</p>
-<ul>
-<li><p><strong>Resilient</strong></p>
-<p>RDD is a <strong>fundamental data structure</strong> of Spark. It is an immutable distributed collection of objects. Each dataset in <strong>RDD is divided into logical partitions</strong>, which may be computed on different nodes of the cluster. Formally, an RDD is a <strong>read-only, partitioned collection of records</strong>. Rdds can be created throught <strong>deterministic operations on either data on stable storage or other RDDs</strong>. RDD is a <strong>fault-tolerant collection of elements</strong> that can be operated on in parallel.</p>
-<p>There two ways to create RDDs.</p>
-<ul>
-<li><p><strong>Parallelizing</strong></p>
-<p>parallelizing an existing collection in your driver program</p>
-</li>
-<li><p><strong>Referencing</strong></p>
-<p>reference a dataset in an external storage system, such as  a shared file system, HDFS, HBase, or ant data source offering a Hadoop Input Format</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>Spark提供了RDD上的两类操作：transformation 和 action</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/34167769.jpg" alt=""></p>
-<ul>
-<li><p><strong>Transformation</strong>: return a new RDD</p>
-<p>当对RDD进行transformation操作的时候，这些操作不会立刻就执行，而是将这些操作记录下来。如果有多个transformation操作时，每一次变换都是一个接着一个，此时就形成了一个<strong>有向无环图</strong>。这个图就是<strong>数据容错</strong>的关键所在。如果出现数据丢失的时候，只需要查找这个图就能根据丢失的RDD进行数据恢复</p>
-</li>
-<li><p><strong>Action</strong>: evaluates and returns a new value</p>
-<p>当对RDD做action操作的时候，这类action一般作用是返回一个值或者数组等，或者是将数据持久化到磁盘当中。此时执行action，会真正的提交job，执行之前的transformation记录的DAG。执行DAG策略中，会有多个stage，每一个stage钟有多个task，这些task就会被分配到各个nodes进行执行</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/87769198.jpg" alt=""></p>
-<ul>
-<li><p>The difference between flatMap and Map <a href="http://backtobazics.com/big-data/spark/apache-spark-flatmap-example/" target="_blank" rel="external">flatMap Example</a></p>
-<p>map: 对RDD每个元素转换，将函数用于RDD中的每个元素，将返回值构成新的RDD。<br>flatMap: 对RDD每个元素转换, 然后再<strong>扁平化</strong>（即将所有对象合并为一个对象）。将函数应用于rdd之中的每一个元素，将返回的<strong>迭代器</strong>的所有内容构成新的rdd</p>
-<p><strong>Example1：</strong></p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// data 有两行数据，第一行 a b c，第二行 1 2 3</span></div><div class="line">scala&gt; data.map(line1 =&gt; line1.split(<span class="string">","</span>)).collect()</div><div class="line">res11: <span class="type">Array</span>[<span class="type">Array</span>[<span class="type">String</span>]] = <span class="type">Array</span>(<span class="type">Array</span>(a, b, c),<span class="type">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>))</div><div class="line"></div><div class="line">scala&gt; data.flatMap(line1 =&gt; line1.split(<span class="string">","</span>)).collect()</div><div class="line">res13: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(a, b, c, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</div></pre></td></tr></table></figure>
-<p><strong>Example2：</strong></p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">scala&gt; <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">List</span>(<span class="string">"coffee panda"</span>,<span class="string">"happy panda"</span>,<span class="string">"happiest panda party"</span>))</div><div class="line"></div><div class="line">scala&gt; rdd.map(x=&gt;x).collect</div><div class="line">res0: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(coffee panda, happy panda, happiest panda party) </div><div class="line"></div><div class="line">scala&gt; rdd.map(x=&gt;x.split(<span class="string">" "</span>)).collect</div><div class="line">res1: <span class="type">Array</span>[<span class="type">Array</span>[<span class="type">String</span>]] = <span class="type">Array</span>(<span class="type">Array</span>(coffee, panda), <span class="type">Array</span>(happy, panda), <span class="type">Array</span>(happiest, panda, party))</div><div class="line"></div><div class="line"><span class="comment">// 相比之前，flatMap将几个array合并成了一个array</span></div><div class="line">scala&gt; rdd.flatMap(x=&gt;x.split(<span class="string">" "</span>)).collect</div><div class="line">res2: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(coffee, panda, happy, panda, happiest, panda, party)</div></pre></td></tr></table></figure>
-<p><img src="http://images.backtobazics.com/spark/apache-spark-flatmap-example.gif" alt=""></p>
-</li>
-</ul>
-</li>
-</ul>
-<h5 id="2-Reference"><a href="#2-Reference" class="headerlink" title="2. Reference"></a>2. Reference</h5>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/10/Spark笔记/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-字符串搜索算法-BM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/02/字符串搜索算法-BM/">字符串搜索算法 - BM</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/02/字符串搜索算法-BM/" class="archive-article-date">
-  	<time datetime="2017-04-02T04:28:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>当我们要在某一个文本中要匹配某一个字符串的时候，我们最简单的方法就是一个一个匹配，也就是从头开始匹配文本和字符串，但发现不同的时候，就把整个字符串右移一位，然后从头重新和文本比较。当全部相同的时候，则右移字符串的长度。在之前的 <code>KMP</code> 算法中，我们是找到尽可能右移的最大位数，而不是一位一位的移动，这样相比原先效率已经提高了很多了。但在大部分的编辑器中，“查找”功能使用的不是 <code>KMP</code> ， 而是 <code>BM</code> 算法。</p>
-<h5 id="1-Boyer-Moore-Algorithm"><a href="#1-Boyer-Moore-Algorithm" class="headerlink" title="1. Boyer-Moore Algorithm"></a>1. Boyer-Moore Algorithm</h5><p>和 <code>KMP</code> 不同的是，<code>BM</code> 是从 <code>Pattern P</code> 倒着匹配上来的</p>
-<p>首先定义两个预处理的方法</p>
-<ul>
-<li><p><strong>坏字符 (Bad Character Heuristic)</strong></p>
-<p>当文本 T 中的某个字符跟 <code>Pattern P</code> 的某个字符不匹配时，我们称文本 T 中的这个不匹配的字符为<strong>坏字符</strong>。</p>
-</li>
-<li><p><strong>好后缀 (Good Suffix Heuristic)</strong></p>
-<p>当文本 T 中的某个字符跟 <code>Pattern P</code> 的某个字符不匹配时，我们称文本 T 中的已经匹配的字符串为<strong>好后缀</strong>。(因为算法从尾巴到头部比较)</p>
-<ul>
-<li>好后缀的位置<strong>以最后一个字符为准</strong>。假定”ABCDEF”的”EF”是好后缀，则它的位置以”F”为准，即5（从0开始计算）。</li>
-<li>如果”好后缀”在搜索词中<strong>只出现一次</strong>，则它的上一次出现位置为 -1。比如，”EF”在”ABCDEF”之中只出现一次，则它的上一次出现位置为-1（即未出现）。</li>
-<li>如果”好后缀”有多个，则除了最长的那个”好后缀”，其他”好后缀”的上一次出现位置必须在头部。比如，假定”BABCDAB”的”好后缀”是”DAB”、”AB”、”B”，请问这时”好后缀”的上一次出现位置是什么？回答是，此时采用的好后缀是”B”，它的上一次出现位置是头部，即第0位。这个规则也可以这样表达：如果最长的那个”好后缀”只出现一次，则可以把搜索词改写成如下形式进行位置计算”(DA)BABCDAB”，即虚拟加入最前面的”DA”。</li>
-</ul>
-</li>
-</ul>
-<p>按照正常比较方法，当发现一个<strong>坏字符</strong>的时候，会出现一下三种情况</p>
-<ul>
-<li><p>坏字符完全不出现在 <code>Pattern P</code> 中，那么就可以完全跳过这个字符，因为我们根本不可能匹配到这个字符。 </p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/29129274.jpg" alt=""></p>
-</li>
-</ul>
-<ul>
-<li><p>坏字符出现在<strong>还未比较的前缀</strong>当中 (只出现在前缀，出现在前缀和后缀)</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/48038845.jpg" alt=""></p>
-<p>此时将 <code>Pattern P</code> 右移对齐这两个字符，然后从尾部继续比较</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/21040202.jpg" alt=""></p>
-</li>
-<li><p>坏字符<strong>只出现</strong>在之前的好后缀当中（也就是已经比较过了）</p>
-<p>对这种情况不做处理</p>
-</li>
-</ul>
-<p>根据上面几种情况，我们可以总结出以下<strong>坏字符</strong>规则：</p>
-<blockquote>
-<p>后移位数 = 坏字符的位置 - 搜索词中的上一次出现位置</p>
-</blockquote>
-<p>这里有两种特殊情况</p>
-<ul>
-<li>如果坏字符不存在于 <code>Pattern P</code> 中，则最后一次出现的位置为 -1。</li>
-<li>如果坏字符在 <code>Pattern P</code> 中的位置位于失配位置的右侧，则此启发法不提供任何建议。</li>
-</ul>
-<p>除了坏字符，我们同样可以利用<strong>好后缀</strong>来提高查找效率</p>
-<blockquote>
-<p>模式后移位数 = 好后缀在模式中的当前位置 - 好后缀在模式中最右出现且前缀字符不同的位置</p>
-</blockquote>
-<p>举个栗子计算：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Text:    H E R E _ I _ S A _ S I M P L E _ E X A M P L E</div><div class="line"></div><div class="line">Pattern:               P L E X A M P L E</div><div class="line"></div><div class="line">                       0 1 2 3 4 5 6 7 8</div></pre></td></tr></table></figure>
-<ul>
-<li><p>坏字符的移动</p>
-<p>此时坏字符的位置是4，坏字符 <code>I</code> 不在字符串当中，移动的个数为： 4 - (-1) = 5</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Text:    H E R E _ I _ S A _ S I M P L E _ E X A M P L E</div><div class="line"></div><div class="line">Pattern:                         P L E X A M P L E</div><div class="line"></div><div class="line">                                 0 1 2 3 4 5 6 7 8</div></pre></td></tr></table></figure>
-</li>
-<li><p>好后缀的移动</p>
-<p>此时好后缀是 <code>MPLE</code>，其中 <code>PLE</code> 出现在头部，最右位置为 (01) 2。</p>
-<p>此时好后缀的字符是8(以最后一个为准)，移动的个数为：8 - 2 = 6</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Text:    H E R E _ I _ S A _ S I M P L E _ E X A M P L E</div><div class="line"></div><div class="line">Pattern:                           P L E X A M P L E</div><div class="line"></div><div class="line">                                   0 1 2 3 4 5 6 7 8</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>相比之下，我们可以发现好后缀的查找效率更高。</p>
-<p>如何计算好后缀我们之前已经提过了，继续以上面最后一个例子讲解。</p>
-<ul>
-<li><code>MPLE</code> : 未出现，最右出现的位置为 -1；</li>
-<li><code>PLE</code> : 未出现在头部，最右出现的位置为 -1；</li>
-<li><code>LE</code> : 未出现在头部，最右出现的位置为 -1；</li>
-<li><code>E</code> : 出现在头部，补充虚拟字符 ‘MPL’E，前缀字符为空，最右出现的位置为 0；</li>
-</ul>
-<p>此时，所有的”好后缀”（MPLE、PLE、LE、E）之中，只有”E”在”EXAMPLE”还出现在头部，所以后移 6 - 0 = 6位。</p>
-<p>如果之前我们只利用坏字符的话，移动的位数只有 </p>
-<p>2 - (-1) = 3位</p>
-<p>所以我们最终的移动位置，是在这<strong>两者之间取最大值</strong>来移动。</p>
-<p>所以在查找之前，我们需要预计算生成<code>坏字符规则表</code> 和 <code>好后缀规则表</code>，到时候只需要查表就可以了。继续上面的例子。</p>
-<p>根据上面计算结果，我们将 <code>Pattern P</code> 右移6位。然后重新从尾部开始比较</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/68008338.jpg" alt=""></p>
-<p>文本中P不匹配，此时只能使用<strong>坏字符规则</strong>，P上一次出现的位置为4，则移动6-4=2位</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/55480187.jpg" alt=""></p>
-<p>移动2位后，发现文本中的E 与 Pattern P中的E 匹配，则继续倒序比较，直到发现全部匹配，则匹配到的第一个完整的模式 P 被发现。</p>
-<p>继续下去则是依据<strong>好后缀规则</strong>计算好后缀 “E” 的后移位置为 6 - 0 = 6 位，然后继续倒序比较时发现已超出文本 T 的范围，搜索结束。</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/85829606.jpg" alt=""></p>
-<h5 id="2-Reference"><a href="#2-Reference" class="headerlink" title="2. Reference"></a>2. Reference</h5><ul>
-<li><a href="http://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html" target="_blank" rel="external">字符串匹配的Boyer-Moore算法</a></li>
-<li><a href="http://www.cnblogs.com/gaochundong/p/boyer_moore_string_matching_algorithm.html" target="_blank" rel="external">Boyer-Moore 字符串匹配算法</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/02/字符串搜索算法-BM/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-PostgreSQL复习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/24/PostgreSQL复习笔记/">PostgreSQL复习笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/24/PostgreSQL复习笔记/" class="archive-article-date">
-  	<time datetime="2017-03-23T23:38:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-常见问题"><a href="#1-常见问题" class="headerlink" title="1 常见问题"></a>1 常见问题</h4><h5 id="1-1-匹配一致的编码规则"><a href="#1-1-匹配一致的编码规则" class="headerlink" title="1.1 匹配一致的编码规则"></a>1.1 匹配一致的编码规则</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SET character_set_client=&apos;utf8&apos;;		-- gbk</div><div class="line">SET character_set_connection=&apos;utf8&apos;;	-- gbk</div><div class="line">SET character_set_results=&apos;utf8&apos;;		-- gbk</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-- 创建数据库时候设置</div><div class="line">CREATE DATABASE `test`</div><div class="line">CHARACTER SET &apos;utf8&apos;</div><div class="line">COLLATE &apos;utf8_general_ci&apos;;</div></pre></td></tr></table></figure>
-<h5 id="1-2-如何理解索引"><a href="#1-2-如何理解索引" class="headerlink" title="1.2 如何理解索引"></a>1.2 如何理解索引</h5><p>索引字面上理解就是对数据所建立<strong>目录</strong>，它可以<strong>加快我们的查询速度，但是同时也降低了增删改的速度。</strong></p>
-<ul>
-<li><p><strong>创建原则</strong></p>
-<ul>
-<li>不要过度使用索引</li>
-<li>最好在查询频繁的列上使用索引</li>
-<li>如果构建索引，这一列尽量是离散值，而不要过于连续的区间</li>
-</ul>
-</li>
-<li><p><strong>索引的类型</strong></p>
-<ul>
-<li><p>普通的索引 index</p>
-</li>
-<li><p>唯一的索引 unique index</p>
-<p>一张表上，只能有一个主键，但是可以有一个或是多个唯一索引</p>
-</li>
-<li><p>主键索引    primary key</p>
-<p>不能重复</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-- 查看一张表上的所有索引</div><div class="line">show index from TABLE_NAMES;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/24/PostgreSQL复习笔记/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -1123,8 +432,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

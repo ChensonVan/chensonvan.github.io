@@ -17,7 +17,7 @@
 <meta property="og:description" content="1. 集成学习 (Ensemble Learning)在对新的数据实例进行分类的时候，集成学习通过训练好多个学习器，把这些分类器的的分类结果进行某种组合 (比如投票) 决定分类结果，以取得更好的结果，就是我们生活中那句话“三个臭皮匠顶个诸葛亮”，通过使用多个决策者共同决策一个实例的分类从而提高分类器的泛化能力。  同质集成 (Homogeneous) 需要是同种类型，比如全部是决策树或神经网络等，">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-12/5589106.jpg">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-12/99520564.jpg">
-<meta property="og:updated_time" content="2017-06-15T03:30:02.000Z">
+<meta property="og:updated_time" content="2017-08-04T05:39:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Machine Learning - Ensemble Learning">
 <meta name="twitter:description" content="1. 集成学习 (Ensemble Learning)在对新的数据实例进行分类的时候，集成学习通过训练好多个学习器，把这些分类器的的分类结果进行某种组合 (比如投票) 决定分类结果，以取得更好的结果，就是我们生活中那句话“三个臭皮匠顶个诸葛亮”，通过使用多个决策者共同决策一个实例的分类从而提高分类器的泛化能力。  同质集成 (Homogeneous) 需要是同种类型，比如全部是决策树或神经网络等，">
@@ -284,9 +284,9 @@
 </li>
 </ul>
 <p>Bagging通过<strong>降低基分类器方差改善了泛化能力</strong>，因此Bagging的性能<strong>依赖于基分类器的稳定性</strong>，如果基分类器是不稳定的，Bagging有助于减低训练数据的随机扰动导致的误差，但是如果基分类器是稳定的，即对数据变化不敏感，那么Bagging方法就得不到性能的提升，甚至会减低，因为新数据集只有63%。</p>
-<h5 id="3-3-Random-Forest"><a href="#3-3-Random-Forest" class="headerlink" title="3.3 Random Forest"></a>3.3 Random Forest</h5><p><strong>随机森林</strong>是Bagging的一个拓展变体。在这里，我们用的决策树与传统的决策树略有不同。</p>
+<h5 id="3-3-Random-Forest"><a href="#3-3-Random-Forest" class="headerlink" title="3.3 Random Forest"></a>3.3 Random Forest</h5><p><strong>随机森林</strong>是Bagging的一个拓展变体，基于Bagging框架<strong>进一步降低了了模型的方差</strong>。在这里，我们用的决策树与传统的决策树略有不同。</p>
 <p>传统的决策树，比如C45或者CART，每当需要划分一个属性的时候，我们会将所有的属性的都进行划分一遍，然后计算其划分之后与划分之前熵的偏差，或者计算Gini指数等，然后从中选取出最佳属性进行划分。</p>
-<p>而随机森林，对<strong>基决策树</strong>的每个结点，先从该节点的属性集合中随机选择一个包含k个属性的子集，然后再<strong>从这个子集中选取一个最优属性用于划分</strong> (从特征的不同子集来构建树)。这里的参数k控制了随机性的引入程度：</p>
+<p>而随机森林，对<strong>基决策树</strong>的每个结点，先从该节点的属性集合中<strong>随机选择一个包含k个属性的子集</strong>，然后再<strong>从这个子集中选取一个最优属性用于划分</strong> (从特征的不同子集来构建树)。这里的参数k控制了随机性的引入程度：</p>
 <ul>
 <li>若k=d，则基决策树和传统决策树相同。</li>
 <li>若k=1，则是随机选择一个属性用于划分</li>
@@ -618,15 +618,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
