@@ -152,6 +152,121 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Mac系统下matplotlib显示中文" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/10/Mac系统下matplotlib显示中文/">Mac系统下matplotlib显示中文</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/10/Mac系统下matplotlib显示中文/" class="archive-article-date">
+  	<time datetime="2018-04-10T07:08:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>现在的时间是<strong>2018.04.10，</strong>更新一下<strong>Mac系统</strong>下的解决方法</p>
+<p>我的环境：<code>anaconda3</code> + <code>Python 3.6.3</code></p>
+<ul>
+<li><p><strong>添加字体</strong></p>
+<p>添加 <code>SimHei</code> 字体（simhei.ttf文件）到</p>
+<p> <code>~/anaconda3/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/ttf</code> 中；</p>
+<p>下载地址：<a href="https://link.zhihu.com/?target=http%3A//www.font5.com.cn/font_download.php%3Fid%3D151%26part%3D1237887120" target="_blank" rel="external">黑体字体simhei.ttf</a></p>
+<p><strong>我用的是 <code>anaconda3</code> 下的 python 环境，这个地址对应你正在使用的 <code>python</code> 安装地址</strong></p>
+<p>​</p>
+</li>
+<li><p><strong>修改matplotlib配置文件</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/anaconda3/lib/python3.6/site-packages/matplotlib/mpl-data</div><div class="line">vi matplotlibrc   # 编辑配置文件</div></pre></td></tr></table></figure>
+<p>找到 <code>font.sans-serif</code> 添加 <code>SimHei</code> 到字体列表 （如图，大约在211行）</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-4-10/76293547.jpg" alt=""></p>
+<p>同时修改 <code>axes.unicode_minus</code>，将 <code>True</code> 改为 <code>False</code>，作用就是解决负号’-‘显示为方块的问题（大约在330行）</p>
+<p>​</p>
+</li>
+<li><p><strong>删除缓存文件</strong></p>
+<ul>
+<li><code>Mac</code> 系统下删除 <code>~/.matplotlib/</code> 下的所有缓存文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rm -rf ~/.matplotlib/*.cache</div><div class="line">rm -rf ~/.matplotlib/fontList.json</div></pre></td></tr></table></figure>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-4-10/79940811.jpg" alt=""></p>
+<ul>
+<li><code>Linux</code>、<code>CentOS</code> 删除 <code>~/.cache/matplotlib</code>目录下的两个缓存文件（同上）</li>
+</ul>
+<p><strong>注意 <code>rm -rf</code> 命令，确认路径没错在用</strong></p>
+<p>​</p>
+</li>
+<li><p><strong>画图测试</strong></p>
+<ul>
+<li><p><strong>未修改配置文件</strong>，需要添加如下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding:utf-8  </span></div><div class="line"><span class="keyword">import</span> matplotlib  </div><div class="line"></div><div class="line"><span class="comment">#指定默认字体  </span></div><div class="line">matplotlib.rcParams[<span class="string">'font.sans-serif'</span>] = [<span class="string">'SimHei'</span>]   </div><div class="line">matplotlib.rcParams[<span class="string">'font.family'</span>]=<span class="string">'sans-serif'</span>  </div><div class="line"><span class="comment">#解决负号'-'显示为方块的问题  </span></div><div class="line">matplotlib.rcParams[<span class="string">'axes.unicode_minus'</span>] = <span class="keyword">False</span> </div><div class="line"></div><div class="line">plt.plot([<span class="number">-1</span>,<span class="number">2</span>,<span class="number">-5</span>,<span class="number">3</span>])  </div><div class="line">plt.title(<span class="string">u'中文'</span>,fontproperties=myfont)  </div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>如果已经修改了 <code>matplotlib</code> 配置文件，则不需要上述代码，直接画图即可。</p>
+</li>
+</ul>
+<p>​</p>
+</li>
+<li><p><strong>参考教程</strong></p>
+<ul>
+<li><a href="https://blog.csdn.net/dgatiger/article/details/50414549" target="_blank" rel="external">彻底解决matplotlib中文乱码问题</a></li>
+<li><a href="https://www.zhihu.com/question/25404709" target="_blank" rel="external">matplotlib图例中文乱码?</a></li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Jupyter</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/10/Mac系统下matplotlib显示中文/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Hadoop2-7-4完全分布式集群搭建和测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -935,95 +1050,6 @@
 
 
   
-    <article id="post-PostgreSQL复习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/24/PostgreSQL复习笔记/">PostgreSQL复习笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/24/PostgreSQL复习笔记/" class="archive-article-date">
-  	<time datetime="2017-03-23T23:38:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-常见问题"><a href="#1-常见问题" class="headerlink" title="1 常见问题"></a>1 常见问题</h4><h5 id="1-1-匹配一致的编码规则"><a href="#1-1-匹配一致的编码规则" class="headerlink" title="1.1 匹配一致的编码规则"></a>1.1 匹配一致的编码规则</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SET character_set_client=&apos;utf8&apos;;		-- gbk</div><div class="line">SET character_set_connection=&apos;utf8&apos;;	-- gbk</div><div class="line">SET character_set_results=&apos;utf8&apos;;		-- gbk</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-- 创建数据库时候设置</div><div class="line">CREATE DATABASE `test`</div><div class="line">CHARACTER SET &apos;utf8&apos;</div><div class="line">COLLATE &apos;utf8_general_ci&apos;;</div></pre></td></tr></table></figure>
-<h5 id="1-2-如何理解索引"><a href="#1-2-如何理解索引" class="headerlink" title="1.2 如何理解索引"></a>1.2 如何理解索引</h5><p>索引字面上理解就是对数据所建立<strong>目录</strong>，它可以<strong>加快我们的查询速度，但是同时也降低了增删改的速度。</strong></p>
-<ul>
-<li><p><strong>创建原则</strong></p>
-<ul>
-<li>不要过度使用索引</li>
-<li>最好在查询频繁的列上使用索引</li>
-<li>如果构建索引，这一列尽量是离散值，而不要过于连续的区间</li>
-</ul>
-</li>
-<li><p><strong>索引的类型</strong></p>
-<ul>
-<li><p>普通的索引 index</p>
-</li>
-<li><p>唯一的索引 unique index</p>
-<p>一张表上，只能有一个主键，但是可以有一个或是多个唯一索引</p>
-</li>
-<li><p>主键索引    primary key</p>
-<p>不能重复</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-- 查看一张表上的所有索引</div><div class="line">show index from TABLE_NAMES;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/24/PostgreSQL复习笔记/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1132,6 +1158,14 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -1148,19 +1182,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1169,6 +1191,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
