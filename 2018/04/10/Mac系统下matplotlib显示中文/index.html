@@ -17,7 +17,7 @@
 <meta property="og:description" content="现在的时间是2018.04.10，更新一下Mac系统下的解决方法 我的环境：anaconda3 + Python 3.6.3  添加字体 添加 SimHei 字体（simhei.ttf文件）到  ~/anaconda3/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/ttf 中； 下载地址：黑体字体simhei.ttf 我用的是 anac">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-4-10/76293547.jpg">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-4-10/79940811.jpg">
-<meta property="og:updated_time" content="2018-04-10T09:10:09.000Z">
+<meta property="og:updated_time" content="2018-06-29T09:49:44.625Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac系统下matplotlib显示中文">
 <meta name="twitter:description" content="现在的时间是2018.04.10，更新一下Mac系统下的解决方法 我的环境：anaconda3 + Python 3.6.3  添加字体 添加 SimHei 字体（simhei.ttf文件）到  ~/anaconda3/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/ttf 中； 下载地址：黑体字体simhei.ttf 我用的是 anac">
@@ -207,7 +207,7 @@
 <li><p><strong>画图测试</strong></p>
 <ul>
 <li><p><strong>未修改配置文件</strong>，需要添加如下代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding:utf-8  </span></div><div class="line"><span class="keyword">import</span> matplotlib  </div><div class="line"></div><div class="line"><span class="comment">#指定默认字体  </span></div><div class="line">matplotlib.rcParams[<span class="string">'font.sans-serif'</span>] = [<span class="string">'SimHei'</span>]   </div><div class="line">matplotlib.rcParams[<span class="string">'font.family'</span>]=<span class="string">'sans-serif'</span>  </div><div class="line"><span class="comment">#解决负号'-'显示为方块的问题  </span></div><div class="line">matplotlib.rcParams[<span class="string">'axes.unicode_minus'</span>] = <span class="keyword">False</span> </div><div class="line"></div><div class="line">plt.plot([<span class="number">-1</span>,<span class="number">2</span>,<span class="number">-5</span>,<span class="number">3</span>])  </div><div class="line">plt.title(<span class="string">u'中文'</span>,fontproperties=myfont)  </div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding:utf-8  </span></div><div class="line"><span class="keyword">import</span> matplotlib  </div><div class="line"></div><div class="line"><span class="comment">#指定默认字体  </span></div><div class="line">matplotlib.rcParams[<span class="string">'font.sans-serif'</span>] = [<span class="string">'SimHei'</span>]   </div><div class="line">matplotlib.rcParams[<span class="string">'font.family'</span>]=<span class="string">'sans-serif'</span>  </div><div class="line"><span class="comment">#解决负号'-'显示为方块的问题  </span></div><div class="line">matplotlib.rcParams[<span class="string">'axes.unicode_minus'</span>] = <span class="keyword">False</span> </div><div class="line"><span class="keyword">from</span> matplotlib.font_manager <span class="keyword">import</span> _rebuild</div><div class="line">_rebuild()</div><div class="line"></div><div class="line">plt.plot([<span class="number">-1</span>,<span class="number">2</span>,<span class="number">-5</span>,<span class="number">3</span>])  </div><div class="line">plt.title(<span class="string">u'中文'</span>,fontproperties=myfont)  </div><div class="line">plt.show()</div></pre></td></tr></table></figure>
 <p>​</p>
 </li>
 <li><p>如果已经修改了 <code>matplotlib</code> 配置文件，则不需要上述代码，直接画图即可。</p>
@@ -517,11 +517,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
             
             <div class="clearfix"></div>
