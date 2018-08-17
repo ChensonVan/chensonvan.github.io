@@ -152,6 +152,152 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-字符串搜索算法-BM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/02/字符串搜索算法-BM/">字符串搜索算法 - BM</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/02/字符串搜索算法-BM/" class="archive-article-date">
+  	<time datetime="2017-04-02T04:28:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>当我们要在某一个文本中要匹配某一个字符串的时候，我们最简单的方法就是一个一个匹配，也就是从头开始匹配文本和字符串，但发现不同的时候，就把整个字符串右移一位，然后从头重新和文本比较。当全部相同的时候，则右移字符串的长度。在之前的 <code>KMP</code> 算法中，我们是找到尽可能右移的最大位数，而不是一位一位的移动，这样相比原先效率已经提高了很多了。但在大部分的编辑器中，“查找”功能使用的不是 <code>KMP</code> ， 而是 <code>BM</code> 算法。</p>
+<h5 id="1-Boyer-Moore-Algorithm"><a href="#1-Boyer-Moore-Algorithm" class="headerlink" title="1. Boyer-Moore Algorithm"></a>1. Boyer-Moore Algorithm</h5><p>和 <code>KMP</code> 不同的是，<code>BM</code> 是从 <code>Pattern P</code> 倒着匹配上来的</p>
+<p>首先定义两个预处理的方法</p>
+<ul>
+<li><p><strong>坏字符 (Bad Character Heuristic)</strong></p>
+<p>当文本 T 中的某个字符跟 <code>Pattern P</code> 的某个字符不匹配时，我们称文本 T 中的这个不匹配的字符为<strong>坏字符</strong>。</p>
+</li>
+<li><p><strong>好后缀 (Good Suffix Heuristic)</strong></p>
+<p>当文本 T 中的某个字符跟 <code>Pattern P</code> 的某个字符不匹配时，我们称文本 T 中的已经匹配的字符串为<strong>好后缀</strong>。(因为算法从尾巴到头部比较)</p>
+<ul>
+<li>好后缀的位置<strong>以最后一个字符为准</strong>。假定”ABCDEF”的”EF”是好后缀，则它的位置以”F”为准，即5（从0开始计算）。</li>
+<li>如果”好后缀”在搜索词中<strong>只出现一次</strong>，则它的上一次出现位置为 -1。比如，”EF”在”ABCDEF”之中只出现一次，则它的上一次出现位置为-1（即未出现）。</li>
+<li>如果”好后缀”有多个，则除了最长的那个”好后缀”，其他”好后缀”的上一次出现位置必须在头部。比如，假定”BABCDAB”的”好后缀”是”DAB”、”AB”、”B”，请问这时”好后缀”的上一次出现位置是什么？回答是，此时采用的好后缀是”B”，它的上一次出现位置是头部，即第0位。这个规则也可以这样表达：如果最长的那个”好后缀”只出现一次，则可以把搜索词改写成如下形式进行位置计算”(DA)BABCDAB”，即虚拟加入最前面的”DA”。</li>
+</ul>
+</li>
+</ul>
+<p>按照正常比较方法，当发现一个<strong>坏字符</strong>的时候，会出现一下三种情况</p>
+<ul>
+<li><p>坏字符完全不出现在 <code>Pattern P</code> 中，那么就可以完全跳过这个字符，因为我们根本不可能匹配到这个字符。 </p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/29129274.jpg" alt=""></p>
+</li>
+</ul>
+<ul>
+<li><p>坏字符出现在<strong>还未比较的前缀</strong>当中 (只出现在前缀，出现在前缀和后缀)</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/48038845.jpg" alt=""></p>
+<p>此时将 <code>Pattern P</code> 右移对齐这两个字符，然后从尾部继续比较</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/21040202.jpg" alt=""></p>
+</li>
+<li><p>坏字符<strong>只出现</strong>在之前的好后缀当中（也就是已经比较过了）</p>
+<p>对这种情况不做处理</p>
+</li>
+</ul>
+<p>根据上面几种情况，我们可以总结出以下<strong>坏字符</strong>规则：</p>
+<blockquote>
+<p>后移位数 = 坏字符的位置 - 搜索词中的上一次出现位置</p>
+</blockquote>
+<p>这里有两种特殊情况</p>
+<ul>
+<li>如果坏字符不存在于 <code>Pattern P</code> 中，则最后一次出现的位置为 -1。</li>
+<li>如果坏字符在 <code>Pattern P</code> 中的位置位于失配位置的右侧，则此启发法不提供任何建议。</li>
+</ul>
+<p>除了坏字符，我们同样可以利用<strong>好后缀</strong>来提高查找效率</p>
+<blockquote>
+<p>模式后移位数 = 好后缀在模式中的当前位置 - 好后缀在模式中最右出现且前缀字符不同的位置</p>
+</blockquote>
+<p>举个栗子计算：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Text:    H E R E _ I _ S A _ S I M P L E _ E X A M P L E</div><div class="line"></div><div class="line">Pattern:               P L E X A M P L E</div><div class="line"></div><div class="line">                       0 1 2 3 4 5 6 7 8</div></pre></td></tr></table></figure>
+<ul>
+<li><p>坏字符的移动</p>
+<p>此时坏字符的位置是4，坏字符 <code>I</code> 不在字符串当中，移动的个数为： 4 - (-1) = 5</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Text:    H E R E _ I _ S A _ S I M P L E _ E X A M P L E</div><div class="line"></div><div class="line">Pattern:                         P L E X A M P L E</div><div class="line"></div><div class="line">                                 0 1 2 3 4 5 6 7 8</div></pre></td></tr></table></figure>
+</li>
+<li><p>好后缀的移动</p>
+<p>此时好后缀是 <code>MPLE</code>，其中 <code>PLE</code> 出现在头部，最右位置为 (01) 2。</p>
+<p>此时好后缀的字符是8(以最后一个为准)，移动的个数为：8 - 2 = 6</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Text:    H E R E _ I _ S A _ S I M P L E _ E X A M P L E</div><div class="line"></div><div class="line">Pattern:                           P L E X A M P L E</div><div class="line"></div><div class="line">                                   0 1 2 3 4 5 6 7 8</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>相比之下，我们可以发现好后缀的查找效率更高。</p>
+<p>如何计算好后缀我们之前已经提过了，继续以上面最后一个例子讲解。</p>
+<ul>
+<li><code>MPLE</code> : 未出现，最右出现的位置为 -1；</li>
+<li><code>PLE</code> : 未出现在头部，最右出现的位置为 -1；</li>
+<li><code>LE</code> : 未出现在头部，最右出现的位置为 -1；</li>
+<li><code>E</code> : 出现在头部，补充虚拟字符 ‘MPL’E，前缀字符为空，最右出现的位置为 0；</li>
+</ul>
+<p>此时，所有的”好后缀”（MPLE、PLE、LE、E）之中，只有”E”在”EXAMPLE”还出现在头部，所以后移 6 - 0 = 6位。</p>
+<p>如果之前我们只利用坏字符的话，移动的位数只有 </p>
+<p>2 - (-1) = 3位</p>
+<p>所以我们最终的移动位置，是在这<strong>两者之间取最大值</strong>来移动。</p>
+<p>所以在查找之前，我们需要预计算生成<code>坏字符规则表</code> 和 <code>好后缀规则表</code>，到时候只需要查表就可以了。继续上面的例子。</p>
+<p>根据上面计算结果，我们将 <code>Pattern P</code> 右移6位。然后重新从尾部开始比较</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/68008338.jpg" alt=""></p>
+<p>文本中P不匹配，此时只能使用<strong>坏字符规则</strong>，P上一次出现的位置为4，则移动6-4=2位</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/55480187.jpg" alt=""></p>
+<p>移动2位后，发现文本中的E 与 Pattern P中的E 匹配，则继续倒序比较，直到发现全部匹配，则匹配到的第一个完整的模式 P 被发现。</p>
+<p>继续下去则是依据<strong>好后缀规则</strong>计算好后缀 “E” 的后移位置为 6 - 0 = 6 位，然后继续倒序比较时发现已超出文本 T 的范围，搜索结束。</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/85829606.jpg" alt=""></p>
+<h5 id="2-Reference"><a href="#2-Reference" class="headerlink" title="2. Reference"></a>2. Reference</h5><ul>
+<li><a href="http://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html" target="_blank" rel="external">字符串匹配的Boyer-Moore算法</a></li>
+<li><a href="http://www.cnblogs.com/gaochundong/p/boyer_moore_string_matching_algorithm.html" target="_blank" rel="external">Boyer-Moore 字符串匹配算法</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/02/字符串搜索算法-BM/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-PostgreSQL复习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -797,14 +943,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -817,15 +955,23 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -842,6 +988,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
               </li>
             
             <div class="clearfix"></div>

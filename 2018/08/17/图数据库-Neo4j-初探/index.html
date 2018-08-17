@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://chenson.com">
-  <title>Tag: MapReduce | Vane&#39;s Blog</title>
+  <title>图数据库(Neo4j)初探 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Stay Hungry. Stay Foolish">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Vane&#39;s Blog">
-<meta property="og:url" content="http://chenson.com/tags/MapReduce/index.html">
+  <meta name="description" content="1. 安装Neo4j Desktop版本  https://neo4j.com/download/   Server版本（Community版  https://neo4j.com/download-center/#releases  Service版修改配置文件 12# neo4j-community-3.4.5/conf/neo4j.confdbms.security.auth_enabled">
+<meta name="keywords" content="图数据库,Neo4j">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图数据库(Neo4j)初探">
+<meta property="og:url" content="http://chenson.com/2018/08/17/图数据库-Neo4j-初探/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="Stay Hungry. Stay Foolish">
+<meta property="og:description" content="1. 安装Neo4j Desktop版本  https://neo4j.com/download/   Server版本（Community版  https://neo4j.com/download-center/#releases  Service版修改配置文件 12# neo4j-community-3.4.5/conf/neo4j.confdbms.security.auth_enabled">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-8-17/83147414.jpg">
+<meta property="og:updated_time" content="2018-08-17T09:58:55.790Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vane&#39;s Blog">
-<meta name="twitter:description" content="Stay Hungry. Stay Foolish">
+<meta name="twitter:title" content="图数据库(Neo4j)初探">
+<meta name="twitter:description" content="1. 安装Neo4j Desktop版本  https://neo4j.com/download/   Server版本（Community版  https://neo4j.com/download-center/#releases  Service版修改配置文件 12# neo4j-community-3.4.5/conf/neo4j.confdbms.security.auth_enabled">
+<meta name="twitter:image" content="http://on8r6i4gg.bkt.clouddn.com/18-8-17/83147414.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -150,148 +154,246 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-图数据库-Neo4j-初探" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      图数据库(Neo4j)初探
+    </h1>
+  
+
+        
+        <a href="/2018/08/17/图数据库-Neo4j-初探/" class="archive-article-date">
+  	<time datetime="2018-08-17T05:15:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-17</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-安装Neo4j"><a href="#1-安装Neo4j" class="headerlink" title="1. 安装Neo4j"></a>1. 安装Neo4j</h3><ul>
+<li><p><code>Desktop</code>版本</p>
+<ul>
+<li><code>https://neo4j.com/download/</code></li>
+</ul>
+</li>
+<li><p><code>Server</code>版本（Community版</p>
+<ul>
+<li><p><code>https://neo4j.com/download-center/#releases</code></p>
+</li>
+<li><p>Service版修改配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># neo4j-community-3.4.5/conf/neo4j.conf</div><div class="line">dbms.security.auth_enabled=false</div></pre></td></tr></table></figure>
+</li>
+<li><p>启动/停止 (把<code>server</code>所在的路径添加到系统的<code>PATH</code>)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">neo4j start</div><div class="line">neo4j stop</div><div class="line">neo4j start -u neo4j -p neo4j</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-基本语法"><a href="#2-基本语法" class="headerlink" title="2.基本语法"></a>2.基本语法</h3><ul>
+<li><p>创建节点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># 插入一个Artist类别的节点，而且这个节点有一个属性为Name，值为Lady Gaga</div><div class="line">CREATE (a:Artist &#123;Name:&quot;Lady Gaga&quot;&#125;)</div><div class="line"></div><div class="line"># 创建并返回</div><div class="line">CREATE (a:Artist &#123;Name:&quot;Lady Gaga&quot;, Gemder:&quot;Femal&quot;&#125;) return a</div><div class="line"></div><div class="line"># 一次性创建多个</div><div class="line">CREATE (a:Album &#123; Name: &quot;Killers&quot;&#125;), (b:Album &#123; Name: &quot;Fear of the Dark&quot;&#125;) </div><div class="line">RETURN a, b</div><div class="line"></div><div class="line">CREATE (a:Album &#123; Name: &quot;Piece of Mind&quot;&#125;) </div><div class="line">CREATE (b:Album &#123; Name: &quot;Somewhere in Time&quot;&#125;) </div><div class="line">RETURN a, b</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建关系</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># 对Lady Gaga和专辑PieceOfMind之间创建一个released的关系</div><div class="line">MATCH (a:Artist), (b:Album)</div><div class="line">WHERE a.Name = &quot;Lady Gaga&quot; AND b.Name = &quot;Piece of Mind&quot;</div><div class="line">CREATE (a)-[r:RELEASED]-&gt;(b)</div><div class="line">RETURN r</div><div class="line"></div><div class="line">MATCH (a:Artist), (b:Album), (p:Person)</div><div class="line">WHERE a.Name = &quot;Strapping Young Lad&quot; AND b.Name = &quot;Heavy as a Really Heavy Thing&quot; AND p.Name = &quot;Devin Townsend&quot; </div><div class="line">CREATE (p)-[pr:PRODUCED]-&gt;(b), (p)-[pf:PERFORMED_ON]-&gt;(b), (p)-[pl:PLAYS_IN]-&gt;(a)</div><div class="line">RETURN a, b, p</div></pre></td></tr></table></figure>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-8-17/83147414.jpg" alt=""></p>
+</li>
+<li><p>创建约束</p>
+<p>同SQL一样，Neo4j数据库支持对Node或relationship的属性的UNIQUE约束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CREATE CONSTRAINT ON (a:Artist) ASSERT a.Name IS UNIQUE</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">CREATE INDEX ON :Alnum(Name)</div><div class="line">                       </div><div class="line"># View the Index</div><div class="line">:schema</div></pre></td></tr></table></figure>
+</li>
+<li><p>更新一个节点/边</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">MATCH (n:Person &#123; name: &quot;Andres&quot; &#125;)</div><div class="line">SET n.name = &quot;Taylor&quot;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除一个节点/边</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 删除节点，如果这个节点和其他节点有连接的话，不能单单删除这个节点</div><div class="line">MATCH (n:Person &#123; name: &quot;Taylor&quot; &#125;)</div><div class="line">DETACH DELETE n;</div><div class="line"></div><div class="line"># 删除边</div><div class="line">MATCH (a:Person)-[r:Follow]-&gt;(b:Person)</div><div class="line">WHERE a.name = &quot;Node A&quot; AND b.name = &quot;Node B&quot;</div><div class="line">DELETE r;</div></pre></td></tr></table></figure>
+</li>
+<li><p>清除所有节点和关系</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">MATCH (n)</div><div class="line">OPTIONAL MATCH</div><div class="line">(n)-[r]-()</div><div class="line">DELETE n,r</div></pre></td></tr></table></figure>
+</li>
+<li><p>查询最短路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">MATCH (ms:Person &#123; name: &quot;Node A&quot; &#125;),(cs:Person &#123; name:&quot;Node B&quot; &#125;), p = shortestPath((ms)-[r:Follow]-(cs)) </div><div class="line">                                                                                     RETURN p;</div></pre></td></tr></table></figure>
+</li>
+<li><p>加载数据</p>
+<p><a href="https://stackoverflow.com/questions/28398778/cypher-neo4j-couldnt-load-the-external-resource" target="_blank" rel="external">Cypher Neo4j Couldn’t load the external resource</a></p>
+<p><a href="http://wurui.cc/tech/neo4j-first-sight/" target="_blank" rel="external">neo4j初探</a></p>
+<p>前面会自动加个字段 /Users/Chenson/Dropbox/Graph/neo4j-community-3.4.5/import，即Server对应所在的路径下的import</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"># 加载address</div><div class="line">LOAD CSV WITH HEADERS FROM &quot;file:///data/addresses.csv&quot; AS csvLine</div><div class="line">CREATE (p:Person &#123;id: toInt(csvLine.id), email: csvLine.address &#125;)</div><div class="line"></div><div class="line"></div><div class="line"># 加载email</div><div class="line">LOAD CSV WITH HEADERS FROM &quot;file:///data/emails.csv&quot; AS csvLine</div><div class="line">CREATE (e:Email &#123;id: toInt(csvLine.id), time: csvLine.time, content: csvLine.content &#125;)</div><div class="line">                      </div><div class="line">                      </div><div class="line"># 创建收发关系</div><div class="line">USING PERIODIC COMMIT 500</div><div class="line">LOAD CSV WITH HEADERS FROM &quot;file:///data/relations.csv&quot; AS csvLine</div><div class="line">MATCH (p1:Person &#123;id: toInt(csvLine.fromId)&#125;),(e:Email &#123; id: toInt(csvLine.emailId)&#125;),(p2:Person&#123; id: toInt(csvLine.toId)&#125;)</div><div class="line">CREATE UNIQUE (p1)-[:FROM]-&gt;(e)</div><div class="line">CREATE(e)-[:TO]-&gt;(p2)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-最短路径常用算法"><a href="#3-最短路径常用算法" class="headerlink" title="3. 最短路径常用算法"></a>3. 最短路径常用算法</h3><p><a href="https://www.google.com/search?newwindow=1&amp;ei=yKxrW77lH9mB-QbQ3ZWABA&amp;q=bellman_ford+%E7%AE%97%E6%B3%95+dijkstra+folyd&amp;oq=bellman_ford+%E7%AE%97%E6%B3%95+dijkstra+folyd&amp;gs_l=psy-ab.3..33i160k1.3896.6372.0.6588.6.6.0.0.0.0.164.729.1j5.6.0....0...1c.1.64.psy-ab..0.5.564...0i30k1.0.1ROtXHlgXdQ" target="_blank" rel="external">Google Search Results</a></p>
+<ul>
+<li><p>Dijkstra - 边不能为负值</p>
+</li>
+<li><p>Folyd - 边可以为负值，有向图、无向图</p>
+</li>
+<li><p>Bellman-Ford</p>
+</li>
+<li><p>SPFA</p>
+</li>
+</ul>
+<h3 id="4-Tutorial"><a href="#4-Tutorial" class="headerlink" title="4. Tutorial"></a>4. Tutorial</h3><ul>
+<li><a href="https://www.jianshu.com/p/2fb8c8d103da" target="_blank" rel="external">Neo4j的简单搭建与使用</a></li>
+<li><a href="https://www.quackit.com/neo4j/tutorial/" target="_blank" rel="external">Neo4j Tutorial</a></li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>Thanks for your donate.<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://i1.piimg.com/567571/a24bcde34ea6aef7.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/09/Hadoop权威指南笔记（三）/" class="archive-article-date">
-  	<time datetime="2017-06-09T06:08:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/09/Hadoop权威指南笔记（三）/">Hadoop权威指南笔记（三）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">图数据库</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Neo4j</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2018/08/17/图数据库-Neo4j-初探/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/04/Hadoop权威指南笔记（二）/" class="archive-article-date">
-  	<time datetime="2017-05-04T14:13:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-05</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/04/Hadoop权威指南笔记（二）/">Hadoop权威指南笔记（二）</a>
-    </h1>
+  
+    <a href="/2018/04/10/Mac系统下matplotlib显示中文/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mac系统下matplotlib显示中文</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="图数据库-Neo4j-初探" data-title="图数据库(Neo4j)初探" data-url="http://chenson.com/2018/08/17/图数据库-Neo4j-初探/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/06/Hadoop权威指南笔记（一）/" class="archive-article-date">
-  	<time datetime="2017-03-06T13:44:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/06/Hadoop权威指南笔记（一）/">Hadoop权威指南笔记（一）</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -314,9 +416,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
