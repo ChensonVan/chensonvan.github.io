@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://chenson.com">
   <title>图数据库(Neo4j)初探 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 安装Neo4j Desktop版本  https://neo4j.com/download/   Server版本（Community版  https://neo4j.com/download-center/#releases  Service版修改配置文件 12# neo4j-community-3.4.5/conf/neo4j.confdbms.security.auth_enabled">
+  <meta name="description" content="本次初探主要学习如何安装Neo4j，以及Cypher的基本语法。 1. 安装Neo4j Desktop版本  https://neo4j.com/download/   Server版本（Community版)  https://neo4j.com/download-center/#releases  Service版修改配置文件 12# neo4j-community-3.4.5/conf/ne">
 <meta name="keywords" content="图数据库,Neo4j">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图数据库(Neo4j)初探">
 <meta property="og:url" content="http://chenson.com/2018/08/17/图数据库-Neo4j-初探/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="1. 安装Neo4j Desktop版本  https://neo4j.com/download/   Server版本（Community版  https://neo4j.com/download-center/#releases  Service版修改配置文件 12# neo4j-community-3.4.5/conf/neo4j.confdbms.security.auth_enabled">
+<meta property="og:description" content="本次初探主要学习如何安装Neo4j，以及Cypher的基本语法。 1. 安装Neo4j Desktop版本  https://neo4j.com/download/   Server版本（Community版)  https://neo4j.com/download-center/#releases  Service版修改配置文件 12# neo4j-community-3.4.5/conf/ne">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-8-17/83147414.jpg">
-<meta property="og:updated_time" content="2018-08-17T09:58:55.790Z">
+<meta property="og:updated_time" content="2018-08-18T08:07:30.098Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图数据库(Neo4j)初探">
-<meta name="twitter:description" content="1. 安装Neo4j Desktop版本  https://neo4j.com/download/   Server版本（Community版  https://neo4j.com/download-center/#releases  Service版修改配置文件 12# neo4j-community-3.4.5/conf/neo4j.confdbms.security.auth_enabled">
+<meta name="twitter:description" content="本次初探主要学习如何安装Neo4j，以及Cypher的基本语法。 1. 安装Neo4j Desktop版本  https://neo4j.com/download/   Server版本（Community版)  https://neo4j.com/download-center/#releases  Service版修改配置文件 12# neo4j-community-3.4.5/conf/ne">
 <meta name="twitter:image" content="http://on8r6i4gg.bkt.clouddn.com/18-8-17/83147414.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
@@ -174,13 +174,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-安装Neo4j"><a href="#1-安装Neo4j" class="headerlink" title="1. 安装Neo4j"></a>1. 安装Neo4j</h3><ul>
+        <p>本次初探主要学习如何安装Neo4j，以及Cypher的基本语法。</p>
+<h3 id="1-安装Neo4j"><a href="#1-安装Neo4j" class="headerlink" title="1. 安装Neo4j"></a>1. 安装Neo4j</h3><ul>
 <li><p><code>Desktop</code>版本</p>
 <ul>
 <li><code>https://neo4j.com/download/</code></li>
 </ul>
 </li>
-<li><p><code>Server</code>版本（Community版</p>
+<li><p><code>Server</code>版本（<code>Community</code>版)</p>
 <ul>
 <li><p><code>https://neo4j.com/download-center/#releases</code></p>
 </li>
@@ -188,34 +189,30 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># neo4j-community-3.4.5/conf/neo4j.conf</div><div class="line">dbms.security.auth_enabled=false</div></pre></td></tr></table></figure>
 </li>
 <li><p>启动/停止 (把<code>server</code>所在的路径添加到系统的<code>PATH</code>)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">neo4j start</div><div class="line">neo4j stop</div><div class="line">neo4j start -u neo4j -p neo4j</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">bin/neo4j start</div><div class="line">bin/neo4j console</div><div class="line">bin/neo4j stop</div><div class="line">bin/neo4j start -u neo4j -p neo4j</div><div class="line">bin/cypher-shell</div></pre></td></tr></table></figure>
 </li>
 </ul>
+<a id="more"></a>
 </li>
 </ul>
 <h3 id="2-基本语法"><a href="#2-基本语法" class="headerlink" title="2.基本语法"></a>2.基本语法</h3><ul>
-<li><p>创建节点</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># 插入一个Artist类别的节点，而且这个节点有一个属性为Name，值为Lady Gaga</div><div class="line">CREATE (a:Artist &#123;Name:&quot;Lady Gaga&quot;&#125;)</div><div class="line"></div><div class="line"># 创建并返回</div><div class="line">CREATE (a:Artist &#123;Name:&quot;Lady Gaga&quot;, Gemder:&quot;Femal&quot;&#125;) return a</div><div class="line"></div><div class="line"># 一次性创建多个</div><div class="line">CREATE (a:Album &#123; Name: &quot;Killers&quot;&#125;), (b:Album &#123; Name: &quot;Fear of the Dark&quot;&#125;) </div><div class="line">RETURN a, b</div><div class="line"></div><div class="line">CREATE (a:Album &#123; Name: &quot;Piece of Mind&quot;&#125;) </div><div class="line">CREATE (b:Album &#123; Name: &quot;Somewhere in Time&quot;&#125;) </div><div class="line">RETURN a, b</div></pre></td></tr></table></figure>
+<li><p>创建/删除节点</p>
+<p>删除的节点只能是没有</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// 插入一个Artist类别的节点，而且这个节点有一个属性为Name，值为Lady Gaga</div><div class="line">CREATE (a:Artist &#123;Name:&quot;Lady Gaga&quot;&#125;)</div><div class="line"></div><div class="line">// 创建并返回</div><div class="line">CREATE (a:Artist &#123;Name:&quot;Lady Gaga&quot;, Gemder:&quot;Femal&quot;&#125;) return a</div><div class="line"></div><div class="line">// 一次性创建多个</div><div class="line">CREATE (a:Album &#123; Name: &quot;Killers&quot;&#125;), (b:Album &#123; Name: &quot;Fear of the Dark&quot;&#125;) </div><div class="line">RETURN a, b</div><div class="line"></div><div class="line">CREATE (a:Album &#123; Name: &quot;Piece of Mind&quot;&#125;) </div><div class="line">CREATE (b:Album &#123; Name: &quot;Somewhere in Time&quot;&#125;) </div><div class="line">RETURN a, b</div><div class="line"></div><div class="line">// 删除节点，如果这个节点和其他节点有连接的话，不能单单删除这个节点</div><div class="line">MATCH (a:Album &#123;Name: &quot;Killers&quot;&#125;) DELETE a</div><div class="line"></div><div class="line">// 一次性删除多个节点</div><div class="line">MATCH (a:Artist &#123;Name: &quot;Iron Maiden&quot;&#125;), (b:Album &#123;Name: &quot;Powerslave&quot;&#125;) </div><div class="line">DELETE a, b</div><div class="line">           </div><div class="line">// 删除所有节点</div><div class="line">MATCH (n) DELETE n</div></pre></td></tr></table></figure>
 </li>
-<li><p>创建关系</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># 对Lady Gaga和专辑PieceOfMind之间创建一个released的关系</div><div class="line">MATCH (a:Artist), (b:Album)</div><div class="line">WHERE a.Name = &quot;Lady Gaga&quot; AND b.Name = &quot;Piece of Mind&quot;</div><div class="line">CREATE (a)-[r:RELEASED]-&gt;(b)</div><div class="line">RETURN r</div><div class="line"></div><div class="line">MATCH (a:Artist), (b:Album), (p:Person)</div><div class="line">WHERE a.Name = &quot;Strapping Young Lad&quot; AND b.Name = &quot;Heavy as a Really Heavy Thing&quot; AND p.Name = &quot;Devin Townsend&quot; </div><div class="line">CREATE (p)-[pr:PRODUCED]-&gt;(b), (p)-[pf:PERFORMED_ON]-&gt;(b), (p)-[pl:PLAYS_IN]-&gt;(a)</div><div class="line">RETURN a, b, p</div></pre></td></tr></table></figure>
+<li><p>创建/删除关系</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">// 对Lady Gaga和专辑PieceOfMind之间创建一个released的关系</div><div class="line">MATCH (a:Artist), (b:Album)</div><div class="line">WHERE a.Name = &quot;Lady Gaga&quot; AND b.Name = &quot;Piece of Mind&quot;</div><div class="line">CREATE (a)-[r:RELEASED]-&gt;(b)</div><div class="line">RETURN r</div><div class="line"></div><div class="line">MATCH (a:Artist), (b:Album), (p:Person)</div><div class="line">WHERE a.Name = &quot;Strapping Young Lad&quot; AND b.Name = &quot;Heavy as a Really Heavy Thing&quot; AND p.Name = &quot;Devin Townsend&quot; </div><div class="line">CREATE (p)-[pr:PRODUCED]-&gt;(b), (p)-[pf:PERFORMED_ON]-&gt;(b), (p)-[pl:PLAYS_IN]-&gt;(a)</div><div class="line">RETURN a, b, p</div><div class="line">                                                                               </div><div class="line">// 删除指定的关系</div><div class="line">MATCH (:Artist)-[r:RELEASED]-(:Album) </div><div class="line">DELETE r       </div><div class="line"></div><div class="line">MATCH (:Artist &#123;Name: &quot;Strapping Young Lad&quot;&#125;)-[r:RELEASED]-(:Album &#123;Name: &quot;Heavy as a Really Heavy Thing&quot;&#125;) </div><div class="line">DELETE r</div><div class="line">                                                                   </div><div class="line">// 删除所有的关系</div><div class="line">MATCH ()-[r:RELEASED]-() </div><div class="line">DELETE r</div><div class="line">                                                                     </div><div class="line">// 清除所有节点和关系                                                                    </div><div class="line">MATCH (n)</div><div class="line">OPTIONAL MATCH</div><div class="line">(n)-[r]-()</div><div class="line">DELETE n,r</div><div class="line">          </div><div class="line">// 删除整个数据库</div><div class="line">MATCH (n) DETACH DELETE n</div></pre></td></tr></table></figure>
 <p><img src="http://on8r6i4gg.bkt.clouddn.com/18-8-17/83147414.jpg" alt=""></p>
 </li>
-<li><p>创建约束</p>
+<li><p>创建/删除约束</p>
 <p>同SQL一样，Neo4j数据库支持对Node或relationship的属性的UNIQUE约束</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CREATE CONSTRAINT ON (a:Artist) ASSERT a.Name IS UNIQUE</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">CREATE CONSTRAINT ON (a:Artist) ASSERT a.Name IS UNIQUE</div><div class="line"></div><div class="line">DROP CONSTRAINT ON (a:Artist) ASSERT a.Name IS UNIQUE</div></pre></td></tr></table></figure>
 </li>
-<li><p>创建索引</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">CREATE INDEX ON :Alnum(Name)</div><div class="line">                       </div><div class="line"># View the Index</div><div class="line">:schema</div></pre></td></tr></table></figure>
+<li><p>创建/删除索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">CREATE INDEX ON :Album(Name)</div><div class="line">               </div><div class="line">// View the schema</div><div class="line">:schema</div><div class="line"></div><div class="line">DROP INDEX ON :Album(Name)</div></pre></td></tr></table></figure>
 </li>
 <li><p>更新一个节点/边</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">MATCH (n:Person &#123; name: &quot;Andres&quot; &#125;)</div><div class="line">SET n.name = &quot;Taylor&quot;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>删除一个节点/边</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 删除节点，如果这个节点和其他节点有连接的话，不能单单删除这个节点</div><div class="line">MATCH (n:Person &#123; name: &quot;Taylor&quot; &#125;)</div><div class="line">DETACH DELETE n;</div><div class="line"></div><div class="line"># 删除边</div><div class="line">MATCH (a:Person)-[r:Follow]-&gt;(b:Person)</div><div class="line">WHERE a.name = &quot;Node A&quot; AND b.name = &quot;Node B&quot;</div><div class="line">DELETE r;</div></pre></td></tr></table></figure>
-</li>
-<li><p>清除所有节点和关系</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">MATCH (n)</div><div class="line">OPTIONAL MATCH</div><div class="line">(n)-[r]-()</div><div class="line">DELETE n,r</div></pre></td></tr></table></figure>
 </li>
 <li><p>查询最短路径</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">MATCH (ms:Person &#123; name: &quot;Node A&quot; &#125;),(cs:Person &#123; name:&quot;Node B&quot; &#125;), p = shortestPath((ms)-[r:Follow]-(cs)) </div><div class="line">                                                                                     RETURN p;</div></pre></td></tr></table></figure>
@@ -223,22 +220,36 @@
 <li><p>加载数据</p>
 <p><a href="https://stackoverflow.com/questions/28398778/cypher-neo4j-couldnt-load-the-external-resource" target="_blank" rel="external">Cypher Neo4j Couldn’t load the external resource</a></p>
 <p><a href="http://wurui.cc/tech/neo4j-first-sight/" target="_blank" rel="external">neo4j初探</a></p>
-<p>前面会自动加个字段 /Users/Chenson/Dropbox/Graph/neo4j-community-3.4.5/import，即Server对应所在的路径下的import</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"># 加载address</div><div class="line">LOAD CSV WITH HEADERS FROM &quot;file:///data/addresses.csv&quot; AS csvLine</div><div class="line">CREATE (p:Person &#123;id: toInt(csvLine.id), email: csvLine.address &#125;)</div><div class="line"></div><div class="line"></div><div class="line"># 加载email</div><div class="line">LOAD CSV WITH HEADERS FROM &quot;file:///data/emails.csv&quot; AS csvLine</div><div class="line">CREATE (e:Email &#123;id: toInt(csvLine.id), time: csvLine.time, content: csvLine.content &#125;)</div><div class="line">                      </div><div class="line">                      </div><div class="line"># 创建收发关系</div><div class="line">USING PERIODIC COMMIT 500</div><div class="line">LOAD CSV WITH HEADERS FROM &quot;file:///data/relations.csv&quot; AS csvLine</div><div class="line">MATCH (p1:Person &#123;id: toInt(csvLine.fromId)&#125;),(e:Email &#123; id: toInt(csvLine.emailId)&#125;),(p2:Person&#123; id: toInt(csvLine.toId)&#125;)</div><div class="line">CREATE UNIQUE (p1)-[:FROM]-&gt;(e)</div><div class="line">CREATE(e)-[:TO]-&gt;(p2)</div></pre></td></tr></table></figure>
+<p>加载存在本地server上的数据，会在路径前面自动加个前缀 /path-to-neo4j/neo4j-community-3.4.5/import，即Server对应所在的路径下的import</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">// 加载address</div><div class="line">LOAD CSV WITH HEADERS FROM &quot;file:///data/addresses.csv&quot; AS csvLine</div><div class="line">CREATE (p:Person &#123;id: toInt(csvLine.id), email: csvLine.address &#125;)</div><div class="line"></div><div class="line"></div><div class="line">// 加载email</div><div class="line">LOAD CSV WITH HEADERS FROM &quot;file:///data/emails.csv&quot; AS csvLine</div><div class="line">CREATE (e:Email &#123;id: toInt(csvLine.id), time: csvLine.time, content: csvLine.content &#125;)</div><div class="line">                      </div><div class="line">                      </div><div class="line">// 创建收发关系</div><div class="line">USING PERIODIC COMMIT 500  // 分段加载</div><div class="line">LOAD CSV WITH HEADERS FROM &quot;file:///data/relations.csv&quot; AS csvLine</div><div class="line">MATCH (p1:Person &#123;id: toInt(csvLine.fromId)&#125;),(e:Email &#123; id: toInt(csvLine.emailId)&#125;),(p2:Person&#123; id: toInt(csvLine.toId)&#125;)</div><div class="line">CREATE UNIQUE (p1)-[:FROM]-&gt;(e)</div><div class="line">CREATE(e)-[:TO]-&gt;(p2)</div></pre></td></tr></table></figure>
+<p>如果需要导入其他地方的，可以使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">LOAD CSV FROM &quot;https://path-to-csv&quot; AS csvLine</div><div class="line">CREATE (:Genre &#123;GenreId: csvLine[0], Name: csvLine[1]&#125;)</div><div class="line"></div><div class="line">// 使用csv中的header                                                   </div><div class="line">LOAD CSV WITH HEADERS FROM &quot;https://path-to-csv&quot; AS csvLine</div><div class="line">CREATE (:Genre &#123;GenreId: csvLine.Id, Name: csvLine.Track, Length: csvLine.Length&#125;)  </div><div class="line">                 </div><div class="line">// 自定义csv文件中的分隔符</div><div class="line">LOAD CSV WITH HEADERS FROM &quot;https://path-to-csv&quot; AS csvLine FIELDTERMINATOR &quot;;&quot;</div></pre></td></tr></table></figure>
+<p>如果需要使用<code>Header</code>的话，可以使用`</p>
 </li>
-</ul>
-<h3 id="3-最短路径常用算法"><a href="#3-最短路径常用算法" class="headerlink" title="3. 最短路径常用算法"></a>3. 最短路径常用算法</h3><p><a href="https://www.google.com/search?newwindow=1&amp;ei=yKxrW77lH9mB-QbQ3ZWABA&amp;q=bellman_ford+%E7%AE%97%E6%B3%95+dijkstra+folyd&amp;oq=bellman_ford+%E7%AE%97%E6%B3%95+dijkstra+folyd&amp;gs_l=psy-ab.3..33i160k1.3896.6372.0.6588.6.6.0.0.0.0.164.729.1j5.6.0....0...1c.1.64.psy-ab..0.5.564...0i30k1.0.1ROtXHlgXdQ" target="_blank" rel="external">Google Search Results</a></p>
+<li><p>使用 <code>neo4j-import</code> 导入数据</p>
+<p><a href="https://blog.csdn.net/ilasjdklfj/article/details/79118461" target="_blank" rel="external">使用neo4j-import导入数据</a></p>
 <ul>
-<li><p>Dijkstra - 边不能为负值</p>
+<li>使用条件<ul>
+<li>需要先关闭neo4j</li>
+<li>无法再原有的数据库添加，只能重新生成一个数据库</li>
+<li>导入文件格式为csv</li>
+</ul>
 </li>
-<li><p>Folyd - 边可以为负值，有向图、无向图</p>
-</li>
-<li><p>Bellman-Ford</p>
-</li>
-<li><p>SPFA</p>
+<li>参数<ul>
+<li>–into：数据库名称</li>
+<li>–bad-tolerance：能容忍的错误数据条数（即超过指定条数程序直接挂掉），默认1000</li>
+<li>–multiline-fields：是否允许多行插入（即有些换行的数据也可读取）</li>
+<li>–nodes：插入节点</li>
+<li>–relationships：插入关系</li>
+<li>更多参数可允许命令bin/neo4j-import</li>
+</ul>
 </li>
 </ul>
-<h3 id="4-Tutorial"><a href="#4-Tutorial" class="headerlink" title="4. Tutorial"></a>4. Tutorial</h3><ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/neo4j-import --multiline-fields=true --bad-tolerance=1000000 --into graph.db --id-type string --nodes:person node.csv  --relationships:related relation_header.csv,relation.csv</div></pre></td></tr></table></figure>
+<p>运行完后，将生成的graph.db放入data/databases，覆盖原有数据库，启动运行即可</p>
+</li>
+</ul>
+<h3 id="3-Tutorial"><a href="#3-Tutorial" class="headerlink" title="3. Tutorial"></a>3. Tutorial</h3><ul>
 <li><a href="https://www.jianshu.com/p/2fb8c8d103da" target="_blank" rel="external">Neo4j的简单搭建与使用</a></li>
 <li><a href="https://www.quackit.com/neo4j/tutorial/" target="_blank" rel="external">Neo4j Tutorial</a></li>
 </ul>
@@ -354,6 +365,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/08/18/图数据库-Neo4j-常用算法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          图形数据库-Neo4j-常用算法
+        
+      </div>
+    </a>
   
   
     <a href="/2018/04/10/Mac系统下matplotlib显示中文/" id="article-nav-older" class="article-nav-link-wrap">
@@ -497,6 +517,26 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -509,26 +549,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
@@ -537,7 +557,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+                <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,11 +569,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
             
             <div class="clearfix"></div>

@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://chenson.com">
   <title>Mac系统下matplotlib显示中文 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="现在的时间是2018.04.10，更新一下Mac系统下的解决方法 我的环境：anaconda3 + Python 3.6.3  添加字体 添加 SimHei 字体（simhei.ttf文件）到  ~/anaconda3/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/ttf 中； 下载地址：黑体字体simhei.ttf 我用的是 anac">
+  <meta name="description" content="1. Mac系统下让matplotlib显示中文现在的时间是2018.04.10，更新一下Mac系统下的解决方法 我的环境：anaconda3 + Python 3.6.3  添加字体 添加 SimHei 字体（simhei.ttf文件）到  ~/anaconda3/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/ttf 中； 下载地址：">
 <meta name="keywords" content="Python,Jupyter">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mac系统下matplotlib显示中文">
 <meta property="og:url" content="http://chenson.com/2018/04/10/Mac系统下matplotlib显示中文/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="现在的时间是2018.04.10，更新一下Mac系统下的解决方法 我的环境：anaconda3 + Python 3.6.3  添加字体 添加 SimHei 字体（simhei.ttf文件）到  ~/anaconda3/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/ttf 中； 下载地址：黑体字体simhei.ttf 我用的是 anac">
+<meta property="og:description" content="1. Mac系统下让matplotlib显示中文现在的时间是2018.04.10，更新一下Mac系统下的解决方法 我的环境：anaconda3 + Python 3.6.3  添加字体 添加 SimHei 字体（simhei.ttf文件）到  ~/anaconda3/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/ttf 中； 下载地址：">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-4-10/76293547.jpg">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-4-10/79940811.jpg">
-<meta property="og:updated_time" content="2018-06-29T09:49:44.625Z">
+<meta property="og:updated_time" content="2018-08-18T07:59:24.188Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac系统下matplotlib显示中文">
-<meta name="twitter:description" content="现在的时间是2018.04.10，更新一下Mac系统下的解决方法 我的环境：anaconda3 + Python 3.6.3  添加字体 添加 SimHei 字体（simhei.ttf文件）到  ~/anaconda3/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/ttf 中； 下载地址：黑体字体simhei.ttf 我用的是 anac">
+<meta name="twitter:description" content="1. Mac系统下让matplotlib显示中文现在的时间是2018.04.10，更新一下Mac系统下的解决方法 我的环境：anaconda3 + Python 3.6.3  添加字体 添加 SimHei 字体（simhei.ttf文件）到  ~/anaconda3/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/ttf 中； 下载地址：">
 <meta name="twitter:image" content="http://on8r6i4gg.bkt.clouddn.com/18-4-10/76293547.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
@@ -175,7 +175,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>现在的时间是<strong>2018.04.10，</strong>更新一下<strong>Mac系统</strong>下的解决方法</p>
+        <h3 id="1-Mac系统下让matplotlib显示中文"><a href="#1-Mac系统下让matplotlib显示中文" class="headerlink" title="1. Mac系统下让matplotlib显示中文"></a>1. Mac系统下让matplotlib显示中文</h3><p>现在的时间是<strong>2018.04.10，</strong>更新一下<strong>Mac系统</strong>下的解决方法</p>
 <p>我的环境：<code>anaconda3</code> + <code>Python 3.6.3</code></p>
 <ul>
 <li><p><strong>添加字体</strong></p>
@@ -190,7 +190,7 @@
 <p>找到 <code>font.sans-serif</code> 添加 <code>SimHei</code> 到字体列表 （如图，大约在211行）</p>
 <p><img src="http://on8r6i4gg.bkt.clouddn.com/18-4-10/76293547.jpg" alt=""></p>
 <p>同时修改 <code>axes.unicode_minus</code>，将 <code>True</code> 改为 <code>False</code>，作用就是解决负号’-‘显示为方块的问题（大约在330行）</p>
-<p>​</p>
+<a id="more"></a>
 </li>
 <li><p><strong>删除缓存文件</strong></p>
 <ul>
@@ -215,12 +215,10 @@
 </ul>
 <p>​</p>
 </li>
-<li><p><strong>参考教程</strong></p>
-<ul>
+</ul>
+<h3 id="2-Tutorial"><a href="#2-Tutorial" class="headerlink" title="2. Tutorial"></a>2. Tutorial</h3><ul>
 <li><a href="https://blog.csdn.net/dgatiger/article/details/50414549" target="_blank" rel="external">彻底解决matplotlib中文乱码问题</a></li>
 <li><a href="https://www.zhihu.com/question/25404709" target="_blank" rel="external">matplotlib图例中文乱码?</a></li>
-</ul>
-</li>
 </ul>
 
       
@@ -486,6 +484,26 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -498,26 +516,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
@@ -526,7 +524,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+                <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -534,11 +536,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
             
             <div class="clearfix"></div>
