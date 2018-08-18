@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://chenson.com">
-  <title>图数据库(Neo4j)初探 | Vane&#39;s Blog</title>
+  <title>图数据库-Neo4j-初探 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="本次初探主要学习如何安装Neo4j，以及Cypher的基本语法。 1. 安装Neo4j Desktop版本  https://neo4j.com/download/   Server版本（Community版)  https://neo4j.com/download-center/#releases  Service版修改配置文件 12# neo4j-community-3.4.5/conf/ne">
 <meta name="keywords" content="图数据库,Neo4j">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图数据库(Neo4j)初探">
+<meta property="og:title" content="图数据库-Neo4j-初探">
 <meta property="og:url" content="http://chenson.com/2018/08/17/图数据库-Neo4j-初探/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="本次初探主要学习如何安装Neo4j，以及Cypher的基本语法。 1. 安装Neo4j Desktop版本  https://neo4j.com/download/   Server版本（Community版)  https://neo4j.com/download-center/#releases  Service版修改配置文件 12# neo4j-community-3.4.5/conf/ne">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-8-17/83147414.jpg">
-<meta property="og:updated_time" content="2018-08-18T08:07:30.098Z">
+<meta property="og:updated_time" content="2018-08-18T10:17:51.107Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="图数据库(Neo4j)初探">
+<meta name="twitter:title" content="图数据库-Neo4j-初探">
 <meta name="twitter:description" content="本次初探主要学习如何安装Neo4j，以及Cypher的基本语法。 1. 安装Neo4j Desktop版本  https://neo4j.com/download/   Server版本（Community版)  https://neo4j.com/download-center/#releases  Service版修改配置文件 12# neo4j-community-3.4.5/conf/ne">
 <meta name="twitter:image" content="http://on8r6i4gg.bkt.clouddn.com/18-8-17/83147414.jpg">
   
@@ -161,7 +161,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      图数据库(Neo4j)初探
+      图数据库-Neo4j-初探
     </h1>
   
 
@@ -174,7 +174,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本次初探主要学习如何安装Neo4j，以及Cypher的基本语法。</p>
+        <p>本次初探主要学习如何安装<code>Neo4j</code>，以及<code>Cypher</code>的基本语法。</p>
 <h3 id="1-安装Neo4j"><a href="#1-安装Neo4j" class="headerlink" title="1. 安装Neo4j"></a>1. 安装Neo4j</h3><ul>
 <li><p><code>Desktop</code>版本</p>
 <ul>
@@ -185,7 +185,7 @@
 <ul>
 <li><p><code>https://neo4j.com/download-center/#releases</code></p>
 </li>
-<li><p>Service版修改配置文件</p>
+<li><p><code>Service</code>版修改配置文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># neo4j-community-3.4.5/conf/neo4j.conf</div><div class="line">dbms.security.auth_enabled=false</div></pre></td></tr></table></figure>
 </li>
 <li><p>启动/停止 (把<code>server</code>所在的路径添加到系统的<code>PATH</code>)</p>
@@ -195,7 +195,28 @@
 <a id="more"></a>
 </li>
 </ul>
-<h3 id="2-基本语法"><a href="#2-基本语法" class="headerlink" title="2.基本语法"></a>2.基本语法</h3><ul>
+<h3 id="2-Cypher基本语法"><a href="#2-Cypher基本语法" class="headerlink" title="2. Cypher基本语法"></a>2. Cypher基本语法</h3><ul>
+<li><p>Nodes基本语法</p>
+<p>在Cypher里面通过一对小括号代表一个节点</p>
+<ul>
+<li>() 代表匹配任意一个节点</li>
+<li>(node1) 代表匹配任意一个节点，并给它起了一个别名</li>
+<li>(:Lable) 代表查询一个类型的数据</li>
+<li>(person:Lable) 代表查询一个类型的数据，并给它起了一个别名</li>
+<li>(person:Lable {name:”小王”}) 查询某个类型下，节点属性满足某个值的数据</li>
+<li>(person:Lable {name:”小王”,age:23})　节点的属性可以同时存在多个，是一个AND的关系</li>
+</ul>
+</li>
+<li><p>Relationship基本语法</p>
+<p>系用一对-组成，关系分有方向的进和出，如果是无方向就是进和出都查询</p>
+<ul>
+<li>–&gt; 指向一个节点</li>
+<li>-[role]-&gt; 给关系加个别名</li>
+<li>-[:acted_in]-&gt; 访问某一类关系</li>
+<li>-[role:acted_in]-&gt; 访问某一类关系，并加了别名</li>
+<li>-[role:acted_in {roles:[“neo”,”<strong>Hadoop</strong>“]}]-&gt;</li>
+</ul>
+</li>
 <li><p>创建/删除节点</p>
 <p>删除的节点只能是没有</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// 插入一个Artist类别的节点，而且这个节点有一个属性为Name，值为Lady Gaga</div><div class="line">CREATE (a:Artist &#123;Name:&quot;Lady Gaga&quot;&#125;)</div><div class="line"></div><div class="line">// 创建并返回</div><div class="line">CREATE (a:Artist &#123;Name:&quot;Lady Gaga&quot;, Gemder:&quot;Femal&quot;&#125;) return a</div><div class="line"></div><div class="line">// 一次性创建多个</div><div class="line">CREATE (a:Album &#123; Name: &quot;Killers&quot;&#125;), (b:Album &#123; Name: &quot;Fear of the Dark&quot;&#125;) </div><div class="line">RETURN a, b</div><div class="line"></div><div class="line">CREATE (a:Album &#123; Name: &quot;Piece of Mind&quot;&#125;) </div><div class="line">CREATE (b:Album &#123; Name: &quot;Somewhere in Time&quot;&#125;) </div><div class="line">RETURN a, b</div><div class="line"></div><div class="line">// 删除节点，如果这个节点和其他节点有连接的话，不能单单删除这个节点</div><div class="line">MATCH (a:Album &#123;Name: &quot;Killers&quot;&#125;) DELETE a</div><div class="line"></div><div class="line">// 一次性删除多个节点</div><div class="line">MATCH (a:Artist &#123;Name: &quot;Iron Maiden&quot;&#125;), (b:Album &#123;Name: &quot;Powerslave&quot;&#125;) </div><div class="line">DELETE a, b</div><div class="line">           </div><div class="line">// 删除所有节点</div><div class="line">MATCH (n) DELETE n</div></pre></td></tr></table></figure>
@@ -205,7 +226,7 @@
 <p><img src="http://on8r6i4gg.bkt.clouddn.com/18-8-17/83147414.jpg" alt=""></p>
 </li>
 <li><p>创建/删除约束</p>
-<p>同SQL一样，Neo4j数据库支持对Node或relationship的属性的UNIQUE约束</p>
+<p>同<code>SQL</code>一样，<code>Neo4j</code>数据库支持对<code>Node</code>或<code>relationship</code>的属性的<code>UNIQUE</code>约束</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">CREATE CONSTRAINT ON (a:Artist) ASSERT a.Name IS UNIQUE</div><div class="line"></div><div class="line">DROP CONSTRAINT ON (a:Artist) ASSERT a.Name IS UNIQUE</div></pre></td></tr></table></figure>
 </li>
 <li><p>创建/删除索引</p>
@@ -214,25 +235,48 @@
 <li><p>更新一个节点/边</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">MATCH (n:Person &#123; name: &quot;Andres&quot; &#125;)</div><div class="line">SET n.name = &quot;Taylor&quot;;</div></pre></td></tr></table></figure>
 </li>
+<li><p>筛选过滤</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// WHERE</div><div class="line">MATCH (p1: Person)-[r:friend]-&gt;(p2: Person) </div><div class="line">WHERE p1.name=~&quot;K.+&quot; or p2.age=24 or &quot;neo&quot; in r.rels </div><div class="line">RETURN p1, r, p2</div><div class="line">                                 </div><div class="line">// NOT                                 </div><div class="line">MATCH (p:Person)-[:ACTED_IN]-&gt;(m)</div><div class="line">WHERE NOT (p)-[:DIRECTED]-&gt;()</div><div class="line">RETURN p, m</div></pre></td></tr></table></figure>
+</li>
+<li><p>结果集返回</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">MATCH (p:Person)</div><div class="line">RETURN p, p.name AS name, upper(p.name), coalesce(p.nickname,&quot;n/a&quot;) AS nickname, &#123; name: p.name,  label:head(labels(p))&#125; AS person</div><div class="line">                                                                                                              </div><div class="line">MATCH (n) </div><div class="line">RETURN DISTINCT n.name;</div></pre></td></tr></table></figure>
+</li>
+<li><p>聚合函数</p>
+<p><code>Cypher</code>支持<code>count</code>, <code>sum</code>, <code>avg</code>, <code>min</code>, <code>max</code></p>
+<p>聚合的时候<code>null</code>会被跳过</p>
+<p><code>count</code> 语法 支持 <code>count( distinct role )</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">MATCH (actor:Person)-[:ACTED_IN]-&gt;(movie:Movie)&lt;-[:DIRECTED]-(director:Person)</div><div class="line">RETURN actor,director,count(*) AS collaborations</div><div class="line"></div><div class="line">//  收集聚合结果</div><div class="line">MATCH (m:Movie)&lt;-[:ACTED_IN]-(a:Person)</div><div class="line">RETURN m.title AS movie, collect(a.name) AS cast, count(*) AS actors</div></pre></td></tr></table></figure>
+</li>
+<li><p>排序和分页</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">MATCH (a:Person)-[:ACTED_IN]-&gt;(m:Movie)</div><div class="line">RETURN a, count(*) AS appearances</div><div class="line">ORDER BY appearances DESC SKIP 3 LIMIT 10;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>Union</code> 联合</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">MATCH (actor:Person)-[r:ACTED_IN]-&gt;(movie:Movie)</div><div class="line">RETURN actor.name AS name, type(r) AS acted_in, movie.title AS title</div><div class="line">UNION （ALL）</div><div class="line">MATCH (director:Person)-[r:DIRECTED]-&gt;(movie:Movie)</div><div class="line">RETURN director.name AS name, type(r) AS acted_in, movie.title AS title</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>With</code>语句</p>
+<p><code>with</code>语句给<code>Cypher</code>提供了强大的<code>pipeline</code>能力，可以一个或者<code>query</code>的输出，或者下一个<code>query</code>的输入 和<code>return</code>语句非常类似，唯一不同的是，<code>with</code>的每一个结果，必须使用别名标识。</p>
+<p>使用<code>with</code>我们可以在查询结果里面在继续嵌套查询。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">MATCH (p:Person)-[:ACTED_IN]-&gt;(m:Movie)</div><div class="line">WITH p, count(*) AS appearances, COLLECT(m.Title) AS movies</div><div class="line">WHERE appearances &gt; 1</div><div class="line">RETURN p.name, appearances, movies</div></pre></td></tr></table></figure>
+<p>有点类似<code>SQL</code>中的<code>having</code>，这里是<code>with</code> + <code>where</code>两个一起来实现的。</p>
+</li>
 <li><p>查询最短路径</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">MATCH (ms:Person &#123; name: &quot;Node A&quot; &#125;),(cs:Person &#123; name:&quot;Node B&quot; &#125;), p = shortestPath((ms)-[r:Follow]-(cs)) </div><div class="line">                                                                                     RETURN p;</div></pre></td></tr></table></figure>
 </li>
 <li><p>加载数据</p>
 <p><a href="https://stackoverflow.com/questions/28398778/cypher-neo4j-couldnt-load-the-external-resource" target="_blank" rel="external">Cypher Neo4j Couldn’t load the external resource</a></p>
 <p><a href="http://wurui.cc/tech/neo4j-first-sight/" target="_blank" rel="external">neo4j初探</a></p>
-<p>加载存在本地server上的数据，会在路径前面自动加个前缀 /path-to-neo4j/neo4j-community-3.4.5/import，即Server对应所在的路径下的import</p>
+<p>加载存在本地<code>server</code>上的数据，会在路径前面自动加个前缀 <code>/path-to-neo4j/neo4j-community-3.4.5/import</code>，即<code>Server</code>对应所在的路径下的<code>import</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">// 加载address</div><div class="line">LOAD CSV WITH HEADERS FROM &quot;file:///data/addresses.csv&quot; AS csvLine</div><div class="line">CREATE (p:Person &#123;id: toInt(csvLine.id), email: csvLine.address &#125;)</div><div class="line"></div><div class="line"></div><div class="line">// 加载email</div><div class="line">LOAD CSV WITH HEADERS FROM &quot;file:///data/emails.csv&quot; AS csvLine</div><div class="line">CREATE (e:Email &#123;id: toInt(csvLine.id), time: csvLine.time, content: csvLine.content &#125;)</div><div class="line">                      </div><div class="line">                      </div><div class="line">// 创建收发关系</div><div class="line">USING PERIODIC COMMIT 500  // 分段加载</div><div class="line">LOAD CSV WITH HEADERS FROM &quot;file:///data/relations.csv&quot; AS csvLine</div><div class="line">MATCH (p1:Person &#123;id: toInt(csvLine.fromId)&#125;),(e:Email &#123; id: toInt(csvLine.emailId)&#125;),(p2:Person&#123; id: toInt(csvLine.toId)&#125;)</div><div class="line">CREATE UNIQUE (p1)-[:FROM]-&gt;(e)</div><div class="line">CREATE(e)-[:TO]-&gt;(p2)</div></pre></td></tr></table></figure>
 <p>如果需要导入其他地方的，可以使用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">LOAD CSV FROM &quot;https://path-to-csv&quot; AS csvLine</div><div class="line">CREATE (:Genre &#123;GenreId: csvLine[0], Name: csvLine[1]&#125;)</div><div class="line"></div><div class="line">// 使用csv中的header                                                   </div><div class="line">LOAD CSV WITH HEADERS FROM &quot;https://path-to-csv&quot; AS csvLine</div><div class="line">CREATE (:Genre &#123;GenreId: csvLine.Id, Name: csvLine.Track, Length: csvLine.Length&#125;)  </div><div class="line">                 </div><div class="line">// 自定义csv文件中的分隔符</div><div class="line">LOAD CSV WITH HEADERS FROM &quot;https://path-to-csv&quot; AS csvLine FIELDTERMINATOR &quot;;&quot;</div></pre></td></tr></table></figure>
-<p>如果需要使用<code>Header</code>的话，可以使用`</p>
 </li>
 <li><p>使用 <code>neo4j-import</code> 导入数据</p>
 <p><a href="https://blog.csdn.net/ilasjdklfj/article/details/79118461" target="_blank" rel="external">使用neo4j-import导入数据</a></p>
 <ul>
 <li>使用条件<ul>
-<li>需要先关闭neo4j</li>
+<li>需要先关闭<code>neo4j</code></li>
 <li>无法再原有的数据库添加，只能重新生成一个数据库</li>
-<li>导入文件格式为csv</li>
+<li>导入文件格式为<code>csv</code></li>
 </ul>
 </li>
 <li>参数<ul>
@@ -241,17 +285,19 @@
 <li>–multiline-fields：是否允许多行插入（即有些换行的数据也可读取）</li>
 <li>–nodes：插入节点</li>
 <li>–relationships：插入关系</li>
-<li>更多参数可允许命令bin/neo4j-import</li>
+<li>更多参数可允许命令<code>bin/neo4j-import</code></li>
 </ul>
 </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/neo4j-import --multiline-fields=true --bad-tolerance=1000000 --into graph.db --id-type string --nodes:person node.csv  --relationships:related relation_header.csv,relation.csv</div></pre></td></tr></table></figure>
-<p>运行完后，将生成的graph.db放入data/databases，覆盖原有数据库，启动运行即可</p>
+<p>运行完后，将生成的<code>graph.db</code>放入<code>data/databases</code>，覆盖原有数据库，启动运行即可</p>
 </li>
 </ul>
 <h3 id="3-Tutorial"><a href="#3-Tutorial" class="headerlink" title="3. Tutorial"></a>3. Tutorial</h3><ul>
 <li><a href="https://www.jianshu.com/p/2fb8c8d103da" target="_blank" rel="external">Neo4j的简单搭建与使用</a></li>
 <li><a href="https://www.quackit.com/neo4j/tutorial/" target="_blank" rel="external">Neo4j Tutorial</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/1122341" target="_blank" rel="external">Neo4j的查询语法笔记</a></li>
+<li>官方文档：Comprehensive-Guide-to-Graph-Algorithms-in-Neo4j-ebook</li>
 </ul>
 
       
@@ -391,7 +437,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="图数据库-Neo4j-初探" data-title="图数据库(Neo4j)初探" data-url="http://chenson.com/2018/08/17/图数据库-Neo4j-初探/"></div>
+	<div class="ds-thread" data-thread-key="图数据库-Neo4j-初探" data-title="图数据库-Neo4j-初探" data-url="http://chenson.com/2018/08/17/图数据库-Neo4j-初探/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -537,15 +583,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
