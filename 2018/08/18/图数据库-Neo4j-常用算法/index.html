@@ -8,17 +8,20 @@
   <link rel="dns-prefetch" href="http://chenson.com">
   <title>图形数据库-Neo4j-常用算法 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本次主要学习图数据库中常用到的一些算法，以及如何在Neo4j中调用。 1. 最短路径常用算法Google Search Results  Dijkstra - 边不能为负值 Folyd - 边可以为负值，有向图、无向图 Bellman-Ford SPFA">
+  <meta name="description" content="本次主要学习图数据库中常用到的一些算法，以及如何在Neo4j中调用，所以这一篇偏实战，每个算法的原理就简单的提一下。 1. 图数据库中常用的算法 PathFinding &amp;amp; Search 一般用来发现Nodes之间的最短路径，常用算法有如下几种 Google Search Results  Dijkstra - 边不能为负值 Folyd - 边可以为负值，有向图、无向图 Bellman-F">
 <meta name="keywords" content="图数据库,Neo4j">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图形数据库-Neo4j-常用算法">
 <meta property="og:url" content="http://chenson.com/2018/08/18/图数据库-Neo4j-常用算法/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="本次主要学习图数据库中常用到的一些算法，以及如何在Neo4j中调用。 1. 最短路径常用算法Google Search Results  Dijkstra - 边不能为负值 Folyd - 边可以为负值，有向图、无向图 Bellman-Ford SPFA">
-<meta property="og:updated_time" content="2018-08-18T09:53:00.125Z">
+<meta property="og:description" content="本次主要学习图数据库中常用到的一些算法，以及如何在Neo4j中调用，所以这一篇偏实战，每个算法的原理就简单的提一下。 1. 图数据库中常用的算法 PathFinding &amp;amp; Search 一般用来发现Nodes之间的最短路径，常用算法有如下几种 Google Search Results  Dijkstra - 边不能为负值 Folyd - 边可以为负值，有向图、无向图 Bellman-F">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-8-18/88942165.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-8-18/94277608.jpg">
+<meta property="og:updated_time" content="2018-08-18T12:32:10.798Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图形数据库-Neo4j-常用算法">
-<meta name="twitter:description" content="本次主要学习图数据库中常用到的一些算法，以及如何在Neo4j中调用。 1. 最短路径常用算法Google Search Results  Dijkstra - 边不能为负值 Folyd - 边可以为负值，有向图、无向图 Bellman-Ford SPFA">
+<meta name="twitter:description" content="本次主要学习图数据库中常用到的一些算法，以及如何在Neo4j中调用，所以这一篇偏实战，每个算法的原理就简单的提一下。 1. 图数据库中常用的算法 PathFinding &amp;amp; Search 一般用来发现Nodes之间的最短路径，常用算法有如下几种 Google Search Results  Dijkstra - 边不能为负值 Folyd - 边可以为负值，有向图、无向图 Bellman-F">
+<meta name="twitter:image" content="http://on8r6i4gg.bkt.clouddn.com/18-8-18/88942165.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -172,16 +175,94 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本次主要学习图数据库中常用到的一些算法，以及如何在Neo4j中调用。</p>
-<h3 id="1-最短路径常用算法"><a href="#1-最短路径常用算法" class="headerlink" title="1. 最短路径常用算法"></a>1. 最短路径常用算法</h3><p><a href="https://www.google.com/search?newwindow=1&amp;ei=yKxrW77lH9mB-QbQ3ZWABA&amp;q=bellman_ford+%E7%AE%97%E6%B3%95+dijkstra+folyd&amp;oq=bellman_ford+%E7%AE%97%E6%B3%95+dijkstra+folyd&amp;gs_l=psy-ab.3..33i160k1.3896.6372.0.6588.6.6.0.0.0.0.164.729.1j5.6.0....0...1c.1.64.psy-ab..0.5.564...0i30k1.0.1ROtXHlgXdQ" target="_blank" rel="external">Google Search Results</a></p>
+        <p>本次主要学习图数据库中常用到的一些算法，以及如何在<code>Neo4j</code>中调用，所以这一篇偏实战，每个算法的原理就简单的提一下。</p>
+<h3 id="1-图数据库中常用的算法"><a href="#1-图数据库中常用的算法" class="headerlink" title="1. 图数据库中常用的算法"></a>1. 图数据库中常用的算法</h3><ul>
+<li><p>PathFinding &amp; Search</p>
+<p>一般用来发现Nodes之间的最短路径，常用算法有如下几种</p>
+<p><a href="https://www.google.com/search?newwindow=1&amp;ei=yKxrW77lH9mB-QbQ3ZWABA&amp;q=bellman_ford+%E7%AE%97%E6%B3%95+dijkstra+folyd&amp;oq=bellman_ford+%E7%AE%97%E6%B3%95+dijkstra+folyd&amp;gs_l=psy-ab.3..33i160k1.3896.6372.0.6588.6.6.0.0.0.0.164.729.1j5.6.0....0...1c.1.64.psy-ab..0.5.564...0i30k1.0.1ROtXHlgXdQ" target="_blank" rel="external">Google Search Results</a></p>
 <ul>
 <li>Dijkstra - 边不能为负值</li>
 <li>Folyd - 边可以为负值，有向图、无向图</li>
 <li>Bellman-Ford</li>
 <li>SPFA</li>
 </ul>
- <a id="more"></a>
-<h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3><h3 id="8-Tutorial"><a href="#8-Tutorial" class="headerlink" title="8. Tutorial"></a>8. Tutorial</h3><ul>
+</li>
+<li><p>Centrality</p>
+<p>一般用来计算这个图中节点的中心性，用来发现比较重要的那些Nodes。这些中心性可以有很多种，比如</p>
+<ul>
+<li>Degree Centrality - 度中心性</li>
+<li>Weighted Degree Centrality - 加权度中心性</li>
+<li>Betweenness Centrality - 介数中心性</li>
+<li>Closeness Centrality - 紧度中心性</li>
+</ul>
+</li>
+<li><p>Community Detection </p>
+<p><a href="https://bigdata-ny.github.io/2016/08/12/graph-of-thrones-neo4j-social-network-analysis/" target="_blank" rel="external">基于社区发现算法和图分析Neo4j解读《权力的游戏》</a></p>
+<p>用于发现这个图中局部联系比较紧密的Nodes，类似我们学过的聚类算法。</p>
+<ul>
+<li>Strongly Connected Components</li>
+<li>Weakly Connected Components (Union Find)</li>
+<li>Label Propagation</li>
+<li>Lovain Modularity</li>
+<li>Triangle Count and Average Clustering Coefficient</li>
+</ul>
+<a id="more"></a>
+</li>
+</ul>
+<h3 id="2-路径搜索算法"><a href="#2-路径搜索算法" class="headerlink" title="2. 路径搜索算法"></a>2. 路径搜索算法</h3><ul>
+<li><p>Shortest Path</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">MATCH (start:Loc&#123;name:&quot;A&quot;&#125;), (end:Loc&#123;name:&quot;F&quot;&#125;)</div><div class="line">CALL algo.shortestPath.stream(start, end, &quot;cost&quot;)</div><div class="line">YIELD nodeId, cost</div><div class="line"></div><div class="line">MATCH (other:Loc) </div><div class="line">WHERE id(other) = nodeId</div><div class="line">RETURN other.name AS name, cost</div></pre></td></tr></table></figure>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-8-18/88942165.jpg" alt=""></p>
+</li>
+<li><p>Single Source Shortest Path</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">MATCH (n:Loc &#123;name:&quot;A&quot;&#125;)</div><div class="line">CALL algo.shortestPath.deltaStepping.stream(n, &quot;cost&quot;, 3.0</div><div class="line">YIELD nodeId, distance</div><div class="line"></div><div class="line">MATCH (destination) WHERE id(destination) = nodeId</div><div class="line">RETURN destination.name AS destination, distance</div></pre></td></tr></table></figure>
+</li>
+<li><p>All Pairs Shortest Path</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">CALL algo.allShortestPaths.stream(&quot;cost&quot;,&#123;nodeQuery:&quot;Loc&quot;,defaultValue:1.0&#125;)</div><div class="line">YIELD sourceNodeId, targetNodeId, distance</div><div class="line">WITH sourceNodeId, targetNodeId, distance</div><div class="line">WHERE algo.isFinite(distance) = true</div><div class="line"></div><div class="line">MATCH (source:Loc) WHERE id(source) = sourceNodeId</div><div class="line">MATCH (target:Loc) WHERE id(target) = targetNodeId</div><div class="line">WITH source, target, distance WHERE source &lt;&gt; target</div><div class="line">RETURN source.name AS source, target.name AS target, distance</div><div class="line">ORDER BY distance DESC</div><div class="line">LIMIT 10</div></pre></td></tr></table></figure>
+</li>
+<li><p>Minimum Weight Spanning Tree</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">MATCH (n:Place &#123;id:&quot;D&quot;&#125;)</div><div class="line">CALL algo.spanningTree.minimum(&quot;Place&quot;, &quot;LINK&quot;, &quot;cost&quot;, id(n),</div><div class="line">  &#123;write:true, writeProperty:&quot;MINST&quot;&#125;)</div><div class="line">YIELD loadMillis, computeMillis, writeMillis, effectiveNodeCount</div><div class="line">RETURN loadMillis, computeMillis, writeMillis, effectiveNodeCount;</div></pre></td></tr></table></figure>
+</li>
+<li><p>CASE</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">MERGE (a:Loc &#123;name:&quot;A&quot;&#125;)</div><div class="line">MERGE (b:Loc &#123;name:&quot;B&quot;&#125;)</div><div class="line">MERGE (c:Loc &#123;name:&quot;C&quot;&#125;)</div><div class="line">MERGE (d:Loc &#123;name:&quot;D&quot;&#125;)</div><div class="line">MERGE (e:Loc &#123;name:&quot;E&quot;&#125;)</div><div class="line">MERGE (f:Loc &#123;name:&quot;F&quot;&#125;)</div><div class="line">MERGE (a)-[:ROAD &#123;cost:50&#125;]-&gt;(b)</div><div class="line">MERGE (a)-[:ROAD &#123;cost:50&#125;]-&gt;(c)</div><div class="line">MERGE (a)-[:ROAD &#123;cost:100&#125;]-&gt;(d)</div><div class="line">MERGE (b)-[:ROAD &#123;cost:40&#125;]-&gt;(d)</div><div class="line">MERGE (c)-[:ROAD &#123;cost:40&#125;]-&gt;(d)</div><div class="line">MERGE (c)-[:ROAD &#123;cost:80&#125;]-&gt;(e)</div><div class="line">MERGE (d)-[:ROAD &#123;cost:30&#125;]-&gt;(e)</div><div class="line">MERGE (d)-[:ROAD &#123;cost:80&#125;]-&gt;(f)</div><div class="line">MERGE (e)-[:ROAD &#123;cost:40&#125;]-&gt;(f);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-中心性算法"><a href="#3-中心性算法" class="headerlink" title="3. 中心性算法"></a>3. 中心性算法</h3><ul>
+<li><p>PageRank</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">CALL algo.pageRank.stream(&quot;Page&quot;, &quot;LINKS&quot;,</div><div class="line">&#123;iterations:20&#125;)</div><div class="line">YIELD nodeId, score</div><div class="line">MATCH (node) WHERE id(node) = nodeId</div><div class="line">RETURN node.name AS page,score</div><div class="line">ORDER BY score DESC</div></pre></td></tr></table></figure>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-8-18/94277608.jpg" alt=""></p>
+</li>
+<li><p>Degree Centrality</p>
+</li>
+<li><p>Betweenness Centrality</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">CALL algo.betweenness.stream(&quot;User&quot;, &quot;MANAGES&quot;, &#123;direction:&quot;out&quot;&#125;)</div><div class="line">YIELD nodeId, centrality</div><div class="line">MATCH (user:User) WHERE id(user) = nodeId</div><div class="line">RETURN user.id AS user,centrality</div><div class="line">ORDER BY centrality DESC;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Closeness Centrality</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">CALL algo.closeness.stream(&quot;Node&quot;, &quot;LINK&quot;)</div><div class="line">YIELD nodeId, centrality</div><div class="line">MATCH (n:Node) WHERE id(n) = nodeId</div><div class="line">RETURN n.id AS node, centrality</div><div class="line">ORDER BY centrality DESC</div><div class="line">LIMIT 20;</div></pre></td></tr></table></figure>
+</li>
+<li><p>CASE</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">MERGE (home:Page &#123;name:&quot;Home&quot;&#125;)</div><div class="line">MERGE (about:Page &#123;name:&quot;About&quot;&#125;)</div><div class="line">MERGE (product:Page &#123;name:&quot;Product&quot;&#125;)</div><div class="line">MERGE (links:Page &#123;name:&quot;Links&quot;&#125;)</div><div class="line">MERGE (a:Page &#123;name:&quot;Site A&quot;&#125;)</div><div class="line">MERGE (b:Page &#123;name:&quot;Site B&quot;&#125;)</div><div class="line">MERGE (c:Page &#123;name:&quot;Site C&quot;&#125;)</div><div class="line">MERGE (d:Page &#123;name:&quot;Site D&quot;&#125;)</div><div class="line">MERGE (home)-[:LINKS]-&gt;(about)</div><div class="line">MERGE (about)-[:LINKS]-&gt;(home)</div><div class="line">MERGE (product)-[:LINKS]-&gt;(home)</div><div class="line">MERGE (home)-[:LINKS]-&gt;(product)</div><div class="line">MERGE (links)-[:LINKS]-&gt;(home)</div><div class="line">MERGE (home)-[:LINKS]-&gt;(links)</div><div class="line">MERGE (links)-[:LINKS]-&gt;(a)</div><div class="line">MERGE (a)-[:LINKS]-&gt;(home)</div><div class="line">MERGE (links)-[:LINKS]-&gt;(b)</div><div class="line">MERGE (b)-[:LINKS]-&gt;(home)</div><div class="line">MERGE (links)-[:LINKS]-&gt;(c)</div><div class="line">MERGE (c)-[:LINKS]-&gt;(home)</div><div class="line">MERGE (links)-[:LINKS]-&gt;(d)</div><div class="line">MERGE (d)-[:LINKS]-&gt;(home)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="4-社区发现算法"><a href="#4-社区发现算法" class="headerlink" title="4. 社区发现算法"></a>4. 社区发现算法</h3><ul>
+<li><p>Strongly Connected Components</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">CALL algo.scc.stream(&quot;User&quot;,&quot;FOLLOWS&quot;)</div><div class="line">YIELD nodeId, partition</div><div class="line">MATCH (u:User) WHERE id(u) = nodeId</div><div class="line">RETURN u.id AS name, partition</div></pre></td></tr></table></figure>
+</li>
+<li><p>Weakly Connected Components (Union Find)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">CALL algo.unionFind.stream(&quot;User&quot;, &quot;FRIEND&quot;, &#123;&#125;)</div><div class="line">YIELD nodeId,setId</div><div class="line">MATCH (u:User) WHERE id(u) = nodeId</div><div class="line">RETURN u.id AS user, setId</div></pre></td></tr></table></figure>
+</li>
+<li><p>Label Propagation</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CALL algo.labelPropagation.stream(&quot;User&quot;, &quot;FOLLOWS&quot;,</div><div class="line"> &#123;direction: &quot;OUTGOING&quot;, iterations: 10&#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>Lovain Modularity</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">CALL algo.louvain.stream(&quot;User&quot;, &quot;FRIEND&quot;, &#123;&#125;)</div><div class="line">YIELD nodeId, community</div><div class="line">MATCH (user:User) WHERE id(user) = nodeId</div><div class="line">RETURN user.id AS user, community</div><div class="line">ORDER BY community;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Triangle Count and Average Clustering Coefficient</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">CALL algo.triangle.stream(&quot;Person&quot;,&quot;KNOWS&quot;)</div><div class="line">YIELD nodeA,nodeB,nodeC</div><div class="line">MATCH (a:Person) WHERE id(a) = nodeA</div><div class="line">MATCH (b:Person) WHERE id(b) = nodeB</div><div class="line">MATCH (c:Person) WHERE id(c) = nodeC</div><div class="line">RETURN a.id AS nodeA, b.id AS nodeB, c.id AS node</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="5-Tutorial"><a href="#5-Tutorial" class="headerlink" title="5. Tutorial"></a>5. Tutorial</h3><ul>
+<li><a href="https://www.slideshare.net/SamchuLi/neo4j-in-depth-session1" target="_blank" rel="external">Neo4j in deep</a></li>
 <li>官方文档：Comprehensive-Guide-to-Graph-Algorithms-in-Neo4j-ebook</li>
 </ul>
 
@@ -464,11 +545,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -484,19 +565,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">

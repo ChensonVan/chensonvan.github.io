@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://chenson.com">
   <title>图数据库-Neo4j-初探 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本次初探主要学习如何安装Neo4j，以及Cypher的基本语法。 1. 安装Neo4j Desktop版本  https://neo4j.com/download/   Server版本（Community版)  https://neo4j.com/download-center/#releases  Service版修改配置文件 12# neo4j-community-3.4.5/conf/ne">
+  <meta name="description" content="本次初探主要学习如何安装Neo4j，以及Cypher的基本语法。 1. 安装Neo4j Desktop版本 neo4j-desktop  Server版本（Community版) 比较建议安装这个版本，因为Desktop版本的老是闪退，且要激活之类的。  下载Neo4j数据库 neo4j-server-community  下载常用算法的插件  graph-algorithms neo4j-gra">
 <meta name="keywords" content="图数据库,Neo4j">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图数据库-Neo4j-初探">
 <meta property="og:url" content="http://chenson.com/2018/08/17/图数据库-Neo4j-初探/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="本次初探主要学习如何安装Neo4j，以及Cypher的基本语法。 1. 安装Neo4j Desktop版本  https://neo4j.com/download/   Server版本（Community版)  https://neo4j.com/download-center/#releases  Service版修改配置文件 12# neo4j-community-3.4.5/conf/ne">
+<meta property="og:description" content="本次初探主要学习如何安装Neo4j，以及Cypher的基本语法。 1. 安装Neo4j Desktop版本 neo4j-desktop  Server版本（Community版) 比较建议安装这个版本，因为Desktop版本的老是闪退，且要激活之类的。  下载Neo4j数据库 neo4j-server-community  下载常用算法的插件  graph-algorithms neo4j-gra">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-8-17/83147414.jpg">
-<meta property="og:updated_time" content="2018-08-18T10:17:51.107Z">
+<meta property="og:updated_time" content="2018-08-18T12:11:59.720Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图数据库-Neo4j-初探">
-<meta name="twitter:description" content="本次初探主要学习如何安装Neo4j，以及Cypher的基本语法。 1. 安装Neo4j Desktop版本  https://neo4j.com/download/   Server版本（Community版)  https://neo4j.com/download-center/#releases  Service版修改配置文件 12# neo4j-community-3.4.5/conf/ne">
+<meta name="twitter:description" content="本次初探主要学习如何安装Neo4j，以及Cypher的基本语法。 1. 安装Neo4j Desktop版本 neo4j-desktop  Server版本（Community版) 比较建议安装这个版本，因为Desktop版本的老是闪退，且要激活之类的。  下载Neo4j数据库 neo4j-server-community  下载常用算法的插件  graph-algorithms neo4j-gra">
 <meta name="twitter:image" content="http://on8r6i4gg.bkt.clouddn.com/18-8-17/83147414.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
@@ -177,19 +177,31 @@
         <p>本次初探主要学习如何安装<code>Neo4j</code>，以及<code>Cypher</code>的基本语法。</p>
 <h3 id="1-安装Neo4j"><a href="#1-安装Neo4j" class="headerlink" title="1. 安装Neo4j"></a>1. 安装Neo4j</h3><ul>
 <li><p><code>Desktop</code>版本</p>
-<ul>
-<li><code>https://neo4j.com/download/</code></li>
-</ul>
+<p><a href="https://neo4j.com/download/" target="_blank" rel="external">neo4j-desktop</a></p>
 </li>
 <li><p><code>Server</code>版本（<code>Community</code>版)</p>
+<p>比较建议安装这个版本，因为<code>Desktop</code>版本的老是闪退，且要激活之类的。</p>
 <ul>
-<li><p><code>https://neo4j.com/download-center/#releases</code></p>
+<li><p>下载<code>Neo4j</code>数据库</p>
+<p><a href="https://neo4j.com/download-center/#releases" target="_blank" rel="external">neo4j-server-community</a></p>
 </li>
-<li><p><code>Service</code>版修改配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># neo4j-community-3.4.5/conf/neo4j.conf</div><div class="line">dbms.security.auth_enabled=false</div></pre></td></tr></table></figure>
+<li><p>下载常用算法的插件</p>
+<ul>
+<li><p><code>graph-algorithms</code></p>
+<p><a href="https://github.com/neo4j-contrib/neo4j-graph-algorithms" target="_blank" rel="external">neo4j-graph-algorithms</a></p>
+</li>
+<li><p><code>apoc-procedures</code></p>
+<p><a href="https://github.com/neo4j-contrib/neo4j-apoc-procedures" target="_blank" rel="external">neo4j-apoc-procedures</a></p>
+</li>
+</ul>
+<p>将下载下来的算法插件放入到<code>$NEO4J_HOME/plugins</code>文件夹下</p>
+</li>
+<li><p><code>Service</code>版修改配置文件<code>$NEO4J_HOME/conf/neo4j.conf</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># 解决登入的时候报没有授权的错误</div><div class="line">dbms.security.auth_enabled=false</div><div class="line"># 添加下载的算法插件</div><div class="line">dbms.security.procedures.unrestricted=apoc.trigger.*,apoc.meta.*,algo.*</div><div class="line">dbms.security.procedures.whitelist=apoc.coll.*,apoc.load.*</div></pre></td></tr></table></figure>
 </li>
 <li><p>启动/停止 (把<code>server</code>所在的路径添加到系统的<code>PATH</code>)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">bin/neo4j start</div><div class="line">bin/neo4j console</div><div class="line">bin/neo4j stop</div><div class="line">bin/neo4j start -u neo4j -p neo4j</div><div class="line">bin/cypher-shell</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># 建议将neo4j所在的路径条件到系统$PATH当中，</div><div class="line"># export NEO4J_HOME=&quot;path-to-neo4j&quot;</div><div class="line">$NEO4J_HOME/bin/neo4j start</div><div class="line">$NEO4J_HOME/bin/neo4j console</div><div class="line">$NEO4J_HOME/bin/neo4j stop</div><div class="line">$NEO4J_HOME/bin/neo4j start -u neo4j -p neo4j</div><div class="line">$NEO4J_HOME/bin/cypher-shell</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CALL dbms.procedures() // 查看neo4j可用的进程，包括刚刚安装的插件</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <a id="more"></a>
@@ -218,7 +230,6 @@
 </ul>
 </li>
 <li><p>创建/删除节点</p>
-<p>删除的节点只能是没有</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// 插入一个Artist类别的节点，而且这个节点有一个属性为Name，值为Lady Gaga</div><div class="line">CREATE (a:Artist &#123;Name:&quot;Lady Gaga&quot;&#125;)</div><div class="line"></div><div class="line">// 创建并返回</div><div class="line">CREATE (a:Artist &#123;Name:&quot;Lady Gaga&quot;, Gemder:&quot;Femal&quot;&#125;) return a</div><div class="line"></div><div class="line">// 一次性创建多个</div><div class="line">CREATE (a:Album &#123; Name: &quot;Killers&quot;&#125;), (b:Album &#123; Name: &quot;Fear of the Dark&quot;&#125;) </div><div class="line">RETURN a, b</div><div class="line"></div><div class="line">CREATE (a:Album &#123; Name: &quot;Piece of Mind&quot;&#125;) </div><div class="line">CREATE (b:Album &#123; Name: &quot;Somewhere in Time&quot;&#125;) </div><div class="line">RETURN a, b</div><div class="line"></div><div class="line">// 删除节点，如果这个节点和其他节点有连接的话，不能单单删除这个节点</div><div class="line">MATCH (a:Album &#123;Name: &quot;Killers&quot;&#125;) DELETE a</div><div class="line"></div><div class="line">// 一次性删除多个节点</div><div class="line">MATCH (a:Artist &#123;Name: &quot;Iron Maiden&quot;&#125;), (b:Album &#123;Name: &quot;Powerslave&quot;&#125;) </div><div class="line">DELETE a, b</div><div class="line">           </div><div class="line">// 删除所有节点</div><div class="line">MATCH (n) DELETE n</div></pre></td></tr></table></figure>
 </li>
 <li><p>创建/删除关系</p>
@@ -579,11 +590,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -599,19 +610,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">

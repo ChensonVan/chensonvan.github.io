@@ -225,13 +225,36 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本次主要学习图数据库中常用到的一些算法，以及如何在Neo4j中调用。</p>
-<h3 id="1-最短路径常用算法"><a href="#1-最短路径常用算法" class="headerlink" title="1. 最短路径常用算法"></a>1. 最短路径常用算法</h3><p><a href="https://www.google.com/search?newwindow=1&amp;ei=yKxrW77lH9mB-QbQ3ZWABA&amp;q=bellman_ford+%E7%AE%97%E6%B3%95+dijkstra+folyd&amp;oq=bellman_ford+%E7%AE%97%E6%B3%95+dijkstra+folyd&amp;gs_l=psy-ab.3..33i160k1.3896.6372.0.6588.6.6.0.0.0.0.164.729.1j5.6.0....0...1c.1.64.psy-ab..0.5.564...0i30k1.0.1ROtXHlgXdQ" target="_blank" rel="external">Google Search Results</a></p>
+        <p>本次主要学习图数据库中常用到的一些算法，以及如何在<code>Neo4j</code>中调用，所以这一篇偏实战，每个算法的原理就简单的提一下。</p>
+<h3 id="1-图数据库中常用的算法"><a href="#1-图数据库中常用的算法" class="headerlink" title="1. 图数据库中常用的算法"></a>1. 图数据库中常用的算法</h3><ul>
+<li><p>PathFinding &amp; Search</p>
+<p>一般用来发现Nodes之间的最短路径，常用算法有如下几种</p>
+<p><a href="https://www.google.com/search?newwindow=1&amp;ei=yKxrW77lH9mB-QbQ3ZWABA&amp;q=bellman_ford+%E7%AE%97%E6%B3%95+dijkstra+folyd&amp;oq=bellman_ford+%E7%AE%97%E6%B3%95+dijkstra+folyd&amp;gs_l=psy-ab.3..33i160k1.3896.6372.0.6588.6.6.0.0.0.0.164.729.1j5.6.0....0...1c.1.64.psy-ab..0.5.564...0i30k1.0.1ROtXHlgXdQ" target="_blank" rel="external">Google Search Results</a></p>
 <ul>
 <li>Dijkstra - 边不能为负值</li>
 <li>Folyd - 边可以为负值，有向图、无向图</li>
 <li>Bellman-Ford</li>
 <li>SPFA</li>
+</ul>
+</li>
+<li><p>Centrality</p>
+<p>一般用来计算这个图中节点的中心性，用来发现比较重要的那些Nodes。这些中心性可以有很多种，比如</p>
+<ul>
+<li>Degree Centrality - 度中心性</li>
+<li>Weighted Degree Centrality - 加权度中心性</li>
+<li>Betweenness Centrality - 介数中心性</li>
+<li>Closeness Centrality - 紧度中心性</li>
+</ul>
+</li>
+<li><p>Community Detection </p>
+<p><a href="https://bigdata-ny.github.io/2016/08/12/graph-of-thrones-neo4j-social-network-analysis/" target="_blank" rel="external">基于社区发现算法和图分析Neo4j解读《权力的游戏》</a></p>
+<p>用于发现这个图中局部联系比较紧密的Nodes，类似我们学过的聚类算法。</p>
+<ul>
+<li>Strongly Connected Components</li>
+<li>Weakly Connected Components (Union Find)</li>
+<li>Label Propagation</li>
+<li>Lovain Modularity</li>
+<li>Triangle Count and Average Clustering Coefficient</li>
 </ul>
         
       
@@ -304,19 +327,31 @@
         <p>本次初探主要学习如何安装<code>Neo4j</code>，以及<code>Cypher</code>的基本语法。</p>
 <h3 id="1-安装Neo4j"><a href="#1-安装Neo4j" class="headerlink" title="1. 安装Neo4j"></a>1. 安装Neo4j</h3><ul>
 <li><p><code>Desktop</code>版本</p>
-<ul>
-<li><code>https://neo4j.com/download/</code></li>
-</ul>
+<p><a href="https://neo4j.com/download/" target="_blank" rel="external">neo4j-desktop</a></p>
 </li>
 <li><p><code>Server</code>版本（<code>Community</code>版)</p>
+<p>比较建议安装这个版本，因为<code>Desktop</code>版本的老是闪退，且要激活之类的。</p>
 <ul>
-<li><p><code>https://neo4j.com/download-center/#releases</code></p>
+<li><p>下载<code>Neo4j</code>数据库</p>
+<p><a href="https://neo4j.com/download-center/#releases" target="_blank" rel="external">neo4j-server-community</a></p>
 </li>
-<li><p><code>Service</code>版修改配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># neo4j-community-3.4.5/conf/neo4j.conf</div><div class="line">dbms.security.auth_enabled=false</div></pre></td></tr></table></figure>
+<li><p>下载常用算法的插件</p>
+<ul>
+<li><p><code>graph-algorithms</code></p>
+<p><a href="https://github.com/neo4j-contrib/neo4j-graph-algorithms" target="_blank" rel="external">neo4j-graph-algorithms</a></p>
+</li>
+<li><p><code>apoc-procedures</code></p>
+<p><a href="https://github.com/neo4j-contrib/neo4j-apoc-procedures" target="_blank" rel="external">neo4j-apoc-procedures</a></p>
+</li>
+</ul>
+<p>将下载下来的算法插件放入到<code>$NEO4J_HOME/plugins</code>文件夹下</p>
+</li>
+<li><p><code>Service</code>版修改配置文件<code>$NEO4J_HOME/conf/neo4j.conf</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># 解决登入的时候报没有授权的错误</div><div class="line">dbms.security.auth_enabled=false</div><div class="line"># 添加下载的算法插件</div><div class="line">dbms.security.procedures.unrestricted=apoc.trigger.*,apoc.meta.*,algo.*</div><div class="line">dbms.security.procedures.whitelist=apoc.coll.*,apoc.load.*</div></pre></td></tr></table></figure>
 </li>
 <li><p>启动/停止 (把<code>server</code>所在的路径添加到系统的<code>PATH</code>)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">bin/neo4j start</div><div class="line">bin/neo4j console</div><div class="line">bin/neo4j stop</div><div class="line">bin/neo4j start -u neo4j -p neo4j</div><div class="line">bin/cypher-shell</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># 建议将neo4j所在的路径条件到系统$PATH当中，</div><div class="line"># export NEO4J_HOME=&quot;path-to-neo4j&quot;</div><div class="line">$NEO4J_HOME/bin/neo4j start</div><div class="line">$NEO4J_HOME/bin/neo4j console</div><div class="line">$NEO4J_HOME/bin/neo4j stop</div><div class="line">$NEO4J_HOME/bin/neo4j start -u neo4j -p neo4j</div><div class="line">$NEO4J_HOME/bin/cypher-shell</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CALL dbms.procedures() // 查看neo4j可用的进程，包括刚刚安装的插件</div></pre></td></tr></table></figure>
 </li>
 </ul>
         
@@ -1039,11 +1074,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1059,19 +1094,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
