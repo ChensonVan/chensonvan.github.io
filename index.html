@@ -347,7 +347,7 @@
 <p>将下载下来的算法插件放入到<code>$NEO4J_HOME/plugins</code>文件夹下</p>
 </li>
 <li><p><code>Service</code>版修改配置文件<code>$NEO4J_HOME/conf/neo4j.conf</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># 解决登入的时候报没有授权的错误</div><div class="line">dbms.security.auth_enabled=false</div><div class="line"># 添加下载的算法插件</div><div class="line">dbms.security.procedures.unrestricted=apoc.trigger.*,apoc.meta.*,algo.*</div><div class="line">dbms.security.procedures.whitelist=apoc.coll.*,apoc.load.*</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># 解决登入的时候报没有授权的错误</div><div class="line">dbms.security.auth_enabled=false</div><div class="line"># 添加下载的算法插件</div><div class="line">dbms.security.procedures.unrestricted=apoc.*,algo.*</div><div class="line">apoc.import.file.enabled=true</div><div class="line"></div><div class="line">#增加页缓存到至少4G，推荐20G:</div><div class="line">dbms.memory.pagecache.size=4g</div><div class="line">#JVM堆保存留内存从1G起，最大4G:</div><div class="line">dbms.memory.heap.initial_size=1g</div><div class="line">dbms.memory.heap.max_size=4g</div></pre></td></tr></table></figure>
 </li>
 <li><p>启动/停止 (把<code>server</code>所在的路径添加到系统的<code>PATH</code>)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># 建议将neo4j所在的路径条件到系统$PATH当中，</div><div class="line"># export NEO4J_HOME=&quot;path-to-neo4j&quot;</div><div class="line">$NEO4J_HOME/bin/neo4j start</div><div class="line">$NEO4J_HOME/bin/neo4j console</div><div class="line">$NEO4J_HOME/bin/neo4j stop</div><div class="line">$NEO4J_HOME/bin/neo4j start -u neo4j -p neo4j</div><div class="line">$NEO4J_HOME/bin/cypher-shell</div></pre></td></tr></table></figure>
@@ -574,11 +574,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PyTorch</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PyTorch</a>
         		</li>
       		
 		</ul>
@@ -589,6 +589,94 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/03/20/深度学习笔记-CNN/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Docker常用指令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/13/Docker常用指令/">Docker常用指令</a>
+    </h1>
+  
+
+        
+        <a href="/2018/03/13/Docker常用指令/" class="archive-article-date">
+  	<time datetime="2018-03-13T05:12:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-docker镜像构建"><a href="#1-docker镜像构建" class="headerlink" title="1. docker镜像构建"></a>1. docker镜像构建</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd analyze-server</div><div class="line">docker build -t analyze-server .</div></pre></td></tr></table></figure>
+<h3 id="2-创建"><a href="#2-创建" class="headerlink" title="2. 创建"></a>2. 创建</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">docker create analyze-server # 创建容器，但处于停止状态</div><div class="line">docker run analyze-server    # 创建并启动容器</div><div class="line"></div><div class="line"># 启动容器，并挂载文件</div><div class="line">docker run --name=analyze -p 5000:5000 -p 8888:8888 -p 6006:6006 -v /Users/Chenson/Github/analyze-server/app/:/analyze-server/app/ -v /Users/Chenson/:/home/ -d analyze-server</div></pre></td></tr></table></figure>
+<h3 id="3-查看"><a href="#3-查看" class="headerlink" title="3. 查看"></a>3. 查看</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker ps     # 查看当前运行的容器</div><div class="line">docker ps -a  # 查看所有的容器，包括停止的</div></pre></td></tr></table></figure>
+<h3 id="4-启动"><a href="#4-启动" class="headerlink" title="4. 启动"></a>4. 启动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker start [NAME]/[CONTAINER ID] # 通过docker start来启动之前已经停止的docker_run镜像</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker exec -it analyze /bin/bash  # 在运行的容器中执行后面的指令</div></pre></td></tr></table></figure>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-6-25/93560929.jpg" alt=""></p>
+<ul>
+<li><p>交互型容器：运行在前台，容器中使用exit命令或者调用docker stop、docker kill命令，容器停止。</p>
+<ul>
+<li><code>docker -it --name analyze -i -t</code></li>
+<li><code>-i</code> 打开容器的标准输入</li>
+<li><code>-t</code> 告诉docker为容器创建一个命令行终端</li>
+<li><code>--name analyze</code> 指定容器名称，可以不填(随机)</li>
+<li><code>analyze-server</code> 告诉我们使用什么镜像来启动容器</li>
+<li><code>/bin/bash</code> 告诉docker要在容器里面执行此命令</li>
+</ul>
+</li>
+<li><p>后台型容器：运行在后台，创建后与终端无关，只有调用docker stop、docker kill命令才能使容器停止。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run --name=analyze -p 5000:5000 -p 8888:8888 -p 6006:6006 -v /Users/Chenson/Github/analyze-server/app/:/analyze-server/app/ -v /Users/Chenson/:/home/ -d analyze-server</div></pre></td></tr></table></figure>
+<ul>
+<li><code>-d</code> 使容器在后台运行。</li>
+<li><code>-c</code> 可以调整容器的CPU优先级。默认情况下，所有的容器拥有相同的CPU优先级和CPU调度周期，但你可以通过Docker来通知内核给予某个或某几个容器更多的CPU计算周期。比如，我们使用-c或者–cpu-shares =0启动了C0、C1、C2三个容器，使用-c/–cpu-shares=512启动了C3容器。这时，C0、C1、C2可以100%的使用CPU资源（1024），但C3只能使用50%的CPU资源（512）。如果这个主机的操作系统是时序调度类型的，每个CPU时间片是100微秒，那么C0、C1、C2将完全使用掉这100微秒，而C3只能使用50微秒。</li>
+<li><code>-c</code> 后的命令是循环，从而保持容器的运行</li>
+</ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/03/13/Docker常用指令/">MORE >></a>
         </p>
       
 
@@ -924,87 +1012,6 @@
 
 
   
-    <article id="post-Hadoop权威指南笔记（三）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/09/Hadoop权威指南笔记（三）/">Hadoop权威指南笔记（三）</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/09/Hadoop权威指南笔记（三）/" class="archive-article-date">
-  	<time datetime="2017-06-09T06:08:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="1-为什么要使用Secondary-Sort"><a href="#1-为什么要使用Secondary-Sort" class="headerlink" title="1. 为什么要使用Secondary Sort"></a>1. 为什么要使用Secondary Sort</h5><p>在Hadoop中，从Map到Reduce的过程中，key是不断被sort的。所以从map出来的时候写入到一个intermediate output file的时候，key是有序的。然后reduce不断的从不同的cluster里面fetch里面的key-value pairs的时候，仍然多次sort这些pairs。所以<strong>最终进入到reducer的key是有序的，但是value是无序的</strong>。如果我们需要对value也进行排序呢？Google的MR内置了函数对value也可以排序，但是Hadoop不行，我们需要自己去定制partitioner等去实现这个功能。</p>
-<p>举个栗子：</p>
-<ul>
-<li><p>输入文件格式如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">2015,1,24</div><div class="line">2015,3,54</div><div class="line">2015,1,3</div><div class="line">2015,2,-43</div><div class="line">2015,4,5</div><div class="line">2015,3,46</div><div class="line">2014,2,64</div><div class="line">2015,1,4</div><div class="line">2015,1,21</div><div class="line">2015,2,35</div><div class="line">2015,2,20</div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>期望的输出格式如下（<strong>value是有序的</strong>）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">2014-2	64</div><div class="line">2015-1	3，4，21，24</div><div class="line">2015-2	-43，0，35</div><div class="line">2015-3	46，56</div><div class="line">2015-4	5</div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>Hadoop默认的输出格式如下（<strong>value是无序的</strong>）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">2014-2	64</div><div class="line">2015-1	21，4，3，24</div><div class="line">2015-2	0，35，-43</div><div class="line">2015-3	56，46</div><div class="line">2015-4	5</div></pre></td></tr></table></figure>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/09/Hadoop权威指南笔记（三）/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1125,6 +1132,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
@@ -1141,23 +1160,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">DeepLearning</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1169,19 +1184,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
             
             <div class="clearfix"></div>

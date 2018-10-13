@@ -152,6 +152,76 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Machine-Learning-SVM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/02/Machine-Learning-SVM/">Machine Learning - SVM</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/02/Machine-Learning-SVM/" class="archive-article-date">
+  	<time datetime="2017-03-02T11:02:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-Optimisation-Objective"><a href="#1-Optimisation-Objective" class="headerlink" title="1. Optimisation Objective"></a>1. Optimisation Objective</h4><p>$$<br>h_\theta (x) = \frac 1 {1 + e^{-\theta^Tx}}    \\<br>z = -\theta^Tx<br>$$</p>
+<p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.png" alt=""></p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SVM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/02/Machine-Learning-SVM/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Python数据分析笔记（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -212,6 +282,79 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2016/12/15/Python数据分析笔记（一）/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Linux常用指令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/02/19/Linux常用指令/">Linux常用指令</a>
+    </h1>
+  
+
+        
+        <a href="/2012/02/19/Linux常用指令/" class="archive-article-date">
+  	<time datetime="2012-02-19T01:16:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2012-02-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>有时候记东西老是记不住，虽然是经常使用，所以对常用的<code>linux</code>指令做个简单记录，方便以后使用（不断更新… …）。</p>
+<h3 id="1-scp文件传输-security-copy"><a href="#1-scp文件传输-security-copy" class="headerlink" title="1. scp文件传输 (security copy)"></a>1. scp文件传输 (security copy)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># eg. scp chenson@127.0.0.1:~/Home/test .  ~/Home/local_test_path</div><div class="line">scp PATH_OF_SRC PATH_OF_DST</div></pre></td></tr></table></figure>
+<h3 id="2-测内存的使用率"><a href="#2-测内存的使用率" class="headerlink" title="2. 测内存的使用率"></a>2. 测内存的使用率</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">valgrind --tool=massif --pages-as-heap=yes</div><div class="line"></div><div class="line">ms_print massif 文件名</div><div class="line"></div><div class="line"></div><div class="line">valgrind --tool=massif --pages-as-heap=yes ./bwtsearch testfiles/shopping.bwt l.idx &quot;system&quot;</div><div class="line"></div><div class="line">ms_print massif.out.3116</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find &lt;PATH TO FOLDER&gt; -ls | tr -s &apos; &apos;|cut -d&apos; &apos; -f 7| paste -sd+ | bc</div></pre></td></tr></table></figure>
+<h3 id="3-强制写入"><a href="#3-强制写入" class="headerlink" title="3. 强制写入"></a>3. 强制写入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># vii commond model, Try the below command</div><div class="line"></div><div class="line">:w !sudo tee %</div><div class="line">Explanation</div><div class="line"></div><div class="line">:w – write</div><div class="line">!sudo – call shell sudo command</div><div class="line">tee – the output of write (:w) command is redirected using tee</div><div class="line">% – current file name</div></pre></td></tr></table></figure>
+<h3 id="4-查看二进制文件"><a href="#4-查看二进制文件" class="headerlink" title="4. 查看二进制文件"></a>4. 查看二进制文件</h3><p><code>vim</code>下 </p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:%!xxd</div></pre></td></tr></table></figure>
+<p><code>linux</code>下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xxd -b file_name</div></pre></td></tr></table></figure>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2012/02/19/Linux常用指令/">MORE >></a>
         </p>
       
 
@@ -352,6 +495,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
@@ -368,23 +523,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">DeepLearning</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -396,19 +547,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
             
             <div class="clearfix"></div>

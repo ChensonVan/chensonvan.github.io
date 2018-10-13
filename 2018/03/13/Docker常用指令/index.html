@@ -6,33 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://chenson.com">
-  <title>Machine Learning - 支持向量机 | Vane&#39;s Blog</title>
+  <title>Docker常用指令 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. Margins Logistic Regression ​在logistic regression中, 如果我们要判断一个点是属于0还是1概率是θ   $$p(y=1 | x; \theta)    \\h_\theta(x) = g(\theta^T x)$$   logistic regression和SVM的区别 由上图可知, C是非常靠近Boundary的, 而A是离Boundary">
-<meta name="keywords" content="Machine Learning,SVM">
+  <meta name="description" content="1. docker镜像构建12cd analyze-serverdocker build -t analyze-server . 2. 创建12345docker create analyze-server # 创建容器，但处于停止状态docker run analyze-server    # 创建并启动容器# 启动容器，并挂载文件docker run --name=analyze -p 500">
+<meta name="keywords" content="docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Machine Learning - 支持向量机">
-<meta property="og:url" content="http://chenson.com/2017/06/16/Machine-Learning-支持向量机/index.html">
+<meta property="og:title" content="Docker常用指令">
+<meta property="og:url" content="http://chenson.com/2018/03/13/Docker常用指令/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="1. Margins Logistic Regression ​在logistic regression中, 如果我们要判断一个点是属于0还是1概率是θ   $$p(y=1 | x; \theta)    \\h_\theta(x) = g(\theta^T x)$$   logistic regression和SVM的区别 由上图可知, C是非常靠近Boundary的, 而A是离Boundary">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-15/22154353.jpg">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-16/68635525.jpg">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-15/82650218.jpg">
-<meta property="og:image" content="http://7xrrje.com1.z0.glb.clouddn.com/screenshot_751.png">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-16/56916532.jpg">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-16/84252167.jpg">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-16/92687515.jpg">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-16/34145342.jpg">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-16/46291178.jpg">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-16/71943430.jpg">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-16/81750236.jpg">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-16/78436825.jpg">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-16/35860269.jpg">
-<meta property="og:updated_time" content="2017-06-16T12:31:00.000Z">
+<meta property="og:description" content="1. docker镜像构建12cd analyze-serverdocker build -t analyze-server . 2. 创建12345docker create analyze-server # 创建容器，但处于停止状态docker run analyze-server    # 创建并启动容器# 启动容器，并挂载文件docker run --name=analyze -p 500">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-6-25/93560929.jpg">
+<meta property="og:updated_time" content="2018-10-13T08:15:39.515Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Machine Learning - 支持向量机">
-<meta name="twitter:description" content="1. Margins Logistic Regression ​在logistic regression中, 如果我们要判断一个点是属于0还是1概率是θ   $$p(y=1 | x; \theta)    \\h_\theta(x) = g(\theta^T x)$$   logistic regression和SVM的区别 由上图可知, C是非常靠近Boundary的, 而A是离Boundary">
-<meta name="twitter:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-15/22154353.jpg">
+<meta name="twitter:title" content="Docker常用指令">
+<meta name="twitter:description" content="1. docker镜像构建12cd analyze-serverdocker build -t analyze-server . 2. 创建12345docker create analyze-server # 创建容器，但处于停止状态docker run analyze-server    # 创建并启动容器# 启动容器，并挂载文件docker run --name=analyze -p 500">
+<meta name="twitter:image" content="http://on8r6i4gg.bkt.clouddn.com/18-6-25/93560929.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -166,161 +154,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Machine-Learning-支持向量机" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Docker常用指令" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Machine Learning - 支持向量机
+      Docker常用指令
     </h1>
   
 
         
-        <a href="/2017/06/16/Machine-Learning-支持向量机/" class="archive-article-date">
-  	<time datetime="2017-06-16T09:21:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-16</time>
+        <a href="/2018/03/13/Docker常用指令/" class="archive-article-date">
+  	<time datetime="2018-03-13T05:12:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="1-Margins"><a href="#1-Margins" class="headerlink" title="1. Margins"></a>1. Margins</h5><ul>
-<li><p>Logistic Regression</p>
-<p>​在logistic regression中, 如果我们要判断一个点是属于0还是1概率是θ</p>
-</li>
+        <h3 id="1-docker镜像构建"><a href="#1-docker镜像构建" class="headerlink" title="1. docker镜像构建"></a>1. docker镜像构建</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd analyze-server</div><div class="line">docker build -t analyze-server .</div></pre></td></tr></table></figure>
+<h3 id="2-创建"><a href="#2-创建" class="headerlink" title="2. 创建"></a>2. 创建</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">docker create analyze-server # 创建容器，但处于停止状态</div><div class="line">docker run analyze-server    # 创建并启动容器</div><div class="line"></div><div class="line"># 启动容器，并挂载文件</div><div class="line">docker run --name=analyze -p 5000:5000 -p 8888:8888 -p 6006:6006 -v /Users/Chenson/Github/analyze-server/app/:/analyze-server/app/ -v /Users/Chenson/:/home/ -d analyze-server</div></pre></td></tr></table></figure>
+<h3 id="3-查看"><a href="#3-查看" class="headerlink" title="3. 查看"></a>3. 查看</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker ps     # 查看当前运行的容器</div><div class="line">docker ps -a  # 查看所有的容器，包括停止的</div></pre></td></tr></table></figure>
+<h3 id="4-启动"><a href="#4-启动" class="headerlink" title="4. 启动"></a>4. 启动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker start [NAME]/[CONTAINER ID] # 通过docker start来启动之前已经停止的docker_run镜像</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker exec -it analyze /bin/bash  # 在运行的容器中执行后面的指令</div></pre></td></tr></table></figure>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-6-25/93560929.jpg" alt=""></p>
+<ul>
+<li><p>交互型容器：运行在前台，容器中使用exit命令或者调用docker stop、docker kill命令，容器停止。</p>
+<ul>
+<li><code>docker -it --name analyze -i -t</code></li>
+<li><code>-i</code> 打开容器的标准输入</li>
+<li><code>-t</code> 告诉docker为容器创建一个命令行终端</li>
+<li><code>--name analyze</code> 指定容器名称，可以不填(随机)</li>
+<li><code>analyze-server</code> 告诉我们使用什么镜像来启动容器</li>
+<li><code>/bin/bash</code> 告诉docker要在容器里面执行此命令</li>
 </ul>
-<p>$$<br>p(y=1 | x; \theta)    \\<br>h_\theta(x) = g(\theta^T x)<br>$$</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-15/22154353.jpg" alt=""></p>
-<ul>
-<li><p>logistic regression和SVM的区别</p>
-<p>由上图可知, C是非常靠近Boundary的, 而A是离Boundary最远的点. 所以我们非常有信心的说A是属于+, 而C比较有可能属于+. 所以对于那些距离边界比较近的点才是我们需要重点考虑的. 而这也正是logistic regression和SVM之间的区别. </p>
-<ul>
-<li><p>logistic regression考虑全局(如何考虑全局？ans：RMSE最小值)红线</p>
 </li>
-<li><p>SVM考虑局部(最小间隔要大于多少)绿线</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-16/68635525.jpg" alt=""></p>
+<li><p>后台型容器：运行在后台，创建后与终端无关，只有调用docker stop、docker kill命令才能使容器停止。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run --name=analyze -p 5000:5000 -p 8888:8888 -p 6006:6006 -v /Users/Chenson/Github/analyze-server/app/:/analyze-server/app/ -v /Users/Chenson/:/home/ -d analyze-server</div></pre></td></tr></table></figure>
+<ul>
+<li><code>-d</code> 使容器在后台运行。</li>
+<li><code>-c</code> 可以调整容器的CPU优先级。默认情况下，所有的容器拥有相同的CPU优先级和CPU调度周期，但你可以通过Docker来通知内核给予某个或某几个容器更多的CPU计算周期。比如，我们使用-c或者–cpu-shares =0启动了C0、C1、C2三个容器，使用-c/–cpu-shares=512启动了C3容器。这时，C0、C1、C2可以100%的使用CPU资源（1024），但C3只能使用50%的CPU资源（512）。如果这个主机的操作系统是时序调度类型的，每个CPU时间片是100微秒，那么C0、C1、C2将完全使用掉这100微秒，而C3只能使用50微秒。</li>
+<li><code>-c</code> 后的命令是循环，从而保持容器的运行</li>
+</ul>
 <a id="more"></a>
 </li>
 </ul>
+<h3 id="5-停止"><a href="#5-停止" class="headerlink" title="5. 停止"></a>5. 停止</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker stop [NAME]/[CONTAINER ID] # 退出容器</div><div class="line">docker kill [NAME]/[CONTAINER ID] # 强制停止一个容器</div></pre></td></tr></table></figure>
+<h3 id="6-删除"><a href="#6-删除" class="headerlink" title="6. 删除"></a>6. 删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">docker rm [NAME]/[CONTAINER ID] # 不能够删除一个正在运行的容器，会报错。需要先停止容器</div><div class="line"></div><div class="line">docker rm &apos;docker ps -a -q&apos; # 一次性删除所有容器 </div><div class="line">     					    # -a标志列出所有容器，</div><div class="line">     					    # -q标志只列出容器的ID，然后传递给rm命令，依次删除容器</div></pre></td></tr></table></figure>
+<h3 id="7-Tutorial"><a href="#7-Tutorial" class="headerlink" title="7. Tutorial"></a>7. Tutorial</h3><ul>
+<li><p><a href="https://blog.csdn.net/u010246789/article/details/53958662" target="_blank" rel="external">Docker 简易教程</a></p>
 </li>
-</ul>
-<h5 id="2-SVM"><a href="#2-SVM" class="headerlink" title="2. SVM"></a>2. SVM</h5><ul>
-<li><p>符号说明</p>
-<p>在Logstic中, 对于二分类问题, y ∈ {0, 1}</p>
-<p>在SVM中, 对于二分类问题, y ∈ {-1, +1}, 且重新定义公式</p>
+<li><p><a href="http://www.runoob.com/docker/docker-command-manual.html" target="_blank" rel="external">Docker 命令大全</a></p>
 </li>
-</ul>
-<p>$$<br>h_{w,b} (x) = g(w^Tx + b)    \\<br>g(z) = 1 \space (z\geq 0)    \\<br>g(z) = -1 \space (z &lt; 0)<br>$$</p>
-<ul>
-<li><p>函数间隔 Functional Margins </p>
-<p>第一个公式表示的是某个<strong>样本的函数间隔</strong>. </p>
-<p>第二个公式表示的是<strong>全局的函数间隔</strong>, 也就是函数间隔为所有样本中函数间隔最小的那个函数间隔决定. </p>
-<p>之前使用正负1来表示 y, 所以计算出来的距离都是一个<strong>非负数</strong>, 且这个数值的大小表示了对于预测结果的confidence. y 值越接近1, 表示对这个判断越肯定.<br>$$<br>\hat {\gamma}^{(i)} = y^{(i)} (w^Tx^{(i)} + b)    \\<br>\hat \gamma = \min_{i=1,…,m} \hat \gamma^{(i)}<br>$$<br>函数间隔越大, 代表了我们对于分类的结果非常的肯定, 所以希望函数间隔越大越好, 但需要对这个间隔加上一些<strong>限制条件</strong>(后面具体讲)才行. 因为我们可以在不改变这个超平面的情况下, 只要成比例增加w和b, 就能让函数间隔任意的大. </p>
-</li>
-<li><p>几何距离 Geometrix Margins </p>
-<p>下图中, 如果我们知道B点所在的<strong>超平面</strong>(separating hyperplane)的解析式, 任何其他点到该面的距离都可以用上面定义过的函数间隔来表示. </p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-15/82650218.jpg" alt=""><br>$$<br>决策边界：w^Tx + b = 0<br>$$<br>w是超平面的法向量, 垂直于决策边界, 也就是这个超平面. </p>
-<p>若B是A在分割面上的投影 (AB垂直于超平面), 那么我们可以计算A到超平面的距离 γ . </p>
-<p>假设A点是$x_i$, 那么B点为：<br>$$<br>\overrightarrow {OB} = \overrightarrow {OA} - \overrightarrow {BA}      \ <br>x^{(i)} - \gamma^{(i)} · \frac w {||w||}<br>$$<br>因为B点在这个超平面上, 所以我们将这个点带回超平面得到：<br>$$<br>w^T(x^{(i)} - \gamma^{(i)} · \frac w {||w||}) + b = 0<br>$$<br>通过上面的式子, 可以解出γ：<br>$$<br>w^Tx^{(i)} - \gamma^{(i)} · \frac {w^Tw} {||w||} + b = 0    \\<br>w^Tx^{(i)} + b = \gamma^{(i)} ||w||    \\<br>\gamma^{(i)} = (\frac w {||w||})^Tx^{(i)} + \frac b {||w||}<br>$$<br>加上前面的$y^{(i)}$, 于是我们就能得到了几何间隔：<br>$$<br>\gamma^{(i)} = y^{(i)}(\frac {w^T} {||w||}x^{(i)} + \frac b {||w||})<br>$$<br>通过上面的式子, 发现当||w|| = 1时, 几何间隔就是函数间隔. 这个时候, 如果任意放大||w||, 几何间隔是不会改变的. 因为||w||也会随着被放大. 几何间隔与函数间隔的关系为：<br>$$<br>\gamma^{(i)} = \frac {\hat \gamma^{(i)}} {||w||}<br>$$<br>对于所有的训练样本, 几何间隔为：<br>$$<br>\gamma = \min_{i=1,…,m} \gamma^{(i)}<br>$$</p>
-</li>
-</ul>
-<h5 id="2-间隔最大化"><a href="#2-间隔最大化" class="headerlink" title="2. 间隔最大化"></a>2. 间隔最大化</h5><p>根据上一节, 我们可以求出几何间隔γ. 如果现在需要找到一个超平面S, 使得离超平面最近的点的几何间隔越大越好, 可以用下列优化问题表示：<br>$$<br>\max_{w,b} \gamma    \\<br>s.t. \space y_i(\frac w {||w||}·x_i + \frac b {||w||}) \geq \gamma,     \space i = 1, 2, …, N<br>$$<br>即我们希望最大化超平面(w, b)关于训练数据集的几何间隔γ, 约束条件表示超平面(w,b)关于每个训练样本点的几何间隔至少是γ. </p>
-<p>考虑到几何间隔与函数间隔的关系式, 可以将这个问题改写成函数间隔来表示, 即：<br>$$<br>\max_{w,b} \frac {\hat \gamma} {||w||}    \\<br>s.t. \space y_i(w·x_i + b) \geq \hat \gamma,     \space i = 1, 2, …, N<br>$$<br>上面式子中, 函数间隔的取值并不会影响到最优化问题的解. 事实上, 假设将w和b按比例改变为λw和λb, 这时函数间隔也会被当大λ倍, 所以这个对上面的最优化问题的不等式约束是没有影响的, 对目标函数的优化也没有影响. </p>
-<p>这样, 可以去函数间隔γ=1, 代入到上面的最优化问题, 注意到最大化 $\frac 1 {||w||}$和最小化 $\frac 1 2$ $||w||^2$是等价的, 也是就得到厦门的线性可分支持向量机学习的最优化问题：<br>$$<br>\min_{w,b} \frac 1 2 ||w||^2    \\<br>s.t. \space y_i(w·x_i + b) - 1 \geq 0<br>$$<br>这个时候我们的问题就转化成了在线性约束下的二次规划, 可以使用二次规划的软件来解决这个优化问题,, 然后我们就可以得到我们的最优间隔分类器.<br>实际上, 我们有更好的办法去解这个优化问题. 但在这之前, 我们需要补充一下其他的相关知识. </p>
-<h5 id="3-拉格朗日对偶"><a href="#3-拉格朗日对偶" class="headerlink" title="3. 拉格朗日对偶"></a>3. 拉格朗日对偶</h5><p>在约束最优化问题中, 常常利用拉格朗日对偶性(Lagrange dulity)讲原始问题转换为对偶问题, 通过解度偶问题而得到的原始问题的解. 该方法应用在许多统计学习方法中, 例如最大熵模型和支持向量机. </p>
-<ul>
-<li>原始问题<br>$$<br>\min_w f(w)    \\<br>s.t. \space h_i(w) = 0, \space i = 1,2,…,l<br>$$<br>下面是约束条件, 使用拉格朗日乘子法, 将问题转换为：<br>$$<br>L(w, b) = f(w) + \sum_{i=1}^l\beta_ih_i(w)<br>$$<br>这里面, βi为<strong>拉格朗日乘子</strong>(Lagrange Multipliers). 然后令偏导为0来解得w和β：<br>$$<br>\frac {∂L} {∂w_i} = 0    \\<br>\frac {∂L} {∂\beta_i} = 0<br>$$<br>更加广泛的约束最优化问题：<br>$$<br>\min_w f(w)    \\<br>s.t. \space g_i(x) ≤ 0, \space i = 1, 2, …,k    \\<br>\space \space \space \space \space \space \space h_i(w) = 0, \space i = 1,2,…,l<br>$$<br>所以我们定义广义拉格朗日公式(Generalized Lagrangian)为：<br>$$<br>L(w, \alpha, \beta) = f(w) + \sum_{i=1}^k \alpha_ig_i(w) + \sum_{i=1}^l \beta_ih_i(w)<br>$$<br>其中, αi,βi为<strong>拉格朗日乘子</strong>(Lagrange Multipliers). 现在我们定义：<br>$$<br>\theta_p(w) = \max_{\alpha, \beta: \alpha_i ≥ 0} L (w, \alpha, \beta)<br>$$</li>
-</ul>
-<p>​    其中下表P代表了“<strong>primal</strong>”. 若两个约束条件当中至少有一个得不到满足的时候, 则可令αi为无穷大或βi为无穷大使得：<br>$$<br>\theta_P = f(w)    \space \space \space (w满足原始问题的约束)\\<br>\theta_p = \infty \space \space \space (其他)\<br>$$<br>​    对于满足原始约束的w来说, θp与原始问题中的目标函数相同. 对于违反原始约束问题的w来说θp = ∞</p>
-<p>​    如果考虑最小化：</p>
-<p>​<br>$$<br>\min_w\theta_p(w) = \min_w \max_{\alpha, \beta: \alpha_i ≥ 0 } L(w, \alpha, \beta)<br>$$<br>​    它是与原始最优化问题相等价的, 即它们有相同的解. </p>
-<ul>
-<li><p>对偶问题</p>
-<p>现在看另外一个问题：<br>$$<br>\theta_D(\alpha, \beta) = \min_w L(w, \alpha, \beta)<br>$$<br>其中下表D代表了对偶(<strong>dual</strong>). </p>
-<p>在原始问题中, 我们<strong>先最大化关于α和β的函数, 再最小化关于w的函数</strong>；</p>
-<p>而对偶问题中, 我们<strong>先最小化关于w的函数, 在最大化关于α和β的函数</strong>：<br>$$<br>\max_{\alpha, \beta: \alpha_i ≥ 0} \theta_D(\alpha, \beta) = \max_{\alpha, \beta: \alpha_i ≥ 0} \min_w L(w, \alpha, \beta)<br>$$<br>它们唯一的区别就在于min和max的顺序不同. 我们令:<br>$$<br>d^{*} =  \max_{\alpha, \beta: \alpha_i ≥ 0} \min_w L(w, \alpha, \beta) \leq \min_w \max_{\alpha, \beta: \alpha_i ≥ 0} L(w, \alpha, \beta) = p^{*}<br>$$<br>也就是说, 在某种情况下, 会有d<em> = p</em>. 这个时候我们就可把求原始问题转化成求对偶问题. 假设f和g都是凸函数(convex function), h是仿射的, 并且存在w是对所有的i, 能够使得:<br>$$<br>g_i(w) &lt; 0<br>$$<br>上述假设条件下, 一定存在w*, α*和β*使得w*是原始问题的解. α*和β*是对偶问题的解. 并且还有 p<em> = d</em> = L(w<em>, α\</em>, β*). </p>
-<p>w*, α*和β*满足KKT条件(Karush-Kuhn-Tucker conditions)：</p>
-<p><img src="http://7xrrje.com1.z0.glb.clouddn.com/screenshot_751.png" alt=""></p>
-<p>如果存在满足KKT条件的w*,α*,β*, 则原始条件与对偶问题一定有解. </p>
-<p>公式(5)又称之为<strong>KKT对偶互补条件</strong>, 这个条件表明如果 α* &gt; 0, 那么就有g(w*) = 0. 即约束条件 g(w*) &lt;= 0 <strong>激活</strong>, w处于可行域的边界上. 而其他谓语可行域内部g(w*) &lt; 0的点都不起约束作用, 对应的α* = 0. </p>
-</li>
-<li><p>为什么要引入对偶</p>
-<ul>
-<li><p>为什么要使用随机梯度下降</p>
-<p>用普通的基于所有样本的梯度和的均值的批量梯度下降法（BGD）是行不通的，原因在于我们的损失函数里面有限定，<strong>只有误分类的M集合里面的样本才能参与损失函数的优化</strong>。所以我们不能用最普通的批量梯度下降(为什么？？), 只能采用随机梯度下降（SGD）或者小批量梯度下降（MBGD）。</p>
-</li>
-<li><p>对偶的优势</p>
-<p>对偶形式将权重向量w转化成实例$x_i$和$y_i$的线性组合形式。且对偶是以内积的形式出现的，可以预先使用Gram矩阵储存，用空间换时间的方法提高计算效率。原始形式每次判断误分类点时都需要进行向量点乘运算。</p>
-<p>这里同时也为后面引入核函数做伏笔，因为感知机是神经网络和支持向量机的基础。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h5 id="4-最优间隔分类器"><a href="#4-最优间隔分类器" class="headerlink" title="4. 最优间隔分类器"></a>4. 最优间隔分类器</h5><p>根据上面的内容, 回顾SVM的问题<br>$$<br>\min_{\gamma,w,b} \frac 1 2 ||w||^2    \\<br>s.t. \space y^{(i)}(w^Tx^{(i)} + b) \geq 1 \<br>$$<br>根据拉格朗日对偶问题, 修改约束条件为<br>$$<br>g_i(w) = -y^{(i)}(w^Tx^{(i)} + b) + 1 \leq 0<br>$$<br>那么就和拉格朗日公式是一样的了. 根据上面的KTT条件可知<strong>只有函数间隔是1, 线性约束式前面的系数大于0, g(w)=0, 其他的不在线上的点(g(w)&lt;0), 极值不会在他们所在的范围内取得, 因此前面的系数等于0. </strong></p>
-<p>考虑下图, 最大间隔分类超平面为实线：</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-16/56916532.jpg" alt=""></p>
-<p>其中一个正样本和两个负样本正好在平行于分类超平面的虚线上, <strong>只有这三个样本对应的 αi&lt;0, 其他样本对应的  αi=0</strong>. 这三个样本就叫做支持向量机. 从这里我们可以看出, 支持向量的个数远远小于集训集的大小. </p>
-<p>现在构造拉格朗日函数：<br>$$<br>L(w, b, \alpha) = \frac 1 2 ||w||^2 - \sum_{i=1}^m\alpha_i[y^{(i)}(w^Tx^{(i)} + b) - 1]<br>$$<br>所以接下去的任务就是<strong>求解对偶问题</strong>, 根据上面的知识, 有：<br>$$<br>d* = \max_{\alpha:\alpha_i \geq 0} \theta_D(\alpha) = \max_{\alpha:\alpha_i \geq 0} \min_{w, b} L(w, b,\alpha)<br>$$<br>首先, 求L(w,b,α)关于w, b 的最小值. 令偏导数为0：<br>$$<br>\frac {∂L} {∂w} = w - \sum_{i=1}^m\alpha_iy^{(i)}x^{(i)} = 0    \\<br>\frac {∂L} {∂b} = 0 - \sum_{i=1}^m\alpha_iy^{(i)}= 0<br>$$<br>可得：<br>$$<br>w = \sum_{i=1}^m\alpha_i y^{(i)} x^{(i)}    \\<br>\frac {∂} {∂b} L(w, b, \alpha)  = \sum_{i=1}^m\alpha_i y^{(i)} = 0<br>$$<br>将求得的w带回拉格朗日函数L(w,b,α), 可得到：<br>$$<br>L(w, b, \alpha) = \frac 1 2 ||w||^2 - \sum_{i=1}^m\alpha_i[y^{(i)}(w^Tx^{(i)} + b) - 1]<br>$$<br><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-16/84252167.jpg" alt=""></p>
-<p>计算出了<strong>min L(w,b,α)</strong>, 便可以继续进行<strong>max</strong>操作, 即：</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-16/92687515.jpg" alt=""></p>
-<p>可以证明该优化问题满足KKT条件, 求得$α^{*}_i$之后(后面将如何求解), 可通过:<br>$$<br>w = \sum_{i=1}^m \alpha_i y^{(i)}x^<br>$$<br>求得w*, 最后通过下面式子求得b*<br>$$<br>b^{*} = -\frac {\max_{i:y^{(i)}=-1}w^{*T}x^{(i)} + \min_{i:y^{(i)} = 1}w^{*T}x^{(i)}}{2}<br>$$<br>当求出所有的参数, 就可以通过$w^T$x + b 来进行分类了：<br>$$<br>w^T + b = (\sum_i^m \alpha_iy_ix_i)^T x + b<br>= \sum_i^m \alpha_iy_i⟨x_i, x⟩ + b<br>$$<br>通过上面式子发现, 现在新来一个新数据, 只需要<strong>计算它与训练样本的内积</strong>即可. 并通过前面的KKT条件我们知道, 只有除了支持向量的那些原本, 都有$α_i$ = 0. 所以, 我们只需要<strong>将新样本与支持向量机做内积运算</strong>, 即可求出$w^T$x + b</p>
-<ul>
-<li><p>Example</p>
-<p>假设这里有三个样本点，正样本点x1=(3,3)^T, x2=(4,3)^T, 负样本点是x3=(1,1)^T，试用感知机学习算法对偶形式求感知机模型。</p>
-<p><strong>ANSWER</strong></p>
-<ol>
-<li><p>取αi = 0，这里i=1，2，3，b=0，n=1</p>
-</li>
-<li><p>计算Gram矩阵<br>$$<br>G= \begin {bmatrix}  ||x_1||^2 &amp; x_1·x2 &amp; x_1·x3 \  </p>
-<pre><code>x2· x1 &amp; ||x2||^2 &amp; x_2·x3   \\ 
-||x_3· x1 &amp; x_3·x2 &amp; ||x_3||^2 \end{bmatrix}                                   
-</code></pre><p>  = \begin {bmatrix}  18 &amp; 21 &amp; 6 \  </p>
-<pre><code>21 &amp; 25 &amp; 7   \\ 
-6 &amp; 7 &amp; 2 \end{bmatrix}
-</code></pre><p>$$</p>
-</li>
-<li><p>误分条件<br>$$<br>y_i(\sum_{j=1}^N\alpha_jy_jx_j ·x_i + b) \leq 0<br>$$<br>参数更新<br>$$<br>\alpha_i \leftarrow \alpha_i + 1 \ <br>b \leftarrow b + y_i<br>$$<br>​</p>
-</li>
-<li><p>迭代过程如下，结果列于下表</p>
-<p>|  k   |  0   |  1   |  2   |  3   |  4   |  5   |  6   |   7    |<br>| :–: | :–: | :–: | :–: | :–: | :–: | :–: | :–: | :—-: |<br>|      |      |  x1  |  x3  |  x3  |  x3  |  x1  |  x3  |   x3   |<br>|  α1  |  0   |  1   |  1   |  1   |  2   |  2   |  2   | <strong>2</strong>  |<br>|  α2  |  0   |  0   |  0   |  0   |  0   |  0   |  0   | <strong>0</strong>  |<br>|  α3  |  0   |  0   |  1   |  2   |  2   |  3   |  4   | <strong>5</strong>  |<br>|  b   |  0   |  1   |  0   |  -1  |  0   |  -1  |  -2  | <strong>-3</strong> |</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-16/34145342.jpg" alt=""></p>
-</li>
-<li><p>w, b分别为：</p>
-</li>
-<li><p>$$<br>w = 2x_1 + 0x_2 - 5x_3 = (1, 1)^T \\<br>b = -3<br>$$</p>
-<p>分离超平面：<br>$$<br>x^{(1)} + x^{(2)} - 3 = 0<br>$$</p>
-</li>
-</ol>
-</li>
-</ul>
-<h5 id="5-Kernels"><a href="#5-Kernels" class="headerlink" title="5. Kernels"></a>5. Kernels</h5><p>在之前的线性回归的章节中，有提到过polynomial regression。假设x是房子的面积，我们使用三个特征$x$, $x^2$, $x^3$来构造一个三次多项式。 这里面有两个概念要区分一下。x为原先房子的面积，是属性(attributes)。通过这个属性x映射出来的$x$, $x^2$, $x^3$叫做特征(features)。在这里使用ϕ来表示从属性到特征的特征映射(featuer mapping)。比如：<br>$$<br>ϕ(x) =  \begin{bmatrix} x  \ x^2 \ x^3 \end{bmatrix}<br>$$<br>那么在SVM中，如何使用这种特征映射呢？</p>
-<p>通过上面知识，我们只需要将所有出现$⟨x^{(i)}, x^{(j)}⟩$ 替换为 $⟨ϕ^{(i)}, ϕ^{(j)}⟩$</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-16/46291178.jpg" alt=""></p>
-<p>看上去好像我们既在SVM中使用了特征映射, 又解决了数据在低维空间中线性不可分的情况. 但是, 这里有个问题. 如果我们通过特征映射得到的$ϕ(x)$是一个很高维甚至是无穷维的, 那么计算$⟨ϕ(x^{(i)}),ϕ(x^{(j)})⟩$就不是那么现实了, 计算时间会很久. 这里我们就要引出一个叫<strong>kernels</strong>的概念, 假设</p>
-<blockquote>
-<p>Q: z在这里代表的什么？</p>
-</blockquote>
-<p>$$<br>K(x, z) = (x^Tz)^2 \space \space \space \space \space \space \space \space x, z \in R^b<br>$$</p>
-<p>展开K(x, z):<br>$$<br>K(x, z) = (\sum_{i=1}^n x_iz_i) (\sum_{j=1}^n x_iz_i)        \\<br>= \sum_{i=1}^n \sum_{j=1}^n x_ix_j z_i z_j        \\<br>= \sum_{i,j=1}^n (x_ix_j) (z_iz_j)<br>$$<br>展开后我们发现，K(x, z)还可以写成$K(x, z) = ϕ(x)^T ϕ(z)$，其中：<br>$$<br>ϕ(x) = \begin{bmatrix} x _1x_1 \ x _1x_2 \\x _1x_3 \ x _2x_1 \ x _2x_2 \ x _2x_3 \ x _3x_1 \ x _3x_2 \ x _3x_3 \ \end{bmatrix}<br>$$<br>在这个例子中，<strong>映射后特征的内积和原始特征的内积的平方是等价的</strong>，也就是说我们只需要<strong>计算原始特征的内积再进行平方</strong>就可以了，并不需要先得到映射后再计算映射后特征的内积。计算原始特征内积的时间复杂度为O(n)，而计算映射特征的时间复杂度为O(n^2)。</p>
-<p>再看另外一个kernels<br>$$<br>K(x, z) = (x^T z + c)^2    \\<br>= \sum_{i,j=1}^n (x_ix_j) (z_iz_j) + \sum_{i=1}^n (\sqrt {scx_i})( \sqrt {scx_j} ) + c^2<br>$$<br>同样我们也可以改写上面的式子</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-16/71943430.jpg" alt=""></p>
-<p>所以广泛的来说，我们有<br>$$<br>K(x, z) = (x^T z + c)^d<br>$$<br>这个kernel将n维的特征映射为(d, n+d)维，即这里面对应的多项式$x_{i1}$, $x_{i2}$, …, $x_{ik}$最多到d维。尽管空间维度为O(n^d)，但计算时间仍然只是O(n)，因为我们并不需要将映射后的特征全部计算出来再计算内积。</p>
-<p>但因为计算的是内积，有IR中的余弦相似度可孩子，如果x和z的向量夹角越小，那么核函数的值就越大。反之就越小。因此核函数值是ϕ(x)和ϕ(z)相似度。</p>
-<p>再看另外一个很函数<br>$$<br>K(x, z) = exp(\frac {||x - z||^2} {2\sigma^2})<br>$$<br>在这个核函数中，如果x和z很相近，则(||x-z||~= 0)，那么核函数值为1. 如果相差很大，则(||x-z||&gt;&gt; 0), 那么很函数的值约等于0. 由于这个核函数类似于高斯分布，因此成为高斯核函数，也叫做<strong>径向基函数(Radial Basis Function 简称RBF)</strong>，它能够把原始特征映射到<strong>无穷维</strong>。</p>
-<p>类似于高斯很函数，比较x和z的相似度，并映射到0~1之间。logistic Regression中， sigmoid函数也可以，所以还有sigmoid核函数。<br>$$<br>K(x, z) = tanh(\beta · xz + b)<br>$$<br>下面有张图说明在低维线性不可分时，映射到高维后就可分了，使用高斯核函数。</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-16/81750236.jpg" alt=""></p>
-<p>在SVM中，对于训练样本学习出w和b参数后，对于新来的样本我们只需要计算$w^Tx + b$来判断。那么在使用了核函数之后，则需要相应的改为$w^Tϕ(x) + b$</p>
-<p>那么是需要先计算好ϕ(x)再进行预测呢？实际上不需要的, 之前计算过<br>$$<br>w^Tx + b = (\sum_{i=1}^m \alpha_i y^{(i)}x^{(i)})^T x + b     \\<br>= \sum_{i=1}^m \alpha_i y^{(i)} ⟨x^{(i)}, x⟩ + b<br>$$<br>所以我们只需要将<br>$$<br>⟨x^{(i)}, x⟩     \\<br>替换为            \\<br>K(x^{(i)}, x)<br>$$</p>
-<h5 id="6-核函数的有效性"><a href="#6-核函数的有效性" class="headerlink" title="6. 核函数的有效性"></a>6. 核函数的有效性</h5><p>判断核函数的有效性，即判断是否存在ϕ, 使得下面式子成立<br>$$<br>K(x,z)=⟨ϕ(x)ϕ(z)⟩<br>$$<br>假设我们有核K和m个训练样本{x(1),x(2),…,x(m)}, 定义一个 (m×m) 的矩阵K<br>$$<br>K_{ij} = K(x^{(i)}, x^{(j)})<br>$$<br>如果此时K是一个有效的kerne，那么则有：<br>$$<br>K_{ij} = k(x^{(i)}, x^{(j)}) = ϕ(x^{(i)})ϕ(x^{(i)})    \\<br>= ϕ(x^{(j)})^T ϕ(x^{(i)}) = K(x^{(j)}, x^{(i)}) = K_{ji}<br>$$<br>即K是对称矩阵。现在我们用ϕk(x)不澳是向量ϕ(x)的第k个元素，对任意的向量z都有：</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-16/78436825.jpg" alt=""></p>
-<p>从上面的证明我们可以得到，如果K是一个有效的kernel，那么对于在训练集上的核矩阵K一点是半正定的。事实上，这不仅仅是个必要条件，也是充分条件。有效核也叫做Mercer Kernel</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-16/35860269.jpg" alt=""></p>
-<h5 id="7-Reference"><a href="#7-Reference" class="headerlink" title="7. Reference"></a>7. Reference</h5><ul>
-<li><a href="http://zhihaozhang.github.io/2014/05/11/svm3/" target="_blank" rel="external">http://zhihaozhang.github.io/2014/05/11/svm3/</a></li>
-<li><a href="http://www.cnblogs.com/bourneli/p/4199990.html" target="_blank" rel="external">http://www.cnblogs.com/bourneli/p/4199990.html</a></li>
-<li><a href="http://www.cnblogs.com/90zeng/p/Lagrange_duality.html" target="_blank" rel="external">http://www.cnblogs.com/90zeng/p/Lagrange_duality.html</a></li>
 </ul>
 
       
@@ -361,11 +248,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SVM</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
         		</li>
       		
 		</ul>
@@ -421,7 +304,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2017/06/16/Machine-Learning-支持向量机/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2018/03/13/Docker常用指令/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -435,18 +318,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/06/17/Machine-Learning-PCA/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/03/20/深度学习笔记-CNN/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Machine Learning - PCA
+          深度学习笔记-CNN
         
       </div>
     </a>
   
   
-    <a href="/2017/06/13/Machine-Learning-Ensemble-Learning/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Machine Learning - Ensemble Learning</div>
+    <a href="/2017/10/10/Hadoop2-7-4完全分布式集群搭建和测试/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hadoop2.7.4完全分布式集群搭建和测试</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -460,7 +343,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Machine-Learning-支持向量机" data-title="Machine Learning - 支持向量机" data-url="http://chenson.com/2017/06/16/Machine-Learning-支持向量机/"></div>
+	<div class="ds-thread" data-thread-key="Docker常用指令" data-title="Docker常用指令" data-url="http://chenson.com/2018/03/13/Docker常用指令/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
