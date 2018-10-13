@@ -775,6 +775,132 @@
 
 
   
+    <article id="post-同步异步IO" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/29/同步异步IO/">同步异步IO</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/29/同步异步IO/" class="archive-article-date">
+  	<time datetime="2017-09-29T03:54:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-大致区别"><a href="#1-大致区别" class="headerlink" title="1. 大致区别"></a>1. 大致区别</h3><p>所谓的<strong>同步</strong>和<strong>异步</strong>的区别，指的是Application和kernel之间的交互方式。</p>
+<p>如果Application不需要等待kernel的回应，那么它就是异步的（kernel会发信号通知）。</p>
+<p>如果Application提交完IO请求后，需要等待“回执”，那么它就是同步的。</p>
+<p>而<strong>阻塞</strong>和<strong>非阻塞</strong>，指的是Application是否等待IO操作的完成。</p>
+<p>如果Application必须等到IO操作实际完成以后再执行接下面的操作，那么它就是阻塞的。（从发出信号开始，会一直block对应的进程知道操作完成，）</p>
+<p>反之，如果不需要等待IO操作的完成就开始执行其他的操作，那么就是非阻塞的。（在kernel还准备数据的情况下，就立刻返回了。）</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-11-27/81485285.jpg" alt=""></p>
+<ul>
+<li>叫车之后，就一直在路口等着，车来了自己上去        ——<strong>同步，阻塞</strong></li>
+<li>叫车之后，一边等着一边看美女，车来了自己上去           ——<strong>同步，非阻塞</strong></li>
+<li>叫车之后，光顾着看美女，司机到了之后打电话给你       ——<strong>异步，非阻塞 </strong></li>
+</ul>
+<p>即是：同步就是你要自己检查车来了没有；异步就是车来了司机联系你。阻塞就是等车的时候老实等着，别干别的（被阻塞）；非阻塞就是等车的时候你可以做其他事情。</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/29/同步异步IO/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-多线程与多进程简单理解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/22/多线程与多进程简单理解/">多线程与多进程简单理解</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/22/多线程与多进程简单理解/" class="archive-article-date">
+  	<time datetime="2017-09-22T06:28:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-多进程"><a href="#1-多进程" class="headerlink" title="1. 多进程"></a>1. 多进程</h3><p>直观来看，就是一个个pid，进程是程序在计算机上的一次执行活动。</p>
+<p>创建子进程的调用是 fork()</p>
+<p>fork() 的功能就是产生子进程，调用一次，返回两次。</p>
+<p>一次返回0，一次返回子进程的pid</p>
+<p>子进程永远返回 <code>0</code>，而父进程返回子进程的ID。这样做的理由是，一个父进程可以fork出很多子进程，所以，父进程要记下每个子进程的ID，而子进程只需要调用 <code>getppid()</code> 就可以拿到父进程的ID</p>
+<p>失败返回-1</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span>  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span>   </span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span>  </span></div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_exit</span><span class="params">()</span>  </span></div><div class="line">&#123;  </div><div class="line">	<span class="built_in">printf</span>(<span class="string">"the exit pid:%d/n"</span>,getpid() );  </div><div class="line">&#125;  </div><div class="line"></div><div class="line">main()</div><div class="line">&#123;</div><div class="line"> 	<span class="keyword">pit_t</span>, pid;</div><div class="line">  	atexit(print_exit);		<span class="comment">//注册该进程退出时的回调函数  </span></div><div class="line">  	pid = fork();</div><div class="line">    <span class="keyword">if</span> (pid &lt; <span class="number">0</span>)   </div><div class="line">		<span class="built_in">printf</span>(<span class="string">"error in fork!"</span>);   </div><div class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (pid == <span class="number">0</span>)    	<span class="comment">// 子进程</span></div><div class="line">		<span class="built_in">printf</span>(<span class="string">"i am the child process, my process id is %d/n"</span>, getpid());   </div><div class="line">	<span class="keyword">else</span>   					<span class="comment">// 父进程</span></div><div class="line">	&#123;  </div><div class="line">		<span class="built_in">printf</span>(<span class="string">"i am the parent process, my process id is %d/n"</span>, getpid());   </div><div class="line">		sleep(<span class="number">2</span>);  </div><div class="line">		wait();  </div><div class="line">	&#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/22/多线程与多进程简单理解/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Machine-Learning-PCA" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -830,168 +956,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/06/17/Machine-Learning-PCA/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Machine-Learning-支持向量机" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/16/Machine-Learning-支持向量机/">Machine Learning - 支持向量机</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/16/Machine-Learning-支持向量机/" class="archive-article-date">
-  	<time datetime="2017-06-16T09:21:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="1-Margins"><a href="#1-Margins" class="headerlink" title="1. Margins"></a>1. Margins</h5><ul>
-<li><p>Logistic Regression</p>
-<p>​在logistic regression中, 如果我们要判断一个点是属于0还是1概率是θ</p>
-</li>
-</ul>
-<p>$$<br>p(y=1 | x; \theta)    \\<br>h_\theta(x) = g(\theta^T x)<br>$$</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-15/22154353.jpg" alt=""></p>
-<ul>
-<li><p>logistic regression和SVM的区别</p>
-<p>由上图可知, C是非常靠近Boundary的, 而A是离Boundary最远的点. 所以我们非常有信心的说A是属于+, 而C比较有可能属于+. 所以对于那些距离边界比较近的点才是我们需要重点考虑的. 而这也正是logistic regression和SVM之间的区别. </p>
-<ul>
-<li><p>logistic regression考虑全局(如何考虑全局？ans：RMSE最小值)红线</p>
-</li>
-<li><p>SVM考虑局部(最小间隔要大于多少)绿线</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-16/68635525.jpg" alt=""></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/16/Machine-Learning-支持向量机/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Machine-Learning-Ensemble-Learning" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/13/Machine-Learning-Ensemble-Learning/">Machine Learning - Ensemble Learning</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/13/Machine-Learning-Ensemble-Learning/" class="archive-article-date">
-  	<time datetime="2017-06-13T04:27:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-集成学习-Ensemble-Learning"><a href="#1-集成学习-Ensemble-Learning" class="headerlink" title="1. 集成学习 (Ensemble Learning)"></a>1. 集成学习 (Ensemble Learning)</h4><p>在对新的数据实例进行分类的时候，集成学习通过训练好<strong>多个学习器</strong>，把这些分类器的的分类结果进行某种组合 (比如投票) 决定分类结果，以取得更好的结果，就是我们生活中那句话“三个臭皮匠顶个诸葛亮”，通过使用多个决策者共同决策一个实例的分类从而提高分类器的泛化能力。</p>
-<ul>
-<li><p>同质集成 (Homogeneous)</p>
-<p>需要是<strong>同种类型</strong>，比如全部是决策树或神经网络等，每个个体学习器称之为<strong>基学习器</strong> (base learner)，相应的学习算法称为<strong>基学习算法</strong> (base learning algorithm)</p>
-</li>
-<li><p>异质集成 (Heterogenous)</p>
-<p>可以由不同的学校算法生成，这时候就不再有基学习算法，每个个体学习器称为<strong>组件学习器</strong> (component learner)</p>
-</li>
-</ul>
-<p>以下我们重点讨论同质集成。</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-12/5589106.jpg" alt=""></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ensemble</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/13/Machine-Learning-Ensemble-Learning/">MORE >></a>
         </p>
       
 
@@ -1120,6 +1084,10 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -1132,7 +1100,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1144,23 +1116,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1172,15 +1136,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">

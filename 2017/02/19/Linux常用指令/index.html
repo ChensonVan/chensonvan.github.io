@@ -6,32 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://chenson.com">
-  <title>字符串搜索算法 - KMP | Vane&#39;s Blog</title>
+  <title>Linux常用指令 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 理解一：部分匹配表+已匹配数字1.1 Partial Match Table 上来先上个结论，这个先暂时不管怎么生成，用于KMP表的移动。  移动位数 = 已匹配的字符数 - 对应的部分匹配值   匹配到了第六个字符B，B在上表中的值是2，已经匹配的字符数是6 所以移动的位数是 6 - 2 = 4，将搜索词向后移动4位。">
-<meta name="keywords" content="Algorithm">
+  <meta name="description" content="有时候记东西老是记不住，虽然是经常使用，所以对常用的linux指令做个简单记录，方便以后使用（不断更新… …）。 1. scp文件传输 (security copy)12# eg. scp chenson@127.0.0.1:~/Home/test .  ~/Home/local_test_pathscp PATH_OF_SRC PATH_OF_DST 2. 测内存的使用率12345678valg">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="字符串搜索算法 - KMP">
-<meta property="og:url" content="http://chenson.com/2017/03/15/字符串搜索算法-KMP/index.html">
+<meta property="og:title" content="Linux常用指令">
+<meta property="og:url" content="http://chenson.com/2017/02/19/Linux常用指令/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="1. 理解一：部分匹配表+已匹配数字1.1 Partial Match Table 上来先上个结论，这个先暂时不管怎么生成，用于KMP表的移动。  移动位数 = 已匹配的字符数 - 对应的部分匹配值   匹配到了第六个字符B，B在上表中的值是2，已经匹配的字符数是6 所以移动的位数是 6 - 2 = 4，将搜索词向后移动4位。">
-<meta property="og:image" content="http://p1.bpimg.com/567571/c8cfb90db5bdf1e6.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/0ebcc136f30708e2.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/cbea8594445a6afe.png">
-<meta property="og:image" content="http://i1.piimg.com/567571/baeda2575227f173.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/a88ccdf0dd364060.png">
-<meta property="og:image" content="http://i1.piimg.com/567571/578dabd2f1596006.png">
-<meta property="og:image" content="http://i1.piimg.com/567571/005d54eb172ff27e.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/c8cfb90db5bdf1e6.png">
-<meta property="og:image" content="http://i1.piimg.com/567571/472a6024ca51a4d7.png">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/83011068.jpg">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/5426441.jpg">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/25372902.jpg">
-<meta property="og:updated_time" content="2017-06-11T04:29:06.000Z">
+<meta property="og:description" content="有时候记东西老是记不住，虽然是经常使用，所以对常用的linux指令做个简单记录，方便以后使用（不断更新… …）。 1. scp文件传输 (security copy)12# eg. scp chenson@127.0.0.1:~/Home/test .  ~/Home/local_test_pathscp PATH_OF_SRC PATH_OF_DST 2. 测内存的使用率12345678valg">
+<meta property="og:updated_time" content="2018-10-13T08:26:03.524Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="字符串搜索算法 - KMP">
-<meta name="twitter:description" content="1. 理解一：部分匹配表+已匹配数字1.1 Partial Match Table 上来先上个结论，这个先暂时不管怎么生成，用于KMP表的移动。  移动位数 = 已匹配的字符数 - 对应的部分匹配值   匹配到了第六个字符B，B在上表中的值是2，已经匹配的字符数是6 所以移动的位数是 6 - 2 = 4，将搜索词向后移动4位。">
-<meta name="twitter:image" content="http://p1.bpimg.com/567571/c8cfb90db5bdf1e6.png">
+<meta name="twitter:title" content="Linux常用指令">
+<meta name="twitter:description" content="有时候记东西老是记不住，虽然是经常使用，所以对常用的linux指令做个简单记录，方便以后使用（不断更新… …）。 1. scp文件传输 (security copy)12# eg. scp chenson@127.0.0.1:~/Home/test .  ~/Home/local_test_pathscp PATH_OF_SRC PATH_OF_DST 2. 测内存的使用率12345678valg">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -165,114 +152,56 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-字符串搜索算法-KMP" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Linux常用指令" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      字符串搜索算法 - KMP
+      Linux常用指令
     </h1>
   
 
         
-        <a href="/2017/03/15/字符串搜索算法-KMP/" class="archive-article-date">
-  	<time datetime="2017-03-15T06:48:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-15</time>
+        <a href="/2017/02/19/Linux常用指令/" class="archive-article-date">
+  	<time datetime="2017-02-19T01:16:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-理解一：部分匹配表-已匹配数字"><a href="#1-理解一：部分匹配表-已匹配数字" class="headerlink" title="1. 理解一：部分匹配表+已匹配数字"></a>1. 理解一：部分匹配表+已匹配数字</h4><h5 id="1-1-Partial-Match-Table"><a href="#1-1-Partial-Match-Table" class="headerlink" title="1.1 Partial Match Table"></a>1.1 Partial Match Table</h5><p><img src="http://p1.bpimg.com/567571/c8cfb90db5bdf1e6.png" alt=""></p>
-<p>上来先上个结论，这个先暂时不管怎么生成，用于KMP表的移动。</p>
-<blockquote>
-<p>移动位数 = 已匹配的字符数 - 对应的部分匹配值</p>
-</blockquote>
-<p><img src="http://p1.bpimg.com/567571/0ebcc136f30708e2.png" alt=""></p>
-<p>匹配到了第六个字符B，B在上表中的值是2，已经匹配的字符数是6</p>
-<p>所以移动的位数是 6 - 2 = 4，将搜索词向后移动4位。</p>
-<p><img src="http://p1.bpimg.com/567571/cbea8594445a6afe.png" alt=""></p>
-<a id="more"></a>
-<p>匹配到了第三个字符C，C的前一个字符B在上表中的值是0，已经匹配的字符数是2</p>
-<p>所以移动的位数是 2 - 0 = 2，将搜索词向后移动2位</p>
-<p><img src="http://i1.piimg.com/567571/baeda2575227f173.png" alt=""></p>
-<p>因为第一个字符不匹配，就将整个字符串向后移一位</p>
-<p><img src="http://p1.bqimg.com/567571/a88ccdf0dd364060.png" alt=""></p>
-<p>匹配到了第六个字符B，B在上表中的值是2，已经匹配的字符数是6</p>
-<p>所以移动的位数是 6 - 2 = 4，将搜索词向后移动4位</p>
-<p><img src="http://i1.piimg.com/567571/578dabd2f1596006.png" alt=""></p>
-<p>逐个比较，直到完全匹配</p>
-<p>如果还需要继续搜索的话，D在上表中的值为0，匹配到的个数为7，移动的位数= 7 - 0 = 7，将整个字符串往后移动7位。接着就是重复之前的比较步骤了。</p>
-<h5 id="1-2-计算-Partial-Match-Table"><a href="#1-2-计算-Partial-Match-Table" class="headerlink" title="1.2 计算 Partial Match Table"></a>1.2 计算 Partial Match Table</h5><p><img src="http://i1.piimg.com/567571/005d54eb172ff27e.png" alt=""></p>
-<p>​    这里需要理解两个概念：<strong>前缀</strong>和<strong>后缀</strong></p>
-<p>​    <strong>“前缀”</strong> 指除了最后一个字符以外，一个字符串的全部头部组合；</p>
-<p>​    <strong>“后缀”</strong> 指除了第一个字符以外，一个字符串的全部尾部组合。</p>
-<p>​    而我们需要的<strong>Partial Match Table</strong>就是<strong>前缀</strong>和<strong>后缀</strong>的<strong>最长共有元素</strong>的长度</p>
-<p>​    继续以上面的例子讲解</p>
-<p><img src="http://p1.bpimg.com/567571/c8cfb90db5bdf1e6.png" alt=""></p>
-<blockquote>
-<p>“A”的前缀和后缀都为空集，共有元素的长度为0；<br>“AB”的前缀为[A]，后缀为[B]，共有元素的长度为0；<br>“ABC”的前缀为[A, AB]，后缀为[BC, C]，共有元素的长度0；<br>“ABCD”的前缀为[A, AB, ABC]，后缀为[BCD, CD, D]，共有元素的长度为0；<br>“ABCDA”的前缀为[A, AB, ABC, ABCD]，后缀为[BCDA, CDA, DA, A]，共有元素为”A”，长度为1；<br>“ABCDAB”的前缀为[A, AB, ABC, ABCD, ABCDA]，后缀为[BCDAB, CDAB, DAB, AB, B]，共有元素为”AB”，长度为2；<br>“ABCDABD”的前缀为[A, AB, ABC, ABCD, ABCDA, ABCDAB]，后缀为[BCDABD, CDABD, DABD, ABD, BD, D]，共有元素的长度为0。</p>
-</blockquote>
-<p>了解了KMP的原理之后，来看一下代码该怎么写。</p>
-<p>举个栗子：</p>
-<p>Text = a b a c a a b a c c a b a c a b a a b b</p>
-<p>Pattern = a b a c a b</p>
-<p>根据前面的<strong>Partial Match Table</strong>, 我们可以算出Pattern的这个表</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">P</th>
-<th style="text-align:center">a</th>
-<th style="text-align:center">b</th>
-<th style="text-align:center">a</th>
-<th style="text-align:center">c</th>
-<th style="text-align:center">a</th>
-<th style="text-align:center">b</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">steps</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">2</td>
-</tr>
-</tbody>
-</table>
-<p>此时我们用两个指针 <strong>i</strong> 和 <strong>j</strong> 来表示 <strong>Text</strong> 和 <strong>Pattern</strong> 中的字符。</p>
-<p>当 <strong>T[ i  :  i + j ] == P[ 1 : j ]</strong> 的时候，就是 <strong>Text</strong> 中包含了我们需要查找的 <strong>Pattern</strong></p>
-<p><img src="http://i1.piimg.com/567571/472a6024ca51a4d7.png" alt=""></p>
-<p>先让 <strong>i</strong> 和 <strong>j</strong> 都从 <strong>1</strong> 开始（python代码中从0开始）</p>
-<p>当<strong>T[ i ] = P[ j ]</strong>的时候，此时指针在 <strong>Text</strong> 和 <strong>Pattern</strong> 上都往前各走一步，即<strong>j+1</strong>，<strong>i+1</strong></p>
-<p>当 <strong>i = 6</strong>，<strong>j = 6</strong> 的时候，我们可以看出<strong>T[ i ] != P[ j ]</strong>，此时 <strong>j</strong> 就不能再继续往前走了，需要退回去几步。</p>
-<p>那么到底是几步呢，经过上面查表，此时匹配到5，重复的字符串个数为1，意思是对于这个字符串 abaca，abac<strong>a</strong> 和 <strong>a</strong>baca 中有一个重复了，我们就不需要再比较这个，跳过这个字符，移动的个数为 <strong>6 - 1 = 5</strong>，将字符串 <strong>Pattern</strong> 向前挪5位，新的 j 就等于1了，然后重复之前的步骤。</p>
-<h5 id="1-3-Python代码"><a href="#1-3-Python代码" class="headerlink" title="1.3 Python代码"></a>1.3 Python代码</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div></pre></td><td class="code"><pre><div class="line">DEBUG = <span class="keyword">True</span></div><div class="line">DEBUG = <span class="keyword">False</span></div><div class="line"></div><div class="line"><span class="comment"># 生成 partial match table</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">PMT</span><span class="params">(sent)</span>:</span></div><div class="line">    length = len(sent)</div><div class="line">    result = [<span class="number">0</span>]</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, length + <span class="number">1</span>):</div><div class="line">        sub_sent = sent[<span class="number">0</span> : i]</div><div class="line">        sub_len = len(sub_sent)</div><div class="line"></div><div class="line">        surfix = []</div><div class="line">        prefix = []</div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(sub_len):</div><div class="line">            prefix.append(sub_sent[<span class="number">0</span> : j])</div><div class="line">            surfix.append(sub_sent[j + <span class="number">1</span>: sub_len ])</div><div class="line">        prefix.remove(<span class="string">''</span>)</div><div class="line">        surfix.remove(<span class="string">''</span>)</div><div class="line">        all_fix = list(set(prefix + surfix))</div><div class="line">        max_len = <span class="number">0</span></div><div class="line">        com_str = <span class="string">''</span></div><div class="line"></div><div class="line">        <span class="keyword">for</span> fix <span class="keyword">in</span> all_fix:</div><div class="line">            <span class="keyword">if</span> fix <span class="keyword">in</span> prefix <span class="keyword">and</span> fix <span class="keyword">in</span> surfix:</div><div class="line">                <span class="keyword">if</span> len(fix) &gt; max_len:</div><div class="line">                    max_len = len(fix)</div><div class="line">                    com_str = fix</div><div class="line">        result.append(max_len)</div><div class="line">    <span class="keyword">return</span> result</div><div class="line"></div><div class="line"><span class="comment"># KMP算法</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">KMP</span><span class="params">(text, pattern)</span>:</span></div><div class="line">    <span class="keyword">if</span> (len(text) &lt; len(pattern)):</div><div class="line">        <span class="keyword">return</span> <span class="string">'Not Match'</span></div><div class="line"></div><div class="line">    pmt = PMT(pattern)</div><div class="line">    <span class="keyword">if</span> DEBUG:</div><div class="line">        print(<span class="string">'Current Pattern is  = '</span>, pattern)</div><div class="line">        print(<span class="string">'Partial Match Table = '</span>, pmt)</div><div class="line">    i = <span class="number">0</span></div><div class="line">    j = <span class="number">0</span></div><div class="line">    <span class="keyword">while</span>(i &lt; len(text)):</div><div class="line">        <span class="keyword">if</span> (text[i] == pattern[j]):</div><div class="line">            <span class="keyword">if</span> (j == (len(pattern) - <span class="number">1</span>)):</div><div class="line">                <span class="keyword">return</span> <span class="string">'Match, the position in text is: &#123;&#125; - &#123;&#125; = &#123;&#125;'</span>.format(i - j, i, text[i-j: i])</div><div class="line">            i += <span class="number">1</span></div><div class="line">            j += <span class="number">1</span></div><div class="line">            <span class="keyword">continue</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">if</span> j &gt;= <span class="number">1</span>:</div><div class="line">                j = pmt[j - <span class="number">1</span>]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                i += <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> <span class="string">'Not Match'</span></div><div class="line"></div><div class="line"><span class="comment"># 测试函数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(text, pattern)</span>:</span></div><div class="line">    result = KMP(text, pattern)</div><div class="line">    print(<span class="string">'Resutl  = '</span>, result)</div><div class="line">    print(<span class="string">'Pattern ='</span>, pattern)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> DEBUG:</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(text)):</div><div class="line">            print(<span class="string">'&#123;:3s&#125;'</span>.format(str(i)), end=<span class="string">'-'</span>)</div><div class="line">        print(<span class="string">''</span>)</div><div class="line"></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(text)):</div><div class="line">            print(<span class="string">'&#123;:3s&#125;'</span>.format(text[i]), end=<span class="string">'-'</span>)</div><div class="line">        print(<span class="string">''</span>)</div><div class="line">    print(<span class="string">'\n'</span>)</div><div class="line"></div><div class="line"><span class="comment"># 测试部分</span></div><div class="line">text = <span class="string">'BBC ABCDAB ABCDABCDABDE'</span></div><div class="line">pattern = <span class="string">'ABCDABD'</span></div><div class="line">test(text, pattern)</div><div class="line"></div><div class="line">text = <span class="string">'a b a c a a b a c c a b a c a b a a b b'</span></div><div class="line">pattern = <span class="string">'a b a c a b'</span></div><div class="line">test(text, pattern)</div><div class="line"></div><div class="line">text = <span class="string">'BBC ABCDAB ABCDABCDABE'</span></div><div class="line">pattern = <span class="string">'ABCDABD'</span></div><div class="line">test(text, pattern)</div><div class="line"></div><div class="line">text = <span class="string">'BBC AB'</span></div><div class="line">pattern = <span class="string">'ABCDABD'</span></div><div class="line">test(text, pattern)</div><div class="line"></div><div class="line">text = <span class="string">'ABCDABD'</span></div><div class="line">pattern = <span class="string">'ABCDABD'</span></div><div class="line">test(text, pattern)</div></pre></td></tr></table></figure>
-<h5 id="1-4-测试结果"><a href="#1-4-测试结果" class="headerlink" title="1.4 测试结果"></a>1.4 测试结果</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">Text    = BBC ABCDAB ABCDABCDABDE</div><div class="line">Pattern = ABCDABD</div><div class="line">Resutl  =  Match, the position <span class="keyword">in</span> text <span class="keyword">is</span>: <span class="number">15</span> - <span class="number">21</span> = ABCDAB</div><div class="line"></div><div class="line"></div><div class="line">Text    = a b a c a a b a c c a b a c a b a a b b</div><div class="line">Pattern = a b a c a b</div><div class="line">Resutl  =  Match, the position <span class="keyword">in</span> text <span class="keyword">is</span>: <span class="number">20</span> - <span class="number">30</span> = a b a c a </div><div class="line"></div><div class="line"></div><div class="line">Text    = BBC ABCDAB ABCDABCDABE</div><div class="line">Pattern = ABCDABD</div><div class="line">Resutl  =  Not Match</div><div class="line"></div><div class="line"></div><div class="line">Text    = BBC AB</div><div class="line">Pattern = ABCDABD</div><div class="line">Resutl  =  Not Match</div><div class="line"></div><div class="line"></div><div class="line">Text    = ABCDABD</div><div class="line">Pattern = ABCDABD</div><div class="line">Resutl  =  Match, the position <span class="keyword">in</span> text <span class="keyword">is</span>: <span class="number">0</span> - <span class="number">6</span> = ABCDAB</div><div class="line"></div><div class="line">[Finished <span class="keyword">in</span> <span class="number">0.1</span>s]</div></pre></td></tr></table></figure>
-<h5 id="1-5-参考内容"><a href="#1-5-参考内容" class="headerlink" title="1.5 参考内容"></a>1.5 参考内容</h5><p><a href="http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html" target="_blank" rel="external">阮一峰 - 字符串匹配的KMP算法</a></p>
-<h4 id="2-理解二：部分匹配表-idx"><a href="#2-理解二：部分匹配表-idx" class="headerlink" title="2. 理解二：部分匹配表+idx"></a>2. 理解二：部分匹配表+idx</h4><h5 id="2-1-Partial-Match-Table"><a href="#2-1-Partial-Match-Table" class="headerlink" title="2.1 Partial Match Table"></a>2.1 Partial Match Table</h5><p>首先生成和上面一样的前缀后缀表(0-base 和 1-base)</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/83011068.jpg" alt=""></p>
-<h5 id="2-2-Example"><a href="#2-2-Example" class="headerlink" title="2.2 Example"></a>2.2 Example</h5><ul>
-<li><p><strong>0-base</strong></p>
-<blockquote>
-<p>找到原文和搜索词<strong>不同的那个字符</strong>里面的匹配值，然后把搜索字符串右移到idx=匹配值的位置，过程如下图</p>
-</blockquote>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/5426441.jpg" alt=""></p>
-</li>
+        <p>有时候记东西老是记不住，虽然是经常使用，所以对常用的<code>linux</code>指令做个简单记录，方便以后使用（不断更新… …）。</p>
+<h3 id="1-scp文件传输-security-copy"><a href="#1-scp文件传输-security-copy" class="headerlink" title="1. scp文件传输 (security copy)"></a>1. scp文件传输 (security copy)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># eg. scp chenson@127.0.0.1:~/Home/test .  ~/Home/local_test_path</div><div class="line">scp PATH_OF_SRC PATH_OF_DST</div></pre></td></tr></table></figure>
+<h3 id="2-测内存的使用率"><a href="#2-测内存的使用率" class="headerlink" title="2. 测内存的使用率"></a>2. 测内存的使用率</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">valgrind --tool=massif --pages-as-heap=yes</div><div class="line"></div><div class="line">ms_print massif 文件名</div><div class="line"></div><div class="line"></div><div class="line">valgrind --tool=massif --pages-as-heap=yes ./bwtsearch testfiles/shopping.bwt l.idx &quot;system&quot;</div><div class="line"></div><div class="line">ms_print massif.out.3116</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find &lt;PATH TO FOLDER&gt; -ls | tr -s &apos; &apos;|cut -d&apos; &apos; -f 7| paste -sd+ | bc</div></pre></td></tr></table></figure>
+<h3 id="3-强制写入"><a href="#3-强制写入" class="headerlink" title="3. 强制写入"></a>3. 强制写入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># vii commond model, Try the below command</div><div class="line"></div><div class="line">:w !sudo tee %</div><div class="line">Explanation</div><div class="line"></div><div class="line">:w – write</div><div class="line">!sudo – call shell sudo command</div><div class="line">tee – the output of write (:w) command is redirected using tee</div><div class="line">% – current file name</div></pre></td></tr></table></figure>
+<h3 id="4-查看二进制文件"><a href="#4-查看二进制文件" class="headerlink" title="4. 查看二进制文件"></a>4. 查看二进制文件</h3><p><code>vim</code>下 </p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:%!xxd</div></pre></td></tr></table></figure>
+<p><code>linux</code>下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xxd -b file_name</div></pre></td></tr></table></figure>
+ <a id="more"></a>
+<h3 id="5-查看公网IP"><a href="#5-查看公网IP" class="headerlink" title="5. 查看公网IP"></a>5. 查看公网IP</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl http://members.3322.org/dyndns/getip</div></pre></td></tr></table></figure>
+<h3 id="6-查看那个进程占用："><a href="#6-查看那个进程占用：" class="headerlink" title="6. 查看那个进程占用："></a>6. 查看那个进程占用：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsof -i:9000   # MAC</div></pre></td></tr></table></figure>
+<h3 id="7-查看监听端口："><a href="#7-查看监听端口：" class="headerlink" title="7. 查看监听端口："></a>7. 查看监听端口：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">netstat -ntlp        # linux</div><div class="line">lsof -i:port_num     # MAC</div></pre></td></tr></table></figure>
+<h3 id="8-测文件夹大小"><a href="#8-测文件夹大小" class="headerlink" title="8. 测文件夹大小"></a>8. 测文件夹大小</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">find &lt;PATH TO FOLDER&gt; -ls | tr -s &apos; &apos;|cut -d&apos; &apos; -f 7| paste -sd+ |bc</div><div class="line"></div><div class="line"></div><div class="line">du -ah --max-depth=1，其中a表示显示目录下所有的文件和文件夹（不含子目录），h表示以人类能看懂的方式，max-depth表示目录的深度。</div><div class="line"></div><div class="line">du -sh : 查看当前目录总共占的容量。而不单独列出各子项占用的容量</div></pre></td></tr></table></figure>
+<h3 id="9-文件系统空间使用情况"><a href="#9-文件系统空间使用情况" class="headerlink" title="9. 文件系统空间使用情况"></a>9. 文件系统空间使用情况</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//查看系统中文件的使用情况</div><div class="line">df -h</div><div class="line">//查看当前目录下各个文件及目录占用空间大小</div><div class="line">du -sh *</div><div class="line"></div><div class="line">//方法一：切换到要删除的目录，删除目录下的所有文件</div><div class="line">rm -f *</div><div class="line"></div><div class="line">//方法二：删除logs文件夹下的所有文件，而不删除文件夹本身</div><div class="line">rm -rf log/*</div></pre></td></tr></table></figure>
+<h3 id="10-加密文件大小"><a href="#10-加密文件大小" class="headerlink" title="10. 加密文件大小"></a>10. 加密文件大小</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># oJ5A93Fh</div><div class="line">zip -r -P password  utils.zip utils</div></pre></td></tr></table></figure>
+<h3 id="11-打包-压缩"><a href="#11-打包-压缩" class="headerlink" title="11. 打包+压缩"></a>11. 打包+压缩</h3><ul>
+<li>压缩</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">tar czvf my.tar.gz file1 file2 ....fileN</div><div class="line"></div><div class="line">tar -cvf jpg.tar *.jpg //将目录里所有jpg文件打包成tar.jpg </div><div class="line"></div><div class="line">tar -czf jpg.tar.gz *.jpg   //将目录里所有jpg文件打包成jpg.tar后，并且将其用gzip压缩，生成一个gzip压缩过的包，命名为jpg.tar.gz</div><div class="line"></div><div class="line"> tar -cjf jpg.tar.bz2 *.jpg //将目录里所有jpg文件打包成jpg.tar后，并且将其用bzip2压缩，生成一个bzip2压缩过的包，命名为jpg.tar.bz2</div><div class="line"></div><div class="line">tar -cZf jpg.tar.Z *.jpg   //将目录里所有jpg文件打包成jpg.tar后，并且将其用compress压缩，生成一个umcompress压缩过的包，命名为jpg.tar.Z</div><div class="line"></div><div class="line">rar a jpg.rar *.jpg //rar格式的压缩，需要先下载rar for linux</div><div class="line"></div><div class="line">zip jpg.zip *.jpg //zip格式的压缩，需要先下载zip for linux</div></pre></td></tr></table></figure>
 <ul>
-<li><p><strong>1-base</strong></p>
-<blockquote>
-<p>与0-base不同的是，找的不是最后一个不同的字符</p>
-<p>而是<strong>最后一个相同的字符</strong>里面的匹配值，然后把搜索字符串右移到idx=匹配值的位置，过程如下图</p>
-</blockquote>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/25372902.jpg" alt=""></p>
-</li>
+<li>解压</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">tar -xvf file.tar //解压 tar包</div><div class="line"></div><div class="line">tar -xzvf file.tar.gz //解压tar.gz</div><div class="line"></div><div class="line">tar -xjvf file.tar.bz2   //解压 tar.bz2</div><div class="line"></div><div class="line">tar -xZvf file.tar.Z   //解压tar.Z</div><div class="line"></div><div class="line">unrar e file.rar //解压rar</div><div class="line"></div><div class="line">unzip file.zip //解压zip</div></pre></td></tr></table></figure>
+<h3 id="12-查找文件"><a href="#12-查找文件" class="headerlink" title="12. 查找文件"></a>12. 查找文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$find   ~   -name   &quot;*.txt&quot;   -print    #在$HOME中查.txt文件并显示</div><div class="line">$find   .    -name   &quot;*.txt&quot;   -print</div><div class="line">$find   .    -name   &quot;[A-Z]*&quot;   -print   #查以大写字母开头的文件</div><div class="line">$find   /etc   -name   &quot;host*&quot;   -print #查以host开头的文件</div><div class="line">$find   .   -name   &quot;[a-z][a-z][0–9][0–9].txt&quot;    -print   #查以两个小写字母和两个数字开头的txt文件</div><div class="line">$find .   -perm   755   -print</div><div class="line">$find   .   -perm -007   -exec ls -l &#123;&#125; \;   #查所有用户都可读写执行的文件同-perm 777</div><div class="line">$find   . -type d   -print</div><div class="line">$find   .   !   -type   d   -print </div><div class="line">$find   .   -type l   -print</div><div class="line"></div><div class="line">$find   .   -size   +1000000c   -print        #查长度大于1Mb的文件</div><div class="line">$find   .   -size   100c         -print       # 查长度为100c的文件</div><div class="line">$find   .   -size   +10   -print              #查长度超过期作废10块的文件（1块=512字节）</div><div class="line"></div><div class="line">$cd /</div><div class="line">$find   etc   home   apps    -depth   -print   | cpio   -ivcdC65536   -o   /dev/rmt0</div><div class="line">$find   /etc -name &quot;passwd*&quot;   -exec grep   &quot;cnscn&quot;   &#123;&#125;   \;   #看是否存在cnscn用户</div><div class="line">$find . -name &quot;yao*&quot;   | xargs file</div><div class="line">$find   . -name &quot;yao*&quot;   |   xargs   echo    &quot;&quot; &gt; /tmp/core.log</div><div class="line">$find   . -name &quot;yao*&quot;   | xargs   chmod   o-w</div></pre></td></tr></table></figure>
+<h3 id="13-递归删除所有文件夹下的特定类型文件"><a href="#13-递归删除所有文件夹下的特定类型文件" class="headerlink" title="13. 递归删除所有文件夹下的特定类型文件"></a>13. 递归删除所有文件夹下的特定类型文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -name &apos;*.ttteset&apos; -type f -print -exec rm -rf &#123;&#125; \;</div></pre></td></tr></table></figure>
+<h3 id="14-后台运行指定程序（不挂断地运行命令）"><a href="#14-后台运行指定程序（不挂断地运行命令）" class="headerlink" title="14. 后台运行指定程序（不挂断地运行命令）"></a>14. 后台运行指定程序（不挂断地运行命令）</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">nohup python main.py 80 &gt; ~/<span class="built_in">log</span>/WeChatAccountLog.file 2&gt;&amp;1 &amp;</div><div class="line"></div><div class="line">该命令的一般形式为：nohup <span class="built_in">command</span> &amp;</div><div class="line">如果使用nohup命令提交作业，那么在缺省情况下该作业的所有输出都被重定向到一个名为nohup.out的文件中，除非另外指定了输出文件：</div><div class="line"></div><div class="line"><span class="built_in">command</span>&gt;out.file是将<span class="built_in">command</span>的输出重定向到out.file文件，即输出内容不打印到屏幕上，而是输出到out.file文件中。</div><div class="line">2&gt;&amp;1 是将标准出错重定向到标准输出，这里的标准输出已经重定向到了out.file文件，即将标准出错也输出到out.file文件中。最后一个&amp;， 是让该命令在后台执行。</div><div class="line">试想2&gt;1代表什么，2与&gt;结合代表错误重定向，而1则代表错误重定向到一个文件1，而不代表标准输出；换成2&gt;&amp;1，&amp;与1结合就代表标准输出了，就变成错误重定向到标准输出.</div><div class="line"></div><div class="line">ctrl + z </div><div class="line">可以将一个正在前台执行的命令放到后台，并且处于暂停状态。</div><div class="line"></div><div class="line">Ctrl+c </div><div class="line">终止前台命令。</div><div class="line"></div><div class="line"><span class="built_in">jobs</span> </div><div class="line">查看当前有多少在后台运行的命令</div><div class="line">使用 <span class="built_in">fg</span> %n　关闭</div></pre></td></tr></table></figure>
+<h3 id="15-后台上传-下载数据"><a href="#15-后台上传-下载数据" class="headerlink" title="15. 后台上传/下载数据"></a>15. 后台上传/下载数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">另外有两个常用的ftp工具ncftpget和ncftpput，可以实现后台的ftp上传和下载，这样就可以利用这些命令在后台上传和下载文件了。</div></pre></td></tr></table></figure>
+<h3 id="16-Docker-加速器地址"><a href="#16-Docker-加速器地址" class="headerlink" title="16. Docker 加速器地址"></a>16. Docker 加速器地址</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">https://cr.console.aliyun.com/cn-qingdao/mirrors</div><div class="line">https://q90v31vp.mirror.aliyuncs.com</div></pre></td></tr></table></figure>
+<h3 id="vsftpd-kaiqi-ftp-fuwu"><a href="#vsftpd-kaiqi-ftp-fuwu" class="headerlink" title="vsftpd, kaiqi ftp fuwu"></a>vsftpd, kaiqi ftp fuwu</h3><h3 id="choongqi-dashuju-taojian"><a href="#choongqi-dashuju-taojian" class="headerlink" title="choongqi dashuju taojian"></a>choongqi dashuju taojian</h3><p>ambari-agent restart</p>
 
       
 
@@ -312,7 +241,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
@@ -368,7 +297,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2017/03/15/字符串搜索算法-KMP/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2017/02/19/Linux常用指令/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -382,18 +311,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/03/17/Machine-Learning-Linear-Regression-and-Logistic-Regression/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/03/02/Machine-Learning-SVM/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Machine Learning - Linear Regression and Logistic Regression
+          Machine Learning - SVM
         
       </div>
     </a>
   
   
-    <a href="/2017/03/06/Hadoop权威指南笔记（一）/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hadoop权威指南笔记（一）</div>
+    <a href="/2016/12/15/Python数据分析笔记（一）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Python数据分析笔记（一）</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -407,7 +336,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="字符串搜索算法-KMP" data-title="字符串搜索算法 - KMP" data-url="http://chenson.com/2017/03/15/字符串搜索算法-KMP/"></div>
+	<div class="ds-thread" data-thread-key="Linux常用指令" data-title="Linux常用指令" data-url="http://chenson.com/2017/02/19/Linux常用指令/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
