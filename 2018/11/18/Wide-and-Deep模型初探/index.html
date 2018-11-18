@@ -15,15 +15,15 @@
 <meta property="og:url" content="http://chenson.com/2018/11/18/Wide-and-Deep模型初探/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="1. BackgroundWide and Deep是Google在16年左右提出的模型，主要应用在了Google Play的应用推荐系统中，同时国内的一些大厂也在各自的业务中有使用到这一模型，比如美团。而该算法的核心主要在于结合了线性模型的记忆能力Memorization 和深度神经网络的泛化能力Generaization，且在训练过程中，同时优化这两个模型，即Jointly Training。">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-11-18/54304603.jpg">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-11-18/42409547.jpg">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-11-18/10173693.jpg">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-11-18/40652024.jpg">
-<meta property="og:updated_time" content="2018-11-18T10:14:40.368Z">
+<meta property="og:image" content="http://chenson.com/2018/11/18/Wide-and-Deep模型初探/Users/Chenson/Dropbox/PROJECTS/myBlog/source/_posts/2018-11-18-Wide-and-Deep模型初探/image-20181118184045240.png">
+<meta property="og:image" content="http://chenson.com/2018/11/18/Wide-and-Deep模型初探/2018-11-18-Wide-and-Deep模型初探/image-20181118184254279.png">
+<meta property="og:image" content="http://chenson.com/2018/11/18/Wide-and-Deep模型初探/2018-11-18-Wide-and-Deep模型初探/image-20181118184319247.png">
+<meta property="og:image" content="http://chenson.com/2018/11/18/Wide-and-Deep模型初探/Users/Chenson/Library/Application%20Support/typora-user-images/image-20181118184443151.png">
+<meta property="og:updated_time" content="2018-11-18T10:45:06.916Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Wide_and_Deep模型初探">
 <meta name="twitter:description" content="1. BackgroundWide and Deep是Google在16年左右提出的模型，主要应用在了Google Play的应用推荐系统中，同时国内的一些大厂也在各自的业务中有使用到这一模型，比如美团。而该算法的核心主要在于结合了线性模型的记忆能力Memorization 和深度神经网络的泛化能力Generaization，且在训练过程中，同时优化这两个模型，即Jointly Training。">
-<meta name="twitter:image" content="http://on8r6i4gg.bkt.clouddn.com/18-11-18/54304603.jpg">
+<meta name="twitter:image" content="http://chenson.com/2018/11/18/Wide-and-Deep模型初探/Users/Chenson/Dropbox/PROJECTS/myBlog/source/_posts/2018-11-18-Wide-and-Deep模型初探/image-20181118184045240.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -178,7 +178,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="1-Background"><a href="#1-Background" class="headerlink" title="1. Background"></a>1. Background</h3><p><code>Wide and Deep</code>是Google在16年左右提出的模型，主要应用在了Google Play的应用推荐系统中，同时国内的一些大厂也在各自的业务中有使用到这一模型，比如美团。而该算法的核心主要在于结合了线性模型的记忆能力<code>Memorization</code> 和深度神经网络的泛化能力<code>Generaization</code>，且在训练过程中，同时优化这两个模型，即<code>Jointly Training</code>。</p>
-<h3 id="2-Overview"><a href="#2-Overview" class="headerlink" title="2. Overview"></a>2. Overview</h3><p><img src="http://on8r6i4gg.bkt.clouddn.com/18-11-18/54304603.jpg" alt=""></p>
+<h3 id="2-Overview"><a href="#2-Overview" class="headerlink" title="2. Overview"></a>2. Overview</h3><p><img src="/2018/11/18/Wide-and-Deep模型初探/Users/Chenson/Dropbox/PROJECTS/myBlog/source/_posts/2018-11-18-Wide-and-Deep模型初探/image-20181118184045240.png" alt="image-20181118184045240"></p>
 <p>如上图所示，该模型的主要结构是中间<code>Wide&amp;Deep Models</code>那个部分，其主要由左边的<code>Wide Models</code> 和右边的<code>Deep Models</code>组成。</p>
  <a id="more"></a>
 <h3 id="3-Wide-Part"><a href="#3-Wide-Part" class="headerlink" title="3. Wide Part"></a>3. Wide Part</h3><p>最左端的就是一个普通的广义线性模型，不做过多的解释。</p>
@@ -204,13 +204,13 @@
 <h3 id="6-Conclusion"><a href="#6-Conclusion" class="headerlink" title="6. Conclusion"></a>6. Conclusion</h3><p>在最终的测试部分，我自己准备了一份数据用于测试该模型。</p>
 <ul>
 <li><p>Wide Part</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-11-18/42409547.jpg" alt=""></p>
+<p><img src="/2018/11/18/Wide-and-Deep模型初探/2018-11-18-Wide-and-Deep模型初探/image-20181118184254279.png" alt="image-20181118184254279"></p>
 </li>
 <li><p>Deep Part</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-11-18/10173693.jpg" alt=""></p>
+<p><img src="/2018/11/18/Wide-and-Deep模型初探/2018-11-18-Wide-and-Deep模型初探/image-20181118184319247.png" alt="image-20181118184319247"></p>
 </li>
 <li><p>Wide &amp; Deep Part</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-11-18/40652024.jpg" alt=""></p>
+<p><img src="/2018/11/18/Wide-and-Deep模型初探/Users/Chenson/Library/Application Support/typora-user-images/image-20181118184443151.png" alt="image-20181118184443151"></p>
 </li>
 </ul>
 <p>从上面的结果可以看出，从<code>Wide Models</code>到<code>Deep Models</code>，训练效果提升还是比较大的，但从<code>Deep Models</code>到<code>Wide&amp;Deep Models</code>训练结果非但没有提升，还有了一丝丝的下降，且这个我也已经测试了很多测，主要修改了<code>Embedding</code>中和<code>Wide Models</code>中的一些参数，后者始终没有超过前者的效果。但在网上找的一些测试数据中，<code>Wide&amp;Deep Models</code>还是有一丝丝的提升。原因我分析了一些可能由如下造成</p>
@@ -537,10 +537,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
               </li>
              
@@ -550,6 +546,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
