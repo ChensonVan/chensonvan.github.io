@@ -152,6 +152,66 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-多线程与多进程简单理解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/22/多线程与多进程简单理解/">多线程与多进程简单理解</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/22/多线程与多进程简单理解/" class="archive-article-date">
+  	<time datetime="2017-09-22T06:28:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-多进程"><a href="#1-多进程" class="headerlink" title="1. 多进程"></a>1. 多进程</h3><p>直观来看，就是一个个pid，进程是程序在计算机上的一次执行活动。</p>
+<p>创建子进程的调用是 fork()</p>
+<p>fork() 的功能就是产生子进程，调用一次，返回两次。</p>
+<p>一次返回0，一次返回子进程的pid</p>
+<p>子进程永远返回 <code>0</code>，而父进程返回子进程的ID。这样做的理由是，一个父进程可以fork出很多子进程，所以，父进程要记下每个子进程的ID，而子进程只需要调用 <code>getppid()</code> 就可以拿到父进程的ID</p>
+<p>失败返回-1</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span>  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span>   </span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span>  </span></div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_exit</span><span class="params">()</span>  </span></div><div class="line">&#123;  </div><div class="line">	<span class="built_in">printf</span>(<span class="string">"the exit pid:%d/n"</span>,getpid() );  </div><div class="line">&#125;  </div><div class="line"></div><div class="line">main()</div><div class="line">&#123;</div><div class="line"> 	<span class="keyword">pit_t</span>, pid;</div><div class="line">  	atexit(print_exit);		<span class="comment">//注册该进程退出时的回调函数  </span></div><div class="line">  	pid = fork();</div><div class="line">    <span class="keyword">if</span> (pid &lt; <span class="number">0</span>)   </div><div class="line">		<span class="built_in">printf</span>(<span class="string">"error in fork!"</span>);   </div><div class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (pid == <span class="number">0</span>)    	<span class="comment">// 子进程</span></div><div class="line">		<span class="built_in">printf</span>(<span class="string">"i am the child process, my process id is %d/n"</span>, getpid());   </div><div class="line">	<span class="keyword">else</span>   					<span class="comment">// 父进程</span></div><div class="line">	&#123;  </div><div class="line">		<span class="built_in">printf</span>(<span class="string">"i am the parent process, my process id is %d/n"</span>, getpid());   </div><div class="line">		sleep(<span class="number">2</span>);  </div><div class="line">		wait();  </div><div class="line">	&#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/22/多线程与多进程简单理解/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Machine-Learning-PCA" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -261,7 +321,7 @@
 <li><p>logistic regression考虑全局(如何考虑全局？ans：RMSE最小值)红线</p>
 </li>
 <li><p>SVM考虑局部(最小间隔要大于多少)绿线</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-16/68635525.jpg" alt=""></p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-16/68635525.jpg" alt=""></p></li></ul></li></ul>
         
       
 
@@ -421,7 +481,7 @@
 <p>​</p>
 </li>
 <li><p>Hadoop默认的输出格式如下（<strong>value是无序的</strong>）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">2014-2	64</div><div class="line">2015-1	21，4，3，24</div><div class="line">2015-2	0，35，-43</div><div class="line">2015-3	56，46</div><div class="line">2015-4	5</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">2014-2	64</div><div class="line">2015-1	21，4，3，24</div><div class="line">2015-2	0，35，-43</div><div class="line">2015-3	56，46</div><div class="line">2015-4	5</div></pre></td></tr></table></figure></li></ul>
         
       
 
@@ -950,78 +1010,6 @@
 
 
   
-    <article id="post-Machine-Learning-Linear-Regression-and-Logistic-Regression" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/17/Machine-Learning-Linear-Regression-and-Logistic-Regression/">Machine Learning - Linear Regression and Logistic Regression</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/17/Machine-Learning-Linear-Regression-and-Logistic-Regression/" class="archive-article-date">
-  	<time datetime="2017-03-17T01:06:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-三要素"><a href="#1-三要素" class="headerlink" title="1. 三要素"></a>1. 三要素</h4><p>当一开始接触Andrew在Coursera上的ML公开课的时候，对线性回归和逻辑回归这两种模型有个大体的认识。但是在上完cs229的前三节课，初步了解了这两种模型背后的数学模型，Linear Regression和Logistic Regression背后的概率分布，了解到了这两种概率分布其实只是exponential family中的特例。但同时也开始对一些概念性的东西感觉很模糊，所以觉得有必要好好整理一下这部分的内容。</p>
-<h5 id="1-1-Hypothesis"><a href="#1-1-Hypothesis" class="headerlink" title="1. 1 Hypothesis"></a>1. 1 Hypothesis</h5><p>首先对于样本数据，输入x和输出y之间是通过Target function在转换的，也就是 Target function f(x) = y。但是我们并不知道这个f(x)都是怎样的，所以我们假设了这么一个Hypothesis function去模拟这个Target function，使得我们用同样的输入<strong>x</strong>会的一个预测值<strong>y’</strong>，使得这个<strong>y’</strong>不断逼近真实值<strong>y</strong>。</p>
-<ul>
-<li><p><strong>Linear Regression</strong><br>$$<br>H(x) = \sum_{i=0}^n \theta_i x_i = \theta^Tx<br>$$</p>
-</li>
-<li><p><strong>Logistic Regression</strong><br>$$<br>H(x) = g(\theta^Tx) = \frac 1 {1 + e^{-\theta^Tx}}<br>$$<br>等价于（即log odds，<strong>logit</strong>）<br>$$<br>ln \frac y {1 - y} = \theta^T x = ln \frac {p(y=1| x; \theta)} {p(y=0| x; \theta)}<br>$$</p>
-</li>
-</ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/17/Machine-Learning-Linear-Regression-and-Logistic-Regression/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1154,15 +1142,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1182,10 +1170,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
               </li>
              
@@ -1198,11 +1182,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Pytorch</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1211,6 +1191,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Pytorch</a>
               </li>
             
             <div class="clearfix"></div>
