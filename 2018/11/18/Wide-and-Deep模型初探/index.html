@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://chenson.com">
-  <title>Tag: Deep Learning | Vane&#39;s Blog</title>
+  <title>Wide_and_Deep模型初探 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Stay Hungry. Stay Foolish">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Vane&#39;s Blog">
-<meta property="og:url" content="http://chenson.com/tags/Deep-Learning/index.html">
+  <meta name="description" content="1. BackgroundWide and Deep是Google在16年左右提出的模型，主要应用在了Google Play的应用推荐系统中，同时国内的一些大厂也在各自的业务中有使用到这一模型，比如美团。而该算法的核心主要在于结合了线性模型的记忆能力Memorization 和深度神经网络的泛化能力Generaization，且在训练过程中，同时优化这两个模型，即Jointly Training。">
+<meta name="keywords" content="Wide&amp;Deep,Pytorch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wide_and_Deep模型初探">
+<meta property="og:url" content="http://chenson.com/2018/11/18/Wide-and-Deep模型初探/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="Stay Hungry. Stay Foolish">
+<meta property="og:description" content="1. BackgroundWide and Deep是Google在16年左右提出的模型，主要应用在了Google Play的应用推荐系统中，同时国内的一些大厂也在各自的业务中有使用到这一模型，比如美团。而该算法的核心主要在于结合了线性模型的记忆能力Memorization 和深度神经网络的泛化能力Generaization，且在训练过程中，同时优化这两个模型，即Jointly Training。">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-11-18/54304603.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-11-18/42409547.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-11-18/10173693.jpg">
+<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-11-18/40652024.jpg">
+<meta property="og:updated_time" content="2018-11-18T10:14:40.368Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vane&#39;s Blog">
-<meta name="twitter:description" content="Stay Hungry. Stay Foolish">
+<meta name="twitter:title" content="Wide_and_Deep模型初探">
+<meta name="twitter:description" content="1. BackgroundWide and Deep是Google在16年左右提出的模型，主要应用在了Google Play的应用推荐系统中，同时国内的一些大厂也在各自的业务中有使用到这一模型，比如美团。而该算法的核心主要在于结合了线性模型的记忆能力Memorization 和深度神经网络的泛化能力Generaization，且在训练过程中，同时优化这两个模型，即Jointly Training。">
+<meta name="twitter:image" content="http://on8r6i4gg.bkt.clouddn.com/18-11-18/54304603.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -150,64 +157,226 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Wide-and-Deep模型初探" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/20/深度学习笔记-CNN/" class="archive-article-date">
-  	<time datetime="2018-03-20T05:45:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/20/深度学习笔记-CNN/">深度学习笔记-CNN</a>
+    <h1 class="article-title" itemprop="name">
+      Wide_and_Deep模型初探
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/11/18/Wide-and-Deep模型初探/" class="archive-article-date">
+  	<time datetime="2018-11-18T06:01:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Background"><a href="#1-Background" class="headerlink" title="1. Background"></a>1. Background</h3><p><code>Wide and Deep</code>是Google在16年左右提出的模型，主要应用在了Google Play的应用推荐系统中，同时国内的一些大厂也在各自的业务中有使用到这一模型，比如美团。而该算法的核心主要在于结合了线性模型的记忆能力<code>Memorization</code> 和深度神经网络的泛化能力<code>Generaization</code>，且在训练过程中，同时优化这两个模型，即<code>Jointly Training</code>。</p>
+<h3 id="2-Overview"><a href="#2-Overview" class="headerlink" title="2. Overview"></a>2. Overview</h3><p><img src="http://on8r6i4gg.bkt.clouddn.com/18-11-18/54304603.jpg" alt=""></p>
+<p>如上图所示，该模型的主要结构是中间<code>Wide&amp;Deep Models</code>那个部分，其主要由左边的<code>Wide Models</code> 和右边的<code>Deep Models</code>组成。</p>
+ <a id="more"></a>
+<h3 id="3-Wide-Part"><a href="#3-Wide-Part" class="headerlink" title="3. Wide Part"></a>3. Wide Part</h3><p>最左端的就是一个普通的广义线性模型，不做过多的解释。</p>
+<p>该部分的模型，输入的特征可以是连续特征，也可以是稀疏的离散特征。但该模型可以对离散特征之间做特征交叉，即<code>Cross-Product</code>，为了可以从历史数据中发现特征之间的相关信息，然后对交叉过后的特征做<code>One-Hot</code>处理。</p>
+<h3 id="4-Deep-Part"><a href="#4-Deep-Part" class="headerlink" title="4. Deep Part"></a>4. Deep Part</h3><p>最右部分是一个<code>DNN</code>模型，一个<strong>前馈的深度神经网络</strong>。</p>
+<p>该部分的模型，输入的特征同样可以是连续特征，也可以是稀疏的离散特征。但和上面部分的离散特征处理方式不同，这里对离散特征做了<code>Embedding</code>，即将高维稀疏的离散特征转化为低纬的稠密特征。</p>
+<p><code>Embedding</code>的初始权重是随机赋予的，然后在训练过程中，不断参与优化。</p>
+<p>所以训练的过程大致是需要做<code>Embedding</code>的向量先转化成<code>Dense Vector</code>，然后和其他的连续型或者数值型的特征合并一起，喂给接下去的几层<code>DNN</code>。</p>
+<p>其中隐含层的计算方法为<br>$$<br>a^{l + 1} = f(W^{(l)}a^{(l)} + b^{(l)})<br>$$<br>这里</p>
+<ul>
+<li><p><code>l</code>是隐含层数，</p>
+</li>
+<li><p><code>f</code>是激活函数，通常使用<code>ReLUs</code>作为激活函数</p>
+</li>
+</ul>
+<h3 id="5-Wide-amp-Deep-Part"><a href="#5-Wide-amp-Deep-Part" class="headerlink" title="5. Wide&amp;Deep Part"></a>5. Wide&amp;Deep Part</h3><p>如上图中间部分所示，两个模型最后是合并到一起训练的，并将两个模型的结果的加权和作为最终的预测结果（最终喂给了同一个LR模型去训练），具体如下公式所示。<br>$$<br>P(Y=1 | x) = \sigma(w^T_{wide}[x, \phi(x)] + w^T_{deep}a^{(l_f)} + b)<br>$$<br>这里$\sigma(·)$是<code>sigmoid</code>激活函数。</p>
+<p>在论文中作者也特别的提到，这里的<code>Joinly Training</code> 和<code>Ensemble</code>模型是不一样的。对于<code>Ensemble</code>模型，各个子模型是单独训练的，各自的预测结果不影响其他的子模型，只是最后大家的预测结果通过某一种方式，比如投票，加权等，最终得出一个预测结果。</p>
+<p><code>Jointly Training</code>的预测结果，最终会通过<code>Back-Propagating the Gradients</code>，传播到<code>Wide Part</code>和<code>Deep Part</code>。这里两部分模型采用了不同的训练方法：</p>
+<ul>
+<li><code>Wide Models</code>采用了<code>FTRL + L1正则</code></li>
+<li><code>Deep Models</code>采用了<code>AdaGrad</code></li>
+</ul>
+<h3 id="6-Conclusion"><a href="#6-Conclusion" class="headerlink" title="6. Conclusion"></a>6. Conclusion</h3><p>在最终的测试部分，我自己准备了一份数据用于测试该模型。</p>
+<ul>
+<li><p>Wide Part</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-11-18/42409547.jpg" alt=""></p>
+</li>
+<li><p>Deep Part</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-11-18/10173693.jpg" alt=""></p>
+</li>
+<li><p>Wide &amp; Deep Part</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-11-18/40652024.jpg" alt=""></p>
+</li>
+</ul>
+<p>从上面的结果可以看出，从<code>Wide Models</code>到<code>Deep Models</code>，训练效果提升还是比较大的，但从<code>Deep Models</code>到<code>Wide&amp;Deep Models</code>训练结果非但没有提升，还有了一丝丝的下降，且这个我也已经测试了很多测，主要修改了<code>Embedding</code>中和<code>Wide Models</code>中的一些参数，后者始终没有超过前者的效果。但在网上找的一些测试数据中，<code>Wide&amp;Deep Models</code>还是有一丝丝的提升。原因我分析了一些可能由如下造成</p>
+<ul>
+<li><del>数据集本身可能不太适合这个算法</del></li>
+<li><del>数据处理方式，因为有部分数据有空值，我基本只是简单的填充了一下</del></li>
+<li><code>Wide Models</code>训练数据</li>
+<li><del>训练参数</del></li>
+</ul>
+<h3 id="7-References"><a href="#7-References" class="headerlink" title="7. References"></a>7. References</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s/847h4ITQMtUlZcurJ9Vlvg?scene=25##" target="_blank" rel="external">深度学习在美团点评推荐平台排序中的运用</a></li>
+<li><a href="https://arxiv.org/abs/1606.07792" target="_blank" rel="external">Wide &amp; Deep Learning for Recommender Systems</a></li>
+<li><a href="https://blog.csdn.net/google19890102/article/details/78171283" target="_blank" rel="external">简单易学的深度学习算法——Wide &amp; Deep Learning</a></li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>Thanks for your donate.<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://i1.piimg.com/567571/a24bcde34ea6aef7.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Wide&Deep</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PyTorch</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Pytorch</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2018/11/18/Wide-and-Deep模型初探/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/08/18/图数据库-反欺诈网络设计/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">图数据库-反欺诈网络设计</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Wide-and-Deep模型初探" data-title="Wide_and_Deep模型初探" data-url="http://chenson.com/2018/11/18/Wide-and-Deep模型初探/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-    
+
+
+
+
 
 
           </div>
@@ -230,9 +399,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

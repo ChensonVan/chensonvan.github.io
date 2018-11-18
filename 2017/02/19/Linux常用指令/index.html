@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://chenson.com/2017/02/19/Linux常用指令/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="有时候记东西老是记不住，虽然是经常使用，所以对常用的linux指令做个简单记录，方便以后使用（不断更新… …）。 1. scp文件传输 (security copy)12# eg. scp chenson@127.0.0.1:~/Home/test .  ~/Home/local_test_pathscp PATH_OF_SRC PATH_OF_DST 2. 测内存的使用率12345678valg">
-<meta property="og:updated_time" content="2018-10-13T08:26:03.524Z">
+<meta property="og:updated_time" content="2018-11-07T11:21:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux常用指令">
 <meta name="twitter:description" content="有时候记东西老是记不住，虽然是经常使用，所以对常用的linux指令做个简单记录，方便以后使用（不断更新… …）。 1. scp文件传输 (security copy)12# eg. scp chenson@127.0.0.1:~/Home/test .  ~/Home/local_test_pathscp PATH_OF_SRC PATH_OF_DST 2. 测内存的使用率12345678valg">
@@ -201,6 +201,7 @@
 <h3 id="14-后台运行指定程序（不挂断地运行命令）"><a href="#14-后台运行指定程序（不挂断地运行命令）" class="headerlink" title="14. 后台运行指定程序（不挂断地运行命令）"></a>14. 后台运行指定程序（不挂断地运行命令）</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">nohup python main.py 80 &gt; ~/<span class="built_in">log</span>/WeChatAccountLog.file 2&gt;&amp;1 &amp;</div><div class="line"></div><div class="line">该命令的一般形式为：nohup <span class="built_in">command</span> &amp;</div><div class="line">如果使用nohup命令提交作业，那么在缺省情况下该作业的所有输出都被重定向到一个名为nohup.out的文件中，除非另外指定了输出文件：</div><div class="line"></div><div class="line"><span class="built_in">command</span>&gt;out.file是将<span class="built_in">command</span>的输出重定向到out.file文件，即输出内容不打印到屏幕上，而是输出到out.file文件中。</div><div class="line">2&gt;&amp;1 是将标准出错重定向到标准输出，这里的标准输出已经重定向到了out.file文件，即将标准出错也输出到out.file文件中。最后一个&amp;， 是让该命令在后台执行。</div><div class="line">试想2&gt;1代表什么，2与&gt;结合代表错误重定向，而1则代表错误重定向到一个文件1，而不代表标准输出；换成2&gt;&amp;1，&amp;与1结合就代表标准输出了，就变成错误重定向到标准输出.</div><div class="line"></div><div class="line">ctrl + z </div><div class="line">可以将一个正在前台执行的命令放到后台，并且处于暂停状态。</div><div class="line"></div><div class="line">Ctrl+c </div><div class="line">终止前台命令。</div><div class="line"></div><div class="line"><span class="built_in">jobs</span> </div><div class="line">查看当前有多少在后台运行的命令</div><div class="line">使用 <span class="built_in">fg</span> %n　关闭</div></pre></td></tr></table></figure>
 <h3 id="15-后台上传-下载数据"><a href="#15-后台上传-下载数据" class="headerlink" title="15. 后台上传/下载数据"></a>15. 后台上传/下载数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">另外有两个常用的ftp工具ncftpget和ncftpput，可以实现后台的ftp上传和下载，这样就可以利用这些命令在后台上传和下载文件了。</div></pre></td></tr></table></figure>
 <h3 id="16-Docker-加速器地址"><a href="#16-Docker-加速器地址" class="headerlink" title="16. Docker 加速器地址"></a>16. Docker 加速器地址</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">https://cr.console.aliyun.com/cn-qingdao/mirrors</div><div class="line">https://q90v31vp.mirror.aliyuncs.com</div></pre></td></tr></table></figure>
+<h3 id="17-查找指定内容"><a href="#17-查找指定内容" class="headerlink" title="17. 查找指定内容"></a>17. 查找指定内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . | xargs grep &quot;keyword&quot; | egrep &quot;keyword&quot; # 当前文件目录下</div></pre></td></tr></table></figure>
 <h3 id="vsftpd-kaiqi-ftp-fuwu"><a href="#vsftpd-kaiqi-ftp-fuwu" class="headerlink" title="vsftpd, kaiqi ftp fuwu"></a>vsftpd, kaiqi ftp fuwu</h3><h3 id="choongqi-dashuju-taojian"><a href="#choongqi-dashuju-taojian" class="headerlink" title="choongqi dashuju taojian"></a>choongqi dashuju taojian</h3><p>ambari-agent restart</p>
 
       
@@ -462,10 +463,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -475,6 +472,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -498,11 +499,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -510,7 +511,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -526,7 +527,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Pytorch</a>
               </li>
              
               <li class="article-tag-list-item">
