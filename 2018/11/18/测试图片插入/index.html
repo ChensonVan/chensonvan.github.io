@@ -6,19 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://chenson.com">
-  <title>Linux常用指令 | Vane&#39;s Blog</title>
+  <title>测试图片插入 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="有时候记东西老是记不住，虽然是经常使用，所以对常用的linux指令做个简单记录，方便以后使用（不断更新… …）。 1. scp文件传输 (security copy)12# eg. scp chenson@127.0.0.1:~/Home/test .  ~/Home/local_test_pathscp PATH_OF_SRC PATH_OF_DST 2. 测内存的使用率12345678valg">
-<meta name="keywords" content="Linux">
+  <meta name="description" content="1. P1 2. P2">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux常用指令">
-<meta property="og:url" content="http://chenson.com/2017/02/19/Linux常用指令/index.html">
+<meta property="og:title" content="测试图片插入">
+<meta property="og:url" content="http://chenson.com/2018/11/18/测试图片插入/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="有时候记东西老是记不住，虽然是经常使用，所以对常用的linux指令做个简单记录，方便以后使用（不断更新… …）。 1. scp文件传输 (security copy)12# eg. scp chenson@127.0.0.1:~/Home/test .  ~/Home/local_test_pathscp PATH_OF_SRC PATH_OF_DST 2. 测内存的使用率12345678valg">
-<meta property="og:updated_time" content="2018-11-07T11:21:49.000Z">
+<meta property="og:description" content="1. P1 2. P2">
+<meta property="og:image" content="http://chenson.com/2018/11/18/测试图片插入/_images/image-20181118190428456-2539068.png">
+<meta property="og:image" content="http://chenson.com/2018/11/images/image-20181118190428456-2539068.png">
+<meta property="og:updated_time" content="2018-11-18T11:06:28.222Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux常用指令">
-<meta name="twitter:description" content="有时候记东西老是记不住，虽然是经常使用，所以对常用的linux指令做个简单记录，方便以后使用（不断更新… …）。 1. scp文件传输 (security copy)12# eg. scp chenson@127.0.0.1:~/Home/test .  ~/Home/local_test_pathscp PATH_OF_SRC PATH_OF_DST 2. 测内存的使用率12345678valg">
+<meta name="twitter:title" content="测试图片插入">
+<meta name="twitter:description" content="1. P1 2. P2">
+<meta name="twitter:image" content="http://chenson.com/2018/11/18/测试图片插入/_images/image-20181118190428456-2539068.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -152,57 +154,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Linux常用指令" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-测试图片插入" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Linux常用指令
+      测试图片插入
     </h1>
   
 
         
-        <a href="/2017/02/19/Linux常用指令/" class="archive-article-date">
-  	<time datetime="2017-02-19T01:16:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-19</time>
+        <a href="/2018/11/18/测试图片插入/" class="archive-article-date">
+  	<time datetime="2018-11-18T08:04:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>有时候记东西老是记不住，虽然是经常使用，所以对常用的<code>linux</code>指令做个简单记录，方便以后使用（不断更新… …）。</p>
-<h3 id="1-scp文件传输-security-copy"><a href="#1-scp文件传输-security-copy" class="headerlink" title="1. scp文件传输 (security copy)"></a>1. scp文件传输 (security copy)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># eg. scp chenson@127.0.0.1:~/Home/test .  ~/Home/local_test_path</div><div class="line">scp PATH_OF_SRC PATH_OF_DST</div></pre></td></tr></table></figure>
-<h3 id="2-测内存的使用率"><a href="#2-测内存的使用率" class="headerlink" title="2. 测内存的使用率"></a>2. 测内存的使用率</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">valgrind --tool=massif --pages-as-heap=yes</div><div class="line"></div><div class="line">ms_print massif 文件名</div><div class="line"></div><div class="line"></div><div class="line">valgrind --tool=massif --pages-as-heap=yes ./bwtsearch testfiles/shopping.bwt l.idx &quot;system&quot;</div><div class="line"></div><div class="line">ms_print massif.out.3116</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find &lt;PATH TO FOLDER&gt; -ls | tr -s &apos; &apos;|cut -d&apos; &apos; -f 7| paste -sd+ | bc</div></pre></td></tr></table></figure>
-<h3 id="3-强制写入"><a href="#3-强制写入" class="headerlink" title="3. 强制写入"></a>3. 强制写入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># vii commond model, Try the below command</div><div class="line"></div><div class="line">:w !sudo tee %</div><div class="line">Explanation</div><div class="line"></div><div class="line">:w – write</div><div class="line">!sudo – call shell sudo command</div><div class="line">tee – the output of write (:w) command is redirected using tee</div><div class="line">% – current file name</div></pre></td></tr></table></figure>
-<h3 id="4-查看二进制文件"><a href="#4-查看二进制文件" class="headerlink" title="4. 查看二进制文件"></a>4. 查看二进制文件</h3><p><code>vim</code>下 </p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:%!xxd</div></pre></td></tr></table></figure>
-<p><code>linux</code>下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xxd -b file_name</div></pre></td></tr></table></figure>
- <a id="more"></a>
-<h3 id="5-查看公网IP"><a href="#5-查看公网IP" class="headerlink" title="5. 查看公网IP"></a>5. 查看公网IP</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl http://members.3322.org/dyndns/getip</div></pre></td></tr></table></figure>
-<h3 id="6-查看那个进程占用："><a href="#6-查看那个进程占用：" class="headerlink" title="6. 查看那个进程占用："></a>6. 查看那个进程占用：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsof -i:9000   # MAC</div></pre></td></tr></table></figure>
-<h3 id="7-查看监听端口："><a href="#7-查看监听端口：" class="headerlink" title="7. 查看监听端口："></a>7. 查看监听端口：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">netstat -ntlp        # linux</div><div class="line">lsof -i:port_num     # MAC</div></pre></td></tr></table></figure>
-<h3 id="8-测文件夹大小"><a href="#8-测文件夹大小" class="headerlink" title="8. 测文件夹大小"></a>8. 测文件夹大小</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">find &lt;PATH TO FOLDER&gt; -ls | tr -s &apos; &apos;|cut -d&apos; &apos; -f 7| paste -sd+ |bc</div><div class="line"></div><div class="line"></div><div class="line">du -ah --max-depth=1，其中a表示显示目录下所有的文件和文件夹（不含子目录），h表示以人类能看懂的方式，max-depth表示目录的深度。</div><div class="line"></div><div class="line">du -sh : 查看当前目录总共占的容量。而不单独列出各子项占用的容量</div></pre></td></tr></table></figure>
-<h3 id="9-文件系统空间使用情况"><a href="#9-文件系统空间使用情况" class="headerlink" title="9. 文件系统空间使用情况"></a>9. 文件系统空间使用情况</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//查看系统中文件的使用情况</div><div class="line">df -h</div><div class="line">//查看当前目录下各个文件及目录占用空间大小</div><div class="line">du -sh *</div><div class="line"></div><div class="line">//方法一：切换到要删除的目录，删除目录下的所有文件</div><div class="line">rm -f *</div><div class="line"></div><div class="line">//方法二：删除logs文件夹下的所有文件，而不删除文件夹本身</div><div class="line">rm -rf log/*</div></pre></td></tr></table></figure>
-<h3 id="10-加密文件大小"><a href="#10-加密文件大小" class="headerlink" title="10. 加密文件大小"></a>10. 加密文件大小</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># oJ5A93Fh</div><div class="line">zip -r -P password  utils.zip utils</div></pre></td></tr></table></figure>
-<h3 id="11-打包-压缩"><a href="#11-打包-压缩" class="headerlink" title="11. 打包+压缩"></a>11. 打包+压缩</h3><ul>
-<li>压缩</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">tar czvf my.tar.gz file1 file2 ....fileN</div><div class="line"></div><div class="line">tar -cvf jpg.tar *.jpg //将目录里所有jpg文件打包成tar.jpg </div><div class="line"></div><div class="line">tar -czf jpg.tar.gz *.jpg   //将目录里所有jpg文件打包成jpg.tar后，并且将其用gzip压缩，生成一个gzip压缩过的包，命名为jpg.tar.gz</div><div class="line"></div><div class="line"> tar -cjf jpg.tar.bz2 *.jpg //将目录里所有jpg文件打包成jpg.tar后，并且将其用bzip2压缩，生成一个bzip2压缩过的包，命名为jpg.tar.bz2</div><div class="line"></div><div class="line">tar -cZf jpg.tar.Z *.jpg   //将目录里所有jpg文件打包成jpg.tar后，并且将其用compress压缩，生成一个umcompress压缩过的包，命名为jpg.tar.Z</div><div class="line"></div><div class="line">rar a jpg.rar *.jpg //rar格式的压缩，需要先下载rar for linux</div><div class="line"></div><div class="line">zip jpg.zip *.jpg //zip格式的压缩，需要先下载zip for linux</div></pre></td></tr></table></figure>
-<ul>
-<li>解压</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">tar -xvf file.tar //解压 tar包</div><div class="line"></div><div class="line">tar -xzvf file.tar.gz //解压tar.gz</div><div class="line"></div><div class="line">tar -xjvf file.tar.bz2   //解压 tar.bz2</div><div class="line"></div><div class="line">tar -xZvf file.tar.Z   //解压tar.Z</div><div class="line"></div><div class="line">unrar e file.rar //解压rar</div><div class="line"></div><div class="line">unzip file.zip //解压zip</div></pre></td></tr></table></figure>
-<h3 id="12-查找文件"><a href="#12-查找文件" class="headerlink" title="12. 查找文件"></a>12. 查找文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$find   ~   -name   &quot;*.txt&quot;   -print    #在$HOME中查.txt文件并显示</div><div class="line">$find   .    -name   &quot;*.txt&quot;   -print</div><div class="line">$find   .    -name   &quot;[A-Z]*&quot;   -print   #查以大写字母开头的文件</div><div class="line">$find   /etc   -name   &quot;host*&quot;   -print #查以host开头的文件</div><div class="line">$find   .   -name   &quot;[a-z][a-z][0–9][0–9].txt&quot;    -print   #查以两个小写字母和两个数字开头的txt文件</div><div class="line">$find .   -perm   755   -print</div><div class="line">$find   .   -perm -007   -exec ls -l &#123;&#125; \;   #查所有用户都可读写执行的文件同-perm 777</div><div class="line">$find   . -type d   -print</div><div class="line">$find   .   !   -type   d   -print </div><div class="line">$find   .   -type l   -print</div><div class="line"></div><div class="line">$find   .   -size   +1000000c   -print        #查长度大于1Mb的文件</div><div class="line">$find   .   -size   100c         -print       # 查长度为100c的文件</div><div class="line">$find   .   -size   +10   -print              #查长度超过期作废10块的文件（1块=512字节）</div><div class="line"></div><div class="line">$cd /</div><div class="line">$find   etc   home   apps    -depth   -print   | cpio   -ivcdC65536   -o   /dev/rmt0</div><div class="line">$find   /etc -name &quot;passwd*&quot;   -exec grep   &quot;cnscn&quot;   &#123;&#125;   \;   #看是否存在cnscn用户</div><div class="line">$find . -name &quot;yao*&quot;   | xargs file</div><div class="line">$find   . -name &quot;yao*&quot;   |   xargs   echo    &quot;&quot; &gt; /tmp/core.log</div><div class="line">$find   . -name &quot;yao*&quot;   | xargs   chmod   o-w</div></pre></td></tr></table></figure>
-<h3 id="13-递归删除所有文件夹下的特定类型文件"><a href="#13-递归删除所有文件夹下的特定类型文件" class="headerlink" title="13. 递归删除所有文件夹下的特定类型文件"></a>13. 递归删除所有文件夹下的特定类型文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -name &apos;*.ttteset&apos; -type f -print -exec rm -rf &#123;&#125; \;</div></pre></td></tr></table></figure>
-<h3 id="14-后台运行指定程序（不挂断地运行命令）"><a href="#14-后台运行指定程序（不挂断地运行命令）" class="headerlink" title="14. 后台运行指定程序（不挂断地运行命令）"></a>14. 后台运行指定程序（不挂断地运行命令）</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">nohup python main.py 80 &gt; ~/<span class="built_in">log</span>/WeChatAccountLog.file 2&gt;&amp;1 &amp;</div><div class="line"></div><div class="line">该命令的一般形式为：nohup <span class="built_in">command</span> &amp;</div><div class="line">如果使用nohup命令提交作业，那么在缺省情况下该作业的所有输出都被重定向到一个名为nohup.out的文件中，除非另外指定了输出文件：</div><div class="line"></div><div class="line"><span class="built_in">command</span>&gt;out.file是将<span class="built_in">command</span>的输出重定向到out.file文件，即输出内容不打印到屏幕上，而是输出到out.file文件中。</div><div class="line">2&gt;&amp;1 是将标准出错重定向到标准输出，这里的标准输出已经重定向到了out.file文件，即将标准出错也输出到out.file文件中。最后一个&amp;， 是让该命令在后台执行。</div><div class="line">试想2&gt;1代表什么，2与&gt;结合代表错误重定向，而1则代表错误重定向到一个文件1，而不代表标准输出；换成2&gt;&amp;1，&amp;与1结合就代表标准输出了，就变成错误重定向到标准输出.</div><div class="line"></div><div class="line">ctrl + z </div><div class="line">可以将一个正在前台执行的命令放到后台，并且处于暂停状态。</div><div class="line"></div><div class="line">Ctrl+c </div><div class="line">终止前台命令。</div><div class="line"></div><div class="line"><span class="built_in">jobs</span> </div><div class="line">查看当前有多少在后台运行的命令</div><div class="line">使用 <span class="built_in">fg</span> %n　关闭</div></pre></td></tr></table></figure>
-<h3 id="15-后台上传-下载数据"><a href="#15-后台上传-下载数据" class="headerlink" title="15. 后台上传/下载数据"></a>15. 后台上传/下载数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">另外有两个常用的ftp工具ncftpget和ncftpput，可以实现后台的ftp上传和下载，这样就可以利用这些命令在后台上传和下载文件了。</div></pre></td></tr></table></figure>
-<h3 id="16-Docker-加速器地址"><a href="#16-Docker-加速器地址" class="headerlink" title="16. Docker 加速器地址"></a>16. Docker 加速器地址</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">https://cr.console.aliyun.com/cn-qingdao/mirrors</div><div class="line">https://q90v31vp.mirror.aliyuncs.com</div></pre></td></tr></table></figure>
-<h3 id="17-查找指定内容"><a href="#17-查找指定内容" class="headerlink" title="17. 查找指定内容"></a>17. 查找指定内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . | xargs grep &quot;keyword&quot; | egrep &quot;keyword&quot; # 当前文件目录下</div></pre></td></tr></table></figure>
-<h3 id="vsftpd-kaiqi-ftp-fuwu"><a href="#vsftpd-kaiqi-ftp-fuwu" class="headerlink" title="vsftpd, kaiqi ftp fuwu"></a>vsftpd, kaiqi ftp fuwu</h3><h3 id="choongqi-dashuju-taojian"><a href="#choongqi-dashuju-taojian" class="headerlink" title="choongqi dashuju taojian"></a>choongqi dashuju taojian</h3><p>ambari-agent restart</p>
+        <h3 id="1-P1"><a href="#1-P1" class="headerlink" title="1. P1"></a>1. P1</h3><p><img src="/2018/11/18/测试图片插入/_images/image-20181118190428456-2539068.png" alt="image-20181118190428456"></p>
+<h3 id="2-P2"><a href="#2-P2" class="headerlink" title="2. P2"></a>2. P2</h3><p><img src="/2018/11/18/测试图片插入/../../images/image-20181118190428456-2539068.png" alt="image-20181118190428456"></p>
 
       
 
@@ -237,17 +210,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -298,7 +260,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2017/02/19/Linux常用指令/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2018/11/18/测试图片插入/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -312,18 +274,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/03/02/Machine-Learning-SVM/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Machine Learning - SVM
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/12/15/Python数据分析笔记（一）/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Python数据分析笔记（一）</div>
+    <a href="/2018/11/18/在线学习算法FTRL初探/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">在线学习算法FTRL初探</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -337,7 +290,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Linux常用指令" data-title="Linux常用指令" data-url="http://chenson.com/2017/02/19/Linux常用指令/"></div>
+	<div class="ds-thread" data-thread-key="测试图片插入" data-title="测试图片插入" data-url="http://chenson.com/2018/11/18/测试图片插入/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

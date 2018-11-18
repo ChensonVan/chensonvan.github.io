@@ -152,6 +152,72 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-同步异步IO" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/29/同步异步IO/">同步异步IO</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/29/同步异步IO/" class="archive-article-date">
+  	<time datetime="2017-09-29T03:54:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-大致区别"><a href="#1-大致区别" class="headerlink" title="1. 大致区别"></a>1. 大致区别</h3><p>所谓的<strong>同步</strong>和<strong>异步</strong>的区别，指的是Application和kernel之间的交互方式。</p>
+<p>如果Application不需要等待kernel的回应，那么它就是异步的（kernel会发信号通知）。</p>
+<p>如果Application提交完IO请求后，需要等待“回执”，那么它就是同步的。</p>
+<p>而<strong>阻塞</strong>和<strong>非阻塞</strong>，指的是Application是否等待IO操作的完成。</p>
+<p>如果Application必须等到IO操作实际完成以后再执行接下面的操作，那么它就是阻塞的。（从发出信号开始，会一直block对应的进程知道操作完成，）</p>
+<p>反之，如果不需要等待IO操作的完成就开始执行其他的操作，那么就是非阻塞的。（在kernel还准备数据的情况下，就立刻返回了。）</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-11-27/81485285.jpg" alt=""></p>
+<ul>
+<li>叫车之后，就一直在路口等着，车来了自己上去        ——<strong>同步，阻塞</strong></li>
+<li>叫车之后，一边等着一边看美女，车来了自己上去           ——<strong>同步，非阻塞</strong></li>
+<li>叫车之后，光顾着看美女，司机到了之后打电话给你       ——<strong>异步，非阻塞 </strong></li>
+</ul>
+<p>即是：同步就是你要自己检查车来了没有；异步就是车来了司机联系你。阻塞就是等车的时候老实等着，别干别的（被阻塞）；非阻塞就是等车的时候你可以做其他事情。</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/29/同步异步IO/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-多线程与多进程简单理解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -921,95 +987,6 @@
 
 
   
-    <article id="post-PostgreSQL复习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/24/PostgreSQL复习笔记/">PostgreSQL复习笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/24/PostgreSQL复习笔记/" class="archive-article-date">
-  	<time datetime="2017-03-23T23:38:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-常见问题"><a href="#1-常见问题" class="headerlink" title="1 常见问题"></a>1 常见问题</h4><h5 id="1-1-匹配一致的编码规则"><a href="#1-1-匹配一致的编码规则" class="headerlink" title="1.1 匹配一致的编码规则"></a>1.1 匹配一致的编码规则</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SET character_set_client=&apos;utf8&apos;;		-- gbk</div><div class="line">SET character_set_connection=&apos;utf8&apos;;	-- gbk</div><div class="line">SET character_set_results=&apos;utf8&apos;;		-- gbk</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-- 创建数据库时候设置</div><div class="line">CREATE DATABASE `test`</div><div class="line">CHARACTER SET &apos;utf8&apos;</div><div class="line">COLLATE &apos;utf8_general_ci&apos;;</div></pre></td></tr></table></figure>
-<h5 id="1-2-如何理解索引"><a href="#1-2-如何理解索引" class="headerlink" title="1.2 如何理解索引"></a>1.2 如何理解索引</h5><p>索引字面上理解就是对数据所建立<strong>目录</strong>，它可以<strong>加快我们的查询速度，但是同时也降低了增删改的速度。</strong></p>
-<ul>
-<li><p><strong>创建原则</strong></p>
-<ul>
-<li>不要过度使用索引</li>
-<li>最好在查询频繁的列上使用索引</li>
-<li>如果构建索引，这一列尽量是离散值，而不要过于连续的区间</li>
-</ul>
-</li>
-<li><p><strong>索引的类型</strong></p>
-<ul>
-<li><p>普通的索引 index</p>
-</li>
-<li><p>唯一的索引 unique index</p>
-<p>一张表上，只能有一个主键，但是可以有一个或是多个唯一索引</p>
-</li>
-<li><p>主键索引    primary key</p>
-<p>不能重复</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-- 查看一张表上的所有索引</div><div class="line">show index from TABLE_NAMES;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/24/PostgreSQL复习笔记/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1138,6 +1115,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
@@ -1146,19 +1127,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1167,6 +1144,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1179,10 +1160,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
