@@ -40,7 +40,7 @@
 <meta property="og:image" content="http://p1.bqimg.com/567571/4cfa626219a53d63.png">
 <meta property="og:image" content="http://p1.bpimg.com/567571/cf422e75a9c888b6.png">
 <meta property="og:image" content="http://p1.bpimg.com/567571/2b3eb0efbd8d719a.png">
-<meta property="og:updated_time" content="2017-03-27T00:55:31.000Z">
+<meta property="og:updated_time" content="2018-12-01T07:15:01.785Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Machine Learning - Linear Regression and Logistic Regression">
 <meta name="twitter:description" content="1. 三要素当一开始接触Andrew在Coursera上的ML公开课的时候，对线性回归和逻辑回归这两种模型有个大体的认识。但是在上完cs229的前三节课，初步了解了这两种模型背后的数学模型，Linear Regression和Logistic Regression背后的概率分布，了解到了这两种概率分布其实只是exponential family中的特例。但同时也开始对一些概念性的东西感觉很模糊，所">
@@ -198,8 +198,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-三要素"><a href="#1-三要素" class="headerlink" title="1. 三要素"></a>1. 三要素</h4><p>当一开始接触Andrew在Coursera上的ML公开课的时候，对线性回归和逻辑回归这两种模型有个大体的认识。但是在上完cs229的前三节课，初步了解了这两种模型背后的数学模型，Linear Regression和Logistic Regression背后的概率分布，了解到了这两种概率分布其实只是exponential family中的特例。但同时也开始对一些概念性的东西感觉很模糊，所以觉得有必要好好整理一下这部分的内容。</p>
-<h5 id="1-1-Hypothesis"><a href="#1-1-Hypothesis" class="headerlink" title="1. 1 Hypothesis"></a>1. 1 Hypothesis</h5><p>首先对于样本数据，输入x和输出y之间是通过Target function在转换的，也就是 Target function f(x) = y。但是我们并不知道这个f(x)都是怎样的，所以我们假设了这么一个Hypothesis function去模拟这个Target function，使得我们用同样的输入<strong>x</strong>会的一个预测值<strong>y’</strong>，使得这个<strong>y’</strong>不断逼近真实值<strong>y</strong>。</p>
+        <h3 id="1-三要素"><a href="#1-三要素" class="headerlink" title="1. 三要素"></a>1. 三要素</h3><p>当一开始接触Andrew在Coursera上的ML公开课的时候，对线性回归和逻辑回归这两种模型有个大体的认识。但是在上完cs229的前三节课，初步了解了这两种模型背后的数学模型，Linear Regression和Logistic Regression背后的概率分布，了解到了这两种概率分布其实只是exponential family中的特例。但同时也开始对一些概念性的东西感觉很模糊，所以觉得有必要好好整理一下这部分的内容。</p>
+<h4 id="1-1-Hypothesis"><a href="#1-1-Hypothesis" class="headerlink" title="1. 1 Hypothesis"></a>1. 1 Hypothesis</h4><p>首先对于样本数据，输入x和输出y之间是通过Target function在转换的，也就是 Target function f(x) = y。但是我们并不知道这个f(x)都是怎样的，所以我们假设了这么一个Hypothesis function去模拟这个Target function，使得我们用同样的输入<strong>x</strong>会的一个预测值<strong>y’</strong>，使得这个<strong>y’</strong>不断逼近真实值<strong>y</strong>。</p>
 <ul>
 <li><p><strong>Linear Regression</strong><br>$$<br>H(x) = \sum_{i=0}^n \theta_i x_i = \theta^Tx<br>$$</p>
 </li>
@@ -207,7 +207,7 @@
 </li>
 </ul>
 <a id="more"></a>
-<h5 id="1-2-Cost-function"><a href="#1-2-Cost-function" class="headerlink" title="1. 2 Cost function"></a>1. 2 Cost function</h5><p>Cost function呢，实际上也可以叫做Error function，就是用我们上面假设的Hypothe function所预测出来的值<strong>y’</strong>和真实值<strong>y</strong>之间的误差。而我们需要做的是根据假设出的Hypothesis function，取一个合适的权重值，即theta的值，使其取的一个较低的cost，也就是这预测值与真实值之间的误差最小。</p>
+<h4 id="1-2-Cost-function"><a href="#1-2-Cost-function" class="headerlink" title="1. 2 Cost function"></a>1. 2 Cost function</h4><p>Cost function呢，实际上也可以叫做Error function，就是用我们上面假设的Hypothe function所预测出来的值<strong>y’</strong>和真实值<strong>y</strong>之间的误差。而我们需要做的是根据假设出的Hypothesis function，取一个合适的权重值，即theta的值，使其取的一个较低的cost，也就是这预测值与真实值之间的误差最小。</p>
 <ul>
 <li><p><strong>Ordinary Least Squares</strong> (Square Loss Function)</p>
 <p>常用的方法是最小二乘法</p>
@@ -220,7 +220,7 @@
 <li><strong>Absolute Loss Function</strong></li>
 <li><strong>Log Loss Function</strong></li>
 </ul>
-<h5 id="1-3-Algorithm"><a href="#1-3-Algorithm" class="headerlink" title="1.3 Algorithm"></a>1.3 Algorithm</h5><p>至于怎么使得上面的cost function最小呢，因为对于某些数据，其features有成千上百个，我们很难去找到这个最小的极值点，使得cost function最下，所以这个Algorithm就是用来找cost function的最小值的。常用的方法有如下</p>
+<h4 id="1-3-Algorithm"><a href="#1-3-Algorithm" class="headerlink" title="1.3 Algorithm"></a>1.3 Algorithm</h4><p>至于怎么使得上面的cost function最小呢，因为对于某些数据，其features有成千上百个，我们很难去找到这个最小的极值点，使得cost function最下，所以这个Algorithm就是用来找cost function的最小值的。常用的方法有如下</p>
 <ul>
 <li><p><strong>Gradient Descent</strong></p>
 <p>在梯度下降中，我们采用的是 <strong>LMS update rules</strong>(Least Mean Squares)<br>$$<br>\theta_j := \theta_j + \alpha(y^{(i)} - h_\theta(x^{(i)})) x_j^{(i)}<br>= \alpha  e^{(i)}  x^{(i)}<br>$$<br><img src="http://i1.piimg.com/567571/3e44280c5f9a481a.png" alt=""></p>
@@ -253,8 +253,8 @@
 <li><p><strong>Simulated Annealing</strong></p>
 </li>
 </ul>
-<h4 id="2-Generalized-Linear-Model-GLM-广义线性模型"><a href="#2-Generalized-Linear-Model-GLM-广义线性模型" class="headerlink" title="2. Generalized Linear Model (GLM) 广义线性模型"></a>2. Generalized Linear Model (GLM) 广义线性模型</h4><p>之前我们在cost function中提到过，我们可以从概率的角度来理解误差这个问题。对于Linear Regression和Logistic Regression，我们都可以假设：<br>$$<br>y^{(i)} = h_\theta(x^{(i)}) + \epsilon^{(i)}<br>$$<br>这里误差<strong>ϵ</strong>假设为<strong>IID</strong> (independently and identically distributed)</p>
-<h5 id="2-1-Linear-Regression"><a href="#2-1-Linear-Regression" class="headerlink" title="2.1 Linear Regression"></a>2.1 Linear Regression</h5><p>在Linear Regression中，y是连续的值，所以误差<strong>ϵ</strong>也是一个连续的值。假设误差<strong>ϵ</strong>是符合Gaussian Distribution (Normal Distribution)，所以有</p>
+<h3 id="2-Generalized-Linear-Model-GLM-广义线性模型"><a href="#2-Generalized-Linear-Model-GLM-广义线性模型" class="headerlink" title="2. Generalized Linear Model (GLM) 广义线性模型"></a>2. Generalized Linear Model (GLM) 广义线性模型</h3><p>之前我们在cost function中提到过，我们可以从概率的角度来理解误差这个问题。对于Linear Regression和Logistic Regression，我们都可以假设：<br>$$<br>y^{(i)} = h_\theta(x^{(i)}) + \epsilon^{(i)}<br>$$<br>这里误差<strong>ϵ</strong>假设为<strong>IID</strong> (independently and identically distributed)</p>
+<h4 id="2-1-Linear-Regression"><a href="#2-1-Linear-Regression" class="headerlink" title="2.1 Linear Regression"></a>2.1 Linear Regression</h4><p>在Linear Regression中，y是连续的值，所以误差<strong>ϵ</strong>也是一个连续的值。假设误差<strong>ϵ</strong>是符合Gaussian Distribution (Normal Distribution)，所以有</p>
 <ul>
 <li><strong>Gaussian Distribution</strong></li>
 </ul>
@@ -276,7 +276,7 @@
 <p><img src="http://p1.bqimg.com/567571/be16d13c41f69b53.png" alt=""></p>
 <p>​    可以看到最终的式子里面，我们就是要<strong>求cost function的最小值</strong>。</p>
 <p><img src="http://i1.piimg.com/567571/2be24a29ab62989f.png" alt=""></p>
-<h5 id="2-2-Logistic-Regression"><a href="#2-2-Logistic-Regression" class="headerlink" title="2.2 Logistic Regression"></a>2.2 Logistic Regression</h5><p>在Logistic Regression中， y是离散的值 <strong>{0, 1}</strong>，所以误差<strong>ϵ</strong>也是一个离散的值 <strong>{0, 1}</strong>。假设误差<strong>ϵ</strong>是符合Bernoulli Distribution，所以有</p>
+<h4 id="2-2-Logistic-Regression"><a href="#2-2-Logistic-Regression" class="headerlink" title="2.2 Logistic Regression"></a>2.2 Logistic Regression</h4><p>在Logistic Regression中， y是离散的值 <strong>{0, 1}</strong>，所以误差<strong>ϵ</strong>也是一个离散的值 <strong>{0, 1}</strong>。假设误差<strong>ϵ</strong>是符合Bernoulli Distribution，所以有</p>
 <ul>
 <li><strong>Bernoulli distribution</strong></li>
 </ul>
@@ -301,7 +301,7 @@
 <p>​    所以有</p>
 <p><img src="http://i1.piimg.com/567571/e34fa7cc5e289859.png" alt=""></p>
 <p>​    <strong>Digression Perception ？ ？ ？</strong>    </p>
-<h5 id="2-3-GLM"><a href="#2-3-GLM" class="headerlink" title="2.3 GLM"></a>2.3 GLM</h5><p>似乎到现在，讲了半天都也没讲什么是广义线性模型，实际上呢，上面我们已经从误差概率的角度上来分析了线性回归和逻辑回归两种特例，因为他们误差服从的概率分布都是属于Exponential Family中的一种。</p>
+<h4 id="2-3-GLM"><a href="#2-3-GLM" class="headerlink" title="2.3 GLM"></a>2.3 GLM</h4><p>似乎到现在，讲了半天都也没讲什么是广义线性模型，实际上呢，上面我们已经从误差概率的角度上来分析了线性回归和逻辑回归两种特例，因为他们误差服从的概率分布都是属于Exponential Family中的一种。</p>
 <ul>
 <li><p><strong>The Exponential Family</strong></p>
 <p><img src="http://p1.bpimg.com/567571/2b3eb0efbd8d719a.png" alt=""></p>
@@ -315,7 +315,7 @@
 <p><img src="http://p1.bpimg.com/567571/cf422e75a9c888b6.png" alt=""></p>
 </li>
 </ul>
-<h5 id="2-4-如何构建一个GLM模型"><a href="#2-4-如何构建一个GLM模型" class="headerlink" title="2.4 如何构建一个GLM模型"></a>2.4 如何构建一个GLM模型</h5><p>在上面我们只是看到了一个通用的GLM概率模型</p>
+<h4 id="2-4-如何构建一个GLM模型"><a href="#2-4-如何构建一个GLM模型" class="headerlink" title="2.4 如何构建一个GLM模型"></a>2.4 如何构建一个GLM模型</h4><p>在上面我们只是看到了一个通用的GLM概率模型</p>
 <p><img src="http://p1.bpimg.com/567571/2b3eb0efbd8d719a.png" alt=""></p>
 <p>实际上对于构建这么一个概率模型，需要作出三个假设作为前提条件：</p>
 <ul>
@@ -583,6 +583,18 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -615,18 +627,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
@@ -636,6 +636,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -652,10 +656,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">

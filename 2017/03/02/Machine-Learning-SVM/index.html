@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://p1.bqimg.com/567571/417a67419bd51ee7.png">
 <meta property="og:image" content="http://p1.bqimg.com/567571/24abc84b6130bec4.png">
 <meta property="og:image" content="http://i1.piimg.com/567571/3bc82f7fc83c84cd.png">
-<meta property="og:updated_time" content="2017-03-27T00:53:59.000Z">
+<meta property="og:updated_time" content="2018-12-01T07:17:03.134Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Machine Learning - SVM">
 <meta name="twitter:description" content="1. Optimisation Objective$$h_\theta (x) = \frac 1 {1 + e^{-\theta^Tx}}    \\z = -\theta^Tx$$">
@@ -187,13 +187,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-Optimisation-Objective"><a href="#1-Optimisation-Objective" class="headerlink" title="1. Optimisation Objective"></a>1. Optimisation Objective</h4><p>$$<br>h_\theta (x) = \frac 1 {1 + e^{-\theta^Tx}}    \\<br>z = -\theta^Tx<br>$$</p>
+        <h3 id="1-Optimisation-Objective"><a href="#1-Optimisation-Objective" class="headerlink" title="1. Optimisation Objective"></a>1. Optimisation Objective</h3><p>$$<br>h_\theta (x) = \frac 1 {1 + e^{-\theta^Tx}}    \\<br>z = -\theta^Tx<br>$$</p>
 <p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.png" alt=""></p>
 <a id="more"></a>
 <p><img src="http://p1.bpimg.com/567571/08cde1201ceffdf4.png" alt=""></p>
 <p><strong>Why we need do that?</strong></p>
-<h4 id="2-Hypothesis-Function"><a href="#2-Hypothesis-Function" class="headerlink" title="2. Hypothesis Function"></a>2. Hypothesis Function</h4><h5 id="2-1-Logistic-Regression"><a href="#2-1-Logistic-Regression" class="headerlink" title="2.1 Logistic Regression"></a>2.1 Logistic Regression</h5><p>$$<br>\frac 1 m \sum_{i=1}^m [ y^{(i)}  (-log(h_\theta(x^{(i)})) + (1 - y^{(i)})  (-log(1 - h_\theta(x^{(i)}))) ] + \frac \lambda {2m} \sum_{j=1}^n \theta_j^2<br>$$</p>
-<h5 id="2-2-Support-Vector-Machine"><a href="#2-2-Support-Vector-Machine" class="headerlink" title="2.2 Support Vector Machine"></a>2.2 Support Vector Machine</h5><p>$$<br>C \sum_{i=1}^m [y^{(i)}  cost_1(\theta^Tx^{(i)}) + (1 - y^{(i)})  cost_0(\theta^Tx^{(i)})] + \frac 1 2 \sum_{j=1}^n \theta_j^2,<br>\space \space \space \space \space C = \frac 1 \lambda<br>$$</p>
+<h3 id="2-Hypothesis-Function"><a href="#2-Hypothesis-Function" class="headerlink" title="2. Hypothesis Function"></a>2. Hypothesis Function</h3><h4 id="2-1-Logistic-Regression"><a href="#2-1-Logistic-Regression" class="headerlink" title="2.1 Logistic Regression"></a>2.1 Logistic Regression</h4><p>$$<br>\frac 1 m \sum_{i=1}^m [ y^{(i)}  (-log(h_\theta(x^{(i)})) + (1 - y^{(i)})  (-log(1 - h_\theta(x^{(i)}))) ] + \frac \lambda {2m} \sum_{j=1}^n \theta_j^2<br>$$</p>
+<h4 id="2-2-Support-Vector-Machine"><a href="#2-2-Support-Vector-Machine" class="headerlink" title="2.2 Support Vector Machine"></a>2.2 Support Vector Machine</h4><p>$$<br>C \sum_{i=1}^m [y^{(i)}  cost_1(\theta^Tx^{(i)}) + (1 - y^{(i)})  cost_0(\theta^Tx^{(i)})] + \frac 1 2 \sum_{j=1}^n \theta_j^2,<br>\space \space \space \space \space C = \frac 1 \lambda<br>$$</p>
 <p><strong>Analysis：</strong></p>
 <p>为了使得cost function取得最小值，我们令C*W + P部分中，C*W为零。即：</p>
 <ol>
@@ -208,23 +208,23 @@
 <li>对应的线性逻辑回归？即次数不大于1的？</li>
 <li>Decision Boundary 不是一条直线的情况</li>
 </ol>
-<h4 id="3-Large-Margin-Classifier"><a href="#3-Large-Margin-Classifier" class="headerlink" title="3. Large Margin Classifier"></a>3. Large Margin Classifier</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">结论：常数C取一个比较大的值比较容易获得Large Margin Classifier</div><div class="line">C大，则比较容易获得</div></pre></td></tr></table></figure>
+<h3 id="3-Large-Margin-Classifier"><a href="#3-Large-Margin-Classifier" class="headerlink" title="3. Large Margin Classifier"></a>3. Large Margin Classifier</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">结论：常数C取一个比较大的值比较容易获得Large Margin Classifier</div><div class="line">C大，则比较容易获得</div></pre></td></tr></table></figure>
 <p><img src="http://p1.bpimg.com/567571/ffb73c13bac7db8f.png" alt=""></p>
 <p><strong>以上为两类分布比较均匀的时候，Decision Boundary为图中黑色的线，所有点离黑色的距离都相对比较大比较均匀，但是当存在干扰点的时候如下图，Decision Boundary会由黑色变为粉红色。所以C的取值不能太大，也不能太小。需要求出最优解</strong></p>
 <p><img src="http://p1.bqimg.com/567571/d8b0b0072aa7c3c9.png" alt=""></p>
-<h4 id="4-Mathmatics-Behind-Large-Margin-Classification"><a href="#4-Mathmatics-Behind-Large-Margin-Classification" class="headerlink" title="4. Mathmatics Behind Large Margin Classification"></a>4. Mathmatics Behind Large Margin Classification</h4><h5 id="4-1-Vector-Inner-Product"><a href="#4-1-Vector-Inner-Product" class="headerlink" title="4.1 Vector Inner Product"></a>4.1 Vector Inner Product</h5><p><img src="http://i1.piimg.com/567571/8ebc858903b32e8c.png" alt=""></p>
+<h3 id="4-Mathmatics-Behind-Large-Margin-Classification"><a href="#4-Mathmatics-Behind-Large-Margin-Classification" class="headerlink" title="4. Mathmatics Behind Large Margin Classification"></a>4. Mathmatics Behind Large Margin Classification</h3><h4 id="4-1-Vector-Inner-Product"><a href="#4-1-Vector-Inner-Product" class="headerlink" title="4.1 Vector Inner Product"></a>4.1 Vector Inner Product</h4><p><img src="http://i1.piimg.com/567571/8ebc858903b32e8c.png" alt=""></p>
 <p><strong>Note：</strong></p>
 <ol>
 <li>如何求投影p的值？</li>
 <li>当角度 &lt; 90°，p为正数。当角度 &gt; 90°时，p为负数。</li>
 <li>向量内积<br>$$<br>u^Tv = ||u|| · ||v|| · cosθ = ||u|| · p_{v,u} = ||v|| · p_{u,v} = u_1v_1+u_2v_2<br>$$</li>
 </ol>
-<h5 id="4-2-SVM-Cost-Function"><a href="#4-2-SVM-Cost-Function" class="headerlink" title="4.2 SVM Cost Function"></a>4.2 SVM Cost Function</h5><p>$$<br>C \sum_{i=1}^m [y^{(i)}  cost_1(\theta^Tx^{(i)}) + (1 - y^{(i)})  cost_0(\theta^Tx^{(i)})] + \frac 1 2 \sum_{j=1}^n \theta_j^2,<br>\space \space \space \space \space C = \frac 1 \lambda<br>$$</p>
+<h4 id="4-2-SVM-Cost-Function"><a href="#4-2-SVM-Cost-Function" class="headerlink" title="4.2 SVM Cost Function"></a>4.2 SVM Cost Function</h4><p>$$<br>C \sum_{i=1}^m [y^{(i)}  cost_1(\theta^Tx^{(i)}) + (1 - y^{(i)})  cost_0(\theta^Tx^{(i)})] + \frac 1 2 \sum_{j=1}^n \theta_j^2,<br>\space \space \space \space \space C = \frac 1 \lambda<br>$$</p>
 <p>当C取一个一个很大的值时，cost function只剩下后面P的部分。 假设<strong>θ0 = 0</strong><br>$$<br>\frac 1 2 \sum_{j=1}^n\theta^2_j = \frac 1 2 (\theta^2_0 + \theta^2_1 + … + \theta^2_n) = \frac 1 2 (\theta^2_1 + … + \theta^2_n)<br>= \frac 1 2 ||\theta||^2<br>$$<br><img src="http://p1.bqimg.com/567571/4b804d7e42cfb375.png" alt=""></p>
 <p>所以：<br>$$<br>\theta^Tx^{(i)} = p^{(i)}||\theta||    \\<br>p^{(i)}||\theta|| &gt;= 1, if \space\space y^{(i)} = 1    \\<br>p^{(i)}||\theta|| &lt;= -1, if \space\space y^{(i)} = 0    \\<br>p^{(i)}是点到向量\theta的projection，即点到Decision Boundary的距离<br>$$<br>上面我们讨论了，当C取到一个合适的、较大的数值时，SVM的cost function就只剩下后面P的部分，即<br>$$<br>\frac 1 2 ||\theta||^2<br>$$<br>我们要减小cost function，所以需要<strong>减小θ的值</strong>。</p>
 <p>当θ取到一个比较小的值的时候，还需要满足上面讨论的：<br>$$<br>\theta^Tx^{(i)} = p^{(i)}||\theta||    \\<br>p^{(i)}||\theta|| &gt;= 1, if \space\space y^{(i)} = 1    \\<br>p^{(i)}||\theta|| &lt;= -1, if \space\space y^{(i)} = 0    \\<br>$$<br><strong>所以θ比较小时，只能增加p的值去满足p*||θ|| &gt;= 1 或者 p*||θ||&lt;= -1。</strong></p>
 <p><strong>这样就保证了p的值比较大，即点到Decision Boundary的大间距。</strong></p>
-<h4 id="5-Kernels"><a href="#5-Kernels" class="headerlink" title="5. Kernels"></a>5. Kernels</h4><h5 id="5-1-Kernels-amp-Similarity"><a href="#5-1-Kernels-amp-Similarity" class="headerlink" title="5.1 Kernels &amp; Similarity"></a>5.1 Kernels &amp; Similarity</h5><p>首先，我们回想一下之前的logistic regression中对于non-linear 情况的拟合。</p>
+<h3 id="5-Kernels"><a href="#5-Kernels" class="headerlink" title="5. Kernels"></a>5. Kernels</h3><h4 id="5-1-Kernels-amp-Similarity"><a href="#5-1-Kernels-amp-Similarity" class="headerlink" title="5.1 Kernels &amp; Similarity"></a>5.1 Kernels &amp; Similarity</h4><p>首先，我们回想一下之前的logistic regression中对于non-linear 情况的拟合。</p>
 <p><strong>Predict y = 1, if</strong><br>$$<br>\theta_0 + \theta_1x_1 + \theta_2x_2 + \theta_3x_3x_2 + \theta_4x_1^2 + \theta_5x_2^2 + … &gt;= 0 \\<br>\theta_0 + \theta_1f_1 + \theta_2f_2 + \theta_3f_3 + \theta_4f_4 + \theta_5f_5 + … &gt;= 0<br>$$<br>即将fn定义为x的幂次项组合，如下：<br>$$<br>f_1 = x_1, f_2 = x_2, f_3 = x_1x_2, f_4 = x_1^2, f_5 = x_2^2, …<br>$$<br><img src="http://p1.bpimg.com/567571/1dc51f091e3a45c0.png" alt=""></p>
 <p>但是在SVM中，我们要重新定义fn，引入Kernel的概念，即用 kernel function来表示fn。</p>
 <p><img src="http://p1.bqimg.com/567571/220a900a536966bb.png" alt=""></p>
@@ -235,7 +235,7 @@
 <li>kernel function为guassian function。<strong>当x与landmark l越接近时，两点的距离越小，值接近1</strong></li>
 <li><img src="http://p1.bpimg.com/567571/715ea71242a4c57f.png" alt=""></li>
 </ol>
-<h5 id="5-2-SVM-with-Kernels"><a href="#5-2-SVM-with-Kernels" class="headerlink" title="5.2 SVM with Kernels"></a>5.2 SVM with Kernels</h5><p><img src="http://p1.bpimg.com/567571/90910c2466c5cbfb.png" alt=""></p>
+<h4 id="5-2-SVM-with-Kernels"><a href="#5-2-SVM-with-Kernels" class="headerlink" title="5.2 SVM with Kernels"></a>5.2 SVM with Kernels</h4><p><img src="http://p1.bpimg.com/567571/90910c2466c5cbfb.png" alt=""></p>
 <p>对比之前的cost function，可以发现这里<strong>θ和f(x)</strong>跟之前的不同。</p>
 <p><strong>在logistic regression 中，θ的维度为(n+1) x 1, 包含θ0， 且n为单个example的特征个数</strong></p>
 <p><strong>在SVM with kernel中，f(x)的个数为m，其中m是training sets中的个数，所以θ的维度应该是(m+1)x1</strong></p>
@@ -253,7 +253,7 @@
 </ul>
 </li>
 </ul>
-<h5 id="5-4-SVM-parameters"><a href="#5-4-SVM-parameters" class="headerlink" title="5.4 SVM parameters"></a>5.4 SVM parameters</h5><p><img src="http://p1.bqimg.com/567571/24abc84b6130bec4.png" alt=""></p>
+<h4 id="5-4-SVM-parameters"><a href="#5-4-SVM-parameters" class="headerlink" title="5.4 SVM parameters"></a>5.4 SVM parameters</h4><p><img src="http://p1.bqimg.com/567571/24abc84b6130bec4.png" alt=""></p>
 <ul>
 <li><strong>C = 1/λ</strong></li>
 </ul>
@@ -567,6 +567,18 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -599,18 +611,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
@@ -620,6 +620,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -636,10 +640,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">

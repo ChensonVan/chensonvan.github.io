@@ -25,7 +25,7 @@
 <meta property="og:image" content="http://p1.bqimg.com/567571/648119dd1ad05475.png">
 <meta property="og:image" content="http://i1.piimg.com/567571/eb5aa1221d00e50c.png">
 <meta property="og:image" content="http://i1.piimg.com/567571/e575b9a3a5761959.png">
-<meta property="og:updated_time" content="2017-03-28T03:26:14.000Z">
+<meta property="og:updated_time" content="2018-12-01T07:18:22.592Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python数据分析笔记（一）">
 <meta name="twitter:description" content="1. 常见问题 Pandas.dataframe里面 .values, .iloc, .ix, .loc 的区别 Different Choices for Indexing  loc:  only work on index / labeliloc: work on position, from 0, 1, 2, … …ix:    You can get data from dataframe">
@@ -183,7 +183,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-常见问题"><a href="#1-常见问题" class="headerlink" title="1. 常见问题"></a>1. 常见问题</h4><ul>
+        <h3 id="1-常见问题"><a href="#1-常见问题" class="headerlink" title="1. 常见问题"></a>1. 常见问题</h3><ul>
 <li><p>Pandas.dataframe里面 .values, .iloc, .ix, .loc 的区别</p>
 <p><a href="http://pandas.pydata.org/pandas-docs/stable/indexing.html#different-choices-for-indexing" target="_blank" rel="external">Different Choices for Indexing</a></p>
 <blockquote>
@@ -213,7 +213,7 @@
 </ol>
 </li>
 </ul>
-<h4 id="2-Numpy"><a href="#2-Numpy" class="headerlink" title="2. Numpy"></a>2. Numpy</h4><ul>
+<h3 id="2-Numpy"><a href="#2-Numpy" class="headerlink" title="2. Numpy"></a>2. Numpy</h3><ul>
 <li><p>N维数组对象，可以利用这种数组对象对<strong>整块数据</strong>进行一些科学运算，就是把array当做一种<strong>对象</strong>里操作。这和Python中的array是不同的。</p>
 <p>举个栗子：</p>
 <p>在Python中</p>
@@ -261,7 +261,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 方法一</span></div><div class="line">np.c_[array1, array2]       		<span class="comment"># 添加 columns</span></div><div class="line">np.r_[array1, array2]       		<span class="comment"># 添加 row</span></div><div class="line"></div><div class="line"><span class="comment"># 方法二    被插入的行</span></div><div class="line">np.insert(a, <span class="number">2</span>, values=b, axis=<span class="number">1</span>)   <span class="comment"># 添加 columns</span></div><div class="line"></div><div class="line"><span class="comment"># 方法三</span></div><div class="line">a = np.concatenate((a, -np.ones((a.shape[<span class="number">0</span>], <span class="number">1</span>))), axis=<span class="number">1</span>)	<span class="comment"># 添加 columns</span></div><div class="line"></div><div class="line"><span class="comment"># 方法四</span></div><div class="line">np.column_stack((a,b))</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h4 id="3-Pandas"><a href="#3-Pandas" class="headerlink" title="3. Pandas"></a>3. Pandas</h4><p>在Pandas中，Series和DataFrame是两个主要的数据结构</p>
+<h3 id="3-Pandas"><a href="#3-Pandas" class="headerlink" title="3. Pandas"></a>3. Pandas</h3><p>在Pandas中，Series和DataFrame是两个主要的数据结构</p>
 <ul>
 <li><p>Series</p>
 <p>类似一维数组，由一组数据（各种Numpt数据类型 ( list, dict等 )）和一组对于的数据标签组成</p>
@@ -287,7 +287,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="4-Reference"><a href="#4-Reference" class="headerlink" title="4. Reference"></a>4. Reference</h4><ul>
+<h3 id="4-References"><a href="#4-References" class="headerlink" title="4. References"></a>4. References</h3><ul>
 <li><a href="http://www.168seo.cn/python/1882.html" target="_blank" rel="external">python，numpy，pandas数据处理之小技巧</a></li>
 </ul>
 <p>#### </p>
@@ -554,6 +554,18 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -586,18 +598,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
@@ -607,6 +607,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -623,10 +627,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">

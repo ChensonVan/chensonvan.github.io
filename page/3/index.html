@@ -173,7 +173,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>当我们要在某一个文本中要匹配某一个字符串的时候，我们最简单的方法就是一个一个匹配，也就是从头开始匹配文本和字符串，但发现不同的时候，就把整个字符串右移一位，然后从头重新和文本比较。当全部相同的时候，则右移字符串的长度。在之前的 <code>KMP</code> 算法中，我们是找到尽可能右移的最大位数，而不是一位一位的移动，这样相比原先效率已经提高了很多了。但在大部分的编辑器中，“查找”功能使用的不是 <code>KMP</code> ， 而是 <code>BM</code> 算法。</p>
-<h5 id="1-Boyer-Moore-Algorithm"><a href="#1-Boyer-Moore-Algorithm" class="headerlink" title="1. Boyer-Moore Algorithm"></a>1. Boyer-Moore Algorithm</h5><p>和 <code>KMP</code> 不同的是，<code>BM</code> 是从 <code>Pattern P</code> 倒着匹配上来的</p>
+<h3 id="1-Boyer-Moore-Algorithm"><a href="#1-Boyer-Moore-Algorithm" class="headerlink" title="1. Boyer-Moore Algorithm"></a>1. Boyer-Moore Algorithm</h3><p>和 <code>KMP</code> 不同的是，<code>BM</code> 是从 <code>Pattern P</code> 倒着匹配上来的</p>
 <p>首先定义两个预处理的方法</p>
 <ul>
 <li><p><strong>坏字符 (Bad Character Heuristic)</strong></p>
@@ -250,7 +250,7 @@
 <p>移动2位后，发现文本中的E 与 Pattern P中的E 匹配，则继续倒序比较，直到发现全部匹配，则匹配到的第一个完整的模式 P 被发现。</p>
 <p>继续下去则是依据<strong>好后缀规则</strong>计算好后缀 “E” 的后移位置为 6 - 0 = 6 位，然后继续倒序比较时发现已超出文本 T 的范围，搜索结束。</p>
 <p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/85829606.jpg" alt=""></p>
-<h5 id="2-Reference"><a href="#2-Reference" class="headerlink" title="2. Reference"></a>2. Reference</h5><ul>
+<h3 id="2-References"><a href="#2-References" class="headerlink" title="2. References"></a>2. References</h3><ul>
 <li><a href="http://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html" target="_blank" rel="external">字符串匹配的Boyer-Moore算法</a></li>
 <li><a href="http://www.cnblogs.com/gaochundong/p/boyer_moore_string_matching_algorithm.html" target="_blank" rel="external">Boyer-Moore 字符串匹配算法</a></li>
 </ul>
@@ -318,9 +318,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-常见问题"><a href="#1-常见问题" class="headerlink" title="1 常见问题"></a>1 常见问题</h4><h5 id="1-1-匹配一致的编码规则"><a href="#1-1-匹配一致的编码规则" class="headerlink" title="1.1 匹配一致的编码规则"></a>1.1 匹配一致的编码规则</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SET character_set_client=&apos;utf8&apos;;		-- gbk</div><div class="line">SET character_set_connection=&apos;utf8&apos;;	-- gbk</div><div class="line">SET character_set_results=&apos;utf8&apos;;		-- gbk</div></pre></td></tr></table></figure>
+        <h3 id="1-常见问题"><a href="#1-常见问题" class="headerlink" title="1 常见问题"></a>1 常见问题</h3><h4 id="1-1-匹配一致的编码规则"><a href="#1-1-匹配一致的编码规则" class="headerlink" title="1.1 匹配一致的编码规则"></a>1.1 匹配一致的编码规则</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SET character_set_client=&apos;utf8&apos;;		-- gbk</div><div class="line">SET character_set_connection=&apos;utf8&apos;;	-- gbk</div><div class="line">SET character_set_results=&apos;utf8&apos;;		-- gbk</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-- 创建数据库时候设置</div><div class="line">CREATE DATABASE `test`</div><div class="line">CHARACTER SET &apos;utf8&apos;</div><div class="line">COLLATE &apos;utf8_general_ci&apos;;</div></pre></td></tr></table></figure>
-<h5 id="1-2-如何理解索引"><a href="#1-2-如何理解索引" class="headerlink" title="1.2 如何理解索引"></a>1.2 如何理解索引</h5><p>索引字面上理解就是对数据所建立<strong>目录</strong>，它可以<strong>加快我们的查询速度，但是同时也降低了增删改的速度。</strong></p>
+<h4 id="1-2-如何理解索引"><a href="#1-2-如何理解索引" class="headerlink" title="1.2 如何理解索引"></a>1.2 如何理解索引</h4><p>索引字面上理解就是对数据所建立<strong>目录</strong>，它可以<strong>加快我们的查询速度，但是同时也降低了增删改的速度。</strong></p>
 <ul>
 <li><p><strong>创建原则</strong></p>
 <ul>
@@ -407,8 +407,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-三要素"><a href="#1-三要素" class="headerlink" title="1. 三要素"></a>1. 三要素</h4><p>当一开始接触Andrew在Coursera上的ML公开课的时候，对线性回归和逻辑回归这两种模型有个大体的认识。但是在上完cs229的前三节课，初步了解了这两种模型背后的数学模型，Linear Regression和Logistic Regression背后的概率分布，了解到了这两种概率分布其实只是exponential family中的特例。但同时也开始对一些概念性的东西感觉很模糊，所以觉得有必要好好整理一下这部分的内容。</p>
-<h5 id="1-1-Hypothesis"><a href="#1-1-Hypothesis" class="headerlink" title="1. 1 Hypothesis"></a>1. 1 Hypothesis</h5><p>首先对于样本数据，输入x和输出y之间是通过Target function在转换的，也就是 Target function f(x) = y。但是我们并不知道这个f(x)都是怎样的，所以我们假设了这么一个Hypothesis function去模拟这个Target function，使得我们用同样的输入<strong>x</strong>会的一个预测值<strong>y’</strong>，使得这个<strong>y’</strong>不断逼近真实值<strong>y</strong>。</p>
+        <h3 id="1-三要素"><a href="#1-三要素" class="headerlink" title="1. 三要素"></a>1. 三要素</h3><p>当一开始接触Andrew在Coursera上的ML公开课的时候，对线性回归和逻辑回归这两种模型有个大体的认识。但是在上完cs229的前三节课，初步了解了这两种模型背后的数学模型，Linear Regression和Logistic Regression背后的概率分布，了解到了这两种概率分布其实只是exponential family中的特例。但同时也开始对一些概念性的东西感觉很模糊，所以觉得有必要好好整理一下这部分的内容。</p>
+<h4 id="1-1-Hypothesis"><a href="#1-1-Hypothesis" class="headerlink" title="1. 1 Hypothesis"></a>1. 1 Hypothesis</h4><p>首先对于样本数据，输入x和输出y之间是通过Target function在转换的，也就是 Target function f(x) = y。但是我们并不知道这个f(x)都是怎样的，所以我们假设了这么一个Hypothesis function去模拟这个Target function，使得我们用同样的输入<strong>x</strong>会的一个预测值<strong>y’</strong>，使得这个<strong>y’</strong>不断逼近真实值<strong>y</strong>。</p>
 <ul>
 <li><p><strong>Linear Regression</strong><br>$$<br>H(x) = \sum_{i=0}^n \theta_i x_i = \theta^Tx<br>$$</p>
 </li>
@@ -479,7 +479,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-理解一：部分匹配表-已匹配数字"><a href="#1-理解一：部分匹配表-已匹配数字" class="headerlink" title="1. 理解一：部分匹配表+已匹配数字"></a>1. 理解一：部分匹配表+已匹配数字</h4><h5 id="1-1-Partial-Match-Table"><a href="#1-1-Partial-Match-Table" class="headerlink" title="1.1 Partial Match Table"></a>1.1 Partial Match Table</h5><p><img src="http://p1.bpimg.com/567571/c8cfb90db5bdf1e6.png" alt=""></p>
+        <h3 id="1-理解一：部分匹配表-已匹配数字"><a href="#1-理解一：部分匹配表-已匹配数字" class="headerlink" title="1. 理解一：部分匹配表+已匹配数字"></a>1. 理解一：部分匹配表+已匹配数字</h3><h4 id="1-1-Partial-Match-Table"><a href="#1-1-Partial-Match-Table" class="headerlink" title="1.1 Partial Match Table"></a>1.1 Partial Match Table</h4><p><img src="http://p1.bpimg.com/567571/c8cfb90db5bdf1e6.png" alt=""></p>
 <p>上来先上个结论，这个先暂时不管怎么生成，用于KMP表的移动。</p>
 <blockquote>
 <p>移动位数 = 已匹配的字符数 - 对应的部分匹配值</p>
@@ -552,7 +552,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-Hadoop"><a href="#1-Hadoop" class="headerlink" title="1. Hadoop"></a>1. Hadoop</h4><h5 id="1-1-初识Hadoop"><a href="#1-1-初识Hadoop" class="headerlink" title="1.1 初识Hadoop"></a>1.1 初识Hadoop</h5><p><a href="http://hadooptutorials.co.in/tutorials/hadoop/hadoop-fundamentals.html" target="_blank" rel="external">非常好的Tutorial</a> </p>
+        <h3 id="1-Hadoop"><a href="#1-Hadoop" class="headerlink" title="1. Hadoop"></a>1. Hadoop</h3><h4 id="1-1-初识Hadoop"><a href="#1-1-初识Hadoop" class="headerlink" title="1.1 初识Hadoop"></a>1.1 初识Hadoop</h4><p><a href="http://hadooptutorials.co.in/tutorials/hadoop/hadoop-fundamentals.html" target="_blank" rel="external">非常好的Tutorial</a> </p>
 <p>在学习hadoop之前，我觉得有必要了解一下hadoop的基本构成以及一些术语。</p>
 <ul>
 <li><p><strong>Block</strong></p>
@@ -627,7 +627,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-What-is-Recommender-Systems"><a href="#1-What-is-Recommender-Systems" class="headerlink" title="1. What is Recommender Systems"></a>1. What is Recommender Systems</h4><p>对于推荐系统的定义，我们先举几个例子来理解一下。</p>
+        <h3 id="1-What-is-Recommender-Systems"><a href="#1-What-is-Recommender-Systems" class="headerlink" title="1. What is Recommender Systems"></a>1. What is Recommender Systems</h3><p>对于推荐系统的定义，我们先举几个例子来理解一下。</p>
 <ul>
 <li>电影网站给用户推荐电影，可以根据该用户以往的评分，比如给浪漫爱情电影评分高，给动作片评分较低，那么系统可以根据这些信息，给用户推荐偏向浪漫爱情的电影</li>
 <li>如果是新用户呢？我们没有该用户的评分信息。那么我们可以根据整个系统中，某些电影评分较高进行推荐</li>
@@ -705,7 +705,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-Optimisation-Objective"><a href="#1-Optimisation-Objective" class="headerlink" title="1. Optimisation Objective"></a>1. Optimisation Objective</h4><p>$$<br>h_\theta (x) = \frac 1 {1 + e^{-\theta^Tx}}    \\<br>z = -\theta^Tx<br>$$</p>
+        <h3 id="1-Optimisation-Objective"><a href="#1-Optimisation-Objective" class="headerlink" title="1. Optimisation Objective"></a>1. Optimisation Objective</h3><p>$$<br>h_\theta (x) = \frac 1 {1 + e^{-\theta^Tx}}    \\<br>z = -\theta^Tx<br>$$</p>
 <p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.png" alt=""></p>
         
       
@@ -848,7 +848,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-常见问题"><a href="#1-常见问题" class="headerlink" title="1. 常见问题"></a>1. 常见问题</h4><ul>
+        <h3 id="1-常见问题"><a href="#1-常见问题" class="headerlink" title="1. 常见问题"></a>1. 常见问题</h3><ul>
 <li><p>Pandas.dataframe里面 .values, .iloc, .ix, .loc 的区别</p>
 <p><a href="http://pandas.pydata.org/pandas-docs/stable/indexing.html#different-choices-for-indexing" target="_blank" rel="external">Different Choices for Indexing</a></p>
 <blockquote>
@@ -1016,6 +1016,18 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -1048,18 +1060,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
@@ -1069,6 +1069,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1085,10 +1089,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">

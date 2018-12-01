@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/68008338.jpg">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/55480187.jpg">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/85829606.jpg">
-<meta property="og:updated_time" content="2017-06-11T06:21:06.000Z">
+<meta property="og:updated_time" content="2018-12-01T07:13:15.067Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="字符串搜索算法 - BM">
 <meta name="twitter:description" content="当我们要在某一个文本中要匹配某一个字符串的时候，我们最简单的方法就是一个一个匹配，也就是从头开始匹配文本和字符串，但发现不同的时候，就把整个字符串右移一位，然后从头重新和文本比较。当全部相同的时候，则右移字符串的长度。在之前的 KMP 算法中，我们是找到尽可能右移的最大位数，而不是一位一位的移动，这样相比原先效率已经提高了很多了。但在大部分的编辑器中，“查找”功能使用的不是 KMP ， 而是 BM">
@@ -180,7 +180,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>当我们要在某一个文本中要匹配某一个字符串的时候，我们最简单的方法就是一个一个匹配，也就是从头开始匹配文本和字符串，但发现不同的时候，就把整个字符串右移一位，然后从头重新和文本比较。当全部相同的时候，则右移字符串的长度。在之前的 <code>KMP</code> 算法中，我们是找到尽可能右移的最大位数，而不是一位一位的移动，这样相比原先效率已经提高了很多了。但在大部分的编辑器中，“查找”功能使用的不是 <code>KMP</code> ， 而是 <code>BM</code> 算法。</p>
-<h5 id="1-Boyer-Moore-Algorithm"><a href="#1-Boyer-Moore-Algorithm" class="headerlink" title="1. Boyer-Moore Algorithm"></a>1. Boyer-Moore Algorithm</h5><p>和 <code>KMP</code> 不同的是，<code>BM</code> 是从 <code>Pattern P</code> 倒着匹配上来的</p>
+<h3 id="1-Boyer-Moore-Algorithm"><a href="#1-Boyer-Moore-Algorithm" class="headerlink" title="1. Boyer-Moore Algorithm"></a>1. Boyer-Moore Algorithm</h3><p>和 <code>KMP</code> 不同的是，<code>BM</code> 是从 <code>Pattern P</code> 倒着匹配上来的</p>
 <p>首先定义两个预处理的方法</p>
 <ul>
 <li><p><strong>坏字符 (Bad Character Heuristic)</strong></p>
@@ -257,7 +257,7 @@
 <p>移动2位后，发现文本中的E 与 Pattern P中的E 匹配，则继续倒序比较，直到发现全部匹配，则匹配到的第一个完整的模式 P 被发现。</p>
 <p>继续下去则是依据<strong>好后缀规则</strong>计算好后缀 “E” 的后移位置为 6 - 0 = 6 位，然后继续倒序比较时发现已超出文本 T 的范围，搜索结束。</p>
 <p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/85829606.jpg" alt=""></p>
-<h5 id="2-Reference"><a href="#2-Reference" class="headerlink" title="2. Reference"></a>2. Reference</h5><ul>
+<h3 id="2-References"><a href="#2-References" class="headerlink" title="2. References"></a>2. References</h3><ul>
 <li><a href="http://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html" target="_blank" rel="external">字符串匹配的Boyer-Moore算法</a></li>
 <li><a href="http://www.cnblogs.com/gaochundong/p/boyer_moore_string_matching_algorithm.html" target="_blank" rel="external">Boyer-Moore 字符串匹配算法</a></li>
 </ul>
@@ -521,6 +521,18 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -553,18 +565,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
@@ -574,6 +574,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -590,10 +594,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">

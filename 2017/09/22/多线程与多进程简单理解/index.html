@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://chenson.com/2017/09/22/多线程与多进程简单理解/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="1. 多进程直观来看，就是一个个pid，进程是程序在计算机上的一次执行活动。 创建子进程的调用是 fork() fork() 的功能就是产生子进程，调用一次，返回两次。 一次返回0，一次返回子进程的pid 子进程永远返回 0，而父进程返回子进程的ID。这样做的理由是，一个父进程可以fork出很多子进程，所以，父进程要记下每个子进程的ID，而子进程只需要调用 getppid() 就可以拿到父进程的I">
-<meta property="og:updated_time" content="2018-10-13T08:33:12.852Z">
+<meta property="og:updated_time" content="2018-12-01T07:07:03.523Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程与多进程简单理解">
 <meta name="twitter:description" content="1. 多进程直观来看，就是一个个pid，进程是程序在计算机上的一次执行活动。 创建子进程的调用是 fork() fork() 的功能就是产生子进程，调用一次，返回两次。 一次返回0，一次返回子进程的pid 子进程永远返回 0，而父进程返回子进程的ID。这样做的理由是，一个父进程可以fork出很多子进程，所以，父进程要记下每个子进程的ID，而子进程只需要调用 getppid() 就可以拿到父进程的I">
@@ -203,7 +203,7 @@
 <li>套接口（Socket）：更为一般的进程间通信机制，可用于不同机器之间的进程间通信。起初是由Unix系统的BSD分支开发出来的，但现在一般可以移植到其它类Unix系统上：Linux和System V的变种都支持套接字。</li>
 </ol>
 <h4 id="4-2-分布式进程通信"><a href="#4-2-分布式进程通信" class="headerlink" title="4.2 分布式进程通信"></a>4.2 分布式进程通信</h4><h3 id="5-线程通信"><a href="#5-线程通信" class="headerlink" title="5. 线程通信"></a>5. 线程通信</h3><p>多数的多线程都是在同一个进程下的，它们共享该进程的全局变量，我们可以通过全局变量来实现线程间通信。如果是不同的进程下的2个线程间通信，直接参考进程间通信。</p>
-<h3 id="6-Tutorial"><a href="#6-Tutorial" class="headerlink" title="6. Tutorial"></a>6. Tutorial</h3><ol>
+<h3 id="6-References"><a href="#6-References" class="headerlink" title="6. References"></a>6. References</h3><ol>
 <li><a href="http://blog.csdn.net/hairetz/article/details/4281931" target="_blank" rel="external">http://blog.csdn.net/hairetz/article/details/4281931</a></li>
 </ol>
 
@@ -455,6 +455,18 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -487,18 +499,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
@@ -508,6 +508,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -524,10 +528,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">

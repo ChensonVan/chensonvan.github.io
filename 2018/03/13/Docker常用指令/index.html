@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="1. docker镜像构建12cd analyze-serverdocker build -t analyze-server . 2. 创建12345docker create analyze-server # 创建容器，但处于停止状态docker run analyze-server    # 创建并启动容器# 启动容器，并挂载文件docker run --name=analyze -p 500">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-6-25/93560929.jpg">
-<meta property="og:updated_time" content="2018-10-13T08:15:39.515Z">
+<meta property="og:updated_time" content="2018-12-01T07:08:25.881Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker常用指令">
 <meta name="twitter:description" content="1. docker镜像构建12cd analyze-serverdocker build -t analyze-server . 2. 创建12345docker create analyze-server # 创建容器，但处于停止状态docker run analyze-server    # 创建并启动容器# 启动容器，并挂载文件docker run --name=analyze -p 500">
@@ -203,7 +203,7 @@
 </ul>
 <h3 id="5-停止"><a href="#5-停止" class="headerlink" title="5. 停止"></a>5. 停止</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker stop [NAME]/[CONTAINER ID] # 退出容器</div><div class="line">docker kill [NAME]/[CONTAINER ID] # 强制停止一个容器</div></pre></td></tr></table></figure>
 <h3 id="6-删除"><a href="#6-删除" class="headerlink" title="6. 删除"></a>6. 删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">docker rm [NAME]/[CONTAINER ID] # 不能够删除一个正在运行的容器，会报错。需要先停止容器</div><div class="line"></div><div class="line">docker rm &apos;docker ps -a -q&apos; # 一次性删除所有容器 </div><div class="line">     					    # -a标志列出所有容器，</div><div class="line">     					    # -q标志只列出容器的ID，然后传递给rm命令，依次删除容器</div></pre></td></tr></table></figure>
-<h3 id="7-Tutorial"><a href="#7-Tutorial" class="headerlink" title="7. Tutorial"></a>7. Tutorial</h3><ul>
+<h3 id="7-References"><a href="#7-References" class="headerlink" title="7. References"></a>7. References</h3><ul>
 <li><p><a href="https://blog.csdn.net/u010246789/article/details/53958662" target="_blank" rel="external">Docker 简易教程</a></p>
 </li>
 <li><p><a href="http://www.runoob.com/docker/docker-command-manual.html" target="_blank" rel="external">Docker 命令大全</a></p>
@@ -469,6 +469,18 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -501,18 +513,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
@@ -522,6 +522,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,10 +542,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
