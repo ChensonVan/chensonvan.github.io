@@ -152,6 +152,108 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-拒绝图床，从我做起" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/01/拒绝图床，从我做起/">拒绝图床，从我做起</a>
+    </h1>
+  
+
+        
+        <a href="/2018/12/01/拒绝图床，从我做起/" class="archive-article-date">
+  	<time datetime="2018-12-01T04:29:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前段时间想整理一下以前的博文笔记，因为很多都是早期自己记录的笔记，条理比较乱。想稍微整理一下，方便以后自己回顾复习以及他人阅读。但发现一件比较头大的事情就是，以前插图都是上传到图床上然，而现在很多图片都已经挂掉了，链接不可访问。这简直就是灾难性的一幕。</p>
+<p>早期之所以用图床是因为方便，Chrome有个插件可以直接上传，采用本地的话需要把图片保存到本地路径然后引用对应的图片，至于如何同步到github上不影响显示效果也是比较麻烦的。好在现在Typora更新了几个版本后，对于插入图片可以时候非常友好（这里裂墙推荐Typora，最好用的MarkDown工具，没有之一）。具体使用步骤如下：</p>
+<ul>
+<li><p>安装插件，修改<code>Hexo</code>配置</p>
+<ul>
+<li>修改主页配置文件<code>_config.yml</code>里面的<code>post_asset_folder : true</code></li>
+<li><p>在<code>hexo</code>目录下执行命令<code>npm install hexo-asset-image --save</code>，即安装一个可以上传本地图片的插件</p>
+</li>
+<li><p>安装成功后，以后再新建博文<code>hexo n “XXX”</code>的时候，除了生成对应的<code>.md</code>文件的同时，也会在同一层目录下，建一个同名的文件夹，用于存放这篇博文引用的本地图片。</p>
+</li>
+</ul>
+</li>
+<li><p>修改<code>Typora</code>配置，具体如图</p>
+<p>配置完之后，可以在截图完之后，将剪切板的图片直接复制到对应文件目录下的文件夹内，即我们上面新建好的文件夹。<strong>有木有非常方便！！！</strong>当然这里也可以设置其他路径，只是我这里设置的是这样，为了便于图片管理。</p>
+<p><img src="/2018/12/01/拒绝图床，从我做起/2018-12-01-拒绝图床，从我做起/image-20181201154328178-3650208.png" alt="image-20181201154328178"></p>
+</li>
+<li><p>发布文章</p>
+<p>文章写好之后，执行指令<code>hexo g; hexo d</code>之后，就会生成对应的静态页面，放到public对应的文件夹下。OK，我们可以打开自己的网站看一下就可以啦。这个时候你会惊喜的发现，图片全都无法显示。哈哈哈，为什么嘞？</p>
+<p>那么看一下原始makrdown目录下的结构</p>
+<p><img src="/2018/12/01/拒绝图床，从我做起/2018-12-01-拒绝图床，从我做起/image-20181201155018199.png" alt="image-20181201155018199"></p>
+<p>再看一下对应public下的目录结构</p>
+<p><img src="/2018/12/01/拒绝图床，从我做起/2018-12-01-拒绝图床，从我做起/image-20181201154950236-3650590.png" alt="image-20181201154950236"></p>
+</li>
+</ul>
+<p>  发现图片对应的文件夹是不一样的，原始md是引用同名文件夹下的图片，而html下是在同一层目录下，所以读取失败了。网上找了会解决方案似乎都没有成功，可能是我的操作问题，没设置好。于是就自己写了个简单脚本解决这个问题。</p>
+<p>  这段脚本主要就是public下对于blog所在的文件下新建一个<strong>日期-文章名</strong>的文件夹，然后将图片移到这个文件夹下，那么图片和文章的相对路径就和md文件里面是一致的了，所以再更新hexo推上去，图片就显示正常啦。以后写文章的时候只需要在部署hexo<code>hexo d</code>的之前，运行一下下面代码即可。</p>
+<ul>
+<li><code>hexo g</code></li>
+<li><code>python relocated_img.py</code></li>
+<li><code>hexo d</code></li>
+</ul>
+<p>  运行代码后的文件夹结构</p>
+<p>  <img src="/2018/12/01/拒绝图床，从我做起/2018-12-01-拒绝图床，从我做起/image-20181201155405551-3650845.png" alt="image-20181201155405551"></p>
+<p>  具体代码如下：</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line">_PUBLIC_ = <span class="string">'public'</span></div><div class="line">_PATH_ = os.getcwd()</div><div class="line">list_year = [year <span class="keyword">for</span> year <span class="keyword">in</span> os.listdir(_PUBLIC_) <span class="keyword">if</span> year.isdigit() <span class="keyword">and</span> len(year) == <span class="number">4</span>]</div><div class="line"></div><div class="line"><span class="keyword">for</span> year <span class="keyword">in</span> list_year:</div><div class="line">    p_year = os.path.join(_PATH_, _PUBLIC_, year)</div><div class="line">    list_month = [month <span class="keyword">for</span> month <span class="keyword">in</span> os.listdir(p_year) <span class="keyword">if</span> month.isdigit() <span class="keyword">and</span> len(month) == <span class="number">2</span>]</div><div class="line"></div><div class="line">    <span class="keyword">for</span> month <span class="keyword">in</span> list_month:</div><div class="line">        p_month = os.path.join(_PATH_, _PUBLIC_, year, month)</div><div class="line">        list_day = [day <span class="keyword">for</span> day <span class="keyword">in</span> os.listdir(p_month) <span class="keyword">if</span> day.isdigit() <span class="keyword">and</span> len(day) == <span class="number">2</span>]</div><div class="line"></div><div class="line">        <span class="keyword">for</span> day <span class="keyword">in</span> list_day:</div><div class="line">            p_day = os.path.join(_PATH_, _PUBLIC_, year, month, day)</div><div class="line">            list_blog = [blog <span class="keyword">for</span> blog <span class="keyword">in</span> os.listdir(p_day) <span class="keyword">if</span> <span class="keyword">not</span> blog.startswith(<span class="string">'.'</span>)]</div><div class="line"></div><div class="line">            <span class="keyword">for</span> blog <span class="keyword">in</span> list_blog:</div><div class="line">                p_blog = os.path.join(_PATH_, _PUBLIC_, year, month, day, blog)</div><div class="line">                list_file = os.listdir(p_blog)</div><div class="line"></div><div class="line">                dir_img = <span class="string">'-'</span>.join([year, month, day, blog])</div><div class="line">                dir_img = os.path.join(p_day, blog, dir_img)</div><div class="line">                <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(dir_img):</div><div class="line">                    os.makedirs(dir_img)</div><div class="line">                <span class="keyword">for</span> file <span class="keyword">in</span> list_file:</div><div class="line">                    <span class="keyword">if</span> file.endswith(<span class="string">'.png'</span>):</div><div class="line">                        p_file = os.path.join(_PATH_, _PUBLIC_, year, month, day, blog, file)</div><div class="line">                        cmd = f<span class="string">'mv &#123;p_file&#125; &#123;dir_img&#125;'</span></div><div class="line">                        os.system(cmd)</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Typora</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/12/01/拒绝图床，从我做起/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-聚类算法：K-Means及扩展算法K-Modes、K-Prototype初探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -814,7 +916,7 @@
 </li>
 </ul>
 <p>  卷积的意思就是，神经网络是对图片上的一小块区域进行处理，这张做法加强了图片信息的连续性，使得神经网络可以看到图片上的图形，而非是一个个离散的点。</p>
-<p>  <img src="http://on8r6i4gg.bkt.clouddn.com/18-8-20/94962292.jpg" alt=""></p>
+<p><img src="/2018/03/20/深度学习笔记-CNN/2018-03-20-深度学习笔记-CNN/image-20181201152537136-3649137.png" alt="image-20181201152537136"></p>
 <ul>
 <li><p>激活函数</p>
 <p>常用的几个激活函数是 <code>Relu</code>，<code>Sigmoid</code>，<code>Tanh</code>和<code>Softplus</code></p>
@@ -823,7 +925,7 @@
 <li><p>感受野 - Receptive Field</p>
 <p>中文名真的是… … 太太太难理解了，直接看英文名Receptive Field比较直观一些。</p>
 <p>基本定义就是 <code>卷积神经网络的每一层输出的特征图（Feature ap）上的像素点在原图像上映射的区域大小。</code></p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-8-20/14032699.jpg" alt=""></p>
+<p><img src="/2018/03/20/深度学习笔记-CNN/2018-03-20-深度学习笔记-CNN/image-20181201152629273-3649189.png" alt="image-20181201152629273"></p>
 <ul>
 <li><p>第一层卷积</p>
 <p>输入为10x10的图片，经过3x3的kernel，输出为8x8的大小（这里只考虑单层）</p>
@@ -847,7 +949,7 @@
 </li>
 <li><p>池化 - Pooling</p>
 <p>池化大致就是一个筛选过滤的过程，能过将左边的layer中有用的信息筛选出来，给右边的使用分析。因为在卷积的过程中为了保留更多的信息，不压缩长宽比。原始图片很大的话，卷积出来的结果也是很大，且比较稀疏的。所以这时候如果用池化层压缩的话，可以尽可能的保留信息和压缩数据的大小。</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-8-20/42787815.jpg" alt=""></p>
+<p><img src="/2018/03/20/深度学习笔记-CNN/2018-03-20-深度学习笔记-CNN/image-20181201152650028-3649210.png" alt="image-20181201152650028"></p>
 </li>
 </ul>
 <h3 id="2-PyTorch代码实现"><a href="#2-PyTorch代码实现" class="headerlink" title="2. PyTorch代码实现"></a>2. PyTorch代码实现</h3>  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CNN</span><span class="params">(nn.Module)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, in_dim, n_class)</span>:</span></div><div class="line">        super(CNN, self).__init__()</div><div class="line">        <span class="comment"># 表示将一个有序的模块写在一起</span></div><div class="line">        <span class="comment"># 相当于神经网络的层按顺序放一起方便结构显示</span></div><div class="line">        self.conv = nn.Sequential(</div><div class="line">            <span class="comment"># 卷积层，有五个参数：</span></div><div class="line">            <span class="comment"># in_channels: 表示的是输入卷积层的图片厚度</span></div><div class="line">            <span class="comment"># out_channels: 比偶奥数的是要输出的厚度</span></div><div class="line">            <span class="comment"># kernel_size: 表示的是卷积核的大小，一个数字的话表示长宽相等的卷积核</span></div><div class="line">            <span class="comment"># stride: 表示卷积核滑动的步长</span></div><div class="line">            <span class="comment"># padding: 表示在图片走位填充0的多少，padding=0表示不填充，padding=1四周都填充1维</span></div><div class="line">            nn.Conv2d(in_dim, <span class="number">6</span>, <span class="number">3</span>, stride=<span class="number">1</span>, padding=<span class="number">1</span>),</div><div class="line">            </div><div class="line">            <span class="comment"># 激活函数，里面有一个参数inplace</span></div><div class="line">            <span class="comment"># False，表示新创建一个对象对其修改</span></div><div class="line">            <span class="comment"># True，表示直接对这个对象进行修改</span></div><div class="line">            nn.ReLU(<span class="keyword">True</span>),</div><div class="line">            </div><div class="line">            <span class="comment"># 最大池化层，也有平均池化层等，里面的参数有:</span></div><div class="line">            <span class="comment"># kernel_size: 表示池化的窗口的大小，和卷积里面的kernel_size是一样的</span></div><div class="line">            <span class="comment"># stride: 也和卷积层里面一样，需要自己设置滑动步长</span></div><div class="line">            <span class="comment"># padding 和卷积层一样，默认是0</span></div><div class="line">            nn.MaxPool2d(<span class="number">2</span>, <span class="number">2</span>),</div><div class="line">            nn.Conv2d(<span class="number">6</span>, <span class="number">16</span>, <span class="number">5</span>, stride=<span class="number">1</span>, padding=<span class="number">0</span>),</div><div class="line">            nn.ReLU(<span class="keyword">True</span>),</div><div class="line">            nn.MaxPool2d(<span class="number">2</span>, <span class="number">2</span>)</div><div class="line">        )</div><div class="line">        </div><div class="line">        <span class="comment"># </span></div><div class="line">        self.fc = nn.Sequential(</div><div class="line">            nn.Linear(<span class="number">400</span>, <span class="number">120</span>),</div><div class="line">            nn.Linear(<span class="number">120</span>, <span class="number">84</span>),</div><div class="line">            nn.Linear(<span class="number">84</span>, n_class)</div><div class="line">        )</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></div><div class="line">        out = self.conv(x)</div><div class="line">        <span class="comment"># batch_size</span></div><div class="line">        out = out.view(out.size(<span class="number">0</span>), <span class="number">-1</span>)</div><div class="line">        out = self.fc(out)</div><div class="line">        <span class="keyword">return</span> out</div><div class="line">    </div><div class="line"><span class="comment"># 定义loss和optimizer</span></div><div class="line">criterion = nn.CrossEntropyLoss()</div><div class="line">optimizer = optim.SGD(model.parameters(), lr=learning_rate)</div></pre></td></tr></table></figure>
@@ -885,94 +987,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/03/20/深度学习笔记-CNN/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Docker常用指令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/13/Docker常用指令/">Docker常用指令</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/13/Docker常用指令/" class="archive-article-date">
-  	<time datetime="2018-03-13T05:12:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-docker镜像构建"><a href="#1-docker镜像构建" class="headerlink" title="1. docker镜像构建"></a>1. docker镜像构建</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd analyze-server</div><div class="line">docker build -t analyze-server .</div></pre></td></tr></table></figure>
-<h3 id="2-创建"><a href="#2-创建" class="headerlink" title="2. 创建"></a>2. 创建</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">docker create analyze-server # 创建容器，但处于停止状态</div><div class="line">docker run analyze-server    # 创建并启动容器</div><div class="line"></div><div class="line"># 启动容器，并挂载文件</div><div class="line">docker run --name=analyze -p 5000:5000 -p 8888:8888 -p 6006:6006 -v /Users/Chenson/Github/analyze-server/app/:/analyze-server/app/ -v /Users/Chenson/:/home/ -d analyze-server</div></pre></td></tr></table></figure>
-<h3 id="3-查看"><a href="#3-查看" class="headerlink" title="3. 查看"></a>3. 查看</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker ps     # 查看当前运行的容器</div><div class="line">docker ps -a  # 查看所有的容器，包括停止的</div></pre></td></tr></table></figure>
-<h3 id="4-启动"><a href="#4-启动" class="headerlink" title="4. 启动"></a>4. 启动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker start [NAME]/[CONTAINER ID] # 通过docker start来启动之前已经停止的docker_run镜像</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker exec -it analyze /bin/bash  # 在运行的容器中执行后面的指令</div></pre></td></tr></table></figure>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-6-25/93560929.jpg" alt=""></p>
-<ul>
-<li><p>交互型容器：运行在前台，容器中使用exit命令或者调用docker stop、docker kill命令，容器停止。</p>
-<ul>
-<li><code>docker -it --name analyze -i -t</code></li>
-<li><code>-i</code> 打开容器的标准输入</li>
-<li><code>-t</code> 告诉docker为容器创建一个命令行终端</li>
-<li><code>--name analyze</code> 指定容器名称，可以不填(随机)</li>
-<li><code>analyze-server</code> 告诉我们使用什么镜像来启动容器</li>
-<li><code>/bin/bash</code> 告诉docker要在容器里面执行此命令</li>
-</ul>
-</li>
-<li><p>后台型容器：运行在后台，创建后与终端无关，只有调用docker stop、docker kill命令才能使容器停止。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run --name=analyze -p 5000:5000 -p 8888:8888 -p 6006:6006 -v /Users/Chenson/Github/analyze-server/app/:/analyze-server/app/ -v /Users/Chenson/:/home/ -d analyze-server</div></pre></td></tr></table></figure>
-<ul>
-<li><code>-d</code> 使容器在后台运行。</li>
-<li><code>-c</code> 可以调整容器的CPU优先级。默认情况下，所有的容器拥有相同的CPU优先级和CPU调度周期，但你可以通过Docker来通知内核给予某个或某几个容器更多的CPU计算周期。比如，我们使用-c或者–cpu-shares =0启动了C0、C1、C2三个容器，使用-c/–cpu-shares=512启动了C3容器。这时，C0、C1、C2可以100%的使用CPU资源（1024），但C3只能使用50%的CPU资源（512）。如果这个主机的操作系统是时序调度类型的，每个CPU时间片是100微秒，那么C0、C1、C2将完全使用掉这100微秒，而C3只能使用50微秒。</li>
-<li><code>-c</code> 后的命令是循环，从而保持容器的运行</li>
-</ul></li></ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/13/Docker常用指令/">MORE >></a>
         </p>
       
 
@@ -1145,19 +1159,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1166,6 +1168,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1186,6 +1200,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
               </li>
             
             <div class="clearfix"></div>
@@ -1236,7 +1258,7 @@
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">喜欢纹身 \n喜欢喝酒 \n喜欢编程 \n喜欢摄影 \n喜欢独自旅行 \n也喜欢一个人看海</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">喜欢纹身 喜欢喝酒 喜欢编程 喜欢摄影 喜欢独自旅行 也喜欢一个人看海</div>
   	  	
     	</section>
     
