@@ -152,79 +152,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-PyTorch学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/22/PyTorch学习笔记/">PyTorch学习笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/22/PyTorch学习笔记/" class="archive-article-date">
-  	<time datetime="2018-12-22T07:52:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>趁着公司最近不是很忙，学习一下最近很火的<code>PyTorch</code>，虽然没有实打实的认认真真的学过深度学习，但也稍微懂一点点。打算先简单学习一下基本操作，搭个简单的<code>DNN</code>、<code>CNN</code>之类的。看看后面有没有时间，然后再上个吴恩达或者李飞飞的课程，补充一下理论知识。所以这篇文章就记录一下简单的一些概念和上手过程中可能遇到的一些问题。</p>
-<h3 id="1-损失函数"><a href="#1-损失函数" class="headerlink" title="1. 损失函数"></a>1. 损失函数</h3><h4 id="1-1-二分类问题"><a href="#1-1-二分类问题" class="headerlink" title="1.1 二分类问题"></a>1.1 二分类问题</h4><p>损失函数用</p>
-<p>criterion = nn.BCELoss()</p>
-<p>此时，y的类型应该为float类型， 且y_pred用的时候需要在该层前面加上 <code>Sigmoid</code> 函数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</div><div class="line">loss_fn = torch.nn.BCELoss(reduce=<span class="keyword">False</span>, </div><div class="line">                           size_average=<span class="keyword">False</span>)</div><div class="line">y_true = Variable(torch.randn(<span class="number">3</span>, <span class="number">4</span>)) <span class="comment"># 限制了target类型为float</span></div><div class="line">y_pred = Variable(torch.FloatTensor(<span class="number">3</span>, <span class="number">4</span>).random_(<span class="number">2</span>))</div><div class="line">loss = loss_fn(F.sigmoid(y_pred), y_true)</div></pre></td></tr></table></figure>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PyTorch</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DeepLearning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/22/PyTorch学习笔记/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-拒绝图床，从我做起" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -940,6 +867,79 @@
 
 
   
+    <article id="post-PyTorch学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/22/PyTorch学习笔记/">PyTorch学习笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2018/03/22/PyTorch学习笔记/" class="archive-article-date">
+  	<time datetime="2018-03-22T07:52:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>趁着公司最近不是很忙，认真学习一下这两年比较火的<code>PyTorch</code>，虽然没有实打实的、认认真真的学过深度学习，但也稍微懂一点。打算先简单学习一下基本操作，搭个简单的<code>DNN</code>、<code>CNN</code>之类的。看看后面有没有时间，然后再上个吴恩达或者李飞飞的课程，补充一下理论知识。所以这篇文章就记录一些简单的概念和上手过程中可能遇到的问题。</p>
+<h3 id="1-损失函数"><a href="#1-损失函数" class="headerlink" title="1. 损失函数"></a>1. 损失函数</h3><h4 id="1-1-二分类问题"><a href="#1-1-二分类问题" class="headerlink" title="1.1 二分类问题"></a>1.1 二分类问题</h4><p>损失函数用</p>
+<p>criterion = nn.BCELoss()</p>
+<p>此时，y的类型应该为float类型， 且y_pred用的时候需要在该层前面加上 <code>Sigmoid</code> 函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</div><div class="line">loss_fn = torch.nn.BCELoss(reduce=<span class="keyword">False</span>, </div><div class="line">                           size_average=<span class="keyword">False</span>)</div><div class="line">y_true = Variable(torch.randn(<span class="number">3</span>, <span class="number">4</span>)) <span class="comment"># 限制了target类型为float</span></div><div class="line">y_pred = Variable(torch.FloatTensor(<span class="number">3</span>, <span class="number">4</span>).random_(<span class="number">2</span>))</div><div class="line">loss = loss_fn(F.sigmoid(y_pred), y_true)</div></pre></td></tr></table></figure>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PyTorch</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DeepLearning</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/03/22/PyTorch学习笔记/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1048,10 +1048,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -1065,6 +1061,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1112,6 +1112,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">DeepLearning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
@@ -1137,10 +1141,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Typora</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">DeepLearning</a>
               </li>
              
               <li class="article-tag-list-item">
