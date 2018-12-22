@@ -9,24 +9,24 @@
   <title>深度学习笔记-CNN | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="非常简单的深度学习笔记，总结一下CNN的一些概念，以免老是忘记了。 1. 卷积神经网络 CNN - (Convolutional Neural Network) 基本结构 输入层 —&amp;gt;卷积层 —&amp;gt; 激活函数 —&amp;gt;池化层 —&amp;gt; 全连接层  神经网络 - Neural Network 大家都了解，就不解释了。  卷积 - Convolutional 裂墙推荐知乎上的这篇文章通俗">
-<meta name="keywords" content="Deep Learning,PyTorch">
+<meta name="keywords" content="PyTorch,Deep Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深度学习笔记-CNN">
-<meta property="og:url" content="http://chenson.com/2018/03/20/深度学习笔记-CNN/index.html">
+<meta property="og:url" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="非常简单的深度学习笔记，总结一下CNN的一些概念，以免老是忘记了。 1. 卷积神经网络 CNN - (Convolutional Neural Network) 基本结构 输入层 —&amp;gt;卷积层 —&amp;gt; 激活函数 —&amp;gt;池化层 —&amp;gt; 全连接层  神经网络 - Neural Network 大家都了解，就不解释了。  卷积 - Convolutional 裂墙推荐知乎上的这篇文章通俗">
-<meta property="og:image" content="http://chenson.com/2018/03/20/深度学习笔记-CNN/2018-03-20-深度学习笔记-CNN/image-20181201152537136-3649137.png">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20181201152537136-3649137.png">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-8-20/4453315.jpg">
-<meta property="og:image" content="http://chenson.com/2018/03/20/深度学习笔记-CNN/2018-03-20-深度学习笔记-CNN/image-20181201152629273-3649189.png">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20181201152629273-3649189.png">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-8-20/36401069.jpg">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-8-20/76050855.jpg">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-8-20/9912702.jpg">
-<meta property="og:image" content="http://chenson.com/2018/03/20/深度学习笔记-CNN/2018-03-20-深度学习笔记-CNN/image-20181201152650028-3649210.png">
-<meta property="og:updated_time" content="2018-12-01T07:26:51.641Z">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20181201152650028-3649210.png">
+<meta property="og:updated_time" content="2018-12-22T11:40:20.239Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深度学习笔记-CNN">
 <meta name="twitter:description" content="非常简单的深度学习笔记，总结一下CNN的一些概念，以免老是忘记了。 1. 卷积神经网络 CNN - (Convolutional Neural Network) 基本结构 输入层 —&amp;gt;卷积层 —&amp;gt; 激活函数 —&amp;gt;池化层 —&amp;gt; 全连接层  神经网络 - Neural Network 大家都了解，就不解释了。  卷积 - Convolutional 裂墙推荐知乎上的这篇文章通俗">
-<meta name="twitter:image" content="http://chenson.com/2018/03/20/深度学习笔记-CNN/2018-03-20-深度学习笔记-CNN/image-20181201152537136-3649137.png">
+<meta name="twitter:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20181201152537136-3649137.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -172,8 +172,8 @@
   
 
         
-        <a href="/2018/03/20/深度学习笔记-CNN/" class="archive-article-date">
-  	<time datetime="2018-03-20T05:45:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-20</time>
+        <a href="/2018/04/20/深度学习笔记-CNN/" class="archive-article-date">
+  	<time datetime="2018-04-20T06:45:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-20</time>
 </a>
         
       </header>
@@ -193,7 +193,7 @@
 </li>
 </ul>
 <p>  卷积的意思就是，神经网络是对图片上的一小块区域进行处理，这张做法加强了图片信息的连续性，使得神经网络可以看到图片上的图形，而非是一个个离散的点。</p>
-<p><img src="/2018/03/20/深度学习笔记-CNN/2018-03-20-深度学习笔记-CNN/image-20181201152537136-3649137.png" alt="image-20181201152537136"></p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20181201152537136-3649137.png" alt="image-20181201152537136"></p>
 <ul>
 <li><p>激活函数</p>
 <p>常用的几个激活函数是 <code>Relu</code>，<code>Sigmoid</code>，<code>Tanh</code>和<code>Softplus</code></p>
@@ -202,7 +202,7 @@
 <li><p>感受野 - Receptive Field</p>
 <p>中文名真的是… … 太太太难理解了，直接看英文名Receptive Field比较直观一些。</p>
 <p>基本定义就是 <code>卷积神经网络的每一层输出的特征图（Feature ap）上的像素点在原图像上映射的区域大小。</code></p>
-<p><img src="/2018/03/20/深度学习笔记-CNN/2018-03-20-深度学习笔记-CNN/image-20181201152629273-3649189.png" alt="image-20181201152629273"></p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20181201152629273-3649189.png" alt="image-20181201152629273"></p>
 <ul>
 <li><p>第一层卷积</p>
 <p>输入为10x10的图片，经过3x3的kernel，输出为8x8的大小（这里只考虑单层）</p>
@@ -226,7 +226,7 @@
 </li>
 <li><p>池化 - Pooling</p>
 <p>池化大致就是一个筛选过滤的过程，能过将左边的layer中有用的信息筛选出来，给右边的使用分析。因为在卷积的过程中为了保留更多的信息，不压缩长宽比。原始图片很大的话，卷积出来的结果也是很大，且比较稀疏的。所以这时候如果用池化层压缩的话，可以尽可能的保留信息和压缩数据的大小。</p>
-<p><img src="/2018/03/20/深度学习笔记-CNN/2018-03-20-深度学习笔记-CNN/image-20181201152650028-3649210.png" alt="image-20181201152650028"></p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20181201152650028-3649210.png" alt="image-20181201152650028"></p>
 </li>
 </ul>
 <h3 id="2-PyTorch代码实现"><a href="#2-PyTorch代码实现" class="headerlink" title="2. PyTorch代码实现"></a>2. PyTorch代码实现</h3>  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CNN</span><span class="params">(nn.Module)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, in_dim, n_class)</span>:</span></div><div class="line">        super(CNN, self).__init__()</div><div class="line">        <span class="comment"># 表示将一个有序的模块写在一起</span></div><div class="line">        <span class="comment"># 相当于神经网络的层按顺序放一起方便结构显示</span></div><div class="line">        self.conv = nn.Sequential(</div><div class="line">            <span class="comment"># 卷积层，有五个参数：</span></div><div class="line">            <span class="comment"># in_channels: 表示的是输入卷积层的图片厚度</span></div><div class="line">            <span class="comment"># out_channels: 比偶奥数的是要输出的厚度</span></div><div class="line">            <span class="comment"># kernel_size: 表示的是卷积核的大小，一个数字的话表示长宽相等的卷积核</span></div><div class="line">            <span class="comment"># stride: 表示卷积核滑动的步长</span></div><div class="line">            <span class="comment"># padding: 表示在图片走位填充0的多少，padding=0表示不填充，padding=1四周都填充1维</span></div><div class="line">            nn.Conv2d(in_dim, <span class="number">6</span>, <span class="number">3</span>, stride=<span class="number">1</span>, padding=<span class="number">1</span>),</div><div class="line">            </div><div class="line">            <span class="comment"># 激活函数，里面有一个参数inplace</span></div><div class="line">            <span class="comment"># False，表示新创建一个对象对其修改</span></div><div class="line">            <span class="comment"># True，表示直接对这个对象进行修改</span></div><div class="line">            nn.ReLU(<span class="keyword">True</span>),</div><div class="line">            </div><div class="line">            <span class="comment"># 最大池化层，也有平均池化层等，里面的参数有:</span></div><div class="line">            <span class="comment"># kernel_size: 表示池化的窗口的大小，和卷积里面的kernel_size是一样的</span></div><div class="line">            <span class="comment"># stride: 也和卷积层里面一样，需要自己设置滑动步长</span></div><div class="line">            <span class="comment"># padding 和卷积层一样，默认是0</span></div><div class="line">            nn.MaxPool2d(<span class="number">2</span>, <span class="number">2</span>),</div><div class="line">            nn.Conv2d(<span class="number">6</span>, <span class="number">16</span>, <span class="number">5</span>, stride=<span class="number">1</span>, padding=<span class="number">0</span>),</div><div class="line">            nn.ReLU(<span class="keyword">True</span>),</div><div class="line">            nn.MaxPool2d(<span class="number">2</span>, <span class="number">2</span>)</div><div class="line">        )</div><div class="line">        </div><div class="line">        <span class="comment"># </span></div><div class="line">        self.fc = nn.Sequential(</div><div class="line">            nn.Linear(<span class="number">400</span>, <span class="number">120</span>),</div><div class="line">            nn.Linear(<span class="number">120</span>, <span class="number">84</span>),</div><div class="line">            nn.Linear(<span class="number">84</span>, n_class)</div><div class="line">        )</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></div><div class="line">        out = self.conv(x)</div><div class="line">        <span class="comment"># batch_size</span></div><div class="line">        out = out.view(out.size(<span class="number">0</span>), <span class="number">-1</span>)</div><div class="line">        out = self.fc(out)</div><div class="line">        <span class="keyword">return</span> out</div><div class="line">    </div><div class="line"><span class="comment"># 定义loss和optimizer</span></div><div class="line">criterion = nn.CrossEntropyLoss()</div><div class="line">optimizer = optim.SGD(model.parameters(), lr=learning_rate)</div></pre></td></tr></table></figure>
@@ -275,11 +275,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PyTorch</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PyTorch</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
         		</li>
       		
 		</ul>
@@ -335,7 +335,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2018/03/20/深度学习笔记-CNN/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2018/04/20/深度学习笔记-CNN/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -349,18 +349,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/03/22/PyTorch学习笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/08/17/图数据库-Neo4j-初探/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          PyTorch学习笔记
+          图数据库-Neo4j-初探
         
       </div>
     </a>
   
   
-    <a href="/2018/03/13/Docker常用指令/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Docker常用指令</div>
+    <a href="/2018/04/10/Mac系统下matplotlib显示中文/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mac系统下matplotlib显示中文</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -374,7 +374,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="深度学习笔记-CNN" data-title="深度学习笔记-CNN" data-url="http://chenson.com/2018/03/20/深度学习笔记-CNN/"></div>
+	<div class="ds-thread" data-thread-key="深度学习笔记-CNN" data-title="深度学习笔记-CNN" data-url="http://chenson.com/2018/04/20/深度学习笔记-CNN/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -512,15 +512,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,15 +556,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">DeepLearning</a>
+                <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -588,15 +584,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Typora</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
             
             <div class="clearfix"></div>
