@@ -152,6 +152,311 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-图数据库-Neo4j-初探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/17/图数据库-Neo4j-初探/">图数据库-Neo4j-初探</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/17/图数据库-Neo4j-初探/" class="archive-article-date">
+  	<time datetime="2018-08-17T05:15:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本次初探主要学习如何安装<code>Neo4j</code>，以及<code>Cypher</code>的基本语法。</p>
+<h3 id="1-安装Neo4j"><a href="#1-安装Neo4j" class="headerlink" title="1. 安装Neo4j"></a>1. 安装Neo4j</h3><ul>
+<li><p><code>Desktop</code>版本</p>
+<p><a href="https://neo4j.com/download/" target="_blank" rel="external">neo4j-desktop</a></p>
+</li>
+<li><p><code>Server</code>版本（<code>Community</code>版)</p>
+<p>比较建议安装这个版本，因为<code>Desktop</code>版本的老是闪退，且要激活之类的。</p>
+<ul>
+<li><p>下载<code>Neo4j</code>数据库</p>
+<p><a href="https://neo4j.com/download-center/#releases" target="_blank" rel="external">neo4j-server-community</a></p>
+</li>
+<li><p>下载常用算法的插件</p>
+<ul>
+<li><p><code>graph-algorithms</code></p>
+<p><a href="https://github.com/neo4j-contrib/neo4j-graph-algorithms" target="_blank" rel="external">neo4j-graph-algorithms</a></p>
+</li>
+<li><p><code>apoc-procedures</code></p>
+<p><a href="https://github.com/neo4j-contrib/neo4j-apoc-procedures" target="_blank" rel="external">neo4j-apoc-procedures</a></p>
+</li>
+</ul>
+<p>将下载下来的算法插件放入到<code>$NEO4J_HOME/plugins</code>文件夹下</p>
+</li>
+<li><p><code>Service</code>版修改配置文件<code>$NEO4J_HOME/conf/neo4j.conf</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># 解决登入的时候报没有授权的错误</div><div class="line">dbms.security.auth_enabled=false</div><div class="line"># 添加下载的算法插件</div><div class="line">dbms.security.procedures.unrestricted=apoc.*,algo.*</div><div class="line">apoc.import.file.enabled=true</div><div class="line"></div><div class="line">#增加页缓存到至少4G，推荐20G:</div><div class="line">dbms.memory.pagecache.size=4g</div><div class="line">#JVM堆保存留内存从1G起，最大4G:</div><div class="line">dbms.memory.heap.initial_size=1g</div><div class="line">dbms.memory.heap.max_size=4g</div></pre></td></tr></table></figure>
+</li>
+<li><p>启动/停止 (把<code>server</code>所在的路径添加到系统的<code>PATH</code>)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># 建议将neo4j所在的路径条件到系统$PATH当中，</div><div class="line"># export NEO4J_HOME=&quot;path-to-neo4j&quot;</div><div class="line">$NEO4J_HOME/bin/neo4j start</div><div class="line">$NEO4J_HOME/bin/neo4j console</div><div class="line">$NEO4J_HOME/bin/neo4j stop</div><div class="line">$NEO4J_HOME/bin/neo4j start -u neo4j -p neo4j</div><div class="line">$NEO4J_HOME/bin/cypher-shell</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CALL dbms.procedures() // 查看neo4j可用的进程，包括刚刚安装的插件</div></pre></td></tr></table></figure>
+</li>
+</ul></li></ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">图数据库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Neo4j</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/17/图数据库-Neo4j-初探/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-深度学习笔记-CNN" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/20/深度学习笔记-CNN/">深度学习笔记-CNN</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/20/深度学习笔记-CNN/" class="archive-article-date">
+  	<time datetime="2018-04-20T06:45:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>非常简单的深度学习笔记，总结一下CNN的一些概念，以免老是忘记了。</p>
+<h3 id="1-卷积神经网络-CNN-Convolutional-Neural-Network"><a href="#1-卷积神经网络-CNN-Convolutional-Neural-Network" class="headerlink" title="1. 卷积神经网络 CNN - (Convolutional Neural Network)"></a>1. 卷积神经网络 CNN - (Convolutional Neural Network)</h3><ul>
+<li><p>基本结构</p>
+<p><code>输入层</code> —&gt;<code>卷积层</code> —&gt; <code>激活函数</code> —&gt;<code>池化层</code> —&gt; <code>全连接层</code></p>
+</li>
+<li><p>神经网络 - Neural Network</p>
+<p>大家都了解，就不解释了。</p>
+</li>
+<li><p>卷积 - Convolutional</p>
+<p>裂墙推荐知乎上的这篇文章<a href="https://zhuanlan.zhihu.com/p/28478034" target="_blank" rel="external">通俗理解『卷积』——从傅里叶变换到滤波器</a>，从信号处理这个本质的角度来理解卷积，非常棒👍</p>
+</li>
+</ul>
+<p>  卷积的意思就是，神经网络是对图片上的一小块区域进行处理，这张做法加强了图片信息的连续性，使得神经网络可以看到图片上的图形，而非是一个个离散的点。</p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20181201152537136-3649137.png" alt="image-20181201152537136"></p>
+<ul>
+<li><p>激活函数</p>
+<p>常用的几个激活函数是 <code>Relu</code>，<code>Sigmoid</code>，<code>Tanh</code>和<code>Softplus</code></p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-8-20/4453315.jpg" alt=""></p>
+</li>
+<li><p>感受野 - Receptive Field</p>
+<p>中文名真的是… … 太太太难理解了，直接看英文名Receptive Field比较直观一些。</p>
+<p>基本定义就是 <code>卷积神经网络的每一层输出的特征图（Feature ap）上的像素点在原图像上映射的区域大小。</code></p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20181201152629273-3649189.png" alt="image-20181201152629273"></p>
+<ul>
+<li><p>第一层卷积</p>
+<p>输入为10x10的图片，经过3x3的kernel，输出为8x8的大小（这里只考虑单层）</p>
+<p>且在output1中的每一个像素点，都受到原始图像对应的3x3区域内的影响，第一场的感受野为3，用字母表示RF1=3 </p>
+</li>
+</ul>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-8-20/36401069.jpg" alt=""></p>
+<ul>
+<li><p>第二层卷积</p>
+<p>在第一层卷积的输出output1下，经过第二层3x3的kernel卷积，输出的大小为6x6</p>
+<p>如果从output2往回推的话，output2上的一个像素点，受到output1上三个像素点的影响，而这三个像素点又总共受到输入层五个像素点的影响，所以第二层的感受野RF2=5</p>
+</li>
+</ul>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-8-20/76050855.jpg" alt=""></p>
+<ul>
+<li><p>第三层卷积</p>
+<p>此时kernel3依旧为3x3，根据上面推，RF3=7</p>
+</li>
+</ul>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-8-20/9912702.jpg" alt=""></p>
+</li>
+<li><p>池化 - Pooling</p>
+<p>池化大致就是一个筛选过滤的过程，能过将左边的layer中有用的信息筛选出来，给右边的使用分析。因为在卷积的过程中为了保留更多的信息，不压缩长宽比。原始图片很大的话，卷积出来的结果也是很大，且比较稀疏的。所以这时候如果用池化层压缩的话，可以尽可能的保留信息和压缩数据的大小。</p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20181201152650028-3649210.png" alt="image-20181201152650028"></p>
+</li>
+</ul>
+<h3 id="2-PyTorch代码实现"><a href="#2-PyTorch代码实现" class="headerlink" title="2. PyTorch代码实现"></a>2. PyTorch代码实现</h3>  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CNN</span><span class="params">(nn.Module)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, in_dim, n_class)</span>:</span></div><div class="line">        super(CNN, self).__init__()</div><div class="line">        <span class="comment"># 表示将一个有序的模块写在一起</span></div><div class="line">        <span class="comment"># 相当于神经网络的层按顺序放一起方便结构显示</span></div><div class="line">        self.conv = nn.Sequential(</div><div class="line">            <span class="comment"># 卷积层，有五个参数：</span></div><div class="line">            <span class="comment"># in_channels: 表示的是输入卷积层的图片厚度</span></div><div class="line">            <span class="comment"># out_channels: 比偶奥数的是要输出的厚度</span></div><div class="line">            <span class="comment"># kernel_size: 表示的是卷积核的大小，一个数字的话表示长宽相等的卷积核</span></div><div class="line">            <span class="comment"># stride: 表示卷积核滑动的步长</span></div><div class="line">            <span class="comment"># padding: 表示在图片走位填充0的多少，padding=0表示不填充，padding=1四周都填充1维</span></div><div class="line">            nn.Conv2d(in_dim, <span class="number">6</span>, <span class="number">3</span>, stride=<span class="number">1</span>, padding=<span class="number">1</span>),</div><div class="line">            </div><div class="line">            <span class="comment"># 激活函数，里面有一个参数inplace</span></div><div class="line">            <span class="comment"># False，表示新创建一个对象对其修改</span></div><div class="line">            <span class="comment"># True，表示直接对这个对象进行修改</span></div><div class="line">            nn.ReLU(<span class="keyword">True</span>),</div><div class="line">            </div><div class="line">            <span class="comment"># 最大池化层，也有平均池化层等，里面的参数有:</span></div><div class="line">            <span class="comment"># kernel_size: 表示池化的窗口的大小，和卷积里面的kernel_size是一样的</span></div><div class="line">            <span class="comment"># stride: 也和卷积层里面一样，需要自己设置滑动步长</span></div><div class="line">            <span class="comment"># padding 和卷积层一样，默认是0</span></div><div class="line">            nn.MaxPool2d(<span class="number">2</span>, <span class="number">2</span>),</div><div class="line">            nn.Conv2d(<span class="number">6</span>, <span class="number">16</span>, <span class="number">5</span>, stride=<span class="number">1</span>, padding=<span class="number">0</span>),</div><div class="line">            nn.ReLU(<span class="keyword">True</span>),</div><div class="line">            nn.MaxPool2d(<span class="number">2</span>, <span class="number">2</span>)</div><div class="line">        )</div><div class="line">        </div><div class="line">        <span class="comment"># </span></div><div class="line">        self.fc = nn.Sequential(</div><div class="line">            nn.Linear(<span class="number">400</span>, <span class="number">120</span>),</div><div class="line">            nn.Linear(<span class="number">120</span>, <span class="number">84</span>),</div><div class="line">            nn.Linear(<span class="number">84</span>, n_class)</div><div class="line">        )</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></div><div class="line">        out = self.conv(x)</div><div class="line">        <span class="comment"># batch_size</span></div><div class="line">        out = out.view(out.size(<span class="number">0</span>), <span class="number">-1</span>)</div><div class="line">        out = self.fc(out)</div><div class="line">        <span class="keyword">return</span> out</div><div class="line">    </div><div class="line"><span class="comment"># 定义loss和optimizer</span></div><div class="line">criterion = nn.CrossEntropyLoss()</div><div class="line">optimizer = optim.SGD(model.parameters(), lr=learning_rate)</div></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line">  <span class="comment"># 开始训练</span></div><div class="line">  <span class="keyword">for</span> epoch <span class="keyword">in</span> range(num_epoches):</div><div class="line">      print(<span class="string">'epoch &#123;&#125;'</span>.format(epoch + <span class="number">1</span>))</div><div class="line">      print(<span class="string">'*'</span> * <span class="number">10</span>)</div><div class="line">      running_loss = <span class="number">0.0</span></div><div class="line">      running_acc = <span class="number">0.0</span></div><div class="line">      <span class="keyword">for</span> i, data <span class="keyword">in</span> enumerate(train_loader, <span class="number">1</span>):</div><div class="line">          img, label = data</div><div class="line">          <span class="keyword">if</span> use_gpu:</div><div class="line">              img = img.cuda()</div><div class="line">              label = label.cuda()</div><div class="line">          img = Variable(img)</div><div class="line">          label = Variable(label)</div><div class="line">          <span class="comment"># 向前传播</span></div><div class="line">          out = model(img)</div><div class="line">          loss = criterion(out, label)</div><div class="line">          running_loss += loss.data[<span class="number">0</span>] * label.size(<span class="number">0</span>)</div><div class="line">          _, pred = torch.max(out, <span class="number">1</span>)</div><div class="line">          num_correct = (pred == label).sum()</div><div class="line">          accuracy = (pred == label).float().mean()</div><div class="line">          running_acc += num_correct.data[<span class="number">0</span>]</div><div class="line">          <span class="comment"># 向后传播</span></div><div class="line">          optimizer.zero_grad()</div><div class="line">          loss.backward()</div><div class="line">          optimizer.step()</div><div class="line">          </div><div class="line">          <span class="comment"># ========================= Log ======================</span></div><div class="line">          step = epoch * len(train_loader) + i</div><div class="line">          <span class="comment"># (1) Log the scalar values</span></div><div class="line">          info = &#123;<span class="string">'loss'</span> : loss.data[<span class="number">0</span>],</div><div class="line">                  <span class="string">'accuracy'</span> : accuracy.data[<span class="number">0</span>]&#125;</div><div class="line">          <span class="keyword">for</span> tag, value <span class="keyword">in</span> info.items():</div><div class="line">              logger.scalar_summary(tag, value, step)</div><div class="line">          </div><div class="line">          <span class="comment"># (2) Log values and gradients of the parameters (histogram)</span></div><div class="line">          <span class="keyword">for</span> tag, value <span class="keyword">in</span> model.named_parameters():</div><div class="line">              tag = tag.replace(<span class="string">'.'</span>, <span class="string">'/'</span>)</div><div class="line">              logger.histo_summary(tag, to_np(value), step)</div><div class="line">              logger.histo_summary(tag + <span class="string">'/grad'</span>, to_np(value.grad), step)</div><div class="line">              </div><div class="line">          <span class="comment"># (3) Log the images</span></div><div class="line">          info = &#123;<span class="string">'images'</span>: to_np(img.view(<span class="number">-1</span>, <span class="number">28</span>, <span class="number">28</span>)[:<span class="number">10</span>])&#125;</div><div class="line">          </div><div class="line">      </div><div class="line">          <span class="keyword">for</span> tag, images <span class="keyword">in</span> info.items():</div><div class="line">              logger.image_summary(tag, images, step)</div><div class="line">          <span class="keyword">if</span> i % <span class="number">300</span> == <span class="number">0</span>:</div><div class="line">              print(<span class="string">'[&#123;&#125;/&#123;&#125;] Loss: &#123;:.6f&#125;, Acc: &#123;:.6f&#125;'</span>.format(</div><div class="line">                  epoch + <span class="number">1</span>, num_epoches, running_loss / (batch_size * i),</div><div class="line">                  running_acc / (batch_size * i)))</div><div class="line">              </div><div class="line">  </div><div class="line">      print(<span class="string">'Finish &#123;&#125; epoch, Loss: &#123;:.6f&#125;, Acc: &#123;:.6f&#125;'</span>.format(</div><div class="line">          epoch + <span class="number">1</span>, running_loss / (len(train_dataset)), running_acc / (len(</div><div class="line">              train_dataset))))</div><div class="line">      </div><div class="line">      model.eval()</div><div class="line">      eval_loss = <span class="number">0</span></div><div class="line">      eval_acc = <span class="number">0</span></div><div class="line">      <span class="keyword">for</span> data <span class="keyword">in</span> test_loader:</div><div class="line">          img, label = data</div><div class="line">          <span class="keyword">if</span> use_gpu:</div><div class="line">              img = Variable(img, volatile=<span class="keyword">True</span>).cuda()</div><div class="line">              label = Variable(label, volatile=<span class="keyword">True</span>).cuda()</div><div class="line">          <span class="keyword">else</span>:</div><div class="line">              img = Variable(img, volatile=<span class="keyword">True</span>)</div><div class="line">              label = Variable(label, volatile=<span class="keyword">True</span>)</div><div class="line">          out = model(img)</div><div class="line">          loss = criterion(out, label)</div><div class="line">          eval_loss += loss.data[<span class="number">0</span>] * label.size(<span class="number">0</span>)</div><div class="line">          _, pred = torch.max(out, <span class="number">1</span>)</div><div class="line">          num_correct = (pred == label).sum()</div><div class="line">          eval_acc += num_correct.data[<span class="number">0</span>]</div><div class="line">      print(<span class="string">'Test Loss: &#123;:.6f&#125;, Acc: &#123;:.6f&#125;'</span>.format(eval_loss / (len(</div><div class="line">          test_dataset)), eval_acc / (len(test_dataset))))</div><div class="line">      print()</div><div class="line"></div><div class="line"><span class="comment"># 保存模型</span></div><div class="line">torch.save(model.state_dict(), <span class="string">'./model/cnn.pth'</span>)</div></pre></td></tr></table></figure>
+<h3 id="3-References"><a href="#3-References" class="headerlink" title="3. References"></a>3. References</h3><ul>
+<li><a href="https://morvanzhou.github.io/tutorials/machine-learning/torch/4-01-A-CNN/" target="_blank" rel="external">莫烦 - 什么是卷积神经网络 CNN (Convolutional Neural Network)</a></li>
+<li><a href="https://www.jianshu.com/p/9305d31962d8" target="_blank" rel="external">什么是感受野</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/28478034" target="_blank" rel="external">通俗理解『卷积』——从傅里叶变换到滤波器</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PyTorch</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/20/深度学习笔记-CNN/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Mac系统下matplotlib显示中文" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/10/Mac系统下matplotlib显示中文/">Mac系统下matplotlib显示中文</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/10/Mac系统下matplotlib显示中文/" class="archive-article-date">
+  	<time datetime="2018-04-10T07:08:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Mac系统下让matplotlib显示中文"><a href="#1-Mac系统下让matplotlib显示中文" class="headerlink" title="1. Mac系统下让matplotlib显示中文"></a>1. Mac系统下让matplotlib显示中文</h3><p>现在的时间是<strong>2018.04.10，</strong>更新一下<strong>Mac系统</strong>下的解决方法</p>
+<p>我的环境：<code>anaconda3</code> + <code>Python 3.6.3</code></p>
+<ul>
+<li><p><strong>添加字体</strong></p>
+<p>添加 <code>SimHei</code> 字体（simhei.ttf文件）到</p>
+<p> <code>~/anaconda3/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/ttf</code> 中；</p>
+<p>下载地址：<a href="https://link.zhihu.com/?target=http%3A//www.font5.com.cn/font_download.php%3Fid%3D151%26part%3D1237887120" target="_blank" rel="external">黑体字体simhei.ttf</a></p>
+<p><strong>我用的是 <code>anaconda3</code> 下的 python 环境，这个地址对应你正在使用的 <code>python</code> 安装地址</strong></p>
+<p>​</p>
+</li>
+<li><p><strong>修改matplotlib配置文件</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/anaconda3/lib/python3.6/site-packages/matplotlib/mpl-data</div><div class="line">vi matplotlibrc   # 编辑配置文件</div></pre></td></tr></table></figure>
+<p>找到 <code>font.sans-serif</code> 添加 <code>SimHei</code> 到字体列表 （如图，大约在211行）</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-4-10/76293547.jpg" alt=""></p>
+<p>同时修改 <code>axes.unicode_minus</code>，将 <code>True</code> 改为 <code>False</code>，作用就是解决负号’-‘显示为方块的问题（大约在330行）</p></li></ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Jupyter</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/10/Mac系统下matplotlib显示中文/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-PyTorch学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -675,239 +980,6 @@
 
 
   
-    <article id="post-Machine-Learning-Ensemble-Learning" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/13/Machine-Learning-Ensemble-Learning/">Machine Learning - Ensemble Learning</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/13/Machine-Learning-Ensemble-Learning/" class="archive-article-date">
-  	<time datetime="2017-06-13T04:27:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-集成学习-Ensemble-Learning"><a href="#1-集成学习-Ensemble-Learning" class="headerlink" title="1. 集成学习 (Ensemble Learning)"></a>1. 集成学习 (Ensemble Learning)</h4><p>在对新的数据实例进行分类的时候，集成学习通过训练好<strong>多个学习器</strong>，把这些分类器的的分类结果进行某种组合 (比如投票) 决定分类结果，以取得更好的结果，就是我们生活中那句话“三个臭皮匠顶个诸葛亮”，通过使用多个决策者共同决策一个实例的分类从而提高分类器的泛化能力。</p>
-<ul>
-<li><p>同质集成 (Homogeneous)</p>
-<p>需要是<strong>同种类型</strong>，比如全部是决策树或神经网络等，每个个体学习器称之为<strong>基学习器</strong> (base learner)，相应的学习算法称为<strong>基学习算法</strong> (base learning algorithm)</p>
-</li>
-<li><p>异质集成 (Heterogenous)</p>
-<p>可以由不同的学校算法生成，这时候就不再有基学习算法，每个个体学习器称为<strong>组件学习器</strong> (component learner)</p>
-</li>
-</ul>
-<p>以下我们重点讨论同质集成。</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-12/5589106.jpg" alt=""></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ensemble</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/13/Machine-Learning-Ensemble-Learning/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Hadoop权威指南笔记（三）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/09/Hadoop权威指南笔记（三）/">Hadoop权威指南笔记（三）</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/09/Hadoop权威指南笔记（三）/" class="archive-article-date">
-  	<time datetime="2017-06-09T06:08:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-为什么要使用Secondary-Sort"><a href="#1-为什么要使用Secondary-Sort" class="headerlink" title="1. 为什么要使用Secondary Sort"></a>1. 为什么要使用Secondary Sort</h3><p>在Hadoop中，从Map到Reduce的过程中，key是不断被sort的。所以从map出来的时候写入到一个intermediate output file的时候，key是有序的。然后reduce不断的从不同的cluster里面fetch里面的key-value pairs的时候，仍然多次sort这些pairs。所以<strong>最终进入到reducer的key是有序的，但是value是无序的</strong>。如果我们需要对value也进行排序呢？Google的MR内置了函数对value也可以排序，但是Hadoop不行，我们需要自己去定制partitioner等去实现这个功能。</p>
-<p>举个栗子：</p>
-<ul>
-<li><p>输入文件格式如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">2015,1,24</div><div class="line">2015,3,54</div><div class="line">2015,1,3</div><div class="line">2015,2,-43</div><div class="line">2015,4,5</div><div class="line">2015,3,46</div><div class="line">2014,2,64</div><div class="line">2015,1,4</div><div class="line">2015,1,21</div><div class="line">2015,2,35</div><div class="line">2015,2,20</div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>期望的输出格式如下（<strong>value是有序的</strong>）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">2014-2	64</div><div class="line">2015-1	3，4，21，24</div><div class="line">2015-2	-43，0，35</div><div class="line">2015-3	46，56</div><div class="line">2015-4	5</div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>Hadoop默认的输出格式如下（<strong>value是无序的</strong>）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">2014-2	64</div><div class="line">2015-1	21，4，3，24</div><div class="line">2015-2	0，35，-43</div><div class="line">2015-3	56，46</div><div class="line">2015-4	5</div></pre></td></tr></table></figure></li></ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/09/Hadoop权威指南笔记（三）/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Machine-Learning-Recommender-Systems-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/15/Machine-Learning-Recommender-Systems-2/">Machine Learning - Recommender Systems(2)</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/15/Machine-Learning-Recommender-Systems-2/" class="archive-article-date">
-  	<time datetime="2017-05-15T08:43:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-协同过滤，给用户推荐物品"><a href="#1-协同过滤，给用户推荐物品" class="headerlink" title="1. 协同过滤，给用户推荐物品"></a>1. 协同过滤，给用户推荐物品</h3><h4 id="1-1-基于用户的协同过滤算法"><a href="#1-1-基于用户的协同过滤算法" class="headerlink" title="1.1 基于用户的协同过滤算法"></a>1.1 基于用户的协同过滤算法</h4><p>UserCF 主要通过<strong>分析用户的行为记录</strong>，<strong>计算物品之间的相似度</strong></p>
-<p>该算法认为物品A和物品B具有很大的相似度是因为喜欢物品A的用户大部分也喜欢物品B</p>
-<h5 id="1-1-1-步骤"><a href="#1-1-1-步骤" class="headerlink" title="1.1.1 步骤"></a>1.1.1 步骤</h5><ul>
-<li>找到和目标用户相似的用户集合</li>
-<li>找到这个集合中的用户喜欢，且和<strong>目标用户没有听说过的</strong>的物品推荐给目标用户</li>
-</ul>
-<h5 id="1-1-2-计算相似度"><a href="#1-1-2-计算相似度" class="headerlink" title="1.1.2 计算相似度"></a>1.1.2 计算相似度</h5><p><img src="http://i2.muimg.com/567571/b95f545d611e3a2e.png" alt=""></p>
-<p><strong>得到用户之间的兴趣相似度之后，寻找最相近的K个用户</strong></p>
-<p><img src="http://i4.buimg.com/567571/4fb60f6ed242f07b.png" alt=""></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/15/Machine-Learning-Recommender-Systems-2/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -922,7 +994,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Chenson Van
+    		&copy; 2019 Chenson Van
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1016,6 +1088,10 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -1033,10 +1109,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1092,6 +1164,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
@@ -1100,15 +1180,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
             
             <div class="clearfix"></div>
