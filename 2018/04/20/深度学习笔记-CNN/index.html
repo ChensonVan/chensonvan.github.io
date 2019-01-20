@@ -8,25 +8,35 @@
   <link rel="dns-prefetch" href="http://chenson.com">
   <title>深度学习笔记-CNN | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="非常简单的深度学习笔记，总结一下CNN的一些概念，以免老是忘记了。 1. 卷积神经网络 CNN - (Convolutional Neural Network) 基本结构 输入层 —&amp;gt;卷积层 —&amp;gt; 激活函数 —&amp;gt;池化层 —&amp;gt; 全连接层  神经网络 - Neural Network 大家都了解，就不解释了。  卷积 - Convolutional 裂墙推荐知乎上的这篇文章通俗">
-<meta name="keywords" content="PyTorch,Deep Learning">
+  <meta name="description" content="最近正在学习李沐沐神的动手学深度学习，目前听到了第五课，真的是非常好的课程。其实在学习之前也有断断续续的学过一些深度学习相关的东西，也会用PyTorch跑一些简单的模型，但仅限于此，对理论知识理解还是比较浅薄的，只是一个调包侠，所以这次学习打算认真学习一下相关的理论知识。 在学之前也有听了一下NG刚发布的深度学习课程，但对比了一下，还是觉得沐神的比较适合我，毕竟教学用的是中文，方便理解，且理论知识">
+<meta name="keywords" content="Deep Learning,CNN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深度学习笔记-CNN">
 <meta property="og:url" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="非常简单的深度学习笔记，总结一下CNN的一些概念，以免老是忘记了。 1. 卷积神经网络 CNN - (Convolutional Neural Network) 基本结构 输入层 —&amp;gt;卷积层 —&amp;gt; 激活函数 —&amp;gt;池化层 —&amp;gt; 全连接层  神经网络 - Neural Network 大家都了解，就不解释了。  卷积 - Convolutional 裂墙推荐知乎上的这篇文章通俗">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20181201152537136-3649137.png">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-8-20/4453315.jpg">
+<meta property="og:description" content="最近正在学习李沐沐神的动手学深度学习，目前听到了第五课，真的是非常好的课程。其实在学习之前也有断断续续的学过一些深度学习相关的东西，也会用PyTorch跑一些简单的模型，但仅限于此，对理论知识理解还是比较浅薄的，只是一个调包侠，所以这次学习打算认真学习一下相关的理论知识。 在学之前也有听了一下NG刚发布的深度学习课程，但对比了一下，还是觉得沐神的比较适合我，毕竟教学用的是中文，方便理解，且理论知识">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/1.png">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/2.png">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/4.png">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/correlation.svg">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/6.gif">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_pad.svg">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_stride.svg">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/v2-17708ef17113fc120b045db3de3dbaac_1200x500.jpg">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/pooling.svg">
 <meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20181201152629273-3649189.png">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-8-20/36401069.jpg">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-8-20/76050855.jpg">
-<meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-8-20/9912702.jpg">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20181201152650028-3649210.png">
-<meta property="og:updated_time" content="2018-12-22T11:40:20.239Z">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175210803.png">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175232881.png">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175253686.png">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175342237.png">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175357577.png">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_multi_in.svg">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_1x1.svg">
+<meta property="og:updated_time" content="2019-01-20T10:11:03.937Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深度学习笔记-CNN">
-<meta name="twitter:description" content="非常简单的深度学习笔记，总结一下CNN的一些概念，以免老是忘记了。 1. 卷积神经网络 CNN - (Convolutional Neural Network) 基本结构 输入层 —&amp;gt;卷积层 —&amp;gt; 激活函数 —&amp;gt;池化层 —&amp;gt; 全连接层  神经网络 - Neural Network 大家都了解，就不解释了。  卷积 - Convolutional 裂墙推荐知乎上的这篇文章通俗">
-<meta name="twitter:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20181201152537136-3649137.png">
+<meta name="twitter:description" content="最近正在学习李沐沐神的动手学深度学习，目前听到了第五课，真的是非常好的课程。其实在学习之前也有断断续续的学过一些深度学习相关的东西，也会用PyTorch跑一些简单的模型，但仅限于此，对理论知识理解还是比较浅薄的，只是一个调包侠，所以这次学习打算认真学习一下相关的理论知识。 在学之前也有听了一下NG刚发布的深度学习课程，但对比了一下，还是觉得沐神的比较适合我，毕竟教学用的是中文，方便理解，且理论知识">
+<meta name="twitter:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -180,61 +190,197 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>非常简单的深度学习笔记，总结一下CNN的一些概念，以免老是忘记了。</p>
-<h3 id="1-卷积神经网络-CNN-Convolutional-Neural-Network"><a href="#1-卷积神经网络-CNN-Convolutional-Neural-Network" class="headerlink" title="1. 卷积神经网络 CNN - (Convolutional Neural Network)"></a>1. 卷积神经网络 CNN - (Convolutional Neural Network)</h3><ul>
-<li><p>基本结构</p>
-<p><code>输入层</code> —&gt;<code>卷积层</code> —&gt; <code>激活函数</code> —&gt;<code>池化层</code> —&gt; <code>全连接层</code></p>
+        <p>最近正在学习李沐沐神的<a href="https://space.bilibili.com/209599371/channel/detail?cid=23541" target="_blank" rel="external">动手学深度学习</a>，目前听到了第五课，真的是非常好的课程。其实在学习之前也有断断续续的学过一些深度学习相关的东西，也会用PyTorch跑一些简单的模型，但仅限于此，对理论知识理解还是比较浅薄的，只是一个调包侠，所以这次学习打算认真学习一下相关的理论知识。</p>
+<p>在学之前也有听了一下NG刚发布的深度学习课程，但对比了一下，还是觉得沐神的比较适合我，毕竟教学用的是中文，方便理解，且理论知识深度合适，所以打算先听完这门课，以后理论方面有需要的，再听NG相关的课程。</p>
+<h3 id="1-卷积神经网络-CNN-Convolutional-Neural-Network"><a href="#1-卷积神经网络-CNN-Convolutional-Neural-Network" class="headerlink" title="1. 卷积神经网络 CNN - (Convolutional Neural Network)"></a>1. 卷积神经网络 CNN - (Convolutional Neural Network)</h3><h4 id="1-1-神经网络-Neural-Network"><a href="#1-1-神经网络-Neural-Network" class="headerlink" title="1.1 神经网络 - Neural Network"></a>1.1 神经网络 - Neural Network</h4><ul>
+<li><p>单个神经元</p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/1.png" alt="单个神经元"></p>
 </li>
-<li><p>神经网络 - Neural Network</p>
-<p>大家都了解，就不解释了。</p>
-</li>
-<li><p>卷积 - Convolutional</p>
-<p>裂墙推荐知乎上的这篇文章<a href="https://zhuanlan.zhihu.com/p/28478034" target="_blank" rel="external">通俗理解『卷积』——从傅里叶变换到滤波器</a>，从信号处理这个本质的角度来理解卷积，非常棒👍</p>
+<li><p>神经网络</p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/2.png" alt="神经网络"></p>
+<a id="more"></a>
 </li>
 </ul>
-<p>  卷积的意思就是，神经网络是对图片上的一小块区域进行处理，这张做法加强了图片信息的连续性，使得神经网络可以看到图片上的图形，而非是一个个离散的点。</p>
-<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20181201152537136-3649137.png" alt="image-20181201152537136"></p>
+<h4 id="1-2-卷积神经网络的基本结构"><a href="#1-2-卷积神经网络的基本结构" class="headerlink" title="1. 2 卷积神经网络的基本结构"></a>1. 2 卷积神经网络的基本结构</h4><p>基本结构可以分为三个block</p>
 <ul>
-<li><p>激活函数</p>
-<p>常用的几个激活函数是 <code>Relu</code>，<code>Sigmoid</code>，<code>Tanh</code>和<code>Softplus</code></p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-8-20/4453315.jpg" alt=""></p>
+<li>输入层</li>
+<li>卷积层+激活函数+池化层</li>
+<li>输出层</li>
+</ul>
+<p><code>输入层</code> —&gt; <code>卷积层</code> —&gt; <code>激活函数</code> —&gt; <code>池化层</code> —&gt; <code>全连接层</code></p>
+<p>中间三个部分可以看做是一个block，复杂的模型可以重复多个这样的block，里面参数可以是一样或者相似的。</p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/4.png" alt="basic_block"></p>
+<h4 id="1-3-卷积-Convolutional"><a href="#1-3-卷积-Convolutional" class="headerlink" title="1. 3 卷积 - Convolutional"></a>1. 3 卷积 - Convolutional</h4><p>相对普通的神经网络，卷积神经网络在中的核心就是在于<strong>卷积计算层</strong>了，卷积神经网络包含了一个由<strong>卷积层和子采样层构成的特征抽取器</strong>。对于如何理解卷积，裂墙推荐知乎上的这篇文章<a href="https://zhuanlan.zhihu.com/p/28478034" target="_blank" rel="external">通俗理解『卷积』——从傅里叶变换到滤波器</a>，从<strong>信号处理</strong>这个本质的角度来理解卷积，非常棒👍。</p>
+<p>卷积的意思就是，神经网络是对图片上的一小块区域进行处理，这种做法<strong>加强了图片信息的连续性</strong>，使得神经网络可以看到图片上的图形，而非是一个个离散的点。下图是一个二维数组的卷积运算，中间的核是卷积中的kernel。</p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/correlation.svg" alt="conv"></p>
+<p>根据图片示意，我们将输入层蓝色的框框部分与kernel相乘，有：<br>$$<br>0 \times 0 + 1 \times 1 + 3 \times 2 + 4 \times 3 = 19<br>$$<br>当然此时只运算了一小部分，左边的输入数组中，蓝色的四格小框框可以逐步的往右边一格一格的挪动，然后到达最右边后，又往下移动一个格子，从左往右重复上面的运算，即有最右边的输出矩阵<br>$$<br>0 \times 0 + 1 \times 1 + 3 \times 2 + 4 \times 3 = 19 \<br>1 \times 0 + 2 \times 1 + 4 \times 2 + 5 \times 3 = 25 \<br>3 \times 0 + 4 \times 1 + 6 \times 2 + 7 \times 3 = 37 \<br>4 \times 0 + 5 \times 1 + 7 \times 2 + 8 \times 3 = 43<br>$$<br>以下是一个方便理解的动图</p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/6.gif" alt="&quot;&quot;"></p>
+<p>以上就是卷积最基本的运算过程。在这个过程中，我们有一下几个<strong>假设</strong></p>
+<ul>
+<li><p><strong>kernel size </strong> 的大小</p>
+<p>在上述我们假设了kernel的size是 $2 \times 2$ 的，当然也可以是其他维度的kernel，比如说 $3 \times 3$  之类的，或者是 $4 \times 5$ 这样的非正方形矩阵</p>
 </li>
+<li><p>周围的填充值 <strong>padding</strong></p>
+<p>其实这一部分上图中并没有体现出来这假设，padding的中文意思是填充，顾明思议就是在输入的二维矩阵的高和宽两侧填充元素（通常是0）。比如下图</p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_pad.svg" alt="padding"></p>
+<p>这里假设padding为0，即在给定输入的二维矩阵的高和宽两侧分别填充了一圈0元素（<strong>是否可以是两圈或者多圈？</strong>）。</p>
+<p>相比上一张图，我们可以看到输出的二维矩阵也变大了一圈。</p>
+<p>其实对于给定的输入的二维矩阵、kernel大小，我们可以计算出输出矩阵的大小的</p>
+<ul>
+<li><p>没有设定padding<br>$$<br>(n_h - k_h + 1)/1 \times (n_w - k_w + 1)/1<br>$$<br>这里h代表的是高度、w代表了宽度：</p>
+<blockquote>
+<p>输出宽度 = 输入宽度 - kernel宽度 + 1</p>
+<p>输入高度 = 输入高度 - kernel高度 + 1</p>
+</blockquote>
+</li>
+<li><p>设定了padding</p>
+<p>$$<br>(n_h - k_h + p_h + 1)/1 \times (n_w - k_w + p_w + 1)/1<br>$$</p>
+<blockquote>
+<p>输出宽度 = 输入宽度 - kernel宽度 + 填充的宽度 + 1</p>
+<p>输入高度 = 输入高度 - kernel高度 + 填充的高度 + 1</p>
+</blockquote>
+<p>这里回答一下上面我括号内加粗的问题，当给周围填充一圈0的时候，padding的值为 $p_w \&amp; p_h = 1$，当两圈0的时候为 $ p_w \&amp; p_h=2 $。通常对于padding的取值为：<br>$$<br>p_w = k_w - 1 \<br>p_h = k_h - 1<br>$$<br>这样我们就可以将输出的矩阵变大，尽量保持和和输入大小比较相近，避免多层卷积的时候，矩阵越来越小，相当于信息越来越少。</p>
+<p>如果需要保持<strong>输入和输出相同的大小</strong>，则可以采用如下设定：</p>
+<ul>
+<li>kernel大小为奇数，在矩阵的高宽两侧都填充p值</li>
+<li>kernel大小为偶数，在矩阵的高宽一侧中填充p值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>滑动的步长 <strong>stride</strong></p>
+<p>这里我们假设输入框框从左往右和从上到下的移动步伐是1个小格子，实际上也可以是2个小格子，3个小格子等，这个参数在CNN中叫做stride。下图stride的大小为(2, 3)，即向右滑动的时候，每次2个格子，向下滑动的时候，每次3个格子。</p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_stride.svg" alt="stride"></p>
+<p>注意到了在padding部分有一个常数项为1了吗，其实那个就是我们设定的stride的滑动大小，如果stride不为(1, 1)的时候，此时输入大小计算公式为：<br>$$<br>(n_h - k_h + p_h + s_h)/s_h \times (n_w - k_w + p_w + s_w)/s_w<br>$$</p>
+</li>
+</ul>
+<h4 id="1-4-激活函数"><a href="#1-4-激活函数" class="headerlink" title="1.4 激活函数"></a>1.4 激活函数</h4><p>先说结论，激活函数主要的作用是<strong>加入非线性因素</strong>，因为线性的表达能力不够（<strong>如何体现？</strong>）。</p>
+<p>其实从上面卷积的计算过程中，过程大致可以理解为：</p>
+<blockquote>
+<p>从一个输入的矩阵中抽取出一个局部矩阵，然后跟<strong>kernel线性相乘</strong>，然后输出一个结果值。通过从左向右，从上至下的滑动，遍历了整个输入矩阵的。</p>
+</blockquote>
+<p>上述过程中，一个很重要的概念是<strong>线性相乘，卷积的操作其实是线性的</strong>。此时加入激活函数可以给模型加入非线性因素，且激活函数需要具备以下几个性质</p>
+<ul>
+<li><p><strong>非线性</strong></p>
+<p>线性激活层对于深层神经网络没有作用，因为其作用以后仍然是输入的各种线性变换</p>
+</li>
+<li><p><strong>连续可微</strong></p>
+<p>因为神经网络使用的梯度下降法</p>
+</li>
+<li><p><strong>范围最好不饱和</strong>（不是很理解）</p>
+<p>当有饱和的区间段时，若系统优化进入到该段，梯度近似为0，网络的学习就会停止。 </p>
+</li>
+<li><p><strong>单调性</strong></p>
+<p>当激活函数是单调时，单层神经网络的误差函数是凸的，好优化</p>
+</li>
+<li><p><strong>在原点处近似线性</strong></p>
+<p>样当权值初始化为接近0的随机值时，网络可以学习的较快，不用可以调节网络的初始值</p>
+</li>
+</ul>
+<p>常用的几个激活函数有：</p>
+<ul>
+<li><p><code>Sigmoid</code></p>
+<p>在CNN卷积部分中基本被淘汰，因为饱和时梯度值非常小，当层数比较多的时候，用BP算法方向传播的时候，靠近前面层部分基本得不到更新，即<strong>梯度耗散</strong>。且输出的值不是以0为中心。</p>
+</li>
+<li><p><code>Tanh</code></p>
+<p>如下图，基本缺点同Sigmoid函数</p>
+</li>
+<li><p><code>ReLu</code> （最常用的激活函数）</p>
+<p>Alex在2012提出AlexNet时候提出的</p>
+<ul>
+<li>当x&gt;0的时候，梯度恒为1，不存在梯度耗散的问题，收敛快。</li>
+<li>当x&lt;0的时候，输出为0，增加网络的稀疏性，这样提取出的特征具有代表性，泛化性强。（<strong>如何保证x&lt;0的部分值是无意义的？</strong>）</li>
+</ul>
+<p>缺点就是具有<strong>死亡特性</strong>（有点感觉，但不是很理解），需要注意调整Learning Rate来避免死亡节点过多。</p>
+</li>
+<li><p><code>Leaky ReLu</code></p>
+<p>改散了ReLU的死亡特性，同时也损失了一部分稀疏性，增加一个超参。</p>
+</li>
+</ul>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/v2-17708ef17113fc120b045db3de3dbaac_1200x500.jpg" alt="activation_func"></p>
+<h4 id="1-5-池化层-Pooling"><a href="#1-5-池化层-Pooling" class="headerlink" title="1.5 池化层 - Pooling"></a>1.5 池化层 - Pooling</h4><p>先说结论：池化层的几个主要作用：</p>
+<ul>
+<li>缓解了卷积层对位置的过度敏感性</li>
+<li>能够压缩图片，使特征图变小，同时保留了有用的信息，提取主要特征</li>
+</ul>
+<p>池化大致就是一个筛选过滤的过程，能过将左边的输出层中有用的信息筛选出给到输出层。计算方式和kernel的计算方式比较相似，也是给定一个(w, h)大小的pooling矩阵，从左向右，从上至下缓慢滑动计算输出一个值给到输出层。与kernel不同的时候，这不做矩阵运算，只是计算输入矩阵中当前局部矩阵(w, h)中的最大值或是均值，对应使用的就是<strong>最大池化</strong>或是<strong>均值池化</strong>。（<strong>滑动的大小时候如何设定？</strong>）</p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/pooling.svg" alt="pooling"></p>
+<p>回答一下上述括号中的问题，池化层同样也有padding和stride的概念，方式和卷积中比较相似，就不一一解释了。</p>
+<h4 id="1-6-其他一些概念"><a href="#1-6-其他一些概念" class="headerlink" title="1.6 其他一些概念"></a>1.6 其他一些概念</h4><ul>
 <li><p>感受野 - Receptive Field</p>
 <p>中文名真的是… … 太太太难理解了，直接看英文名Receptive Field比较直观一些。</p>
 <p>基本定义就是 <code>卷积神经网络的每一层输出的特征图（Feature ap）上的像素点在原图像上映射的区域大小。</code></p>
 <p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20181201152629273-3649189.png" alt="image-20181201152629273"></p>
 <ul>
 <li><p>第一层卷积</p>
-<p>输入为10x10的图片，经过3x3的kernel，输出为8x8的大小（这里只考虑单层）</p>
+<ul>
+<li><p>输入为10x10的图片，经过3x3的kernel，输出为8x8的大小（这里只考虑单层）</p>
 <p>且在output1中的每一个像素点，都受到原始图像对应的3x3区域内的影响，第一场的感受野为3，用字母表示RF1=3 </p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175210803.png" alt="image-20190120175210803"></p>
 </li>
 </ul>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-8-20/36401069.jpg" alt=""></p>
-<ul>
+</li>
 <li><p>第二层卷积</p>
-<p>在第一层卷积的输出output1下，经过第二层3x3的kernel卷积，输出的大小为6x6</p>
+<ul>
+<li><p>在第一层卷积的输出output1下，经过第二层3x3的kernel卷积，输出的大小为6x6</p>
 <p>如果从output2往回推的话，output2上的一个像素点，受到output1上三个像素点的影响，而这三个像素点又总共受到输入层五个像素点的影响，所以第二层的感受野RF2=5</p>
 </li>
 </ul>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-8-20/76050855.jpg" alt=""></p>
-<ul>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175232881.png" alt="image-20190120175232881"></p>
+</li>
 <li><p>第三层卷积</p>
-<p>此时kernel3依旧为3x3，根据上面推，RF3=7</p>
+<ul>
+<li>此时kernel3依旧为3x3，根据上面推，RF3=7</li>
+</ul>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175253686.png" alt="image-20190120175253686"></p>
+</li>
+<li><p>第四次卷积</p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175342237.png" alt="image-20190120175342237"></p>
+</li>
+<li><p>第五次池化运算</p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175357577.png" alt="image-20190120175357577"></p>
 </li>
 </ul>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-8-20/9912702.jpg" alt=""></p>
 </li>
-<li><p>池化 - Pooling</p>
-<p>池化大致就是一个筛选过滤的过程，能过将左边的layer中有用的信息筛选出来，给右边的使用分析。因为在卷积的过程中为了保留更多的信息，不压缩长宽比。原始图片很大的话，卷积出来的结果也是很大，且比较稀疏的。所以这时候如果用池化层压缩的话，可以尽可能的保留信息和压缩数据的大小。</p>
-<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20181201152650028-3649210.png" alt="image-20181201152650028"></p>
+<li><p>通道 - Channel</p>
+<ul>
+<li><p>多输入通道</p>
+<p>上面我们讨论的都是二维的数据矩阵，其实在图像处理过程中，图片通常都是<strong>三维的</strong>。除了图片的高度和宽度外，我们可以从颜色的角度，分为<strong>RGB</strong>三个颜色通道。即一个三维的矩阵，这里的第三维，我们称之为<strong>Channel</strong>，可以说的相互独立的(计算用到的kernel可以是独立的)。</p>
+<p>依旧是以上面的例子为例，从Channel一维升级到二维，计算过程如下：</p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_multi_in.svg" alt="2_channel"></p>
 </li>
 </ul>
-<h3 id="2-PyTorch代码实现"><a href="#2-PyTorch代码实现" class="headerlink" title="2. PyTorch代码实现"></a>2. PyTorch代码实现</h3>  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CNN</span><span class="params">(nn.Module)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, in_dim, n_class)</span>:</span></div><div class="line">        super(CNN, self).__init__()</div><div class="line">        <span class="comment"># 表示将一个有序的模块写在一起</span></div><div class="line">        <span class="comment"># 相当于神经网络的层按顺序放一起方便结构显示</span></div><div class="line">        self.conv = nn.Sequential(</div><div class="line">            <span class="comment"># 卷积层，有五个参数：</span></div><div class="line">            <span class="comment"># in_channels: 表示的是输入卷积层的图片厚度</span></div><div class="line">            <span class="comment"># out_channels: 比偶奥数的是要输出的厚度</span></div><div class="line">            <span class="comment"># kernel_size: 表示的是卷积核的大小，一个数字的话表示长宽相等的卷积核</span></div><div class="line">            <span class="comment"># stride: 表示卷积核滑动的步长</span></div><div class="line">            <span class="comment"># padding: 表示在图片走位填充0的多少，padding=0表示不填充，padding=1四周都填充1维</span></div><div class="line">            nn.Conv2d(in_dim, <span class="number">6</span>, <span class="number">3</span>, stride=<span class="number">1</span>, padding=<span class="number">1</span>),</div><div class="line">            </div><div class="line">            <span class="comment"># 激活函数，里面有一个参数inplace</span></div><div class="line">            <span class="comment"># False，表示新创建一个对象对其修改</span></div><div class="line">            <span class="comment"># True，表示直接对这个对象进行修改</span></div><div class="line">            nn.ReLU(<span class="keyword">True</span>),</div><div class="line">            </div><div class="line">            <span class="comment"># 最大池化层，也有平均池化层等，里面的参数有:</span></div><div class="line">            <span class="comment"># kernel_size: 表示池化的窗口的大小，和卷积里面的kernel_size是一样的</span></div><div class="line">            <span class="comment"># stride: 也和卷积层里面一样，需要自己设置滑动步长</span></div><div class="line">            <span class="comment"># padding 和卷积层一样，默认是0</span></div><div class="line">            nn.MaxPool2d(<span class="number">2</span>, <span class="number">2</span>),</div><div class="line">            nn.Conv2d(<span class="number">6</span>, <span class="number">16</span>, <span class="number">5</span>, stride=<span class="number">1</span>, padding=<span class="number">0</span>),</div><div class="line">            nn.ReLU(<span class="keyword">True</span>),</div><div class="line">            nn.MaxPool2d(<span class="number">2</span>, <span class="number">2</span>)</div><div class="line">        )</div><div class="line">        </div><div class="line">        <span class="comment"># </span></div><div class="line">        self.fc = nn.Sequential(</div><div class="line">            nn.Linear(<span class="number">400</span>, <span class="number">120</span>),</div><div class="line">            nn.Linear(<span class="number">120</span>, <span class="number">84</span>),</div><div class="line">            nn.Linear(<span class="number">84</span>, n_class)</div><div class="line">        )</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></div><div class="line">        out = self.conv(x)</div><div class="line">        <span class="comment"># batch_size</span></div><div class="line">        out = out.view(out.size(<span class="number">0</span>), <span class="number">-1</span>)</div><div class="line">        out = self.fc(out)</div><div class="line">        <span class="keyword">return</span> out</div><div class="line">    </div><div class="line"><span class="comment"># 定义loss和optimizer</span></div><div class="line">criterion = nn.CrossEntropyLoss()</div><div class="line">optimizer = optim.SGD(model.parameters(), lr=learning_rate)</div></pre></td></tr></table></figure>
+<p>$$<br>channel_1:1 \times 1 + 2 \times 2 + 3 \times 4 + 5 \times 4 = 37 \<br>channel_2:0 \times 0 + 1 \times 1 + 3 \times 2 + 4 \times 4 = 19 \<br>output = 37 + 19 = 56<br>$$</p>
+<ul>
+<li><p>多输出通道</p>
+<p>上面的例子中，输出通道为1，即最终对每个独立channel运算的通道输出的结果做<strong>累加运算</strong>。</p>
+<p>如果是需要输出多通道呢？相似的，我们在计算独立channel的时候，就输出一个多通道的的输出，然后在不同channel之间，继续做累加运算。</p>
+</li>
+</ul>
+</li>
+<li><p>$1 \times 1$ 卷积层</p>
+<p>这个卷积层很有意思，沐神在上课的过程中多次提到了该卷积。</p>
+<p>当kernel的size为(1, 1)的时候，说明此时kernel不对输入层做采样然后计算，即失去了卷积层可以识别高和宽维度上相邻元素构成的模式的功能。</p>
+<p>可以说此时一开始的二维层面上，kernel是没啥用的，但是在第三维channel的角度还是有用的，即我们可以用1x1的矩阵做<strong>维度变换</strong>。</p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_1x1.svg" alt="1_times_1_kernel"></p>
+<p>上图中，输入通道的维度为(3, 3, 3)， kernel的维度为(2, 1, 1), 此时的输出通道为(2, 3, 3)。</p>
+<p>具体计算过程如下</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">def corr2d_multi_in_out_1_times_1(X， K)：</div><div class="line">c_i, h, w = X.shape           # 3, 3, 3 </div><div class="line">c_o = K.shape[0]              # 2</div><div class="line">X = X.reshape((c_o, h * w))   # (2, 3 * 3)</div><div class="line">K = K.reshape((c_o, c_i))     # (2, 3)</div><div class="line">Y = nd.dot(K, X)              # 全连接层的矩阵乘法</div><div class="line">return Y.reshape((c_o, h, w)) # (2, 3, 3)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-PyTorch代码实现"><a href="#2-PyTorch代码实现" class="headerlink" title="2. PyTorch代码实现"></a>2. PyTorch代码实现</h3><p>对不起沐神，我还是用的PyTorch，而不是MxNet。 🤦‍♂️ 🤦‍♂️ 🤦‍♂️</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CNN</span><span class="params">(nn.Module)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, in_dim, n_class)</span>:</span></div><div class="line">        super(CNN, self).__init__()</div><div class="line">        <span class="comment"># 表示将一个有序的模块写在一起</span></div><div class="line">        <span class="comment"># 相当于神经网络的层按顺序放一起方便结构显示</span></div><div class="line">        self.conv = nn.Sequential(</div><div class="line">            <span class="comment"># 卷积层，有五个参数：</span></div><div class="line">            <span class="comment"># in_channels: 表示的是输入卷积层的图片厚度</span></div><div class="line">            <span class="comment"># out_channels: 比偶奥数的是要输出的厚度</span></div><div class="line">            <span class="comment"># kernel_size: 表示的是卷积核的大小，一个数字的话表示长宽相等的卷积核</span></div><div class="line">            <span class="comment"># stride: 表示卷积核滑动的步长</span></div><div class="line">            <span class="comment"># padding: 表示在图片走位填充0的多少，padding=0表示不填充，padding=1四周都填充1维</span></div><div class="line">            nn.Conv2d(in_dim, <span class="number">6</span>, <span class="number">3</span>, stride=<span class="number">1</span>, padding=<span class="number">1</span>),</div><div class="line">            </div><div class="line">            <span class="comment"># 激活函数，里面有一个参数inplace</span></div><div class="line">            <span class="comment"># False，表示新创建一个对象对其修改</span></div><div class="line">            <span class="comment"># True，表示直接对这个对象进行修改</span></div><div class="line">            nn.ReLU(<span class="keyword">True</span>),</div><div class="line">            </div><div class="line">            <span class="comment"># 最大池化层，也有平均池化层等，里面的参数有:</span></div><div class="line">            <span class="comment"># kernel_size: 表示池化的窗口的大小，和卷积里面的kernel_size是一样的</span></div><div class="line">            <span class="comment"># stride: 也和卷积层里面一样，需要自己设置滑动步长</span></div><div class="line">            <span class="comment"># padding 和卷积层一样，默认是0</span></div><div class="line">            nn.MaxPool2d(<span class="number">2</span>, <span class="number">2</span>),</div><div class="line">            nn.Conv2d(<span class="number">6</span>, <span class="number">16</span>, <span class="number">5</span>, stride=<span class="number">1</span>, padding=<span class="number">0</span>),</div><div class="line">            nn.ReLU(<span class="keyword">True</span>),</div><div class="line">            nn.MaxPool2d(<span class="number">2</span>, <span class="number">2</span>)</div><div class="line">        )</div><div class="line">        </div><div class="line">        <span class="comment"># 全连接层</span></div><div class="line">        self.fc = nn.Sequential(</div><div class="line">            nn.Linear(<span class="number">400</span>, <span class="number">120</span>),</div><div class="line">            nn.Linear(<span class="number">120</span>, <span class="number">84</span>),</div><div class="line">            nn.Linear(<span class="number">84</span>, n_class)</div><div class="line">        )</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></div><div class="line">        out = self.conv(x)</div><div class="line">        <span class="comment"># batch_size</span></div><div class="line">        out = out.view(out.size(<span class="number">0</span>), <span class="number">-1</span>)</div><div class="line">        out = self.fc(out)</div><div class="line">        <span class="keyword">return</span> out</div><div class="line">    </div><div class="line"><span class="comment"># 定义loss和optimizer</span></div><div class="line">criterion = nn.CrossEntropyLoss()</div><div class="line">optimizer = optim.SGD(model.parameters(), lr=learning_rate)</div></pre></td></tr></table></figure>
   <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line">  <span class="comment"># 开始训练</span></div><div class="line">  <span class="keyword">for</span> epoch <span class="keyword">in</span> range(num_epoches):</div><div class="line">      print(<span class="string">'epoch &#123;&#125;'</span>.format(epoch + <span class="number">1</span>))</div><div class="line">      print(<span class="string">'*'</span> * <span class="number">10</span>)</div><div class="line">      running_loss = <span class="number">0.0</span></div><div class="line">      running_acc = <span class="number">0.0</span></div><div class="line">      <span class="keyword">for</span> i, data <span class="keyword">in</span> enumerate(train_loader, <span class="number">1</span>):</div><div class="line">          img, label = data</div><div class="line">          <span class="keyword">if</span> use_gpu:</div><div class="line">              img = img.cuda()</div><div class="line">              label = label.cuda()</div><div class="line">          img = Variable(img)</div><div class="line">          label = Variable(label)</div><div class="line">          <span class="comment"># 向前传播</span></div><div class="line">          out = model(img)</div><div class="line">          loss = criterion(out, label)</div><div class="line">          running_loss += loss.data[<span class="number">0</span>] * label.size(<span class="number">0</span>)</div><div class="line">          _, pred = torch.max(out, <span class="number">1</span>)</div><div class="line">          num_correct = (pred == label).sum()</div><div class="line">          accuracy = (pred == label).float().mean()</div><div class="line">          running_acc += num_correct.data[<span class="number">0</span>]</div><div class="line">          <span class="comment"># 向后传播</span></div><div class="line">          optimizer.zero_grad()</div><div class="line">          loss.backward()</div><div class="line">          optimizer.step()</div><div class="line">          </div><div class="line">          <span class="comment"># ========================= Log ======================</span></div><div class="line">          step = epoch * len(train_loader) + i</div><div class="line">          <span class="comment"># (1) Log the scalar values</span></div><div class="line">          info = &#123;<span class="string">'loss'</span> : loss.data[<span class="number">0</span>],</div><div class="line">                  <span class="string">'accuracy'</span> : accuracy.data[<span class="number">0</span>]&#125;</div><div class="line">          <span class="keyword">for</span> tag, value <span class="keyword">in</span> info.items():</div><div class="line">              logger.scalar_summary(tag, value, step)</div><div class="line">          </div><div class="line">          <span class="comment"># (2) Log values and gradients of the parameters (histogram)</span></div><div class="line">          <span class="keyword">for</span> tag, value <span class="keyword">in</span> model.named_parameters():</div><div class="line">              tag = tag.replace(<span class="string">'.'</span>, <span class="string">'/'</span>)</div><div class="line">              logger.histo_summary(tag, to_np(value), step)</div><div class="line">              logger.histo_summary(tag + <span class="string">'/grad'</span>, to_np(value.grad), step)</div><div class="line">              </div><div class="line">          <span class="comment"># (3) Log the images</span></div><div class="line">          info = &#123;<span class="string">'images'</span>: to_np(img.view(<span class="number">-1</span>, <span class="number">28</span>, <span class="number">28</span>)[:<span class="number">10</span>])&#125;</div><div class="line">          </div><div class="line">      </div><div class="line">          <span class="keyword">for</span> tag, images <span class="keyword">in</span> info.items():</div><div class="line">              logger.image_summary(tag, images, step)</div><div class="line">          <span class="keyword">if</span> i % <span class="number">300</span> == <span class="number">0</span>:</div><div class="line">              print(<span class="string">'[&#123;&#125;/&#123;&#125;] Loss: &#123;:.6f&#125;, Acc: &#123;:.6f&#125;'</span>.format(</div><div class="line">                  epoch + <span class="number">1</span>, num_epoches, running_loss / (batch_size * i),</div><div class="line">                  running_acc / (batch_size * i)))</div><div class="line">              </div><div class="line">  </div><div class="line">      print(<span class="string">'Finish &#123;&#125; epoch, Loss: &#123;:.6f&#125;, Acc: &#123;:.6f&#125;'</span>.format(</div><div class="line">          epoch + <span class="number">1</span>, running_loss / (len(train_dataset)), running_acc / (len(</div><div class="line">              train_dataset))))</div><div class="line">      </div><div class="line">      model.eval()</div><div class="line">      eval_loss = <span class="number">0</span></div><div class="line">      eval_acc = <span class="number">0</span></div><div class="line">      <span class="keyword">for</span> data <span class="keyword">in</span> test_loader:</div><div class="line">          img, label = data</div><div class="line">          <span class="keyword">if</span> use_gpu:</div><div class="line">              img = Variable(img, volatile=<span class="keyword">True</span>).cuda()</div><div class="line">              label = Variable(label, volatile=<span class="keyword">True</span>).cuda()</div><div class="line">          <span class="keyword">else</span>:</div><div class="line">              img = Variable(img, volatile=<span class="keyword">True</span>)</div><div class="line">              label = Variable(label, volatile=<span class="keyword">True</span>)</div><div class="line">          out = model(img)</div><div class="line">          loss = criterion(out, label)</div><div class="line">          eval_loss += loss.data[<span class="number">0</span>] * label.size(<span class="number">0</span>)</div><div class="line">          _, pred = torch.max(out, <span class="number">1</span>)</div><div class="line">          num_correct = (pred == label).sum()</div><div class="line">          eval_acc += num_correct.data[<span class="number">0</span>]</div><div class="line">      print(<span class="string">'Test Loss: &#123;:.6f&#125;, Acc: &#123;:.6f&#125;'</span>.format(eval_loss / (len(</div><div class="line">          test_dataset)), eval_acc / (len(test_dataset))))</div><div class="line">      print()</div><div class="line"></div><div class="line"><span class="comment"># 保存模型</span></div><div class="line">torch.save(model.state_dict(), <span class="string">'./model/cnn.pth'</span>)</div></pre></td></tr></table></figure>
 <h3 id="3-References"><a href="#3-References" class="headerlink" title="3. References"></a>3. References</h3><ul>
 <li><a href="https://morvanzhou.github.io/tutorials/machine-learning/torch/4-01-A-CNN/" target="_blank" rel="external">莫烦 - 什么是卷积神经网络 CNN (Convolutional Neural Network)</a></li>
 <li><a href="https://www.jianshu.com/p/9305d31962d8" target="_blank" rel="external">什么是感受野</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/28478034" target="_blank" rel="external">通俗理解『卷积』——从傅里叶变换到滤波器</a></li>
+<li><p><a href="http://justforhonor.com/2017/12/06/CNN-introduction/" target="_blank" rel="external">一文读懂卷积神经网络CNN</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/36278093" target="_blank" rel="external">一句话CNN：如何理解padding的作用和算法</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/32824193" target="_blank" rel="external">CNN入门讲解：什么是激活函数（Activation Function）</a></p>
+</li>
 </ul>
 
       
@@ -275,11 +421,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PyTorch</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CNN</a>
         		</li>
       		
 		</ul>
@@ -520,15 +666,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,14 +694,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
@@ -564,15 +702,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
+                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -584,10 +726,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -596,7 +734,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -605,6 +743,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
               </li>
             
             <div class="clearfix"></div>

@@ -194,7 +194,7 @@
 <li><p><code>f</code>是激活函数，通常使用<code>ReLUs</code>作为激活函数</p>
 </li>
 </ul>
-<h3 id="5-Wide-amp-Deep-Part"><a href="#5-Wide-amp-Deep-Part" class="headerlink" title="5. Wide&amp;Deep Part"></a>5. Wide&amp;Deep Part</h3><p>如上图中间部分所示，两个模型最后是合并到一起训练的，并将两个模型的结果的加权和作为最终的预测结果（最终喂给了同一个LR模型去训练），具体如下公式所示。<br>$$<br>P(Y=1 | x) = \sigma(w^T_{wide}[x, \phi(x)] + w^T_{deep}a^{(l_f)} + b)<br>$$<br>这里$\sigma(·)$是<code>sigmoid</code>激活函数。</p>
+<h3 id="5-Wide-amp-Deep-Part"><a href="#5-Wide-amp-Deep-Part" class="headerlink" title="5. Wide&amp;Deep Part"></a>5. Wide&amp;Deep Part</h3><p>如上图中间部分所示，两个模型最后是合并到一起训练的，并将两个模型的结果的加权和作为最终的预测结果（最终喂给了同一个LR模型去训练），具体如下公式所示。<br>$$<br>P(Y=1 | x) = \sigma(w^T<em>{wide}[x, \phi(x)] + w^T</em>{deep}a^{(l_f)} + b)<br>$$<br>这里$\sigma(·)$是<code>sigmoid</code>激活函数。</p>
 <p>在论文中作者也特别的提到，这里的<code>Joinly Training</code> 和<code>Ensemble</code>模型是不一样的。对于<code>Ensemble</code>模型，各个子模型是单独训练的，各自的预测结果不影响其他的子模型，只是最后大家的预测结果通过某一种方式，比如投票，加权等，最终得出一个预测结果。</p>
 <p><code>Jointly Training</code>的预测结果，最终会通过<code>Back-Propagating the Gradients</code>，传播到<code>Wide Part</code>和<code>Deep Part</code>。这里两部分模型采用了不同的训练方法：</p>
 <ul>
@@ -509,15 +509,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,14 +537,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
@@ -553,15 +545,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
+                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -573,10 +569,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -585,7 +577,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -594,6 +586,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
               </li>
             
             <div class="clearfix"></div>
