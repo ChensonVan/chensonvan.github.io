@@ -18,21 +18,21 @@
 <meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/1.png">
 <meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/2.png">
 <meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/4.png">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/correlation.svg">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/correlation.png">
 <meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/6.gif">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_pad.svg">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_stride.svg">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_pad.png">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_stride.png">
 <meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/v2-17708ef17113fc120b045db3de3dbaac_1200x500.jpg">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/pooling.svg">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/pooling.png">
 <meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20181201152629273-3649189.png">
 <meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175210803.png">
 <meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175232881.png">
 <meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175253686.png">
 <meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175342237.png">
 <meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175357577.png">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_multi_in.svg">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_1x1.svg">
-<meta property="og:updated_time" content="2019-01-20T10:11:03.937Z">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_multi_in.png">
+<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_1x1.png">
+<meta property="og:updated_time" content="2019-01-20T10:23:34.170Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深度学习笔记-CNN">
 <meta name="twitter:description" content="最近正在学习李沐沐神的动手学深度学习，目前听到了第五课，真的是非常好的课程。其实在学习之前也有断断续续的学过一些深度学习相关的东西，也会用PyTorch跑一些简单的模型，但仅限于此，对理论知识理解还是比较浅薄的，只是一个调包侠，所以这次学习打算认真学习一下相关的理论知识。 在学之前也有听了一下NG刚发布的深度学习课程，但对比了一下，还是觉得沐神的比较适合我，毕竟教学用的是中文，方便理解，且理论知识">
@@ -212,8 +212,8 @@
 <p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/4.png" alt="basic_block"></p>
 <h4 id="1-3-卷积-Convolutional"><a href="#1-3-卷积-Convolutional" class="headerlink" title="1. 3 卷积 - Convolutional"></a>1. 3 卷积 - Convolutional</h4><p>相对普通的神经网络，卷积神经网络在中的核心就是在于<strong>卷积计算层</strong>了，卷积神经网络包含了一个由<strong>卷积层和子采样层构成的特征抽取器</strong>。对于如何理解卷积，裂墙推荐知乎上的这篇文章<a href="https://zhuanlan.zhihu.com/p/28478034" target="_blank" rel="external">通俗理解『卷积』——从傅里叶变换到滤波器</a>，从<strong>信号处理</strong>这个本质的角度来理解卷积，非常棒👍。</p>
 <p>卷积的意思就是，神经网络是对图片上的一小块区域进行处理，这种做法<strong>加强了图片信息的连续性</strong>，使得神经网络可以看到图片上的图形，而非是一个个离散的点。下图是一个二维数组的卷积运算，中间的核是卷积中的kernel。</p>
-<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/correlation.svg" alt="conv"></p>
-<p>根据图片示意，我们将输入层蓝色的框框部分与kernel相乘，有：<br>$$<br>0 \times 0 + 1 \times 1 + 3 \times 2 + 4 \times 3 = 19<br>$$<br>当然此时只运算了一小部分，左边的输入数组中，蓝色的四格小框框可以逐步的往右边一格一格的挪动，然后到达最右边后，又往下移动一个格子，从左往右重复上面的运算，即有最右边的输出矩阵<br>$$<br>0 \times 0 + 1 \times 1 + 3 \times 2 + 4 \times 3 = 19 \<br>1 \times 0 + 2 \times 1 + 4 \times 2 + 5 \times 3 = 25 \<br>3 \times 0 + 4 \times 1 + 6 \times 2 + 7 \times 3 = 37 \<br>4 \times 0 + 5 \times 1 + 7 \times 2 + 8 \times 3 = 43<br>$$<br>以下是一个方便理解的动图</p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/correlation.png" alt="conv"></p>
+<p>根据图片示意，我们将输入层蓝色的框框部分与kernel相乘，有：<br>$$<br>0 \times 0 + 1 \times 1 + 3 \times 2 + 4 \times 3 = 19<br>$$<br>当然此时只运算了一小部分，左边的输入数组中，蓝色的四格小框框可以逐步的往右边一格一格的挪动，然后到达最右边后，又往下移动一个格子，从左往右重复上面的运算，即有最右边的输出矩阵<br>$$<br>0 \times 0 + 1 \times 1 + 3 \times 2 + 4 \times 3 = 19 \\<br>1 \times 0 + 2 \times 1 + 4 \times 2 + 5 \times 3 = 25 \\<br>3 \times 0 + 4 \times 1 + 6 \times 2 + 7 \times 3 = 37 \\<br>4 \times 0 + 5 \times 1 + 7 \times 2 + 8 \times 3 = 43<br>$$<br>以下是一个方便理解的动图</p>
 <p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/6.gif" alt="&quot;&quot;"></p>
 <p>以上就是卷积最基本的运算过程。在这个过程中，我们有一下几个<strong>假设</strong></p>
 <ul>
@@ -222,7 +222,7 @@
 </li>
 <li><p>周围的填充值 <strong>padding</strong></p>
 <p>其实这一部分上图中并没有体现出来这假设，padding的中文意思是填充，顾明思议就是在输入的二维矩阵的高和宽两侧填充元素（通常是0）。比如下图</p>
-<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_pad.svg" alt="padding"></p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_pad.png" alt="padding"></p>
 <p>这里假设padding为0，即在给定输入的二维矩阵的高和宽两侧分别填充了一圈0元素（<strong>是否可以是两圈或者多圈？</strong>）。</p>
 <p>相比上一张图，我们可以看到输出的二维矩阵也变大了一圈。</p>
 <p>其实对于给定的输入的二维矩阵、kernel大小，我们可以计算出输出矩阵的大小的</p>
@@ -239,7 +239,7 @@
 <p>输出宽度 = 输入宽度 - kernel宽度 + 填充的宽度 + 1</p>
 <p>输入高度 = 输入高度 - kernel高度 + 填充的高度 + 1</p>
 </blockquote>
-<p>这里回答一下上面我括号内加粗的问题，当给周围填充一圈0的时候，padding的值为 $p_w \&amp; p_h = 1$，当两圈0的时候为 $ p_w \&amp; p_h=2 $。通常对于padding的取值为：<br>$$<br>p_w = k_w - 1 \<br>p_h = k_h - 1<br>$$<br>这样我们就可以将输出的矩阵变大，尽量保持和和输入大小比较相近，避免多层卷积的时候，矩阵越来越小，相当于信息越来越少。</p>
+<p>这里回答一下上面我括号内加粗的问题，当给周围填充一圈0的时候，padding的值为 $p_w \&amp; p_h = 1$，当两圈0的时候为 $ p_w \&amp; p_h=2 $。通常对于padding的取值为：<br>$$<br>p_w = k_w - 1 \\<br>p_h = k_h - 1<br>$$<br>这样我们就可以将输出的矩阵变大，尽量保持和和输入大小比较相近，避免多层卷积的时候，矩阵越来越小，相当于信息越来越少。</p>
 <p>如果需要保持<strong>输入和输出相同的大小</strong>，则可以采用如下设定：</p>
 <ul>
 <li>kernel大小为奇数，在矩阵的高宽两侧都填充p值</li>
@@ -250,7 +250,7 @@
 </li>
 <li><p>滑动的步长 <strong>stride</strong></p>
 <p>这里我们假设输入框框从左往右和从上到下的移动步伐是1个小格子，实际上也可以是2个小格子，3个小格子等，这个参数在CNN中叫做stride。下图stride的大小为(2, 3)，即向右滑动的时候，每次2个格子，向下滑动的时候，每次3个格子。</p>
-<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_stride.svg" alt="stride"></p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_stride.png" alt="stride"></p>
 <p>注意到了在padding部分有一个常数项为1了吗，其实那个就是我们设定的stride的滑动大小，如果stride不为(1, 1)的时候，此时输入大小计算公式为：<br>$$<br>(n_h - k_h + p_h + s_h)/s_h \times (n_w - k_w + p_w + s_w)/s_w<br>$$</p>
 </li>
 </ul>
@@ -304,7 +304,7 @@
 <li>能够压缩图片，使特征图变小，同时保留了有用的信息，提取主要特征</li>
 </ul>
 <p>池化大致就是一个筛选过滤的过程，能过将左边的输出层中有用的信息筛选出给到输出层。计算方式和kernel的计算方式比较相似，也是给定一个(w, h)大小的pooling矩阵，从左向右，从上至下缓慢滑动计算输出一个值给到输出层。与kernel不同的时候，这不做矩阵运算，只是计算输入矩阵中当前局部矩阵(w, h)中的最大值或是均值，对应使用的就是<strong>最大池化</strong>或是<strong>均值池化</strong>。（<strong>滑动的大小时候如何设定？</strong>）</p>
-<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/pooling.svg" alt="pooling"></p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/pooling.png" alt="pooling"></p>
 <p>回答一下上述括号中的问题，池化层同样也有padding和stride的概念，方式和卷积中比较相似，就不一一解释了。</p>
 <h4 id="1-6-其他一些概念"><a href="#1-6-其他一些概念" class="headerlink" title="1.6 其他一些概念"></a>1.6 其他一些概念</h4><ul>
 <li><p>感受野 - Receptive Field</p>
@@ -347,10 +347,10 @@
 <li><p>多输入通道</p>
 <p>上面我们讨论的都是二维的数据矩阵，其实在图像处理过程中，图片通常都是<strong>三维的</strong>。除了图片的高度和宽度外，我们可以从颜色的角度，分为<strong>RGB</strong>三个颜色通道。即一个三维的矩阵，这里的第三维，我们称之为<strong>Channel</strong>，可以说的相互独立的(计算用到的kernel可以是独立的)。</p>
 <p>依旧是以上面的例子为例，从Channel一维升级到二维，计算过程如下：</p>
-<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_multi_in.svg" alt="2_channel"></p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_multi_in.png" alt="2_channel"></p>
 </li>
 </ul>
-<p>$$<br>channel_1:1 \times 1 + 2 \times 2 + 3 \times 4 + 5 \times 4 = 37 \<br>channel_2:0 \times 0 + 1 \times 1 + 3 \times 2 + 4 \times 4 = 19 \<br>output = 37 + 19 = 56<br>$$</p>
+<p>$$<br>channel_1:1 \times 1 + 2 \times 2 + 3 \times 4 + 5 \times 4 = 37 \\<br>channel_2:0 \times 0 + 1 \times 1 + 3 \times 2 + 4 \times 4 = 19 \\<br>output = 37 + 19 = 56<br>$$</p>
 <ul>
 <li><p>多输出通道</p>
 <p>上面的例子中，输出通道为1，即最终对每个独立channel运算的通道输出的结果做<strong>累加运算</strong>。</p>
@@ -362,7 +362,7 @@
 <p>这个卷积层很有意思，沐神在上课的过程中多次提到了该卷积。</p>
 <p>当kernel的size为(1, 1)的时候，说明此时kernel不对输入层做采样然后计算，即失去了卷积层可以识别高和宽维度上相邻元素构成的模式的功能。</p>
 <p>可以说此时一开始的二维层面上，kernel是没啥用的，但是在第三维channel的角度还是有用的，即我们可以用1x1的矩阵做<strong>维度变换</strong>。</p>
-<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_1x1.svg" alt="1_times_1_kernel"></p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_1x1.png" alt="1_times_1_kernel"></p>
 <p>上图中，输入通道的维度为(3, 3, 3)， kernel的维度为(2, 1, 1), 此时的输出通道为(2, 3, 3)。</p>
 <p>具体计算过程如下</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">def corr2d_multi_in_out_1_times_1(X， K)：</div><div class="line">c_i, h, w = X.shape           # 3, 3, 3 </div><div class="line">c_o = K.shape[0]              # 2</div><div class="line">X = X.reshape((c_o, h * w))   # (2, 3 * 3)</div><div class="line">K = K.reshape((c_o, c_i))     # (2, 3)</div><div class="line">Y = nd.dot(K, X)              # 全连接层的矩阵乘法</div><div class="line">return Y.reshape((c_o, h, w)) # (2, 3, 3)</div></pre></td></tr></table></figure>
@@ -658,11 +658,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -674,15 +674,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -694,6 +694,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
@@ -702,19 +710,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
+                <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -723,6 +731,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Pytorch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -743,18 +755,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
               </li>
             
             <div class="clearfix"></div>

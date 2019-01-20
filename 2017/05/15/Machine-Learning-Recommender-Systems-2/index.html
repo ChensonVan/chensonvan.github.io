@@ -227,7 +227,7 @@
 <p>Netflix的评分预测系统中，将每个用户的评分记录按照从早到晚进行排序，然后将用户最后的10%的评分记录作为测试集，90%的评分记录作为训练集。</p>
 </li>
 </ul>
-<h5 id="2-1-2-评分标准"><a href="#2-1-2-评分标准" class="headerlink" title="2.1.2 评分标准"></a>2.1.2 评分标准</h5><p>$$<br>RMSE = \frac {\sqrt {\sum<em>{(u, i) \in T} (r</em>{ui} - \hat r_{ui})^2 }} {|Test|}<br>$$</p>
+<h5 id="2-1-2-评分标准"><a href="#2-1-2-评分标准" class="headerlink" title="2.1.2 评分标准"></a>2.1.2 评分标准</h5><p>$$<br>RMSE = \frac {\sqrt {\sum_{(u, i) \in T} (r_{ui} - \hat r_{ui})^2 }} {|Test|}<br>$$</p>
 <h5 id="2-1-3-评分预测算法"><a href="#2-1-3-评分预测算法" class="headerlink" title="2.1.3 评分预测算法"></a>2.1.3 评分预测算法</h5><ul>
 <li><p><strong>平均值</strong></p>
 <p>最简单的方法：利用平均值预测用户对物品的评分</p>
@@ -254,7 +254,7 @@
 </li>
 </ul>
 <h5 id="2-1-4-基于领域的方法（基于用户的领域和基于物品的领域算法）"><a href="#2-1-4-基于领域的方法（基于用户的领域和基于物品的领域算法）" class="headerlink" title="2.1.4 基于领域的方法（基于用户的领域和基于物品的领域算法）"></a>2.1.4 基于领域的方法（基于用户的领域和基于物品的领域算法）</h5><ul>
-<li><p>基于用户的领域算法<br>$$<br>\hat r_{ui} = \overline r<em>u +<br>\frac {\sum</em>{v \in S(u, K) \bigcap N(i)} w<em>{uv}*(r</em>{vi} - \overline r<em>v)}<br>{\sum</em>{v \in S(u, K) \bigcap N(i)} |w_{uv}|}<br>$$<br><strong>E(r_u)</strong> 是用户u对他点评过的所有物品评分的平均值</p>
+<li><p>基于用户的领域算法<br>$$<br>\hat r_{ui} = \overline r_u +<br>\frac {\sum_{v \in S(u, K) \bigcap N(i)} w_{uv}<em>(r_{vi} - \overline r_v)}<br>{\sum_{v \in S(u, K) \bigcap N(i)} |w_{uv}|}<br>$$<br><em>*E(r_u)</em></em> 是用户u对他点评过的所有物品评分的平均值</p>
 <p><strong>S(u, K)</strong> 是和用户u兴趣最相似的K个用户的集合</p>
 <p><strong>N(i)</strong> 是对物品i点评过分数的用户集合</p>
 <p><strong>r_vi</strong> 是用户v对物品i的评分</p>
@@ -262,7 +262,7 @@
 <p><strong>w_uv</strong> 是用户u和v之间的相似度</p>
 <p>​</p>
 </li>
-<li><p>基于物品的领域算法<br>$$<br>\hat r_{ui} = \overline r<em>i +<br>\frac {\sum</em>{j \in S(i, K) \bigcap N(u)} w<em>{ij}*(r</em>{uj} - \overline r<em>i)}<br>{\sum</em>{j \in S(i, K) \bigcap N(u)} |w_{ij}|}<br>$$<br><strong>E(r_i)</strong> 是物品i的平均分，是所有用户对物品i点评过的分数的平均值</p>
+<li><p>基于物品的领域算法<br>$$<br>\hat r_{ui} = \overline r_i +<br>\frac {\sum_{j \in S(i, K) \bigcap N(u)} w_{ij}<em>(r_{uj} - \overline r_i)}<br>{\sum_{j \in S(i, K) \bigcap N(u)} |w_{ij}|}<br>$$<br><em>*E(r_i)</em></em> 是物品i的平均分，是所有用户对物品i点评过的分数的平均值</p>
 <p><strong>S(i, K)</strong> 是和物品i最相似的K个物品的集合</p>
 <p><strong>N(u)</strong> 是用户u点评多分数的物品集合</p>
 <p><strong>r_uj</strong> 是用户u对物品j的评分</p>
@@ -270,11 +270,11 @@
 </li>
 </ul>
 <h5 id="2-1-5-计算相似度"><a href="#2-1-5-计算相似度" class="headerlink" title="2.1.5 计算相似度"></a>2.1.5 计算相似度</h5><ul>
-<li><p><strong>余弦相似度</strong>（cosine similarity)<br>$$<br>w<em>{ij} = \frac {\sum</em>{u \in U} r<em>{ui} * r</em>{uj}} {\sqrt{\sum<em>{u \in U}r</em>{ui}^2 * \sum<em>{u \in U}r</em>{uj}^2}}<br>$$</p>
+<li><p><strong>余弦相似度</strong>（cosine similarity)<br>$$<br>w_{ij} = \frac {\sum_{u \in U} r_{ui} <em> r_{uj}} {\sqrt{\sum_{u \in U}r_{ui}^2 </em> \sum_{u \in U}r_{uj}^2}}<br>$$</p>
 </li>
-<li><p><strong>皮尔逊系数</strong>（pearson correlation）<br>$$<br>w<em>{ij} = \frac {\sum</em>{u \in U} (r_{ui} - \overline r<em>i) * (r</em>{uj} - \overline r<em>j)} {\sqrt{\sum</em>{u \in U}(r_{ui} - \overline r<em>i)^2 * \sum</em>{u \in U}(r_{uj} - \overline r_j)^2}}<br>$$</p>
+<li><p><strong>皮尔逊系数</strong>（pearson correlation）<br>$$<br>w_{ij} = \frac {\sum_{u \in U} (r_{ui} - \overline r_i) <em> (r_{uj} - \overline r_j)} {\sqrt{\sum_{u \in U}(r_{ui} - \overline r_i)^2 </em> \sum_{u \in U}(r_{uj} - \overline r_j)^2}}<br>$$</p>
 </li>
-<li><p><strong>修正余弦相似度</strong>（adjust cosine similarity）（<strong>在MovieLens数据集上效果最好</strong>）<br>$$<br>w<em>{ij} = \frac {\sum</em>{u \in U} (r_{ui} - \overline r<em>u) * (r</em>{uj} - \overline r<em>u)} {\sqrt{\sum</em>{u \in U}(r_{ui} - \overline r<em>u)^2 * \sum</em>{u \in U}(r_{uj} - \overline r_u)^2}}<br>$$</p>
+<li><p><strong>修正余弦相似度</strong>（adjust cosine similarity）（<strong>在MovieLens数据集上效果最好</strong>）<br>$$<br>w_{ij} = \frac {\sum_{u \in U} (r_{ui} - \overline r_u) <em> (r_{uj} - \overline r_u)} {\sqrt{\sum_{u \in U}(r_{ui} - \overline r_u)^2 </em> \sum_{u \in U}(r_{uj} - \overline r_u)^2}}<br>$$</p>
 </li>
 </ul>
 <h5 id="2-1-6-隐语义模型的矩阵分解模型-（Latent-Factor-Model"><a href="#2-1-6-隐语义模型的矩阵分解模型-（Latent-Factor-Model" class="headerlink" title="2.1.6 隐语义模型的矩阵分解模型 （Latent Factor Model)"></a>2.1.6 隐语义模型的矩阵分解模型 （Latent Factor Model)</h5><p>隐含类别模型、隐语义模型等，在本质上都是为了找出某一东西的潜在的主题或者分类。在推荐系统中，可以基于用户的行为利用隐语义模型，对item进行自动聚类，这样可以避免了人为分类的偏差。</p>
@@ -297,7 +297,7 @@
 <p>实际上，我们可以将所有的User看做列，把所有的Item看做行，构建一个mxn的二维矩阵，如下图</p>
 <p><img src="http://i4.buimg.com/567571/12e10375bb67ebd1.png" alt=""></p>
 <p>最左边的R矩阵是一个user-item矩阵，矩阵值Rij表示的是用户i对item j的兴趣度，或者是评分。那么我们的评分预测，就可以转换成<strong>对这个矩阵中的某些值（缺失值）的预测，同时需要保证我们的预测值对于这个矩阵的扰动的最小的。</strong>（即补全之后矩阵的特征值和补全之前的特征值相差不大，具体见<strong>SVD分解</strong>）</p>
-<p>而右边的两个P和Q矩阵就是LFM所做的，LFM算法从数据集汇总抽出若干个class，计算出所有user对这些class的感兴趣长度，即P矩阵。同时计算出所有item在这些class中的权重值，即Q矩阵。P矩阵作为user和item之间连接的桥梁，所以R可以表示为P矩阵和Q矩阵相乘。<br>$$<br>R_{UI} = P_U Q<em>I = \sum</em>{k=1}^K = P<em>{U,k}Q</em>{k,I}<br>$$<br>以下是LFM的优点：</p>
+<p>而右边的两个P和Q矩阵就是LFM所做的，LFM算法从数据集汇总抽出若干个class，计算出所有user对这些class的感兴趣长度，即P矩阵。同时计算出所有item在这些class中的权重值，即Q矩阵。P矩阵作为user和item之间连接的桥梁，所以R可以表示为P矩阵和Q矩阵相乘。<br>$$<br>R_{UI} = P_U Q_I = \sum_{k=1}^K = P_{U,k}Q_{k,I}<br>$$<br>以下是LFM的优点：</p>
 <ul>
 <li>不需要关心矩阵P是怎么构建的，即不需要如何给物品进行聚类、划分等（角度，粒度等）</li>
 <li>Q矩阵中，对于一个item并不是明确给划分到某一个分类，而是计算这个item属于这些所有类别的概率，值越大可能性越高</li>
@@ -310,7 +310,7 @@
 <ul>
 <li><p>首先需要对评分矩阵R中的缺失值进行简单的补全，比如用全局平均值，或者用户/物品的平均值补全，得到补全后的矩阵R’</p>
 </li>
-<li><p>得到补全后的矩阵R’，接着可以利用SVD分解，将R’分解成如下形式<br>$$<br>R’ = U^TSV    \<br>R \in R^{m <em> n}    \<br>U \in R^{k </em> m}    \<br>V \in R^{k <em> n}    \<br>S \in R^{k </em> k}<br>$$<br>U和V是两个正交矩阵，S是对角矩阵，对角线上的每一个元素都是矩阵的奇异值。</p>
+<li><p>得到补全后的矩阵R’，接着可以利用SVD分解，将R’分解成如下形式<br>$$<br>R’ = U^TSV    \\<br>R \in R^{m <em> n}    \\<br>U \in R^{k </em> m}    \\<br>V \in R^{k <em> n}    \\<br>S \in R^{k </em> k}<br>$$<br>U和V是两个正交矩阵，S是对角矩阵，对角线上的每一个元素都是矩阵的奇异值。</p>
 <p>为了对R’进行降维，可以取最大的f个奇异值组成对焦矩阵Sf，并且找到这个f个奇异值汇中每个值在U、V矩阵中对应的行和列，得到Uf、Vf，从而得到一个降维后的评分矩阵：<br>$$<br>R_f’=U_f^TS_fV_f<br>$$<br>该方法的一些缺点：</p>
 <ul>
 <li>在现实中，R矩阵基本上会是一个稀疏矩阵，即95%的数据是缺失的，同时该矩阵非常的大。一经补全，该矩阵就是一个稠密矩阵，储存开销非常的大</li>
@@ -322,12 +322,12 @@
 </li>
 <li><p><strong>Funk-SVD分解，即 Latent Factor Model（LFM）</strong></p>
 <p><a href="http://sifter.org/~simon/journal/20061211.html" target="_blank" rel="external">http://sifter.org/~simon/journal/20061211.html</a></p>
-<p>从矩阵的角度，将评分矩阵R分解成两个低纬度相乘：<br>$$<br>\hat R = P^TQ    \<br>R \in R^{m<em>n}    \<br>P \in R^{f</em>m}    \<br>Q \in R^{f<em>n}<br>$$<br>P、Q是两个降维后的矩阵，那么对于用户u对于物品i的评分的预测值可以^R(u, i) = ^r<em>ui，可以通过如下公式计算：<br>$$<br>\hat r</em>{ui} =b_{ui} +  \sum<em>fp</em>{uf}q<em>{if}    \<br>p</em>{uf} = P(u, f)     \<br>p_{if} = Q(i, f)<br>$$<br>Simon Funk-SVD的思想是直接通过训练集中的观察值，利用<em>*最小化RMSE</em></em>学习P、Q矩阵。</p>
-<p>损失函数的计算：<br>$$<br>C(p, q) = \sum<em>{(u, i) \in Train} (r</em>{ui} - \hat r<em>{ui})^2<br>= \sum</em>{(u, i) \in Train}(r<em>{ui} - \sum</em>{f=1}^Fp<em>{uf}q</em>{if})^2 +  \lambda(||p_u||^2 + ||q<em>i||^2)    \<br>\hat r</em>{ui} =  \mu + b_u + b_i + p_u^Tq_i<br>$$<br>要最小化上面的损失函数，可以利用<strong>随机梯度下降法</strong>。以下是简单的推导该公式</p>
+<p>从矩阵的角度，将评分矩阵R分解成两个低纬度相乘：<br>$$<br>\hat R = P^TQ    \\<br>R \in R^{m<em>n}    \\<br>P \in R^{f</em>m}    \\<br>Q \in R^{f<em>n}<br>$$<br>P、Q是两个降维后的矩阵，那么对于用户u对于物品i的评分的预测值可以^R(u, i) = ^r_ui，可以通过如下公式计算：<br>$$<br>\hat r_{ui} =b_{ui} +  \sum_fp_{uf}q_{if}    \\<br>p_{uf} = P(u, f)     \\<br>p_{if} = Q(i, f)<br>$$<br>Simon Funk-SVD的思想是直接通过训练集中的观察值，利用<em>*最小化RMSE</em></em>学习P、Q矩阵。</p>
+<p>损失函数的计算：<br>$$<br>C(p, q) = \sum_{(u, i) \in Train} (r_{ui} - \hat r_{ui})^2<br>= \sum_{(u, i) \in Train}(r_{ui} - \sum_{f=1}^Fp_{uf}q_{if})^2 +  \lambda(||p_u||^2 + ||q_i||^2)    \\<br>\hat r_{ui} =  \mu + b_u + b_i + p_u^Tq_i<br>$$<br>要最小化上面的损失函数，可以利用<strong>随机梯度下降法</strong>。以下是简单的推导该公式</p>
 <ol>
-<li><p>上面的cost function中欧两个参数p和q，首先 对他们分别求偏导，求出最快下降的方向<br>$$<br>\frac {∂C} {∂p<em>{uf}} = -2(r</em>{ui} - \sum<em>{f=1}^Fp</em>{uf}q<em>{if})*q</em>{ik} + 2\lambda p<em>{uk}    \<br>\frac {∂C} {∂q</em>{if}} = -2(r<em>{ui} - \sum</em>{f=1}^Fp<em>{uf}q</em>{if})*p<em>{uk} + 2\lambda q</em>{ik}<br>$$</p>
+<li><p>上面的cost function中欧两个参数p和q，首先 对他们分别求偏导，求出最快下降的方向<br>$$<br>\frac {∂C} {∂p_{uf}} = -2(r_{ui} - \sum_{f=1}^Fp_{uf}q_{if})<em>q_{ik} + 2\lambda p_{uk}    \\<br>\frac {∂C} {∂q_{if}} = -2(r_{ui} - \sum_{f=1}^Fp_{uf}q_{if})</em>p_{uk} + 2\lambda q_{ik}<br>$$</p>
 </li>
-<li><p>然后根据随机梯度下降法，需要将参数沿最快的下降方向前进，即可得到如下的递推公式：<br>$$<br>p<em>{uf} = p</em>{uf} + \alpha ((r<em>{ui} - \sum</em>{f=1}^Fp<em>{uf}q</em>{if}) <em> q<em>{ik} - \lambda p</em>{uk})    \<br>q<em>{if} = q</em>{uf} + \alpha ((r<em>{ui} - \sum</em>{f=1}^Fp<em>{uf}q</em>{if}) </em> p<em>{uk} - \lambda q</em>{ik})<br>$$</p>
+<li><p>然后根据随机梯度下降法，需要将参数沿最快的下降方向前进，即可得到如下的递推公式：<br>$$<br>p_{uf} = p_{uf} + \alpha ((r_{ui} - \sum_{f=1}^Fp_{uf}q_{if}) <em> q_{ik} - \lambda p_{uk})    \\<br>q_{if} = q_{uf} + \alpha ((r_{ui} - \sum_{f=1}^Fp_{uf}q_{if}) </em> p_{uk} - \lambda q_{ik})<br>$$</p>
 </li>
 </ol>
 </li>
@@ -365,7 +365,7 @@
 <li>$\lambda_2$和$\lambda_3$是我们手动设置的参数，MovieLens数据上，20比较合适</li>
 <li>R(u)和R(i)为用户urating过的物品的集合，和物品i被rating过用户的集合</li>
 </ul>
-<p>所以我们可以根据这些数据，计算出$b_u$和$b_i$b_i$（注意维度）<br>$$<br>b<em>i = \frac {\sum</em>{u \in R(u)}(r_{ui} - \mu)} {\lambda_2 + |R(i)|}    \<br>b<em>u = \frac {\sum</em>{i \in R(u)}(r_{ui} - \mu - b_i)} {\lambda_3 + |R(u)|}<br>$$<br>除了上面的方法，还有一种更为简便的方法计算$b_u$和$b_i$，就是直接使用user，item的rating的平均值估计<br>$$<br>b_u = \frac {\sum R(u)} {len(R(u))}    \<br>b_i = \frac {\sum R(i)} {len(R(i))}<br>$$</p>
+<p>所以我们可以根据这些数据，计算出$b_u$和$b_i$b_i$（注意维度）<br>$$<br>b_i = \frac {\sum_{u \in R(u)}(r_{ui} - \mu)} {\lambda_2 + |R(i)|}    \\<br>b_u = \frac {\sum_{i \in R(u)}(r_{ui} - \mu - b_i)} {\lambda_3 + |R(u)|}<br>$$<br>除了上面的方法，还有一种更为简便的方法计算$b_u$和$b_i$，就是直接使用user，item的rating的平均值估计<br>$$<br>b_u = \frac {\sum R(u)} {len(R(u))}    \\<br>b_i = \frac {\sum R(i)} {len(R(i))}<br>$$</p>
 <h5 id="Neighborhood-Models"><a href="#Neighborhood-Models" class="headerlink" title="Neighborhood Models"></a>Neighborhood Models</h5><ul>
 <li><strong>item-oriented algorithm:</strong> a rating is estimated using known rating made by the same user on similarity items.</li>
 </ul>
@@ -375,20 +375,20 @@
 <li><p><strong>Similarity measure between items</strong></p>
 <ul>
 <li><p><strong>Pearson correlation</strong></p>
-<p>计算物品i和j的相似度<br>$$<br>s<em>{ij} = \frac {n</em>{ij}} {n_{ij} + \lambda<em>2}ρ</em>{ij}<br>$$</p>
+<p>计算物品i和j的相似度<br>$$<br>s_{ij} = \frac {n_{ij}} {n_{ij} + \lambda_2}ρ_{ij}<br>$$</p>
 <ul>
 <li>n_ij 表示都对物品i和j评分过的用户的数量</li>
 <li>ρij是皮尔逊系数，通常取？？？</li>
 <li>λ2 通常取100</li>
 </ul>
 </li>
-<li><p>预测评分<br>$$<br>\hat r<em>{ui} = b</em>{ui} +<br>\frac{\sum<em>{j \in S^k(i; u)} s</em>{ij}(r<em>{ui} - b</em>{ui})}<br>{\sum<em>{j \in S^k(i; u)}s</em>{ij}}<br>$$</p>
+<li><p>预测评分<br>$$<br>\hat r_{ui} = b_{ui} +<br>\frac{\sum_{j \in S^k(i; u)} s_{ij}(r_{ui} - b_{ui})}<br>{\sum_{j \in S^k(i; u)}s_{ij}}<br>$$</p>
 </li>
 </ul>
 </li>
 </ul>
 <p>在用户u所有评分过的物品中，找到相似度和i最高的k个物品（k-neighbors），用$S^k(i; u)$表示</p>
-<p>但是这种算法还是有一些局限性，比如对于两个完全没有关系的物品之间的预测。或者是对于某些物品，最为相似的k个物品缺失，所以可以修正以上的公式（不是很明白这里）<br>$$<br>\hat r<em>{ui} = b</em>{ui} + \sum<em>{j \in S^k(i; u)} \theta^u</em>{ij}(r<em>{ui} - b</em>{ui})    \<br>{\theta^u_{ij} | j \in S^k(i; u)}<br>$$</p>
+<p>但是这种算法还是有一些局限性，比如对于两个完全没有关系的物品之间的预测。或者是对于某些物品，最为相似的k个物品缺失，所以可以修正以上的公式（不是很明白这里）<br>$$<br>\hat r_{ui} = b_{ui} + \sum_{j \in S^k(i; u)} \theta^u_{ij}(r_{ui} - b_{ui})    \\<br>\{\theta^u_{ij} | j \in S^k(i; u)\}<br>$$</p>
 
       
 
@@ -661,11 +661,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -677,15 +677,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -697,6 +697,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
@@ -705,19 +713,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
+                <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -726,6 +734,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Pytorch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -746,18 +758,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
               </li>
             
             <div class="clearfix"></div>
