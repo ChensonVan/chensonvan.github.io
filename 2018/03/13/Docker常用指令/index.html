@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://chenson.com">
   <title>Docker常用指令 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,8 +15,9 @@
 <meta property="og:url" content="http://chenson.com/2018/03/13/Docker常用指令/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="1. docker镜像构建12cd analyze-serverdocker build -t analyze-server . 2. 创建12345docker create analyze-server # 创建容器，但处于停止状态docker run analyze-server    # 创建并启动容器# 启动容器，并挂载文件docker run --name=analyze -p 500">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-6-25/93560929.jpg">
-<meta property="og:updated_time" content="2018-12-01T07:08:25.881Z">
+<meta property="og:updated_time" content="2018-12-25T09:52:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker常用指令">
 <meta name="twitter:description" content="1. docker镜像构建12cd analyze-serverdocker build -t analyze-server . 2. 创建12345docker create analyze-server # 创建容器，但处于停止状态docker run analyze-server    # 创建并启动容器# 启动容器，并挂载文件docker run --name=analyze -p 500">
@@ -39,7 +40,7 @@
   
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -154,7 +155,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Docker常用指令" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Docker常用指令" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -174,11 +175,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-docker镜像构建"><a href="#1-docker镜像构建" class="headerlink" title="1. docker镜像构建"></a>1. docker镜像构建</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd analyze-server</div><div class="line">docker build -t analyze-server .</div></pre></td></tr></table></figure>
-<h3 id="2-创建"><a href="#2-创建" class="headerlink" title="2. 创建"></a>2. 创建</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">docker create analyze-server # 创建容器，但处于停止状态</div><div class="line">docker run analyze-server    # 创建并启动容器</div><div class="line"></div><div class="line"># 启动容器，并挂载文件</div><div class="line">docker run --name=analyze -p 5000:5000 -p 8888:8888 -p 6006:6006 -v /Users/Chenson/Github/analyze-server/app/:/analyze-server/app/ -v /Users/Chenson/:/home/ -d analyze-server</div></pre></td></tr></table></figure>
-<h3 id="3-查看"><a href="#3-查看" class="headerlink" title="3. 查看"></a>3. 查看</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker ps     # 查看当前运行的容器</div><div class="line">docker ps -a  # 查看所有的容器，包括停止的</div></pre></td></tr></table></figure>
-<h3 id="4-启动"><a href="#4-启动" class="headerlink" title="4. 启动"></a>4. 启动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker start [NAME]/[CONTAINER ID] # 通过docker start来启动之前已经停止的docker_run镜像</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker exec -it analyze /bin/bash  # 在运行的容器中执行后面的指令</div></pre></td></tr></table></figure>
+        <h3 id="1-docker镜像构建"><a href="#1-docker镜像构建" class="headerlink" title="1. docker镜像构建"></a>1. docker镜像构建</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd analyze-server</span><br><span class="line">docker build -t analyze-server .</span><br></pre></td></tr></table></figure>
+<h3 id="2-创建"><a href="#2-创建" class="headerlink" title="2. 创建"></a>2. 创建</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker create analyze-server # 创建容器，但处于停止状态</span><br><span class="line">docker run analyze-server    # 创建并启动容器</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动容器，并挂载文件</span></span><br><span class="line">docker run --name=analyze -p 5000:5000 -p 8888:8888 -p 6006:6006 -v /Users/Chenson/Github/analyze-server/app/:/analyze-server/app/ -v /Users/Chenson/:/home/ -d analyze-server</span><br></pre></td></tr></table></figure>
+<h3 id="3-查看"><a href="#3-查看" class="headerlink" title="3. 查看"></a>3. 查看</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker ps     # 查看当前运行的容器</span><br><span class="line">docker ps -a  # 查看所有的容器，包括停止的</span><br></pre></td></tr></table></figure>
+<h3 id="4-启动"><a href="#4-启动" class="headerlink" title="4. 启动"></a>4. 启动</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start [NAME]/[CONTAINER ID] # 通过docker start来启动之前已经停止的docker_run镜像</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it analyze /bin/bash  # 在运行的容器中执行后面的指令</span><br><span class="line">docker exec -it -u root spark-notebook /bin/bash # 以root用户运行指令</span><br></pre></td></tr></table></figure>
 <p><img src="http://on8r6i4gg.bkt.clouddn.com/18-6-25/93560929.jpg" alt=""></p>
 <ul>
 <li><p>交互型容器：运行在前台，容器中使用exit命令或者调用docker stop、docker kill命令，容器停止。</p>
@@ -192,7 +193,7 @@
 </ul>
 </li>
 <li><p>后台型容器：运行在后台，创建后与终端无关，只有调用docker stop、docker kill命令才能使容器停止。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run --name=analyze -p 5000:5000 -p 8888:8888 -p 6006:6006 -v /Users/Chenson/Github/analyze-server/app/:/analyze-server/app/ -v /Users/Chenson/:/home/ -d analyze-server</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name=analyze -p 5000:5000 -p 8888:8888 -p 6006:6006 -v /Users/Chenson/Github/analyze-server/app/:/analyze-server/app/ -v /Users/Chenson/:/home/ -d analyze-server</span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>-d</code> 使容器在后台运行。</li>
 <li><code>-c</code> 可以调整容器的CPU优先级。默认情况下，所有的容器拥有相同的CPU优先级和CPU调度周期，但你可以通过Docker来通知内核给予某个或某几个容器更多的CPU计算周期。比如，我们使用-c或者–cpu-shares =0启动了C0、C1、C2三个容器，使用-c/–cpu-shares=512启动了C3容器。这时，C0、C1、C2可以100%的使用CPU资源（1024），但C3只能使用50%的CPU资源（512）。如果这个主机的操作系统是时序调度类型的，每个CPU时间片是100微秒，那么C0、C1、C2将完全使用掉这100微秒，而C3只能使用50微秒。</li>
@@ -201,12 +202,12 @@
 <a id="more"></a>
 </li>
 </ul>
-<h3 id="5-停止"><a href="#5-停止" class="headerlink" title="5. 停止"></a>5. 停止</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker stop [NAME]/[CONTAINER ID] # 退出容器</div><div class="line">docker kill [NAME]/[CONTAINER ID] # 强制停止一个容器</div></pre></td></tr></table></figure>
-<h3 id="6-删除"><a href="#6-删除" class="headerlink" title="6. 删除"></a>6. 删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">docker rm [NAME]/[CONTAINER ID] # 不能够删除一个正在运行的容器，会报错。需要先停止容器</div><div class="line"></div><div class="line">docker rm &apos;docker ps -a -q&apos; # 一次性删除所有容器 </div><div class="line">     					    # -a标志列出所有容器，</div><div class="line">     					    # -q标志只列出容器的ID，然后传递给rm命令，依次删除容器</div></pre></td></tr></table></figure>
+<h3 id="5-停止"><a href="#5-停止" class="headerlink" title="5. 停止"></a>5. 停止</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker stop [NAME]/[CONTAINER ID] # 退出容器</span><br><span class="line">docker kill [NAME]/[CONTAINER ID] # 强制停止一个容器</span><br></pre></td></tr></table></figure>
+<h3 id="6-删除"><a href="#6-删除" class="headerlink" title="6. 删除"></a>6. 删除</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker rm [NAME]/[CONTAINER ID] # 不能够删除一个正在运行的容器，会报错。需要先停止容器</span><br><span class="line"></span><br><span class="line">docker rm 'docker ps -a -q' # 一次性删除所有容器 </span><br><span class="line">     					    # -a标志列出所有容器，</span><br><span class="line">     					    # -q标志只列出容器的ID，然后传递给rm命令，依次删除容器</span><br></pre></td></tr></table></figure>
 <h3 id="7-References"><a href="#7-References" class="headerlink" title="7. References"></a>7. References</h3><ul>
-<li><p><a href="https://blog.csdn.net/u010246789/article/details/53958662" target="_blank" rel="external">Docker 简易教程</a></p>
+<li><p><a href="https://blog.csdn.net/u010246789/article/details/53958662" target="_blank" rel="noopener">Docker 简易教程</a></p>
 </li>
-<li><p><a href="http://www.runoob.com/docker/docker-command-manual.html" target="_blank" rel="external">Docker 命令大全</a></p>
+<li><p><a href="http://www.runoob.com/docker/docker-command-manual.html" target="_blank" rel="noopener">Docker 命令大全</a></p>
 </li>
 </ul>
 
@@ -469,18 +470,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -493,6 +482,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
@@ -501,11 +494,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -513,15 +502,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -530,10 +515,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -557,10 +538,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -569,11 +546,47 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -585,7 +598,7 @@
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

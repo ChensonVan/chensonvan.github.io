@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://chenson.com">
   <title>深度学习笔记-CNN | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="最近正在学习李沐沐神的动手学深度学习，目前听到了第五课，真的是非常好的课程。其实在学习之前也有断断续续的学过一些深度学习相关的东西，也会用PyTorch跑一些简单的模型，但仅限于此，对理论知识理解还是比较浅薄的，只是一个调包侠，所以这次学习打算认真学习一下相关的理论知识。 在学之前也有听了一下NG刚发布的深度学习课程，但对比了一下，还是觉得沐神的比较适合我，毕竟教学用的是中文，方便理解，且理论知识">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/1.png">
 <meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/2.png">
 <meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/4.png">
@@ -55,7 +56,7 @@
   
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -170,7 +171,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-深度学习笔记-CNN" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-深度学习笔记-CNN" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -190,7 +191,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近正在学习李沐沐神的<a href="https://space.bilibili.com/209599371/channel/detail?cid=23541" target="_blank" rel="external">动手学深度学习</a>，目前听到了第五课，真的是非常好的课程。其实在学习之前也有断断续续的学过一些深度学习相关的东西，也会用PyTorch跑一些简单的模型，但仅限于此，对理论知识理解还是比较浅薄的，只是一个调包侠，所以这次学习打算认真学习一下相关的理论知识。</p>
+        <p>最近正在学习李沐沐神的<a href="https://space.bilibili.com/209599371/channel/detail?cid=23541" target="_blank" rel="noopener">动手学深度学习</a>，目前听到了第五课，真的是非常好的课程。其实在学习之前也有断断续续的学过一些深度学习相关的东西，也会用PyTorch跑一些简单的模型，但仅限于此，对理论知识理解还是比较浅薄的，只是一个调包侠，所以这次学习打算认真学习一下相关的理论知识。</p>
 <p>在学之前也有听了一下NG刚发布的深度学习课程，但对比了一下，还是觉得沐神的比较适合我，毕竟教学用的是中文，方便理解，且理论知识深度合适，所以打算先听完这门课，以后理论方面有需要的，再听NG相关的课程。</p>
 <h3 id="1-卷积神经网络-CNN-Convolutional-Neural-Network"><a href="#1-卷积神经网络-CNN-Convolutional-Neural-Network" class="headerlink" title="1. 卷积神经网络 CNN - (Convolutional Neural Network)"></a>1. 卷积神经网络 CNN - (Convolutional Neural Network)</h3><h4 id="1-1-神经网络-Neural-Network"><a href="#1-1-神经网络-Neural-Network" class="headerlink" title="1.1 神经网络 - Neural Network"></a>1.1 神经网络 - Neural Network</h4><ul>
 <li><p>单个神经元</p>
@@ -210,10 +211,10 @@
 <p><code>输入层</code> —&gt; <code>卷积层</code> —&gt; <code>激活函数</code> —&gt; <code>池化层</code> —&gt; <code>全连接层</code></p>
 <p>中间三个部分可以看做是一个block，复杂的模型可以重复多个这样的block，里面参数可以是一样或者相似的。</p>
 <p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/4.png" alt="basic_block"></p>
-<h4 id="1-3-卷积-Convolutional"><a href="#1-3-卷积-Convolutional" class="headerlink" title="1. 3 卷积 - Convolutional"></a>1. 3 卷积 - Convolutional</h4><p>相对普通的神经网络，卷积神经网络在中的核心就是在于<strong>卷积计算层</strong>了，卷积神经网络包含了一个由<strong>卷积层和子采样层构成的特征抽取器</strong>。对于如何理解卷积，裂墙推荐知乎上的这篇文章<a href="https://zhuanlan.zhihu.com/p/28478034" target="_blank" rel="external">通俗理解『卷积』——从傅里叶变换到滤波器</a>，从<strong>信号处理</strong>这个本质的角度来理解卷积，非常棒👍。</p>
+<h4 id="1-3-卷积-Convolutional"><a href="#1-3-卷积-Convolutional" class="headerlink" title="1. 3 卷积 - Convolutional"></a>1. 3 卷积 - Convolutional</h4><p>相对普通的神经网络，卷积神经网络在中的核心就是在于<strong>卷积计算层</strong>了，卷积神经网络包含了一个由<strong>卷积层和子采样层构成的特征抽取器</strong>。对于如何理解卷积，裂墙推荐知乎上的这篇文章<a href="https://zhuanlan.zhihu.com/p/28478034" target="_blank" rel="noopener">通俗理解『卷积』——从傅里叶变换到滤波器</a>，从<strong>信号处理</strong>这个本质的角度来理解卷积，非常棒👍。</p>
 <p>卷积的意思就是，神经网络是对图片上的一小块区域进行处理，这种做法<strong>加强了图片信息的连续性</strong>，使得神经网络可以看到图片上的图形，而非是一个个离散的点。下图是一个二维数组的卷积运算，中间的核是卷积中的kernel。</p>
 <p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/correlation.png" alt="conv"></p>
-<p>根据图片示意，我们将输入层蓝色的框框部分与kernel相乘，有：<br>$$<br>0 \times 0 + 1 \times 1 + 3 \times 2 + 4 \times 3 = 19<br>$$<br>当然此时只运算了一小部分，左边的输入数组中，蓝色的四格小框框可以逐步的往右边一格一格的挪动，然后到达最右边后，又往下移动一个格子，从左往右重复上面的运算，即有最右边的输出矩阵<br>$$<br>0 \times 0 + 1 \times 1 + 3 \times 2 + 4 \times 3 = 19 \\<br>1 \times 0 + 2 \times 1 + 4 \times 2 + 5 \times 3 = 25 \\<br>3 \times 0 + 4 \times 1 + 6 \times 2 + 7 \times 3 = 37 \\<br>4 \times 0 + 5 \times 1 + 7 \times 2 + 8 \times 3 = 43<br>$$<br>以下是一个方便理解的动图</p>
+<p>根据图片示意，我们将输入层蓝色的框框部分与kernel相乘，有：<br>$$<br>0 \times 0 + 1 \times 1 + 3 \times 2 + 4 \times 3 = 19<br>$$<br>当然此时只运算了一小部分，左边的输入数组中，蓝色的四格小框框可以逐步的往右边一格一格的挪动，然后到达最右边后，又往下移动一个格子，从左往右重复上面的运算，即有最右边的输出矩阵<br>$$<br>0 \times 0 + 1 \times 1 + 3 \times 2 + 4 \times 3 = 19 \<br>1 \times 0 + 2 \times 1 + 4 \times 2 + 5 \times 3 = 25 \<br>3 \times 0 + 4 \times 1 + 6 \times 2 + 7 \times 3 = 37 \<br>4 \times 0 + 5 \times 1 + 7 \times 2 + 8 \times 3 = 43<br>$$<br>以下是一个方便理解的动图</p>
 <p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/6.gif" alt="&quot;&quot;"></p>
 <p>以上就是卷积最基本的运算过程。在这个过程中，我们有一下几个<strong>假设</strong></p>
 <ul>
@@ -239,7 +240,7 @@
 <p>输出宽度 = 输入宽度 - kernel宽度 + 填充的宽度 + 1</p>
 <p>输入高度 = 输入高度 - kernel高度 + 填充的高度 + 1</p>
 </blockquote>
-<p>这里回答一下上面我括号内加粗的问题，当给周围填充一圈0的时候，padding的值为 $p_w \&amp; p_h = 1$，当两圈0的时候为 $ p_w \&amp; p_h=2 $。通常对于padding的取值为：<br>$$<br>p_w = k_w - 1 \\<br>p_h = k_h - 1<br>$$<br>这样我们就可以将输出的矩阵变大，尽量保持和和输入大小比较相近，避免多层卷积的时候，矩阵越来越小，相当于信息越来越少。</p>
+<p>这里回答一下上面我括号内加粗的问题，当给周围填充一圈0的时候，padding的值为 $p_w \&amp; p_h = 1$，当两圈0的时候为 $ p_w \&amp; p_h=2 $。通常对于padding的取值为：<br>$$<br>p_w = k_w - 1 \<br>p_h = k_h - 1<br>$$<br>这样我们就可以将输出的矩阵变大，尽量保持和和输入大小比较相近，避免多层卷积的时候，矩阵越来越小，相当于信息越来越少。</p>
 <p>如果需要保持<strong>输入和输出相同的大小</strong>，则可以采用如下设定：</p>
 <ul>
 <li>kernel大小为奇数，在矩阵的高宽两侧都填充p值</li>
@@ -350,7 +351,7 @@
 <p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_multi_in.png" alt="2_channel"></p>
 </li>
 </ul>
-<p>$$<br>channel_1:1 \times 1 + 2 \times 2 + 3 \times 4 + 5 \times 4 = 37 \\<br>channel_2:0 \times 0 + 1 \times 1 + 3 \times 2 + 4 \times 4 = 19 \\<br>output = 37 + 19 = 56<br>$$</p>
+<p>$$<br>channel_1:1 \times 1 + 2 \times 2 + 3 \times 4 + 5 \times 4 = 37 \<br>channel_2:0 \times 0 + 1 \times 1 + 3 \times 2 + 4 \times 4 = 19 \<br>output = 37 + 19 = 56<br>$$</p>
 <ul>
 <li><p>多输出通道</p>
 <p>上面的例子中，输出通道为1，即最终对每个独立channel运算的通道输出的结果做<strong>累加运算</strong>。</p>
@@ -365,19 +366,19 @@
 <p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_1x1.png" alt="1_times_1_kernel"></p>
 <p>上图中，输入通道的维度为(3, 3, 3)， kernel的维度为(2, 1, 1), 此时的输出通道为(2, 3, 3)。</p>
 <p>具体计算过程如下</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">def corr2d_multi_in_out_1_times_1(X， K)：</div><div class="line">c_i, h, w = X.shape           # 3, 3, 3 </div><div class="line">c_o = K.shape[0]              # 2</div><div class="line">X = X.reshape((c_o, h * w))   # (2, 3 * 3)</div><div class="line">K = K.reshape((c_o, c_i))     # (2, 3)</div><div class="line">Y = nd.dot(K, X)              # 全连接层的矩阵乘法</div><div class="line">return Y.reshape((c_o, h, w)) # (2, 3, 3)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">corr2d_multi_in_out_1_times_1</span><span class="params">(X， K)</span>：</span></span><br><span class="line">c_i, h, w = X.shape           # 3, 3, 3 </span><br><span class="line">c_o = K.shape[<span class="number">0</span>]              <span class="comment"># 2</span></span><br><span class="line">X = X.reshape((c_o, h * w))   <span class="comment"># (2, 3 * 3)</span></span><br><span class="line">K = K.reshape((c_o, c_i))     <span class="comment"># (2, 3)</span></span><br><span class="line">Y = nd.dot(K, X)              <span class="comment"># 全连接层的矩阵乘法</span></span><br><span class="line"><span class="keyword">return</span> Y.reshape((c_o, h, w)) <span class="comment"># (2, 3, 3)</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="2-PyTorch代码实现"><a href="#2-PyTorch代码实现" class="headerlink" title="2. PyTorch代码实现"></a>2. PyTorch代码实现</h3><p>对不起沐神，我还是用的PyTorch，而不是MxNet。 🤦‍♂️ 🤦‍♂️ 🤦‍♂️</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CNN</span><span class="params">(nn.Module)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, in_dim, n_class)</span>:</span></div><div class="line">        super(CNN, self).__init__()</div><div class="line">        <span class="comment"># 表示将一个有序的模块写在一起</span></div><div class="line">        <span class="comment"># 相当于神经网络的层按顺序放一起方便结构显示</span></div><div class="line">        self.conv = nn.Sequential(</div><div class="line">            <span class="comment"># 卷积层，有五个参数：</span></div><div class="line">            <span class="comment"># in_channels: 表示的是输入卷积层的图片厚度</span></div><div class="line">            <span class="comment"># out_channels: 比偶奥数的是要输出的厚度</span></div><div class="line">            <span class="comment"># kernel_size: 表示的是卷积核的大小，一个数字的话表示长宽相等的卷积核</span></div><div class="line">            <span class="comment"># stride: 表示卷积核滑动的步长</span></div><div class="line">            <span class="comment"># padding: 表示在图片走位填充0的多少，padding=0表示不填充，padding=1四周都填充1维</span></div><div class="line">            nn.Conv2d(in_dim, <span class="number">6</span>, <span class="number">3</span>, stride=<span class="number">1</span>, padding=<span class="number">1</span>),</div><div class="line">            </div><div class="line">            <span class="comment"># 激活函数，里面有一个参数inplace</span></div><div class="line">            <span class="comment"># False，表示新创建一个对象对其修改</span></div><div class="line">            <span class="comment"># True，表示直接对这个对象进行修改</span></div><div class="line">            nn.ReLU(<span class="keyword">True</span>),</div><div class="line">            </div><div class="line">            <span class="comment"># 最大池化层，也有平均池化层等，里面的参数有:</span></div><div class="line">            <span class="comment"># kernel_size: 表示池化的窗口的大小，和卷积里面的kernel_size是一样的</span></div><div class="line">            <span class="comment"># stride: 也和卷积层里面一样，需要自己设置滑动步长</span></div><div class="line">            <span class="comment"># padding 和卷积层一样，默认是0</span></div><div class="line">            nn.MaxPool2d(<span class="number">2</span>, <span class="number">2</span>),</div><div class="line">            nn.Conv2d(<span class="number">6</span>, <span class="number">16</span>, <span class="number">5</span>, stride=<span class="number">1</span>, padding=<span class="number">0</span>),</div><div class="line">            nn.ReLU(<span class="keyword">True</span>),</div><div class="line">            nn.MaxPool2d(<span class="number">2</span>, <span class="number">2</span>)</div><div class="line">        )</div><div class="line">        </div><div class="line">        <span class="comment"># 全连接层</span></div><div class="line">        self.fc = nn.Sequential(</div><div class="line">            nn.Linear(<span class="number">400</span>, <span class="number">120</span>),</div><div class="line">            nn.Linear(<span class="number">120</span>, <span class="number">84</span>),</div><div class="line">            nn.Linear(<span class="number">84</span>, n_class)</div><div class="line">        )</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></div><div class="line">        out = self.conv(x)</div><div class="line">        <span class="comment"># batch_size</span></div><div class="line">        out = out.view(out.size(<span class="number">0</span>), <span class="number">-1</span>)</div><div class="line">        out = self.fc(out)</div><div class="line">        <span class="keyword">return</span> out</div><div class="line">    </div><div class="line"><span class="comment"># 定义loss和optimizer</span></div><div class="line">criterion = nn.CrossEntropyLoss()</div><div class="line">optimizer = optim.SGD(model.parameters(), lr=learning_rate)</div></pre></td></tr></table></figure>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line">  <span class="comment"># 开始训练</span></div><div class="line">  <span class="keyword">for</span> epoch <span class="keyword">in</span> range(num_epoches):</div><div class="line">      print(<span class="string">'epoch &#123;&#125;'</span>.format(epoch + <span class="number">1</span>))</div><div class="line">      print(<span class="string">'*'</span> * <span class="number">10</span>)</div><div class="line">      running_loss = <span class="number">0.0</span></div><div class="line">      running_acc = <span class="number">0.0</span></div><div class="line">      <span class="keyword">for</span> i, data <span class="keyword">in</span> enumerate(train_loader, <span class="number">1</span>):</div><div class="line">          img, label = data</div><div class="line">          <span class="keyword">if</span> use_gpu:</div><div class="line">              img = img.cuda()</div><div class="line">              label = label.cuda()</div><div class="line">          img = Variable(img)</div><div class="line">          label = Variable(label)</div><div class="line">          <span class="comment"># 向前传播</span></div><div class="line">          out = model(img)</div><div class="line">          loss = criterion(out, label)</div><div class="line">          running_loss += loss.data[<span class="number">0</span>] * label.size(<span class="number">0</span>)</div><div class="line">          _, pred = torch.max(out, <span class="number">1</span>)</div><div class="line">          num_correct = (pred == label).sum()</div><div class="line">          accuracy = (pred == label).float().mean()</div><div class="line">          running_acc += num_correct.data[<span class="number">0</span>]</div><div class="line">          <span class="comment"># 向后传播</span></div><div class="line">          optimizer.zero_grad()</div><div class="line">          loss.backward()</div><div class="line">          optimizer.step()</div><div class="line">          </div><div class="line">          <span class="comment"># ========================= Log ======================</span></div><div class="line">          step = epoch * len(train_loader) + i</div><div class="line">          <span class="comment"># (1) Log the scalar values</span></div><div class="line">          info = &#123;<span class="string">'loss'</span> : loss.data[<span class="number">0</span>],</div><div class="line">                  <span class="string">'accuracy'</span> : accuracy.data[<span class="number">0</span>]&#125;</div><div class="line">          <span class="keyword">for</span> tag, value <span class="keyword">in</span> info.items():</div><div class="line">              logger.scalar_summary(tag, value, step)</div><div class="line">          </div><div class="line">          <span class="comment"># (2) Log values and gradients of the parameters (histogram)</span></div><div class="line">          <span class="keyword">for</span> tag, value <span class="keyword">in</span> model.named_parameters():</div><div class="line">              tag = tag.replace(<span class="string">'.'</span>, <span class="string">'/'</span>)</div><div class="line">              logger.histo_summary(tag, to_np(value), step)</div><div class="line">              logger.histo_summary(tag + <span class="string">'/grad'</span>, to_np(value.grad), step)</div><div class="line">              </div><div class="line">          <span class="comment"># (3) Log the images</span></div><div class="line">          info = &#123;<span class="string">'images'</span>: to_np(img.view(<span class="number">-1</span>, <span class="number">28</span>, <span class="number">28</span>)[:<span class="number">10</span>])&#125;</div><div class="line">          </div><div class="line">      </div><div class="line">          <span class="keyword">for</span> tag, images <span class="keyword">in</span> info.items():</div><div class="line">              logger.image_summary(tag, images, step)</div><div class="line">          <span class="keyword">if</span> i % <span class="number">300</span> == <span class="number">0</span>:</div><div class="line">              print(<span class="string">'[&#123;&#125;/&#123;&#125;] Loss: &#123;:.6f&#125;, Acc: &#123;:.6f&#125;'</span>.format(</div><div class="line">                  epoch + <span class="number">1</span>, num_epoches, running_loss / (batch_size * i),</div><div class="line">                  running_acc / (batch_size * i)))</div><div class="line">              </div><div class="line">  </div><div class="line">      print(<span class="string">'Finish &#123;&#125; epoch, Loss: &#123;:.6f&#125;, Acc: &#123;:.6f&#125;'</span>.format(</div><div class="line">          epoch + <span class="number">1</span>, running_loss / (len(train_dataset)), running_acc / (len(</div><div class="line">              train_dataset))))</div><div class="line">      </div><div class="line">      model.eval()</div><div class="line">      eval_loss = <span class="number">0</span></div><div class="line">      eval_acc = <span class="number">0</span></div><div class="line">      <span class="keyword">for</span> data <span class="keyword">in</span> test_loader:</div><div class="line">          img, label = data</div><div class="line">          <span class="keyword">if</span> use_gpu:</div><div class="line">              img = Variable(img, volatile=<span class="keyword">True</span>).cuda()</div><div class="line">              label = Variable(label, volatile=<span class="keyword">True</span>).cuda()</div><div class="line">          <span class="keyword">else</span>:</div><div class="line">              img = Variable(img, volatile=<span class="keyword">True</span>)</div><div class="line">              label = Variable(label, volatile=<span class="keyword">True</span>)</div><div class="line">          out = model(img)</div><div class="line">          loss = criterion(out, label)</div><div class="line">          eval_loss += loss.data[<span class="number">0</span>] * label.size(<span class="number">0</span>)</div><div class="line">          _, pred = torch.max(out, <span class="number">1</span>)</div><div class="line">          num_correct = (pred == label).sum()</div><div class="line">          eval_acc += num_correct.data[<span class="number">0</span>]</div><div class="line">      print(<span class="string">'Test Loss: &#123;:.6f&#125;, Acc: &#123;:.6f&#125;'</span>.format(eval_loss / (len(</div><div class="line">          test_dataset)), eval_acc / (len(test_dataset))))</div><div class="line">      print()</div><div class="line"></div><div class="line"><span class="comment"># 保存模型</span></div><div class="line">torch.save(model.state_dict(), <span class="string">'./model/cnn.pth'</span>)</div></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CNN</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, in_dim, n_class)</span>:</span></span><br><span class="line">        super(CNN, self).__init__()</span><br><span class="line">        <span class="comment"># 表示将一个有序的模块写在一起</span></span><br><span class="line">        <span class="comment"># 相当于神经网络的层按顺序放一起方便结构显示</span></span><br><span class="line">        self.conv = nn.Sequential(</span><br><span class="line">            <span class="comment"># 卷积层，有五个参数：</span></span><br><span class="line">            <span class="comment"># in_channels: 表示的是输入卷积层的图片厚度</span></span><br><span class="line">            <span class="comment"># out_channels: 比偶奥数的是要输出的厚度</span></span><br><span class="line">            <span class="comment"># kernel_size: 表示的是卷积核的大小，一个数字的话表示长宽相等的卷积核</span></span><br><span class="line">            <span class="comment"># stride: 表示卷积核滑动的步长</span></span><br><span class="line">            <span class="comment"># padding: 表示在图片走位填充0的多少，padding=0表示不填充，padding=1四周都填充1维</span></span><br><span class="line">            nn.Conv2d(in_dim, <span class="number">6</span>, <span class="number">3</span>, stride=<span class="number">1</span>, padding=<span class="number">1</span>),</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 激活函数，里面有一个参数inplace</span></span><br><span class="line">            <span class="comment"># False，表示新创建一个对象对其修改</span></span><br><span class="line">            <span class="comment"># True，表示直接对这个对象进行修改</span></span><br><span class="line">            nn.ReLU(<span class="keyword">True</span>),</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 最大池化层，也有平均池化层等，里面的参数有:</span></span><br><span class="line">            <span class="comment"># kernel_size: 表示池化的窗口的大小，和卷积里面的kernel_size是一样的</span></span><br><span class="line">            <span class="comment"># stride: 也和卷积层里面一样，需要自己设置滑动步长</span></span><br><span class="line">            <span class="comment"># padding 和卷积层一样，默认是0</span></span><br><span class="line">            nn.MaxPool2d(<span class="number">2</span>, <span class="number">2</span>),</span><br><span class="line">            nn.Conv2d(<span class="number">6</span>, <span class="number">16</span>, <span class="number">5</span>, stride=<span class="number">1</span>, padding=<span class="number">0</span>),</span><br><span class="line">            nn.ReLU(<span class="keyword">True</span>),</span><br><span class="line">            nn.MaxPool2d(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line">        )</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 全连接层</span></span><br><span class="line">        self.fc = nn.Sequential(</span><br><span class="line">            nn.Linear(<span class="number">400</span>, <span class="number">120</span>),</span><br><span class="line">            nn.Linear(<span class="number">120</span>, <span class="number">84</span>),</span><br><span class="line">            nn.Linear(<span class="number">84</span>, n_class)</span><br><span class="line">        )</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        out = self.conv(x)</span><br><span class="line">        <span class="comment"># batch_size</span></span><br><span class="line">        out = out.view(out.size(<span class="number">0</span>), <span class="number">-1</span>)</span><br><span class="line">        out = self.fc(out)</span><br><span class="line">        <span class="keyword">return</span> out</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 定义loss和optimizer</span></span><br><span class="line">criterion = nn.CrossEntropyLoss()</span><br><span class="line">optimizer = optim.SGD(model.parameters(), lr=learning_rate)</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment"># 开始训练</span></span><br><span class="line">  <span class="keyword">for</span> epoch <span class="keyword">in</span> range(num_epoches):</span><br><span class="line">      print(<span class="string">'epoch &#123;&#125;'</span>.format(epoch + <span class="number">1</span>))</span><br><span class="line">      print(<span class="string">'*'</span> * <span class="number">10</span>)</span><br><span class="line">      running_loss = <span class="number">0.0</span></span><br><span class="line">      running_acc = <span class="number">0.0</span></span><br><span class="line">      <span class="keyword">for</span> i, data <span class="keyword">in</span> enumerate(train_loader, <span class="number">1</span>):</span><br><span class="line">          img, label = data</span><br><span class="line">          <span class="keyword">if</span> use_gpu:</span><br><span class="line">              img = img.cuda()</span><br><span class="line">              label = label.cuda()</span><br><span class="line">          img = Variable(img)</span><br><span class="line">          label = Variable(label)</span><br><span class="line">          <span class="comment"># 向前传播</span></span><br><span class="line">          out = model(img)</span><br><span class="line">          loss = criterion(out, label)</span><br><span class="line">          running_loss += loss.data[<span class="number">0</span>] * label.size(<span class="number">0</span>)</span><br><span class="line">          _, pred = torch.max(out, <span class="number">1</span>)</span><br><span class="line">          num_correct = (pred == label).sum()</span><br><span class="line">          accuracy = (pred == label).float().mean()</span><br><span class="line">          running_acc += num_correct.data[<span class="number">0</span>]</span><br><span class="line">          <span class="comment"># 向后传播</span></span><br><span class="line">          optimizer.zero_grad()</span><br><span class="line">          loss.backward()</span><br><span class="line">          optimizer.step()</span><br><span class="line">          </span><br><span class="line">          <span class="comment"># ========================= Log ======================</span></span><br><span class="line">          step = epoch * len(train_loader) + i</span><br><span class="line">          <span class="comment"># (1) Log the scalar values</span></span><br><span class="line">          info = &#123;<span class="string">'loss'</span> : loss.data[<span class="number">0</span>],</span><br><span class="line">                  <span class="string">'accuracy'</span> : accuracy.data[<span class="number">0</span>]&#125;</span><br><span class="line">          <span class="keyword">for</span> tag, value <span class="keyword">in</span> info.items():</span><br><span class="line">              logger.scalar_summary(tag, value, step)</span><br><span class="line">          </span><br><span class="line">          <span class="comment"># (2) Log values and gradients of the parameters (histogram)</span></span><br><span class="line">          <span class="keyword">for</span> tag, value <span class="keyword">in</span> model.named_parameters():</span><br><span class="line">              tag = tag.replace(<span class="string">'.'</span>, <span class="string">'/'</span>)</span><br><span class="line">              logger.histo_summary(tag, to_np(value), step)</span><br><span class="line">              logger.histo_summary(tag + <span class="string">'/grad'</span>, to_np(value.grad), step)</span><br><span class="line">              </span><br><span class="line">          <span class="comment"># (3) Log the images</span></span><br><span class="line">          info = &#123;<span class="string">'images'</span>: to_np(img.view(<span class="number">-1</span>, <span class="number">28</span>, <span class="number">28</span>)[:<span class="number">10</span>])&#125;</span><br><span class="line">          </span><br><span class="line">      </span><br><span class="line">          <span class="keyword">for</span> tag, images <span class="keyword">in</span> info.items():</span><br><span class="line">              logger.image_summary(tag, images, step)</span><br><span class="line">          <span class="keyword">if</span> i % <span class="number">300</span> == <span class="number">0</span>:</span><br><span class="line">              print(<span class="string">'[&#123;&#125;/&#123;&#125;] Loss: &#123;:.6f&#125;, Acc: &#123;:.6f&#125;'</span>.format(</span><br><span class="line">                  epoch + <span class="number">1</span>, num_epoches, running_loss / (batch_size * i),</span><br><span class="line">                  running_acc / (batch_size * i)))</span><br><span class="line">              </span><br><span class="line">  </span><br><span class="line">      print(<span class="string">'Finish &#123;&#125; epoch, Loss: &#123;:.6f&#125;, Acc: &#123;:.6f&#125;'</span>.format(</span><br><span class="line">          epoch + <span class="number">1</span>, running_loss / (len(train_dataset)), running_acc / (len(</span><br><span class="line">              train_dataset))))</span><br><span class="line">      </span><br><span class="line">      model.eval()</span><br><span class="line">      eval_loss = <span class="number">0</span></span><br><span class="line">      eval_acc = <span class="number">0</span></span><br><span class="line">      <span class="keyword">for</span> data <span class="keyword">in</span> test_loader:</span><br><span class="line">          img, label = data</span><br><span class="line">          <span class="keyword">if</span> use_gpu:</span><br><span class="line">              img = Variable(img, volatile=<span class="keyword">True</span>).cuda()</span><br><span class="line">              label = Variable(label, volatile=<span class="keyword">True</span>).cuda()</span><br><span class="line">          <span class="keyword">else</span>:</span><br><span class="line">              img = Variable(img, volatile=<span class="keyword">True</span>)</span><br><span class="line">              label = Variable(label, volatile=<span class="keyword">True</span>)</span><br><span class="line">          out = model(img)</span><br><span class="line">          loss = criterion(out, label)</span><br><span class="line">          eval_loss += loss.data[<span class="number">0</span>] * label.size(<span class="number">0</span>)</span><br><span class="line">          _, pred = torch.max(out, <span class="number">1</span>)</span><br><span class="line">          num_correct = (pred == label).sum()</span><br><span class="line">          eval_acc += num_correct.data[<span class="number">0</span>]</span><br><span class="line">      print(<span class="string">'Test Loss: &#123;:.6f&#125;, Acc: &#123;:.6f&#125;'</span>.format(eval_loss / (len(</span><br><span class="line">          test_dataset)), eval_acc / (len(test_dataset))))</span><br><span class="line">      print()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存模型</span></span><br><span class="line">torch.save(model.state_dict(), <span class="string">'./model/cnn.pth'</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="3-References"><a href="#3-References" class="headerlink" title="3. References"></a>3. References</h3><ul>
-<li><a href="https://morvanzhou.github.io/tutorials/machine-learning/torch/4-01-A-CNN/" target="_blank" rel="external">莫烦 - 什么是卷积神经网络 CNN (Convolutional Neural Network)</a></li>
-<li><a href="https://www.jianshu.com/p/9305d31962d8" target="_blank" rel="external">什么是感受野</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/28478034" target="_blank" rel="external">通俗理解『卷积』——从傅里叶变换到滤波器</a></li>
-<li><a href="http://justforhonor.com/2017/12/06/CNN-introduction/" target="_blank" rel="external">一文读懂卷积神经网络CNN</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/36278093" target="_blank" rel="external">一句话CNN：如何理解padding的作用和算法</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/32824193" target="_blank" rel="external">CNN入门讲解：什么是激活函数（Activation Function）</a></li>
+<li><a href="https://morvanzhou.github.io/tutorials/machine-learning/torch/4-01-A-CNN/" target="_blank" rel="noopener">莫烦 - 什么是卷积神经网络 CNN (Convolutional Neural Network)</a></li>
+<li><a href="https://www.jianshu.com/p/9305d31962d8" target="_blank" rel="noopener">什么是感受野</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/28478034" target="_blank" rel="noopener">通俗理解『卷积』——从傅里叶变换到滤波器</a></li>
+<li><a href="http://justforhonor.com/2017/12/06/CNN-introduction/" target="_blank" rel="noopener">一文读懂卷积神经网络CNN</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/36278093" target="_blank" rel="noopener">一句话CNN：如何理解padding的作用和算法</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/32824193" target="_blank" rel="noopener">CNN入门讲解：什么是激活函数（Activation Function）</a></li>
 </ul>
 
       
@@ -492,11 +493,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/08/17/图数据库-Neo4j-初探/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/04/27/深度学习笔记-CNN常见网络/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          图数据库-Neo4j-初探
+          深度学习笔记-CNN常见网络
         
       </div>
     </a>
@@ -643,18 +644,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -667,6 +656,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
@@ -675,11 +668,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -687,15 +676,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -704,10 +689,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -731,10 +712,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -743,11 +720,47 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -759,7 +772,7 @@
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

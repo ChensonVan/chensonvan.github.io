@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://chenson.com">
   <title>Spark笔记 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://chenson.com/2017/04/10/Spark笔记/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="1. Resilient Distributed Dataset (RDD)RDDs are fault-tolerant, parallel data structures that let users explicitly persist intermediate results in memory, control their partitioning to optimize data pl">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/34167769.jpg">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/87769198.jpg">
 <meta property="og:image" content="http://images.backtobazics.com/spark/apache-spark-flatmap-example.gif">
@@ -41,7 +42,7 @@
   
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -156,7 +157,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Spark笔记" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Spark笔记" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,20 +203,20 @@
 <p>当对RDD做action操作的时候，这类action一般作用是返回一个值或者数组等，或者是将数据持久化到磁盘当中。此时执行action，会真正的提交job，执行之前的transformation记录的DAG。执行DAG策略中，会有多个stage，每一个stage钟有多个task，这些task就会被分配到各个nodes进行执行</p>
 <p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/87769198.jpg" alt=""></p>
 <ul>
-<li><p>The difference between flatMap and Map <a href="http://backtobazics.com/big-data/spark/apache-spark-flatmap-example/" target="_blank" rel="external">flatMap Example</a></p>
+<li><p>The difference between flatMap and Map <a href="http://backtobazics.com/big-data/spark/apache-spark-flatmap-example/" target="_blank" rel="noopener">flatMap Example</a></p>
 <p>map: 对RDD每个元素转换，将函数用于RDD中的每个元素，将返回值构成新的RDD。<br>flatMap: 对RDD每个元素转换, 然后再<strong>扁平化</strong>（即将所有对象合并为一个对象）。将函数应用于rdd之中的每一个元素，将返回的<strong>迭代器</strong>的所有内容构成新的rdd</p>
 <p><strong>Example1：</strong></p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// data 有两行数据，第一行 a b c，第二行 1 2 3</span></div><div class="line">scala&gt; data.map(line1 =&gt; line1.split(<span class="string">","</span>)).collect()</div><div class="line">res11: <span class="type">Array</span>[<span class="type">Array</span>[<span class="type">String</span>]] = <span class="type">Array</span>(<span class="type">Array</span>(a, b, c),<span class="type">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>))</div><div class="line"></div><div class="line">scala&gt; data.flatMap(line1 =&gt; line1.split(<span class="string">","</span>)).collect()</div><div class="line">res13: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(a, b, c, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// data 有两行数据，第一行 a b c，第二行 1 2 3</span></span><br><span class="line">scala&gt; data.map(line1 =&gt; line1.split(<span class="string">","</span>)).collect()</span><br><span class="line">res11: <span class="type">Array</span>[<span class="type">Array</span>[<span class="type">String</span>]] = <span class="type">Array</span>(<span class="type">Array</span>(a, b, c),<span class="type">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line">scala&gt; data.flatMap(line1 =&gt; line1.split(<span class="string">","</span>)).collect()</span><br><span class="line">res13: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(a, b, c, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
 <p><strong>Example2：</strong></p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">scala&gt; <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">List</span>(<span class="string">"coffee panda"</span>,<span class="string">"happy panda"</span>,<span class="string">"happiest panda party"</span>))</div><div class="line"></div><div class="line">scala&gt; rdd.map(x=&gt;x).collect</div><div class="line">res0: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(coffee panda, happy panda, happiest panda party) </div><div class="line"></div><div class="line">scala&gt; rdd.map(x=&gt;x.split(<span class="string">" "</span>)).collect</div><div class="line">res1: <span class="type">Array</span>[<span class="type">Array</span>[<span class="type">String</span>]] = <span class="type">Array</span>(<span class="type">Array</span>(coffee, panda), <span class="type">Array</span>(happy, panda), <span class="type">Array</span>(happiest, panda, party))</div><div class="line"></div><div class="line"><span class="comment">// 相比之前，flatMap将几个array合并成了一个array</span></div><div class="line">scala&gt; rdd.flatMap(x=&gt;x.split(<span class="string">" "</span>)).collect</div><div class="line">res2: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(coffee, panda, happy, panda, happiest, panda, party)</div></pre></td></tr></table></figure>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">List</span>(<span class="string">"coffee panda"</span>,<span class="string">"happy panda"</span>,<span class="string">"happiest panda party"</span>))</span><br><span class="line"></span><br><span class="line">scala&gt; rdd.map(x=&gt;x).collect</span><br><span class="line">res0: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(coffee panda, happy panda, happiest panda party) </span><br><span class="line"></span><br><span class="line">scala&gt; rdd.map(x=&gt;x.split(<span class="string">" "</span>)).collect</span><br><span class="line">res1: <span class="type">Array</span>[<span class="type">Array</span>[<span class="type">String</span>]] = <span class="type">Array</span>(<span class="type">Array</span>(coffee, panda), <span class="type">Array</span>(happy, panda), <span class="type">Array</span>(happiest, panda, party))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 相比之前，flatMap将几个array合并成了一个array</span></span><br><span class="line">scala&gt; rdd.flatMap(x=&gt;x.split(<span class="string">" "</span>)).collect</span><br><span class="line">res2: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(coffee, panda, happy, panda, happiest, panda, party)</span><br></pre></td></tr></table></figure>
 <p><img src="http://images.backtobazics.com/spark/apache-spark-flatmap-example.gif" alt=""></p>
 </li>
 </ul>
 </li>
 </ul>
 <h3 id="2-References"><a href="#2-References" class="headerlink" title="2. References"></a>2. References</h3><ul>
-<li><a href="http://www.infoq.com/cn/articles/spark-core-rdd/" target="_blank" rel="external">理解Spark的核心RDD</a></li>
-<li><a href="http://homepage.cs.latrobe.edu.au/zhe/ZhenHeSparkRDDAPIExamples.html" target="_blank" rel="external">Spark RDD API Examples</a></li>
+<li><a href="http://www.infoq.com/cn/articles/spark-core-rdd/" target="_blank" rel="noopener">理解Spark的核心RDD</a></li>
+<li><a href="http://homepage.cs.latrobe.edu.au/zhe/ZhenHeSparkRDDAPIExamples.html" target="_blank" rel="noopener">Spark RDD API Examples</a></li>
 </ul>
 
       
@@ -477,18 +478,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -501,6 +490,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
@@ -509,11 +502,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -521,15 +510,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,10 +523,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,10 +546,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -577,11 +554,47 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -593,7 +606,7 @@
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

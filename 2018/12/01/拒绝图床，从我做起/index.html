@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://chenson.com">
   <title>拒绝图床，从我做起 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://chenson.com/2018/12/01/拒绝图床，从我做起/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="前段时间想整理一下以前的博文笔记，因为很多都是早期自己记录的笔记，条理比较乱。想稍微整理一下，方便以后自己回顾复习以及他人阅读。但发现一件比较头大的事情就是，以前插图都是上传到图床上然，而现在很多图片都已经挂掉了，链接不可访问。这简直就是灾难性的一幕。  早期之所以用图床是因为方便，因为Chrome有个插件可以直接上传，采用本地的话需要把图片保存到本地路径然后引用对应的图片，至于如何同步到gith">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.com/2018/12/01/拒绝图床，从我做起/2018-12-01-拒绝图床，从我做起/image-20181201164011749-3653611.png">
 <meta property="og:image" content="http://chenson.com/2018/12/01/拒绝图床，从我做起/2018-12-01-拒绝图床，从我做起/image-20181201154328178-3650208.png">
 <meta property="og:image" content="http://chenson.com/2018/12/01/拒绝图床，从我做起/2018-12-01-拒绝图床，从我做起/image-20181201155018199.png">
@@ -43,7 +44,7 @@
   
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -158,7 +159,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-拒绝图床，从我做起" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-拒绝图床，从我做起" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -188,10 +189,10 @@
 <li><p>在<code>hexo</code>目录下执行命令<code>npm install hexo-asset-image --save</code>，即安装一个可以上传本地图片的插件</p>
 </li>
 <li><p>安装成功后，以后再新建博文<code>hexo n “XXX”</code>的时候，除了生成对应的<code>.md</code>文件的同时，也会在同一层目录下，建一个同名的文件夹，用于存放这篇博文引用的本地图片。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">XXX.md</div><div class="line">XXX</div><div class="line">|--img1.jpg</div><div class="line">|--img2.jpg</div><div class="line">|--img3.jpg</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">XXX.md</span><br><span class="line">XXX</span><br><span class="line">|--img1.jpg</span><br><span class="line">|--img2.jpg</span><br><span class="line">|--img3.jpg</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>生成静态页面，对应的html是</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/year/month/day/XXX/img1.jpg"</span> <span class="attr">alt</span>=<span class="string">"img1"</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/year/month/day/XXX/img1.jpg"</span> <span class="attr">alt</span>=<span class="string">"img1"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -212,11 +213,11 @@
 </ul>
 <p>  发现图片对应的文件夹是不一样的（此时可回头看生成对应的html路径地址）原始md是引用同名文件夹下的图片，而html却和应用的图片在同一层目录下，所以读取失败了。</p>
 <p>  生成的html路径</p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/year/month/day/XXX/img1.jpg"</span> <span class="attr">alt</span>=<span class="string">"img1"</span>&gt;</span></div></pre></td></tr></table></figure>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/year/month/day/XXX/img1.jpg"</span> <span class="attr">alt</span>=<span class="string">"img1"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>  但我比较想要的路径是</p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/year/month/day/XXX/year-month-day-XXX/img1.jpg"</span> <span class="attr">alt</span>=<span class="string">"img1"</span>&gt;</span></div></pre></td></tr></table></figure>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/year/month/day/XXX/year-month-day-XXX/img1.jpg"</span> <span class="attr">alt</span>=<span class="string">"img1"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>  原始图片和md文章所在的路径是</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">PATH-TO-BLOG/source/_posts/year-month-day-XXX/img1.jpg</div><div class="line">PATH-TO-BLOG/source/_posts/year-month-day-XXX.md</div></pre></td></tr></table></figure>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PATH-TO-BLOG/source/_posts/year-month-day-XXX/img1.jpg</span><br><span class="line">PATH-TO-BLOG/source/_posts/year-month-day-XXX.md</span><br></pre></td></tr></table></figure>
 <p>  当然我们可以愚蠢的设置本地的md文件，把图片前面的XXX先去了，但是推上去的时候，图片的相对路径就是正常的。这样虽然线上可以正常显示，但是同时会导致线下无法显示图片，所以这方法真的是有点蠢。</p>
 <p>  网上找了会解决方案似乎都没有成功，可能是我的操作问题，没设置好。于是就自己写了个简单脚本解决这个问题。</p>
 <p>  这段脚本主要就是在public下对应blog所在的文件下<strong>新建一个日期-文章名的文件夹，然后将图片移到这个文件夹下，那么图片和文章的相对路径就和md文件里面是一致的了</strong>，所以在更新hexo推上去，图片就显示正常啦。以后写文章的时候只需要在部署hexo<code>hexo d</code>的之前，运行一下下面代码即可。妈妈以后再也不用担心我图片挂掉了！！！</p>
@@ -228,11 +229,11 @@
 <p>  运行代码后的文件夹结构</p>
 <p>  <img src="/2018/12/01/拒绝图床，从我做起/2018-12-01-拒绝图床，从我做起/image-20181201155405551-3650845.png" alt="image-20181201155405551"></p>
 <p>  具体代码如下：</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line">_PUBLIC_ = <span class="string">'public'</span></div><div class="line">_PATH_ = os.getcwd()</div><div class="line">list_year = [year <span class="keyword">for</span> year <span class="keyword">in</span> os.listdir(_PUBLIC_) <span class="keyword">if</span> year.isdigit() <span class="keyword">and</span> len(year) == <span class="number">4</span>]</div><div class="line"></div><div class="line"><span class="keyword">for</span> year <span class="keyword">in</span> list_year:</div><div class="line">    p_year = os.path.join(_PATH_, _PUBLIC_, year)</div><div class="line">    list_month = [month <span class="keyword">for</span> month <span class="keyword">in</span> os.listdir(p_year) <span class="keyword">if</span> month.isdigit() <span class="keyword">and</span> len(month) == <span class="number">2</span>]</div><div class="line"></div><div class="line">    <span class="keyword">for</span> month <span class="keyword">in</span> list_month:</div><div class="line">        p_month = os.path.join(_PATH_, _PUBLIC_, year, month)</div><div class="line">        list_day = [day <span class="keyword">for</span> day <span class="keyword">in</span> os.listdir(p_month) <span class="keyword">if</span> day.isdigit() <span class="keyword">and</span> len(day) == <span class="number">2</span>]</div><div class="line"></div><div class="line">        <span class="keyword">for</span> day <span class="keyword">in</span> list_day:</div><div class="line">            p_day = os.path.join(_PATH_, _PUBLIC_, year, month, day)</div><div class="line">            list_blog = [blog <span class="keyword">for</span> blog <span class="keyword">in</span> os.listdir(p_day) <span class="keyword">if</span> <span class="keyword">not</span> blog.startswith(<span class="string">'.'</span>)]</div><div class="line"></div><div class="line">            <span class="keyword">for</span> blog <span class="keyword">in</span> list_blog:</div><div class="line">                p_blog = os.path.join(_PATH_, _PUBLIC_, year, month, day, blog)</div><div class="line">                list_file = os.listdir(p_blog)</div><div class="line"></div><div class="line">                dir_img = <span class="string">'-'</span>.join([year, month, day, blog])</div><div class="line">                dir_img = os.path.join(p_day, blog, dir_img)</div><div class="line">                <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(dir_img):</div><div class="line">                    os.makedirs(dir_img)</div><div class="line">                <span class="keyword">for</span> file <span class="keyword">in</span> list_file:</div><div class="line">                    <span class="keyword">if</span> file.endswith(<span class="string">'.png'</span>):</div><div class="line">                        p_file = os.path.join(_PATH_, _PUBLIC_, year, month, day, blog, file)</div><div class="line">                        cmd = f<span class="string">'mv &#123;p_file&#125; &#123;dir_img&#125;'</span></div><div class="line">                        os.system(cmd)</div></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">_PUBLIC_ = <span class="string">'public'</span></span><br><span class="line">_PATH_ = os.getcwd()</span><br><span class="line">list_year = [year <span class="keyword">for</span> year <span class="keyword">in</span> os.listdir(_PUBLIC_) <span class="keyword">if</span> year.isdigit() <span class="keyword">and</span> len(year) == <span class="number">4</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> year <span class="keyword">in</span> list_year:</span><br><span class="line">    p_year = os.path.join(_PATH_, _PUBLIC_, year)</span><br><span class="line">    list_month = [month <span class="keyword">for</span> month <span class="keyword">in</span> os.listdir(p_year) <span class="keyword">if</span> month.isdigit() <span class="keyword">and</span> len(month) == <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> month <span class="keyword">in</span> list_month:</span><br><span class="line">        p_month = os.path.join(_PATH_, _PUBLIC_, year, month)</span><br><span class="line">        list_day = [day <span class="keyword">for</span> day <span class="keyword">in</span> os.listdir(p_month) <span class="keyword">if</span> day.isdigit() <span class="keyword">and</span> len(day) == <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> day <span class="keyword">in</span> list_day:</span><br><span class="line">            p_day = os.path.join(_PATH_, _PUBLIC_, year, month, day)</span><br><span class="line">            list_blog = [blog <span class="keyword">for</span> blog <span class="keyword">in</span> os.listdir(p_day) <span class="keyword">if</span> <span class="keyword">not</span> blog.startswith(<span class="string">'.'</span>)]</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> blog <span class="keyword">in</span> list_blog:</span><br><span class="line">                p_blog = os.path.join(_PATH_, _PUBLIC_, year, month, day, blog)</span><br><span class="line">                list_file = os.listdir(p_blog)</span><br><span class="line"></span><br><span class="line">                dir_img = <span class="string">'-'</span>.join([year, month, day, blog])</span><br><span class="line">                dir_img = os.path.join(p_day, blog, dir_img)</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(dir_img):</span><br><span class="line">                    os.makedirs(dir_img)</span><br><span class="line">                <span class="keyword">for</span> file <span class="keyword">in</span> list_file:</span><br><span class="line">                    <span class="keyword">if</span> file.endswith(<span class="string">'.png'</span>):</span><br><span class="line">                        p_file = os.path.join(_PATH_, _PUBLIC_, year, month, day, blog, file)</span><br><span class="line">                        cmd = <span class="string">f'mv <span class="subst">&#123;p_file&#125;</span> <span class="subst">&#123;dir_img&#125;</span>'</span></span><br><span class="line">                        os.system(cmd)</span><br></pre></td></tr></table></figure>
 <h3 id="2-Bugs"><a href="#2-Bugs" class="headerlink" title="2. Bugs"></a>2. Bugs</h3><p>虽然这方法挺好用的，但发现有个小bug，就是图片在放到对应的XXX文件夹下，会重复一张。如果在Typora中设设置指定的custom fold下倒不会，设置成同名文件夹下就会多出一张，目前没找到解决方案，暂且先这样吧。</p>
 <p>当然另外一个可能的问题就是会占用github的空间，但量小的情况下问题不大。</p>
 <h3 id="3-References"><a href="#3-References" class="headerlink" title="3. References"></a>3. References</h3><ul>
-<li><a href="https://www.jianshu.com/p/c2ba9533088a" target="_blank" rel="external">hexo博客图片问题</a></li>
+<li><a href="https://www.jianshu.com/p/c2ba9533088a" target="_blank" rel="noopener">hexo博客图片问题</a></li>
 </ul>
 
       
@@ -498,18 +499,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -522,6 +511,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
@@ -530,11 +523,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -542,15 +531,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -559,10 +544,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -586,10 +567,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -598,11 +575,47 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -614,7 +627,7 @@
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

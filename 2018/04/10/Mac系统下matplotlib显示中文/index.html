@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://chenson.com">
   <title>Mac系统下matplotlib显示中文 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://chenson.com/2018/04/10/Mac系统下matplotlib显示中文/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="1. Mac系统下让matplotlib显示中文现在的时间是2018.04.10，更新一下Mac系统下的解决方法 我的环境：anaconda3 + Python 3.6.3  添加字体 添加 SimHei 字体（simhei.ttf文件）到  ~/anaconda3/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/ttf 中； 下载地址：">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-4-10/76293547.jpg">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-4-10/79940811.jpg">
 <meta property="og:updated_time" content="2018-12-01T07:08:07.204Z">
@@ -40,7 +41,7 @@
   
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -155,7 +156,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Mac系统下matplotlib显示中文" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Mac系统下matplotlib显示中文" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -181,12 +182,12 @@
 <li><p><strong>添加字体</strong></p>
 <p>添加 <code>SimHei</code> 字体（simhei.ttf文件）到</p>
 <p> <code>~/anaconda3/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/ttf</code> 中；</p>
-<p>下载地址：<a href="https://link.zhihu.com/?target=http%3A//www.font5.com.cn/font_download.php%3Fid%3D151%26part%3D1237887120" target="_blank" rel="external">黑体字体simhei.ttf</a></p>
+<p>下载地址：<a href="https://link.zhihu.com/?target=http%3A//www.font5.com.cn/font_download.php%3Fid%3D151%26part%3D1237887120" target="_blank" rel="noopener">黑体字体simhei.ttf</a></p>
 <p><strong>我用的是 <code>anaconda3</code> 下的 python 环境，这个地址对应你正在使用的 <code>python</code> 安装地址</strong></p>
 <p>​</p>
 </li>
 <li><p><strong>修改matplotlib配置文件</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/anaconda3/lib/python3.6/site-packages/matplotlib/mpl-data</div><div class="line">vi matplotlibrc   # 编辑配置文件</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/anaconda3/lib/python3.6/site-packages/matplotlib/mpl-data</span><br><span class="line">vi matplotlibrc   # 编辑配置文件</span><br></pre></td></tr></table></figure>
 <p>找到 <code>font.sans-serif</code> 添加 <code>SimHei</code> 到字体列表 （如图，大约在211行）</p>
 <p><img src="http://on8r6i4gg.bkt.clouddn.com/18-4-10/76293547.jpg" alt=""></p>
 <p>同时修改 <code>axes.unicode_minus</code>，将 <code>True</code> 改为 <code>False</code>，作用就是解决负号’-‘显示为方块的问题（大约在330行）</p>
@@ -196,7 +197,7 @@
 <ul>
 <li><code>Mac</code> 系统下删除 <code>~/.matplotlib/</code> 下的所有缓存文件</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rm -rf ~/.matplotlib/*.cache</div><div class="line">rm -rf ~/.matplotlib/fontList.json</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -rf ~/.matplotlib/*.cache</span><br><span class="line">rm -rf ~/.matplotlib/fontList.json</span><br></pre></td></tr></table></figure>
 <p><img src="http://on8r6i4gg.bkt.clouddn.com/18-4-10/79940811.jpg" alt=""></p>
 <ul>
 <li><code>Linux</code>、<code>CentOS</code> 删除 <code>~/.cache/matplotlib</code>目录下的两个缓存文件（同上）</li>
@@ -207,7 +208,7 @@
 <li><p><strong>画图测试</strong></p>
 <ul>
 <li><p><strong>未修改配置文件</strong>，需要添加如下代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding:utf-8  </span></div><div class="line"><span class="keyword">import</span> matplotlib  </div><div class="line"></div><div class="line"><span class="comment">#指定默认字体  </span></div><div class="line">matplotlib.rcParams[<span class="string">'font.sans-serif'</span>] = [<span class="string">'SimHei'</span>]   </div><div class="line">matplotlib.rcParams[<span class="string">'font.family'</span>]=<span class="string">'sans-serif'</span>  </div><div class="line"><span class="comment">#解决负号'-'显示为方块的问题  </span></div><div class="line">matplotlib.rcParams[<span class="string">'axes.unicode_minus'</span>] = <span class="keyword">False</span> </div><div class="line"><span class="keyword">from</span> matplotlib.font_manager <span class="keyword">import</span> _rebuild</div><div class="line">_rebuild()</div><div class="line"></div><div class="line">plt.plot([<span class="number">-1</span>,<span class="number">2</span>,<span class="number">-5</span>,<span class="number">3</span>])  </div><div class="line">plt.title(<span class="string">u'中文'</span>,fontproperties=myfont)  </div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf-8  </span></span><br><span class="line"><span class="keyword">import</span> matplotlib  </span><br><span class="line"></span><br><span class="line"><span class="comment">#指定默认字体  </span></span><br><span class="line">matplotlib.rcParams[<span class="string">'font.sans-serif'</span>] = [<span class="string">'SimHei'</span>]   </span><br><span class="line">matplotlib.rcParams[<span class="string">'font.family'</span>]=<span class="string">'sans-serif'</span>  </span><br><span class="line"><span class="comment">#解决负号'-'显示为方块的问题  </span></span><br><span class="line">matplotlib.rcParams[<span class="string">'axes.unicode_minus'</span>] = <span class="keyword">False</span> </span><br><span class="line"><span class="keyword">from</span> matplotlib.font_manager <span class="keyword">import</span> _rebuild</span><br><span class="line">_rebuild()</span><br><span class="line"></span><br><span class="line">plt.plot([<span class="number">-1</span>,<span class="number">2</span>,<span class="number">-5</span>,<span class="number">3</span>])  </span><br><span class="line">plt.title(<span class="string">u'中文'</span>,fontproperties=myfont)  </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 <p>​</p>
 </li>
 <li><p>如果已经修改了 <code>matplotlib</code> 配置文件，则不需要上述代码，直接画图即可。</p>
@@ -217,8 +218,8 @@
 </li>
 </ul>
 <h3 id="2-References"><a href="#2-References" class="headerlink" title="2. References"></a>2. References</h3><ul>
-<li><a href="https://blog.csdn.net/dgatiger/article/details/50414549" target="_blank" rel="external">彻底解决matplotlib中文乱码问题</a></li>
-<li><a href="https://www.zhihu.com/question/25404709" target="_blank" rel="external">matplotlib图例中文乱码?</a></li>
+<li><a href="https://blog.csdn.net/dgatiger/article/details/50414549" target="_blank" rel="noopener">彻底解决matplotlib中文乱码问题</a></li>
+<li><a href="https://www.zhihu.com/question/25404709" target="_blank" rel="noopener">matplotlib图例中文乱码?</a></li>
 </ul>
 
       
@@ -484,18 +485,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -508,6 +497,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
@@ -516,11 +509,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -528,15 +517,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,10 +530,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -572,10 +553,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -584,11 +561,47 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -600,7 +613,7 @@
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

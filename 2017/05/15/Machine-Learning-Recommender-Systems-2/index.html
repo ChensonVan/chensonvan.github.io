@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://chenson.com">
   <title>Machine Learning - Recommender Systems(2) | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://chenson.com/2017/05/15/Machine-Learning-Recommender-Systems-2/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="1. 协同过滤，给用户推荐物品1.1 基于用户的协同过滤算法UserCF 主要通过分析用户的行为记录，计算物品之间的相似度 该算法认为物品A和物品B具有很大的相似度是因为喜欢物品A的用户大部分也喜欢物品B 1.1.1 步骤 找到和目标用户相似的用户集合 找到这个集合中的用户喜欢，且和目标用户没有听说过的的物品推荐给目标用户  1.1.2 计算相似度 得到用户之间的兴趣相似度之后，寻找最相近的K个用">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://i2.muimg.com/567571/b95f545d611e3a2e.png">
 <meta property="og:image" content="http://i4.buimg.com/567571/4fb60f6ed242f07b.png">
 <meta property="og:image" content="http://i4.buimg.com/567571/859249dcacf980eb.png">
@@ -45,7 +46,7 @@
   
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -160,7 +161,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Machine-Learning-Recommender-Systems-2" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Machine-Learning-Recommender-Systems-2" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -254,7 +255,7 @@
 </li>
 </ul>
 <h5 id="2-1-4-基于领域的方法（基于用户的领域和基于物品的领域算法）"><a href="#2-1-4-基于领域的方法（基于用户的领域和基于物品的领域算法）" class="headerlink" title="2.1.4 基于领域的方法（基于用户的领域和基于物品的领域算法）"></a>2.1.4 基于领域的方法（基于用户的领域和基于物品的领域算法）</h5><ul>
-<li><p>基于用户的领域算法<br>$$<br>\hat r_{ui} = \overline r_u +<br>\frac {\sum_{v \in S(u, K) \bigcap N(i)} w_{uv}<em>(r_{vi} - \overline r_v)}<br>{\sum_{v \in S(u, K) \bigcap N(i)} |w_{uv}|}<br>$$<br><em>*E(r_u)</em></em> 是用户u对他点评过的所有物品评分的平均值</p>
+<li><p>基于用户的领域算法<br>$$<br>\hat r_{ui} = \overline r_u +<br>\frac {\sum_{v \in S(u, K) \bigcap N(i)} w_{uv}*(r_{vi} - \overline r_v)}<br>{\sum_{v \in S(u, K) \bigcap N(i)} |w_{uv}|}<br>$$<br><strong>E(r_u)</strong> 是用户u对他点评过的所有物品评分的平均值</p>
 <p><strong>S(u, K)</strong> 是和用户u兴趣最相似的K个用户的集合</p>
 <p><strong>N(i)</strong> 是对物品i点评过分数的用户集合</p>
 <p><strong>r_vi</strong> 是用户v对物品i的评分</p>
@@ -262,7 +263,7 @@
 <p><strong>w_uv</strong> 是用户u和v之间的相似度</p>
 <p>​</p>
 </li>
-<li><p>基于物品的领域算法<br>$$<br>\hat r_{ui} = \overline r_i +<br>\frac {\sum_{j \in S(i, K) \bigcap N(u)} w_{ij}<em>(r_{uj} - \overline r_i)}<br>{\sum_{j \in S(i, K) \bigcap N(u)} |w_{ij}|}<br>$$<br><em>*E(r_i)</em></em> 是物品i的平均分，是所有用户对物品i点评过的分数的平均值</p>
+<li><p>基于物品的领域算法<br>$$<br>\hat r_{ui} = \overline r_i +<br>\frac {\sum_{j \in S(i, K) \bigcap N(u)} w_{ij}*(r_{uj} - \overline r_i)}<br>{\sum_{j \in S(i, K) \bigcap N(u)} |w_{ij}|}<br>$$<br><strong>E(r_i)</strong> 是物品i的平均分，是所有用户对物品i点评过的分数的平均值</p>
 <p><strong>S(i, K)</strong> 是和物品i最相似的K个物品的集合</p>
 <p><strong>N(u)</strong> 是用户u点评多分数的物品集合</p>
 <p><strong>r_uj</strong> 是用户u对物品j的评分</p>
@@ -310,7 +311,7 @@
 <ul>
 <li><p>首先需要对评分矩阵R中的缺失值进行简单的补全，比如用全局平均值，或者用户/物品的平均值补全，得到补全后的矩阵R’</p>
 </li>
-<li><p>得到补全后的矩阵R’，接着可以利用SVD分解，将R’分解成如下形式<br>$$<br>R’ = U^TSV    \\<br>R \in R^{m <em> n}    \\<br>U \in R^{k </em> m}    \\<br>V \in R^{k <em> n}    \\<br>S \in R^{k </em> k}<br>$$<br>U和V是两个正交矩阵，S是对角矩阵，对角线上的每一个元素都是矩阵的奇异值。</p>
+<li><p>得到补全后的矩阵R’，接着可以利用SVD分解，将R’分解成如下形式<br>$$<br>R’ = U^TSV    \<br>R \in R^{m <em> n}    \<br>U \in R^{k </em> m}    \<br>V \in R^{k <em> n}    \<br>S \in R^{k </em> k}<br>$$<br>U和V是两个正交矩阵，S是对角矩阵，对角线上的每一个元素都是矩阵的奇异值。</p>
 <p>为了对R’进行降维，可以取最大的f个奇异值组成对焦矩阵Sf，并且找到这个f个奇异值汇中每个值在U、V矩阵中对应的行和列，得到Uf、Vf，从而得到一个降维后的评分矩阵：<br>$$<br>R_f’=U_f^TS_fV_f<br>$$<br>该方法的一些缺点：</p>
 <ul>
 <li>在现实中，R矩阵基本上会是一个稀疏矩阵，即95%的数据是缺失的，同时该矩阵非常的大。一经补全，该矩阵就是一个稠密矩阵，储存开销非常的大</li>
@@ -321,13 +322,13 @@
 </ul>
 </li>
 <li><p><strong>Funk-SVD分解，即 Latent Factor Model（LFM）</strong></p>
-<p><a href="http://sifter.org/~simon/journal/20061211.html" target="_blank" rel="external">http://sifter.org/~simon/journal/20061211.html</a></p>
-<p>从矩阵的角度，将评分矩阵R分解成两个低纬度相乘：<br>$$<br>\hat R = P^TQ    \\<br>R \in R^{m<em>n}    \\<br>P \in R^{f</em>m}    \\<br>Q \in R^{f<em>n}<br>$$<br>P、Q是两个降维后的矩阵，那么对于用户u对于物品i的评分的预测值可以^R(u, i) = ^r_ui，可以通过如下公式计算：<br>$$<br>\hat r_{ui} =b_{ui} +  \sum_fp_{uf}q_{if}    \\<br>p_{uf} = P(u, f)     \\<br>p_{if} = Q(i, f)<br>$$<br>Simon Funk-SVD的思想是直接通过训练集中的观察值，利用<em>*最小化RMSE</em></em>学习P、Q矩阵。</p>
-<p>损失函数的计算：<br>$$<br>C(p, q) = \sum_{(u, i) \in Train} (r_{ui} - \hat r_{ui})^2<br>= \sum_{(u, i) \in Train}(r_{ui} - \sum_{f=1}^Fp_{uf}q_{if})^2 +  \lambda(||p_u||^2 + ||q_i||^2)    \\<br>\hat r_{ui} =  \mu + b_u + b_i + p_u^Tq_i<br>$$<br>要最小化上面的损失函数，可以利用<strong>随机梯度下降法</strong>。以下是简单的推导该公式</p>
+<p><a href="http://sifter.org/~simon/journal/20061211.html" target="_blank" rel="noopener">http://sifter.org/~simon/journal/20061211.html</a></p>
+<p>从矩阵的角度，将评分矩阵R分解成两个低纬度相乘：<br>$$<br>\hat R = P^TQ    \<br>R \in R^{m<em>n}    \<br>P \in R^{f</em>m}    \<br>Q \in R^{f*n}<br>$$<br>P、Q是两个降维后的矩阵，那么对于用户u对于物品i的评分的预测值可以^R(u, i) = ^r_ui，可以通过如下公式计算：<br>$$<br>\hat r_{ui} =b_{ui} +  \sum_fp_{uf}q_{if}    \<br>p_{uf} = P(u, f)     \<br>p_{if} = Q(i, f)<br>$$<br>Simon Funk-SVD的思想是直接通过训练集中的观察值，利用<strong>最小化RMSE</strong>学习P、Q矩阵。</p>
+<p>损失函数的计算：<br>$$<br>C(p, q) = \sum_{(u, i) \in Train} (r_{ui} - \hat r_{ui})^2<br>= \sum_{(u, i) \in Train}(r_{ui} - \sum_{f=1}^Fp_{uf}q_{if})^2 +  \lambda(||p_u||^2 + ||q_i||^2)    \<br>\hat r_{ui} =  \mu + b_u + b_i + p_u^Tq_i<br>$$<br>要最小化上面的损失函数，可以利用<strong>随机梯度下降法</strong>。以下是简单的推导该公式</p>
 <ol>
-<li><p>上面的cost function中欧两个参数p和q，首先 对他们分别求偏导，求出最快下降的方向<br>$$<br>\frac {∂C} {∂p_{uf}} = -2(r_{ui} - \sum_{f=1}^Fp_{uf}q_{if})<em>q_{ik} + 2\lambda p_{uk}    \\<br>\frac {∂C} {∂q_{if}} = -2(r_{ui} - \sum_{f=1}^Fp_{uf}q_{if})</em>p_{uk} + 2\lambda q_{ik}<br>$$</p>
+<li><p>上面的cost function中欧两个参数p和q，首先 对他们分别求偏导，求出最快下降的方向<br>$$<br>\frac {∂C} {∂p_{uf}} = -2(r_{ui} - \sum_{f=1}^Fp_{uf}q_{if})<em>q_{ik} + 2\lambda p_{uk}    \<br>\frac {∂C} {∂q_{if}} = -2(r_{ui} - \sum_{f=1}^Fp_{uf}q_{if})</em>p_{uk} + 2\lambda q_{ik}<br>$$</p>
 </li>
-<li><p>然后根据随机梯度下降法，需要将参数沿最快的下降方向前进，即可得到如下的递推公式：<br>$$<br>p_{uf} = p_{uf} + \alpha ((r_{ui} - \sum_{f=1}^Fp_{uf}q_{if}) <em> q_{ik} - \lambda p_{uk})    \\<br>q_{if} = q_{uf} + \alpha ((r_{ui} - \sum_{f=1}^Fp_{uf}q_{if}) </em> p_{uk} - \lambda q_{ik})<br>$$</p>
+<li><p>然后根据随机梯度下降法，需要将参数沿最快的下降方向前进，即可得到如下的递推公式：<br>$$<br>p_{uf} = p_{uf} + \alpha ((r_{ui} - \sum_{f=1}^Fp_{uf}q_{if}) <em> q_{ik} - \lambda p_{uk})    \<br>q_{if} = q_{uf} + \alpha ((r_{ui} - \sum_{f=1}^Fp_{uf}q_{if}) </em> p_{uk} - \lambda q_{ik})<br>$$</p>
 </li>
 </ol>
 </li>
@@ -336,11 +337,11 @@
 <ul>
 <li><p>根据数据集初始化P和Q矩阵（如何初始化）</p>
 <ul>
-<li>确定四个参数：分类书F，迭代次数N，学习速率α（α <em>= 0.9） 和正则化参数<em>*λ</em></em> </li>
+<li>确定四个参数：分类书F，迭代次数N，学习速率α（α *= 0.9） 和正则化参数<strong>λ</strong> </li>
 </ul>
 <p>​</p>
 <p>伪代码</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">LFM</span><span class="params">(user_items, F, N, alpha, lambda)</span>:</span>  </div><div class="line">    <span class="comment">#初始化P,Q矩阵  </span></div><div class="line">    [P, Q] = InitModel(user_items, F)  </div><div class="line">    <span class="comment">#开始迭代  </span></div><div class="line">    For step <span class="keyword">in</span> range(<span class="number">0</span>, N):  </div><div class="line">        <span class="comment">#从数据集中依次取出user以及该user喜欢的iterms集  </span></div><div class="line">        <span class="keyword">for</span> user, items <span class="keyword">in</span> user_item.iterms():  </div><div class="line">            <span class="comment">#随机抽样，为user抽取与items数量相当的负样本，并将正负样本合并，用于优化计算  </span></div><div class="line">            samples = RandSelectNegativeSamples(items)  </div><div class="line">            <span class="comment">#依次获取item和user对该item的兴趣度  </span></div><div class="line">            <span class="keyword">for</span> item, rui <span class="keyword">in</span> samples.items():  </div><div class="line">                <span class="comment">#根据当前参数计算误差  </span></div><div class="line">                eui = eui - Predict(user, item)  </div><div class="line">                <span class="comment">#优化参数  </span></div><div class="line">                <span class="keyword">for</span> f <span class="keyword">in</span> range(<span class="number">0</span>, F):  </div><div class="line">                    P[user][f] += alpha * (eui * Q[f][item] - <span class="keyword">lambda</span> * P[user][f])  </div><div class="line">                    Q[f][item] += alpha * (eui * P[user][f] - <span class="keyword">lambda</span> * Q[f][item])  </div><div class="line">        <span class="comment">#每次迭代完后，都要降低学习速率。一开始的时候由于离最优值相差甚远，因此快速下降；  </span></div><div class="line">        <span class="comment">#当优化到一定程度后，就需要放慢学习速率，慢慢的接近最优值。  </span></div><div class="line">        alpha *= <span class="number">0.9</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LFM</span><span class="params">(user_items, F, N, alpha, lambda)</span>:</span>  </span><br><span class="line">    <span class="comment">#初始化P,Q矩阵  </span></span><br><span class="line">    [P, Q] = InitModel(user_items, F)  </span><br><span class="line">    <span class="comment">#开始迭代  </span></span><br><span class="line">    For step <span class="keyword">in</span> range(<span class="number">0</span>, N):  </span><br><span class="line">        <span class="comment">#从数据集中依次取出user以及该user喜欢的iterms集  </span></span><br><span class="line">        <span class="keyword">for</span> user, items <span class="keyword">in</span> user_item.iterms():  </span><br><span class="line">            <span class="comment">#随机抽样，为user抽取与items数量相当的负样本，并将正负样本合并，用于优化计算  </span></span><br><span class="line">            samples = RandSelectNegativeSamples(items)  </span><br><span class="line">            <span class="comment">#依次获取item和user对该item的兴趣度  </span></span><br><span class="line">            <span class="keyword">for</span> item, rui <span class="keyword">in</span> samples.items():  </span><br><span class="line">                <span class="comment">#根据当前参数计算误差  </span></span><br><span class="line">                eui = eui - Predict(user, item)  </span><br><span class="line">                <span class="comment">#优化参数  </span></span><br><span class="line">                <span class="keyword">for</span> f <span class="keyword">in</span> range(<span class="number">0</span>, F):  </span><br><span class="line">                    P[user][f] += alpha * (eui * Q[f][item] - <span class="keyword">lambda</span> * P[user][f])  </span><br><span class="line">                    Q[f][item] += alpha * (eui * P[user][f] - <span class="keyword">lambda</span> * Q[f][item])  </span><br><span class="line">        <span class="comment">#每次迭代完后，都要降低学习速率。一开始的时候由于离最优值相差甚远，因此快速下降；  </span></span><br><span class="line">        <span class="comment">#当优化到一定程度后，就需要放慢学习速率，慢慢的接近最优值。  </span></span><br><span class="line">        alpha *= <span class="number">0.9</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h5 id="Baseline-Estimats-对比基线"><a href="#Baseline-Estimats-对比基线" class="headerlink" title="Baseline Estimats 对比基线"></a>Baseline Estimats 对比基线</h5><p>考虑到重口难调，有些user会给出比较高的分数，有些要去严格的users会给出比较低的分数，而有些质量好的商品会得到比较高的分数，质量差的分数较低。所以为了调整这些，引入了baseline estimate。比如为了估计某个用户u会给电影i打的评分：<br>$$<br>b_{ui} = u + b_u + b_i<br>$$</p>
@@ -365,7 +366,7 @@
 <li>$\lambda_2$和$\lambda_3$是我们手动设置的参数，MovieLens数据上，20比较合适</li>
 <li>R(u)和R(i)为用户urating过的物品的集合，和物品i被rating过用户的集合</li>
 </ul>
-<p>所以我们可以根据这些数据，计算出$b_u$和$b_i$b_i$（注意维度）<br>$$<br>b_i = \frac {\sum_{u \in R(u)}(r_{ui} - \mu)} {\lambda_2 + |R(i)|}    \\<br>b_u = \frac {\sum_{i \in R(u)}(r_{ui} - \mu - b_i)} {\lambda_3 + |R(u)|}<br>$$<br>除了上面的方法，还有一种更为简便的方法计算$b_u$和$b_i$，就是直接使用user，item的rating的平均值估计<br>$$<br>b_u = \frac {\sum R(u)} {len(R(u))}    \\<br>b_i = \frac {\sum R(i)} {len(R(i))}<br>$$</p>
+<p>所以我们可以根据这些数据，计算出$b_u$和$b_i$b_i$（注意维度）<br>$$<br>b_i = \frac {\sum_{u \in R(u)}(r_{ui} - \mu)} {\lambda_2 + |R(i)|}    \<br>b_u = \frac {\sum_{i \in R(u)}(r_{ui} - \mu - b_i)} {\lambda_3 + |R(u)|}<br>$$<br>除了上面的方法，还有一种更为简便的方法计算$b_u$和$b_i$，就是直接使用user，item的rating的平均值估计<br>$$<br>b_u = \frac {\sum R(u)} {len(R(u))}    \<br>b_i = \frac {\sum R(i)} {len(R(i))}<br>$$</p>
 <h5 id="Neighborhood-Models"><a href="#Neighborhood-Models" class="headerlink" title="Neighborhood Models"></a>Neighborhood Models</h5><ul>
 <li><strong>item-oriented algorithm:</strong> a rating is estimated using known rating made by the same user on similarity items.</li>
 </ul>
@@ -388,7 +389,7 @@
 </li>
 </ul>
 <p>在用户u所有评分过的物品中，找到相似度和i最高的k个物品（k-neighbors），用$S^k(i; u)$表示</p>
-<p>但是这种算法还是有一些局限性，比如对于两个完全没有关系的物品之间的预测。或者是对于某些物品，最为相似的k个物品缺失，所以可以修正以上的公式（不是很明白这里）<br>$$<br>\hat r_{ui} = b_{ui} + \sum_{j \in S^k(i; u)} \theta^u_{ij}(r_{ui} - b_{ui})    \\<br>\{\theta^u_{ij} | j \in S^k(i; u)\}<br>$$</p>
+<p>但是这种算法还是有一些局限性，比如对于两个完全没有关系的物品之间的预测。或者是对于某些物品，最为相似的k个物品缺失，所以可以修正以上的公式（不是很明白这里）<br>$$<br>\hat r_{ui} = b_{ui} + \sum_{j \in S^k(i; u)} \theta^u_{ij}(r_{ui} - b_{ui})    \<br>{\theta^u_{ij} | j \in S^k(i; u)}<br>$$</p>
 
       
 
@@ -649,18 +650,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -673,6 +662,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
@@ -681,11 +674,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -693,15 +682,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -710,10 +695,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -737,10 +718,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -749,11 +726,47 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -765,7 +778,7 @@
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

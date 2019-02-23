@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://chenson.com">
   <title>jupyterhub配置多用户 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://chenson.com/2019/01/13/jupyterhub配置多用户/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="最近组里申请了一台带GPU的服务器，Nvidia的M40，虽然性能一般，但玩一玩也够用了。因为是Centos的系统，组里的小伙伴觉得安装不如Ubuntu方便，都不想鼓捣环境，然后就由我来安装了。之前已经安装了CUDA和显卡驱动，因为安装时候的笔记没整理好，就先整理安装jupyter多用户的教程。后续有空的时候再写前置的环境教程吧（其实如果一开始就给一个干净的环境，安装超简单的）。 1. 系统环境我">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.com/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113181425947.png">
 <meta property="og:image" content="http://chenson.com/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113181650765.png">
 <meta property="og:image" content="http://chenson.com/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113182204506.png">
@@ -47,7 +48,7 @@
   
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -162,7 +163,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-jupyterhub配置多用户" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-jupyterhub配置多用户" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -184,68 +185,68 @@
       
         <p>最近组里申请了一台带GPU的服务器，Nvidia的M40，虽然性能一般，但玩一玩也够用了。因为是Centos的系统，组里的小伙伴觉得安装不如Ubuntu方便，都不想鼓捣环境，然后就由我来安装了。之前已经安装了CUDA和显卡驱动，因为安装时候的笔记没整理好，就先整理安装jupyter多用户的教程。后续有空的时候再写前置的环境教程吧（其实如果一开始就给一个干净的环境，安装超简单的）。</p>
 <h3 id="1-系统环境"><a href="#1-系统环境" class="headerlink" title="1. 系统环境"></a>1. 系统环境</h3><p>我的系统：CentOS Linux release 7.3.1611 (Core)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># 查看系统版本</div><div class="line">lsb_release -a</div><div class="line"></div><div class="line"># 以下二种方法适用于RedHat,CentOS</div><div class="line">cat /etc/redhat-release</div><div class="line">rpm -q centos-release</div><div class="line">rpm -q redhat-release</div></pre></td></tr></table></figure>
-<h3 id="2-安装步骤"><a href="#2-安装步骤" class="headerlink" title="2. 安装步骤"></a>2. 安装步骤</h3><h4 id="2-1-安装依赖包"><a href="#2-1-安装依赖包" class="headerlink" title="2.1 安装依赖包"></a>2.1 安装依赖包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">yum install sqlite-devel npm nodejs-legacy zlib-devel openssl-devel</div><div class="line"></div><div class="line"># 这个开启了，导致我后面一直报错，头疼，就kill相关进程就ok了</div><div class="line">npm install -g configurable-http-proxy</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看系统版本</span></span><br><span class="line">lsb_release -a</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 以下二种方法适用于RedHat,CentOS</span></span><br><span class="line">cat /etc/redhat-release</span><br><span class="line">rpm -q centos-release</span><br><span class="line">rpm -q redhat-release</span><br></pre></td></tr></table></figure>
+<h3 id="2-安装步骤"><a href="#2-安装步骤" class="headerlink" title="2. 安装步骤"></a>2. 安装步骤</h3><h4 id="2-1-安装依赖包"><a href="#2-1-安装依赖包" class="headerlink" title="2.1 安装依赖包"></a>2.1 安装依赖包</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum install sqlite-devel npm nodejs-legacy zlib-devel openssl-devel</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 这个开启了，导致我后面一直报错，头疼，就<span class="built_in">kill</span>相关进程就ok了</span></span><br><span class="line">npm install -g configurable-http-proxy</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h4 id="2-2-安装Anaconda3"><a href="#2-2-安装Anaconda3" class="headerlink" title="2.2 安装Anaconda3"></a>2.2 安装Anaconda3</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">wget https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh</div><div class="line">bash Anaconda3-4.4.0-Linux-x86_64.sh</div><div class="line"></div><div class="line"># 安装完后应该会提示你是否要将anaconda3路径加入到系统环境变量中去，当然选择是啦，然后更新环境变量</div><div class="line">source ~/.bashrc</div></pre></td></tr></table></figure>
+<h4 id="2-2-安装Anaconda3"><a href="#2-2-安装Anaconda3" class="headerlink" title="2.2 安装Anaconda3"></a>2.2 安装Anaconda3</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh</span><br><span class="line">bash Anaconda3-4.4.0-Linux-x86_64.sh</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装完后应该会提示你是否要将anaconda3路径加入到系统环境变量中去，当然选择是啦，然后更新环境变量</span></span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
 <p>检测是否安装成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda list</div></pre></td></tr></table></figure>
-<h4 id="2-3-安装jupyterhub"><a href="#2-3-安装jupyterhub" class="headerlink" title="2.3 安装jupyterhub"></a>2.3 安装jupyterhub</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install -c conda-forge jupyterhub</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda list</span><br></pre></td></tr></table></figure>
+<h4 id="2-3-安装jupyterhub"><a href="#2-3-安装jupyterhub" class="headerlink" title="2.3 安装jupyterhub"></a>2.3 安装jupyterhub</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install -c conda-forge jupyterhub</span><br></pre></td></tr></table></figure>
 <p>检测是否安装成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">jupyterhub -h</div><div class="line">configurable-http-proxy -h</div></pre></td></tr></table></figure>
-<h4 id="2-4-创建jupyterhub的配置文件"><a href="#2-4-创建jupyterhub的配置文件" class="headerlink" title="2.4 创建jupyterhub的配置文件"></a>2.4 创建jupyterhub的配置文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># jupyterhub是在anaconda3/bin路径下</div><div class="line"># 这条指令会生成一个jupyterhub_config.py的配置文件</div><div class="line">jupyterhub --generate-config</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jupyterhub -h</span><br><span class="line">configurable-http-proxy -h</span><br></pre></td></tr></table></figure>
+<h4 id="2-4-创建jupyterhub的配置文件"><a href="#2-4-创建jupyterhub的配置文件" class="headerlink" title="2.4 创建jupyterhub的配置文件"></a>2.4 创建jupyterhub的配置文件</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> jupyterhub是在anaconda3/bin路径下</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 这条指令会生成一个jupyterhub_config.py的配置文件</span></span><br><span class="line">jupyterhub --generate-config</span><br></pre></td></tr></table></figure>
 <p>修改配置文件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ip和使用的端口号</span></div><div class="line"><span class="number">195</span>:c.JupyterHub.ip = <span class="string">'10.105.xx.xxx'</span></div><div class="line"><span class="number">219</span>:c.JupyterHub.port = <span class="number">9999</span></div><div class="line"></div><div class="line"><span class="number">294</span>:c.JupyterHub.statsd_prefix = <span class="string">'jupyterhub'</span></div><div class="line"><span class="number">375</span>:c.Spawner.cmd = [<span class="string">'jupyterhub-singleuser'</span>]</div><div class="line">    </div><div class="line"><span class="comment"># 管理用户</span></div><div class="line"><span class="number">623</span>: <span class="comment">#c.Authenticator.admin_users = &#123;'root'&#125;</span></div><div class="line">    </div><div class="line"><span class="comment"># 白名单用户</span></div><div class="line"><span class="number">673</span>:c.Authenticator.whitelist =&#123;<span class="string">'user_name_1'</span>,<span class="string">'user_name_2'</span>,<span class="string">'user_name_3'</span>, ..., <span class="string">'user_name_x'</span>&#125;</div><div class="line"></div><div class="line"><span class="number">708</span>:c.LocalAuthenticator.create_system_users = <span class="keyword">True</span></div><div class="line"><span class="number">722</span>:c.PAMAuthenticator.encoding = <span class="string">'utf8'</span></div><div class="line"></div><div class="line"><span class="comment"># 非必要</span></div><div class="line"><span class="number">749</span>:c.InteractiveShellApp.exec_lines = [<span class="string">'import os;os.environ.update(&#123;"JAVA_HOME": "/usr/local/jdk1.8.0_74"&#125;)'</span>]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ip和使用的端口号</span></span><br><span class="line"><span class="number">195</span>:c.JupyterHub.ip = <span class="string">'10.105.xx.xxx'</span></span><br><span class="line"><span class="number">219</span>:c.JupyterHub.port = <span class="number">9999</span></span><br><span class="line"></span><br><span class="line"><span class="number">294</span>:c.JupyterHub.statsd_prefix = <span class="string">'jupyterhub'</span></span><br><span class="line"><span class="number">375</span>:c.Spawner.cmd = [<span class="string">'jupyterhub-singleuser'</span>]</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 管理用户</span></span><br><span class="line"><span class="number">623</span>: <span class="comment">#c.Authenticator.admin_users = &#123;'root'&#125;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># 白名单用户</span></span><br><span class="line"><span class="number">673</span>:c.Authenticator.whitelist =&#123;<span class="string">'user_name_1'</span>,<span class="string">'user_name_2'</span>,<span class="string">'user_name_3'</span>, ..., <span class="string">'user_name_x'</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="number">708</span>:c.LocalAuthenticator.create_system_users = <span class="keyword">True</span></span><br><span class="line"><span class="number">722</span>:c.PAMAuthenticator.encoding = <span class="string">'utf8'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 非必要</span></span><br><span class="line"><span class="number">749</span>:c.InteractiveShellApp.exec_lines = [<span class="string">'import os;os.environ.update(&#123;"JAVA_HOME": "/usr/local/jdk1.8.0_74"&#125;)'</span>]</span><br></pre></td></tr></table></figure>
 <p><strong>注意：</strong>这里在白名单和管理用户都提到的访问的用户，这里的用户实际上就是我们Centos服务器的用户，如果我们配置的用户没在系统当中，则会自动创建，创建后需要我们手工的指定用户密码，用于用户后期登录jupyterhub。</p>
-<h4 id="2-5-开启服务"><a href="#2-5-开启服务" class="headerlink" title="2.5 开启服务"></a>2.5 开启服务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jupyterhub --config=/etc/jupyterhub/jupyterhub.py --no-ssl</div></pre></td></tr></table></figure>
+<h4 id="2-5-开启服务"><a href="#2-5-开启服务" class="headerlink" title="2.5 开启服务"></a>2.5 开启服务</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyterhub --config=/etc/jupyterhub/jupyterhub.py --no-ssl</span><br></pre></td></tr></table></figure>
 <p>然而失败了 TAT</p>
 <p><img src="/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113181425947.png" alt="image-20190113181425947"></p>
 <p>一直报403错误，然后google了一下这个问题</p>
-<p><a href="https://github.com/jupyterhub/jupyterhub/issues/1892" target="_blank" rel="external">Jupyterhub sevice unavailable error and http :403 forbidden.</a></p>
+<p><a href="https://github.com/jupyterhub/jupyterhub/issues/1892" target="_blank" rel="noopener">Jupyterhub sevice unavailable error and http :403 forbidden.</a></p>
 <p>根据上述的问题找到了一个解决方案</p>
 <blockquote>
-<p><a href="https://github.com/carluri" target="_blank" rel="external">@carluri</a><br><code>ps aux | grep configurable-http-proxy</code><br>if you find any processes, shut them down</p>
+<p><a href="https://github.com/carluri" target="_blank" rel="noopener">@carluri</a><br><code>ps aux | grep configurable-http-proxy</code><br>if you find any processes, shut them down</p>
 </blockquote>
 <p><img src="/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113181650765.png" alt="image-20190113181650765"></p>
 <p>然后再启动一开始的那条指令就可以完美运行了。</p>
 <p>可能有些童鞋不知道怎么在本地访问服务器上的服务，那么此时就需要将端口进行转发啦，运行如下指令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 下面的意思是大概我先登入到fanchangxn这个跳板机，然后再连到10.105这台服务器上，同时将这台机器上的端口7864和本地端口7865挂载到一起</div><div class="line">ssh -N -f -L 7865:10.105.xx.xxx:7864 fanchangxun@182.254.xx.xxx -p36000</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 下面的意思是大概我先登入到fanchangxn这个跳板机，然后再连到10.105这台服务器上，同时将这台机器上的端口7864和本地端口7865挂载到一起</span></span><br><span class="line">ssh -N -f -L 7865:10.105.xx.xxx:7864 fanchangxun@182.254.xx.xxx -p36000</span><br></pre></td></tr></table></figure>
 <p>完美登入</p>
 <p><img src="/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113182204506.png" alt="image-20190113182204506"></p>
 <p>此时发现要账号和密码怎么办？似乎刚刚只是配置了用户名字，没有要求配置密码啊。</p>
 <p>由于之前我一直是在root账号下运行的，而我们本次配置的目的是允许多用户隔离运行自己的代码，而其他用户没有权限查看/修改/运行。所以先在本台机器下创建一些用户和密码（需在root账号下）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># 添加用户</div><div class="line">adduser user1</div><div class="line"></div><div class="line"># 设置密码，太简单系统为报一个bad password的warnning，可以忽略</div><div class="line"># 对于root用户来说，可以直接修改其他用户的密码</div><div class="line">passwd user1</div><div class="line"># 然后输入密码，比如 pwd12345678</div><div class="line"></div><div class="line"># 检查是否创建成功</div><div class="line">cut -d: -f1 /etc/passwd</div><div class="line"></div><div class="line"># 如果不小心把账号创建错了，需要删除也是ok的(永久删除)</div><div class="line">userdel user1</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 添加用户</span></span><br><span class="line">adduser user1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置密码，太简单系统为报一个bad password的warnning，可以忽略</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 对于root用户来说，可以直接修改其他用户的密码</span></span><br><span class="line">passwd user1</span><br><span class="line"><span class="meta">#</span><span class="bash"> 然后输入密码，比如 pwd12345678</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 检查是否创建成功</span></span><br><span class="line">cut -d: -f1 /etc/passwd</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果不小心把账号创建错了，需要删除也是ok的(永久删除)</span></span><br><span class="line">userdel user1</span><br></pre></td></tr></table></figure>
 <p>创建成功后，系统就会在/home下创建相应的user1这个文件夹，这个就是以后user1用的文件夹，然后用刚刚的账号和密码登入上述的jupyter就ok了（前提已经添加到了whitelist里面去），在里面创建文件夹或是notebook，就会在对应的/home/user1下创建相应的文件夹等。</p>
 <h4 id="2-4-开启后台运行和关闭"><a href="#2-4-开启后台运行和关闭" class="headerlink" title="2.4 开启后台运行和关闭"></a>2.4 开启后台运行和关闭</h4><p>因为这样的服务通常需要24h运行的，所以需要后台运行，通常可以用nohup、screen都可以。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 后台运行</div><div class="line">nohup jupyterhub --config=/data1/jupyterhub/jupyterhub_config.py --no-ssl &gt; /data1/jupyterhub/nohup.out 2&gt;&amp;1 &amp;</div><div class="line"></div><div class="line"># 查看是否正常运行，只对当前终端生效</div><div class="line">jobs</div><div class="line"></div><div class="line"># 删除运行的任务，后面为任务号</div><div class="line">fg num_of_jobs</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 后台运行</span></span><br><span class="line">nohup jupyterhub --config=/data1/jupyterhub/jupyterhub_config.py --no-ssl &gt; /data1/jupyterhub/nohup.out 2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看是否正常运行，只对当前终端生效</span></span><br><span class="line">jobs</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除运行的任务，后面为任务号</span></span><br><span class="line">fg num_of_jobs</span><br></pre></td></tr></table></figure>
 <p><img src="/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113220148769.png" alt="image-20190113220148769"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># 然而jobs只看当前终端生效的，关闭终端后，在另一个终端jobs已经无法看到后台跑得程序了，此时利用ps（进程查看命令）</div><div class="line"># a:显示所有程序 </div><div class="line"># u:以用户为主的格式来显示 </div><div class="line"># x:显示所有程序，不以终端机来区分</div><div class="line">ps aux | egrep node</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 然而<span class="built_in">jobs</span>只看当前终端生效的，关闭终端后，在另一个终端<span class="built_in">jobs</span>已经无法看到后台跑得程序了，此时利用ps（进程查看命令）</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> a:显示所有程序 </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> u:以用户为主的格式来显示 </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> x:显示所有程序，不以终端机来区分</span></span><br><span class="line">ps aux | egrep node</span><br></pre></td></tr></table></figure>
 <p><img src="/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113215008086.png" alt="image-20190113215008086"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 或者查看哪个端口号被占用</div><div class="line">lsof -i:7864</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 或者查看哪个端口号被占用</span></span><br><span class="line">lsof -i:7864</span><br></pre></td></tr></table></figure>
 <p><img src="/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113215307158.png" alt="image-20190113215307158"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 或者</div><div class="line">netstat -ap | grep 7864</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 或者</span></span><br><span class="line">netstat -ap | grep 7864</span><br></pre></td></tr></table></figure>
 <p><img src="/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113215206039.png" alt="image-20190113215206039"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 杀死进程</div><div class="line">kill -9  进程号</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 杀死进程</span></span><br><span class="line">kill -9  进程号</span><br></pre></td></tr></table></figure>
 <p>然而不知为何一直杀不掉这个进程，只能去看看他的父进程，杀掉父进程试试看</p>
 <p><img src="/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113215726845.png" alt="image-20190113215726845"></p>
 <p>先杀了4773进程，再把17959进程杀了就OK了，完美。</p>
 <p><img src="/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113215906240.png" alt="image-20190113215906240"></p>
-<h3 id="3-安装常用插件"><a href="#3-安装常用插件" class="headerlink" title="3. 安装常用插件"></a>3. 安装常用插件</h3><h4 id="3-1-nb-extension"><a href="#3-1-nb-extension" class="headerlink" title="3.1 nb_extension"></a>3.1 nb_extension</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># 为jupyter安装extension</div><div class="line">pip install jupyter_contrib_nbextensions</div><div class="line">conda install -c conda-forge jupyter_contrib_nbextensions</div><div class="line"></div><div class="line"># 安装jupyter nb_extension</div><div class="line">jupyter contrib nbextension install --user</div><div class="line"></div><div class="line"># 开启/关闭extensions</div><div class="line">jupyter nbextension enable &lt;nbextension require path&gt;</div><div class="line">jupyter nbextension disable &lt;nbextension require path&gt;</div><div class="line"></div><div class="line"># e.g</div><div class="line">jupyter nbextension enable codefolding/main</div></pre></td></tr></table></figure>
+<h3 id="3-安装常用插件"><a href="#3-安装常用插件" class="headerlink" title="3. 安装常用插件"></a>3. 安装常用插件</h3><h4 id="3-1-nb-extension"><a href="#3-1-nb-extension" class="headerlink" title="3.1 nb_extension"></a>3.1 nb_extension</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 为jupyter安装extension</span></span><br><span class="line">pip install jupyter_contrib_nbextensions</span><br><span class="line">conda install -c conda-forge jupyter_contrib_nbextensions</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装jupyter nb_extension</span></span><br><span class="line">jupyter contrib nbextension install --user</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 开启/关闭extensions</span></span><br><span class="line">jupyter nbextension enable &lt;nbextension require path&gt;</span><br><span class="line">jupyter nbextension disable &lt;nbextension require path&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> e.g</span></span><br><span class="line">jupyter nbextension enable codefolding/main</span><br></pre></td></tr></table></figure>
 <h4 id="3-2-notedown"><a href="#3-2-notedown" class="headerlink" title="3.2 notedown"></a>3.2 notedown</h4><p>使用notedown插件来读写github源文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 安装nodtedown插件</div><div class="line">pip install https://github.com/mli/notedown/tarball/master</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装nodtedown插件</span></span><br><span class="line">pip install https://github.com/mli/notedown/tarball/master</span><br></pre></td></tr></table></figure>
 <p>修改jupyterhub_config.py文件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 将配置添加到文件的末尾</span></div><div class="line">c.NotebookApp.contents_manager_class = <span class="string">'notedown.NotedownContentsManager'</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将配置添加到文件的末尾</span></span><br><span class="line">c.NotebookApp.contents_manager_class = <span class="string">'notedown.NotedownContentsManager'</span></span><br></pre></td></tr></table></figure>
 <p>使用方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 相互转化</div><div class="line">notedown input.md &gt; output.ipynb</div><div class="line">notedown input.ipynb --to markdown --strip &gt; output.md</div><div class="line">notedown input.ipynb --to markdown &gt; output_with_outputs.md</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 相互转化</span></span><br><span class="line">notedown input.md &gt; output.ipynb</span><br><span class="line">notedown input.ipynb --to markdown --strip &gt; output.md</span><br><span class="line">notedown input.ipynb --to markdown &gt; output_with_outputs.md</span><br></pre></td></tr></table></figure>
 <p>在IPython中使用</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> argparse</div><div class="line"></div><div class="line"><span class="keyword">from</span> IPython.nbformat.v3.rwbase <span class="keyword">import</span> NotebookReader</div><div class="line"><span class="keyword">from</span> IPython.nbformat.v3.nbjson <span class="keyword">import</span> JSONWriter</div><div class="line"></div><div class="line"><span class="keyword">import</span> IPython.nbformat.v3.nbbase <span class="keyword">as</span> nbbase</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> IPython.nbformat.v3.rwbase <span class="keyword">import</span> NotebookReader</span><br><span class="line"><span class="keyword">from</span> IPython.nbformat.v3.nbjson <span class="keyword">import</span> JSONWriter</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> IPython.nbformat.v3.nbbase <span class="keyword">as</span> nbbase</span><br></pre></td></tr></table></figure>
 <h3 id="4-References"><a href="#4-References" class="headerlink" title="4. References"></a>4. References</h3><ul>
-<li><a href="http://zhanjingbo.site/15090149503358.html" target="_blank" rel="external">Jupyterhub安装流程</a></li>
-<li><a href="https://blog.chairco.me/posts/2018/06/how%20to%20build%20a%20jupytre-hub%20for%20team.html" target="_blank" rel="external">如何建立一個團隊用的 Jupyter-Hub</a></li>
-<li><a href="https://blog.csdn.net/GGxiaobai/article/details/53504989" target="_blank" rel="external">CentOS 7中添加一个新用户并授权</a></li>
-<li><a href="https://blog.csdn.net/u014066037/article/details/55505116" target="_blank" rel="external">centos系统添加/删除用户和用户组</a></li>
-<li><a href="https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html" target="_blank" rel="external">Installing jupyter_contrib_nbextensions</a></li>
-<li><a href="https://github.com/aaren/notedown/blob/master/example.md" target="_blank" rel="external">Github-notedown</a></li>
+<li><a href="http://zhanjingbo.site/15090149503358.html" target="_blank" rel="noopener">Jupyterhub安装流程</a></li>
+<li><a href="https://blog.chairco.me/posts/2018/06/how%20to%20build%20a%20jupytre-hub%20for%20team.html" target="_blank" rel="noopener">如何建立一個團隊用的 Jupyter-Hub</a></li>
+<li><a href="https://blog.csdn.net/GGxiaobai/article/details/53504989" target="_blank" rel="noopener">CentOS 7中添加一个新用户并授权</a></li>
+<li><a href="https://blog.csdn.net/u014066037/article/details/55505116" target="_blank" rel="noopener">centos系统添加/删除用户和用户组</a></li>
+<li><a href="https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html" target="_blank" rel="noopener">Installing jupyter_contrib_nbextensions</a></li>
+<li><a href="https://github.com/aaren/notedown/blob/master/example.md" target="_blank" rel="noopener">Github-notedown</a></li>
 </ul>
 
       
@@ -355,6 +356,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/02/23/读书笔记-重构大数据统计/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          读书笔记-重构大数据统计
+        
+      </div>
+    </a>
   
   
     <a href="/2018/12/22/Mixed-Logistic-Regression模型初探/" id="article-nav-older" class="article-nav-link-wrap">
@@ -498,18 +508,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -522,6 +520,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
@@ -530,11 +532,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -542,15 +540,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -559,10 +553,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -586,10 +576,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -598,11 +584,47 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -614,7 +636,7 @@
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

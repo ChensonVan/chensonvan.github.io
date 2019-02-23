@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://chenson.com">
   <title>字符串搜索算法 - BM | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://chenson.com/2017/04/02/字符串搜索算法-BM/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="当我们要在某一个文本中要匹配某一个字符串的时候，我们最简单的方法就是一个一个匹配，也就是从头开始匹配文本和字符串，但发现不同的时候，就把整个字符串右移一位，然后从头重新和文本比较。当全部相同的时候，则右移字符串的长度。在之前的 KMP 算法中，我们是找到尽可能右移的最大位数，而不是一位一位的移动，这样相比原先效率已经提高了很多了。但在大部分的编辑器中，“查找”功能使用的不是 KMP ， 而是 BM">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/29129274.jpg">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/48038845.jpg">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/17-6-11/21040202.jpg">
@@ -44,7 +45,7 @@
   
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -159,7 +160,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-字符串搜索算法-BM" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-字符串搜索算法-BM" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -225,16 +226,16 @@
 <p>模式后移位数 = 好后缀在模式中的当前位置 - 好后缀在模式中最右出现且前缀字符不同的位置</p>
 </blockquote>
 <p>举个栗子计算：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Text:    H E R E _ I _ S A _ S I M P L E _ E X A M P L E</div><div class="line"></div><div class="line">Pattern:               P L E X A M P L E</div><div class="line"></div><div class="line">                       0 1 2 3 4 5 6 7 8</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Text:    H E R E _ I _ S A _ S I M P L E _ E X A M P L E</span><br><span class="line"></span><br><span class="line">Pattern:               P L E X A M P L E</span><br><span class="line"></span><br><span class="line">                       0 1 2 3 4 5 6 7 8</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>坏字符的移动</p>
 <p>此时坏字符的位置是4，坏字符 <code>I</code> 不在字符串当中，移动的个数为： 4 - (-1) = 5</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Text:    H E R E _ I _ S A _ S I M P L E _ E X A M P L E</div><div class="line"></div><div class="line">Pattern:                         P L E X A M P L E</div><div class="line"></div><div class="line">                                 0 1 2 3 4 5 6 7 8</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Text:    H E R E _ I _ S A _ S I M P L E _ E X A M P L E</span><br><span class="line"></span><br><span class="line">Pattern:                         P L E X A M P L E</span><br><span class="line"></span><br><span class="line">                                 0 1 2 3 4 5 6 7 8</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>好后缀的移动</p>
 <p>此时好后缀是 <code>MPLE</code>，其中 <code>PLE</code> 出现在头部，最右位置为 (01) 2。</p>
 <p>此时好后缀的字符是8(以最后一个为准)，移动的个数为：8 - 2 = 6</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Text:    H E R E _ I _ S A _ S I M P L E _ E X A M P L E</div><div class="line"></div><div class="line">Pattern:                           P L E X A M P L E</div><div class="line"></div><div class="line">                                   0 1 2 3 4 5 6 7 8</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Text:    H E R E _ I _ S A _ S I M P L E _ E X A M P L E</span><br><span class="line"></span><br><span class="line">Pattern:                           P L E X A M P L E</span><br><span class="line"></span><br><span class="line">                                   0 1 2 3 4 5 6 7 8</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>相比之下，我们可以发现好后缀的查找效率更高。</p>
@@ -258,8 +259,8 @@
 <p>继续下去则是依据<strong>好后缀规则</strong>计算好后缀 “E” 的后移位置为 6 - 0 = 6 位，然后继续倒序比较时发现已超出文本 T 的范围，搜索结束。</p>
 <p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/85829606.jpg" alt=""></p>
 <h3 id="2-References"><a href="#2-References" class="headerlink" title="2. References"></a>2. References</h3><ul>
-<li><a href="http://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html" target="_blank" rel="external">字符串匹配的Boyer-Moore算法</a></li>
-<li><a href="http://www.cnblogs.com/gaochundong/p/boyer_moore_string_matching_algorithm.html" target="_blank" rel="external">Boyer-Moore 字符串匹配算法</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html" target="_blank" rel="noopener">字符串匹配的Boyer-Moore算法</a></li>
+<li><a href="http://www.cnblogs.com/gaochundong/p/boyer_moore_string_matching_algorithm.html" target="_blank" rel="noopener">Boyer-Moore 字符串匹配算法</a></li>
 </ul>
 
       
@@ -521,18 +522,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -545,6 +534,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
@@ -553,11 +546,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,15 +554,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -582,10 +567,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -609,10 +590,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -621,11 +598,47 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -637,7 +650,7 @@
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:
