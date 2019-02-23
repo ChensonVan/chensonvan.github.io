@@ -647,7 +647,74 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>说实话，只是大概了解一下这些常见的RNN模型，但是这些模型为什么这么设计，为什么能够抓取网络中可能有用的长短期信息其实我还是比较懵的。这一块以后也是需要去深入理解的一部分，先mark一下。</p>
+<h3 id="1-循环神经网络-RNN-Recurrent-Neural-Network"><a href="#1-循环神经网络-RNN-Recurrent-Neural-Network" class="headerlink" title="1. 循环神经网络 - RNN (Recurrent Neural Network)"></a>1. 循环神经网络 - RNN (Recurrent Neural Network)</h3><h3 id="2-门控循环单元-GRN-Gated-Recurrent-Neural-Networks"><a href="#2-门控循环单元-GRN-Gated-Recurrent-Neural-Networks" class="headerlink" title="2. 门控循环单元 - GRN (Gated Recurrent Neural Networks)"></a>2. 门控循环单元 - GRN (Gated Recurrent Neural Networks)</h3><p>按时间顺序上来看，GRN是在LSTM之后提出来的。但是这个相对来说可能没那么复杂，所以先总结这个，然后再总结LSTM。</p>
+<p>门控循环单元，重点是在于<strong>门</strong>的，即Gated。<del>这里指的是 $\sigma$ = sigmod func.</del></p>
+<p>那么为什么要出现这些门呢，相比原先的RNN模型，这些门的出现能够解决什么样的问题？</p>
+<p>之前讨论过，RNN在(BPTT)计算的时候，梯度容易出现<strong>衰减或爆炸</strong>，特别是梯度衰减的问题。<strong>由于出现了梯度衰减，那么对于一些时间序列上，距离较长的数据，模型就比较难捕捉到这两个时间点上的关系。</strong></p>
+<p>模型设计如下：</p>
+<p><img src="/2018/05/25/深度学习笔记-RNN常见网络/2018-05-25-深度学习笔记-RNN常见网络/image-20190223182723913.png" alt="image-20190223182723913"></p>
+<ul>
+<li><p>重置门 - R (reset)</p>
+<p>有助于捕捉时序数据中<strong>短期</strong>的依赖关系。</p>
+<p>根据$sigmod$函数的性质，值介于0-1之间，可能丢弃过去的一些不相关的信息：</p>
+<ul>
+<li><p>R == 0，丢弃了上一轮的隐含层的信息；</p>
+</li>
+<li><p>R == 1，则保留相关的信息。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>  根据上面的模型图，我们可以看到重置门其实是有两个输入的，分别是：</p>
+<ul>
+<li>$X_t$</li>
+<li><p>$H_{t-1}$</p>
+<p>即当前和上一轮的信息，则是<strong>短期内的信息。</strong><br>$$<br>R_t = \sigma(X_t W_{xr} + H_{t-1}W_{hr} + b_r)<br>$$</p>
+</li>
+</ul>
+<ul>
+<li><p>更新门</p>
+<p><del>有助于捕捉时序数据中<strong>长期</strong>的依赖状态。</del></p>
+<p><del>用于更新当前隐含层的状态，为了捕捉到之前比较久、长期之前的状态</del><br>$$<br>Z_t = \sigma(X_t W_{xz} + H_{t-1}W_{hz} + b_z)<br>$$</p>
+<ul>
+<li>$Z_t$ == 0，则不保留之前的信息；</li>
+<li>$Z_t$ == 1，保留之前的信息。</li>
+</ul>
+</li>
+<li><p>候选隐含状态<br>$$<br>\tilde H= tanh(X_tW_{xh} + R_t  \bigodot H_{t-1}W_{hh} + b_h<br>$$</p>
+</li>
+<li><p>当前隐含状态<br>$$<br>H_t = Z_t\bigodot H_{t-1} + (1 - Z_t) \bigodot \tilde H_t<br>$$</p>
+</li>
+</ul>
+<h3 id="3-长短期记忆-LSTM-Long-and-Short-Term-Memory"><a href="#3-长短期记忆-LSTM-Long-and-Short-Term-Memory" class="headerlink" title="3. 长短期记忆 - LSTM (Long and Short-Term Memory)"></a>3. 长短期记忆 - LSTM (Long and Short-Term Memory)</h3><p>结构比之前的GRU更为复杂一些，LSTM的隐含层包含隐含层变量H和记忆细胞C，它们的设计和形状相同（可以看到后面的几个func设计上其实是一样的，ji。</p>
+<ul>
+<li><p>输入门</p>
+<p>短期记忆<br>$$<br>I_t= \sigma(X_t W_{xi} + H_{t-1}W_{hi} + b_i)<br>$$</p>
+</li>
+</ul>
+<ul>
+<li><p>遗忘门</p>
+<p>长期记忆<br>$$<br>F_t= \sigma(X_t W_{xf} + H_{t-1}W_{hf} + b_f)<br>$$</p>
+</li>
+</ul>
+<ul>
+<li>输出门<br>$$<br>O_t= \sigma(X_t W_{xo} + H_{t-1}W_{ho} + b_o)<br>$$</li>
+</ul>
+<ul>
+<li>候选记忆细胞 Memory Cell<br>$$<br>\tilde C_t = \tanh(X_t W_{xc} + H_{t-1}W_{hc} + b_c)<br>$$</li>
+</ul>
+<ul>
+<li><p>记忆细胞<br>$$<br>C_t = F_t \bigodot C_{t-1} + I_t \bigodot \tilde C_t<br>$$</p>
+</li>
+<li><p>当前隐含状态</p>
+</li>
+</ul>
+<h3 id="4-深度循环神经网络"><a href="#4-深度循环神经网络" class="headerlink" title="4. 深度循环神经网络"></a>4. 深度循环神经网络</h3><h3 id="5-双向循环神经网络"><a href="#5-双向循环神经网络" class="headerlink" title="5. 双向循环神经网络"></a>5. 双向循环神经网络</h3><h3 id="6-References"><a href="#6-References" class="headerlink" title="6. References"></a>6. References</h3><ul>
+<li><a href="https://zh.gluon.ai/chapter_recurrent-neural-networks" target="_blank" rel="noopener">动手学深度学习-循环神经网络</a></li>
+<li><a href="https://blog.csdn.net/softee/article/details/54292102" target="_blank" rel="noopener">RNN LSTM与GRU深度学习模型学习笔记</a></li>
+</ul>
+
       
 
       
@@ -655,6 +722,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RNN</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -1145,15 +1227,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1209,11 +1291,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1237,11 +1319,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">

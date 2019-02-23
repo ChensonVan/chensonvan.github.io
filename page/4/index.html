@@ -932,19 +932,19 @@
 
 
   
-    <article id="post-Linux常用指令 (Chenson&#39;s conflicted copy 2019-02-11)" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-Linux常用指令" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/19/Linux常用指令 (Chenson's conflicted copy 2019-02-11)/">Linux常用指令</a>
+      <a class="article-title" href="/2017/02/19/Linux常用指令/">Linux常用指令</a>
     </h1>
   
 
         
-        <a href="/2017/02/19/Linux常用指令 (Chenson's conflicted copy 2019-02-11)/" class="archive-article-date">
+        <a href="/2017/02/19/Linux常用指令/" class="archive-article-date">
   	<time datetime="2017-02-19T01:16:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-19</time>
 </a>
         
@@ -958,7 +958,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find &lt;PATH TO FOLDER&gt; -ls | tr -s &apos; &apos;|cut -d&apos; &apos; -f 7| paste -sd+ | bc</span><br></pre></td></tr></table></figure>
 <h3 id="3-强制写入"><a href="#3-强制写入" class="headerlink" title="3. 强制写入"></a>3. 强制写入</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> vii commond model, Try the below command</span><br><span class="line"></span><br><span class="line">:w !sudo tee %</span><br><span class="line">Explanation</span><br><span class="line"></span><br><span class="line">:w – write</span><br><span class="line">!sudo – call shell sudo command</span><br><span class="line">tee – the output of write (:w) command is redirected using tee</span><br><span class="line"><span class="meta">%</span> – current file name</span><br></pre></td></tr></table></figure>
 <h3 id="4-查看二进制文件"><a href="#4-查看二进制文件" class="headerlink" title="4. 查看二进制文件"></a>4. 查看二进制文件</h3><p><code>vim</code>下 </p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it -u root spark-notebook /bin/bash:%!xxd</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:%!xxd</span><br></pre></td></tr></table></figure>
 <p><code>linux</code>下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xxd -b file_name</span><br></pre></td></tr></table></figure>
         
@@ -984,7 +984,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/19/Linux常用指令 (Chenson's conflicted copy 2019-02-11)/">MORE >></a>
+          <a class="article-more-a" href="/2017/02/19/Linux常用指令/">MORE >></a>
         </p>
       
 
@@ -1129,15 +1129,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1193,11 +1193,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1221,11 +1221,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
