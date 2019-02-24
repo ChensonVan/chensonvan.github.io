@@ -153,6 +153,347 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-深度学习笔记-CNN常见网络" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/27/深度学习笔记-CNN常见网络/">深度学习笔记-CNN常见网络</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/27/深度学习笔记-CNN常见网络/" class="archive-article-date">
+  	<time datetime="2018-04-27T02:32:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上次笔记主要记录了卷积神经网络总卷积Block中的基本概念，本次笔记打算整理一下常见的CNN，从开山鼻祖的LeNet到目前比较流行的ResNet和DenseNet等。</p>
+<h3 id="1-LeNet"><a href="#1-LeNet" class="headerlink" title="1. LeNet"></a>1. LeNet</h3><p>LeNet是早起用来识别手写数字图像的卷积神经网络，算是卷积神经网络的开山鼻祖。</p>
+<p>LeNet主要分为<strong>卷积层块</strong>和<strong>全连接层</strong>块两大部分。</p>
+<h4 id="1-1-卷积层块"><a href="#1-1-卷积层块" class="headerlink" title="1.1 卷积层块"></a>1.1 卷积层块</h4><p><strong>基本单位</strong>是卷积层后接最大池化层（实际上里面还可以额外的添加一些其他的模块），然后卷积层块就由这俩基本单位<strong>重复的堆叠</strong>构成。</p>
+<ul>
+<li><p>卷积层</p>
+<p>用来识别图像里的空间模式，识别一些<strong>局部的locally特征</strong>，比如线条和物体的局部。</p>
+<p>卷积层的输入为4D数据，形状为(<strong>批量大小，通道，高，宽</strong>)，输出使用了<strong>Sigmoid激活函数</strong>。</p>
+</li>
+<li><p>最大池化层</p>
+<p>用来<strong>降低卷积层对位置的敏感性</strong>，池化层注意设置好pool_size和strides大小。</p>
+</li>
+</ul>
+<h4 id="1-2-全连接层块"><a href="#1-2-全连接层块" class="headerlink" title="1.2 全连接层块"></a>1.2 全连接层块</h4><p>在Conv和Dense交界的部分，需要将输出的数据flatten才可以给Dense用。激活函数使用Sigmod</p>
+<h4 id="1-3-MxNet实现代码"><a href="#1-3-MxNet实现代码" class="headerlink" title="1.3 MxNet实现代码"></a>1.3 MxNet实现代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> d2lzh <span class="keyword">as</span> d2l</span><br><span class="line"><span class="keyword">import</span> mxnet <span class="keyword">as</span> mx</span><br><span class="line"><span class="keyword">from</span> mxnet <span class="keyword">import</span> autograd, gluon, init, nd</span><br><span class="line"><span class="keyword">from</span> mxnet.gluon <span class="keyword">import</span> loss <span class="keyword">as</span> gloss, nn</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义网络</span></span><br><span class="line">net = nn.Sequential()</span><br><span class="line">net.add(nn.Conv2D(channels=<span class="number">6</span>, kernel_size=<span class="number">5</span>, activation=<span class="string">'sigmoid'</span>),</span><br><span class="line">        nn.MaxPool2D(pool_size=<span class="number">2</span>, strides=<span class="number">2</span>),</span><br><span class="line">        nn.Conv2D(channels=<span class="number">16</span>, kernel_size=<span class="number">5</span>, activation=<span class="string">'sigmoid'</span>),</span><br><span class="line">        nn.MaxPool2D(pool_size=<span class="number">2</span>, strides=<span class="number">2</span>),</span><br><span class="line">        <span class="comment"># Dense会默认将(批量大小,通道,高,宽)形状的输入转换成(批量大小,通道 * 高 * 宽)形</span></span><br><span class="line">        <span class="comment"># 状的输入</span></span><br><span class="line">        nn.Dense(<span class="number">120</span>, activation=<span class="string">'sigmoid'</span>),</span><br><span class="line">        nn.Dense(<span class="number">84</span>, activation=<span class="string">'sigmoid'</span>),</span><br><span class="line">        nn.Dense(<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练部分(有些代码不完整，详情见沐神Github代码)</span></span><br><span class="line">lr, num_epochs = <span class="number">0.9</span>, <span class="number">5</span></span><br><span class="line"><span class="comment"># 其实这里想展示的是net权重的初始化时，使用的是Xavier随机初始化</span></span><br><span class="line">net.initialize(force_reinit=<span class="keyword">True</span>, ctx=ctx, init=init.Xavier())</span><br><span class="line">trainer = gluon.Trainer(net.collect_params(), <span class="string">'sgd'</span>, &#123;<span class="string">'learning_rate'</span>: lr&#125;)</span><br><span class="line">train_ch5(net, train_iter, test_iter, batch_size, trainer, ctx, num_epochs)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>运行结果</p>
+<p>下图有俩结果，一个是沐神笔记里面用K80跑的结果，一个是我笔记本跑的结果，配置是2015年的中配RMBP，cpu是i5 8G，大概速度差了10倍左右。</p>
+<p><img src="/2018/04/27/深度学习笔记-CNN常见网络/2018-04-27-深度学习笔记-CNN常见网络/image-20190113154533271.png" alt="image-20190113154533271"></p>
+</li>
+</ul>
+<ul>
+<li><p>调参练习</p>
+<p>这部分呢，其实就是找一下在深度学习中调参的一些感觉，毕竟我只是一枚炼丹工程师。</p>
+<ul>
+<li><p>改为普通的随机初始化网络权重可以看到下图基本不收敛。</p>
+<p><img src="/2018/04/27/深度学习笔记-CNN常见网络/2018-04-27-深度学习笔记-CNN常见网络/image-20190113154846452.png" alt="image-20190113154846452"></p>
+<p>接着尝试一下把lr给调小一些，调到0.05，似乎也没啥提升，继续调小到0.005，且增加num_epochs到20，基本也没提升。然后想想我是改了一个较为合适的权重，所以应该把lr调高一些，方便快速调整到合适的权重，就把lr提高到1.5，用的随机初始化，一直等到epoche到了10左右的时候acc才开始提升，可以说收敛得非常慢了。看来这个权重的初始化非常重要，需要单独调研一下，到时候看啥原因。</p>
+<ul>
+<li><p>往小调</p>
+<p><img src="/2018/04/27/深度学习笔记-CNN常见网络/2018-04-27-深度学习笔记-CNN常见网络/image-20190113155516459.png" alt="image-20190113155516459"></p>
+</li>
+<li><p>往大调</p>
+<p><img src="/2018/04/27/深度学习笔记-CNN常见网络/2018-04-27-深度学习笔记-CNN常见网络/image-20190113161018793.png" alt="image-20190113161018793"></p>
+</li>
+</ul>
+<p>其实lr调太小了(0.05/0.005, 原先是0.9)，虽然改回去Xavier初始化权重也基本是上面效果，估计是太小了不收敛？若是调到0.5的话，可以收敛，但相比速度上会收敛得慢一些，所以选定一个合适的lr也是很重要的。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>调整卷积窗口的大小</p>
+</li>
+<li><p>调整输出通道数</p>
+</li>
+<li><p>调整激活函数</p>
+</li>
+<li><p>调整全连接层输出个数</p>
+</li>
+</ul>
+<h3 id="2-AlexNet（2013）"><a href="#2-AlexNet（2013）" class="headerlink" title="2. AlexNet（2013）"></a>2. AlexNet（2013）</h3><p><img src="/2018/04/27/深度学习笔记-CNN常见网络/2018-04-27-深度学习笔记-CNN常见网络/image-20190113132153918.png" alt="image-20190113132153918"></p>
+<p>总共六个阶段</p>
+<p>kernel，strides相对大很多</p>
+<p>Xavier是怎么初始化的？与默认的区别？</p>
+<p>LeNet V.S AlexNet</p>
+<h3 id="3-VGG"><a href="#3-VGG" class="headerlink" title="3. VGG"></a>3. VGG</h3><p>使用重复元素的非常深的网络</p>
+<p>使用很多相对加多的kernel，比如3x3的卷积，然后接上一个池化层，之后再将这个模块重复很多次。</p>
+<ul>
+<li>VGG Block 相同叠加</li>
+<li>VGG Stack 相似叠加</li>
+<li>VGG11, VGG13, VGG16, VGG19 … …</li>
+</ul>
+<h3 id="4-Bath-Norm"><a href="#4-Bath-Norm" class="headerlink" title="4. Bath Norm"></a>4. Bath Norm</h3><p>批量归一化，将数据均值变为0，方差变为1，使数值更加稳定。</p>
+<p>$\lambda$   $\beta$ </p>
+<ul>
+<li><p>全连接2D数据</p>
+<p>每个样本之间，均值变为0，方差变为1</p>
+</li>
+<li><p>如果是卷积3D数据</p>
+<p>对每个channel做变换，使得均值变为0，方差变为1</p>
+</li>
+</ul>
+<p>Q&amp;A:</p>
+<ul>
+<li>batchNorm 加的位置？ <ul>
+<li>为什么是Conv2D的后面，Activation的前面，而不是Conv2D的前面？</li>
+</ul>
+</li>
+<li><p>每个batch之间的归一化不一样？</p>
+</li>
+<li><p>训练的时候ok，测试的时候如何做归一化？</p>
+<ul>
+<li>保留训练时候算出来的结果做归一化</li>
+<li>mean, variance, $\lambda$ , $\beta$</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<h3 id="5-Network-in-Networ-NiN"><a href="#5-Network-in-Networ-NiN" class="headerlink" title="5. Network in Networ (NiN)"></a>5. Network in Networ (NiN)</h3><ul>
+<li><p>AlexNet</p>
+<p>卷积层和全连接层分别加深加宽从而得到深度网络</p>
+</li>
+<li><p>NiN</p>
+<p>串联数个卷积层块和全连接层块来构建深度网络</p>
+</li>
+</ul>
+<p><img src="/2018/04/27/深度学习笔记-CNN常见网络/2018-04-27-深度学习笔记-CNN常见网络/image-20190113143539999.png" alt="image-20190113143539999"></p>
+<ul>
+<li>Q&amp;A：<ul>
+<li>如何解决Conv和Dense之间输入维度的问题，比如Conv的输入为4D，但是Dense可能无法输出如此维度的数据<ul>
+<li>把Dense层换成kernel为1x1的Conv</li>
+</ul>
+</li>
+<li>4D数据到2D数据通常会编程非常大</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-GoogLeNet-2014"><a href="#6-GoogLeNet-2014" class="headerlink" title="6. GoogLeNet(2014)"></a>6. GoogLeNet(2014)</h3><ul>
+<li><p>Inception</p>
+<p><img src="/2018/04/27/深度学习笔记-CNN常见网络/2018-04-27-深度学习笔记-CNN常见网络/image-20190113145457707.png" alt="image-20190113145457707"></p>
+</li>
+<li></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CNN</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/27/深度学习笔记-CNN常见网络/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-深度学习笔记-CNN" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/20/深度学习笔记-CNN/">深度学习笔记-CNN</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/20/深度学习笔记-CNN/" class="archive-article-date">
+  	<time datetime="2018-04-20T06:45:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近正在学习李沐沐神的<a href="https://space.bilibili.com/209599371/channel/detail?cid=23541" target="_blank" rel="noopener">动手学深度学习</a>，目前听到了第五课，真的是非常好的课程。其实在学习之前也有断断续续的学过一些深度学习相关的东西，也会用PyTorch跑一些简单的模型，但仅限于此，对理论知识理解还是比较浅薄的，只是一个调包侠，所以这次学习打算认真学习一下相关的理论知识。</p>
+<p>在学之前也有听了一下NG刚发布的深度学习课程，但对比了一下，还是觉得沐神的比较适合我，毕竟教学用的是中文，方便理解，且理论知识深度合适，所以打算先听完这门课，以后理论方面有需要的，再听NG相关的课程。</p>
+<h3 id="1-卷积神经网络-CNN-Convolutional-Neural-Network"><a href="#1-卷积神经网络-CNN-Convolutional-Neural-Network" class="headerlink" title="1. 卷积神经网络 CNN - (Convolutional Neural Network)"></a>1. 卷积神经网络 CNN - (Convolutional Neural Network)</h3><h4 id="1-1-神经网络-Neural-Network"><a href="#1-1-神经网络-Neural-Network" class="headerlink" title="1.1 神经网络 - Neural Network"></a>1.1 神经网络 - Neural Network</h4><ul>
+<li><p>单个神经元</p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/1.png" alt="单个神经元"></p>
+</li>
+<li><p>神经网络</p>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/2.png" alt="神经网络"></p></li></ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CNN</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/20/深度学习笔记-CNN/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Mac系统下matplotlib显示中文" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/10/Mac系统下matplotlib显示中文/">Mac系统下matplotlib显示中文</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/10/Mac系统下matplotlib显示中文/" class="archive-article-date">
+  	<time datetime="2018-04-10T07:08:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Mac系统下让matplotlib显示中文"><a href="#1-Mac系统下让matplotlib显示中文" class="headerlink" title="1. Mac系统下让matplotlib显示中文"></a>1. Mac系统下让matplotlib显示中文</h3><p>现在的时间是<strong>2018.04.10，</strong>更新一下<strong>Mac系统</strong>下的解决方法</p>
+<p>我的环境：<code>anaconda3</code> + <code>Python 3.6.3</code></p>
+<ul>
+<li><p><strong>添加字体</strong></p>
+<p>添加 <code>SimHei</code> 字体（simhei.ttf文件）到</p>
+<p> <code>~/anaconda3/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/ttf</code> 中；</p>
+<p>下载地址：<a href="https://link.zhihu.com/?target=http%3A//www.font5.com.cn/font_download.php%3Fid%3D151%26part%3D1237887120" target="_blank" rel="noopener">黑体字体simhei.ttf</a></p>
+<p><strong>我用的是 <code>anaconda3</code> 下的 python 环境，这个地址对应你正在使用的 <code>python</code> 安装地址</strong></p>
+<p>​</p>
+</li>
+<li><p><strong>修改matplotlib配置文件</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/anaconda3/lib/python3.6/site-packages/matplotlib/mpl-data</span><br><span class="line">vi matplotlibrc   # 编辑配置文件</span><br></pre></td></tr></table></figure>
+<p>找到 <code>font.sans-serif</code> 添加 <code>SimHei</code> 到字体列表 （如图，大约在211行）</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-4-10/76293547.jpg" alt=""></p>
+<p>同时修改 <code>axes.unicode_minus</code>，将 <code>True</code> 改为 <code>False</code>，作用就是解决负号’-‘显示为方块的问题（大约在330行）</p></li></ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Jupyter</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/10/Mac系统下matplotlib显示中文/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-PyTorch学习笔记" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -676,239 +1017,6 @@
 
 
   
-    <article id="post-Machine-Learning-Ensemble-Learning" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/13/Machine-Learning-Ensemble-Learning/">Machine Learning - Ensemble Learning</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/13/Machine-Learning-Ensemble-Learning/" class="archive-article-date">
-  	<time datetime="2017-06-13T04:27:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-集成学习-Ensemble-Learning"><a href="#1-集成学习-Ensemble-Learning" class="headerlink" title="1. 集成学习 (Ensemble Learning)"></a>1. 集成学习 (Ensemble Learning)</h4><p>在对新的数据实例进行分类的时候，集成学习通过训练好<strong>多个学习器</strong>，把这些分类器的的分类结果进行某种组合 (比如投票) 决定分类结果，以取得更好的结果，就是我们生活中那句话“三个臭皮匠顶个诸葛亮”，通过使用多个决策者共同决策一个实例的分类从而提高分类器的泛化能力。</p>
-<ul>
-<li><p>同质集成 (Homogeneous)</p>
-<p>需要是<strong>同种类型</strong>，比如全部是决策树或神经网络等，每个个体学习器称之为<strong>基学习器</strong> (base learner)，相应的学习算法称为<strong>基学习算法</strong> (base learning algorithm)</p>
-</li>
-<li><p>异质集成 (Heterogenous)</p>
-<p>可以由不同的学校算法生成，这时候就不再有基学习算法，每个个体学习器称为<strong>组件学习器</strong> (component learner)</p>
-</li>
-</ul>
-<p>以下我们重点讨论同质集成。</p>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-12/5589106.jpg" alt=""></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ensemble</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/13/Machine-Learning-Ensemble-Learning/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Hadoop权威指南笔记（三）" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/09/Hadoop权威指南笔记（三）/">Hadoop权威指南笔记（三）</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/09/Hadoop权威指南笔记（三）/" class="archive-article-date">
-  	<time datetime="2017-06-09T06:08:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-为什么要使用Secondary-Sort"><a href="#1-为什么要使用Secondary-Sort" class="headerlink" title="1. 为什么要使用Secondary Sort"></a>1. 为什么要使用Secondary Sort</h3><p>在Hadoop中，从Map到Reduce的过程中，key是不断被sort的。所以从map出来的时候写入到一个intermediate output file的时候，key是有序的。然后reduce不断的从不同的cluster里面fetch里面的key-value pairs的时候，仍然多次sort这些pairs。所以<strong>最终进入到reducer的key是有序的，但是value是无序的</strong>。如果我们需要对value也进行排序呢？Google的MR内置了函数对value也可以排序，但是Hadoop不行，我们需要自己去定制partitioner等去实现这个功能。</p>
-<p>举个栗子：</p>
-<ul>
-<li><p>输入文件格式如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">2015,1,24</span><br><span class="line">2015,3,54</span><br><span class="line">2015,1,3</span><br><span class="line">2015,2,-43</span><br><span class="line">2015,4,5</span><br><span class="line">2015,3,46</span><br><span class="line">2014,2,64</span><br><span class="line">2015,1,4</span><br><span class="line">2015,1,21</span><br><span class="line">2015,2,35</span><br><span class="line">2015,2,20</span><br></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>期望的输出格式如下（<strong>value是有序的</strong>）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2014-2	64</span><br><span class="line">2015-1	3，4，21，24</span><br><span class="line">2015-2	-43，0，35</span><br><span class="line">2015-3	46，56</span><br><span class="line">2015-4	5</span><br></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>Hadoop默认的输出格式如下（<strong>value是无序的</strong>）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2014-2	64</span><br><span class="line">2015-1	21，4，3，24</span><br><span class="line">2015-2	0，35，-43</span><br><span class="line">2015-3	56，46</span><br><span class="line">2015-4	5</span><br></pre></td></tr></table></figure></li></ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/09/Hadoop权威指南笔记（三）/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Machine-Learning-Recommender-Systems-2" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/15/Machine-Learning-Recommender-Systems-2/">Machine Learning - Recommender Systems(2)</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/15/Machine-Learning-Recommender-Systems-2/" class="archive-article-date">
-  	<time datetime="2017-05-15T08:43:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-协同过滤，给用户推荐物品"><a href="#1-协同过滤，给用户推荐物品" class="headerlink" title="1. 协同过滤，给用户推荐物品"></a>1. 协同过滤，给用户推荐物品</h3><h4 id="1-1-基于用户的协同过滤算法"><a href="#1-1-基于用户的协同过滤算法" class="headerlink" title="1.1 基于用户的协同过滤算法"></a>1.1 基于用户的协同过滤算法</h4><p>UserCF 主要通过<strong>分析用户的行为记录</strong>，<strong>计算物品之间的相似度</strong></p>
-<p>该算法认为物品A和物品B具有很大的相似度是因为喜欢物品A的用户大部分也喜欢物品B</p>
-<h5 id="1-1-1-步骤"><a href="#1-1-1-步骤" class="headerlink" title="1.1.1 步骤"></a>1.1.1 步骤</h5><ul>
-<li>找到和目标用户相似的用户集合</li>
-<li>找到这个集合中的用户喜欢，且和<strong>目标用户没有听说过的</strong>的物品推荐给目标用户</li>
-</ul>
-<h5 id="1-1-2-计算相似度"><a href="#1-1-2-计算相似度" class="headerlink" title="1.1.2 计算相似度"></a>1.1.2 计算相似度</h5><p><img src="http://i2.muimg.com/567571/b95f545d611e3a2e.png" alt=""></p>
-<p><strong>得到用户之间的兴趣相似度之后，寻找最相近的K个用户</strong></p>
-<p><img src="http://i4.buimg.com/567571/4fb60f6ed242f07b.png" alt=""></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/15/Machine-Learning-Recommender-Systems-2/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1033,15 +1141,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1089,14 +1197,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -1105,11 +1205,23 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
               </li>
              
               <li class="article-tag-list-item">

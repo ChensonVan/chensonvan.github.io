@@ -153,6 +153,369 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Spark笔记-应用篇" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/24/Spark笔记-应用篇/">Spark笔记-应用篇</a>
+    </h1>
+  
+
+        
+        <a href="/2019/02/24/Spark笔记-应用篇/" class="archive-article-date">
+  	<time datetime="2019-02-24T09:36:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/02/24/Spark笔记-应用篇/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Spark笔记-基础操作篇" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/24/Spark笔记-基础操作篇/">Spark笔记-基础操作篇</a>
+    </h1>
+  
+
+        
+        <a href="/2019/02/24/Spark笔记-基础操作篇/" class="archive-article-date">
+  	<time datetime="2019-02-24T09:36:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本篇主要是为了熟悉PySpark的基本操作，没啥特别的内容。</p>
+<h3 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h3><ul>
+<li><p>启动Hadoop</p>
+</li>
+<li><p>启动Spark</p>
+</li>
+<li><p>在Jupyter中测试PySpark</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pyspark</span><br><span class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkContext <span class="keyword">as</span> sc</span><br><span class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkConf</span><br><span class="line"><span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> SparkSession</span><br><span class="line"></span><br><span class="line">conf = SparkConf().setAppName(<span class="string">'spark-basic-oprations'</span>) \</span><br><span class="line">                  .setMaster(<span class="string">'local[*]'</span>)</span><br><span class="line">sc = sc.getOrCreate(conf)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">spark = SparkSession.builder \</span><br><span class="line">                    .appName(<span class="string">'spark-basic-oprations'</span>) \</span><br><span class="line">                    .master(<span class="string">'local[*]'</span>) \</span><br><span class="line">                    .config(<span class="string">'spark.some.config.option'</span>, <span class="string">'some-value'</span>) \</span><br><span class="line">                    .config(<span class="string">'spark.debug.maxToStringFields'</span>, <span class="string">'50'</span>) \</span><br><span class="line">                    .getOrCreate()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-RDD的创建"><a href="#2-RDD的创建" class="headerlink" title="2. RDD的创建"></a>2. RDD的创建</h3><ul>
+<li><p>读取外部数据</p>
+<ul>
+<li><p>数据位于HDFS上</p>
+</li>
+<li><p>数据位于本地磁盘</p>
+<p>需要注意的是，所有的worker nodes上都需要能够访问这个本地路径</p>
+</li>
+<li><p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据位于HDFS上</span></span><br><span class="line">hdfs_file = <span class="string">'/user/hadoop/google_news.txt'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据位于本地磁盘，格式为(file:// + 本地的绝对路径)</span></span><br><span class="line">local_file = <span class="string">'file:///usr/local/spark/data/google_news.txt'</span></span><br><span class="line"></span><br><span class="line">lines = sc.textFile(hdfs_file)</span><br><span class="line">lines = sc.textFile(local_file)</span><br></pre></td></tr></table></figure>
+<p>textFile的数据可以是文件名、目录和压缩文件等。后面还可以跟一个参数，用来指定分区的数目</p>
+</li>
+</ul>
+</li>
+<li><p>读取Driver中已经存在的数据集合</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nums = list(10)</span><br><span class="line">data = sc.parallelize()</span><br><span class="line">data.collect()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-RDD操作"><a href="#3-RDD操作" class="headerlink" title="3. RDD操作"></a>3. RDD操作</h3><ul>
+<li><p>Transformation</p>
+<ul>
+<li><p>map(func): 将每个元素传递到函数func中，并将结果返回为一个新的数据集</p>
+</li>
+<li><p>filter(func): 筛选出满足函数func的元素，并返回一个新的数据集</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lines = sc.textFile(local_file)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断是否为空行，这里返回值为True/False</span></span><br><span class="line">lines.filter(lambdas x : len(x) &gt; <span class="number">0</span>).collect()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤非空行的，这里返回非空的内容</span></span><br><span class="line">lines.filter(lambdas x : len(x) &gt; <span class="number">0</span>).collect()</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/02/24/Spark笔记-基础操作篇/2019-02-24-Spark笔记-基础操作篇/image-20190224213014236.png" alt="image-20190224213014236"></p>
+</li>
+<li><p>flatMap(func): 与map()相似，<strong>但每个输入元素都可以映射到0或多个输出结果</strong></p>
+</li>
+<li><p>groupByKey(func): 应用于(K,V)键值对的数据集时，返回一个新的(K, Iterable)形式的数据集</p>
+</li>
+<li><p>reduceByKey(func): 应用于(K,V)键值对的数据集时，返回一个新的(K, V)形式的数据集，其中的每个值是将每个key传递到函数func中进行聚合</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>Action</p>
+<ul>
+<li><p>count(): 返回数据集中的元素个数</p>
+</li>
+<li><p>collect(): 以数组的形式返回数据集中的所有元素</p>
+</li>
+<li><p>first(): 返回数据集中的第一个元素</p>
+</li>
+<li><p>take(): 以数组的形式返回数据集中的前n个元素</p>
+</li>
+<li><p>reduce(func): 通过函数func(输入两个参数并返回一个值)聚合数据集中的元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lines = sc.textFile(local_file)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算单行的长度</span></span><br><span class="line">lines_length = lines.map(lambdas x : len(x))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算总长度</span></span><br><span class="line">total_length = lines_length.reduce(<span class="keyword">lambda</span> a, b : a + b)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>foreach(func): 将数据集中的每个元素传递到函数func中运行</li>
+</ul>
+<h3 id="4-持久化"><a href="#4-持久化" class="headerlink" title="4. 持久化"></a>4. 持久化</h3><ul>
+<li><p>非持久化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>data = [<span class="string">"Hadoop"</span>, <span class="string">"Spark"</span>, <span class="string">"Hive"</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>rdd = sc.parallelize(data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 非持久化，重复计算了</span></span><br><span class="line"><span class="comment">## 行动操作，触发一次真正从头到尾的计算</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(rdd.count()) </span><br><span class="line"><span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 行动操作，触发一次真正从头到尾的计算</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">', '</span>.join(rdd.collect())) </span><br><span class="line">Hadoop, Spark, Hive</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>持久化</p>
+<ul>
+<li><p>persist()<img src="/2019/02/24/Spark笔记-基础操作篇/2019-02-24-Spark笔记-基础操作篇/image-20190224213956527.png" alt="image-20190224213956527"></p>
+</li>
+<li><p>persist接受一个参数</p>
+<ul>
+<li><p>MEMORY_ONLY</p>
+<p>表示将RDD作为反序列化的对象存储于JVM中，如果内存不足，就要按照LRU原则替换缓存中的内容</p>
+</li>
+<li><p>MEMORY_AND_DISK</p>
+<p>表示将RDD作为反序列化的对象存储在JVM中，如果内存不足，超出的分区将会被存放在硬盘上</p>
+</li>
+</ul>
+</li>
+<li><p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 持久化</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>data = [<span class="string">"Hadoop"</span>, <span class="string">"Spark"</span>, <span class="string">"Hive"</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>rdd = sc.parallelize(data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 会调用persist(MEMORY_ONLY)，但是，语句执行到这里，并不会缓存rdd，这是rdd还没有被计算生成，接下来第一次action的时候才会缓存结果</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>rdd.cache() </span><br><span class="line"><span class="comment"># 第一次行动操作，触发一次真正从头到尾的计算，这时才会执行上面的rdd.cache()，把这个rdd放到缓存中</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(rdd.count()) </span><br><span class="line"><span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二次行动操作，不需要触发从头到尾的计算，只需要重复使用上面缓存中的rdd</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">', '</span>.join(rdd.collect())) </span><br><span class="line">Hadoop, Spark, Hive</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>移除持久化</p>
+<p>可以使用unpersist()方法手动地把持久化的RDD从缓存中移除</p>
+<p><img src="/2019/02/24/Spark笔记-基础操作篇/2019-02-24-Spark笔记-基础操作篇/image-20190224213724646.png" alt="image-20190224213724646"></p>
+</li>
+</ul>
+<h3 id="5-分区"><a href="#5-分区" class="headerlink" title="5. 分区"></a>5. 分区</h3><blockquote>
+<p>RDD是弹性分布式数据集，通常RDD很大，会被分成很多个分区，分别保存在不同的节点上。RDD分区的一个分区原则是<strong>使得分区的个数尽量等于集群中的CPU核心(core)数目</strong>。</p>
+<p>对于不同的Spark部署模式而言(分别是<strong>本地模式</strong>、<strong>Standalone模式</strong>、<strong>YARN模式</strong>、<strong>Mesos模式</strong>)，都可以通过设置spark.default.parallelism这个参数的值，来配置默认的分区数目，一般而言：</p>
+<ul>
+<li>本地模式：默认为本地机器的CPU数目，若设置了local[N],则默认为N；</li>
+<li>Apache Mesos：默认的分区数为8；</li>
+<li>Standalone或YARN：在“集群中所有CPU核心数目总和”和“2”二者中取较大值作为默认值；</li>
+</ul>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PySpark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/02/24/Spark笔记-基础操作篇/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Spark笔记-原理篇" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/24/Spark笔记-原理篇/">Spark笔记-原理篇</a>
+    </h1>
+  
+
+        
+        <a href="/2019/02/24/Spark笔记-原理篇/" class="archive-article-date">
+  	<time datetime="2019-02-24T08:28:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>还在UNSW读研的时候，修过一门COMP9313，大数据相关课程的时候有学过一点Spark，但那会只是做过一些简单的Projects，简单的应用过Spark和MapReduce这俩计算框架，并没有实际工程上的经验。最近因为工作的原因，需要使用Spark做一些特征工程的计算，因为数据量还是挺大的，好几十亿条的数据吧。用SQL的话，不是那么的灵活，用Python计算这些的话，估计还是挺呛的，所以Spark是最好的选择。</p>
+<p>关于学习计划，打算先熟悉一下Spark的一些基本原理和PySpark的基本操作，然后接下来再记录一下做特征工程相关的内容。</p>
+<h3 id="1-Spark的设计与运行原理"><a href="#1-Spark的设计与运行原理" class="headerlink" title="1. Spark的设计与运行原理"></a>1. Spark的设计与运行原理</h3><h4 id="1-1-Spark生态系统"><a href="#1-1-Spark生态系统" class="headerlink" title="1.1 Spark生态系统"></a>1.1 Spark生态系统</h4><ul>
+<li>Spark Core - 基本功能模块，如内存计算、任务调度、部署模式、故障恢复、存储管理等</li>
+<li>Spark SQL - 可以直接操作Spark中的RDD</li>
+<li>Spark Streaming - 用于计算流数据的，支持高吞吐量、可容错处理的实时流数据处理，其核心思路是将流式计算分解成一系列短小的批处理作业</li>
+<li>Spark MLLib - 机器学习的包，高级的接口有ML</li>
+<li>GraphX - 用于图计算</li>
+</ul>
+<h4 id="1-2-Spark基本概念"><a href="#1-2-Spark基本概念" class="headerlink" title="1.2 Spark基本概念"></a>1.2 Spark基本概念</h4><ul>
+<li>RDD - 弹性分布式数据集(Resilient Distributed Dataset)，是分布式内存的一个抽象概念，提供了一种<strong>高度受限</strong>的共享内存模型（高度受限不是很理解）</li>
+<li>DAG - 有向无环图 (Directed Acyclic Graph)，主要反映了RDD之间的依赖关系</li>
+<li>Executor - 运行在工作节点(Work Node)上的一个进程</li>
+<li>应用 - 用户编写的Spark应用程序</li>
+<li>任务 - 运行在Excutor上的工作单元</li>
+<li>作业 - 一个作业包含多个RDD及作用于相应RDD上的各种操作</li>
+<li>阶段 - 作业的基本调度单位，一个作业会分为多组任务，每组任务被称为“阶段”，或者也被称为“任务集”</li>
+</ul>
+<h4 id="1-3-Spark架构设计"><a href="#1-3-Spark架构设计" class="headerlink" title="1.3 Spark架构设计"></a>1.3 Spark架构设计</h4><p>一下两部分就看看就好了，初期不一定需要很深入的了解。初期的重点我觉得应该是先理解RDD部分。</p>
+<p><img src="/2019/02/24/Spark笔记-原理篇/2019-02-24-Spark笔记-原理篇/spark设计架构.jpg" alt="img"></p>
+<h4 id="1-4-Spark运行基本流程"><a href="#1-4-Spark运行基本流程" class="headerlink" title="1.4 Spark运行基本流程"></a>1.4 Spark运行基本流程</h4><p><img src="/2019/02/24/Spark笔记-原理篇/2019-02-24-Spark笔记-原理篇/spark运行流程.jpg" alt="img"></p>
+<h4 id="1-5-Spark核心部分之一RDD"><a href="#1-5-Spark核心部分之一RDD" class="headerlink" title="1.5 Spark核心部分之一RDD"></a>1.5 Spark核心部分之一RDD</h4><p>Spark相比MapReduce更加高效，很重要一点是建立在统一的抽像RDD之上。MapReduce在计算的时候，会拆分成多个Maps和Reduces，这些都会被分配在不同的节点上，每个节点会将自己计算好的中间结果写入到HDFS上。那么这个过程就造成很多的重复计算、数据复制、磁盘IO和序列化开销。而在Spark中，RDD的存在就会避免了上面提到的这几点，从而使Spark更加高效。</p>
+<p>那么什么是RDD呢？从最后一个单词看，这个是一个Dataset，也就是一个数据集合，一个<strong>分布式对象集合</strong>(不是很理解)。在一开始提到RDD的时候，说了RDD提供了一种<strong>高度受限</strong>的共享内存模型，对高度受限不是很理解，看了下好像是因为这个集合是<strong>只读</strong>的。即一个RDD里面是可以有多个记录分区的，也可以分布在集群中不同的节点上，但是这些数据集是只读的，不能直接修改。(有点像C++中的共享内存模型)</p>
+<h5 id="1-5-1-RDD的操作"><a href="#1-5-1-RDD的操作" class="headerlink" title="1.5.1 RDD的操作"></a>1.5.1 RDD的操作</h5><ul>
+<li><p>Transformation</p>
+<p>转换的意思，从字面上理解就是这个转到那个，那个转到另外一个。可以理解为一个类似流程图一样，那么每走一步就是指定了其依赖关系，RDD之间的相互依赖关系(不太理解为什么是RDD之间，而不是RDD之内)。</p>
+<p>常见的Transformation有Map、Filter、Groupby、Join等，其输入是一个RDD，输出也是一个RDD。</p>
+<p><strong>Questions:</strong></p>
+<ul>
+<li>如果对一个RDD连续执行Map、Filter、Join等，那么中间过程会有多少个RDD呢？如果有多个这些RDD会不会很占内存等？</li>
+</ul>
+</li>
+<li><p>Action</p>
+<p>字面意思就是行动，大致就是需要输出一个结果。常见的Action有Count，Collect等，其输入是一个RDD，但是输出为一个值或者结果。</p>
+</li>
+</ul>
+<h5 id="1-5-2-RDD的执行流程"><a href="#1-5-2-RDD的执行流程" class="headerlink" title="1.5.2 RDD的执行流程"></a>1.5.2 RDD的执行流程</h5><ol>
+<li><p>RDD读入外部或者内存的集合进行创建(读完之后当前只是一个RDD)；</p>
+</li>
+<li><p>经过多个Transformations，<strong>每次转换都会产生不同的RDD</strong>，供下一次Transformation使用；</p>
+</li>
+<li>最后一个是Action操作，然后输出到外部数据源或者Scala集合或者标量。</li>
+</ol>
+<p>回答一下上面的困惑，RDD采用的<strong>惰性调用</strong>，字面意思是只有在需要的时候才会去做，即在Action的时候，才会去计算之前的Transformations操作。那么意味着不会输出到外部数据源或者Scala集合等，不会实际计算出中间结果，减少数据IO等操作。</p>
+<p>新的困惑：所以RDD只是一个转换记录的集合，那之前怎么说是<strong>分布式对象集合</strong>，到底会不会占用HDFS磁盘或者内存呢？</p>
+<p><img src="/2019/02/24/Spark笔记-原理篇/2019-02-24-Spark笔记-原理篇/spark_RDD计算流程.jpg" alt="spark_RDD计算流程"></p>
+<h5 id="1-5-3-RDD特性"><a href="#1-5-3-RDD特性" class="headerlink" title="1.5.3 RDD特性"></a>1.5.3 RDD特性</h5><ul>
+<li>高效的容错性(分布式共享内存、键值存储、内存数据库)</li>
+<li>中间结果持久化到内存(Spark是基于内存计算的，中间数据是持久化到内存，而不是磁盘，避免读写IO开销，但当T级的数据是如何内存足够存下数据的呢？)</li>
+<li>存放的数据可以是Java对象，避免了不必要的对象序列化和反序列化开销(记得Hadoop中是有自己的一套序列化的，和Java不一样)</li>
+</ul>
+<h4 id="1-5-4-RDD之间的依赖关系"><a href="#1-5-4-RDD之间的依赖关系" class="headerlink" title="1.5.4 RDD之间的依赖关系"></a>1.5.4 RDD之间的依赖关系</h4><ul>
+<li><p>窄依赖(Narrow Dependency)</p>
+<p>一个或多个父RDD<strong>分区</strong>对应一个子RDD<strong>分区</strong>，即一对一或者多对一；</p>
+<p>生成窄依赖关系的Transformations有Map，Filter，Union等</p>
+</li>
+<li><p>宽依赖(Wide Dependency)</p>
+<p>一个父RDD<strong>分区</strong>对应多个子RDD<strong>分区</strong>，即一对多；</p>
+<p>生成宽依赖关系的Transformations有Groupby，Sortbykey等</p>
+</li>
+</ul>
+<p><strong>Join比较特殊，两者都有可能是。</strong></p>
+<p><img src="/2019/02/24/Spark笔记-原理篇/2019-02-24-Spark笔记-原理篇/依赖关系.jpg" alt="依赖关系"></p>
+<ul>
+<li><p>Questions：</p>
+<ul>
+<li><p>不是很理解不同Transformations生成的依赖关系不同</p>
+<p>其实上面的理解点应该是分区，父分区和子分区的关系。根据MapReduce的计算框架，Groupby的操作肯定是会造成一对多的分区。同时在MapReduce中Map给我感觉也是会有一对多，是否这里的Map和MapReduce中的Map不太一样？</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-References"><a href="#2-References" class="headerlink" title="2. References"></a>2. References</h3><ul>
+<li><a href="http://dblab.xmu.edu.cn/blog/1709-2/" target="_blank" rel="noopener">子雨大数据之Spark入门教程(Python版)</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/02/24/Spark笔记-原理篇/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-深度学习笔记-RNN" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -166,7 +529,7 @@
 
         
         <a href="/2019/02/23/深度学习笔记-RNN/" class="archive-article-date">
-  	<time datetime="2019-02-23T08:14:36.167Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-23</time>
+  	<time datetime="2019-02-23T09:40:26.384Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-23</time>
 </a>
         
       </header>
@@ -191,7 +554,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RNN</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CNN</a>
         		</li>
       		
 		</ul>
@@ -644,248 +1007,6 @@
 
 
   
-    <article id="post-大数据数仓建设笔记" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/20/大数据数仓建设笔记/">大数据数仓建设笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/20/大数据数仓建设笔记/" class="archive-article-date">
-  	<time datetime="2018-12-20T05:02:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>虽然不是从事大数据开发的，但我觉得还是有必要对大数据这边有一些了解，简单的可能是如何使用大数据的一些工具，比如是Hive、Spark、Presto等，以及如何日更一张宽表。所以就按照我平常接触和了解的做了个简单的总结。</p>
-<h3 id="1-为什么要建设数据仓库"><a href="#1-为什么要建设数据仓库" class="headerlink" title="1. 为什么要建设数据仓库"></a>1. 为什么要建设数据仓库</h3><ul>
-<li><p>数据集成</p>
-<p>不同业务系统数据集中、统一管理</p>
-</li>
-<li><p>面向主题</p>
-<p>对业务数据分主题建设–参与人、行为域、黑名单</p>
-</li>
-<li><p>时间维度</p>
-<p>按天存储历史快照数据，数据可追溯</p>
-</li>
-<li><p>相对稳定</p>
-</li>
-<li><p>提升计算能力</p>
-<p>数据预清洗处理，预加工存储</p>
-</li>
-<li><p>支持多方面应用</p>
-<p>OLAP、BI</p>
-</li>
-</ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Big Data</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/20/大数据数仓建设笔记/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-拒绝图床，从我做起" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/01/拒绝图床，从我做起/">拒绝图床，从我做起</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/01/拒绝图床，从我做起/" class="archive-article-date">
-  	<time datetime="2018-12-01T04:29:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前段时间想整理一下以前的博文笔记，因为很多都是早期自己记录的笔记，条理比较乱。想稍微整理一下，方便以后自己回顾复习以及他人阅读。但发现一件比较头大的事情就是，以前插图都是上传到图床上然，而现在很多图片都已经挂掉了，链接不可访问。这简直就是灾难性的一幕。</p>
-<p><img src="/2018/12/01/拒绝图床，从我做起/2018-12-01-拒绝图床，从我做起/image-20181201164011749-3653611.png" alt="image-20181201164011749"></p>
-<p>早期之所以用图床是因为方便，因为Chrome有个插件可以直接上传，采用本地的话需要把图片保存到本地路径然后引用对应的图片，至于如何同步到github上不影响显示效果也是比较麻烦的。好在现在Typora更新了几个版本后，对于插入图片可以时候非常友好（这里裂墙推荐Typora，最好用的MarkDown工具，没有之一）。具体使用步骤如下：</p>
-<h3 id="1-安装步骤"><a href="#1-安装步骤" class="headerlink" title="1. 安装步骤"></a>1. 安装步骤</h3><ul>
-<li><p>安装插件，修改<code>Hexo</code>配置</p>
-<ul>
-<li>修改主页配置文件<code>_config.yml</code>里面的<code>post_asset_folder : true</code></li>
-<li><p>在<code>hexo</code>目录下执行命令<code>npm install hexo-asset-image --save</code>，即安装一个可以上传本地图片的插件</p>
-</li>
-<li><p>安装成功后，以后再新建博文<code>hexo n “XXX”</code>的时候，除了生成对应的<code>.md</code>文件的同时，也会在同一层目录下，建一个同名的文件夹，用于存放这篇博文引用的本地图片。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">XXX.md</span><br><span class="line">XXX</span><br><span class="line">|--img1.jpg</span><br><span class="line">|--img2.jpg</span><br><span class="line">|--img3.jpg</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>生成静态页面，对应的html是</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/year/month/day/XXX/img1.jpg"</span> <span class="attr">alt</span>=<span class="string">"img1"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Typora</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/01/拒绝图床，从我做起/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-聚类算法：K-Means及扩展算法K-Modes、K-Prototype初探" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/27/聚类算法：K-Means及扩展算法K-Modes、K-Prototype初探/">聚类算法：K-Means及扩展算法K-Modes、K-Prototype初探</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/27/聚类算法：K-Means及扩展算法K-Modes、K-Prototype初探/" class="archive-article-date">
-  	<time datetime="2018-11-27T05:23:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>由于最近正在参与的自动化建模平台需要用到这一算法，但sklearn里面的聚类算法只支持数值型的，无法用到类别型的特征上，所以就研究了K-Modes和K-Prototypes这两个算法。具体算法的思想和源码如下。</p>
-<h3 id="1-k-Means"><a href="#1-k-Means" class="headerlink" title="1. k-Means"></a>1. k-Means</h3><ul>
-<li><strong>Algorightm</strong><ul>
-<li>K-Means</li>
-<li>K-Means++</li>
-</ul>
-</li>
-</ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Cluster</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/27/聚类算法：K-Means及扩展算法K-Modes、K-Prototype初探/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1010,15 +1131,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1066,14 +1187,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -1082,11 +1195,23 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
               </li>
              
               <li class="article-tag-list-item">
