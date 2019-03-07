@@ -16,15 +16,15 @@
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="还在UNSW读研的时候，修过一门COMP9313，大数据相关课程的时候有学过一点Spark，但那会只是做过一些简单的Projects，简单的应用过Spark和MapReduce这俩计算框架，并没有实际工程上的经验。最近因为工作的原因，需要使用Spark做一些特征工程的计算，因为数据量还是挺大的，好几十亿条的数据吧。用SQL的话，不是那么的灵活，用Python计算这些的话，估计还是挺呛的，所以Spa">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://chenson.com/2019/02/24/Spark笔记-原理篇/2019-02-24-Spark笔记-原理篇/spark设计架构.jpg">
-<meta property="og:image" content="http://chenson.com/2019/02/24/Spark笔记-原理篇/2019-02-24-Spark笔记-原理篇/spark运行流程.jpg">
-<meta property="og:image" content="http://chenson.com/2019/02/24/Spark笔记-原理篇/2019-02-24-Spark笔记-原理篇/spark_RDD计算流程.jpg">
-<meta property="og:image" content="http://chenson.com/2019/02/24/Spark笔记-原理篇/2019-02-24-Spark笔记-原理篇/依赖关系.jpg">
-<meta property="og:updated_time" content="2019-02-24T12:51:10.531Z">
+<meta property="og:image" content="http://chenson.com/2019/02/24/Spark笔记-原理篇/2019-02-24-Spark笔记-原理篇/pic1.jpg">
+<meta property="og:image" content="http://chenson.com/2019/02/24/Spark笔记-原理篇/2019-02-24-Spark笔记-原理篇/pic2.jpg">
+<meta property="og:image" content="http://chenson.com/2019/02/24/Spark笔记-原理篇/2019-02-24-Spark笔记-原理篇/pic3.jpg">
+<meta property="og:image" content="http://chenson.com/2019/02/24/Spark笔记-原理篇/2019-02-24-Spark笔记-原理篇/pic4.jpg">
+<meta property="og:updated_time" content="2019-02-24T13:51:18.796Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark笔记-原理篇">
 <meta name="twitter:description" content="还在UNSW读研的时候，修过一门COMP9313，大数据相关课程的时候有学过一点Spark，但那会只是做过一些简单的Projects，简单的应用过Spark和MapReduce这俩计算框架，并没有实际工程上的经验。最近因为工作的原因，需要使用Spark做一些特征工程的计算，因为数据量还是挺大的，好几十亿条的数据吧。用SQL的话，不是那么的灵活，用Python计算这些的话，估计还是挺呛的，所以Spa">
-<meta name="twitter:image" content="http://chenson.com/2019/02/24/Spark笔记-原理篇/2019-02-24-Spark笔记-原理篇/spark设计架构.jpg">
+<meta name="twitter:image" content="http://chenson.com/2019/02/24/Spark笔记-原理篇/2019-02-24-Spark笔记-原理篇/pic1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -187,6 +187,7 @@
 <li>Spark MLLib - 机器学习的包，高级的接口有ML</li>
 <li>GraphX - 用于图计算</li>
 </ul>
+<a id="more"></a>
 <h4 id="1-2-Spark基本概念"><a href="#1-2-Spark基本概念" class="headerlink" title="1.2 Spark基本概念"></a>1.2 Spark基本概念</h4><ul>
 <li>RDD - 弹性分布式数据集(Resilient Distributed Dataset)，是分布式内存的一个抽象概念，提供了一种<strong>高度受限</strong>的共享内存模型（高度受限不是很理解）</li>
 <li>DAG - 有向无环图 (Directed Acyclic Graph)，主要反映了RDD之间的依赖关系</li>
@@ -197,8 +198,8 @@
 <li>阶段 - 作业的基本调度单位，一个作业会分为多组任务，每组任务被称为“阶段”，或者也被称为“任务集”</li>
 </ul>
 <h4 id="1-3-Spark架构设计"><a href="#1-3-Spark架构设计" class="headerlink" title="1.3 Spark架构设计"></a>1.3 Spark架构设计</h4><p>一下两部分就看看就好了，初期不一定需要很深入的了解。初期的重点我觉得应该是先理解RDD部分。</p>
-<p><img src="/2019/02/24/Spark笔记-原理篇/2019-02-24-Spark笔记-原理篇/spark设计架构.jpg" alt="img"></p>
-<h4 id="1-4-Spark运行基本流程"><a href="#1-4-Spark运行基本流程" class="headerlink" title="1.4 Spark运行基本流程"></a>1.4 Spark运行基本流程</h4><p><img src="/2019/02/24/Spark笔记-原理篇/2019-02-24-Spark笔记-原理篇/spark运行流程.jpg" alt="img"></p>
+<p><img src="/2019/02/24/Spark笔记-原理篇/2019-02-24-Spark笔记-原理篇/pic1.jpg" alt="img"></p>
+<h4 id="1-4-Spark运行基本流程"><a href="#1-4-Spark运行基本流程" class="headerlink" title="1.4 Spark运行基本流程"></a>1.4 Spark运行基本流程</h4><p><img src="/2019/02/24/Spark笔记-原理篇/2019-02-24-Spark笔记-原理篇/pic2.jpg" alt="img"></p>
 <h4 id="1-5-Spark核心部分之一RDD"><a href="#1-5-Spark核心部分之一RDD" class="headerlink" title="1.5 Spark核心部分之一RDD"></a>1.5 Spark核心部分之一RDD</h4><p>Spark相比MapReduce更加高效，很重要一点是建立在统一的抽像RDD之上。MapReduce在计算的时候，会拆分成多个Maps和Reduces，这些都会被分配在不同的节点上，每个节点会将自己计算好的中间结果写入到HDFS上。那么这个过程就造成很多的重复计算、数据复制、磁盘IO和序列化开销。而在Spark中，RDD的存在就会避免了上面提到的这几点，从而使Spark更加高效。</p>
 <p>那么什么是RDD呢？从最后一个单词看，这个是一个Dataset，也就是一个数据集合，一个<strong>分布式对象集合</strong>(不是很理解)。在一开始提到RDD的时候，说了RDD提供了一种<strong>高度受限</strong>的共享内存模型，对高度受限不是很理解，看了下好像是因为这个集合是<strong>只读</strong>的。即一个RDD里面是可以有多个记录分区的，也可以分布在集群中不同的节点上，但是这些数据集是只读的，不能直接修改。(有点像C++中的共享内存模型)</p>
 <h5 id="1-5-1-RDD的操作"><a href="#1-5-1-RDD的操作" class="headerlink" title="1.5.1 RDD的操作"></a>1.5.1 RDD的操作</h5><ul>
@@ -223,7 +224,7 @@
 </ol>
 <p>回答一下上面的困惑，RDD采用的<strong>惰性调用</strong>，字面意思是只有在需要的时候才会去做，即在Action的时候，才会去计算之前的Transformations操作。那么意味着不会输出到外部数据源或者Scala集合等，不会实际计算出中间结果，减少数据IO等操作。</p>
 <p>新的困惑：所以RDD只是一个转换记录的集合，那之前怎么说是<strong>分布式对象集合</strong>，到底会不会占用HDFS磁盘或者内存呢？</p>
-<p><img src="/2019/02/24/Spark笔记-原理篇/2019-02-24-Spark笔记-原理篇/spark_RDD计算流程.jpg" alt="spark_RDD计算流程"></p>
+<p><img src="/2019/02/24/Spark笔记-原理篇/2019-02-24-Spark笔记-原理篇/pic3.jpg" alt="spark_RDD计算流程"></p>
 <h5 id="1-5-3-RDD特性"><a href="#1-5-3-RDD特性" class="headerlink" title="1.5.3 RDD特性"></a>1.5.3 RDD特性</h5><ul>
 <li>高效的容错性(分布式共享内存、键值存储、内存数据库)</li>
 <li>中间结果持久化到内存(Spark是基于内存计算的，中间数据是持久化到内存，而不是磁盘，避免读写IO开销，但当T级的数据是如何内存足够存下数据的呢？)</li>
@@ -240,7 +241,7 @@
 </li>
 </ul>
 <p><strong>Join比较特殊，两者都有可能是。</strong></p>
-<p><img src="/2019/02/24/Spark笔记-原理篇/2019-02-24-Spark笔记-原理篇/依赖关系.jpg" alt="依赖关系"></p>
+<p><img src="/2019/02/24/Spark笔记-原理篇/2019-02-24-Spark笔记-原理篇/pic4.jpg" alt="依赖关系"></p>
 <ul>
 <li><p>Questions：</p>
 <ul>
@@ -585,19 +586,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://chenson.com/2019/02/24/Spark笔记-基础操作篇/2019-02-24-Spark笔记-基础操作篇/image-20190224213014236.png">
 <meta property="og:image" content="http://chenson.com/2019/02/24/Spark笔记-基础操作篇/2019-02-24-Spark笔记-基础操作篇/image-20190224213956527.png">
 <meta property="og:image" content="http://chenson.com/2019/02/24/Spark笔记-基础操作篇/2019-02-24-Spark笔记-基础操作篇/image-20190224213724646.png">
-<meta property="og:updated_time" content="2019-02-24T13:45:08.781Z">
+<meta property="og:updated_time" content="2019-02-24T13:50:03.222Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark笔记-基础操作篇">
 <meta name="twitter:description" content="本篇主要是为了熟悉PySpark的基本操作，没啥特别的内容。 1. 准备工作 启动Hadoop  启动Spark  在Jupyter中测试PySpark 12345678910111213141516import pysparkfrom pyspark import SparkContext as scfrom pyspark import SparkConffrom pyspark.sql im">
@@ -187,6 +187,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pyspark</span><br><span class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkContext <span class="keyword">as</span> sc</span><br><span class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkConf</span><br><span class="line"><span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> SparkSession</span><br><span class="line"></span><br><span class="line">conf = SparkConf().setAppName(<span class="string">'spark-basic-oprations'</span>) \</span><br><span class="line">                  .setMaster(<span class="string">'local[*]'</span>)</span><br><span class="line">sc = sc.getOrCreate(conf)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">spark = SparkSession.builder \</span><br><span class="line">                    .appName(<span class="string">'spark-basic-oprations'</span>) \</span><br><span class="line">                    .master(<span class="string">'local[*]'</span>) \</span><br><span class="line">                    .config(<span class="string">'spark.some.config.option'</span>, <span class="string">'some-value'</span>) \</span><br><span class="line">                    .config(<span class="string">'spark.debug.maxToStringFields'</span>, <span class="string">'50'</span>) \</span><br><span class="line">                    .getOrCreate()</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<a id="more"></a>
 <h3 id="2-RDD的创建"><a href="#2-RDD的创建" class="headerlink" title="2. RDD的创建"></a>2. RDD的创建</h3><ul>
 <li><p>读取外部数据</p>
 <ul>
@@ -616,19 +617,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
               </li>
              
               <li class="article-tag-list-item">
