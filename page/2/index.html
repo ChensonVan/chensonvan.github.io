@@ -153,6 +153,225 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Spark笔记-基础操作篇" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/24/Spark笔记-基础操作篇/">Spark笔记-基础操作篇</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/24/Spark笔记-基础操作篇/" class="archive-article-date">
+  	<time datetime="2019-01-24T09:36:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本篇主要是为了熟悉PySpark的基本操作，没啥特别的内容。</p>
+<h3 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h3><ul>
+<li><p>启动Hadoop</p>
+</li>
+<li><p>启动Spark</p>
+</li>
+<li><p>在Jupyter中测试PySpark</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pyspark</span><br><span class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkContext <span class="keyword">as</span> sc</span><br><span class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkConf</span><br><span class="line"><span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> SparkSession</span><br><span class="line"></span><br><span class="line"><span class="comment"># </span></span><br><span class="line">conf = SparkConf().setAppName(<span class="string">'spark-basic-oprations'</span>) \</span><br><span class="line">                  .setMaster(<span class="string">'local[*]'</span>)</span><br><span class="line">sc = sc.getOrCreate(conf)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># </span></span><br><span class="line">spark = SparkSession.builder \</span><br><span class="line">                    .appName(<span class="string">'spark-basic-oprations'</span>) \</span><br><span class="line">                    .master(<span class="string">'local[*]'</span>) \</span><br><span class="line">                    .config(<span class="string">'spark.some.config.option'</span>, <span class="string">'some-value'</span>) \</span><br><span class="line">                    .config(<span class="string">'spark.debug.maxToStringFields'</span>, <span class="string">'50'</span>) \</span><br><span class="line">                    .getOrCreate()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PySpark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/24/Spark笔记-基础操作篇/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Spark笔记-原理篇" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/24/Spark笔记-原理篇/">Spark笔记-原理篇</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/24/Spark笔记-原理篇/" class="archive-article-date">
+  	<time datetime="2019-01-24T08:28:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>还在UNSW读研的时候，修过一门COMP9313，大数据相关课程的时候有学过一点Spark，但那会只是做过一些简单的Projects，简单的应用过Spark和MapReduce这俩计算框架，并没有实际工程上的经验。最近因为工作的原因，需要使用Spark做一些特征工程的计算，因为数据量还是挺大的，好几十亿条的数据吧。用SQL的话，不是那么的灵活，用Python计算这些的话，估计还是挺呛的，所以Spark是最好的选择。</p>
+<p>关于学习计划，打算先熟悉一下Spark的一些基本原理和PySpark的基本操作，然后接下来再记录一下做特征工程相关的内容。</p>
+<h3 id="1-Spark的设计与运行原理"><a href="#1-Spark的设计与运行原理" class="headerlink" title="1. Spark的设计与运行原理"></a>1. Spark的设计与运行原理</h3><h4 id="1-1-Spark生态系统"><a href="#1-1-Spark生态系统" class="headerlink" title="1.1 Spark生态系统"></a>1.1 Spark生态系统</h4><ul>
+<li>Spark Core - 基本功能模块，如内存计算、任务调度、部署模式、故障恢复、存储管理等</li>
+<li>Spark SQL - 可以直接操作Spark中的RDD</li>
+<li>Spark Streaming - 用于计算流数据的，支持高吞吐量、可容错处理的实时流数据处理，其核心思路是将流式计算分解成一系列短小的批处理作业</li>
+<li>Spark MLLib - 机器学习的包，高级的接口有ML</li>
+<li>GraphX - 用于图计算</li>
+</ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/24/Spark笔记-原理篇/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-jupyterhub配置多用户" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/13/jupyterhub配置多用户/">jupyterhub配置多用户</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/13/jupyterhub配置多用户/" class="archive-article-date">
+  	<time datetime="2019-01-13T12:42:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近组里申请了一台带GPU的服务器，Nvidia的M40，虽然性能一般，但玩一玩也够用了。因为是Centos的系统，组里的小伙伴觉得安装不如Ubuntu方便，都不想鼓捣环境，然后就由我来安装了。之前已经安装了CUDA和显卡驱动，因为安装时候的笔记没整理好，就先整理安装jupyter多用户的教程。后续有空的时候再写前置的环境教程吧（其实如果一开始就给一个干净的环境，安装超简单的）。</p>
+<h3 id="1-系统环境"><a href="#1-系统环境" class="headerlink" title="1. 系统环境"></a>1. 系统环境</h3><p>我的系统：CentOS Linux release 7.3.1611 (Core)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看系统版本</span></span><br><span class="line">lsb_release -a</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 以下二种方法适用于RedHat,CentOS</span></span><br><span class="line">cat /etc/redhat-release</span><br><span class="line">rpm -q centos-release</span><br><span class="line">rpm -q redhat-release</span><br></pre></td></tr></table></figure>
+<h3 id="2-安装步骤"><a href="#2-安装步骤" class="headerlink" title="2. 安装步骤"></a>2. 安装步骤</h3><h4 id="2-1-安装依赖包"><a href="#2-1-安装依赖包" class="headerlink" title="2.1 安装依赖包"></a>2.1 安装依赖包</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum install sqlite-devel npm nodejs-legacy zlib-devel openssl-devel</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 这个开启了，导致我后面一直报错，头疼，就<span class="built_in">kill</span>相关进程就ok了</span></span><br><span class="line">npm install -g configurable-http-proxy</span><br></pre></td></tr></table></figure>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">jupyterhub</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/13/jupyterhub配置多用户/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Mixed-Logistic-Regression模型初探" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -683,256 +902,6 @@
 
 
   
-    <article id="post-图数据库-反欺诈网络设计" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/18/图数据库-反欺诈网络设计/">图数据库-反欺诈网络设计</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/18/图数据库-反欺诈网络设计/" class="archive-article-date">
-  	<time datetime="2018-08-18T06:45:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/18/图数据库-反欺诈网络设计/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-图数据库-Neo4j-常用算法" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/18/图数据库-Neo4j-常用算法/">图数据库-Neo4j-常用算法</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/18/图数据库-Neo4j-常用算法/" class="archive-article-date">
-  	<time datetime="2018-08-18T06:03:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本次主要学习图数据库中常用到的一些算法，以及如何在<code>Neo4j</code>中调用，所以这一篇偏实战，每个算法的原理就简单的提一下。</p>
-<h3 id="1-图数据库中常用的算法"><a href="#1-图数据库中常用的算法" class="headerlink" title="1. 图数据库中常用的算法"></a>1. 图数据库中常用的算法</h3><ul>
-<li><p>PathFinding &amp; Search</p>
-<p>一般用来发现Nodes之间的最短路径，常用算法有如下几种</p>
-<p><a href="https://www.google.com/search?newwindow=1&amp;ei=yKxrW77lH9mB-QbQ3ZWABA&amp;q=bellman_ford+%E7%AE%97%E6%B3%95+dijkstra+folyd&amp;oq=bellman_ford+%E7%AE%97%E6%B3%95+dijkstra+folyd&amp;gs_l=psy-ab.3..33i160k1.3896.6372.0.6588.6.6.0.0.0.0.164.729.1j5.6.0....0...1c.1.64.psy-ab..0.5.564...0i30k1.0.1ROtXHlgXdQ" target="_blank" rel="noopener">Google Search Results</a></p>
-<ul>
-<li>Dijkstra - 边不能为负值</li>
-<li>Folyd - 边可以为负值，有向图、无向图</li>
-<li>Bellman-Ford</li>
-<li>SPFA</li>
-</ul>
-</li>
-<li><p>Centrality</p>
-<p>一般用来计算这个图中节点的中心性，用来发现比较重要的那些Nodes。这些中心性可以有很多种，比如</p>
-<ul>
-<li>Degree Centrality - 度中心性</li>
-<li>Weighted Degree Centrality - 加权度中心性</li>
-<li>Betweenness Centrality - 介数中心性</li>
-<li>Closeness Centrality - 紧度中心性</li>
-</ul>
-</li>
-<li><p>Community Detection </p>
-<p><a href="https://bigdata-ny.github.io/2016/08/12/graph-of-thrones-neo4j-social-network-analysis/" target="_blank" rel="noopener">基于社区发现算法和图分析Neo4j解读《权力的游戏》</a></p>
-<p>用于发现这个图中局部联系比较紧密的Nodes，类似我们学过的聚类算法。</p>
-<ul>
-<li>Strongly Connected Components</li>
-<li>Weakly Connected Components (Union Find)</li>
-<li>Label Propagation</li>
-<li>Lovain Modularity</li>
-<li>Triangle Count and Average Clustering Coefficient</li>
-</ul></li></ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">图数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Neo4j</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/18/图数据库-Neo4j-常用算法/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-图数据库-Neo4j-初探" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/17/图数据库-Neo4j-初探/">图数据库-Neo4j-初探</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/17/图数据库-Neo4j-初探/" class="archive-article-date">
-  	<time datetime="2018-08-17T05:15:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本次初探主要学习如何安装<code>Neo4j</code>，以及<code>Cypher</code>的基本语法。</p>
-<h3 id="1-安装Neo4j"><a href="#1-安装Neo4j" class="headerlink" title="1. 安装Neo4j"></a>1. 安装Neo4j</h3><ul>
-<li><p><code>Desktop</code>版本</p>
-<p><a href="https://neo4j.com/download/" target="_blank" rel="noopener">neo4j-desktop</a></p>
-</li>
-<li><p><code>Server</code>版本（<code>Community</code>版)</p>
-<p>比较建议安装这个版本，因为<code>Desktop</code>版本的老是闪退，且要激活之类的。</p>
-<ul>
-<li><p>下载<code>Neo4j</code>数据库</p>
-<p><a href="https://neo4j.com/download-center/#releases" target="_blank" rel="noopener">neo4j-server-community</a></p>
-</li>
-<li><p>下载常用算法的插件</p>
-<ul>
-<li><p><code>graph-algorithms</code></p>
-<p><a href="https://github.com/neo4j-contrib/neo4j-graph-algorithms" target="_blank" rel="noopener">neo4j-graph-algorithms</a></p>
-</li>
-<li><p><code>apoc-procedures</code></p>
-<p><a href="https://github.com/neo4j-contrib/neo4j-apoc-procedures" target="_blank" rel="noopener">neo4j-apoc-procedures</a></p>
-</li>
-</ul>
-<p>将下载下来的算法插件放入到<code>$NEO4J_HOME/plugins</code>文件夹下</p>
-</li>
-<li><p><code>Service</code>版修改配置文件<code>$NEO4J_HOME/conf/neo4j.conf</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 解决登入的时候报没有授权的错误</span></span><br><span class="line">dbms.security.auth_enabled=false</span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加下载的算法插件</span></span><br><span class="line">dbms.security.procedures.unrestricted=apoc.*,algo.*</span><br><span class="line">apoc.import.file.enabled=true</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">增加页缓存到至少4G，推荐20G:</span></span><br><span class="line">dbms.memory.pagecache.size=4g</span><br><span class="line"><span class="meta">#</span><span class="bash">JVM堆保存留内存从1G起，最大4G:</span></span><br><span class="line">dbms.memory.heap.initial_size=1g</span><br><span class="line">dbms.memory.heap.max_size=4g</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启动/停止 (把<code>server</code>所在的路径添加到系统的<code>PATH</code>)</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 建议将neo4j所在的路径条件到系统<span class="variable">$PATH</span>当中，</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">export</span> NEO4J_HOME=<span class="string">"path-to-neo4j"</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash">NEO4J_HOME/bin/neo4j start</span></span><br><span class="line"><span class="meta">$</span><span class="bash">NEO4J_HOME/bin/neo4j console</span></span><br><span class="line"><span class="meta">$</span><span class="bash">NEO4J_HOME/bin/neo4j stop</span></span><br><span class="line"><span class="meta">$</span><span class="bash">NEO4J_HOME/bin/neo4j start -u neo4j -p neo4j</span></span><br><span class="line"><span class="meta">$</span><span class="bash">NEO4J_HOME/bin/cypher-shell</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CALL dbms.procedures() // 查看neo4j可用的进程，包括刚刚安装的插件</span><br></pre></td></tr></table></figure>
-</li>
-</ul></li></ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">图数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Neo4j</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/17/图数据库-Neo4j-初探/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1057,15 +1026,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1078,14 +1047,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1105,19 +1066,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Pytorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1129,11 +1086,31 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
