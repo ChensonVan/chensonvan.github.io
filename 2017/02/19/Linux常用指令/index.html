@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.com/2017/02/19/Linux常用指令/2017-02-19-Linux常用指令/image-20190113164617305.png">
 <meta property="og:image" content="http://chenson.com/2017/02/19/Linux常用指令/2017-02-19-Linux常用指令/image-20190113164500020.png">
-<meta property="og:updated_time" content="2019-01-13T13:35:57.878Z">
+<meta property="og:updated_time" content="2019-04-16T08:26:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux常用指令">
 <meta name="twitter:description" content="有时候记东西老是记不住，虽然是经常使用，所以对常用的linux指令做个简单记录，方便以后使用（不断更新… …）。 1. scp文件传输 (security copy)12# eg. scp chenson@127.0.0.1:~/Home/test .  ~/Home/local_test_pathscp PATH_OF_SRC PATH_OF_DST 2. 测内存的使用率12345678valg">
@@ -227,6 +227,7 @@
 <h3 id="15-后台上传-下载数据"><a href="#15-后台上传-下载数据" class="headerlink" title="15. 后台上传/下载数据"></a>15. 后台上传/下载数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">另外有两个常用的ftp工具ncftpget和ncftpput，可以实现后台的ftp上传和下载，这样就可以利用这些命令在后台上传和下载文件了。</span><br></pre></td></tr></table></figure>
 <h3 id="16-Docker-加速器地址"><a href="#16-Docker-加速器地址" class="headerlink" title="16. Docker 加速器地址"></a>16. Docker 加速器地址</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://cr.console.aliyun.com/cn-qingdao/mirrors</span><br><span class="line">https://q90v31vp.mirror.aliyuncs.com</span><br></pre></td></tr></table></figure>
 <h3 id="17-查找指定内容"><a href="#17-查找指定内容" class="headerlink" title="17. 查找指定内容"></a>17. 查找指定内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . | xargs grep &quot;keyword&quot; | egrep &quot;keyword&quot; # 当前文件目录下</span><br></pre></td></tr></table></figure>
+<h3 id="18-查看系统glibc支持的版本"><a href="#18-查看系统glibc支持的版本" class="headerlink" title="18. 查看系统glibc支持的版本"></a>18. 查看系统glibc支持的版本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">strings /lib64/libc.so.6 |grep GLIBC_</span><br><span class="line"></span><br><span class="line">rpm -qa |grep glibc</span><br></pre></td></tr></table></figure>
 <h3 id="vsftpd-kaiqi-ftp-fuwu"><a href="#vsftpd-kaiqi-ftp-fuwu" class="headerlink" title="vsftpd, kaiqi ftp fuwu"></a>vsftpd, kaiqi ftp fuwu</h3><h3 id="choongqi-dashuju-taojian"><a href="#choongqi-dashuju-taojian" class="headerlink" title="choongqi dashuju taojian"></a>choongqi dashuju taojian</h3><p>ambari-agent restart</p>
 
       
@@ -516,15 +517,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">

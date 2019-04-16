@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://chenson.com">
   <title>Mac OSX安装Fiddler | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 安装Mono首先，Mac下需要使用.Net编译后的程序，需要用到跨平台的方案Mono(现阶段微软已推出跨平台的方案.Net Core，不过暂时只支持控制台程序)  下载Mono，并安装  安装完后，执行指令 12345# version == 5.16.0/Library/Frameworks/Mono.framework/Versions/5.16.0/bin/mozroots --imp">
+  <meta name="description" content="1. 安装Mono首先，Mac下需要使用.Net编译后的程序，需要用到跨平台的方案Mono(现阶段微软已推出跨平台的方案.Net Core，不过暂时只支持控制台程序)。以上是网上的描述，给我感觉有点类似一个虚拟机或者docker一下的东西，这样就能在OSX的环境下，运行exe文件了。  下载Mono，并安装  安装完后，执行指令 12345# version == 5.16.0/Library/F">
 <meta name="keywords" content="Mac,Fiddler">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mac OSX安装Fiddler">
 <meta property="og:url" content="http://chenson.com/2019/03/07/Mac-OSX安装Fiddler/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="1. 安装Mono首先，Mac下需要使用.Net编译后的程序，需要用到跨平台的方案Mono(现阶段微软已推出跨平台的方案.Net Core，不过暂时只支持控制台程序)  下载Mono，并安装  安装完后，执行指令 12345# version == 5.16.0/Library/Frameworks/Mono.framework/Versions/5.16.0/bin/mozroots --imp">
+<meta property="og:description" content="1. 安装Mono首先，Mac下需要使用.Net编译后的程序，需要用到跨平台的方案Mono(现阶段微软已推出跨平台的方案.Net Core，不过暂时只支持控制台程序)。以上是网上的描述，给我感觉有点类似一个虚拟机或者docker一下的东西，这样就能在OSX的环境下，运行exe文件了。  下载Mono，并安装  安装完后，执行指令 12345# version == 5.16.0/Library/F">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.com/2019/03/07/Mac-OSX安装Fiddler/2019-03-07-Mac-OSX安装Fiddler/image-20190307192217612.png">
-<meta property="og:updated_time" content="2019-03-07T13:18:28.850Z">
+<meta property="og:updated_time" content="2019-04-16T06:51:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac OSX安装Fiddler">
-<meta name="twitter:description" content="1. 安装Mono首先，Mac下需要使用.Net编译后的程序，需要用到跨平台的方案Mono(现阶段微软已推出跨平台的方案.Net Core，不过暂时只支持控制台程序)  下载Mono，并安装  安装完后，执行指令 12345# version == 5.16.0/Library/Frameworks/Mono.framework/Versions/5.16.0/bin/mozroots --imp">
+<meta name="twitter:description" content="1. 安装Mono首先，Mac下需要使用.Net编译后的程序，需要用到跨平台的方案Mono(现阶段微软已推出跨平台的方案.Net Core，不过暂时只支持控制台程序)。以上是网上的描述，给我感觉有点类似一个虚拟机或者docker一下的东西，这样就能在OSX的环境下，运行exe文件了。  下载Mono，并安装  安装完后，执行指令 12345# version == 5.16.0/Library/F">
 <meta name="twitter:image" content="http://chenson.com/2019/03/07/Mac-OSX安装Fiddler/2019-03-07-Mac-OSX安装Fiddler/image-20190307192217612.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
@@ -175,7 +175,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-安装Mono"><a href="#1-安装Mono" class="headerlink" title="1. 安装Mono"></a>1. 安装Mono</h3><p>首先，Mac下需要使用.Net编译后的程序，需要用到跨平台的方案Mono(现阶段微软已推出跨平台的方案.Net Core，不过暂时只支持控制台程序)</p>
+        <h3 id="1-安装Mono"><a href="#1-安装Mono" class="headerlink" title="1. 安装Mono"></a>1. 安装Mono</h3><p>首先，Mac下需要使用.Net编译后的程序，需要用到跨平台的方案Mono(现阶段微软已推出跨平台的方案.Net Core，不过暂时只支持控制台程序)。以上是网上的描述，给我感觉有点类似一个虚拟机或者docker一下的东西，这样就能在OSX的环境下，运行exe文件了。</p>
 <ul>
 <li><p>下载<a href="https://www.mono-project.com/download/stable/#download-win" target="_blank" rel="noopener">Mono</a>，并安装</p>
 </li>
@@ -199,7 +199,8 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mono Fiddler.exe</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="4-References"><a href="#4-References" class="headerlink" title="4. References"></a>4. References</h3><ul>
+<p><strong>以上都是网上的教程，在运行最后一步的时候，失败了。试了各种方法都没成功，不确定是我操作的问题还是这方法比较久了。所以我的解决方案是，改用Charles : )</strong></p>
+<h3 id="3-References"><a href="#3-References" class="headerlink" title="3. References"></a>3. References</h3><ul>
 <li><a href="https://www.jianshu.com/p/c8f3ee2fa9aa" target="_blank" rel="noopener">Mac OS 安装Fiddler</a></li>
 <li><a href="https://yq.aliyun.com/articles/443107" target="_blank" rel="noopener">mac下Fiddler的安装-启动</a></li>
 <li><a href="https://www.mono-project.com/download/stable/" target="_blank" rel="noopener">Mono 官网</a></li>
@@ -498,15 +499,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
