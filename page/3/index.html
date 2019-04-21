@@ -153,71 +153,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-在线学习算法FTRL初探" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/18/在线学习算法FTRL初探/">在线学习算法FTRL初探</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/18/在线学习算法FTRL初探/" class="archive-article-date">
-  	<time datetime="2018-11-18T07:36:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <a id="more"></a>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FTRL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/18/在线学习算法FTRL初探/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-Wide-and-Deep模型初探" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -646,19 +581,19 @@
 
 
   
-    <article id="post-深度学习笔记-RNN常见网络 copy" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-深度学习笔记-RNN常见网络" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/25/深度学习笔记-RNN常见网络 copy/">深度学习笔记-RNN常见网络</a>
+      <a class="article-title" href="/2018/05/25/深度学习笔记-RNN常见网络/">深度学习笔记-RNN常见网络</a>
     </h1>
   
 
         
-        <a href="/2018/05/25/深度学习笔记-RNN常见网络 copy/" class="archive-article-date">
+        <a href="/2018/05/25/深度学习笔记-RNN常见网络/" class="archive-article-date">
   	<time datetime="2018-05-25T11:10:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-25</time>
 </a>
         
@@ -672,7 +607,7 @@
 <p>那么为什么要出现这些门呢，相比原先的RNN模型，这些门的出现能够解决什么样的问题？</p>
 <p>之前讨论过，RNN在(BPTT)计算的时候，梯度容易出现<strong>衰减或爆炸</strong>，特别是梯度衰减的问题。<strong>由于出现了梯度衰减，那么对于一些时间序列上，距离较长的数据，模型就比较难捕捉到这两个时间点上的关系。</strong></p>
 <p>模型设计如下：</p>
-<p><img src="/2018/05/25/深度学习笔记-RNN常见网络 copy/2018-05-25-深度学习笔记-RNN常见网络/image-20190223182723913.png" alt="image-20190223182723913"></p>
+<p><img src="/2018/05/25/深度学习笔记-RNN常见网络/2018-05-25-深度学习笔记-RNN常见网络/image-20190223182723913.png" alt="image-20190223182723913"></p>
 <ul>
 <li><p>重置门 - R (reset)</p>
 <p>有助于捕捉时序数据中<strong>短期</strong>的依赖关系。</p>
@@ -760,7 +695,76 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/25/深度学习笔记-RNN常见网络 copy/">MORE >></a>
+          <a class="article-more-a" href="/2018/05/25/深度学习笔记-RNN常见网络/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-深度学习笔记-RNN" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/14/深度学习笔记-RNN/">深度学习笔记-RNN</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/14/深度学习笔记-RNN/" class="archive-article-date">
+  	<time datetime="2018-05-14T03:35:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-一些预备知识"><a href="#1-一些预备知识" class="headerlink" title="1. 一些预备知识"></a>1. 一些预备知识</h3><h4 id="1-1-Markov-Chain"><a href="#1-1-Markov-Chain" class="headerlink" title="1.1 Markov Chain"></a>1.1 Markov Chain</h4>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CNN</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/14/深度学习笔记-RNN/">MORE >></a>
         </p>
       
 
@@ -1307,19 +1311,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1331,6 +1331,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
              
@@ -1339,11 +1343,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1352,14 +1356,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1379,7 +1375,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1388,10 +1388,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Pytorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1408,6 +1404,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1432,6 +1432,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
               </li>
              
               <li class="article-tag-list-item">
