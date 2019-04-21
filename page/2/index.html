@@ -153,6 +153,85 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-读书笔记-重构大数据统计" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/23/读书笔记-重构大数据统计/">读书笔记-重构大数据统计</a>
+    </h1>
+  
+
+        
+        <a href="/2019/02/23/读书笔记-重构大数据统计/" class="archive-article-date">
+  	<time datetime="2019-02-23T04:41:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-单变量基本统计量"><a href="#1-单变量基本统计量" class="headerlink" title="1. 单变量基本统计量"></a>1. 单变量基本统计量</h3><h4 id="1-1-常见的数据统计量"><a href="#1-1-常见的数据统计量" class="headerlink" title="1.1 常见的数据统计量"></a>1.1 常见的数据统计量</h4><ul>
+<li><p>均值<br>$$<br>\overline X = \frac 1 n \sum_{i=1}^n X_i<br>$$</p>
+</li>
+<li><p>方差<br>$$<br>S_n^2 = \frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2<br>$$<br>分母为n-1，则称之为$S_n^2$的自由度(degree of freedom)  </p>
+<ul>
+<li>问题：不是很理解自由度这个概念</li>
+</ul>
+</li>
+<li><p>标准差 - Standard Deviation<br>$$<br>S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}<br>$$</p>
+</li>
+<li><p>变异系数 - Coefficient of Variation, CV<br>$$<br>\frac {S_n} {\overline X}<br>$$<br>标准差和均值的比值，一个无量纲的量，用来刻画数据的相对分散性</p></li></ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Big Data</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/02/23/读书笔记-重构大数据统计/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Spark笔记-应用篇" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -596,21 +675,6 @@
         <p>前段时间想整理一下以前的博文笔记，因为很多都是早期自己记录的笔记，条理比较乱。想稍微整理一下，方便以后自己回顾复习以及他人阅读。但发现一件比较头大的事情就是，以前插图都是上传到图床上然，而现在很多图片都已经挂掉了，链接不可访问。这简直就是灾难性的一幕。</p>
 <p><img src="/2018/12/01/拒绝图床，从我做起/2018-12-01-拒绝图床，从我做起/image-20181201164011749-3653611.png" alt="image-20181201164011749"></p>
 <p>早期之所以用图床是因为方便，因为Chrome有个插件可以直接上传，采用本地的话需要把图片保存到本地路径然后引用对应的图片，至于如何同步到github上不影响显示效果也是比较麻烦的。好在现在Typora更新了几个版本后，对于插入图片可以时候非常友好（这里裂墙推荐Typora，最好用的MarkDown工具，没有之一）。具体使用步骤如下：</p>
-<h3 id="1-安装步骤"><a href="#1-安装步骤" class="headerlink" title="1. 安装步骤"></a>1. 安装步骤</h3><ul>
-<li><p>安装插件，修改<code>Hexo</code>配置</p>
-<ul>
-<li>修改主页配置文件<code>_config.yml</code>里面的<code>post_asset_folder : true</code></li>
-<li><p>在<code>hexo</code>目录下执行命令<code>npm install hexo-asset-image --save</code>，即安装一个可以上传本地图片的插件</p>
-</li>
-<li><p>安装成功后，以后再新建博文<code>hexo n “XXX”</code>的时候，除了生成对应的<code>.md</code>文件的同时，也会在同一层目录下，建一个同名的文件夹，用于存放这篇博文引用的本地图片。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">XXX.md</span><br><span class="line">XXX</span><br><span class="line">|--img1.jpg</span><br><span class="line">|--img2.jpg</span><br><span class="line">|--img3.jpg</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>生成静态页面，对应的html是</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/year/month/day/XXX/img1.jpg"</span> <span class="attr">alt</span>=<span class="string">"img1"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
         
       
 
@@ -830,74 +894,9 @@
 
 
   
-    <article id="post-在线学习算法FTRL初探" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/18/在线学习算法FTRL初探/">在线学习算法FTRL初探</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/18/在线学习算法FTRL初探/" class="archive-article-date">
-  	<time datetime="2018-11-18T07:36:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <a id="more"></a>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FTRL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/18/在线学习算法FTRL初探/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -1007,15 +1006,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1031,6 +1030,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
              
@@ -1039,19 +1042,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1071,11 +1078,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1084,6 +1087,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Pytorch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1096,14 +1107,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1127,11 +1130,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">

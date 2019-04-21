@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://chenson.com/2018/12/01/拒绝图床，从我做起/2018-12-01-拒绝图床，从我做起/image-20181201155018199.png">
 <meta property="og:image" content="http://chenson.com/2018/12/01/拒绝图床，从我做起/2018-12-01-拒绝图床，从我做起/image-20181201154950236-3650590.png">
 <meta property="og:image" content="http://chenson.com/2018/12/01/拒绝图床，从我做起/2018-12-01-拒绝图床，从我做起/image-20181201155405551-3650845.png">
-<meta property="og:updated_time" content="2018-12-01T08:41:02.574Z">
+<meta property="og:updated_time" content="2019-04-21T06:19:20.732Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="拒绝图床，从我做起">
 <meta name="twitter:description" content="前段时间想整理一下以前的博文笔记，因为很多都是早期自己记录的笔记，条理比较乱。想稍微整理一下，方便以后自己回顾复习以及他人阅读。但发现一件比较头大的事情就是，以前插图都是上传到图床上然，而现在很多图片都已经挂掉了，链接不可访问。这简直就是灾难性的一幕。  早期之所以用图床是因为方便，因为Chrome有个插件可以直接上传，采用本地的话需要把图片保存到本地路径然后引用对应的图片，至于如何同步到gith">
@@ -182,6 +182,7 @@
         <p>前段时间想整理一下以前的博文笔记，因为很多都是早期自己记录的笔记，条理比较乱。想稍微整理一下，方便以后自己回顾复习以及他人阅读。但发现一件比较头大的事情就是，以前插图都是上传到图床上然，而现在很多图片都已经挂掉了，链接不可访问。这简直就是灾难性的一幕。</p>
 <p><img src="/2018/12/01/拒绝图床，从我做起/2018-12-01-拒绝图床，从我做起/image-20181201164011749-3653611.png" alt="image-20181201164011749"></p>
 <p>早期之所以用图床是因为方便，因为Chrome有个插件可以直接上传，采用本地的话需要把图片保存到本地路径然后引用对应的图片，至于如何同步到github上不影响显示效果也是比较麻烦的。好在现在Typora更新了几个版本后，对于插入图片可以时候非常友好（这里裂墙推荐Typora，最好用的MarkDown工具，没有之一）。具体使用步骤如下：</p>
+<a id="more"></a>
 <h3 id="1-安装步骤"><a href="#1-安装步骤" class="headerlink" title="1. 安装步骤"></a>1. 安装步骤</h3><ul>
 <li><p>安装插件，修改<code>Hexo</code>配置</p>
 <ul>
@@ -196,9 +197,6 @@
 </li>
 </ul>
 </li>
-</ul>
-<a id="more"></a>
-<ul>
 <li><p>修改<code>Typora</code>配置，具体如图</p>
 <p>配置完之后，可以在截图完之后，将剪切板的图片直接复制到对应文件目录下的文件夹内，即我们上面新建好的文件夹。<strong>有木有非常方便！！！</strong>当然这里也可以设置其他路径，只是我这里设置的是这样，为了便于图片管理。</p>
 <p><img src="/2018/12/01/拒绝图床，从我做起/2018-12-01-拒绝图床，从我做起/image-20181201154328178-3650208.png" alt="image-20181201154328178"></p>
@@ -228,8 +226,8 @@
 </ul>
 <p>  运行代码后的文件夹结构</p>
 <p>  <img src="/2018/12/01/拒绝图床，从我做起/2018-12-01-拒绝图床，从我做起/image-20181201155405551-3650845.png" alt="image-20181201155405551"></p>
-<p>  具体代码如下：</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">_PUBLIC_ = <span class="string">'public'</span></span><br><span class="line">_PATH_ = os.getcwd()</span><br><span class="line">list_year = [year <span class="keyword">for</span> year <span class="keyword">in</span> os.listdir(_PUBLIC_) <span class="keyword">if</span> year.isdigit() <span class="keyword">and</span> len(year) == <span class="number">4</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> year <span class="keyword">in</span> list_year:</span><br><span class="line">    p_year = os.path.join(_PATH_, _PUBLIC_, year)</span><br><span class="line">    list_month = [month <span class="keyword">for</span> month <span class="keyword">in</span> os.listdir(p_year) <span class="keyword">if</span> month.isdigit() <span class="keyword">and</span> len(month) == <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> month <span class="keyword">in</span> list_month:</span><br><span class="line">        p_month = os.path.join(_PATH_, _PUBLIC_, year, month)</span><br><span class="line">        list_day = [day <span class="keyword">for</span> day <span class="keyword">in</span> os.listdir(p_month) <span class="keyword">if</span> day.isdigit() <span class="keyword">and</span> len(day) == <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> day <span class="keyword">in</span> list_day:</span><br><span class="line">            p_day = os.path.join(_PATH_, _PUBLIC_, year, month, day)</span><br><span class="line">            list_blog = [blog <span class="keyword">for</span> blog <span class="keyword">in</span> os.listdir(p_day) <span class="keyword">if</span> <span class="keyword">not</span> blog.startswith(<span class="string">'.'</span>)]</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> blog <span class="keyword">in</span> list_blog:</span><br><span class="line">                p_blog = os.path.join(_PATH_, _PUBLIC_, year, month, day, blog)</span><br><span class="line">                list_file = os.listdir(p_blog)</span><br><span class="line"></span><br><span class="line">                dir_img = <span class="string">'-'</span>.join([year, month, day, blog])</span><br><span class="line">                dir_img = os.path.join(p_day, blog, dir_img)</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(dir_img):</span><br><span class="line">                    os.makedirs(dir_img)</span><br><span class="line">                <span class="keyword">for</span> file <span class="keyword">in</span> list_file:</span><br><span class="line">                    <span class="keyword">if</span> file.endswith(<span class="string">'.png'</span>):</span><br><span class="line">                        p_file = os.path.join(_PATH_, _PUBLIC_, year, month, day, blog, file)</span><br><span class="line">                        cmd = <span class="string">f'mv <span class="subst">&#123;p_file&#125;</span> <span class="subst">&#123;dir_img&#125;</span>'</span></span><br><span class="line">                        os.system(cmd)</span><br></pre></td></tr></table></figure>
+<p>  具体代码如下【我知道写了这么for循环很丑 ==！】：</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">_PUBLIC_ = <span class="string">'public'</span></span><br><span class="line">_PATH_ = os.getcwd()</span><br><span class="line">list_year = [year <span class="keyword">for</span> year <span class="keyword">in</span> os.listdir(_PUBLIC_) <span class="keyword">if</span> year.isdigit() <span class="keyword">and</span> len(year) == <span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">_EXT_ = [<span class="string">'.jpg'</span>,<span class="string">'.jpeg'</span>, <span class="string">'.gif'</span>,<span class="string">'.png'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> year <span class="keyword">in</span> list_year:</span><br><span class="line">    p_year = os.path.join(_PATH_, _PUBLIC_, year)</span><br><span class="line">    list_month = [month <span class="keyword">for</span> month <span class="keyword">in</span> os.listdir(p_year) <span class="keyword">if</span> month.isdigit() <span class="keyword">and</span> len(month) == <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> month <span class="keyword">in</span> list_month:</span><br><span class="line">        p_month = os.path.join(_PATH_, _PUBLIC_, year, month)</span><br><span class="line">        list_day = [day <span class="keyword">for</span> day <span class="keyword">in</span> os.listdir(p_month) <span class="keyword">if</span> day.isdigit() <span class="keyword">and</span> len(day) == <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> day <span class="keyword">in</span> list_day:</span><br><span class="line">            p_day = os.path.join(_PATH_, _PUBLIC_, year, month, day)</span><br><span class="line">            list_blog = [blog <span class="keyword">for</span> blog <span class="keyword">in</span> os.listdir(p_day) <span class="keyword">if</span> <span class="keyword">not</span> blog.startswith(<span class="string">'.'</span>)]</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> blog <span class="keyword">in</span> list_blog:</span><br><span class="line">                print(<span class="string">'blog :'</span>, blog)</span><br><span class="line">                p_blog = os.path.join(_PATH_, _PUBLIC_, year, month, day, blog)</span><br><span class="line">                list_file = os.listdir(p_blog)</span><br><span class="line"></span><br><span class="line">                dir_img = <span class="string">'-'</span>.join([year, month, day, blog])</span><br><span class="line">                dir_img = os.path.join(p_day, blog, dir_img)</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(dir_img):</span><br><span class="line">                    os.makedirs(dir_img)</span><br><span class="line">                <span class="keyword">for</span> file <span class="keyword">in</span> list_file:</span><br><span class="line">                    <span class="keyword">if</span> file.endswith(tuple(_EXT_)):</span><br><span class="line">                        p_file = os.path.join(_PATH_, _PUBLIC_, year, month, day, blog, file)</span><br><span class="line">                        print(<span class="string">'   &gt;&gt;&gt; img:'</span>, file)</span><br><span class="line">                        print(<span class="string">'   &gt;&gt;&gt; img_path:'</span>, p_file, end=<span class="string">'\n\n'</span>)</span><br><span class="line">                        cmd = <span class="string">f'mv <span class="subst">&#123;p_file&#125;</span> <span class="subst">&#123;dir_img&#125;</span>'</span></span><br><span class="line">                        os.system(cmd)</span><br></pre></td></tr></table></figure>
 <h3 id="2-Bugs"><a href="#2-Bugs" class="headerlink" title="2. Bugs"></a>2. Bugs</h3><p>虽然这方法挺好用的，但发现有个小bug，就是图片在放到对应的XXX文件夹下，会重复一张。如果在Typora中设设置指定的custom fold下倒不会，设置成同名文件夹下就会多出一张，目前没找到解决方案，暂且先这样吧。</p>
 <p>当然另外一个可能的问题就是会占用github的空间，但量小的情况下问题不大。</p>
 <h3 id="3-References"><a href="#3-References" class="headerlink" title="3. References"></a>3. References</h3><ul>
@@ -503,15 +501,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -527,6 +525,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
              
@@ -535,19 +537,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,11 +573,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -580,6 +582,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Pytorch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -592,14 +602,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -623,11 +625,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
