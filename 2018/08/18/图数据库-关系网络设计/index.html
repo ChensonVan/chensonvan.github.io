@@ -8,22 +8,23 @@
   <link rel="dns-prefetch" href="http://chenson.com">
   <title>图数据库-关系网络设计 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 简单介绍目前知识图谱可以分成两大类：一类是开发领域的知识图谱，比如谷歌搜索引擎所建立的知识图谱。另一类是垂直领域的知识图谱，根据字面意思来看，就是特定某一个领域，比如金融风控领域。今天介绍一下关系网络在金融风控领域的应用。 主要应用可以分成两大类。  第一类 网络特征的直接提取，提取出中心度或者一度/二度关联特征供上层规则系统或者风险评估模型使用。 比如说在银行贷款申请的业务场景下，在贷款申">
+  <meta name="description" content="1. 简单介绍目前知识图谱可以分成两大类：一类是开放领域的知识图谱，比如谷歌搜索引擎所建立的知识图谱。另一类是垂直领域的知识图谱，根据字面意思来看，就是特定某一个领域，比如金融风控领域。今天介绍一下关系网络在金融风控领域的应用。 主要应用可以分成两大类。  第一类 网络特征的直接提取，提取出中心度或者一度/二度关联特征供上层规则系统或者风险评估模型使用。 比如说在银行贷款申请的业务场景下，在贷款申">
+<meta name="keywords" content="图数据库,Neo4j,关系网络">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图数据库-关系网络设计">
 <meta property="og:url" content="http://chenson.com/2018/08/18/图数据库-关系网络设计/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="1. 简单介绍目前知识图谱可以分成两大类：一类是开发领域的知识图谱，比如谷歌搜索引擎所建立的知识图谱。另一类是垂直领域的知识图谱，根据字面意思来看，就是特定某一个领域，比如金融风控领域。今天介绍一下关系网络在金融风控领域的应用。 主要应用可以分成两大类。  第一类 网络特征的直接提取，提取出中心度或者一度/二度关联特征供上层规则系统或者风险评估模型使用。 比如说在银行贷款申请的业务场景下，在贷款申">
+<meta property="og:description" content="1. 简单介绍目前知识图谱可以分成两大类：一类是开放领域的知识图谱，比如谷歌搜索引擎所建立的知识图谱。另一类是垂直领域的知识图谱，根据字面意思来看，就是特定某一个领域，比如金融风控领域。今天介绍一下关系网络在金融风控领域的应用。 主要应用可以分成两大类。  第一类 网络特征的直接提取，提取出中心度或者一度/二度关联特征供上层规则系统或者风险评估模型使用。 比如说在银行贷款申请的业务场景下，在贷款申">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.com/2018/08/18/图数据库-关系网络设计/2018-08-18-图数据库-关系网络设计/image-20190419175730563.png">
 <meta property="og:image" content="http://chenson.com/2018/08/18/图数据库-关系网络设计/2018-08-18-图数据库-关系网络设计/image-20190419175750441.png">
 <meta property="og:image" content="http://chenson.com/2018/08/18/图数据库-关系网络设计/2018-08-18-图数据库-关系网络设计/image-20190419180603414.png">
 <meta property="og:image" content="http://chenson.com/2018/08/18/图数据库-关系网络设计/2018-08-18-图数据库-关系网络设计/image-20190419180632795.png">
 <meta property="og:image" content="http://chenson.com/2018/08/18/图数据库-关系网络设计/2018-08-18-图数据库-关系网络设计/image-20190419182235465.png">
-<meta property="og:updated_time" content="2019-04-19T10:56:41.000Z">
+<meta property="og:updated_time" content="2019-04-21T05:25:38.975Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图数据库-关系网络设计">
-<meta name="twitter:description" content="1. 简单介绍目前知识图谱可以分成两大类：一类是开发领域的知识图谱，比如谷歌搜索引擎所建立的知识图谱。另一类是垂直领域的知识图谱，根据字面意思来看，就是特定某一个领域，比如金融风控领域。今天介绍一下关系网络在金融风控领域的应用。 主要应用可以分成两大类。  第一类 网络特征的直接提取，提取出中心度或者一度/二度关联特征供上层规则系统或者风险评估模型使用。 比如说在银行贷款申请的业务场景下，在贷款申">
+<meta name="twitter:description" content="1. 简单介绍目前知识图谱可以分成两大类：一类是开放领域的知识图谱，比如谷歌搜索引擎所建立的知识图谱。另一类是垂直领域的知识图谱，根据字面意思来看，就是特定某一个领域，比如金融风控领域。今天介绍一下关系网络在金融风控领域的应用。 主要应用可以分成两大类。  第一类 网络特征的直接提取，提取出中心度或者一度/二度关联特征供上层规则系统或者风险评估模型使用。 比如说在银行贷款申请的业务场景下，在贷款申">
 <meta name="twitter:image" content="http://chenson.com/2018/08/18/图数据库-关系网络设计/2018-08-18-图数据库-关系网络设计/image-20190419175730563.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
@@ -178,7 +179,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1. 简单介绍"></a>1. 简单介绍</h3><p>目前知识图谱可以分成两大类：一类是开发领域的知识图谱，比如谷歌搜索引擎所建立的知识图谱。另一类是垂直领域的知识图谱，根据字面意思来看，就是特定某一个领域，比如金融风控领域。今天介绍一下关系网络在金融风控领域的应用。</p>
+        <h3 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1. 简单介绍"></a>1. 简单介绍</h3><p>目前知识图谱可以分成两大类：一类是开放领域的知识图谱，比如谷歌搜索引擎所建立的知识图谱。另一类是垂直领域的知识图谱，根据字面意思来看，就是特定某一个领域，比如金融风控领域。今天介绍一下关系网络在金融风控领域的应用。</p>
 <p>主要应用可以分成两大类。</p>
 <ul>
 <li><p>第一类</p>
@@ -207,8 +208,8 @@
 </ul>
 <p>为了节省内存，以上关系(不包括手机号)可表示为 1101000576，具体代表意思如下：</p>
 <p>| Register | Apply | Pass | Balck | Bad  | Good | Undue | Score |<br>| ——– | —– | —- | —– | —- | —- | —– | —– |<br>| 1        | 1     | 0    | 1     | 0    | 0    | 0     | 576   |</p>
-<p>其中手机号可以将十进制数转换成62进制表示(即0-9,a-z,A-Z)。</p>
-<p>所以一个节点的属性可表示为<strong>(P_num, Status)</strong></p>
+<p>其中手机号可以将十进制数转换成62进制表示(即0-9,a-z,A-Z)，1️以节省内存。</p>
+<p>所以一个节点的属性可表示为<strong>(P_num, Status)</strong>。</p>
 </li>
 <li><p>Phone (非用户)</p>
 <p><strong>(P_num, Status)</strong></p>
@@ -261,7 +262,7 @@
 <li>手机号对应地址/归属地</li>
 </ul>
 <p>等等</p>
-<h3 id="5-Reference"><a href="#5-Reference" class="headerlink" title="5. Reference"></a>5. Reference</h3><ul>
+<h3 id="5-References"><a href="#5-References" class="headerlink" title="5. References"></a>5. References</h3><ul>
 <li><a href="https://mp.weixin.qq.com/s/CjrjC1siKf85JUL094n_jw" target="_blank" rel="noopener">如何构建知识图谱</a></li>
 <li><a href="https://myslide.cn/slides/1409" target="_blank" rel="noopener">大数据和人工智能在P2P中的应用</a></li>
 <li><a href="https://www.jiqizhixin.com/articles/2018-06-20-4" target="_blank" rel="noopener">这是一份通俗易懂的知识图谱技术与应用指南</a></li>
@@ -300,6 +301,25 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">图数据库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Neo4j</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">关系网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -531,15 +551,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">进程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -576,6 +604,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -619,6 +651,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
              
@@ -656,6 +692,26 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GPU</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">FM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">FFM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">DeepFM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DCN</a>
               </li>
              
               <li class="article-tag-list-item">

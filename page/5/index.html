@@ -153,6 +153,257 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Spark笔记" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/10/Spark笔记/">Spark笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/10/Spark笔记/" class="archive-article-date">
+  	<time datetime="2017-04-10T06:55:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Resilient-Distributed-Dataset-RDD"><a href="#1-Resilient-Distributed-Dataset-RDD" class="headerlink" title="1. Resilient Distributed Dataset (RDD)"></a>1. Resilient Distributed Dataset (RDD)</h3><p>RDDs are <strong>fault-tolerant, parallel data structures</strong> that let users <strong>explicitly persist intermediate results in memory</strong>, control their partitioning <strong>to optimize data placement</strong>, and manipulate them using a rich set of operators.</p>
+<p>RDD是一个容错的、并行的数据结构，可以让用户显示地将数据存储到磁盘和内存中，并能控制数据的分区。</p>
+<ul>
+<li><p><strong>Resilient</strong></p>
+<p>RDD is a <strong>fundamental data structure</strong> of Spark. It is an immutable distributed collection of objects. Each dataset in <strong>RDD is divided into logical partitions</strong>, which may be computed on different nodes of the cluster. Formally, an RDD is a <strong>read-only, partitioned collection of records</strong>. Rdds can be created throught <strong>deterministic operations on either data on stable storage or other RDDs</strong>. RDD is a <strong>fault-tolerant collection of elements</strong> that can be operated on in parallel.</p>
+<p>There two ways to create RDDs.</p>
+<ul>
+<li><p><strong>Parallelizing</strong></p>
+<p>parallelizing an existing collection in your driver program</p>
+</li>
+<li><p><strong>Referencing</strong></p>
+<p>reference a dataset in an external storage system, such as  a shared file system, HDFS, HBase, or ant data source offering a Hadoop Input Format</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Spark提供了RDD上的两类操作：transformation 和 action</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/34167769.jpg" alt=""></p>
+<ul>
+<li><p><strong>Transformation</strong>: return a new RDD</p>
+<p>当对RDD进行transformation操作的时候，这些操作不会立刻就执行，而是将这些操作记录下来。如果有多个transformation操作时，每一次变换都是一个接着一个，此时就形成了一个<strong>有向无环图</strong>。这个图就是<strong>数据容错</strong>的关键所在。如果出现数据丢失的时候，只需要查找这个图就能根据丢失的RDD进行数据恢复</p>
+</li>
+<li><p><strong>Action</strong>: evaluates and returns a new value</p>
+<p>当对RDD做action操作的时候，这类action一般作用是返回一个值或者数组等，或者是将数据持久化到磁盘当中。此时执行action，会真正的提交job，执行之前的transformation记录的DAG。执行DAG策略中，会有多个stage，每一个stage钟有多个task，这些task就会被分配到各个nodes进行执行</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/87769198.jpg" alt=""></p>
+<ul>
+<li><p>The difference between flatMap and Map <a href="http://backtobazics.com/big-data/spark/apache-spark-flatmap-example/" target="_blank" rel="noopener">flatMap Example</a></p>
+<p>map: 对RDD每个元素转换，将函数用于RDD中的每个元素，将返回值构成新的RDD。<br>flatMap: 对RDD每个元素转换, 然后再<strong>扁平化</strong>（即将所有对象合并为一个对象）。将函数应用于rdd之中的每一个元素，将返回的<strong>迭代器</strong>的所有内容构成新的rdd</p>
+<p><strong>Example1：</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// data 有两行数据，第一行 a b c，第二行 1 2 3</span></span><br><span class="line">scala&gt; data.map(line1 =&gt; line1.split(<span class="string">","</span>)).collect()</span><br><span class="line">res11: <span class="type">Array</span>[<span class="type">Array</span>[<span class="type">String</span>]] = <span class="type">Array</span>(<span class="type">Array</span>(a, b, c),<span class="type">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line">scala&gt; data.flatMap(line1 =&gt; line1.split(<span class="string">","</span>)).collect()</span><br><span class="line">res13: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(a, b, c, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>Example2：</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">List</span>(<span class="string">"coffee panda"</span>,<span class="string">"happy panda"</span>,<span class="string">"happiest panda party"</span>))</span><br><span class="line"></span><br><span class="line">scala&gt; rdd.map(x=&gt;x).collect</span><br><span class="line">res0: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(coffee panda, happy panda, happiest panda party) </span><br><span class="line"></span><br><span class="line">scala&gt; rdd.map(x=&gt;x.split(<span class="string">" "</span>)).collect</span><br><span class="line">res1: <span class="type">Array</span>[<span class="type">Array</span>[<span class="type">String</span>]] = <span class="type">Array</span>(<span class="type">Array</span>(coffee, panda), <span class="type">Array</span>(happy, panda), <span class="type">Array</span>(happiest, panda, party))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 相比之前，flatMap将几个array合并成了一个array</span></span><br><span class="line">scala&gt; rdd.flatMap(x=&gt;x.split(<span class="string">" "</span>)).collect</span><br><span class="line">res2: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(coffee, panda, happy, panda, happiest, panda, party)</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.backtobazics.com/spark/apache-spark-flatmap-example.gif" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-References"><a href="#2-References" class="headerlink" title="2. References"></a>2. References</h3><ul>
+<li><a href="http://www.infoq.com/cn/articles/spark-core-rdd/" target="_blank" rel="noopener">理解Spark的核心RDD</a></li>
+<li><a href="http://homepage.cs.latrobe.edu.au/zhe/ZhenHeSparkRDDAPIExamples.html" target="_blank" rel="noopener">Spark RDD API Examples</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/10/Spark笔记/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-字符串搜索算法-BM" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/02/字符串搜索算法-BM/">字符串搜索算法 - BM</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/02/字符串搜索算法-BM/" class="archive-article-date">
+  	<time datetime="2017-04-02T04:28:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>当我们要在某一个文本中要匹配某一个字符串的时候，我们最简单的方法就是一个一个匹配，也就是从头开始匹配文本和字符串，但发现不同的时候，就把整个字符串右移一位，然后从头重新和文本比较。当全部相同的时候，则右移字符串的长度。在之前的 <code>KMP</code> 算法中，我们是找到尽可能右移的最大位数，而不是一位一位的移动，这样相比原先效率已经提高了很多了。但在大部分的编辑器中，“查找”功能使用的不是 <code>KMP</code> ， 而是 <code>BM</code> 算法。</p>
+<h3 id="1-Boyer-Moore-Algorithm"><a href="#1-Boyer-Moore-Algorithm" class="headerlink" title="1. Boyer-Moore Algorithm"></a>1. Boyer-Moore Algorithm</h3><p>和 <code>KMP</code> 不同的是，<code>BM</code> 是从 <code>Pattern P</code> 倒着匹配上来的</p>
+<p>首先定义两个预处理的方法</p>
+<ul>
+<li><p><strong>坏字符 (Bad Character Heuristic)</strong></p>
+<p>当文本 T 中的某个字符跟 <code>Pattern P</code> 的某个字符不匹配时，我们称文本 T 中的这个不匹配的字符为<strong>坏字符</strong>。</p>
+</li>
+<li><p><strong>好后缀 (Good Suffix Heuristic)</strong></p>
+<p>当文本 T 中的某个字符跟 <code>Pattern P</code> 的某个字符不匹配时，我们称文本 T 中的已经匹配的字符串为<strong>好后缀</strong>。(因为算法从尾巴到头部比较)</p>
+<ul>
+<li>好后缀的位置<strong>以最后一个字符为准</strong>。假定”ABCDEF”的”EF”是好后缀，则它的位置以”F”为准，即5（从0开始计算）。</li>
+<li>如果”好后缀”在搜索词中<strong>只出现一次</strong>，则它的上一次出现位置为 -1。比如，”EF”在”ABCDEF”之中只出现一次，则它的上一次出现位置为-1（即未出现）。</li>
+<li>如果”好后缀”有多个，则除了最长的那个”好后缀”，其他”好后缀”的上一次出现位置必须在头部。比如，假定”BABCDAB”的”好后缀”是”DAB”、”AB”、”B”，请问这时”好后缀”的上一次出现位置是什么？回答是，此时采用的好后缀是”B”，它的上一次出现位置是头部，即第0位。这个规则也可以这样表达：如果最长的那个”好后缀”只出现一次，则可以把搜索词改写成如下形式进行位置计算”(DA)BABCDAB”，即虚拟加入最前面的”DA”。</li>
+</ul>
+</li>
+</ul>
+<p>按照正常比较方法，当发现一个<strong>坏字符</strong>的时候，会出现一下三种情况</p>
+<ul>
+<li><p>坏字符完全不出现在 <code>Pattern P</code> 中，那么就可以完全跳过这个字符，因为我们根本不可能匹配到这个字符。 </p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/29129274.jpg" alt=""></p>
+</li>
+</ul>
+<ul>
+<li><p>坏字符出现在<strong>还未比较的前缀</strong>当中 (只出现在前缀，出现在前缀和后缀)</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/48038845.jpg" alt=""></p>
+<p>此时将 <code>Pattern P</code> 右移对齐这两个字符，然后从尾部继续比较</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/21040202.jpg" alt=""></p>
+</li>
+<li><p>坏字符<strong>只出现</strong>在之前的好后缀当中（也就是已经比较过了）</p>
+<p>对这种情况不做处理</p>
+</li>
+</ul>
+<p>根据上面几种情况，我们可以总结出以下<strong>坏字符</strong>规则：</p>
+<blockquote>
+<p>后移位数 = 坏字符的位置 - 搜索词中的上一次出现位置</p>
+</blockquote>
+<p>这里有两种特殊情况</p>
+<ul>
+<li>如果坏字符不存在于 <code>Pattern P</code> 中，则最后一次出现的位置为 -1。</li>
+<li>如果坏字符在 <code>Pattern P</code> 中的位置位于失配位置的右侧，则此启发法不提供任何建议。</li>
+</ul>
+<p>除了坏字符，我们同样可以利用<strong>好后缀</strong>来提高查找效率</p>
+<blockquote>
+<p>模式后移位数 = 好后缀在模式中的当前位置 - 好后缀在模式中最右出现且前缀字符不同的位置</p>
+</blockquote>
+<p>举个栗子计算：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Text:    H E R E _ I _ S A _ S I M P L E _ E X A M P L E</span><br><span class="line"></span><br><span class="line">Pattern:               P L E X A M P L E</span><br><span class="line"></span><br><span class="line">                       0 1 2 3 4 5 6 7 8</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>坏字符的移动</p>
+<p>此时坏字符的位置是4，坏字符 <code>I</code> 不在字符串当中，移动的个数为： 4 - (-1) = 5</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Text:    H E R E _ I _ S A _ S I M P L E _ E X A M P L E</span><br><span class="line"></span><br><span class="line">Pattern:                         P L E X A M P L E</span><br><span class="line"></span><br><span class="line">                                 0 1 2 3 4 5 6 7 8</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>好后缀的移动</p>
+<p>此时好后缀是 <code>MPLE</code>，其中 <code>PLE</code> 出现在头部，最右位置为 (01) 2。</p>
+<p>此时好后缀的字符是8(以最后一个为准)，移动的个数为：8 - 2 = 6</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Text:    H E R E _ I _ S A _ S I M P L E _ E X A M P L E</span><br><span class="line"></span><br><span class="line">Pattern:                           P L E X A M P L E</span><br><span class="line"></span><br><span class="line">                                   0 1 2 3 4 5 6 7 8</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>相比之下，我们可以发现好后缀的查找效率更高。</p>
+<p>如何计算好后缀我们之前已经提过了，继续以上面最后一个例子讲解。</p>
+<ul>
+<li><code>MPLE</code> : 未出现，最右出现的位置为 -1；</li>
+<li><code>PLE</code> : 未出现在头部，最右出现的位置为 -1；</li>
+<li><code>LE</code> : 未出现在头部，最右出现的位置为 -1；</li>
+<li><code>E</code> : 出现在头部，补充虚拟字符 ‘MPL’E，前缀字符为空，最右出现的位置为 0；</li>
+</ul>
+<p>此时，所有的”好后缀”（MPLE、PLE、LE、E）之中，只有”E”在”EXAMPLE”还出现在头部，所以后移 6 - 0 = 6位。</p>
+<p>如果之前我们只利用坏字符的话，移动的位数只有 </p>
+<p>2 - (-1) = 3位</p>
+<p>所以我们最终的移动位置，是在这<strong>两者之间取最大值</strong>来移动。</p>
+<p>所以在查找之前，我们需要预计算生成<code>坏字符规则表</code> 和 <code>好后缀规则表</code>，到时候只需要查表就可以了。继续上面的例子。</p>
+<p>根据上面计算结果，我们将 <code>Pattern P</code> 右移6位。然后重新从尾部开始比较</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/68008338.jpg" alt=""></p>
+<p>文本中P不匹配，此时只能使用<strong>坏字符规则</strong>，P上一次出现的位置为4，则移动6-4=2位</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/55480187.jpg" alt=""></p>
+<p>移动2位后，发现文本中的E 与 Pattern P中的E 匹配，则继续倒序比较，直到发现全部匹配，则匹配到的第一个完整的模式 P 被发现。</p>
+<p>继续下去则是依据<strong>好后缀规则</strong>计算好后缀 “E” 的后移位置为 6 - 0 = 6 位，然后继续倒序比较时发现已超出文本 T 的范围，搜索结束。</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/85829606.jpg" alt=""></p>
+<h3 id="2-References"><a href="#2-References" class="headerlink" title="2. References"></a>2. References</h3><ul>
+<li><a href="http://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html" target="_blank" rel="noopener">字符串匹配的Boyer-Moore算法</a></li>
+<li><a href="http://www.cnblogs.com/gaochundong/p/boyer_moore_string_matching_algorithm.html" target="_blank" rel="noopener">Boyer-Moore 字符串匹配算法</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/02/字符串搜索算法-BM/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-PostgreSQL复习笔记" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -756,89 +1007,9 @@
 
 
   
-    <article id="post-Python数据分析笔记（一）" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/15/Python数据分析笔记（一）/">Python数据分析笔记（一）</a>
-    </h1>
-  
-
-        
-        <a href="/2016/12/15/Python数据分析笔记（一）/" class="archive-article-date">
-  	<time datetime="2016-12-15T11:37:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-常见问题"><a href="#1-常见问题" class="headerlink" title="1. 常见问题"></a>1. 常见问题</h3><ul>
-<li><p>Pandas.dataframe里面 .values, .iloc, .ix, .loc 的区别</p>
-<p><a href="http://pandas.pydata.org/pandas-docs/stable/indexing.html#different-choices-for-indexing" target="_blank" rel="noopener">Different Choices for Indexing</a></p>
-<blockquote>
-<p><strong>loc:</strong>  only work on <strong>index / label</strong><br><strong>iloc:</strong> work on <strong>position</strong>, from 0, 1, 2, … …<br><strong>ix:</strong>    You can get data from dataframe without it being in the index<br><strong>at:</strong>    get scalar values. It’s a very fast loc<br><strong>iat:</strong>   Get scalar values. It’s a very fast iloc</p>
-</blockquote>
-<p><img src="http://i1.piimg.com/567571/fbb5bb937eb84e6a.png" alt=""></p>
-<p><img src="http://p1.bqimg.com/567571/ea9cb034a8f39e05.png" alt=""></p></li></ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Numpy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Pandas</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/15/Python数据分析笔记（一）/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
     </nav>
   
 
@@ -960,15 +1131,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">进程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1005,6 +1184,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1048,6 +1231,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
              
@@ -1085,6 +1272,26 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GPU</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">FM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">FFM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">DeepFM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DCN</a>
               </li>
              
               <li class="article-tag-list-item">
