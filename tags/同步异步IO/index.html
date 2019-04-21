@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://chenson.com">
-  <title>多线程与多进程简单理解 | Vane&#39;s Blog</title>
+  <title>Tag: 同步异步IO | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 多进程直观来看，就是一个个pid，进程是程序在计算机上的一次执行活动。 创建子进程的调用是 fork() fork() 的功能就是产生子进程，调用一次，返回两次。 一次返回0，一次返回子进程的pid 子进程永远返回 0，而父进程返回子进程的ID。这样做的理由是，一个父进程可以fork出很多子进程，所以，父进程要记下每个子进程的ID，而子进程只需要调用 getppid() 就可以拿到父进程的I">
-<meta name="keywords" content="线程,进程">
-<meta property="og:type" content="article">
-<meta property="og:title" content="多线程与多进程简单理解">
-<meta property="og:url" content="http://chenson.com/2017/09/22/多线程与多进程简单理解/index.html">
+  <meta name="description" content="Stay Hungry. Stay Foolish">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vane&#39;s Blog">
+<meta property="og:url" content="http://chenson.com/tags/同步异步IO/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="1. 多进程直观来看，就是一个个pid，进程是程序在计算机上的一次执行活动。 创建子进程的调用是 fork() fork() 的功能就是产生子进程，调用一次，返回两次。 一次返回0，一次返回子进程的pid 子进程永远返回 0，而父进程返回子进程的ID。这样做的理由是，一个父进程可以fork出很多子进程，所以，父进程要记下每个子进程的ID，而子进程只需要调用 getppid() 就可以拿到父进程的I">
+<meta property="og:description" content="Stay Hungry. Stay Foolish">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-21T05:30:49.648Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="多线程与多进程简单理解">
-<meta name="twitter:description" content="1. 多进程直观来看，就是一个个pid，进程是程序在计算机上的一次执行活动。 创建子进程的调用是 fork() fork() 的功能就是产生子进程，调用一次，返回两次。 一次返回0，一次返回子进程的pid 子进程永远返回 0，而父进程返回子进程的ID。这样做的理由是，一个父进程可以fork出很多子进程，所以，父进程要记下每个子进程的ID，而子进程只需要调用 getppid() 就可以拿到父进程的I">
+<meta name="twitter:title" content="Vane&#39;s Blog">
+<meta name="twitter:description" content="Stay Hungry. Stay Foolish">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -153,222 +151,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-多线程与多进程简单理解" class="article article-type-post " itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      多线程与多进程简单理解
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/09/29/同步异步IO/" class="archive-article-date">
+  	<time datetime="2017-09-29T03:54:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-29</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/09/29/同步异步IO/">同步异步IO</a>
     </h1>
   
 
-        
-        <a href="/2017/09/22/多线程与多进程简单理解/" class="archive-article-date">
-  	<time datetime="2017-09-22T06:28:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-多进程"><a href="#1-多进程" class="headerlink" title="1. 多进程"></a>1. 多进程</h3><p>直观来看，就是一个个pid，进程是程序在计算机上的一次执行活动。</p>
-<p>创建子进程的调用是 fork()</p>
-<p>fork() 的功能就是产生子进程，调用一次，返回两次。</p>
-<p>一次返回0，一次返回子进程的pid</p>
-<p>子进程永远返回 <code>0</code>，而父进程返回子进程的ID。这样做的理由是，一个父进程可以fork出很多子进程，所以，父进程要记下每个子进程的ID，而子进程只需要调用 <code>getppid()</code> 就可以拿到父进程的ID</p>
-<p>失败返回-1</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;  </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;   </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;  </span></span></span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_exit</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"the exit pid:%d/n"</span>,getpid() );  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">main()</span><br><span class="line">&#123;</span><br><span class="line"> 	<span class="keyword">pit_t</span>, pid;</span><br><span class="line">  	atexit(print_exit);		<span class="comment">//注册该进程退出时的回调函数  </span></span><br><span class="line">  	pid = fork();</span><br><span class="line">    <span class="keyword">if</span> (pid &lt; <span class="number">0</span>)   </span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"error in fork!"</span>);   </span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (pid == <span class="number">0</span>)    	<span class="comment">// 子进程</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"i am the child process, my process id is %d/n"</span>, getpid());   </span><br><span class="line">	<span class="keyword">else</span>   					<span class="comment">// 父进程</span></span><br><span class="line">	&#123;  </span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"i am the parent process, my process id is %d/n"</span>, getpid());   </span><br><span class="line">		sleep(<span class="number">2</span>);  </span><br><span class="line">		wait();  </span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
- <a id="more"></a>
-<h3 id="2-多线程"><a href="#2-多线程" class="headerlink" title="2. 多线程"></a>2. 多线程</h3><p>进程是由若干线程组成的，一个进程至少有一个线程。</p>
-<p>线程就是把一个进程分成很多片，每一片都是可以独立的流程</p>
-<p>linux提供的多线程的系统调用：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_create</span><span class="params">(<span class="keyword">pthread_t</span> *<span class="keyword">restrict</span> tidp,</span></span></span><br><span class="line"><span class="function"><span class="params">                   <span class="keyword">const</span> <span class="keyword">pthread_attr_t</span> *<span class="keyword">restrict</span> attr,</span></span></span><br><span class="line"><span class="function"><span class="params">                   <span class="keyword">void</span> *(*start_rtn)(<span class="keyword">void</span>), </span></span></span><br><span class="line"><span class="function"><span class="params">                   <span class="keyword">void</span> *<span class="keyword">restrict</span> arg)</span></span>;</span><br><span class="line"></span><br><span class="line">Returns: <span class="number">0</span> <span class="keyword">if</span> OK, error number on failure</span><br></pre></td></tr></table></figure>
-<p><strong>第一个参数为指向线程标识符的指针。</strong><br><strong>第二个参数用来设置线程属性。</strong><br><strong>第三个参数是线程运行函数的起始地址。</strong><br><strong>最后一个参数是运行函数的参数。</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span>* <span class="title">task1</span><span class="params">(<span class="keyword">void</span>*)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span>* <span class="title">task2</span><span class="params">(<span class="keyword">void</span>*)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">usr</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">int</span> p1,p2;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    usr();</span><br><span class="line">    getchar();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">usr</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">pthread_t</span> pid1, pid2;</span><br><span class="line">    <span class="keyword">pthread_attr_t</span> attr;</span><br><span class="line">    <span class="keyword">void</span> *p;</span><br><span class="line">    <span class="keyword">int</span> ret=<span class="number">0</span>;</span><br><span class="line">    pthread_attr_init(&amp;attr);         <span class="comment">// 初始化线程属性结构</span></span><br><span class="line">    pthread_attr_setdetachstate(&amp;attr, PTHREAD_CREATE_DETACHED);   <span class="comment">// 设置attr结构为分离</span></span><br><span class="line">    pthread_create(&amp;pid1, &amp;attr, task1, <span class="literal">NULL</span>);         <span class="comment">// 创建线程，返回线程号给pid1,线程属性设置为attr的属性，线程函数入口为task1，参数为NULL</span></span><br><span class="line">    pthread_attr_setdetachstate(&amp;attr, PTHREAD_CREATE_JOINABLE);</span><br><span class="line">    pthread_create(&amp;pid2, &amp;attr, task2, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="comment">// 前台工作</span></span><br><span class="line"></span><br><span class="line">    ret=pthread_join(pid2, &amp;p);         <span class="comment">// 等待pid2返回，返回值赋给p</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"after pthread2:ret=%d,p=%d/n"</span>, ret,(<span class="keyword">int</span>)p);          </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span>* <span class="title">task1</span><span class="params">(<span class="keyword">void</span> *arg1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"task1/n"</span>);</span><br><span class="line">    <span class="comment">// 艰苦而无法预料的工作，设置为分离线程，任其自生自灭</span></span><br><span class="line">    pthread_exit( (<span class="keyword">void</span> *)<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span>* <span class="title">task2</span><span class="params">(<span class="keyword">void</span> *arg2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"thread2 begin./n"</span>);</span><br><span class="line">    <span class="comment">// 继续送外卖的工作</span></span><br><span class="line">    pthread_exit((<span class="keyword">void</span> *)<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="3-线程-VS-进程"><a href="#3-线程-VS-进程" class="headerlink" title="3. 线程 VS 进程"></a>3. 线程 VS 进程</h3><ol>
-<li>进程开销大，线程开销小。</li>
-<li><strong>线程安全</strong>：概念比较直观。一般说来，一个函数被称为线程安全的，当且仅当被多个并发线程反复调用时，它会一直产生正确的结果。</li>
-<li><strong>线程安全的条件</strong>：主要需要考虑的是线程之间的共享变量。属于同一进程的不同线程会共享进程内存空间中的全局区和堆，而私有的线程空间则主要包括栈和寄存器。因此，对于同一进程的不同线程来说，每个线程的局部变量都是私有的，而全局变量、局部静态变量、分配于堆的变量都是共享的。在对这些共享变量进行访问时，如果要保证线程安全，则必须通过加锁的方式</li>
-<li>多进程模式最大的<strong>优点就是稳定性高</strong>，因为一个子进程崩溃了，不会影响主进程和其他子进程。</li>
-<li>多进程模式的<strong>缺点是创建进程的代价大</strong>，在Unix/Linux系统下，用<code>fork</code>调用还行，在Windows下创建进程开销巨大。另外，操作系统能同时运行的进程数也是有限的，在内存和CPU的限制下，如果有几千个进程同时运行，操作系统连调度都会成问题</li>
-<li>多线程模式通常比多进程快一点，但是也快不到哪去，而且，多线程模式致命的缺点就是任何一个线程挂掉都可能直接造成整个进程崩溃，因为所有线程共享进程的内存。在Windows上，如果一个线程执行的代码出了问题，你经常可以看到这样的提示：“该程序执行了非法操作，即将关闭”，其实往往是某个线程出了问题，但是操作系统会强制结束整个进程</li>
-</ol>
-<h3 id="4-进程间通信"><a href="#4-进程间通信" class="headerlink" title="4. 进程间通信"></a>4. 进程间通信</h3><h4 id="4-1-单机多进程通信"><a href="#4-1-单机多进程通信" class="headerlink" title="4.1 单机多进程通信"></a>4.1 单机多进程通信</h4><p>IPC（Inter Process Communication）包括：管道、文件、和消息传递</p>
-<ol>
-<li>管道（Pipe）及有名管道（named pipe）：管道可用于具有亲缘关系进程间的通信，有名管道克服了管道没有名字的限制，因此，除具有管道所具有的功能外，它还允许无亲缘关系进程间的通信；</li>
-<li>信号（Signal）：信号是比较复杂的通信方式，用于通知接受进程有某种事件发生，除了用于进程间通信外，进程还可以发送信号给进程本身；linux除了支持Unix早期信号语义函数sigal外，还支持语义符合Posix.1标准的信号函数sigaction（实际上，该函数是基于BSD的，BSD为了实现可靠信号机制，又能够统一对外接口，用sigaction函数重新实现了signal函数）；</li>
-<li>报文（Message）队列（消息队列）：消息队列是消息的链接表，包括Posix消息队列system V消息队列。有足够权限的进程可以向队列中添加消息，被赋予读权限的进程则可以读走队列中的消息。消息队列克服了信号承载信息量少，管道只能承载无格式字节流以及缓冲区大小受限等缺点。</li>
-<li>共享内存：使得多个进程可以访问同一块内存空间，是最快的可用IPC形式。是针对其他通信机制运行效率较低而设计的。往往与其它通信机制，如信号量结合使用，来达到进程间的同步及互斥。</li>
-<li>信号量（semaphore）：主要作为进程间以及同一进程不同线程之间的同步手段。</li>
-<li>套接口（Socket）：更为一般的进程间通信机制，可用于不同机器之间的进程间通信。起初是由Unix系统的BSD分支开发出来的，但现在一般可以移植到其它类Unix系统上：Linux和System V的变种都支持套接字。</li>
-</ol>
-<h4 id="4-2-分布式进程通信"><a href="#4-2-分布式进程通信" class="headerlink" title="4.2 分布式进程通信"></a>4.2 分布式进程通信</h4><h3 id="5-线程通信"><a href="#5-线程通信" class="headerlink" title="5. 线程通信"></a>5. 线程通信</h3><p>多数的多线程都是在同一个进程下的，它们共享该进程的全局变量，我们可以通过全局变量来实现线程间通信。如果是不同的进程下的2个线程间通信，直接参考进程间通信。</p>
-<h3 id="6-References"><a href="#6-References" class="headerlink" title="6. References"></a>6. References</h3><ul>
-<li><a href="http://blog.csdn.net/hairetz/article/details/4281931" target="_blank" rel="noopener">多线程和多进程的区别（小结）</a></li>
-</ul>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>Thanks for your donate.<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/images/alipay.jpeg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">线程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">进程</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">同步异步IO</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2017/09/22/多线程与多进程简单理解/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/09/29/同步异步IO/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          同步异步IO
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/06/17/Machine-Learning-PCA/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Machine Learning - PCA</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-
-  
-  <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="多线程与多进程简单理解" data-title="多线程与多进程简单理解" data-url="http://chenson.com/2017/09/22/多线程与多进程简单理解/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"true"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
+    </div></section>
   
 
-
-
-
-
+    
 
 
           </div>
@@ -391,9 +227,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
