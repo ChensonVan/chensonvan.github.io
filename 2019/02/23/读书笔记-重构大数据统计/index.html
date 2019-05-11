@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://chenson.com">
   <title>读书笔记-重构大数据统计 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 单变量基本统计量1.1 常见的数据统计量 均值$$\overline X = \frac 1 n \sum_{i=1}^n X_i$$  方差$$S_n^2 = \frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2$$分母为n-1，则称之为$S_n^2$的自由度(degree of freedom)    问题：不是很理解自由度这个概念   标准差">
+  <meta name="description" content="1. 单变量基本统计量1.1 常见的数据统计量 均值  \overline X = \frac 1 n \sum_{i=1}^n X_i 方差  S_n^2 = \frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2分母为n-1，则称之为$S_n^2$的自由度(degree of freedom)    问题：不是很理解自由度这个概念   标准差 - St">
 <meta name="keywords" content="Big Data,读书笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="读书笔记-重构大数据统计">
 <meta property="og:url" content="http://chenson.com/2019/02/23/读书笔记-重构大数据统计/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="1. 单变量基本统计量1.1 常见的数据统计量 均值$$\overline X = \frac 1 n \sum_{i=1}^n X_i$$  方差$$S_n^2 = \frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2$$分母为n-1，则称之为$S_n^2$的自由度(degree of freedom)    问题：不是很理解自由度这个概念   标准差">
+<meta property="og:description" content="1. 单变量基本统计量1.1 常见的数据统计量 均值  \overline X = \frac 1 n \sum_{i=1}^n X_i 方差  S_n^2 = \frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2分母为n-1，则称之为$S_n^2$的自由度(degree of freedom)    问题：不是很理解自由度这个概念   标准差 - St">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.com/2019/02/23/读书笔记-重构大数据统计/2019-02-23-读书笔记-重构大数据统计/image-20190222203555546.png">
 <meta property="og:updated_time" content="2019-04-21T11:51:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="读书笔记-重构大数据统计">
-<meta name="twitter:description" content="1. 单变量基本统计量1.1 常见的数据统计量 均值$$\overline X = \frac 1 n \sum_{i=1}^n X_i$$  方差$$S_n^2 = \frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2$$分母为n-1，则称之为$S_n^2$的自由度(degree of freedom)    问题：不是很理解自由度这个概念   标准差">
+<meta name="twitter:description" content="1. 单变量基本统计量1.1 常见的数据统计量 均值  \overline X = \frac 1 n \sum_{i=1}^n X_i 方差  S_n^2 = \frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2分母为n-1，则称之为$S_n^2$的自由度(degree of freedom)    问题：不是很理解自由度这个概念   标准差 - St">
 <meta name="twitter:image" content="http://chenson.com/2019/02/23/读书笔记-重构大数据统计/2019-02-23-读书笔记-重构大数据统计/image-20190222203555546.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
@@ -176,48 +176,76 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="1-单变量基本统计量"><a href="#1-单变量基本统计量" class="headerlink" title="1. 单变量基本统计量"></a>1. 单变量基本统计量</h3><h4 id="1-1-常见的数据统计量"><a href="#1-1-常见的数据统计量" class="headerlink" title="1.1 常见的数据统计量"></a>1.1 常见的数据统计量</h4><ul>
-<li><p>均值<br>$$<br>\overline X = \frac 1 n \sum_{i=1}^n X_i<br>$$</p>
-</li>
-<li><p>方差<br>$$<br>S_n^2 = \frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2<br>$$<br>分母为n-1，则称之为$S_n^2$的自由度(degree of freedom)  </p>
+<li><p>均值</p>
+<script type="math/tex; mode=display">
+\overline X = \frac 1 n \sum_{i=1}^n X_i</script></li>
+<li><p>方差</p>
+<script type="math/tex; mode=display">
+S_n^2 = \frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2</script><p>分母为n-1，则称之为$S_n^2$的自由度(degree of freedom)  </p>
 <ul>
 <li>问题：不是很理解自由度这个概念</li>
 </ul>
 </li>
-<li><p>标准差 - Standard Deviation<br>$$<br>S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}<br>$$</p>
-</li>
-<li><p>变异系数 - Coefficient of Variation, CV<br>$$<br>\frac {S_n} {\overline X}<br>$$<br>标准差和均值的比值，一个无量纲的量，用来刻画数据的相对分散性</p>
+<li><p>标准差 - Standard Deviation</p>
+<script type="math/tex; mode=display">
+S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
+<li><p>变异系数 - Coefficient of Variation, CV</p>
+<script type="math/tex; mode=display">
+\frac {S_n} {\overline X}</script><p>标准差和均值的比值，一个无量纲的量，用来刻画数据的相对分散性</p>
 <a id="more"></a>
 </li>
-<li><p>标准误 - Standard Error<br>$$<br>\frac {\sqrt {\frac 1 {(n-1)} \sum_{i=1}^n(X_i - \overline X)^2}} {\sqrt n} = </p>
-<p>\sqrt{\frac 1 {n(n-1)}\sum_{i=1}^n(X_i - \overline X)^2}<br>$$<br>标准误是由样本的标准差除以样本个数的开方计算得到的，标准误代表的是样本均数对总体均数的相对误差。</p>
+<li><p>标准误 - Standard Error</p>
+<script type="math/tex; mode=display">
+\frac {\sqrt {\frac 1 {(n-1)} \sum_{i=1}^n(X_i - \overline X)^2}} {\sqrt n} = 
+
+\sqrt{\frac 1 {n(n-1)}\sum_{i=1}^n(X_i - \overline X)^2}</script><p>标准误是由样本的标准差除以样本个数的开方计算得到的，标准误代表的是样本均数对总体均数的相对误差。</p>
 </li>
-<li><p>k阶原点矩 - Moment<br>$$<br>\frac 1 n \sum_{i=1}^nX_i^k<br>$$<br>k=1的时候，就是均值</p>
+<li><p>k阶原点矩 - Moment</p>
+<script type="math/tex; mode=display">
+\frac 1 n \sum_{i=1}^nX_i^k</script><p>k=1的时候，就是均值</p>
 </li>
-<li><p>k阶中心矩<br>$$<br>\frac 1 n \sum_{i=1}^n（X_i - \overline X）^k<br>$$<br>k=1的时候，一阶中心矩恒等于0</p>
+<li><p>k阶中心矩</p>
+<script type="math/tex; mode=display">
+\frac 1 n \sum_{i=1}^n（X_i - \overline X）^k</script><p>k=1的时候，一阶中心矩恒等于0</p>
 </li>
 </ul>
 <p>  下面两个统计量可用来描述样本数据分布形状</p>
 <ul>
-<li><p>偏度 - Skewness<br>$$<br>\frac {\sqrt n \sum_{i=1}^n(X_i - \overline X)^3} {[\sum_{i=1}^n(X_i - \overline X)^2]^{\frac 3 2}}<br>$$<br>偏度是用来刻画数据对称性的指标。关于均值对称的数据，其偏度系数为0；</p>
+<li><p>偏度 - Skewness</p>
+<script type="math/tex; mode=display">
+\frac {\sqrt n \sum_{i=1}^n(X_i - \overline X)^3} {[\sum_{i=1}^n(X_i - \overline X)^2]^{\frac 3 2}}</script><p>偏度是用来刻画数据对称性的指标。关于均值对称的数据，其偏度系数为0；</p>
 <p>若左侧数据比较分散，则偏度系数小于0；</p>
 <p>若右侧数据比较分散，则偏度系数大于0。</p>
 </li>
-<li><p>峰度 - Kurotsis<br>$$<br>\frac { n \sum_{i=1}^n(X_i - \overline X)^4} {[\sum_{i=1}^n(X_i - \overline X)^2]^{2}} - 3<br>$$<br>峰度可以描述样本数据分布形态相对于正态分布的陡缓成都</p>
+<li><p>峰度 - Kurotsis</p>
+<script type="math/tex; mode=display">
+\frac { n \sum_{i=1}^n(X_i - \overline X)^4} {[\sum_{i=1}^n(X_i - \overline X)^2]^{2}} - 3</script><p>峰度可以描述样本数据分布形态相对于正态分布的陡缓成都</p>
 <p>若 Kurotsis = 0，则与状态分布的相同陡缓程度相同；</p>
 <p>若 Kurotsis &gt; 0，则比状态分布的高峰更加陡峭，表现为尖顶峰；</p>
 <p>若 Kurotsis &gt; 0，则比状态分布的高峰显得平缓，表现为平顶峰。</p>
 </li>
 </ul>
 <h4 id="1-2-关于上面公式的思考-🤔"><a href="#1-2-关于上面公式的思考-🤔" class="headerlink" title="1.2 关于上面公式的思考 🤔"></a>1.2 关于上面公式的思考 🤔</h4><p>看到上面的一些公式，发现一个共同点，基本都是会用到均值 $\overline X$，这就意味着我们在计算这些数据的时候，得先扫描一遍所有数据，求出均值后再第二次扫描所有的数据，计算这些统计量。</p>
-<p>如果我们想扫一次数据之后，就算出这些统计变量的话，就得实时计算出当前的均值，但很多的统计量都是需要实时将当前的变量与$\overline X$ 做差，如果我们能够在需要时候这些统计变量的时候，再计算出这些值的话，是不是就可以边X的均值边缓存所有的X就可扫描一遍计算出结果。但这是这样的代价就是得缓存所有的X，可以说是非常大的，特别是对数据量很大的时候。能不能有其他的方式呢？其实可以思考一下下面这个公式的变化<br>$$<br>\sum_{i=1}^n = (X_i - \overline X)^2 \</p>
-<p>= \sum_{i=1}^n (X_i^2 - 2X_i\overline X + \overline X^2) \</p>
-<p>  = \sum_{i=1}^n X_i^2 - 2\overline X \sum_{i=1}^n X_i + \sum_{i=1}^n \overline X^2 \</p>
-<p>  = \sum_{i=1}^n X_i^2 - 2\overline X · n\overline X + n\overline X^2 \</p>
-<p>  = \sum_{i=1}^b X_i^2 - n \overline X^2<br>$$<br>  最终我们其实可以在扫一遍数据的情况下，计算出$\sum_{i=1}^n X_i^2$、  $\overline X$ 和n</p>
+<p>如果我们想扫一次数据之后，就算出这些统计变量的话，就得实时计算出当前的均值，但很多的统计量都是需要实时将当前的变量与$\overline X$ 做差，如果我们能够在需要时候这些统计变量的时候，再计算出这些值的话，是不是就可以边X的均值边缓存所有的X就可扫描一遍计算出结果。但这是这样的代价就是得缓存所有的X，可以说是非常大的，特别是对数据量很大的时候。能不能有其他的方式呢？其实可以思考一下下面这个公式的变化</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^n = (X_i - \overline X)^2 \\
+
+= \sum_{i=1}^n (X_i^2 - 2X_i\overline X + \overline X^2) \\
+
+  = \sum_{i=1}^n X_i^2 - 2\overline X \sum_{i=1}^n X_i + \sum_{i=1}^n \overline X^2 \\
+
+  = \sum_{i=1}^n X_i^2 - 2\overline X · n\overline X + n\overline X^2 \\
+
+  = \sum_{i=1}^b X_i^2 - n \overline X^2</script><p>  最终我们其实可以在扫一遍数据的情况下，计算出$\sum_{i=1}^n X_i^2$、  $\overline X$ 和n</p>
 <p>  同理可以推导公式</p>
 <p>  <img src="/2019/02/23/读书笔记-重构大数据统计/2019-02-23-读书笔记-重构大数据统计/image-20190222203555546.png" alt="image-20190222203555546"></p>
-<p>  所以根据上面的思考结果，基本我们就可以将常见的几个数据统计量给计算出来。基本我们在扫一遍的时候，计算出如下几个值，n，sum，sum2，sum3，sum4等<br>$$<br>  count = n \<br>  sum = \sum_{i=1}^n X_i \<br>  sum2 = \sum_{i=1}^n X_i^2 \<br>  sum3 = \sum_{i=1}^n X_i^3 \<br>  sum4 = \sum_{i=1}^n X_i^4<br>$$</p>
-<h4 id="1-3-不需要就可计算的次序统计量"><a href="#1-3-不需要就可计算的次序统计量" class="headerlink" title="1.3 不需要就可计算的次序统计量"></a>1.3 不需要就可计算的次序统计量</h4><ul>
+<p>  所以根据上面的思考结果，基本我们就可以将常见的几个数据统计量给计算出来。基本我们在扫一遍的时候，计算出如下几个值，n，sum，sum2，sum3，sum4等</p>
+<script type="math/tex; mode=display">
+  count = n \\
+  sum = \sum_{i=1}^n X_i \\
+  sum2 = \sum_{i=1}^n X_i^2 \\
+  sum3 = \sum_{i=1}^n X_i^3 \\
+  sum4 = \sum_{i=1}^n X_i^4</script><h4 id="1-3-不需要就可计算的次序统计量"><a href="#1-3-不需要就可计算的次序统计量" class="headerlink" title="1.3 不需要就可计算的次序统计量"></a>1.3 不需要就可计算的次序统计量</h4><ul>
 <li><p>目的：读取一遍数据同时就获取最大的前K个值和最小的前K个值</p>
 </li>
 <li><p>解决方案：同时维护两个队列</p>
@@ -233,6 +261,7 @@
 <li><p>例子：</p>
 </li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -259,6 +288,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <ul>
 <li><p>解决方案：</p>
 <ol>
@@ -266,13 +296,13 @@
 </ol>
 </li>
 </ul>
-<pre><code>| Itmes | Counts |
-| ----- | ------ |
-| C     | 1      |
-| B     | 2      |
-| D     | 3      |
-| A     | 4      |
-</code></pre><ol start="2">
+<pre><code> | Itmes | Counts |
+ | ----- | ------ |
+ | C     | 1      |
+ | B     | 2      |
+ | D     | 3      |
+ | A     | 4      |
+</code></pre><ol>
 <li><p>对每个元素items[i] 计算 cntScan[i], <strong>其数值上等于count[0], count[1], …, count[i-1]的和</strong>,实际意义是将全部数据由小到大排序，第一次出现元素items[i]时对应的位置。</p>
 </li>
 <li><p>对于要去的分位数，首先是计算出对应排好序的数列的位置k，利用cntScan，使用二分法搜索出对应的数据元素编号j，则items[j]即为所求。</p>
@@ -452,12 +482,29 @@
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
+
     	<div class="footer-left">
     		&copy; 2019 Chenson Van
     	</div>
-      	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
-      	</div>
+      
+      <div class="footer-right">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+
+        <span id="busuanzi_container_site_pv">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+
+        <span id="busuanzi_container_page_pv">
+        本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+      </div>
+      
+      
+
+
+
     </div>
   </div>
 </footer>
@@ -579,11 +626,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -607,6 +654,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
@@ -615,15 +674,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -635,26 +690,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
@@ -663,7 +698,31 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -675,10 +734,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
              
@@ -687,23 +742,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -719,15 +758,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -751,7 +790,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
               </li>
             
             <div class="clearfix"></div>

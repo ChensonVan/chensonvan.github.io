@@ -337,7 +337,7 @@
 <li>评分 (业务场景内分评分，可以是反欺诈分或者信用分等)</li>
 </ul>
 <p>为了节省内存，以上关系(不包括手机号)可表示为 1101000576，具体代表意思如下：</p>
-<p>| Register | Apply | Pass | Balck | Bad  | Good | Undue | Score |<br>| ——– | —– | —- | —– | —- | —- | —– | —– |<br>| 1        | 1     | 0    | 1     | 0    | 0    | 0     | 576   |</p>
+<p>| Register | Apply | Pass | Balck | Bad  | Good | Undue | Score |<br>| ———— | ——- | —— | ——- | —— | —— | ——- | ——- |<br>| 1        | 1     | 0    | 1     | 0    | 0    | 0     | 576   |</p>
 <p>其中手机号可以将十进制数转换成62进制表示(即0-9,a-z,A-Z)，1️以节省内存。</p>
 <p>所以一个节点的属性可表示为<strong>(P_num, Status)</strong>。</p>
 </li>
@@ -689,43 +689,52 @@
 <ul>
 <li>$X_t$</li>
 <li><p>$H_{t-1}$</p>
-<p>即当前和上一轮的信息，则是<strong>短期内的信息。</strong><br>$$<br>R_t = \sigma(X_t W_{xr} + H_{t-1}W_{hr} + b_r)<br>$$</p>
-</li>
+<p>即当前和上一轮的信息，则是<strong>短期内的信息。</strong></p>
+<script type="math/tex; mode=display">
+R_t = \sigma(X_t W_{xr} + H_{t-1}W_{hr} + b_r)</script></li>
 </ul>
 <ul>
 <li><p>更新门</p>
 <p><del>有助于捕捉时序数据中<strong>长期</strong>的依赖状态。</del></p>
-<p><del>用于更新当前隐含层的状态，为了捕捉到之前比较久、长期之前的状态</del><br>$$<br>Z_t = \sigma(X_t W_{xz} + H_{t-1}W_{hz} + b_z)<br>$$</p>
-<ul>
+<p><del>用于更新当前隐含层的状态，为了捕捉到之前比较久、长期之前的状态</del></p>
+<script type="math/tex; mode=display">
+Z_t = \sigma(X_t W_{xz} + H_{t-1}W_{hz} + b_z)</script><ul>
 <li>$Z_t$ == 0，则不保留之前的信息；</li>
 <li>$Z_t$ == 1，保留之前的信息。</li>
 </ul>
 </li>
-<li><p>候选隐含状态<br>$$<br>\tilde H= tanh(X_tW_{xh} + R_t  \bigodot H_{t-1}W_{hh} + b_h<br>$$</p>
-</li>
-<li><p>当前隐含状态<br>$$<br>H_t = Z_t\bigodot H_{t-1} + (1 - Z_t) \bigodot \tilde H_t<br>$$</p>
-</li>
+<li><p>候选隐含状态</p>
+<script type="math/tex; mode=display">
+\tilde H= tanh(X_tW_{xh} + R_t  \bigodot H_{t-1}W_{hh} + b_h</script></li>
+<li><p>当前隐含状态</p>
+<script type="math/tex; mode=display">
+H_t = Z_t\bigodot H_{t-1} + (1 - Z_t) \bigodot \tilde H_t</script></li>
 </ul>
 <h3 id="3-长短期记忆-LSTM-Long-and-Short-Term-Memory"><a href="#3-长短期记忆-LSTM-Long-and-Short-Term-Memory" class="headerlink" title="3. 长短期记忆 - LSTM (Long and Short-Term Memory)"></a>3. 长短期记忆 - LSTM (Long and Short-Term Memory)</h3><p>结构比之前的GRU更为复杂一些，LSTM的隐含层包含隐含层变量H和记忆细胞C，它们的设计和形状相同（可以看到后面的几个func设计上其实是一样的，ji。</p>
 <ul>
 <li><p>输入门</p>
-<p>短期记忆<br>$$<br>I_t= \sigma(X_t W_{xi} + H_{t-1}W_{hi} + b_i)<br>$$</p>
-</li>
+<p>短期记忆</p>
+<script type="math/tex; mode=display">
+I_t= \sigma(X_t W_{xi} + H_{t-1}W_{hi} + b_i)</script></li>
 </ul>
 <ul>
 <li><p>遗忘门</p>
-<p>长期记忆<br>$$<br>F_t= \sigma(X_t W_{xf} + H_{t-1}W_{hf} + b_f)<br>$$</p>
-</li>
+<p>长期记忆</p>
+<script type="math/tex; mode=display">
+F_t= \sigma(X_t W_{xf} + H_{t-1}W_{hf} + b_f)</script></li>
 </ul>
 <ul>
-<li>输出门<br>$$<br>O_t= \sigma(X_t W_{xo} + H_{t-1}W_{ho} + b_o)<br>$$</li>
+<li>输出门<script type="math/tex; mode=display">
+O_t= \sigma(X_t W_{xo} + H_{t-1}W_{ho} + b_o)</script></li>
 </ul>
 <ul>
-<li>候选记忆细胞 Memory Cell<br>$$<br>\tilde C_t = \tanh(X_t W_{xc} + H_{t-1}W_{hc} + b_c)<br>$$</li>
+<li>候选记忆细胞 Memory Cell<script type="math/tex; mode=display">
+\tilde C_t = \tanh(X_t W_{xc} + H_{t-1}W_{hc} + b_c)</script></li>
 </ul>
 <ul>
-<li><p>记忆细胞<br>$$<br>C_t = F_t \bigodot C_{t-1} + I_t \bigodot \tilde C_t<br>$$</p>
-</li>
+<li><p>记忆细胞</p>
+<script type="math/tex; mode=display">
+C_t = F_t \bigodot C_{t-1} + I_t \bigodot \tilde C_t</script></li>
 <li><p>当前隐含状态</p>
 </li>
 </ul>
@@ -1204,12 +1213,29 @@
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
+
     	<div class="footer-left">
     		&copy; 2019 Chenson Van
     	</div>
-      	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
-      	</div>
+      
+      <div class="footer-right">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+
+        <span id="busuanzi_container_site_pv">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+
+        <span id="busuanzi_container_page_pv">
+        本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+      </div>
+      
+      
+
+
+
     </div>
   </div>
 </footer>
@@ -1331,11 +1357,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1359,6 +1385,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
@@ -1367,15 +1405,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1387,26 +1421,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
@@ -1415,7 +1429,31 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1427,10 +1465,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
              
@@ -1439,23 +1473,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1471,15 +1489,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1503,7 +1521,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
               </li>
             
             <div class="clearfix"></div>

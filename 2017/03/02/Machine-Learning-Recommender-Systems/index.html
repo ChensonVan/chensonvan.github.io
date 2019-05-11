@@ -212,6 +212,7 @@
 </ul>
 <h3 id="2-Content-based-systems"><a href="#2-Content-based-systems" class="headerlink" title="2. Content-based systems"></a>2. Content-based systems</h3><h4 id="2-1-Problem-Analysis"><a href="#2-1-Problem-Analysis" class="headerlink" title="2.1 Problem Analysis"></a>2.1 Problem Analysis</h4><p>以电影推荐系统为例，假设我们已经对系统中的电影特征有了较为完善，即我们知道某部电影属于爱情片多少分，属于动作片多少分。</p>
 <p>那么我们现在以Alice为例，她对两部爱情片评分比较高，对于两部动作片评分为0。那么系统就可以给Alice推荐<strong>偏向爱情浪漫的，且不怎么属于动作片</strong>的电影。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -272,6 +273,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h4 id="2-2-Optimization-Objective"><a href="#2-2-Optimization-Objective" class="headerlink" title="2.2 Optimization Objective"></a>2.2 Optimization Objective</h4><p>实际上我们已经假设之前对所有电影的特征进行了统计，所以此时有电影特征向量X，以及用户对于电影的评分Y向量。根据此时已有的信息，我们需要求出theta的值。所以能够对于那么没有评分过的电影，根据theta和x求出分数y。</p>
 <p>因为一开始theat的值是随机的，所以我们用<strong>Linear Regression</strong>的方法，不断减少cost function的值求出theta。</p>
 <p>值得注意的是，因为这里是多个用户，每一个用户我们求出一个theta值。最后对于多个用户，我们需要求出多个<strong>theta值</strong>。</p>
@@ -288,7 +290,8 @@
 <li><p>However, in the above example, we have known the values of all features, but for sometime, we have no idea about that. It means that we have to <strong><em>learn theta and features at the same time</em></strong></p>
 </li>
 </ol>
-<h3 id="3-Collaborative-filtering"><a href="#3-Collaborative-filtering" class="headerlink" title="3. Collaborative filtering"></a>3. Collaborative filtering</h3><h4 id="3-1-Proble-motivation"><a href="#3-1-Proble-motivation" class="headerlink" title="3.1 Proble motivation"></a>3.1 Proble motivation</h4><table>
+<h3 id="3-Collaborative-filtering"><a href="#3-Collaborative-filtering" class="headerlink" title="3. Collaborative filtering"></a>3. Collaborative filtering</h3><h4 id="3-1-Proble-motivation"><a href="#3-1-Proble-motivation" class="headerlink" title="3.1 Proble motivation"></a>3.1 Proble motivation</h4><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>Movies</th>
@@ -348,11 +351,22 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h4 id="3-2-How-to-do"><a href="#3-2-How-to-do" class="headerlink" title="3.2 How to do"></a>3.2 How to do</h4><ul>
 <li>在之前部分中，我们了解到了content-based，是<strong>已知 x 和 y，求 theta</strong>。</li>
 </ul>
-<p>Assume:<br>$$<br>\theta^{(1)} = \begin{bmatrix} 0 \ 5 \ 0 \end{bmatrix},  \space\space<br>\theta^{(2)} = \begin{bmatrix} 0 \ 5 \ 0 \end{bmatrix},  \space\space<br>\theta^{(3)} = \begin{bmatrix} 0 \ 0 \ 5 \end{bmatrix},  \space\space<br>\theta^{(4)} = \begin{bmatrix} 0 \ 0 \ 5 \end{bmatrix},  \space\space<br>x^{(1)} = \begin{bmatrix} 1 \ 1.0 \ 0.0 \end{bmatrix}<br>$$<br>For Movie 1, we can calculate the result of Movie1 rating by all users.<br>$$<br>\theta^{(1)} * x^{(1)} \approx 5    \\<br>\theta^{(2)} * x^{(1)} \approx 5    \\<br>\theta^{(3)} * x^{(1)} \approx 0    \\<br>\theta^{(4)} * x^{(1)} \approx 0<br>$$</p>
-<ul>
+<p>Assume:</p>
+<script type="math/tex; mode=display">
+\theta^{(1)} = \begin{bmatrix} 0 \\ 5 \\ 0 \end{bmatrix},  \space\space
+\theta^{(2)} = \begin{bmatrix} 0 \\ 5 \\ 0 \end{bmatrix},  \space\space
+\theta^{(3)} = \begin{bmatrix} 0 \\ 0 \\ 5 \end{bmatrix},  \space\space
+\theta^{(4)} = \begin{bmatrix} 0 \\ 0 \\ 5 \end{bmatrix},  \space\space
+x^{(1)} = \begin{bmatrix} 1 \\ 1.0 \\ 0.0 \end{bmatrix}</script><p>For Movie 1, we can calculate the result of Movie1 rating by all users.</p>
+<script type="math/tex; mode=display">
+\theta^{(1)} \* x^{(1)} \approx 5    \\\
+\theta^{(2)} \* x^{(1)} \approx 5    \\\
+\theta^{(3)} \* x^{(1)} \approx 0    \\\
+\theta^{(4)} \* x^{(1)} \approx 0</script><ul>
 <li><p>但是对于有些情况，我们并不知道x的特征值，该怎么办呢？</p>
 <p>逆向思考，我们也可以<strong>通过 theat 和 y，来求 x 的值</strong>。</p>
 </li>
@@ -360,6 +374,7 @@
 <ul>
 <li><strong>那么对于 theta和x的值都不知道的情况下呢？</strong></li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -386,35 +401,68 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h4 id="3-3-Optimization-Algorithm"><a href="#3-3-Optimization-Algorithm" class="headerlink" title="3.3 Optimization Algorithm"></a>3.3 Optimization Algorithm</h4><ul>
 <li>For a given value of theta, we can <strong>minimize the cost function to learn the value of xi</strong></li>
 </ul>
 <ul>
 <li>For a given value of xi, we can also do that to <strong>learn the value of theata</strong>.</li>
 </ul>
-<p>$$<br>θ -&gt; x -&gt; θ -&gt; x -&gt; θ -&gt; x -&gt; θ -&gt; x -&gt; …<br>$$</p>
-<p>Actually, these two steps are <strong>Linear Regression</strong>, we shoud do that <strong>simultaneously</strong> to update theta and x.</p>
+<script type="math/tex; mode=display">
+θ -> x -> θ -> x -> θ -> x -> θ -> x -> ...</script><p>Actually, these two steps are <strong>Linear Regression</strong>, we shoud do that <strong>simultaneously</strong> to update theta and x.</p>
 <p><img src="http://p1.bqimg.com/567571/fa32ae15048c3b75.png" alt></p>
 <h4 id="3-4-Collaborative-filtering-Optimization-Algorithm"><a href="#3-4-Collaborative-filtering-Optimization-Algorithm" class="headerlink" title="3.4 Collaborative filtering Optimization Algorithm"></a>3.4 Collaborative filtering Optimization Algorithm</h4><p><img src="http://p1.bqimg.com/567571/0afd72de7eca2c2d.png" alt></p>
 <p>实际上，上面是两个 <strong>LR</strong>的问题，我们可以将上面两步合并到一起，这个就是<strong>collaborative filterring</strong>， 此时的optimizatino object 就从 J(theta) 和 J(X)  变为了 J(theta, X)。</p>
 <p><img src="http://p1.bpimg.com/567571/d14e3ed20060b507.png" alt></p>
 <p>具体步骤如下</p>
 <p><img src="http://p1.bqimg.com/567571/5b7b9e072029ae09.png" alt></p>
-<h4 id="3-5-Vectorization-Low-rank-matrix-factorization"><a href="#3-5-Vectorization-Low-rank-matrix-factorization" class="headerlink" title="3.5 Vectorization: Low rank matrix factorization"></a>3.5 Vectorization: Low rank matrix factorization</h4><p>首先，我们先把评分Y用向量表示出来，同时表示为Theta和X两个矩阵的乘积<br>$$<br>Y= \begin{bmatrix} 5 &amp; 5 &amp; 0 &amp; 0 \ 5 &amp; ? &amp; ?&amp; 0 \ ? &amp; 4 &amp; 0 &amp; ? \ 0 &amp; 0 &amp; 5 &amp; 4 \ 0 &amp;  0 &amp; 5 &amp; 0\end{bmatrix}  =<br>\begin{bmatrix}<br>(\theta^{(1)})^T(x^{(1)}) &amp; (\theta^{(2)})^T(x^{(1)}) &amp; … &amp; (\theta^{(n_u)})^T(x^{(1)}) \<br>(\theta^{(1)})^T(x^{(2)}) &amp; (\theta^{(2)})^T(x^{(2)}) &amp; … &amp; (\theta^{(n_u)})^T(x^{(2)}) \<br>… &amp; … &amp; … &amp; … \<br>(\theta^{(1)})^T(x^{(n_m)}) &amp; (\theta^{(2)})^T(x^{(n_m)}) &amp; … &amp; (\theta^{(n_u)})^T(x^{(n_m)})<br>\end{bmatrix} = X * \Theta’, R \in (n_m × n_u)<br>$$</p>
-<p>$$<br>X = \begin{bmatrix}<br>—(x^{(1)})^T—     \<br>—(x^{(2)})^T—    \<br>…    \<br>—(x^{(n_m)})^T—<br>\end{bmatrix},<br>x^{(n_m)} = \begin{bmatrix}<br>x^{(n_m)}_1 \ x^{(n_m)}_2 \ … \ x^{(n_m)}_n<br>\end{bmatrix}, R \in (n_m × n)<br>$$</p>
-<p>$$<br>\Theta = \begin{bmatrix}<br>—(\theta^{(1)})^T—     \<br>—(\theta^{(2)})^T—    \<br>…    \<br>—(\theta^{(n_u)})^T—<br>\end{bmatrix},<br>\theta^{(n_u)} = \begin{bmatrix}<br>\theta^{(n_u)}_1 \ \theta^{(n_u)}_2 \ … \ \theta^{(n_u)}_n<br>\end{bmatrix}, R \in (n_u × n)<br>$$</p>
-<h4 id="3-6-Mean-Normalization"><a href="#3-6-Mean-Normalization" class="headerlink" title="3.6 Mean Normalization"></a>3.6 Mean Normalization</h4><p>对于那些新注册用户，系统中没有记录他们的偏好，则采用以下方法。</p>
+<h4 id="3-5-Vectorization-Low-rank-matrix-factorization"><a href="#3-5-Vectorization-Low-rank-matrix-factorization" class="headerlink" title="3.5 Vectorization: Low rank matrix factorization"></a>3.5 Vectorization: Low rank matrix factorization</h4><p>首先，我们先把评分Y用向量表示出来，同时表示为Theta和X两个矩阵的乘积</p>
+<script type="math/tex; mode=display">
+Y= \begin{bmatrix} 5 & 5 & 0 & 0 \\ 5 & ? & ?& 0 \\ ? & 4 & 0 & ? \\ 0 & 0 & 5 & 4 \\ 0 &  0 & 5 & 0\end{bmatrix}  =
+\begin{bmatrix}
+(\theta^{(1)})^T(x^{(1)}) & (\theta^{(2)})^T(x^{(1)}) & ... & (\theta^{(n_u)})^T(x^{(1)}) \\
+(\theta^{(1)})^T(x^{(2)}) & (\theta^{(2)})^T(x^{(2)}) & ... & (\theta^{(n_u)})^T(x^{(2)}) \\
+... & ... & ... & ... \\
+(\theta^{(1)})^T(x^{(n_m)}) & (\theta^{(2)})^T(x^{(n_m)}) & ... & (\theta^{(n_u)})^T(x^{(n_m)})
+\end{bmatrix} = X * \Theta', R \in (n_m × n_u)</script><script type="math/tex; mode=display">
+X = \begin{bmatrix} 
+---(x^{(1)})^T---     \\
+---(x^{(2)})^T---    \\
+...    \\
+---(x^{(n_m)})^T---
+\end{bmatrix}, 
+x^{(n_m)} = \begin{bmatrix} 
+x^{(n_m)}_1 \\ x^{(n_m)}_2 \\ ... \\ x^{(n_m)}_n
+\end{bmatrix}, R \in (n_m × n)</script><script type="math/tex; mode=display">
+\Theta = \begin{bmatrix} 
+---(\theta^{(1)})^T---     \\
+---(\theta^{(2)})^T---    \\
+...    \\
+---(\theta^{(n_u)})^T---
+\end{bmatrix}, 
+\theta^{(n_u)} = \begin{bmatrix} 
+\theta^{(n_u)}_1 \\ \theta^{(n_u)}_2 \\ ... \\ \theta^{(n_u)}_n
+\end{bmatrix}, R \in (n_u × n)</script><h4 id="3-6-Mean-Normalization"><a href="#3-6-Mean-Normalization" class="headerlink" title="3.6 Mean Normalization"></a>3.6 Mean Normalization</h4><p>对于那些新注册用户，系统中没有记录他们的偏好，则采用以下方法。</p>
 <p>先计算出每部电影评分的平均值mu，然后把所有的评分都减去平均值（此后处理过的评分平均值为0）。虽然这样做对有评分记录用户是多余的，但却可以吧没有评分记录的用户给统一进来，避免全是0的情况。</p>
 <p><img src="http://i1.piimg.com/567571/cf1b4e1d7822228e.png" alt></p>
 <h3 id="4-Implement-Algorithm"><a href="#4-Implement-Algorithm" class="headerlink" title="4. Implement Algorithm"></a>4. Implement Algorithm</h3><h4 id="4-1-Cost-Function-without-Regularization"><a href="#4-1-Cost-Function-without-Regularization" class="headerlink" title="4.1  Cost Function without Regularization"></a>4.1  Cost Function without Regularization</h4><p><img src="http://p1.bpimg.com/567571/049268860c169449.png" alt></p>
 <p><strong>Tips：</strong>这里需要计算的只是针对那些已经评分过的电影，对于用户没有评分过的不需要计算。</p>
-<h4 id="4-2-Collaborative-filtering-gradient"><a href="#4-2-Collaborative-filtering-gradient" class="headerlink" title="4.2 Collaborative filtering gradient"></a>4.2 Collaborative filtering gradient</h4><p><img src="http://p1.bqimg.com/567571/6d3b0fd8406f42e4.png" alt><br>$$<br>\frac {\partial J} {\partial x_k^{(1)}} , \frac {\partial J} {\partial x_k^{(2)}} , …, \frac {\partial J} {\partial x_k^{(n_m)}}     \space\space for \space each \space movie\<br>\frac {\partial J} {\partial \theta_k^{(1)}} , \frac {\partial J} {\partial \theta_k^{(2)}} , …, \frac {\partial J} {\partial \theta_k^{(n_u)}}    \space\space for \space each \space user<br>$$<br><strong>Tips：</strong></p>
+<h4 id="4-2-Collaborative-filtering-gradient"><a href="#4-2-Collaborative-filtering-gradient" class="headerlink" title="4.2 Collaborative filtering gradient"></a>4.2 Collaborative filtering gradient</h4><p><img src="http://p1.bqimg.com/567571/6d3b0fd8406f42e4.png" alt></p>
+<script type="math/tex; mode=display">
+\frac {\partial J} {\partial x_k^{(1)}} , \frac {\partial J} {\partial x_k^{(2)}} , ..., \frac {\partial J} {\partial x_k^{(n_m)}}     \space\space for \space each \space movie\\
+\frac {\partial J} {\partial \theta_k^{(1)}} , \frac {\partial J} {\partial \theta_k^{(2)}} , ..., \frac {\partial J} {\partial \theta_k^{(n_u)}}    \space\space for \space each \space user</script><p><strong>Tips：</strong></p>
 <ol>
 <li>对于使用vectorization方法，最终只有两个for-loop，一个计算$X_{grad}$，一个计算$Theta_{grad}$</li>
 <li>如何对X和Theta求<strong>偏导数</strong>？</li>
 </ol>
-<p><img src="http://p1.bqimg.com/567571/7a511dff9e71cea6.png" alt><br>$$<br>(Theta_{grad}(i, :))^T = \begin{bmatrix}<br>\frac {\partial J} {\partial \theta^{(i)}_1}     \<br>\frac {\partial J} {\partial \theta^{(i)}_2}    \<br>…    \<br>\frac {\partial J} {\partial \theta^{(i)}_n}<br>\end{bmatrix}<br>$$</p>
-<ol start="3">
+<p><img src="http://p1.bqimg.com/567571/7a511dff9e71cea6.png" alt></p>
+<script type="math/tex; mode=display">
+(Theta_{grad}(i, :))^T = \begin{bmatrix} 
+\frac {\partial J} {\partial \theta^{(i)}_1}     \\
+\frac {\partial J} {\partial \theta^{(i)}_2}    \\
+...    \\
+\frac {\partial J} {\partial \theta^{(i)}_n}
+\end{bmatrix}</script><ol>
 <li>同样，我们只需考虑用户已经评分过的电影，用其作为训练样本</li>
 <li>因为Vectorization非常容易搞乱各个matrix，所以建议先整理一下各个matrix的size，计算时可以根据matrix的size进行计算。</li>
 </ol>
@@ -587,12 +635,29 @@
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
+
     	<div class="footer-left">
     		&copy; 2019 Chenson Van
     	</div>
-      	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
-      	</div>
+      
+      <div class="footer-right">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+
+        <span id="busuanzi_container_site_pv">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+
+        <span id="busuanzi_container_page_pv">
+        本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+      </div>
+      
+      
+
+
+
     </div>
   </div>
 </footer>
@@ -714,11 +779,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -742,6 +807,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
@@ -750,15 +827,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -770,26 +843,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
@@ -798,7 +851,31 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -810,10 +887,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
              
@@ -822,23 +895,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -854,15 +911,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -886,7 +943,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
               </li>
             
             <div class="clearfix"></div>

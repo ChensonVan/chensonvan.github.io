@@ -205,15 +205,15 @@
 <p>假设在二分类器中，这里有三个分类器在测试三个样本，每个分类器的正确率都是66%，那么组合出的结果大致可以分成以下几种</p>
 <ul>
 <li><p>集成性能提升</p>
-<p>|      | test1 | test2 | test3 |<br>| :–: | :—: | :—: | :—: |<br>|  h1  | right | right | wrong |<br>|  h2  | wrong | right | right |<br>|  h3  | right | wrong | right |</p>
+<p>|      | test1 | test2 | test3 |<br>| :—: | :—-: | :—-: | :—-: |<br>|  h1  | right | right | wrong |<br>|  h2  | wrong | right | right |<br>|  h3  | right | wrong | right |</p>
 <p>如果只是简单投票法的话，在每个test中，有两个分类器是对的，一个是错的，那么投票出来的结果是对的，最终精度可以达到100%。</p>
 </li>
 <li><p>集成不起作用</p>
-<p>|      | test1 | test2 | test3 |<br>| :–: | :—: | :—: | :—: |<br>|  h1  | right | right | wrong |<br>|  h2  | right | right | wrong |<br>|  h3  | right | right | wrong |</p>
+<p>|      | test1 | test2 | test3 |<br>| :—: | :—-: | :—-: | :—-: |<br>|  h1  | right | right | wrong |<br>|  h2  | right | right | wrong |<br>|  h3  | right | right | wrong |</p>
 <p>三个分类器对三个test进行预测，恰好三个分类器对test3的情况分类都是错的，而对test1和test2的结果都预测正确，那么最终的测试结果没有影响，都是66%。</p>
 </li>
 <li><p>集成起负作用</p>
-<p>|      | test1 | test2 | test3 |<br>| —- | —– | —– | —– |<br>| h1   | right | wrong | wrong |<br>| h2   | wrong | right | wrong |<br>| h3   | wrong | wrong | right |</p>
+<p>|      | test1 | test2 | test3 |<br>| —— | ——- | ——- | ——- |<br>| h1   | right | wrong | wrong |<br>| h2   | wrong | right | wrong |<br>| h3   | wrong | wrong | right |</p>
 <p>和第一种情况相反，最终的测试结果是33%</p>
 </li>
 </ul>
@@ -236,18 +236,22 @@
 <ul>
 <li><p><strong>Example</strong></p>
 <p>假设现在有一个线性分类器如下表</p>
-<p>|           | 预测 + | 预测 - | count |<br>| :——-: | :–: | :–: | :—: |<br>| <strong>实际 +</strong>  |  24  |  16  |  40   |<br>| <strong>实际 -</strong>  |  9   |  51  |  60   |<br>| <strong>count</strong> |  33  |  67  |  100  |</p>
+<p>|           | 预测 + | 预测 - | count |<br>| :———-: | :—: | :—: | :—-: |<br>| <strong>实际 +</strong>  |  24  |  16  |  40   |<br>| <strong>实际 -</strong>  |  9   |  51  |  60   |<br>| <strong>count</strong> |  33  |  67  |  100  |</p>
 <ul>
-<li><p>错误率计算<br>$$<br>\epsilon = \frac {(9 + 16)} {100} = 0.25<br>$$</p>
-</li>
-<li><p>错分样本的权值更新<br>$$<br>w_e = \frac 1 {2*\epsilon} = 2<br>$$</p>
-</li>
-<li><p>正确样本的权值更新<br>$$<br>w_r = \frac 1 {2*(1 - \epsilon)} = \frac 2 3<br>$$</p>
-</li>
+<li><p>错误率计算</p>
+<script type="math/tex; mode=display">
+\epsilon = \frac {(9 + 16)} {100} = 0.25</script></li>
+<li><p>错分样本的权值更新</p>
+<script type="math/tex; mode=display">
+w_e = \frac 1 {2*\epsilon} = 2</script></li>
+<li><p>正确样本的权值更新</p>
+<script type="math/tex; mode=display">
+w_r = \frac 1 {2*(1 - \epsilon)} = \frac 2 3</script></li>
 </ul>
 </li>
 </ul>
 <p>  所以讲权重乘以相应的数据量，得到新的数据分布，如下</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -278,10 +282,13 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h5 id="3-2-Bagging"><a href="#3-2-Bagging" class="headerlink" title="3.2 Bagging"></a>3.2 Bagging</h5><p>通过对原数据集进行<strong>有放回的采样</strong> (bootstrap sampling) 构建出大小和原数据集大小一样的新数据集D1，D2，D3…..，然后用这些新的数据集训练多个分类器H1，H2，H3….。因为是有放回的采样所以<strong>一些样本可能会出现多次</strong>，而其他样本会被忽略，理论上初始训练集中约有63.2%的样本会出现在采样集中。(西瓜书P27)</p>
 <ul>
 <li><p>自助采样法 (Bootstrap sampling)</p>
-<p>假设给定一个包含了m个样本的数据集D，我们需要构建一个新的数据D1，大小和D一样的。那么每次我们从D中取出一个样本入到D1中，之后把样本放回D中，重新采样，总共采样m次，那么我们可以得到一个大小为m的D1。因为我们把样本又重新放入D中，下次还有可能抽取到，导致在D1中，有些样本会出现多次，而有些样本则一次也不会出现。所以根据如下公式：<br>$$<br>lim_{m -&gt; \infty} (1 - \frac 1 m)^m -&gt; \frac 1 e \approx 0.368<br>$$<br>最终在初始样本数据集D中，有36.8%的样本是一次也没有出现的，而63.2%<strong>重复</strong>出现了，这样我们就改变了初始样本数据集的分布。所以我们可以将D1作为训练集，D\D1，即剩下的36.8%未出现在D1中的作为测试集。这样的测试结果称之为<strong>包外估计</strong> (out-of-bag-estimate)</p>
+<p>假设给定一个包含了m个样本的数据集D，我们需要构建一个新的数据D1，大小和D一样的。那么每次我们从D中取出一个样本入到D1中，之后把样本放回D中，重新采样，总共采样m次，那么我们可以得到一个大小为m的D1。因为我们把样本又重新放入D中，下次还有可能抽取到，导致在D1中，有些样本会出现多次，而有些样本则一次也不会出现。所以根据如下公式：</p>
+<script type="math/tex; mode=display">
+lim_{m -> \infty} (1 - \frac 1 m)^m -> \frac 1 e \approx 0.368</script><p>最终在初始样本数据集D中，有36.8%的样本是一次也没有出现的，而63.2%<strong>重复</strong>出现了，这样我们就改变了初始样本数据集的分布。所以我们可以将D1作为训练集，D\D1，即剩下的36.8%未出现在D1中的作为测试集。这样的测试结果称之为<strong>包外估计</strong> (out-of-bag-estimate)</p>
 </li>
 </ul>
 <p>Bagging通过<strong>降低基分类器方差改善了泛化能力</strong>，因此Bagging的性能<strong>依赖于基分类器的稳定性</strong>，如果基分类器是不稳定的，Bagging有助于减低训练数据的随机扰动导致的误差，但是如果基分类器是稳定的，即对数据变化不敏感，那么Bagging方法就得不到性能的提升，甚至会减低，因为新数据集只有63%。</p>
@@ -302,11 +309,13 @@
 </ul>
 <h4 id="4-组合策略"><a href="#4-组合策略" class="headerlink" title="4. 组合策略"></a>4. 组合策略</h4><h5 id="4-1-归回预测-数值预测"><a href="#4-1-归回预测-数值预测" class="headerlink" title="4.1 归回预测 (数值预测)"></a>4.1 归回预测 (数值预测)</h5><ul>
 <li><p>简单平均值法</p>
-<p>就是取各个分类器结果的平均值（会不会降低这里面最好的那个分类器的精度）<br>$$<br>H(x) = \frac 1 T \sum_{i=1}^T h_i(x)<br>$$</p>
-</li>
+<p>就是取各个分类器结果的平均值（会不会降低这里面最好的那个分类器的精度）</p>
+<script type="math/tex; mode=display">
+H(x) = \frac 1 T \sum_{i=1}^T h_i(x)</script></li>
 <li><p>加权平均法</p>
-<p>给不同的分离器赋予不一样的权重值，然后求和<br>$$<br>H(x) = \sum_{i=1}^Tw_i · h_i(x)<br>$$</p>
-</li>
+<p>给不同的分离器赋予不一样的权重值，然后求和</p>
+<script type="math/tex; mode=display">
+H(x) = \sum_{i=1}^Tw_i · h_i(x)</script></li>
 </ul>
 <h5 id="4-2-分类预测-类别预测"><a href="#4-2-分类预测-类别预测" class="headerlink" title="4.2 分类预测 (类别预测)"></a>4.2 分类预测 (类别预测)</h5><ul>
 <li><p>简单投票法</p>
@@ -508,12 +517,29 @@
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
+
     	<div class="footer-left">
     		&copy; 2019 Chenson Van
     	</div>
-      	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
-      	</div>
+      
+      <div class="footer-right">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+
+        <span id="busuanzi_container_site_pv">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+
+        <span id="busuanzi_container_page_pv">
+        本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+      </div>
+      
+      
+
+
+
     </div>
   </div>
 </footer>
@@ -635,11 +661,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -663,6 +689,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
@@ -671,15 +709,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -691,26 +725,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
@@ -719,7 +733,31 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -731,10 +769,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
              
@@ -743,23 +777,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -775,15 +793,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -807,7 +825,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
               </li>
             
             <div class="clearfix"></div>

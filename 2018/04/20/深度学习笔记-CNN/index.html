@@ -208,13 +208,20 @@
 <li>卷积层+激活函数+池化层</li>
 <li>输出层</li>
 </ul>
-<p><code>输入层</code> —&gt; <code>卷积层</code> —&gt; <code>激活函数</code> —&gt; <code>池化层</code> —&gt; <code>全连接层</code></p>
+<p><code>输入层</code> —-&gt; <code>卷积层</code> —-&gt; <code>激活函数</code> —-&gt; <code>池化层</code> —-&gt; <code>全连接层</code></p>
 <p>中间三个部分可以看做是一个block，复杂的模型可以重复多个这样的block，里面参数可以是一样或者相似的。</p>
 <p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/4.png" alt="basic_block"></p>
 <h4 id="1-3-卷积-Convolutional"><a href="#1-3-卷积-Convolutional" class="headerlink" title="1. 3 卷积 - Convolutional"></a>1. 3 卷积 - Convolutional</h4><p>相对普通的神经网络，卷积神经网络在中的核心就是在于<strong>卷积计算层</strong>了，卷积神经网络包含了一个由<strong>卷积层和子采样层构成的特征抽取器</strong>。对于如何理解卷积，裂墙推荐知乎上的这篇文章<a href="https://zhuanlan.zhihu.com/p/28478034" target="_blank" rel="noopener">通俗理解『卷积』——从傅里叶变换到滤波器</a>，从<strong>信号处理</strong>这个本质的角度来理解卷积，非常棒👍。</p>
 <p>卷积的意思就是，神经网络是对图片上的一小块区域进行处理，这种做法<strong>加强了图片信息的连续性</strong>，使得神经网络可以看到图片上的图形，而非是一个个离散的点。下图是一个二维数组的卷积运算，中间的核是卷积中的kernel。</p>
 <p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/correlation.png" alt="conv"></p>
-<p>根据图片示意，我们将输入层蓝色的框框部分与kernel相乘，有：<br>$$<br>0 \times 0 + 1 \times 1 + 3 \times 2 + 4 \times 3 = 19<br>$$<br>当然此时只运算了一小部分，左边的输入数组中，蓝色的四格小框框可以逐步的往右边一格一格的挪动，然后到达最右边后，又往下移动一个格子，从左往右重复上面的运算，即有最右边的输出矩阵<br>$$<br>0 \times 0 + 1 \times 1 + 3 \times 2 + 4 \times 3 = 19 \<br>1 \times 0 + 2 \times 1 + 4 \times 2 + 5 \times 3 = 25 \<br>3 \times 0 + 4 \times 1 + 6 \times 2 + 7 \times 3 = 37 \<br>4 \times 0 + 5 \times 1 + 7 \times 2 + 8 \times 3 = 43<br>$$<br>以下是一个方便理解的动图</p>
+<p>根据图片示意，我们将输入层蓝色的框框部分与kernel相乘，有：</p>
+<script type="math/tex; mode=display">
+0 \times 0 + 1 \times 1 + 3 \times 2 + 4 \times 3 = 19</script><p>当然此时只运算了一小部分，左边的输入数组中，蓝色的四格小框框可以逐步的往右边一格一格的挪动，然后到达最右边后，又往下移动一个格子，从左往右重复上面的运算，即有最右边的输出矩阵</p>
+<script type="math/tex; mode=display">
+0 \times 0 + 1 \times 1 + 3 \times 2 + 4 \times 3 = 19 \\
+1 \times 0 + 2 \times 1 + 4 \times 2 + 5 \times 3 = 25 \\
+3 \times 0 + 4 \times 1 + 6 \times 2 + 7 \times 3 = 37 \\
+4 \times 0 + 5 \times 1 + 7 \times 2 + 8 \times 3 = 43</script><p>以下是一个方便理解的动图</p>
 <p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/6.gif" alt="&quot;&quot;"></p>
 <p>以上就是卷积最基本的运算过程。在这个过程中，我们有一下几个<strong>假设</strong></p>
 <ul>
@@ -228,19 +235,24 @@
 <p>相比上一张图，我们可以看到输出的二维矩阵也变大了一圈。</p>
 <p>其实对于给定的输入的二维矩阵、kernel大小，我们可以计算出输出矩阵的大小的</p>
 <ul>
-<li><p>没有设定padding<br>$$<br>(n_h - k_h + 1)/1 \times (n_w - k_w + 1)/1<br>$$<br>这里h代表的是高度、w代表了宽度：</p>
+<li><p>没有设定padding</p>
+<script type="math/tex; mode=display">
+(n_h - k_h + 1)/1 \times (n_w - k_w + 1)/1</script><p>这里h代表的是高度、w代表了宽度：</p>
 <blockquote>
 <p>输出宽度 = 输入宽度 - kernel宽度 + 1</p>
 <p>输入高度 = 输入高度 - kernel高度 + 1</p>
 </blockquote>
 </li>
 <li><p>设定了padding</p>
-<p>$$<br>(n_h - k_h + p_h + 1)/1 \times (n_w - k_w + p_w + 1)/1<br>$$</p>
-<blockquote>
+<script type="math/tex; mode=display">
+(n_h - k_h + p_h + 1)/1 \times (n_w - k_w + p_w + 1)/1</script><blockquote>
 <p>输出宽度 = 输入宽度 - kernel宽度 + 填充的宽度 + 1</p>
 <p>输入高度 = 输入高度 - kernel高度 + 填充的高度 + 1</p>
 </blockquote>
-<p>这里回答一下上面我括号内加粗的问题，当给周围填充一圈0的时候，padding的值为 $p_w \&amp; p_h = 1$，当两圈0的时候为 $ p_w \&amp; p_h=2 $。通常对于padding的取值为：<br>$$<br>p_w = k_w - 1 \<br>p_h = k_h - 1<br>$$<br>这样我们就可以将输出的矩阵变大，尽量保持和和输入大小比较相近，避免多层卷积的时候，矩阵越来越小，相当于信息越来越少。</p>
+<p>这里回答一下上面我括号内加粗的问题，当给周围填充一圈0的时候，padding的值为 $p_w \&amp; p_h = 1$，当两圈0的时候为 $ p_w \&amp; p_h=2 $。通常对于padding的取值为：</p>
+<script type="math/tex; mode=display">
+p_w = k_w - 1 \\
+p_h = k_h - 1</script><p>这样我们就可以将输出的矩阵变大，尽量保持和和输入大小比较相近，避免多层卷积的时候，矩阵越来越小，相当于信息越来越少。</p>
 <p>如果需要保持<strong>输入和输出相同的大小</strong>，则可以采用如下设定：</p>
 <ul>
 <li>kernel大小为奇数，在矩阵的高宽两侧都填充p值</li>
@@ -252,8 +264,9 @@
 <li><p>滑动的步长 <strong>stride</strong></p>
 <p>这里我们假设输入框框从左往右和从上到下的移动步伐是1个小格子，实际上也可以是2个小格子，3个小格子等，这个参数在CNN中叫做stride。下图stride的大小为(2, 3)，即向右滑动的时候，每次2个格子，向下滑动的时候，每次3个格子。</p>
 <p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_stride.png" alt="stride"></p>
-<p>注意到了在padding部分有一个常数项为1了吗，其实那个就是我们设定的stride的滑动大小，如果stride不为(1, 1)的时候，此时输入大小计算公式为：<br>$$<br>(n_h - k_h + p_h + s_h)/s_h \times (n_w - k_w + p_w + s_w)/s_w<br>$$</p>
-</li>
+<p>注意到了在padding部分有一个常数项为1了吗，其实那个就是我们设定的stride的滑动大小，如果stride不为(1, 1)的时候，此时输入大小计算公式为：</p>
+<script type="math/tex; mode=display">
+(n_h - k_h + p_h + s_h)/s_h \times (n_w - k_w + p_w + s_w)/s_w</script></li>
 </ul>
 <h4 id="1-4-激活函数"><a href="#1-4-激活函数" class="headerlink" title="1.4 激活函数"></a>1.4 激活函数</h4><p>先说结论，激活函数主要的作用是<strong>加入非线性因素</strong>，因为线性的表达能力不够（<strong>如何体现？</strong>）。</p>
 <p>其实从上面卷积的计算过程中，过程大致可以理解为：</p>
@@ -351,8 +364,10 @@
 <p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_multi_in.png" alt="2_channel"></p>
 </li>
 </ul>
-<p>$$<br>channel_1:1 \times 1 + 2 \times 2 + 3 \times 4 + 5 \times 4 = 37 \<br>channel_2:0 \times 0 + 1 \times 1 + 3 \times 2 + 4 \times 4 = 19 \<br>output = 37 + 19 = 56<br>$$</p>
-<ul>
+<script type="math/tex; mode=display">
+channel_1:1 \times 1 + 2 \times 2 + 3 \times 4 + 5 \times 4 = 37 \\
+channel_2:0 \times 0 + 1 \times 1 + 3 \times 2 + 4 \times 4 = 19 \\
+output = 37 + 19 = 56</script><ul>
 <li><p>多输出通道</p>
 <p>上面的例子中，输出通道为1，即最终对每个独立channel运算的通道输出的结果做<strong>累加运算</strong>。</p>
 <p>如果是需要输出多通道呢？相似的，我们在计算独立channel的时候，就输出一个多通道的的输出，然后在不同channel之间，继续做累加运算。</p>
@@ -549,12 +564,29 @@
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
+
     	<div class="footer-left">
     		&copy; 2019 Chenson Van
     	</div>
-      	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
-      	</div>
+      
+      <div class="footer-right">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+
+        <span id="busuanzi_container_site_pv">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+
+        <span id="busuanzi_container_page_pv">
+        本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+      </div>
+      
+      
+
+
+
     </div>
   </div>
 </footer>
@@ -676,11 +708,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -704,6 +736,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
@@ -712,15 +756,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -732,26 +772,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
@@ -760,7 +780,31 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -772,10 +816,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
              
@@ -784,23 +824,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -816,15 +840,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -848,7 +872,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
               </li>
             
             <div class="clearfix"></div>

@@ -234,7 +234,11 @@
 <p>上面的例子中，特征值只有两个，我们需要选择其中最大的那个。所以这里我们选择1.28402771，对应的特征向量是 (-0.677873399, -0.735178656)T.</p>
 </li>
 <li><p><strong>第六步</strong>：将样本投影到选取的特征向量上去。</p>
-<p>假设样本数量为m，特征数量为n，减去均值后的样本矩阵为DataAdjust(m*n)，协方差矩阵是n*m，选取的k个特征向量组成的矩阵为EigenVectors(n*k)。那么投影后的数据FinalData为<br>$$<br>FinalData(m\ast k) = DataAdjust(m\ast n) \times EigenVectors(n \ast k)<br>$$<br>所以上面的例子中<br>$$<br>FinalData(10\ast 1) = DataAdjust(10\ast 2) \times EigenVectors(-0.677873399, -0.735178656)^T<br>$$<br>得到的结果是</p>
+<p>假设样本数量为m，特征数量为n，减去均值后的样本矩阵为DataAdjust(m*n)，协方差矩阵是n*m，选取的k个特征向量组成的矩阵为EigenVectors(n*k)。那么投影后的数据FinalData为</p>
+<script type="math/tex; mode=display">
+FinalData(m\ast k) = DataAdjust(m\ast n) \times EigenVectors(n \ast k)</script><p>所以上面的例子中</p>
+<script type="math/tex; mode=display">
+FinalData(10\ast 1) = DataAdjust(10\ast 2) \times EigenVectors(-0.677873399, -0.735178656)^T</script><p>得到的结果是</p>
 <p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/67007347.jpg" alt></p>
 <p>这样就将原始的样本数据从n维特征变成了k维特征，这k维就是原始特征在k维上的投影。</p>
 <p>下面的图描述了上面的过程：</p>
@@ -256,14 +260,24 @@
 <p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/68674376.jpg" alt></p>
 <p>从上面两幅图可以看出，左边的图上的样本间的距离比右边的要大，即左边投影后的样本点之间的方差最大，为：</p>
 <p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/46965569.jpg" alt></p>
-<p>最后的一个等式中，中间那部分恰好是求协方差的公式(这里用m，而不是m-1)，所以我们用$\lambda$表示左边部分，即样本点之间的方差:<br>$$<br>\lambda = \frac 1 m \sum_{i=1}^m(u^Tx^{(i)})^2<br>$$<br>用$\sum$表示中间部分：<br>$$<br>\sum = \frac 1 m \sum_{i=1}^m(u^Tx^{(i)})^2<br>$$<br>那么上面的式子可以改写为：<br>$$<br>\lambda = u^T\sum u<br>$$<br>之前提到了u是超平面的单位向量，即有$u^Tu = 1$，将上面左右两边的式子都乘以u，可得：<br>$$<br>u\lambda = \lambda u= uu^T\sum u = \sum u<br>$$<br>即$\sum u = \lambda u$，所以$\lambda$就是$\sum$的特征值，u是特征向量。最佳的投影直线是特征值$\lambda$最大时对应的特征向量，其次是$\lambda$第二大对应的特征向量，依次类推。</p>
+<p>最后的一个等式中，中间那部分恰好是求协方差的公式(这里用m，而不是m-1)，所以我们用$\lambda$表示左边部分，即样本点之间的方差:</p>
+<script type="math/tex; mode=display">
+\lambda = \frac 1 m \sum_{i=1}^m(u^Tx^{(i)})^2</script><p>用$\sum$表示中间部分：</p>
+<script type="math/tex; mode=display">
+\sum = \frac 1 m \sum_{i=1}^m(u^Tx^{(i)})^2</script><p>那么上面的式子可以改写为：</p>
+<script type="math/tex; mode=display">
+\lambda = u^T\sum u</script><p>之前提到了u是超平面的单位向量，即有$u^Tu = 1$，将上面左右两边的式子都乘以u，可得：</p>
+<script type="math/tex; mode=display">
+u\lambda = \lambda u= uu^T\sum u = \sum u</script><p>即$\sum u = \lambda u$，所以$\lambda$就是$\sum$的特征值，u是特征向量。最佳的投影直线是特征值$\lambda$最大时对应的特征向量，其次是$\lambda$第二大对应的特征向量，依次类推。</p>
 <p>因此只需要对协方差矩阵进行特征值分解，得到的前k大特征值对应的特征向量就是最佳的k维新特征，而且这k维新特征是正交的。得到前k个u以后，就可将样例$x^{(i)}$表示为下面的新样本：</p>
 <p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/5170777.jpg" alt></p>
 <p>其中的第j维就是$x^{(i)}$在$u_j$上的投影。通过选取最大的k个u，使得方差较小的特征（如噪声）被丢弃。</p>
 </li>
 <li><p>最近重构性：最小平方误差理论</p>
 <p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-17/75243202.jpg" alt></p>
-<p>假设现在选的超平面是L(这个例子中是直线)，那么某一样本$x_k$到L的垂直距离为d’，那么有所有点到该直线的距离为：<br>$$<br>\sum_{k=1}^n||(x_k’ - x_k)||^2<br>$$<br>上面这个公式称作最小平方误差(Least Squared Erroe)</p>
+<p>假设现在选的超平面是L(这个例子中是直线)，那么某一样本$x_k$到L的垂直距离为d’，那么有所有点到该直线的距离为：</p>
+<script type="math/tex; mode=display">
+\sum_{k=1}^n||(x_k' - x_k)||^2</script><p>上面这个公式称作最小平方误差(Least Squared Erroe)</p>
 </li>
 </ul>
 
@@ -435,12 +449,29 @@
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
+
     	<div class="footer-left">
     		&copy; 2019 Chenson Van
     	</div>
-      	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
-      	</div>
+      
+      <div class="footer-right">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+
+        <span id="busuanzi_container_site_pv">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+
+        <span id="busuanzi_container_page_pv">
+        本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+      </div>
+      
+      
+
+
+
     </div>
   </div>
 </footer>
@@ -562,11 +593,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -590,6 +621,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
@@ -598,15 +641,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -618,26 +657,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
@@ -646,7 +665,31 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -658,10 +701,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
              
@@ -670,23 +709,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -702,15 +725,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -734,7 +757,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
               </li>
             
             <div class="clearfix"></div>
