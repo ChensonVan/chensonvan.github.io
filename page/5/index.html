@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   <link rel="dns-prefetch" href="//cdn.bootcss.com">
   <link rel="dns-prefetch" href="//cdn.mathjax.org">
 
@@ -33,7 +33,7 @@
     #container.show {
       background: linear-gradient(200deg,#a0cfe4,#e8c37e);
     }
-  </style>
+  </style><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
   
@@ -41,7 +41,7 @@
 </head>
 </html>
 <body>
-  <div id="container" q-class="show:isCtnShow">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
     <div class="left-col" q-class="show:isShow">
       
@@ -155,6 +155,239 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-Machine-Learning-Ensemble-Learning" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/13/Machine-Learning-Ensemble-Learning/">Machine Learning - Ensemble Learning</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/13/Machine-Learning-Ensemble-Learning/" class="archive-article-date">
+  	<time datetime="2017-06-13T04:27:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-集成学习-Ensemble-Learning"><a href="#1-集成学习-Ensemble-Learning" class="headerlink" title="1. 集成学习 (Ensemble Learning)"></a>1. 集成学习 (Ensemble Learning)</h4><p>在对新的数据实例进行分类的时候，集成学习通过训练好<strong>多个学习器</strong>，把这些分类器的的分类结果进行某种组合 (比如投票) 决定分类结果，以取得更好的结果，就是我们生活中那句话“三个臭皮匠顶个诸葛亮”，通过使用多个决策者共同决策一个实例的分类从而提高分类器的泛化能力。</p>
+<ul>
+<li><p>同质集成 (Homogeneous)</p>
+<p>需要是<strong>同种类型</strong>，比如全部是决策树或神经网络等，每个个体学习器称之为<strong>基学习器</strong> (base learner)，相应的学习算法称为<strong>基学习算法</strong> (base learning algorithm)</p>
+</li>
+<li><p>异质集成 (Heterogenous)</p>
+<p>可以由不同的学校算法生成，这时候就不再有基学习算法，每个个体学习器称为<strong>组件学习器</strong> (component learner)</p>
+</li>
+</ul>
+<p>以下我们重点讨论同质集成。</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-12/5589106.jpg" alt></p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ensemble</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/13/Machine-Learning-Ensemble-Learning/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Hadoop权威指南笔记（三）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/09/Hadoop权威指南笔记（三）/">Hadoop权威指南笔记（三）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/09/Hadoop权威指南笔记（三）/" class="archive-article-date">
+  	<time datetime="2017-06-09T06:08:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-为什么要使用Secondary-Sort"><a href="#1-为什么要使用Secondary-Sort" class="headerlink" title="1. 为什么要使用Secondary Sort"></a>1. 为什么要使用Secondary Sort</h3><p>在Hadoop中，从Map到Reduce的过程中，key是不断被sort的。所以从map出来的时候写入到一个intermediate output file的时候，key是有序的。然后reduce不断的从不同的cluster里面fetch里面的key-value pairs的时候，仍然多次sort这些pairs。所以<strong>最终进入到reducer的key是有序的，但是value是无序的</strong>。如果我们需要对value也进行排序呢？Google的MR内置了函数对value也可以排序，但是Hadoop不行，我们需要自己去定制partitioner等去实现这个功能。</p>
+<p>举个栗子：</p>
+<ul>
+<li><p>输入文件格式如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">2015,1,24</span><br><span class="line">2015,3,54</span><br><span class="line">2015,1,3</span><br><span class="line">2015,2,-43</span><br><span class="line">2015,4,5</span><br><span class="line">2015,3,46</span><br><span class="line">2014,2,64</span><br><span class="line">2015,1,4</span><br><span class="line">2015,1,21</span><br><span class="line">2015,2,35</span><br><span class="line">2015,2,20</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>期望的输出格式如下（<strong>value是有序的</strong>）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2014-2	64</span><br><span class="line">2015-1	3，4，21，24</span><br><span class="line">2015-2	-43，0，35</span><br><span class="line">2015-3	46，56</span><br><span class="line">2015-4	5</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>Hadoop默认的输出格式如下（<strong>value是无序的</strong>）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2014-2	64</span><br><span class="line">2015-1	21，4，3，24</span><br><span class="line">2015-2	0，35，-43</span><br><span class="line">2015-3	56，46</span><br><span class="line">2015-4	5</span><br></pre></td></tr></table></figure></li></ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/09/Hadoop权威指南笔记（三）/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Machine-Learning-Recommender-Systems-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/15/Machine-Learning-Recommender-Systems-2/">Machine Learning - Recommender Systems(2)</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/15/Machine-Learning-Recommender-Systems-2/" class="archive-article-date">
+  	<time datetime="2017-05-15T08:43:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-协同过滤，给用户推荐物品"><a href="#1-协同过滤，给用户推荐物品" class="headerlink" title="1. 协同过滤，给用户推荐物品"></a>1. 协同过滤，给用户推荐物品</h3><h4 id="1-1-基于用户的协同过滤算法"><a href="#1-1-基于用户的协同过滤算法" class="headerlink" title="1.1 基于用户的协同过滤算法"></a>1.1 基于用户的协同过滤算法</h4><p>UserCF 主要通过<strong>分析用户的行为记录</strong>，<strong>计算物品之间的相似度</strong></p>
+<p>该算法认为物品A和物品B具有很大的相似度是因为喜欢物品A的用户大部分也喜欢物品B</p>
+<h5 id="1-1-1-步骤"><a href="#1-1-1-步骤" class="headerlink" title="1.1.1 步骤"></a>1.1.1 步骤</h5><ul>
+<li>找到和目标用户相似的用户集合</li>
+<li>找到这个集合中的用户喜欢，且和<strong>目标用户没有听说过的</strong>的物品推荐给目标用户</li>
+</ul>
+<h5 id="1-1-2-计算相似度"><a href="#1-1-2-计算相似度" class="headerlink" title="1.1.2 计算相似度"></a>1.1.2 计算相似度</h5><p><img src="http://i2.muimg.com/567571/b95f545d611e3a2e.png" alt></p>
+<p><strong>得到用户之间的兴趣相似度之后，寻找最相近的K个用户</strong></p>
+<p><img src="http://i4.buimg.com/567571/4fb60f6ed242f07b.png" alt></p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/15/Machine-Learning-Recommender-Systems-2/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Hadoop权威指南笔记（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -791,228 +1024,6 @@ ln \frac y {1 - y} = \theta^T x = ln \frac {p(y=1| x; \theta)} {p(y=0| x; \theta
 
 
   
-    <article id="post-Machine-Learning-Recommender-Systems" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/02/Machine-Learning-Recommender-Systems/">Machine Learning - Recommender Systems </a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/02/Machine-Learning-Recommender-Systems/" class="archive-article-date">
-  	<time datetime="2017-03-02T11:05:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-What-is-Recommender-Systems"><a href="#1-What-is-Recommender-Systems" class="headerlink" title="1. What is Recommender Systems"></a>1. What is Recommender Systems</h3><p>对于推荐系统的定义，我们先举几个例子来理解一下。</p>
-<ul>
-<li>电影网站给用户推荐电影，可以根据该用户以往的评分，比如给浪漫爱情电影评分高，给动作片评分较低，那么系统可以根据这些信息，给用户推荐偏向浪漫爱情的电影</li>
-<li>如果是新用户呢？我们没有该用户的评分信息。那么我们可以根据整个系统中，某些电影评分较高进行推荐</li>
-<li>那么如果是新网站，新用户呢？</li>
-</ul>
-<p>以上例子，我们可以把推荐系统分成两类。</p>
-<ul>
-<li><p><strong>Content-based systems</strong></p>
-<p>Content-based，就是基于已有的信息进行推荐。具体哪些信息呢？在上面的电影推荐系统中，有两类信息需要分析。</p>
-<p>第一，是User的评分信息，比如给爱情片评分高，给动作片评分低。</p>
-<p>第二，是Movie的特征信息，比如这部电影偏向爱情片多一些，但也有一部分搞笑。所以在A（爱情片）和B（搞笑片）中， A的权重更高，B的较低</p>
-<p>基于以上两部分信息，我们可以给用户推荐他所喜欢的电影。</p>
-<p><img src="http://p1.bpimg.com/567571/47a077979840183f.png" alt></p></li></ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/02/Machine-Learning-Recommender-Systems/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Machine-Learning-SVM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/02/Machine-Learning-SVM/">Machine Learning - SVM</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/02/Machine-Learning-SVM/" class="archive-article-date">
-  	<time datetime="2017-03-02T11:02:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-Optimisation-Objective"><a href="#1-Optimisation-Objective" class="headerlink" title="1. Optimisation Objective"></a>1. Optimisation Objective</h3><script type="math/tex; mode=display">
-h_\theta (x) = \frac 1 {1 + e^{-\theta^Tx}}    \\
-z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.png" alt></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/02/Machine-Learning-SVM/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Linux常用指令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/19/Linux常用指令/">Linux常用指令</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/19/Linux常用指令/" class="archive-article-date">
-  	<time datetime="2017-02-19T01:16:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>有时候记东西老是记不住，虽然是经常使用，所以对常用的<code>linux</code>指令做个简单记录，方便以后使用（不断更新… …）。</p>
-<h3 id="1-scp文件传输-security-copy"><a href="#1-scp文件传输-security-copy" class="headerlink" title="1. scp文件传输 (security copy)"></a>1. scp文件传输 (security copy)</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> eg. scp chenson@127.0.0.1:~/Home/test .  ~/Home/local_test_path</span><br><span class="line">scp PATH_OF_SRC PATH_OF_DST</span><br></pre></td></tr></table></figure>
-<h3 id="2-测内存的使用率"><a href="#2-测内存的使用率" class="headerlink" title="2. 测内存的使用率"></a>2. 测内存的使用率</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">valgrind --tool=massif --pages-as-heap=yes</span><br><span class="line"></span><br><span class="line">ms_print massif 文件名</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">valgrind --tool=massif --pages-as-heap=yes ./bwtsearch testfiles/shopping.bwt l.idx "system"</span><br><span class="line"></span><br><span class="line">ms_print massif.out.3116</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find &lt;PATH TO FOLDER&gt; -ls | tr -s &apos; &apos;|cut -d&apos; &apos; -f 7| paste -sd+ | bc</span><br></pre></td></tr></table></figure>
-<h3 id="3-强制写入"><a href="#3-强制写入" class="headerlink" title="3. 强制写入"></a>3. 强制写入</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> vii commond model, Try the below command</span><br><span class="line"></span><br><span class="line">:w !sudo tee %</span><br><span class="line">Explanation</span><br><span class="line"></span><br><span class="line">:w – write</span><br><span class="line">!sudo – call shell sudo command</span><br><span class="line">tee – the output of write (:w) command is redirected using tee</span><br><span class="line"><span class="meta">%</span> – current file name</span><br></pre></td></tr></table></figure>
-<h3 id="4-查看二进制文件"><a href="#4-查看二进制文件" class="headerlink" title="4. 查看二进制文件"></a>4. 查看二进制文件</h3><p><code>vim</code>下 </p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:%!xxd</span><br></pre></td></tr></table></figure>
-<p><code>linux</code>下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xxd -b file_name</span><br></pre></td></tr></table></figure>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/19/Linux常用指令/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
@@ -1178,10 +1189,6 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
              
@@ -1202,15 +1209,15 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1234,6 +1241,10 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
@@ -1242,11 +1253,11 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1255,10 +1266,6 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Typora</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1286,6 +1293,10 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
@@ -1294,31 +1305,7 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nvida</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GPU</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1339,6 +1326,30 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">DCN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nvida</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GPU</a>
               </li>
             
             <div class="clearfix"></div>
@@ -1462,6 +1473,23 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
     </div>
 
 </div>
-  </div>
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]]}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>

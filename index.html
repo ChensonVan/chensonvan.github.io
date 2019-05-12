@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   <link rel="dns-prefetch" href="//cdn.bootcss.com">
   <link rel="dns-prefetch" href="//cdn.mathjax.org">
 
@@ -33,7 +33,7 @@
     #container.show {
       background: linear-gradient(200deg,#a0cfe4,#e8c37e);
     }
-  </style>
+  </style><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
   
@@ -41,7 +41,7 @@
 </head>
 </html>
 <body>
-  <div id="container" q-class="show:isCtnShow">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
     <div class="left-col" q-class="show:isShow">
       
@@ -155,6 +155,185 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-地理解析与逆解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/12/地理解析与逆解析/">地理解析与逆解析</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/12/地理解析与逆解析/" class="archive-article-date">
+  	<time datetime="2019-05-12T01:07:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-百度地图API"><a href="#1-百度地图API" class="headerlink" title="1. 百度地图API"></a>1. 百度地图API</h3>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/12/地理解析与逆解析/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-常见优化算法小结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/12/常见优化算法小结/">常见优化算法小结</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/12/常见优化算法小结/" class="archive-article-date">
+  	<time datetime="2019-05-12T01:02:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Preview"><a href="#1-Preview" class="headerlink" title="1. Preview"></a>1. Preview</h3><p><img src="/2019/05/12/常见优化算法小结/2019-05-12-常见优化算法小结/image-20190327195830527.png" alt="image-20190327195830527"></p>
+<p>在机器学习中，通常都会有一个假设的Hypothesis函数，通过这样一个函数，我们输入一个数据x，会输出一个预测值$\hat y$，且为了能够使得$\hat y$和真实值y之间的差距非常小，即通过损失函数$L(w, x_i, y_i)$来计算。且需要考虑到整体的情况。会需要计算某一批量数据的预测值与真实值之间的误差，且需要不断最小化这个误差。即有了如下公式</p>
+<script type="math/tex; mode=display">
+\min_w \frac 1 N \sum_{i=1}^N L(w, x_i, y_i) + \lambda ||w||_2^2</script><p>上面这个公式的目的就是希望调整模型的参数权重w，使得这个批量的数据的损失函数达到最小值。</p>
+<p>当然也可以从另外一个角度思考，两边取对数，将求最小值的问题，转换成求最大值的问题。即找到一个最优的概率密度函数p(x)，使得对训练样本的对数似然函数极大化（最大似然估计）。</p>
+<script type="math/tex; mode=display">
+\max \sum_{i=1}^l \ln p(x_i; \theta)</script><p>这里 $\theta$ 是需要求解的模型参数，是概率密度函数的参数。</p>
+<p>所以机器学习中很重要的就是，基于给定的这些数据，如何找到最优的参数，使得整体的损失最小。</p>
+<p>以下总结了机器学习中常见的优化算法。</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/12/常见优化算法小结/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Python伪高级技巧收集" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/12/Python伪高级技巧收集/">Python伪高级技巧收集</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/12/Python伪高级技巧收集/" class="archive-article-date">
+  	<time datetime="2019-05-12T00:58:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>收集平常遇到的各种不常用的Python技巧，持续更新ing。</p>
+<h3 id="1-窗口函数"><a href="#1-窗口函数" class="headerlink" title="1. 窗口函数"></a>1. 窗口函数</h3><p>滑窗函数平常还是用的很多的。细分的话可以分按时间维度、次数维度或是排序维度滑窗计算。</p>
+<h4 id="1-1-Codes"><a href="#1-1-Codes" class="headerlink" title="1.1 Codes"></a>1.1 Codes</h4><ul>
+<li><p>时间维度滑窗</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df = pd.Series(np.random.randn(<span class="number">600</span>), index=pd.date_range(<span class="string">'7/1/2018'</span>, freq=<span class="string">'D'</span>, periods=<span class="number">600</span>))</span><br><span class="line"></span><br><span class="line">r = df.rolling(window=<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/05/12/Python伪高级技巧收集/2019-05-12-Python伪高级技巧收集/image-20190422122040331.png" alt="image-20190422122040331"></p>
+<p>同时<strong>也支持自定义的聚合函数</strong></p>
+<p><img src="/2019/05/12/Python伪高级技巧收集/2019-05-12-Python伪高级技巧收集/image-20190422122133406.png" alt="image-20190422122133406"></p>
+</li>
+</ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/12/Python伪高级技巧收集/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Metabase初探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -398,19 +577,19 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
 
 
   
-    <article id="post-Auto-ML初探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-AutoML平台试用体验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/20/Auto-ML初探/">Auto-ML初探</a>
+      <a class="article-title" href="/2019/03/20/AutoML平台试用体验/">AutoML平台试用体验</a>
     </h1>
   
 
         
-        <a href="/2019/03/20/Auto-ML初探/" class="archive-article-date">
+        <a href="/2019/03/20/AutoML平台试用体验/" class="archive-article-date">
   	<time datetime="2019-03-20T10:44:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-20</time>
 </a>
         
@@ -418,7 +597,8 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
+        <h3 id="1-蚂蚁金服-Morse"><a href="#1-蚂蚁金服-Morse" class="headerlink" title="1. 蚂蚁金服 Morse"></a>1. 蚂蚁金服 Morse</h3><h3 id="2-蚂蚁金服-Pi"><a href="#2-蚂蚁金服-Pi" class="headerlink" title="2. 蚂蚁金服 Pi"></a>2. 蚂蚁金服 Pi</h3><h3 id="3-百度天链"><a href="#3-百度天链" class="headerlink" title="3. 百度天链"></a>3. 百度天链</h3><p><img src="/2019/03/20/AutoML平台试用体验/2019-03-20-AutoML平台试用体验/image-20190426104951115.png" alt="image-20190426104951115"></p>
+<h3 id="4-第四范式"><a href="#4-第四范式" class="headerlink" title="4. 第四范式"></a>4. 第四范式</h3>
       
 
       
@@ -441,7 +621,7 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/20/Auto-ML初探/">MORE >></a>
+          <a class="article-more-a" href="/2019/03/20/AutoML平台试用体验/">MORE >></a>
         </p>
       
 
@@ -694,209 +874,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
 
 
   
-    <article id="post-hexo错误记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/23/hexo错误记录/">hexo错误记录</a>
-    </h1>
-  
-
-        
-        <a href="/2019/02/23/hexo错误记录/" class="archive-article-date">
-  	<time datetime="2019-02-23T06:30:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/2019/02/23/hexo错误记录/2019-02-23-hexo错误记录/v2-f9654b817205f6af3e472af284ecc2b2_1200x500.jpg" alt="Hexo"></p>
-<p>讲实话，我不是特别了解<code>hexo</code>。大概就知道是个用来生成静态的博客包or工具？依赖了<code>npm</code>(node package manager)。然后平常使用的时候有时会遇到一些比较头大的问题，在没有动<code>hexo</code>和<code>npm</code>的情况下。</p>
-<p>所以为了以后遇到类似的问题方便处理，对<code>hexo</code>的错误处理做了一个简单的记录(持续更新ing)。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/02/23/hexo错误记录/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-读书笔记-增长黑客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/23/读书笔记-增长黑客/">读书笔记-增长黑客</a>
-    </h1>
-  
-
-        
-        <a href="/2019/02/23/读书笔记-增长黑客/" class="archive-article-date">
-  	<time datetime="2019-02-23T05:19:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能营销</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/02/23/读书笔记-增长黑客/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-读书笔记-数据挖掘与数据化运营实战" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/23/读书笔记-数据挖掘与数据化运营实战/">读书笔记-数据挖掘与数据化运营实战</a>
-    </h1>
-  
-
-        
-        <a href="/2019/02/23/读书笔记-数据挖掘与数据化运营实战/" class="archive-article-date">
-  	<time datetime="2019-02-23T05:15:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="第八章"><a href="#第八章" class="headerlink" title="第八章"></a>第八章</h3><h4 id="8-2-数据抽样"><a href="#8-2-数据抽样" class="headerlink" title="8.2 数据抽样"></a>8.2 数据抽样</h4>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能营销</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/02/23/读书笔记-数据挖掘与数据化运营实战/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1062,10 +1039,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
              
@@ -1086,15 +1059,15 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1118,6 +1091,10 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
@@ -1126,11 +1103,11 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1139,10 +1116,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Typora</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1170,6 +1143,10 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
@@ -1178,31 +1155,7 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nvida</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GPU</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1223,6 +1176,30 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">DCN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nvida</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GPU</a>
               </li>
             
             <div class="clearfix"></div>
@@ -1346,6 +1323,23 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
     </div>
 
 </div>
-  </div>
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]]}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>
