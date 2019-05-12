@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://chenson.com/2018/08/18/图数据库-关系网络设计/2018-08-18-图数据库-关系网络设计/image-20190419180603414.png">
 <meta property="og:image" content="http://chenson.com/2018/08/18/图数据库-关系网络设计/2018-08-18-图数据库-关系网络设计/image-20190419180632795.png">
 <meta property="og:image" content="http://chenson.com/2018/08/18/图数据库-关系网络设计/2018-08-18-图数据库-关系网络设计/image-20190419182235465.png">
-<meta property="og:updated_time" content="2019-04-21T05:25:38.000Z">
+<meta property="og:updated_time" content="2019-05-12T13:27:12.714Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图数据库-关系网络设计">
 <meta name="twitter:description" content="1. 简单介绍目前知识图谱可以分成两大类：一类是开放领域的知识图谱，比如谷歌搜索引擎所建立的知识图谱。另一类是垂直领域的知识图谱，根据字面意思来看，就是特定某一个领域，比如金融风控领域。今天介绍一下关系网络在金融风控领域的应用。 主要应用可以分成两大类。  第一类 网络特征的直接提取，提取出中心度或者一度/二度关联特征供上层规则系统或者风险评估模型使用。 比如说在银行贷款申请的业务场景下，在贷款申">
@@ -188,6 +188,7 @@
 <li><p>第一类</p>
 <p>网络特征的<strong>直接提取</strong>，提取出中心度或者一度/二度关联特征供上层规则系统或者风险评估模型使用。</p>
 <p>比如说在银行贷款申请的业务场景下，在贷款申请人中，第一度是联系人，则与目标申请共享相同联系人的申请数目是一度关联度，如果这些申请还与另外一些申请共享相同的住址或其他特征，这些申请就和目标申请形成二度关联。一些简单的指标，比如一度关联节点或者二度关联节点是否触黑/触黑个数，在实际的反欺诈实践中效果是非常显著的。如果特征不涉及深度的关系，传统的关系型数据库就能够满足需求，因为计算量是随着度数的增加呈指数增加。</p>
+<a id="more"></a>
 </li>
 <li><p>第二类</p>
 <p>网络信息的深度挖掘。深度挖掘通常始于对连通子图的计算，对于社交属性较弱的金融应用，较大的连通子图可能对欺诈网络有揭示作用。在此基础上，还可以进行进一步展开社区的发现，这里面社区的发现不等于连通子图，汇聚性是一个更严格的指标。除此之外，通过欺诈比例传播，或者说染色，将已知的欺诈标注扩撒开来，从而获得更多的欺诈标注，也是关系图谱的一个重要应用。</p>
@@ -551,6 +552,10 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -560,10 +565,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -583,11 +584,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -599,6 +600,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
              
@@ -607,15 +612,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -624,10 +625,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -663,10 +660,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -679,11 +672,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -715,15 +712,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -747,15 +744,31 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
             
             <div class="clearfix"></div>

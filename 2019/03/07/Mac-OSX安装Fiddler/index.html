@@ -20,7 +20,7 @@
 <meta property="og:description" content="1. 安装Mono首先，Mac下需要使用.Net编译后的程序，需要用到跨平台的方案Mono(现阶段微软已推出跨平台的方案.Net Core，不过暂时只支持控制台程序)。以上是网上的描述，给我感觉有点类似一个虚拟机或者docker一下的东西，这样就能在OSX的环境下，运行exe文件了。  下载Mono，并安装  安装完后，执行指令 12345# version == 5.16.0/Library/F">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.com/2019/03/07/Mac-OSX安装Fiddler/2019-03-07-Mac-OSX安装Fiddler/image-20190307192217612.png">
-<meta property="og:updated_time" content="2019-04-16T06:51:19.000Z">
+<meta property="og:updated_time" content="2019-05-12T13:26:34.614Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac OSX安装Fiddler">
 <meta name="twitter:description" content="1. 安装Mono首先，Mac下需要使用.Net编译后的程序，需要用到跨平台的方案Mono(现阶段微软已推出跨平台的方案.Net Core，不过暂时只支持控制台程序)。以上是网上的描述，给我感觉有点类似一个虚拟机或者docker一下的东西，这样就能在OSX的环境下，运行exe文件了。  下载Mono，并安装  安装完后，执行指令 12345# version == 5.16.0/Library/F">
@@ -185,6 +185,7 @@
 <li><p>安装完后，执行指令</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> version == 5.16.0</span></span><br><span class="line">/Library/Frameworks/Mono.framework/Versions/5.16.0/bin/mozroots --import --sync</span><br><span class="line">/Library/Frameworks/Mono.framework/Versions/5.16.0/bin/cert-sync --import --sync</span><br><span class="line">/Library/Frameworks/Mono.framework/Versions/5.18.0/bin/cert-sync --import --sync</span><br><span class="line">/Library/Frameworks/Mono.framework/Versions/5.18.0/bin/mozroots --import --sync</span><br></pre></td></tr></table></figure>
 <p>此步是为了从Mozilla LXR上下载所有受信任的root证书，存于Mono的证书库里。root证书能用于请求https地址。</p>
+<a id="more"></a>
 </li>
 <li><p>报错</p>
 <p><img src="/2019/03/07/Mac-OSX安装Fiddler/2019-03-07-Mac-OSX安装Fiddler/image-20190307192217612.png" alt="image-20190307192217612"></p>
@@ -194,7 +195,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export MONO_HOME=/Library/Frameworks/Mono.framework/Versions/5.16.0</span><br><span class="line">export PATH=$PATH:$MONO_HOME/bin</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<a id="more"></a>
+<!-- More -->
 <h3 id="2-安装Fiddler"><a href="#2-安装Fiddler" class="headerlink" title="2. 安装Fiddler"></a>2. 安装Fiddler</h3><ul>
 <li><p>下载<a href="https://www.telerik.com/download/fiddler" target="_blank" rel="noopener">Fiddler</a>，并安装（解压到非中文字符的路径下）</p>
 </li>
@@ -487,6 +488,10 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -496,10 +501,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -519,11 +520,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -535,6 +536,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
              
@@ -543,15 +548,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,10 +561,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -599,10 +596,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -615,11 +608,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -651,15 +648,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -683,15 +680,31 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
             
             <div class="clearfix"></div>

@@ -191,6 +191,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Quant</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -245,6 +260,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LBS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -293,12 +319,7 @@
         <h3 id="1-Preview"><a href="#1-Preview" class="headerlink" title="1. Preview"></a>1. Preview</h3><p><img src="/2019/05/12/常见优化算法小结/2019-05-12-常见优化算法小结/image-20190327195830527.png" alt="image-20190327195830527"></p>
 <p>在机器学习中，通常都会有一个假设的Hypothesis函数，通过这样一个函数，我们输入一个数据x，会输出一个预测值$\hat y$，且为了能够使得$\hat y$和真实值y之间的差距非常小，即通过损失函数$L(w, x_i, y_i)$来计算。且需要考虑到整体的情况。会需要计算某一批量数据的预测值与真实值之间的误差，且需要不断最小化这个误差。即有了如下公式</p>
 <script type="math/tex; mode=display">
-\min_w \frac 1 N \sum_{i=1}^N L(w, x_i, y_i) + \lambda ||w||_2^2</script><p>上面这个公式的目的就是希望调整模型的参数权重w，使得这个批量的数据的损失函数达到最小值。</p>
-<p>当然也可以从另外一个角度思考，两边取对数，将求最小值的问题，转换成求最大值的问题。即找到一个最优的概率密度函数p(x)，使得对训练样本的对数似然函数极大化（最大似然估计）。</p>
-<script type="math/tex; mode=display">
-\max \sum_{i=1}^l \ln p(x_i; \theta)</script><p>这里 $\theta$ 是需要求解的模型参数，是概率密度函数的参数。</p>
-<p>所以机器学习中很重要的就是，基于给定的这些数据，如何找到最优的参数，使得整体的损失最小。</p>
-<p>以下总结了机器学习中常见的优化算法。</p>
+\min_w \frac 1 N \sum_{i=1}^N L(w, x_i, y_i) + \lambda ||w||_2^2</script>
         
       
 
@@ -307,6 +328,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">优化算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -356,12 +392,7 @@
 <h3 id="1-窗口函数"><a href="#1-窗口函数" class="headerlink" title="1. 窗口函数"></a>1. 窗口函数</h3><p>滑窗函数平常还是用的很多的。细分的话可以分按时间维度、次数维度或是排序维度滑窗计算。</p>
 <h4 id="1-1-Codes"><a href="#1-1-Codes" class="headerlink" title="1.1 Codes"></a>1.1 Codes</h4><ul>
 <li><p>时间维度滑窗</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df = pd.Series(np.random.randn(<span class="number">600</span>), index=pd.date_range(<span class="string">'7/1/2018'</span>, freq=<span class="string">'D'</span>, periods=<span class="number">600</span>))</span><br><span class="line"></span><br><span class="line">r = df.rolling(window=<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/05/12/Python伪高级技巧收集/2019-05-12-Python伪高级技巧收集/image-20190422122040331.png" alt="image-20190422122040331"></p>
-<p>同时<strong>也支持自定义的聚合函数</strong></p>
-<p><img src="/2019/05/12/Python伪高级技巧收集/2019-05-12-Python伪高级技巧收集/image-20190422122133406.png" alt="image-20190422122133406"></p>
-</li>
-</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df = pd.Series(np.random.randn(<span class="number">600</span>), index=pd.date_range(<span class="string">'7/1/2018'</span>, freq=<span class="string">'D'</span>, periods=<span class="number">600</span>))</span><br><span class="line"></span><br><span class="line">r = df.rolling(window=<span class="number">5</span>)</span><br></pre></td></tr></table></figure></li></ul>
         
       
 
@@ -370,6 +401,25 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Numpy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Pandas</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -728,16 +778,7 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
 </li>
 <li><p>安装完后，执行指令</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> version == 5.16.0</span></span><br><span class="line">/Library/Frameworks/Mono.framework/Versions/5.16.0/bin/mozroots --import --sync</span><br><span class="line">/Library/Frameworks/Mono.framework/Versions/5.16.0/bin/cert-sync --import --sync</span><br><span class="line">/Library/Frameworks/Mono.framework/Versions/5.18.0/bin/cert-sync --import --sync</span><br><span class="line">/Library/Frameworks/Mono.framework/Versions/5.18.0/bin/mozroots --import --sync</span><br></pre></td></tr></table></figure>
-<p>此步是为了从Mozilla LXR上下载所有受信任的root证书，存于Mono的证书库里。root证书能用于请求https地址。</p>
-</li>
-<li><p>报错</p>
-<p><img src="/2019/03/07/Mac-OSX安装Fiddler/2019-03-07-Mac-OSX安装Fiddler/image-20190307192217612.png" alt="image-20190307192217612"></p>
-</li>
-<li><p>修改环境变量，并激活修改后的文件</p>
-<p><code>sudo vi ~/.bash_profile</code> 或者<code>/etc/profile</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export MONO_HOME=/Library/Frameworks/Mono.framework/Versions/5.16.0</span><br><span class="line">export PATH=$PATH:$MONO_HOME/bin</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+<p>此步是为了从Mozilla LXR上下载所有受信任的root证书，存于Mono的证书库里。root证书能用于请求https地址。</p></li></ul>
         
       
 
@@ -989,6 +1030,10 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -998,10 +1043,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1021,11 +1062,11 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1037,6 +1078,10 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
              
@@ -1045,15 +1090,11 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1062,10 +1103,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1101,10 +1138,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -1117,11 +1150,15 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1153,15 +1190,15 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1185,15 +1222,31 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
             
             <div class="clearfix"></div>

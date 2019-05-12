@@ -12,6 +12,7 @@
   <title>Python伪高级技巧收集 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="收集平常遇到的各种不常用的Python技巧，持续更新ing。 1. 窗口函数滑窗函数平常还是用的很多的。细分的话可以分按时间维度、次数维度或是排序维度滑窗计算。 1.1 Codes 时间维度滑窗 123df = pd.Series(np.random.randn(600), index=pd.date_range(&apos;7/1/2018&apos;, freq=&apos;D&apos;, periods=600))r = df.">
+<meta name="keywords" content="Python,Numpy,Pandas">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python伪高级技巧收集">
 <meta property="og:url" content="http://chenson.com/2019/05/12/Python伪高级技巧收集/index.html">
@@ -22,7 +23,7 @@
 <meta property="og:image" content="http://chenson.com/2019/05/12/Python伪高级技巧收集/2019-05-12-Python伪高级技巧收集/image-20190422122133406.png">
 <meta property="og:image" content="http://chenson.com/2019/05/12/Python伪高级技巧收集/Python%E4%BC%AA%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7%E6%94%B6%E9%9B%86/image-20190422120545366.png">
 <meta property="og:image" content="http://chenson.com/2019/05/12/Python伪高级技巧收集/Python%E4%BC%AA%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7%E6%94%B6%E9%9B%86/image-20190422121535072.png">
-<meta property="og:updated_time" content="2019-05-12T03:00:55.444Z">
+<meta property="og:updated_time" content="2019-05-12T13:26:15.826Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python伪高级技巧收集">
 <meta name="twitter:description" content="收集平常遇到的各种不常用的Python技巧，持续更新ing。 1. 窗口函数滑窗函数平常还是用的很多的。细分的话可以分按时间维度、次数维度或是排序维度滑窗计算。 1.1 Codes 时间维度滑窗 123df = pd.Series(np.random.randn(600), index=pd.date_range(&apos;7/1/2018&apos;, freq=&apos;D&apos;, periods=600))r = df.">
@@ -185,12 +186,12 @@
 <h4 id="1-1-Codes"><a href="#1-1-Codes" class="headerlink" title="1.1 Codes"></a>1.1 Codes</h4><ul>
 <li><p>时间维度滑窗</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df = pd.Series(np.random.randn(<span class="number">600</span>), index=pd.date_range(<span class="string">'7/1/2018'</span>, freq=<span class="string">'D'</span>, periods=<span class="number">600</span>))</span><br><span class="line"></span><br><span class="line">r = df.rolling(window=<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p><img src="/2019/05/12/Python伪高级技巧收集/2019-05-12-Python伪高级技巧收集/image-20190422122040331.png" alt="image-20190422122040331"></p>
 <p>同时<strong>也支持自定义的聚合函数</strong></p>
 <p><img src="/2019/05/12/Python伪高级技巧收集/2019-05-12-Python伪高级技巧收集/image-20190422122133406.png" alt="image-20190422122133406"></p>
 </li>
 </ul>
-<a id="more"></a>
 <h4 id="1-2-Refernces"><a href="#1-2-Refernces" class="headerlink" title="1.2 Refernces"></a>1.2 Refernces</h4><h3 id="2-自定聚合函数"><a href="#2-自定聚合函数" class="headerlink" title="2. 自定聚合函数"></a>2. 自定聚合函数</h3><h4 id="2-1-Codes"><a href="#2-1-Codes" class="headerlink" title="2.1 Codes"></a>2.1 Codes</h4><ul>
 <li><p>测试一个SUM的聚合函数</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">self_define_sum</span><span class="params">(series)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> reduce(<span class="keyword">lambda</span> x, y : x + y, series)</span><br></pre></td></tr></table></figure>
@@ -250,6 +251,25 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Numpy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Pandas</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -478,6 +498,10 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -487,10 +511,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -510,11 +530,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -526,6 +546,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
              
@@ -534,15 +558,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -551,10 +571,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -590,10 +606,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -606,11 +618,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -642,15 +658,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -674,15 +690,31 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
             
             <div class="clearfix"></div>

@@ -2,9 +2,121 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://chenson.com/2018/03/13/Docker%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</loc>
+    
+    <lastmod>2019-05-12T13:28:44.486Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://chenson.com/2018/04/20/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-CNN/</loc>
+    
+    <lastmod>2019-05-12T13:28:30.162Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://chenson.com/2018/04/27/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-CNN%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C/</loc>
+    
+    <lastmod>2019-05-12T13:28:10.596Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://chenson.com/2018/05/25/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RNN%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C/</loc>
+    
+    <lastmod>2019-05-12T13:27:58.086Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://chenson.com/2018/08/17/%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93-Neo4j-%E5%88%9D%E6%8E%A2/</loc>
+    
+    <lastmod>2019-05-12T13:27:46.649Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://chenson.com/2018/08/18/%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93-Neo4j-%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/</loc>
+    
+    <lastmod>2019-05-12T13:27:34.449Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://chenson.com/2018/08/18/%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%85%B3%E7%B3%BB%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1/</loc>
+    
+    <lastmod>2019-05-12T13:27:12.714Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://chenson.com/2018/11/20/%E5%85%B3%E4%BA%8EPython%E7%9A%84Mixin%E6%A8%A1%E5%BC%8F%E5%88%9D%E6%8E%A2/</loc>
+    
+    <lastmod>2019-05-12T13:26:59.861Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://chenson.com/2019/03/07/Mac-OSX%E5%AE%89%E8%A3%85Fiddler/</loc>
+    
+    <lastmod>2019-05-12T13:26:34.614Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://chenson.com/2019/05/12/Python%E4%BC%AA%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7%E6%94%B6%E9%9B%86/</loc>
+    
+    <lastmod>2019-05-12T13:26:15.826Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://chenson.com/2019/05/12/%E5%B8%B8%E8%A7%81%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E5%B0%8F%E7%BB%93/</loc>
+    
+    <lastmod>2019-05-12T13:25:52.092Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://chenson.com/2019/05/12/%E5%9C%B0%E7%90%86%E8%A7%A3%E6%9E%90%E4%B8%8E%E9%80%86%E8%A7%A3%E6%9E%90/</loc>
+    
+    <lastmod>2019-05-12T13:23:55.152Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://chenson.com/2019/05/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</loc>
     
-    <lastmod>2019-05-12T13:11:00.991Z</lastmod>
+    <lastmod>2019-05-12T13:23:24.661Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://chenson.com/2019/02/27/%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F%E5%88%9D%E6%8E%A2/</loc>
+    
+    <lastmod>2019-05-12T13:23:01.613Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://chenson.com/2019/02/23/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E9%87%8D%E6%9E%84%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1/</loc>
+    
+    <lastmod>2019-05-12T13:21:21.334Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://chenson.com/2019/02/23/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%8C%96%E8%BF%90%E8%90%A5%E5%AE%9E%E6%88%98/</loc>
+    
+    <lastmod>2019-05-12T13:20:54.771Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://chenson.com/2019/02/23/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%A2%9E%E9%95%BF%E9%BB%91%E5%AE%A2/</loc>
+    
+    <lastmod>2019-05-12T13:20:36.003Z</lastmod>
     
   </url>
   
@@ -16,30 +128,9 @@
   </url>
   
   <url>
-    <loc>http://chenson.com/2019/05/12/%E5%B8%B8%E8%A7%81%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E5%B0%8F%E7%BB%93/</loc>
-    
-    <lastmod>2019-05-12T03:28:39.732Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://chenson.com/2019/05/12/%E5%9C%B0%E7%90%86%E8%A7%A3%E6%9E%90%E4%B8%8E%E9%80%86%E8%A7%A3%E6%9E%90/</loc>
-    
-    <lastmod>2019-05-12T03:08:40.373Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://chenson.com/2019/03/20/AutoML%E5%B9%B3%E5%8F%B0%E8%AF%95%E7%94%A8%E4%BD%93%E9%AA%8C/</loc>
     
     <lastmod>2019-05-12T03:06:12.056Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://chenson.com/2019/05/12/Python%E4%BC%AA%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7%E6%94%B6%E9%9B%86/</loc>
-    
-    <lastmod>2019-05-12T03:00:55.444Z</lastmod>
     
   </url>
   
@@ -58,23 +149,9 @@
   </url>
   
   <url>
-    <loc>http://chenson.com/2019/02/23/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E9%87%8D%E6%9E%84%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1/</loc>
-    
-    <lastmod>2019-04-21T11:51:27.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://chenson.com/2019/04/21/Metabase%E5%88%9D%E6%8E%A2/</loc>
     
     <lastmod>2019-04-21T09:58:07.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://chenson.com/2019/02/23/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%8C%96%E8%BF%90%E8%90%A5%E5%AE%9E%E6%88%98/</loc>
-    
-    <lastmod>2019-04-21T06:46:56.000Z</lastmod>
     
   </url>
   
@@ -114,23 +191,9 @@
   </url>
   
   <url>
-    <loc>http://chenson.com/2019/02/27/%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F%E5%88%9D%E6%8E%A2/</loc>
-    
-    <lastmod>2019-04-21T05:38:13.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://chenson.com/2017/09/22/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/</loc>
     
     <lastmod>2019-04-21T05:30:49.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://chenson.com/2018/08/18/%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%85%B3%E7%B3%BB%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1/</loc>
-    
-    <lastmod>2019-04-21T05:25:38.000Z</lastmod>
     
   </url>
   
@@ -145,13 +208,6 @@
     <loc>http://chenson.com/2017/02/19/Linux%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</loc>
     
     <lastmod>2019-04-16T08:26:54.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://chenson.com/2019/03/07/Mac-OSX%E5%AE%89%E8%A3%85Fiddler/</loc>
-    
-    <lastmod>2019-04-16T06:51:19.000Z</lastmod>
     
   </url>
   
@@ -180,41 +236,6 @@
     <loc>http://chenson.com/2019/01/24/Spark%E7%AC%94%E8%AE%B0-%E5%8E%9F%E7%90%86%E7%AF%87/</loc>
     
     <lastmod>2019-02-25T06:34:10.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://chenson.com/2018/05/25/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RNN%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C/</loc>
-    
-    <lastmod>2019-02-23T10:35:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://chenson.com/2019/02/23/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%A2%9E%E9%95%BF%E9%BB%91%E5%AE%A2/</loc>
-    
-    <lastmod>2019-02-23T08:20:07.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://chenson.com/2018/04/27/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-CNN%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C/</loc>
-    
-    <lastmod>2019-01-20T11:07:52.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://chenson.com/2018/04/20/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-CNN/</loc>
-    
-    <lastmod>2019-01-20T10:33:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://chenson.com/2018/03/13/Docker%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</loc>
-    
-    <lastmod>2018-12-25T09:52:38.000Z</lastmod>
     
   </url>
   
@@ -338,20 +359,6 @@
   </url>
   
   <url>
-    <loc>http://chenson.com/2018/08/17/%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93-Neo4j-%E5%88%9D%E6%8E%A2/</loc>
-    
-    <lastmod>2018-12-01T07:07:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://chenson.com/2018/08/18/%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93-Neo4j-%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/</loc>
-    
-    <lastmod>2018-12-01T07:07:30.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://chenson.com/2018/11/18/Wide-and-Deep%E6%A8%A1%E5%9E%8B%E5%88%9D%E6%8E%A2/</loc>
     
     <lastmod>2018-12-01T07:05:24.000Z</lastmod>
@@ -362,13 +369,6 @@
     <loc>http://chenson.com/2018/11/27/%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95%EF%BC%9AK-Means%E5%8F%8A%E6%89%A9%E5%B1%95%E7%AE%97%E6%B3%95K-Modes%E3%80%81K-Prototype%E5%88%9D%E6%8E%A2/</loc>
     
     <lastmod>2018-11-27T08:27:24.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://chenson.com/2018/11/20/%E5%85%B3%E4%BA%8EPython%E7%9A%84Mixin%E6%A8%A1%E5%BC%8F%E5%88%9D%E6%8E%A2/</loc>
-    
-    <lastmod>2018-11-20T03:24:40.000Z</lastmod>
     
   </url>
   

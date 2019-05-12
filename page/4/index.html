@@ -255,111 +255,8 @@
 <p>卷积层的输入为4D数据，形状为(<strong>批量大小，通道，高，宽</strong>)，输出使用了<strong>Sigmoid激活函数</strong>。</p>
 </li>
 <li><p>最大池化层</p>
-<p>用来<strong>降低卷积层对位置的敏感性</strong>，池化层注意设置好pool_size和strides大小。</p>
-</li>
-</ul>
-<h4 id="1-2-全连接层块"><a href="#1-2-全连接层块" class="headerlink" title="1.2 全连接层块"></a>1.2 全连接层块</h4><p>在Conv和Dense交界的部分，需要将输出的数据flatten才可以给Dense用。激活函数使用Sigmod</p>
-<h4 id="1-3-MxNet实现代码"><a href="#1-3-MxNet实现代码" class="headerlink" title="1.3 MxNet实现代码"></a>1.3 MxNet实现代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> d2lzh <span class="keyword">as</span> d2l</span><br><span class="line"><span class="keyword">import</span> mxnet <span class="keyword">as</span> mx</span><br><span class="line"><span class="keyword">from</span> mxnet <span class="keyword">import</span> autograd, gluon, init, nd</span><br><span class="line"><span class="keyword">from</span> mxnet.gluon <span class="keyword">import</span> loss <span class="keyword">as</span> gloss, nn</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义网络</span></span><br><span class="line">net = nn.Sequential()</span><br><span class="line">net.add(nn.Conv2D(channels=<span class="number">6</span>, kernel_size=<span class="number">5</span>, activation=<span class="string">'sigmoid'</span>),</span><br><span class="line">        nn.MaxPool2D(pool_size=<span class="number">2</span>, strides=<span class="number">2</span>),</span><br><span class="line">        nn.Conv2D(channels=<span class="number">16</span>, kernel_size=<span class="number">5</span>, activation=<span class="string">'sigmoid'</span>),</span><br><span class="line">        nn.MaxPool2D(pool_size=<span class="number">2</span>, strides=<span class="number">2</span>),</span><br><span class="line">        <span class="comment"># Dense会默认将(批量大小,通道,高,宽)形状的输入转换成(批量大小,通道 * 高 * 宽)形</span></span><br><span class="line">        <span class="comment"># 状的输入</span></span><br><span class="line">        nn.Dense(<span class="number">120</span>, activation=<span class="string">'sigmoid'</span>),</span><br><span class="line">        nn.Dense(<span class="number">84</span>, activation=<span class="string">'sigmoid'</span>),</span><br><span class="line">        nn.Dense(<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练部分(有些代码不完整，详情见沐神Github代码)</span></span><br><span class="line">lr, num_epochs = <span class="number">0.9</span>, <span class="number">5</span></span><br><span class="line"><span class="comment"># 其实这里想展示的是net权重的初始化时，使用的是Xavier随机初始化</span></span><br><span class="line">net.initialize(force_reinit=<span class="literal">True</span>, ctx=ctx, init=init.Xavier())</span><br><span class="line">trainer = gluon.Trainer(net.collect_params(), <span class="string">'sgd'</span>, &#123;<span class="string">'learning_rate'</span>: lr&#125;)</span><br><span class="line">train_ch5(net, train_iter, test_iter, batch_size, trainer, ctx, num_epochs)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>运行结果</p>
-<p>下图有俩结果，一个是沐神笔记里面用K80跑的结果，一个是我笔记本跑的结果，配置是2015年的中配RMBP，cpu是i5 8G，大概速度差了10倍左右。</p>
-<p><img src="/2018/04/27/深度学习笔记-CNN常见网络/2018-04-27-深度学习笔记-CNN常见网络/image-20190113154533271.png" alt="image-20190113154533271"></p>
-</li>
-</ul>
-<ul>
-<li><p>调参练习</p>
-<p>这部分呢，其实就是找一下在深度学习中调参的一些感觉，毕竟我只是一枚炼丹工程师。</p>
-<ul>
-<li><p>改为普通的随机初始化网络权重可以看到下图基本不收敛。</p>
-<p><img src="/2018/04/27/深度学习笔记-CNN常见网络/2018-04-27-深度学习笔记-CNN常见网络/image-20190113154846452.png" alt="image-20190113154846452"></p>
-<p>接着尝试一下把lr给调小一些，调到0.05，似乎也没啥提升，继续调小到0.005，且增加num_epochs到20，基本也没提升。然后想想我是改了一个较为合适的权重，所以应该把lr调高一些，方便快速调整到合适的权重，就把lr提高到1.5，用的随机初始化，一直等到epoche到了10左右的时候acc才开始提升，可以说收敛得非常慢了。看来这个权重的初始化非常重要，需要单独调研一下，到时候看啥原因。</p>
-<ul>
-<li><p>往小调</p>
-<p><img src="/2018/04/27/深度学习笔记-CNN常见网络/2018-04-27-深度学习笔记-CNN常见网络/image-20190113155516459.png" alt="image-20190113155516459"></p>
-</li>
-<li><p>往大调</p>
-<p><img src="/2018/04/27/深度学习笔记-CNN常见网络/2018-04-27-深度学习笔记-CNN常见网络/image-20190113161018793.png" alt="image-20190113161018793"></p>
-</li>
-</ul>
-<p>其实lr调太小了(0.05/0.005, 原先是0.9)，虽然改回去Xavier初始化权重也基本是上面效果，估计是太小了不收敛？若是调到0.5的话，可以收敛，但相比速度上会收敛得慢一些，所以选定一个合适的lr也是很重要的。</p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>调整卷积窗口的大小</p>
-</li>
-<li><p>调整输出通道数</p>
-</li>
-<li><p>调整激活函数</p>
-</li>
-<li><p>调整全连接层输出个数</p>
-</li>
-</ul>
-<h3 id="2-AlexNet（2013）"><a href="#2-AlexNet（2013）" class="headerlink" title="2. AlexNet（2013）"></a>2. AlexNet（2013）</h3><p><img src="/2018/04/27/深度学习笔记-CNN常见网络/2018-04-27-深度学习笔记-CNN常见网络/image-20190113132153918.png" alt="image-20190113132153918"></p>
-<p>总共六个阶段</p>
-<p>kernel，strides相对大很多</p>
-<p>Xavier是怎么初始化的？与默认的区别？</p>
-<p>LeNet V.S AlexNet</p>
-<h3 id="3-VGG"><a href="#3-VGG" class="headerlink" title="3. VGG"></a>3. VGG</h3><p>使用重复元素的非常深的网络</p>
-<p>使用很多相对加多的kernel，比如3x3的卷积，然后接上一个池化层，之后再将这个模块重复很多次。</p>
-<ul>
-<li>VGG Block 相同叠加</li>
-<li>VGG Stack 相似叠加</li>
-<li>VGG11, VGG13, VGG16, VGG19 … …</li>
-</ul>
-<h3 id="4-Bath-Norm"><a href="#4-Bath-Norm" class="headerlink" title="4. Bath Norm"></a>4. Bath Norm</h3><p>批量归一化，将数据均值变为0，方差变为1，使数值更加稳定。</p>
-<p>$\lambda$   $\beta$ </p>
-<ul>
-<li><p>全连接2D数据</p>
-<p>每个样本之间，均值变为0，方差变为1</p>
-</li>
-<li><p>如果是卷积3D数据</p>
-<p>对每个channel做变换，使得均值变为0，方差变为1</p>
-</li>
-</ul>
-<p>Q&amp;A:</p>
-<ul>
-<li>batchNorm 加的位置？ <ul>
-<li>为什么是Conv2D的后面，Activation的前面，而不是Conv2D的前面？</li>
-</ul>
-</li>
-<li><p>每个batch之间的归一化不一样？</p>
-</li>
-<li><p>训练的时候ok，测试的时候如何做归一化？</p>
-<ul>
-<li>保留训练时候算出来的结果做归一化</li>
-<li>mean, variance, $\lambda$ , $\beta$</li>
-<li></li>
-</ul>
-</li>
-</ul>
-<h3 id="5-Network-in-Networ-NiN"><a href="#5-Network-in-Networ-NiN" class="headerlink" title="5. Network in Networ (NiN)"></a>5. Network in Networ (NiN)</h3><ul>
-<li><p>AlexNet</p>
-<p>卷积层和全连接层分别加深加宽从而得到深度网络</p>
-</li>
-<li><p>NiN</p>
-<p>串联数个卷积层块和全连接层块来构建深度网络</p>
-</li>
-</ul>
-<p><img src="/2018/04/27/深度学习笔记-CNN常见网络/2018-04-27-深度学习笔记-CNN常见网络/image-20190113143539999.png" alt="image-20190113143539999"></p>
-<ul>
-<li>Q&amp;A：<ul>
-<li>如何解决Conv和Dense之间输入维度的问题，比如Conv的输入为4D，但是Dense可能无法输出如此维度的数据<ul>
-<li>把Dense层换成kernel为1x1的Conv</li>
-</ul>
-</li>
-<li>4D数据到2D数据通常会编程非常大</li>
-</ul>
-</li>
-</ul>
-<h3 id="6-GoogLeNet-2014"><a href="#6-GoogLeNet-2014" class="headerlink" title="6. GoogLeNet(2014)"></a>6. GoogLeNet(2014)</h3><ul>
-<li><p>Inception</p>
-<p><img src="/2018/04/27/深度学习笔记-CNN常见网络/2018-04-27-深度学习笔记-CNN常见网络/image-20190113145457707.png" alt="image-20190113145457707"></p>
-</li>
-<li></li>
-</ul>
-
+<p>用来<strong>降低卷积层对位置的敏感性</strong>，池化层注意设置好pool_size和strides大小。</p></li></ul>
+        
       
 
       
@@ -431,10 +328,7 @@
 <p>在学之前也有听了一下NG刚发布的深度学习课程，但对比了一下，还是觉得沐神的比较适合我，毕竟教学用的是中文，方便理解，且理论知识深度合适，所以打算先听完这门课，以后理论方面有需要的，再听NG相关的课程。</p>
 <h3 id="1-卷积神经网络-CNN-Convolutional-Neural-Network"><a href="#1-卷积神经网络-CNN-Convolutional-Neural-Network" class="headerlink" title="1. 卷积神经网络 CNN - (Convolutional Neural Network)"></a>1. 卷积神经网络 CNN - (Convolutional Neural Network)</h3><h4 id="1-1-神经网络-Neural-Network"><a href="#1-1-神经网络-Neural-Network" class="headerlink" title="1.1 神经网络 - Neural Network"></a>1.1 神经网络 - Neural Network</h4><ul>
 <li><p>单个神经元</p>
-<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/1.png" alt="单个神经元"></p>
-</li>
-<li><p>神经网络</p>
-<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/2.png" alt="神经网络"></p></li></ul>
+<p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/1.png" alt="单个神经元"></p></li></ul>
         
       
 
@@ -661,28 +555,6 @@
       
         <h3 id="1-docker镜像构建"><a href="#1-docker镜像构建" class="headerlink" title="1. docker镜像构建"></a>1. docker镜像构建</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd analyze-server</span><br><span class="line">docker build -t analyze-server .</span><br></pre></td></tr></table></figure>
 <h3 id="2-创建"><a href="#2-创建" class="headerlink" title="2. 创建"></a>2. 创建</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker create analyze-server # 创建容器，但处于停止状态</span><br><span class="line">docker run analyze-server    # 创建并启动容器</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 启动容器，并挂载文件</span><br><span class="line">docker run --name=analyze -p 5000:5000 -p 8888:8888 -p 6006:6006 -v /Users/Chenson/Github/analyze-server/app/:/analyze-server/app/ -v /Users/Chenson/:/home/ -d analyze-server</span><br></pre></td></tr></table></figure>
-<h3 id="3-查看"><a href="#3-查看" class="headerlink" title="3. 查看"></a>3. 查看</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker ps     # 查看当前运行的容器</span><br><span class="line">docker ps -a  # 查看所有的容器，包括停止的</span><br></pre></td></tr></table></figure>
-<h3 id="4-启动"><a href="#4-启动" class="headerlink" title="4. 启动"></a>4. 启动</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start [NAME]/[CONTAINER ID] # 通过docker start来启动之前已经停止的docker_run镜像</span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it analyze /bin/bash  # 在运行的容器中执行后面的指令</span><br><span class="line">docker exec -it -u root spark-notebook /bin/bash # 以root用户运行指令</span><br></pre></td></tr></table></figure>
-<p><img src="http://on8r6i4gg.bkt.clouddn.com/18-6-25/93560929.jpg" alt></p>
-<ul>
-<li><p>交互型容器：运行在前台，容器中使用exit命令或者调用docker stop、docker kill命令，容器停止。</p>
-<ul>
-<li><code>docker -it --name analyze -i -t</code></li>
-<li><code>-i</code> 打开容器的标准输入</li>
-<li><code>-t</code> 告诉docker为容器创建一个命令行终端</li>
-<li><code>--name analyze</code> 指定容器名称，可以不填(随机)</li>
-<li><code>analyze-server</code> 告诉我们使用什么镜像来启动容器</li>
-<li><code>/bin/bash</code> 告诉docker要在容器里面执行此命令</li>
-</ul>
-</li>
-<li><p>后台型容器：运行在后台，创建后与终端无关，只有调用docker stop、docker kill命令才能使容器停止。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name=analyze -p 5000:5000 -p 8888:8888 -p 6006:6006 -v /Users/Chenson/Github/analyze-server/app/:/analyze-server/app/ -v /Users/Chenson/:/home/ -d analyze-server</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>-d</code> 使容器在后台运行。</li>
-<li><code>-c</code> 可以调整容器的CPU优先级。默认情况下，所有的容器拥有相同的CPU优先级和CPU调度周期，但你可以通过Docker来通知内核给予某个或某几个容器更多的CPU计算周期。比如，我们使用-c或者–cpu-shares =0启动了C0、C1、C2三个容器，使用-c/–cpu-shares=512启动了C3容器。这时，C0、C1、C2可以100%的使用CPU资源（1024），但C3只能使用50%的CPU资源（512）。如果这个主机的操作系统是时序调度类型的，每个CPU时间片是100微秒，那么C0、C1、C2将完全使用掉这100微秒，而C3只能使用50微秒。</li>
-<li><code>-c</code> 后的命令是循环，从而保持容器的运行</li>
-</ul></li></ul>
         
       
 
@@ -1153,6 +1025,10 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -1162,10 +1038,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1185,11 +1057,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1201,6 +1073,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
              
@@ -1209,15 +1085,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1226,10 +1098,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1265,10 +1133,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -1281,11 +1145,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1317,15 +1185,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1349,15 +1217,31 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
             
             <div class="clearfix"></div>
