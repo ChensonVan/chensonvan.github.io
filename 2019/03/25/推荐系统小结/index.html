@@ -27,7 +27,7 @@
 <meta property="og:image" content="http://chenson.com/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325204042713.png">
 <meta property="og:image" content="http://chenson.com/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325203928751.png">
 <meta property="og:image" content="http://chenson.com/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325203950839.png">
-<meta property="og:updated_time" content="2019-05-12T03:29:56.674Z">
+<meta property="og:updated_time" content="2019-05-12T04:02:03.281Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统小结">
 <meta name="twitter:description" content="1. Factorization Machine (FM) 出现背景 传统用的One-Hot编码会带来数据稀疏的问题。 比如数据如下（栗子来自美团技术博客）：  做了One-Hot编码后  当里面某些特征的维度比较高的时候，数据维度可能达到百万级别。 而传统的LR模型也并没考虑到特征之间的关联  y = w_0 + \sum_{i=1}^n w_i x_i">
@@ -205,25 +205,21 @@ y = w_0 + \sum_{i=1}^nw_ix_i + \sum_{i=1}^{n-1} \sum_{j=i+1}^n w_{ij}x_ix_j</scr
 <li>训练和存储的开销会增大很多</li>
 </ul>
 <p>对于二阶特征的权重 $\hat W$，此时引入了辅助向量 $V$，有</p>
+<script type="math/tex; mode=display">
+\hat W = VV^T  \\ 
 
-  $$
-  \hat W = VV^T  \\ 
-  
-  V = \left [ \begin{matrix}
-     \boldsymbol{v}_1 \\
-     \boldsymbol{v}_2 \\
-     ... \\
-     \pmb{v}_n
-    \end{matrix} \right ] 
-   = \left [ \begin{matrix}
-     v_{11} & v_{12} & ... & v_{1k}\\
-     v_{21} & v_{22} & ... & v_{2k} \\
-     ... & ... & ... & ... \\
-     v_{n1} & v_{n2} & ... & v_{nk}
-    \end{matrix} \right ] _{n\times k}
-  $$
-  
-<p>此时就可以用分解后产生的$V$来表达$\hat W$，将参数由$n^2$降低到 $kn$个。其中$V$矩阵的每一行$v_i$就是第i维特征的隐向量，一个隐向量包含了k个描述第i维特征的因子，所以叫<strong>因子分解</strong>。</p>
+V = \left [ \begin{matrix}
+   \boldsymbol{v}_1 \\
+   \boldsymbol{v}_2 \\
+   ... \\
+   \pmb{v}_n
+  \end{matrix} \right ] 
+ = \left [ \begin{matrix}
+   v_{11} & v_{12} & ... & v_{1k}\\
+   v_{21} & v_{22} & ... & v_{2k} \\
+   ... & ... & ... & ... \\
+   v_{n1} & v_{n2} & ... & v_{nk}
+  \end{matrix} \right ] _{n\times k}</script><p>此时就可以用分解后产生的$V$来表达$\hat W$，将参数由$n^2$降低到 $kn$个。其中$V$矩阵的每一行$v_i$就是第i维特征的隐向量，一个隐向量包含了k个描述第i维特征的因子，所以叫<strong>因子分解</strong>。</p>
 </li>
 <li><p>公式推导</p>
 <ul>
@@ -282,12 +278,29 @@ y = w_0 + \sum_{i=1}^nw_ix_i + \sum_{i=1}^{n-1} \sum_{j=i+1}^n w_{ij}x_ix_j</scr
 \hat W = VV^T = <v_{i, f_j} ⋅ v_{j, f_i}></script></li>
 <li><p>继续之前的栗子</p>
 <ul>
-<li><p>One-Hot</p>
-<p>|  Label  | $x_1$ |  $x_2$  |   $x_3$    | $x_4$    | $x_5$     | $x_6$   | $x_7$  |<br>| :——-: | ——- | :——-: | :————: | ———— | ————- | ———- | ——— |<br>| Clicked | C=USA | C=China | D=26/11/15 | D=1/7/14 | D=19/2/15 | A=Movie | A=Game |<br>|    1    | 1     |    0    |     1      | 0        | 0         | 1       | 0      |<br>|    0    | 0     |    1    |     0      | 1        | 0         | 0       | 1      |<br>|    1    | 0     |    1    |     0      | 0        | 1         | 0       | 1      |</p>
+<li>One-Hot</li>
+</ul>
 </li>
-<li><p>Field-Table</p>
-<p>| Field Name | Field Index | Feature Name | Feature Index |<br>| ————— | —————- | —————— | ——————- |<br>| Country    | 1           | USA          | 1             |<br>|            |             | China        | 2             |<br>| Day        | 2           | 26/11/15     | 3             |<br>|            |             | 1/7/14       | 4             |<br>|            |             | 19/2/15      | 5             |<br>| Ad_type    | 3           | Movie        | 6             |<br>|            |             | Game         | 7             |</p>
-</li>
+</ul>
+<pre><code>|  Label  | $x_1$ |  $x_2$  |   $x_3$    | $x_4$    | $x_5$     | $x_6$   | $x_7$  |
+| :-----: | ----- | :-----: | :--------: | -------- | --------- | ------- | ------ |
+| Clicked | C=USA | C=China | D=26/11/15 | D=1/7/14 | D=19/2/15 | A=Movie | A=Game |
+|    1    | 1     |    0    |     1      | 0        | 0         | 1       | 0      |
+|    0    | 0     |    1    |     0      | 1        | 0         | 0       | 1      |
+|    1    | 0     |    1    |     0      | 0        | 1         | 0       | 1      |
+</code></pre><ul>
+<li>Field-Table</li>
+</ul>
+<pre><code>| Field Name | Field Index | Feature Name | Feature Index |
+| ---------- | ----------- | ------------ | ------------- |
+| Country    | 1           | USA          | 1             |
+|            |             | China        | 2             |
+| Day        | 2           | 26/11/15     | 3             |
+|            |             | 1/7/14       | 4             |
+|            |             | 19/2/15      | 5             |
+| Ad_type    | 3           | Movie        | 6             |
+|            |             | Game         | 7             |
+</code></pre><ul>
 <li><p>二阶特征交叉</p>
 <script type="math/tex; mode=display">
 \sum_{i=1}^{n-1} \sum_{j=i+1}^n w_{ij}x_ix_j</script></li>
@@ -304,7 +317,7 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
 </ul>
 </li>
 </ul>
-</li>
+<ul>
 <li><p>模型结构</p>
 </li>
 <li><p>代码实现 </p>
@@ -680,15 +693,15 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -700,6 +713,14 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
              
@@ -708,7 +729,7 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -716,7 +737,7 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -725,10 +746,6 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -752,10 +769,6 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
@@ -764,11 +777,11 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -777,6 +790,10 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -804,7 +821,15 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+                <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nvida</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GPU</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -849,18 +874,6 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nvida</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GPU</a>
               </li>
             
             <div class="clearfix"></div>
