@@ -156,6 +156,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Machine-Learning-支持向量机" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/16/Machine-Learning-支持向量机/">Machine Learning - 支持向量机</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/16/Machine-Learning-支持向量机/" class="archive-article-date">
+  	<time datetime="2017-06-16T09:21:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="1-Margins"><a href="#1-Margins" class="headerlink" title="1. Margins"></a>1. Margins</h5><ul>
+<li><p>Logistic Regression</p>
+<p>​在logistic regression中, 如果我们要判断一个点是属于0还是1概率是θ</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+p(y=1 | x; \theta)    \\
+h_\theta(x) = g(\theta^T x)</script><p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-15/22154353.jpg" alt></p>
+<ul>
+<li><p>logistic regression和SVM的区别</p>
+<p>由上图可知, C是非常靠近Boundary的, 而A是离Boundary最远的点. 所以我们非常有信心的说A是属于+, 而C比较有可能属于+. 所以对于那些距离边界比较近的点才是我们需要重点考虑的. 而这也正是logistic regression和SVM之间的区别. </p>
+<ul>
+<li><p>logistic regression考虑全局(如何考虑全局？ans：RMSE最小值)红线</p>
+</li>
+<li><p>SVM考虑局部(最小间隔要大于多少)绿线</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-16/68635525.jpg" alt></p></li></ul></li></ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SVM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/16/Machine-Learning-支持向量机/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Machine-Learning-Ensemble-Learning" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -949,81 +1033,6 @@ ln \frac y {1 - y} = \theta^T x = ln \frac {p(y=1| x; \theta)} {p(y=0| x; \theta
 
 
   
-    <article id="post-Hadoop权威指南笔记（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/06/Hadoop权威指南笔记（一）/">Hadoop权威指南笔记（一）</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/06/Hadoop权威指南笔记（一）/" class="archive-article-date">
-  	<time datetime="2017-03-06T13:44:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-Hadoop"><a href="#1-Hadoop" class="headerlink" title="1. Hadoop"></a>1. Hadoop</h3><h4 id="1-1-初识Hadoop"><a href="#1-1-初识Hadoop" class="headerlink" title="1.1 初识Hadoop"></a>1.1 初识Hadoop</h4><p><a href="http://hadooptutorials.co.in/tutorials/hadoop/hadoop-fundamentals.html" target="_blank" rel="noopener">非常好的Tutorial</a> </p>
-<p>在学习hadoop之前，我觉得有必要了解一下hadoop的基本构成以及一些术语。</p>
-<ul>
-<li><p><strong>Block</strong></p>
-<blockquote>
-<p>HDFS blocks are large compared to disk blocks, and the reason is to minimize the cost<br>of seeks. By making a block large enough, the time to transfer the data from the disk<br>can be made to be significantly larger than the time to seek to the start of the block.<br>Thus the time to transfer a large file made of multiple blocks operates at the disk transfer<br>rate.<br>A quick calculation shows that if the seek time is around 10 ms, and the transfer rate<br>is 100 MB/s, then to make the seek time 1% of the transfer time, we need to make the<br>block size around 100 MB. The default is actually 64 MB, although many HDFS installations<br>use 128 MB blocks. This figure will continue to be revised upward as transfer<br>speeds grow with new generations of disk drives.<br>This argument shouldn’t be taken too far, however. Map tasks in MapReduce normally<br>operate on one block at a time, so if you have too few tasks (fewer than nodes in the<br>cluster), your jobs will run slower than they could otherwise.</p>
-</blockquote></li></ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/06/Hadoop权威指南笔记（一）/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
@@ -1177,11 +1186,11 @@ ln \frac y {1 - y} = \theta^T x = ln \frac {p(y=1| x; \theta)} {p(y=0| x; \theta
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1190,10 +1199,6 @@ ln \frac y {1 - y} = \theta^T x = ln \frac {p(y=1| x; \theta)} {p(y=0| x; \theta
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1206,6 +1211,10 @@ ln \frac y {1 - y} = \theta^T x = ln \frac {p(y=1| x; \theta)} {p(y=0| x; \theta
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
