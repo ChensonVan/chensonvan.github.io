@@ -27,7 +27,7 @@
 <meta property="og:image" content="http://chenson.com/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325204042713.png">
 <meta property="og:image" content="http://chenson.com/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325203928751.png">
 <meta property="og:image" content="http://chenson.com/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325203950839.png">
-<meta property="og:updated_time" content="2019-05-12T04:06:42.258Z">
+<meta property="og:updated_time" content="2019-06-27T13:19:24.559Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统小结">
 <meta name="twitter:description" content="1. Factorization Machine (FM) 出现背景 传统用的One-Hot编码会带来数据稀疏的问题。 比如数据如下（栗子来自美团技术博客）：  做了One-Hot编码后  当里面某些特征的维度比较高的时候，数据维度可能达到百万级别。 而传统的LR模型也并没考虑到特征之间的关联  y = w_0 + \sum_{i=1}^n w_i x_i">
@@ -185,7 +185,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-Factorization-Machine-FM"><a href="#1-Factorization-Machine-FM" class="headerlink" title="1. Factorization Machine (FM)"></a>1. Factorization Machine (FM)</h3><ul>
+        <h1 id="1-Factorization-Machine-FM"><a href="#1-Factorization-Machine-FM" class="headerlink" title="1. Factorization Machine (FM)"></a>1. Factorization Machine (FM)</h1><ul>
 <li><p>出现背景</p>
 <p>传统用的One-Hot编码会带来数据稀疏的问题。</p>
 <p>比如数据如下（栗子来自美团技术博客）：</p>
@@ -243,7 +243,9 @@ V = \left [ \begin{matrix}
 </ul>
 </li>
 </ul>
-<pre><code>- [为什么FM能够解决参数训练的问题](https://blog.csdn.net/songbinxu/article/details/79662665)  ![image-20190325154016889](2019-03-25-推荐系统小结/image-20190325154016889.png)
+<pre><code>- 问题
+
+  为什么FM能够解决参数训练的问题](https://blog.csdn.net/songbinxu/article/details/79662665)  ![image-20190325154016889](2019-03-25-推荐系统小结/image-20190325154016889.png)
 </code></pre><ul>
 <li><p>模型结构</p>
 </li>
@@ -261,7 +263,7 @@ V = \left [ \begin{matrix}
 </ul>
 </li>
 </ul>
-<h3 id="2-Field-aware-Factorization-Machine-FFM"><a href="#2-Field-aware-Factorization-Machine-FFM" class="headerlink" title="2. Field-aware Factorization Machine (FFM)"></a>2. Field-aware Factorization Machine (FFM)</h3><ul>
+<h1 id="2-Field-aware-Factorization-Machine-FFM"><a href="#2-Field-aware-Factorization-Machine-FFM" class="headerlink" title="2. Field-aware Factorization Machine (FFM)"></a>2. Field-aware Factorization Machine (FFM)</h1><ul>
 <li><p>出现背景</p>
 <p>之前有提到在FM中，$V$矩阵的每一列$v_i$就是第i维特征的隐向量，一个隐向量包含了k个描述第i维特征的因子，此时$v_i$是个一维的隐向量。</p>
 <p>FFM是在FM的基础上，进一步提出了<strong>Field</strong>的概念，即<strong>域/类别</strong>的概念。继续以FM中的例子理解</p>
@@ -282,25 +284,124 @@ V = \left [ \begin{matrix}
 </ul>
 </li>
 </ul>
-<pre><code>|  Label  | $x_1$ |  $x_2$  |   $x_3$    | $x_4$    | $x_5$     | $x_6$   | $x_7$  |
-| :-----: | ----- | :-----: | :--------: | -------- | --------- | ------- | ------ |
-| Clicked | C=USA | C=China | D=26/11/15 | D=1/7/14 | D=19/2/15 | A=Movie | A=Game |
-|    1    | 1     |    0    |     1      | 0        | 0         | 1       | 0      |
-|    0    | 0     |    1    |     0      | 1        | 0         | 0       | 1      |
-|    1    | 0     |    1    |     0      | 0        | 1         | 0       | 1      |
-</code></pre><ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Label</th>
+<th>$x_1$</th>
+<th style="text-align:center">$x_2$</th>
+<th style="text-align:center">$x_3$</th>
+<th>$x_4$</th>
+<th>$x_5$</th>
+<th>$x_6$</th>
+<th>$x_7$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Clicked</td>
+<td>C=USA</td>
+<td style="text-align:center">C=China</td>
+<td style="text-align:center">D=26/11/15</td>
+<td>D=1/7/14</td>
+<td>D=19/2/15</td>
+<td>A=Movie</td>
+<td>A=Game</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td>1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td>0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td>0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
 <li>Field-Table</li>
 </ul>
-<pre><code>| Field Name | Field Index | Feature Name | Feature Index |
-| ---------- | ----------- | ------------ | ------------- |
-| Country    | 1           | USA          | 1             |
-|            |             | China        | 2             |
-| Day        | 2           | 26/11/15     | 3             |
-|            |             | 1/7/14       | 4             |
-|            |             | 19/2/15      | 5             |
-| Ad_type    | 3           | Movie        | 6             |
-|            |             | Game         | 7             |
-</code></pre><ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Field Index</th>
+<th>Feature Name</th>
+<th>Feature Index</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Country</td>
+<td>1</td>
+<td>USA</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>China</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Day</td>
+<td>2</td>
+<td>26/11/15</td>
+<td>3</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>1/7/14</td>
+<td>4</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>19/2/15</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Ad_type</td>
+<td>3</td>
+<td>Movie</td>
+<td>6</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Game</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
 <li><p>二阶特征交叉</p>
 <script type="math/tex; mode=display">
 \sum_{i=1}^{n-1} \sum_{j=i+1}^n w_{ij}x_ix_j</script></li>
@@ -319,6 +420,13 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
 </ul>
 <ul>
 <li><p>模型结构</p>
+</li>
+<li><p>特征处理细节</p>
+<blockquote>
+<p><strong>样本归一化</strong>：FFM默认是进行样本数据的归一化，即 为真；若此参数设置为假，很容易造成数据inf溢出，进而引起梯度计算的nan错误。因此，样本层面的数据是推荐进行归一化的。</p>
+<p><strong>特征归一化</strong>：CTR/CVR模型采用了多种类型的源特征，包括数值型和categorical类型等。但是，categorical类编码后的特征取值只有0或1，较大的数值型特征会造成样本归一化后categorical类生成特征的值非常小，没有区分性。例如，一条用户-商品记录，用户为“男”性，商品的销量是5000个（假设其它特征的值为零），那么归一化后特征“sex=male”（性别为男）的值略小于0.0002，而“volume”（销量）的值近似为1。特征“sex=male”在这个样本中的作用几乎可以忽略不计，这是相当不合理的。因此，将源数值型特征的值归一化到 是非常必要的。</p>
+<p><strong>省略零值特征</strong>：从FFM模型的表达式可以看出，零值特征对模型完全没有贡献。包含零值特征的一次项和组合项均为零，对于训练模型参数或者目标值预估是没有作用的。因此，可以省去零值特征，提高FFM模型训练和预测的速度，这也是稀疏样本采用FFM的显著优势。</p>
+</blockquote>
 </li>
 <li><p>代码实现 </p>
 <ul>
@@ -344,7 +452,7 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
 </ul>
 </li>
 </ul>
-<h3 id="3-DeepFM"><a href="#3-DeepFM" class="headerlink" title="3. DeepFM"></a>3. DeepFM</h3><ul>
+<h1 id="3-DeepFM"><a href="#3-DeepFM" class="headerlink" title="3. DeepFM"></a>3. DeepFM</h1><ul>
 <li><p>出现背景</p>
 <p>FM只计算了二阶特征组合，如需要考虑高阶特征的组合，可能采用DNN模型。但由于特征做了One-Hot，输入一般是非常高的维度，导致输入的参数太多了。</p>
 <p>考虑到用FFM中Field的概念，可以将同一个特征One-Hot出来的特征转换成一个Dense Vector，然后在再基于Field的Dense数据，再输入到DNN中学习不同特征之间的高阶组合。(那为啥不叫DeepFFM？)</p>
@@ -354,17 +462,29 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
 <ul>
 <li><p>输入的Embedding层</p>
 <p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325204042713.png" alt="image-20190325204042713"></p>
+<p>Embedding层的输出为</p>
+<script type="math/tex; mode=display">
+a^{(0)}=[e_1, e_2, ..., e_m]</script><p>其中$e_i$是嵌入的第i个filed，m是field的个数，前向过程将嵌入层的输出，输入到隐藏层为</p>
+<script type="math/tex; mode=display">
+a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
+</ul>
 </li>
+</ul>
+<ul>
 <li><p>FM部分</p>
 <p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325203928751.png" alt="image-20190325203928751"></p>
 </li>
 <li><p>DNN部分</p>
 <p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325203950839.png" alt="image-20190325203950839"></p>
 </li>
+<li><p>预测输出</p>
+<script type="math/tex; mode=display">
+\hat y =  sigmoid(y_{FM} + y_{DNN})</script></li>
 </ul>
-</li>
-</ul>
-<h3 id="4-Wide-amp-Deep-Network-WDN"><a href="#4-Wide-amp-Deep-Network-WDN" class="headerlink" title="4. Wide &amp; Deep Network (WDN)"></a>4. Wide &amp; Deep Network (WDN)</h3><h3 id="5-Deep-amp-Cross-Network-DCN"><a href="#5-Deep-amp-Cross-Network-DCN" class="headerlink" title="5. Deep &amp; Cross Network (DCN)"></a>5. Deep &amp; Cross Network (DCN)</h3><h3 id="6-References"><a href="#6-References" class="headerlink" title="6. References"></a>6. References</h3><ul>
+<h1 id="4-Wide-amp-Deep-Network-WDN"><a href="#4-Wide-amp-Deep-Network-WDN" class="headerlink" title="4. Wide &amp; Deep Network (WDN)"></a>4. Wide &amp; Deep Network (WDN)</h1><p><a href="https://chenson.cc/2018/11/18/Wide-and-Deep模型初探" target="_blank" rel="noopener">Wide-and-Deep模型初探</a></p>
+<h1 id="5-Deep-amp-Cross-Network-DCN"><a href="#5-Deep-amp-Cross-Network-DCN" class="headerlink" title="5. Deep &amp; Cross Network (DCN)"></a>5. Deep &amp; Cross Network (DCN)</h1><p>DCN进阶版之<strong>xDeepFM</strong></p>
+<p><a href="https://www.jianshu.com/p/b4128bc79df0" target="_blank" rel="noopener">推荐系统遇上深度学习(二十二)—DeepFM升级版XDeepFM模型强势来袭</a></p>
+<h1 id="6-References"><a href="#6-References" class="headerlink" title="6. References"></a>6. References</h1><ul>
 <li><a href="https://blog.csdn.net/jiangjiang_jian/article/details/80630873" target="_blank" rel="noopener">推荐系统遇上深度学习(一)—FM模型理论和实践</a></li>
 <li><a href="https://blog.csdn.net/tMb8Z9Vdm66wH68VX1/article/details/79091671" target="_blank" rel="noopener">一文读懂FM算法优势</a></li>
 <li><a href="https://blog.csdn.net/hiwallace/article/details/81333604" target="_blank" rel="noopener">FM系列算法解读（FM+FFM+DeepFM）</a></li>
@@ -669,10 +789,6 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -682,6 +798,10 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -717,10 +837,6 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
              
@@ -729,11 +845,15 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -742,6 +862,10 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -765,15 +889,15 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Pytorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -789,7 +913,7 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -797,7 +921,7 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -829,15 +953,15 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -869,7 +993,7 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -877,15 +1001,11 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Quant</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
             
             <div class="clearfix"></div>

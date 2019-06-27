@@ -156,6 +156,138 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-jupyterhub配置多用户" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/13/jupyterhub配置多用户/">jupyterhub配置多用户</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/13/jupyterhub配置多用户/" class="archive-article-date">
+  	<time datetime="2019-01-13T12:42:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近组里申请了一台带GPU的服务器，Nvidia的M40，虽然性能一般，但玩一玩也够用了。因为是Centos的系统，组里的小伙伴觉得安装不如Ubuntu方便，都不想鼓捣环境，然后就由我来安装了。之前已经安装了CUDA和显卡驱动，因为安装时候的笔记没整理好，就先整理安装jupyter多用户的教程。后续有空的时候再写前置的环境教程吧（其实如果一开始就给一个干净的环境，安装超简单的）。</p>
+<h3 id="1-系统环境"><a href="#1-系统环境" class="headerlink" title="1. 系统环境"></a>1. 系统环境</h3><p>我的系统：CentOS Linux release 7.3.1611 (Core)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 查看系统版本</span><br><span class="line">lsb_release -a</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 以下二种方法适用于RedHat,CentOS</span><br><span class="line">cat /etc/redhat-release</span><br><span class="line">rpm -q centos-release</span><br><span class="line">rpm -q redhat-release</span><br></pre></td></tr></table></figure>
+<h3 id="2-安装步骤"><a href="#2-安装步骤" class="headerlink" title="2. 安装步骤"></a>2. 安装步骤</h3><h4 id="2-1-安装依赖包"><a href="#2-1-安装依赖包" class="headerlink" title="2.1 安装依赖包"></a>2.1 安装依赖包</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum install sqlite-devel npm nodejs-legacy zlib-devel openssl-devel</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 这个开启了，导致我后面一直报错，头疼，就kill相关进程就ok了</span><br><span class="line">npm install -g configurable-http-proxy</span><br></pre></td></tr></table></figure>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">jupyterhub</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/13/jupyterhub配置多用户/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Mixed-Logistic-Regression模型初探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/22/Mixed-Logistic-Regression模型初探/">Mixed-Logistic-Regression模型初探</a>
+    </h1>
+  
+
+        
+        <a href="/2018/12/22/Mixed-Logistic-Regression模型初探/" class="archive-article-date">
+  	<time datetime="2018-12-22T09:05:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MLR</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/12/22/Mixed-Logistic-Regression模型初探/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-大数据数仓建设笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -765,167 +897,6 @@
 
 
   
-    <article id="post-图数据库-Neo4j-初探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/17/图数据库-Neo4j-初探/">图数据库-Neo4j-初探</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/17/图数据库-Neo4j-初探/" class="archive-article-date">
-  	<time datetime="2018-08-17T05:15:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本次初探主要学习如何安装<code>Neo4j</code>，以及<code>Cypher</code>的基本语法。</p>
-<h3 id="1-安装Neo4j"><a href="#1-安装Neo4j" class="headerlink" title="1. 安装Neo4j"></a>1. 安装Neo4j</h3><ul>
-<li><p><code>Desktop</code>版本</p>
-<p><a href="https://neo4j.com/download/" target="_blank" rel="noopener">neo4j-desktop</a></p>
-</li>
-<li><p><code>Server</code>版本（<code>Community</code>版)</p>
-<p>比较建议安装这个版本，因为<code>Desktop</code>版本的老是闪退，且要激活之类的。</p>
-<ul>
-<li><p>下载<code>Neo4j</code>数据库</p>
-<p><a href="https://neo4j.com/download-center/#releases" target="_blank" rel="noopener">neo4j-server-community</a></p>
-</li>
-<li><p>下载常用算法的插件</p>
-<ul>
-<li><p><code>graph-algorithms</code></p>
-<p><a href="https://github.com/neo4j-contrib/neo4j-graph-algorithms" target="_blank" rel="noopener">neo4j-graph-algorithms</a></p>
-</li>
-<li><p><code>apoc-procedures</code></p>
-<p><a href="https://github.com/neo4j-contrib/neo4j-apoc-procedures" target="_blank" rel="noopener">neo4j-apoc-procedures</a></p>
-</li>
-</ul>
-<p>将下载下来的算法插件放入到<code>$NEO4J_HOME/plugins</code>文件夹下</p></li></ul></li></ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">图数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Neo4j</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/17/图数据库-Neo4j-初探/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-深度学习笔记-RNN常见网络" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/25/深度学习笔记-RNN常见网络/">深度学习笔记-RNN常见网络</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/25/深度学习笔记-RNN常见网络/" class="archive-article-date">
-  	<time datetime="2018-05-25T11:10:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>说实话，只是大概了解一下这些常见的RNN模型，但是这些模型为什么这么设计，为什么能够抓取网络中可能有用的长短期信息其实我还是比较懵的。这一块以后也是需要去深入理解的一部分，先mark一下。</p>
-<h3 id="1-循环神经网络-RNN-Recurrent-Neural-Network"><a href="#1-循环神经网络-RNN-Recurrent-Neural-Network" class="headerlink" title="1. 循环神经网络 - RNN (Recurrent Neural Network)"></a>1. 循环神经网络 - RNN (Recurrent Neural Network)</h3><h3 id="2-门控循环单元-GRN-Gated-Recurrent-Neural-Networks"><a href="#2-门控循环单元-GRN-Gated-Recurrent-Neural-Networks" class="headerlink" title="2. 门控循环单元 - GRN (Gated Recurrent Neural Networks)"></a>2. 门控循环单元 - GRN (Gated Recurrent Neural Networks)</h3><p>按时间顺序上来看，GRN是在LSTM之后提出来的。但是这个相对来说可能没那么复杂，所以先总结这个，然后再总结LSTM。</p>
-<p>门控循环单元，重点是在于<strong>门</strong>的，即Gated。<del>这里指的是 $\sigma$ = sigmod func.</del></p>
-<p>那么为什么要出现这些门呢，相比原先的RNN模型，这些门的出现能够解决什么样的问题？</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RNN</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/25/深度学习笔记-RNN常见网络/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1047,10 +1018,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -1060,6 +1027,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1095,10 +1066,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
              
@@ -1107,11 +1074,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1120,6 +1091,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1143,15 +1118,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Pytorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1167,7 +1142,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1175,7 +1150,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1207,15 +1182,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1247,7 +1222,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1255,15 +1230,11 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Quant</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
             
             <div class="clearfix"></div>

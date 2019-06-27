@@ -156,6 +156,123 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Snippets-for-Python" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/27/Snippets-for-Python/">Snippets for Python</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/27/Snippets-for-Python/" class="archive-article-date">
+  	<time datetime="2019-06-27T14:07:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>收集平常遇到的各种不常用的Python技巧，持续更新ing。</p>
+<h3 id="1-窗口函数"><a href="#1-窗口函数" class="headerlink" title="1. 窗口函数"></a>1. 窗口函数</h3><p>滑窗函数平常还是用的很多的。细分的话可以分按时间维度、次数维度或是排序维度滑窗计算。</p>
+<h4 id="1-1-Codes"><a href="#1-1-Codes" class="headerlink" title="1.1 Codes"></a>1.1 Codes</h4><ul>
+<li><p>时间维度滑窗</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df = pd.Series(np.random.randn(<span class="number">600</span>), index=pd.date_range(<span class="string">'7/1/2018'</span>, freq=<span class="string">'D'</span>, periods=<span class="number">600</span>))</span><br><span class="line"></span><br><span class="line">r = df.rolling(window=<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/06/27/Snippets-for-Python/2019-06-28-Snippets-for-Python/image-20190422122040331.png" alt="image-20190422122040331"></p>
+<p>同时<strong>也支持自定义的聚合函数</strong></p>
+<p><img src="/2019/06/27/Snippets-for-Python/2019-06-28-Snippets-for-Python/image-20190422122133406.png" alt="image-20190422122133406"></p>
+</li>
+</ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/27/Snippets-for-Python/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Python读写Excel小结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/15/Python读写Excel小结/">Python读写Excel小结</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/15/Python读写Excel小结/" class="archive-article-date">
+  	<time datetime="2019-05-15T06:39:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Title"><a href="#1-Title" class="headerlink" title="1. Title"></a>1. Title</h3>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/15/Python读写Excel小结/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-机器学习与量化交易课程笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -251,7 +368,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-百度地图API"><a href="#1-百度地图API" class="headerlink" title="1. 百度地图API"></a>1. 百度地图API</h3>
+        <h3 id="1-两个经纬度点之间的距离和方位角"><a href="#1-两个经纬度点之间的距离和方位角" class="headerlink" title="1. 两个经纬度点之间的距离和方位角"></a>1. 两个经纬度点之间的距离和方位角</h3><h4 id="1-1-计算距离"><a href="#1-1-计算距离" class="headerlink" title="1.1 计算距离"></a>1.1 计算距离</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> radians, cos, sin, asin, sqrt, atan, tan, acos, pi</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">haversine</span><span class="params">(lngA, latA, lngB, latB)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    计算给定A、B两点之间的距离</span></span><br><span class="line"><span class="string">    lng: 经度 -180~180</span></span><br><span class="line"><span class="string">    lat: 纬度 -90~90</span></span><br><span class="line"><span class="string">    返回单位为公里</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 地球平均半径，单位为公里</span></span><br><span class="line">    r = <span class="number">6370.99681</span> </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 将十进制度数转化为弧度</span></span><br><span class="line">    <span class="comment"># 如在Hive或MySQL中无radians函数，可手动计算 radiasn(lat) == lat / 180 * pi</span></span><br><span class="line">    lngA, latA, lngB, latB = map(radians, [lngA, latA, lngB, latB])</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> r * acos(sin(latA) * sin(latB) + cos(latA) * cos(latB) * cos(lngA - lngB))</span><br><span class="line"></span><br><span class="line">haversine(<span class="number">110.0123</span>, <span class="number">23</span>, <span class="number">110.0123</span>, <span class="number">23.02</span>)</span><br></pre></td></tr></table></figure>
         
       
 
@@ -612,7 +729,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-Factorization-Machine-FM"><a href="#1-Factorization-Machine-FM" class="headerlink" title="1. Factorization Machine (FM)"></a>1. Factorization Machine (FM)</h3><ul>
+        <h1 id="1-Factorization-Machine-FM"><a href="#1-Factorization-Machine-FM" class="headerlink" title="1. Factorization Machine (FM)"></a>1. Factorization Machine (FM)</h1><ul>
 <li><p>出现背景</p>
 <p>传统用的One-Hot编码会带来数据稀疏的问题。</p>
 <p>比如数据如下（栗子来自美团技术博客）：</p>
@@ -732,163 +849,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/03/20/AutoML平台试用体验/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Mac-OSX安装Fiddler" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/07/Mac-OSX安装Fiddler/">Mac OSX安装Fiddler</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/07/Mac-OSX安装Fiddler/" class="archive-article-date">
-  	<time datetime="2019-03-07T09:59:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-安装Mono"><a href="#1-安装Mono" class="headerlink" title="1. 安装Mono"></a>1. 安装Mono</h3><p>首先，Mac下需要使用.Net编译后的程序，需要用到跨平台的方案Mono(现阶段微软已推出跨平台的方案.Net Core，不过暂时只支持控制台程序)。以上是网上的描述，给我感觉有点类似一个虚拟机或者docker一下的东西，这样就能在OSX的环境下，运行exe文件了。</p>
-<ul>
-<li><p>下载<a href="https://www.mono-project.com/download/stable/#download-win" target="_blank" rel="noopener">Mono</a>，并安装</p>
-</li>
-<li><p>安装完后，执行指令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> version == 5.16.0</span></span><br><span class="line">/Library/Frameworks/Mono.framework/Versions/5.16.0/bin/mozroots --import --sync</span><br><span class="line">/Library/Frameworks/Mono.framework/Versions/5.16.0/bin/cert-sync --import --sync</span><br><span class="line">/Library/Frameworks/Mono.framework/Versions/5.18.0/bin/cert-sync --import --sync</span><br><span class="line">/Library/Frameworks/Mono.framework/Versions/5.18.0/bin/mozroots --import --sync</span><br></pre></td></tr></table></figure>
-<p>此步是为了从Mozilla LXR上下载所有受信任的root证书，存于Mono的证书库里。root证书能用于请求https地址。</p></li></ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Mac</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Fiddler</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/07/Mac-OSX安装Fiddler/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Centos7安装Nvida驱动和显卡驱动" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/07/Centos7安装Nvida驱动和显卡驱动/">Centos7安装Nvida驱动和显卡驱动</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/07/Centos7安装Nvida驱动和显卡驱动/" class="archive-article-date">
-  	<time datetime="2019-03-07T09:54:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h3><h4 id="1-1-安装方式有三种"><a href="#1-1-安装方式有三种" class="headerlink" title="1.1 安装方式有三种"></a>1.1 安装方式有三种</h4><ul>
-<li><p><code>CUDA（.run）</code>下载以后安装带上显卡驱动， 下载如下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看显卡版本</span></span><br><span class="line">lspci | grep -i nvidia</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 下载</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> https://www.nvidia.cn/Download/index.aspx?lang=cn 可在这个网站看出对应的版本</span></span><br><span class="line">wget http://cn.download.nvidia.com/tesla/410.79/NVIDIA-Linux-x86_64-410.79.run</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装</span></span><br><span class="line">sh NVIDIA-Linux-x86_64-410.79.run</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 卸载</span></span><br><span class="line">sh NVIDIA-Linux-x86_64-410.79.run --uninstall</span><br><span class="line"></span><br><span class="line">nvidia-uninstall</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>显卡驱动<code>.run</code>文件安装</p>
-</li>
-<li><p>集成软件包安装（<code>yum</code>等）</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 确认是否为yum安装</span></span><br><span class="line">yum list installed | grep nvidia</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 卸载</span></span><br><span class="line">yum remove nvidia-detect.x86_64</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Centos7</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Nvida</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GPU</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/07/Centos7安装Nvida驱动和显卡驱动/">MORE >></a>
         </p>
       
 
@@ -1030,10 +990,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -1043,6 +999,10 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1078,10 +1038,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
              
@@ -1090,11 +1046,15 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1103,6 +1063,10 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1126,15 +1090,15 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Pytorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1150,7 +1114,7 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1158,7 +1122,7 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1190,15 +1154,15 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1230,7 +1194,7 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1238,15 +1202,11 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Quant</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
             
             <div class="clearfix"></div>

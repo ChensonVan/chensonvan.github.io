@@ -202,10 +202,10 @@
 <a id="more"></a>
 </li>
 <li><p><code>Service</code>版修改配置文件<code>$NEO4J_HOME/conf/neo4j.conf</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 解决登入的时候报没有授权的错误</span><br><span class="line">dbms.security.auth_enabled=false</span><br><span class="line"><span class="meta">#</span> 添加下载的算法插件</span><br><span class="line">dbms.security.procedures.unrestricted=apoc.*,algo.*</span><br><span class="line">apoc.import.file.enabled=true</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>增加页缓存到至少4G，推荐20G:</span><br><span class="line">dbms.memory.pagecache.size=4g</span><br><span class="line"><span class="meta">#</span>JVM堆保存留内存从1G起，最大4G:</span><br><span class="line">dbms.memory.heap.initial_size=1g</span><br><span class="line">dbms.memory.heap.max_size=4g</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 解决登入的时候报没有授权的错误</span></span><br><span class="line">dbms.security.auth_enabled=false</span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加下载的算法插件</span></span><br><span class="line">dbms.security.procedures.unrestricted=apoc.*,algo.*</span><br><span class="line">apoc.import.file.enabled=true</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">增加页缓存到至少4G，推荐20G:</span></span><br><span class="line">dbms.memory.pagecache.size=4g</span><br><span class="line"><span class="meta">#</span><span class="bash">JVM堆保存留内存从1G起，最大4G:</span></span><br><span class="line">dbms.memory.heap.initial_size=1g</span><br><span class="line">dbms.memory.heap.max_size=4g</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>启动/停止 (把<code>server</code>所在的路径添加到系统的<code>PATH</code>)</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 建议将neo4j所在的路径条件到系统$PATH当中，</span><br><span class="line"><span class="meta">#</span> export NEO4J_HOME="path-to-neo4j"</span><br><span class="line"><span class="meta">$</span>NEO4J_HOME/bin/neo4j start</span><br><span class="line"><span class="meta">$</span>NEO4J_HOME/bin/neo4j console</span><br><span class="line"><span class="meta">$</span>NEO4J_HOME/bin/neo4j stop</span><br><span class="line"><span class="meta">$</span>NEO4J_HOME/bin/neo4j start -u neo4j -p neo4j</span><br><span class="line"><span class="meta">$</span>NEO4J_HOME/bin/cypher-shell</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 建议将neo4j所在的路径条件到系统<span class="variable">$PATH</span>当中，</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">export</span> NEO4J_HOME=<span class="string">"path-to-neo4j"</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash">NEO4J_HOME/bin/neo4j start</span></span><br><span class="line"><span class="meta">$</span><span class="bash">NEO4J_HOME/bin/neo4j console</span></span><br><span class="line"><span class="meta">$</span><span class="bash">NEO4J_HOME/bin/neo4j stop</span></span><br><span class="line"><span class="meta">$</span><span class="bash">NEO4J_HOME/bin/neo4j start -u neo4j -p neo4j</span></span><br><span class="line"><span class="meta">$</span><span class="bash">NEO4J_HOME/bin/cypher-shell</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CALL dbms.procedures() // 查看neo4j可用的进程，包括刚刚安装的插件</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
@@ -592,10 +592,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -605,6 +601,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -640,10 +640,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
              
@@ -652,11 +648,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -665,6 +665,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -688,15 +692,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Pytorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -712,7 +716,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -720,7 +724,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -752,15 +756,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -792,7 +796,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -800,15 +804,11 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Quant</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
             
             <div class="clearfix"></div>
