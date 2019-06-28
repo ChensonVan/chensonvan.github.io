@@ -20,12 +20,12 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.com/2019/06/27/Snippets-for-Python/2019-06-28-Snippets-for-Python/image-20190422122040331.png">
 <meta property="og:image" content="http://chenson.com/2019/06/27/Snippets-for-Python/2019-06-28-Snippets-for-Python/image-20190422122133406.png">
-<meta property="og:image" content="http://chenson.com/2019/06/27/Snippets-for-Python/Python%E4%BC%AA%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7%E6%94%B6%E9%9B%86/image-20190422120545366.png">
-<meta property="og:image" content="http://chenson.com/2019/06/27/Snippets-for-Python/Python%E4%BC%AA%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7%E6%94%B6%E9%9B%86/image-20190422121535072.png">
+<meta property="og:image" content="http://chenson.com/2019/06/27/Snippets-for-Python/2019-06-28-Snippets-for-Python/image-20190422120545366.png">
+<meta property="og:image" content="http://chenson.com/2019/06/27/Snippets-for-Python/2019-06-28-Snippets-for-Python/image-20190422121535072.png">
 <meta property="og:image" content="http://chenson.com/2019/06/27/Snippets-for-Python/2019-06-28-Snippets-for-Python/image-20190523111948287.png">
 <meta property="og:image" content="http://chenson.com/2019/06/27/Snippets-for-Python/2019-06-28-Snippets-for-Python/image-20190627235109358.png">
 <meta property="og:image" content="http://chenson.com/2019/06/27/Snippets-for-Python/2019-06-28-Snippets-for-Python/image-20190627235056773.png">
-<meta property="og:updated_time" content="2019-06-27T16:09:06.593Z">
+<meta property="og:updated_time" content="2019-06-28T05:54:29.210Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Snippets for Python">
 <meta name="twitter:description" content="收集平常遇到的各种不常用的Python技巧，持续更新ing。 1. 窗口函数滑窗函数平常还是用的很多的。细分的话可以分按时间维度、次数维度或是排序维度滑窗计算。 1.1 Codes 时间维度滑窗 123df = pd.Series(np.random.randn(600), index=pd.date_range(&apos;7/1/2018&apos;, freq=&apos;D&apos;, periods=600))r = df.">
@@ -197,11 +197,11 @@
 <h4 id="1-2-Refernces"><a href="#1-2-Refernces" class="headerlink" title="1.2 Refernces"></a>1.2 Refernces</h4><h3 id="2-自定聚合函数"><a href="#2-自定聚合函数" class="headerlink" title="2. 自定聚合函数"></a>2. 自定聚合函数</h3><h4 id="2-1-Codes"><a href="#2-1-Codes" class="headerlink" title="2.1 Codes"></a>2.1 Codes</h4><ul>
 <li><p>测试一个SUM的聚合函数</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">self_define_sum</span><span class="params">(series)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> reduce(<span class="keyword">lambda</span> x, y : x + y, series)</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/06/27/Snippets-for-Python/Python%E4%BC%AA%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7%E6%94%B6%E9%9B%86/image-20190422120545366.png" alt="image-20190422120545366"></p>
+<p><img src="/2019/06/27/Snippets-for-Python/2019-06-28-Snippets-for-Python/image-20190422120545366.png" alt="image-20190422120545366"></p>
 </li>
 <li><p>过滤非空值</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">not_null</span><span class="params">(series)</span>:</span></span><br><span class="line">    analyst_list = filter(<span class="keyword">lambda</span> analyst: pd.notnull(analyst), series)</span><br><span class="line">    <span class="keyword">return</span> list(analyst_list)</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/06/27/Snippets-for-Python/Python%E4%BC%AA%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7%E6%94%B6%E9%9B%86/image-20190422121535072.png" alt="image-20190422121535072"></p>
+<p><img src="/2019/06/27/Snippets-for-Python/2019-06-28-Snippets-for-Python/image-20190422121535072.png" alt="image-20190422121535072"></p>
 </li>
 <li><p>统计空值</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_nulls</span><span class="params">(series)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> len(series) — series.count()</span><br></pre></td></tr></table></figure>
@@ -212,7 +212,8 @@
 </ul>
 <h3 id="3-sort-UDF"><a href="#3-sort-UDF" class="headerlink" title="3. sort - UDF"></a>3. sort - UDF</h3><h4 id="3-1-Codes"><a href="#3-1-Codes" class="headerlink" title="3.1 Codes"></a>3.1 Codes</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">s = [<span class="string">'(1, 10)'</span>, <span class="string">'(100, 1000)'</span>, <span class="string">'(20, 30)'</span>, <span class="string">'(100, 10000)'</span>, <span class="string">'(50, 100)'</span>]</span><br><span class="line"></span><br><span class="line">print(sorted(s))</span><br><span class="line"></span><br><span class="line">s.sort(key=<span class="keyword">lambda</span> x : int(x.split(<span class="string">','</span>)[<span class="number">0</span>][<span class="number">1</span>:]))</span><br><span class="line">print(s)</span><br></pre></td></tr></table></figure>
 <p><img src="/2019/06/27/Snippets-for-Python/2019-06-28-Snippets-for-Python/image-20190523111948287.png" alt="image-20190523111948287"></p>
-<h4 id="3-2-References"><a href="#3-2-References" class="headerlink" title="3.2 References"></a>3.2 References</h4><h3 id="4-Sklearn并行计算"><a href="#4-Sklearn并行计算" class="headerlink" title="4. Sklearn并行计算"></a>4. Sklearn并行计算</h3><h4 id="4-1-Codes"><a href="#4-1-Codes" class="headerlink" title="4.1 Codes"></a>4.1 Codes</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> IPython.core.interactiveshell <span class="keyword">import</span> InteractiveShell</span><br><span class="line">InteractiveShell.ast_node_interactivity = <span class="string">'all'</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> time, os, subprocess</span><br><span class="line"></span><br><span class="line"><span class="comment"># Tutorial: https://stackoverflow.com/questions/38601026/easy-way-to-use-parallel-options-of-scikit-learn-functions-on-hpc</span></span><br><span class="line"><span class="keyword">from</span> sklearn.externals.joblib <span class="keyword">import</span> Parallel, parallel_backend, register_parallel_backend, delayed</span><br><span class="line"><span class="comment"># 不q'cu</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reader</span><span class="params">(f)</span>:</span></span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br><span class="line">    <span class="keyword">return</span> pd.read_csv(f)</span><br><span class="line">  </span><br><span class="line"><span class="comment"># method 1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mlp_reader</span><span class="params">(file_list, n_job=<span class="number">20</span>, typ=<span class="string">'threading'</span>)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    By default the following backends are available:</span></span><br><span class="line"><span class="string">        ‘loky’: single-host, process-based parallelism (used by default), # 可能不是我装的0.19版本的参数，报错，文档来着官方0.22的文档</span></span><br><span class="line"><span class="string">        ‘threading’: single-host, thread-based parallelism,</span></span><br><span class="line"><span class="string">        ‘multiprocessing’: legacy single-host, process-based parallelism.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">with</span> parallel_backend(typ):</span><br><span class="line">        df_tmp = Parallel(n_jobs=n_job)(delayed(reader, check_pickle=<span class="literal">False</span>)(f) <span class="keyword">for</span> f <span class="keyword">in</span> file_list)</span><br><span class="line">    df_tmp = pd.concat(df_tmp)</span><br><span class="line">    <span class="comment"># return df_tmp</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># method 2</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mlp_reader_2</span><span class="params">(file_list, n_job=<span class="number">20</span>)</span>:</span></span><br><span class="line">    df_tmp = Parallel(n_jobs=n_job)(delayed(reader, check_pickle=<span class="literal">False</span>)(f) <span class="keyword">for</span> f <span class="keyword">in</span> file_list)</span><br><span class="line">    df_tmp = pd.concat(df_tmp)</span><br><span class="line">    <span class="keyword">return</span> df_tmp</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 测算时间</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">measure_time_using</span><span class="params">(n=<span class="number">10</span>, p=<span class="number">10</span>)</span>:</span></span><br><span class="line">    r = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">        file_list = [<span class="string">'20190525_spark_test_data.csv'</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(i * p)]</span><br><span class="line">        <span class="comment"># print(file_list)</span></span><br><span class="line"></span><br><span class="line">        t1 = time.time()</span><br><span class="line">        df_result2 = mlp_reader_2(file_list)</span><br><span class="line">        t2 = time.time()</span><br><span class="line"></span><br><span class="line">        t3 = time.time()</span><br><span class="line">        df_result = mlp_reader(file_list)</span><br><span class="line">        t4 = time.time()</span><br><span class="line">        </span><br><span class="line">        r.append([i, i * <span class="number">10</span>, t2-t1, t4-t3])</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(r, columns=[<span class="string">'iter'</span>, <span class="string">'total_file'</span>, <span class="string">'mlp_reader_2'</span>, <span class="string">'mlp_reader'</span>])</span><br></pre></td></tr></table></figure>
+<h4 id="3-2-References"><a href="#3-2-References" class="headerlink" title="3.2 References"></a>3.2 References</h4><p>l</p>
+<h3 id="4-Sklearn并行计算"><a href="#4-Sklearn并行计算" class="headerlink" title="4. Sklearn并行计算"></a>4. Sklearn并行计算</h3><h4 id="4-1-Codes"><a href="#4-1-Codes" class="headerlink" title="4.1 Codes"></a>4.1 Codes</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> IPython.core.interactiveshell <span class="keyword">import</span> InteractiveShell</span><br><span class="line">InteractiveShell.ast_node_interactivity = <span class="string">'all'</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> time, os, subprocess</span><br><span class="line"></span><br><span class="line"><span class="comment"># Tutorial: https://stackoverflow.com/questions/38601026/easy-way-to-use-parallel-options-of-scikit-learn-functions-on-hpc</span></span><br><span class="line"><span class="keyword">from</span> sklearn.externals.joblib <span class="keyword">import</span> Parallel, parallel_backend, register_parallel_backend, delayed</span><br><span class="line"><span class="comment"># 不q'cu</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reader</span><span class="params">(f)</span>:</span></span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br><span class="line">    <span class="keyword">return</span> pd.read_csv(f)</span><br><span class="line">  </span><br><span class="line"><span class="comment"># method 1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mlp_reader</span><span class="params">(file_list, n_job=<span class="number">20</span>, typ=<span class="string">'threading'</span>)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    By default the following backends are available:</span></span><br><span class="line"><span class="string">        ‘loky’: single-host, process-based parallelism (used by default), # 可能不是我装的0.19版本的参数，报错，文档来着官方0.22的文档</span></span><br><span class="line"><span class="string">        ‘threading’: single-host, thread-based parallelism,</span></span><br><span class="line"><span class="string">        ‘multiprocessing’: legacy single-host, process-based parallelism.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">with</span> parallel_backend(typ):</span><br><span class="line">        df_tmp = Parallel(n_jobs=n_job)(delayed(reader, check_pickle=<span class="literal">False</span>)(f) <span class="keyword">for</span> f <span class="keyword">in</span> file_list)</span><br><span class="line">    df_tmp = pd.concat(df_tmp)</span><br><span class="line">    <span class="comment"># return df_tmp</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># method 2</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mlp_reader_2</span><span class="params">(file_list, n_job=<span class="number">20</span>)</span>:</span></span><br><span class="line">    df_tmp = Parallel(n_jobs=n_job)(delayed(reader, check_pickle=<span class="literal">False</span>)(f) <span class="keyword">for</span> f <span class="keyword">in</span> file_list)</span><br><span class="line">    df_tmp = pd.concat(df_tmp)</span><br><span class="line">    <span class="keyword">return</span> df_tmp</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 测算时间</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">measure_time_using</span><span class="params">(n=<span class="number">10</span>, p=<span class="number">10</span>)</span>:</span></span><br><span class="line">    r = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">        file_list = [<span class="string">'20190525_spark_test_data.csv'</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(i * p)]</span><br><span class="line">        <span class="comment"># print(file_list)</span></span><br><span class="line"></span><br><span class="line">        t1 = time.time()</span><br><span class="line">        df_result2 = mlp_reader_2(file_list)</span><br><span class="line">        t2 = time.time()</span><br><span class="line"></span><br><span class="line">        t3 = time.time()</span><br><span class="line">        df_result = mlp_reader(file_list)</span><br><span class="line">        t4 = time.time()</span><br><span class="line">        </span><br><span class="line">        r.append([i, i * <span class="number">10</span>, t2-t1, t4-t3])</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(r, columns=[<span class="string">'iter'</span>, <span class="string">'total_file'</span>, <span class="string">'mlp_reader_2'</span>, <span class="string">'mlp_reader'</span>])</span><br></pre></td></tr></table></figure>
 <p>在我的单机Mac Pro上，<strong>不用parallel_backend会稍微慢一些</strong>，这和我在实际建模工程中相反了，不知道是因为当时使用的是服务器有关系不。</p>
 <p><img src="/2019/06/27/Snippets-for-Python/2019-06-28-Snippets-for-Python/image-20190627235109358.png" alt="image-20190627235109358"></p>
 <p>在我的单机Mac Pro上，<strong>多线程的稍微快一点点</strong>。</p>
@@ -544,10 +545,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
@@ -556,15 +553,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -588,15 +589,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Pytorch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -608,15 +609,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MLR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -633,10 +634,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -660,7 +657,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -684,23 +693,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
               </li>
              
               <li class="article-tag-list-item">
