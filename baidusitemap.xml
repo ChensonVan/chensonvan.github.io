@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://chenson.com/2017/02/19/Linux%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</loc>
+    <lastmod>2019-07-01</lastmod>
+  </url>  <url>
     <loc>http://chenson.com/2019/06/27/Snippets-for-Python/</loc>
     <lastmod>2019-06-28</lastmod>
   </url>  <url>
@@ -89,9 +92,6 @@
     <lastmod>2019-04-21</lastmod>
   </url>  <url>
     <loc>http://chenson.com/2019/01/13/jupyterhub%E9%85%8D%E7%BD%AE%E5%A4%9A%E7%94%A8%E6%88%B7/</loc>
-    <lastmod>2019-04-16</lastmod>
-  </url>  <url>
-    <loc>http://chenson.com/2017/02/19/Linux%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</loc>
     <lastmod>2019-04-16</lastmod>
   </url>  <url>
     <loc>http://chenson.com/2019/03/07/Centos7%E5%AE%89%E8%A3%85Nvida%E9%A9%B1%E5%8A%A8%E5%92%8C%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8/</loc>
