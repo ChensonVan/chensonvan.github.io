@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://chenson.com/2019/08/26/TensorFlow%E9%AB%98%E7%BA%A7API%E4%B9%8BDataset/</loc>
+    <lastmod>2019-08-26</lastmod>
+  </url>  <url>
     <loc>http://chenson.com/2019/06/28/Snippets-for-Python/</loc>
     <lastmod>2019-08-25</lastmod>
   </url>  <url>

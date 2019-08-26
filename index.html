@@ -156,6 +156,77 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-TensorFlow高级API之Dataset" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/26/TensorFlow高级API之Dataset/">TensorFlow高级API之Dataset</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/26/TensorFlow高级API之Dataset/" class="archive-article-date">
+  	<time datetime="2019-08-26T12:04:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h1><p>上一篇主要介绍的是tf的Estimator，属于模型部分的。这里主要讲的是Dataset相关的内容，主要是加载数据，也会讲到一些特征工程相关的。</p>
+<p>为什么使用Dataset呢，主要考虑到以下几点</p>
+<ul>
+<li>之前都是placeholder+feed-dict，低级API。某篇博主里面说feed-dict是最慢的方式【存疑，待查证】</li>
+<li>Dataset提供了pipeline的操作方式，方便，复用性和<strong>性能</strong>也比较高，也比较适合大批量，分布式的情况【原因】。</li>
+</ul>
+<h1 id="2-加载数据"><a href="#2-加载数据" class="headerlink" title="2 加载数据"></a>2 加载数据</h1><h2 id="2-1-从numpay加载"><a href="#2-1-从numpay加载" class="headerlink" title="2.1 从numpay加载"></a>2.1 从numpay加载</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开启</span></span><br><span class="line"><span class="comment"># 且需要以开始就开启，否则会报如下错误</span></span><br><span class="line"><span class="comment"># ValueError: tf.enable_eager_execution must be called at program startup.</span></span><br><span class="line">tf.enable_eager_execution()</span><br><span class="line"></span><br><span class="line">dataset = tf.data.Dataset.from_tensor_slices(np.array([<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>, <span class="number">4.0</span>, <span class="number">5.0</span>]))</span><br><span class="line">iterator = dataset.make_one_shot_iterator()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> iterator:</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">TensorFlow</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/26/TensorFlow高级API之Dataset/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-TensorFlow分布式训练初探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -799,101 +870,6 @@
 
 
   
-    <article id="post-推荐系统小结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/25/推荐系统小结/">推荐系统小结</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/25/推荐系统小结/" class="archive-article-date">
-  	<time datetime="2019-03-25T02:35:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-Factorization-Machine-FM"><a href="#1-Factorization-Machine-FM" class="headerlink" title="1. Factorization Machine (FM)"></a>1. Factorization Machine (FM)</h1><ul>
-<li><p>出现背景</p>
-<p>传统用的One-Hot编码会带来数据稀疏的问题。</p>
-<p>比如数据如下（栗子来自美团技术博客）：</p>
-<p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/275.png" alt="img"></p>
-<p>做了One-Hot编码后</p>
-<p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/700.png" alt="img"></p>
-<p>当里面某些特征的维度比较高的时候，数据维度可能达到百万级别。</p>
-<p>而传统的LR模型也并没考虑到特征之间的关联</p>
-<script type="math/tex; mode=display">
-y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Wide&Deep</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">推荐系统</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">FM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">FFM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">DeepFM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DCN</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/25/推荐系统小结/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1015,14 +991,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -1032,6 +1000,14 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1059,15 +1035,15 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">进程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1087,6 +1063,10 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CNN</a>
               </li>
              
@@ -1100,6 +1080,10 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1131,6 +1115,10 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
@@ -1148,10 +1136,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1183,14 +1167,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
               </li>
              
@@ -1215,6 +1191,14 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LBS</a>
               </li>
              
@@ -1232,14 +1216,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
             
             <div class="clearfix"></div>
