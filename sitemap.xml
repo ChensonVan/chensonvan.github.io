@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://chenson.com/2019/11/21/test-post/</loc>
-    
-    <lastmod>2019-11-21T07:25:23.368Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://chenson.com/google048141cfb9a93d7a.html</loc>
     
     <lastmod>2019-11-21T06:59:55.154Z</lastmod>
@@ -205,14 +198,14 @@
   </url>
   
   <url>
-    <loc>http://chenson.com/2017/02/19/Linux%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</loc>
+    <loc>http://chenson.com/2016/12/15/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
     
     <lastmod>2019-11-21T06:59:54.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://chenson.com/2016/12/15/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
+    <loc>http://chenson.com/2017/02/19/Linux%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</loc>
     
     <lastmod>2019-11-21T06:59:54.000Z</lastmod>
     
@@ -254,14 +247,14 @@
   </url>
   
   <url>
-    <loc>http://chenson.com/2017/06/13/Machine-Learning-Ensemble-Learning/</loc>
+    <loc>http://chenson.com/2017/06/16/Machine-Learning-%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/</loc>
     
     <lastmod>2019-11-21T06:59:54.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://chenson.com/2017/06/16/Machine-Learning-%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/</loc>
+    <loc>http://chenson.com/2017/06/13/Machine-Learning-Ensemble-Learning/</loc>
     
     <lastmod>2019-11-21T06:59:54.000Z</lastmod>
     
@@ -296,14 +289,14 @@
   </url>
   
   <url>
-    <loc>http://chenson.com/2018/05/25/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RNN%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C/</loc>
+    <loc>http://chenson.com/2018/05/14/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RNN/</loc>
     
     <lastmod>2019-11-21T06:59:54.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://chenson.com/2018/05/14/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RNN/</loc>
+    <loc>http://chenson.com/2018/05/25/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RNN%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C/</loc>
     
     <lastmod>2019-11-21T06:59:54.000Z</lastmod>
     
@@ -338,14 +331,14 @@
   </url>
   
   <url>
-    <loc>http://chenson.com/2018/11/27/%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95%EF%BC%9AK-Means%E5%8F%8A%E6%89%A9%E5%B1%95%E7%AE%97%E6%B3%95K-Modes%E3%80%81K-Prototype%E5%88%9D%E6%8E%A2/</loc>
+    <loc>http://chenson.com/2018/11/20/%E5%85%B3%E4%BA%8EPython%E7%9A%84Mixin%E6%A8%A1%E5%BC%8F%E5%88%9D%E6%8E%A2/</loc>
     
     <lastmod>2019-11-21T06:59:54.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://chenson.com/2018/11/20/%E5%85%B3%E4%BA%8EPython%E7%9A%84Mixin%E6%A8%A1%E5%BC%8F%E5%88%9D%E6%8E%A2/</loc>
+    <loc>http://chenson.com/2018/11/27/%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95%EF%BC%9AK-Means%E5%8F%8A%E6%89%A9%E5%B1%95%E7%AE%97%E6%B3%95K-Modes%E3%80%81K-Prototype%E5%88%9D%E6%8E%A2/</loc>
     
     <lastmod>2019-11-21T06:59:54.000Z</lastmod>
     
@@ -373,14 +366,14 @@
   </url>
   
   <url>
-    <loc>http://chenson.com/2019/03/07/Centos7%E5%AE%89%E8%A3%85Nvida%E9%A9%B1%E5%8A%A8%E5%92%8C%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8/</loc>
+    <loc>http://chenson.com/2019/02/27/%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F%E5%88%9D%E6%8E%A2/</loc>
     
     <lastmod>2019-11-21T06:59:54.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://chenson.com/2019/02/27/%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F%E5%88%9D%E6%8E%A2/</loc>
+    <loc>http://chenson.com/2019/03/07/Centos7%E5%AE%89%E8%A3%85Nvida%E9%A9%B1%E5%8A%A8%E5%92%8C%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8/</loc>
     
     <lastmod>2019-11-21T06:59:54.000Z</lastmod>
     
@@ -408,14 +401,14 @@
   </url>
   
   <url>
-    <loc>http://chenson.com/2019/05/15/Python%E8%AF%BB%E5%86%99Excel%E5%B0%8F%E7%BB%93/</loc>
+    <loc>http://chenson.com/2019/05/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</loc>
     
     <lastmod>2019-11-21T06:59:54.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://chenson.com/2019/05/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</loc>
+    <loc>http://chenson.com/2019/05/15/Python%E8%AF%BB%E5%86%99Excel%E5%B0%8F%E7%BB%93/</loc>
     
     <lastmod>2019-11-21T06:59:54.000Z</lastmod>
     

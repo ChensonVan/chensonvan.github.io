@@ -156,72 +156,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Docker常用指令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/13/Docker常用指令/">Docker常用指令</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/13/Docker常用指令/" class="archive-article-date">
-  	<time datetime="2018-03-13T05:12:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-docker镜像构建"><a href="#1-docker镜像构建" class="headerlink" title="1. docker镜像构建"></a>1. docker镜像构建</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd analyze-server</span><br><span class="line">docker build -t analyze-server .</span><br></pre></td></tr></table></figure>
-<h3 id="2-创建"><a href="#2-创建" class="headerlink" title="2. 创建"></a>2. 创建</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker create analyze-server # 创建容器，但处于停止状态</span><br><span class="line">docker run analyze-server    # 创建并启动容器</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 启动容器，并挂载文件</span><br><span class="line">docker run --name=analyze -p 5000:5000 -p 8888:8888 -p 6006:6006 -v /Users/Chenson/Github/analyze-server/app/:/analyze-server/app/ -v /Users/Chenson/:/home/ -d analyze-server</span><br></pre></td></tr></table></figure>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/13/Docker常用指令/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-Hadoop2-7-4完全分布式集群搭建和测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -915,6 +849,111 @@ h_\theta(x) = g(\theta^T x)</script><p><img src="http://on8r6i4gg.bkt.clouddn.co
 
 
   
+    <article id="post-Spark笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/10/Spark笔记/">Spark笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/10/Spark笔记/" class="archive-article-date">
+  	<time datetime="2017-04-10T06:55:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Resilient-Distributed-Dataset-RDD"><a href="#1-Resilient-Distributed-Dataset-RDD" class="headerlink" title="1. Resilient Distributed Dataset (RDD)"></a>1. Resilient Distributed Dataset (RDD)</h3><p>RDDs are <strong>fault-tolerant, parallel data structures</strong> that let users <strong>explicitly persist intermediate results in memory</strong>, control their partitioning <strong>to optimize data placement</strong>, and manipulate them using a rich set of operators.</p>
+<p>RDD是一个容错的、并行的数据结构，可以让用户显示地将数据存储到磁盘和内存中，并能控制数据的分区。</p>
+<ul>
+<li><p><strong>Resilient</strong></p>
+<p>RDD is a <strong>fundamental data structure</strong> of Spark. It is an immutable distributed collection of objects. Each dataset in <strong>RDD is divided into logical partitions</strong>, which may be computed on different nodes of the cluster. Formally, an RDD is a <strong>read-only, partitioned collection of records</strong>. Rdds can be created throught <strong>deterministic operations on either data on stable storage or other RDDs</strong>. RDD is a <strong>fault-tolerant collection of elements</strong> that can be operated on in parallel.</p>
+<p>There two ways to create RDDs.</p>
+<ul>
+<li><p><strong>Parallelizing</strong></p>
+<p>parallelizing an existing collection in your driver program</p>
+</li>
+<li><p><strong>Referencing</strong></p>
+<p>reference a dataset in an external storage system, such as  a shared file system, HDFS, HBase, or ant data source offering a Hadoop Input Format</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Spark提供了RDD上的两类操作：transformation 和 action</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/34167769.jpg" alt></p>
+<ul>
+<li><p><strong>Transformation</strong>: return a new RDD</p>
+<p>当对RDD进行transformation操作的时候，这些操作不会立刻就执行，而是将这些操作记录下来。如果有多个transformation操作时，每一次变换都是一个接着一个，此时就形成了一个<strong>有向无环图</strong>。这个图就是<strong>数据容错</strong>的关键所在。如果出现数据丢失的时候，只需要查找这个图就能根据丢失的RDD进行数据恢复</p>
+</li>
+<li><p><strong>Action</strong>: evaluates and returns a new value</p>
+<p>当对RDD做action操作的时候，这类action一般作用是返回一个值或者数组等，或者是将数据持久化到磁盘当中。此时执行action，会真正的提交job，执行之前的transformation记录的DAG。执行DAG策略中，会有多个stage，每一个stage钟有多个task，这些task就会被分配到各个nodes进行执行</p>
+<p><img src="http://on8r6i4gg.bkt.clouddn.com/17-6-11/87769198.jpg" alt></p>
+<ul>
+<li><p>The difference between flatMap and Map <a href="http://backtobazics.com/big-data/spark/apache-spark-flatmap-example/" target="_blank" rel="noopener">flatMap Example</a></p>
+<p>map: 对RDD每个元素转换，将函数用于RDD中的每个元素，将返回值构成新的RDD。<br>flatMap: 对RDD每个元素转换, 然后再<strong>扁平化</strong>（即将所有对象合并为一个对象）。将函数应用于rdd之中的每一个元素，将返回的<strong>迭代器</strong>的所有内容构成新的rdd</p>
+<p><strong>Example1：</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// data 有两行数据，第一行 a b c，第二行 1 2 3</span></span><br><span class="line">scala&gt; data.map(line1 =&gt; line1.split(<span class="string">","</span>)).collect()</span><br><span class="line">res11: <span class="type">Array</span>[<span class="type">Array</span>[<span class="type">String</span>]] = <span class="type">Array</span>(<span class="type">Array</span>(a, b, c),<span class="type">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line">scala&gt; data.flatMap(line1 =&gt; line1.split(<span class="string">","</span>)).collect()</span><br><span class="line">res13: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(a, b, c, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>Example2：</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">List</span>(<span class="string">"coffee panda"</span>,<span class="string">"happy panda"</span>,<span class="string">"happiest panda party"</span>))</span><br><span class="line"></span><br><span class="line">scala&gt; rdd.map(x=&gt;x).collect</span><br><span class="line">res0: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(coffee panda, happy panda, happiest panda party) </span><br><span class="line"></span><br><span class="line">scala&gt; rdd.map(x=&gt;x.split(<span class="string">" "</span>)).collect</span><br><span class="line">res1: <span class="type">Array</span>[<span class="type">Array</span>[<span class="type">String</span>]] = <span class="type">Array</span>(<span class="type">Array</span>(coffee, panda), <span class="type">Array</span>(happy, panda), <span class="type">Array</span>(happiest, panda, party))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 相比之前，flatMap将几个array合并成了一个array</span></span><br><span class="line">scala&gt; rdd.flatMap(x=&gt;x.split(<span class="string">" "</span>)).collect</span><br><span class="line">res2: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(coffee, panda, happy, panda, happiest, panda, party)</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.backtobazics.com/spark/apache-spark-flatmap-example.gif" alt></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-References"><a href="#2-References" class="headerlink" title="2. References"></a>2. References</h3><ul>
+<li><a href="http://www.infoq.com/cn/articles/spark-core-rdd/" target="_blank" rel="noopener">理解Spark的核心RDD</a></li>
+<li><a href="http://homepage.cs.latrobe.edu.au/zhe/ZhenHeSparkRDDAPIExamples.html" target="_blank" rel="noopener">Spark RDD API Examples</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/10/Spark笔记/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
@@ -1036,10 +1075,6 @@ h_\theta(x) = g(\theta^T x)</script><p><img src="http://on8r6i4gg.bkt.clouddn.co
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -1049,6 +1084,10 @@ h_\theta(x) = g(\theta^T x)</script><p><img src="http://on8r6i4gg.bkt.clouddn.co
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1088,15 +1127,15 @@ h_\theta(x) = g(\theta^T x)</script><p><img src="http://on8r6i4gg.bkt.clouddn.co
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">进程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1160,11 +1199,11 @@ h_\theta(x) = g(\theta^T x)</script><p><img src="http://on8r6i4gg.bkt.clouddn.co
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1184,6 +1223,10 @@ h_\theta(x) = g(\theta^T x)</script><p><img src="http://on8r6i4gg.bkt.clouddn.co
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -1193,10 +1236,6 @@ h_\theta(x) = g(\theta^T x)</script><p><img src="http://on8r6i4gg.bkt.clouddn.co
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GPU</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
