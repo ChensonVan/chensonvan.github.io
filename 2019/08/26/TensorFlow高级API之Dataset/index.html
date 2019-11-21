@@ -11,13 +11,13 @@
   <link rel="dns-prefetch" href="http://chenson.com">
   <title>TensorFlow高级API之Dataset | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1 Introduction上一篇主要介绍的是tf的Estimator，属于模型部分的。这里主要讲的是Dataset相关的内容，主要是加载数据，也会讲到一些特征工程相关的。 为什么使用Dataset呢，主要考虑到以下几点  之前都是placeholder+feed-dict，低级API。某篇博主里面说feed-dict是最慢的方式【存疑，待查证】 Dataset提供了pipeline的操作方式，方">
+  <meta name="description" content="1. Introduction上一篇主要介绍的是tf的Estimator，属于模型部分的。这里主要讲的是Dataset相关的内容，主要是加载数据，也会讲到一些特征工程相关的。 为什么使用Dataset呢，主要考虑到以下几点  之前都是placeholder+feed-dict，低级API。某篇博主里面说feed-dict是最慢的方式【存疑，待查证】。适用于从python将数据喂给后端。 Datas">
 <meta name="keywords" content="TensorFlow">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TensorFlow高级API之Dataset">
 <meta property="og:url" content="http://chenson.com/2019/08/26/TensorFlow高级API之Dataset/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="1 Introduction上一篇主要介绍的是tf的Estimator，属于模型部分的。这里主要讲的是Dataset相关的内容，主要是加载数据，也会讲到一些特征工程相关的。 为什么使用Dataset呢，主要考虑到以下几点  之前都是placeholder+feed-dict，低级API。某篇博主里面说feed-dict是最慢的方式【存疑，待查证】 Dataset提供了pipeline的操作方式，方">
+<meta property="og:description" content="1. Introduction上一篇主要介绍的是tf的Estimator，属于模型部分的。这里主要讲的是Dataset相关的内容，主要是加载数据，也会讲到一些特征工程相关的。 为什么使用Dataset呢，主要考虑到以下几点  之前都是placeholder+feed-dict，低级API。某篇博主里面说feed-dict是最慢的方式【存疑，待查证】。适用于从python将数据喂给后端。 Datas">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.com/2019/08/26/TensorFlow高级API之Dataset/2019-08-26-TensorFlow高级API之Dataset/image-20190826222202854.png">
 <meta property="og:image" content="http://chenson.com/2019/08/26/TensorFlow高级API之Dataset/2019-08-26-TensorFlow高级API之Dataset/image-20190826222100176.png">
@@ -26,10 +26,10 @@
 <meta property="og:image" content="http://chenson.com/2019/08/26/TensorFlow高级API之Dataset/2019-08-26-TensorFlow高级API之Dataset/image-20190826230724486.png">
 <meta property="og:image" content="http://chenson.com/2019/08/26/TensorFlow高级API之Dataset/2019-08-26-TensorFlow高级API之Dataset/image-20190826232145189.png">
 <meta property="og:image" content="http://chenson.com/2019/08/26/TensorFlow高级API之Dataset/2019-08-26-TensorFlow高级API之Dataset/image-20190826233004125.png">
-<meta property="og:updated_time" content="2019-08-26T15:47:16.615Z">
+<meta property="og:updated_time" content="2019-11-21T06:59:54.907Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorFlow高级API之Dataset">
-<meta name="twitter:description" content="1 Introduction上一篇主要介绍的是tf的Estimator，属于模型部分的。这里主要讲的是Dataset相关的内容，主要是加载数据，也会讲到一些特征工程相关的。 为什么使用Dataset呢，主要考虑到以下几点  之前都是placeholder+feed-dict，低级API。某篇博主里面说feed-dict是最慢的方式【存疑，待查证】 Dataset提供了pipeline的操作方式，方">
+<meta name="twitter:description" content="1. Introduction上一篇主要介绍的是tf的Estimator，属于模型部分的。这里主要讲的是Dataset相关的内容，主要是加载数据，也会讲到一些特征工程相关的。 为什么使用Dataset呢，主要考虑到以下几点  之前都是placeholder+feed-dict，低级API。某篇博主里面说feed-dict是最慢的方式【存疑，待查证】。适用于从python将数据喂给后端。 Datas">
 <meta name="twitter:image" content="http://chenson.com/2019/08/26/TensorFlow高级API之Dataset/2019-08-26-TensorFlow高级API之Dataset/image-20190826222202854.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
@@ -184,13 +184,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h1><p>上一篇主要介绍的是tf的Estimator，属于模型部分的。这里主要讲的是Dataset相关的内容，主要是加载数据，也会讲到一些特征工程相关的。</p>
+        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>上一篇主要介绍的是tf的Estimator，属于模型部分的。这里主要讲的是Dataset相关的内容，主要是加载数据，也会讲到一些特征工程相关的。</p>
 <p>为什么使用Dataset呢，主要考虑到以下几点</p>
 <ul>
-<li>之前都是placeholder+feed-dict，低级API。某篇博主里面说feed-dict是最慢的方式【存疑，待查证】</li>
+<li>之前都是placeholder+feed-dict，低级API。某篇博主里面说feed-dict是最慢的方式【存疑，待查证】。适用于从python将数据喂给后端。</li>
 <li>Dataset提供了pipeline的操作方式，方便，复用性和<strong>性能</strong>也比较高，也比较适合大批量，分布式的情况【原因】。</li>
 </ul>
-<h1 id="2-加载数据"><a href="#2-加载数据" class="headerlink" title="2 加载数据"></a>2 加载数据</h1><h2 id="2-1-从numpay加载"><a href="#2-1-从numpay加载" class="headerlink" title="2.1 从numpay加载"></a>2.1 从numpay加载</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开启</span></span><br><span class="line"><span class="comment"># 且需要以开始就开启，否则会报如下错误</span></span><br><span class="line"><span class="comment"># ValueError: tf.enable_eager_execution must be called at program startup.</span></span><br><span class="line">tf.enable_eager_execution()</span><br><span class="line"></span><br><span class="line">dataset = tf.data.Dataset.from_tensor_slices(np.array([<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>, <span class="number">4.0</span>, <span class="number">5.0</span>]))</span><br><span class="line">iterator = dataset.make_one_shot_iterator()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> iterator:</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
+<h1 id="2-加载数据"><a href="#2-加载数据" class="headerlink" title="2. 加载数据"></a>2. 加载数据</h1><h2 id="2-1-从numpay加载"><a href="#2-1-从numpay加载" class="headerlink" title="2.1 从numpay加载"></a>2.1 从numpay加载</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开启</span></span><br><span class="line"><span class="comment"># 且需要以开始就开启，否则会报如下错误</span></span><br><span class="line"><span class="comment"># ValueError: tf.enable_eager_execution must be called at program startup.</span></span><br><span class="line">tf.enable_eager_execution()</span><br><span class="line"></span><br><span class="line">dataset = tf.data.Dataset.from_tensor_slices(np.array([<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>, <span class="number">4.0</span>, <span class="number">5.0</span>]))</span><br><span class="line">iterator = dataset.make_one_shot_iterator()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> iterator:</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <p><img src="/2019/08/26/TensorFlow高级API之Dataset/2019-08-26-TensorFlow高级API之Dataset/image-20190826222202854.png" alt="image-20190826222202854"></p>
 <p>如果未开启的话，就需要新建tf.session来查看上面数据的结果了，否则会报如下错</p>
@@ -200,7 +200,7 @@
 <p>符号式编程：</p>
 <p>命令式编程</p>
 </blockquote>
-<p>同时也可以将np.array以set形式输入进去，比如(feaures, labels)</p>
+<p>同时也可以将np.array以元组的形式输入进去，比如(feaures, labels)</p>
 <p><img src="/2019/08/26/TensorFlow高级API之Dataset/2019-08-26-TensorFlow高级API之Dataset/image-20190826222723938.png" alt="image-20190826222723938"></p>
 <ul>
 <li>问题：<ul>
@@ -213,7 +213,7 @@
 <p><img src="/2019/08/26/TensorFlow高级API之Dataset/2019-08-26-TensorFlow高级API之Dataset/image-20190826223353896.png" alt="image-20190826223353896"></p>
 <p>上面是最简单读取csv的方式，也有处理复杂一点的情况</p>
 <p>可以先将csv文件以text的形式读进来，在读成csv文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dataset = tf.data.TextLineDataset(CSV_PATH2)</span><br><span class="line">for i in dataset.take(2):</span><br><span class="line">    tf.decode_csv(i, record_defaults=[[_] for _ in df.select_dtypes(include=&apos;float&apos;).iloc[0].fillna(-999).values], field_delim=&apos;,&apos;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可以传一个文件的path，也可以是文件path的list</span></span><br><span class="line"><span class="comment"># 且不能带header</span></span><br><span class="line"><span class="comment"># 不能处理mixted types</span></span><br><span class="line">dataset = tf.data.TextLineDataset(CSV_PATH2)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> dataset.take(<span class="number">2</span>):</span><br><span class="line">    tf.decode_csv(i, record_defaults=[[_] <span class="keyword">for</span> _ <span class="keyword">in</span> df.select_dtypes(include=<span class="string">'float'</span>).iloc[<span class="number">0</span>].fillna(<span class="number">-999</span>).values], field_delim=<span class="string">','</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="/2019/08/26/TensorFlow高级API之Dataset/2019-08-26-TensorFlow高级API之Dataset/image-20190826230724486.png" alt="image-20190826230724486"></p>
 <p>读取的时候遇到了些坑，一直报错，然后看了<a href="https://www.tensorflow.org/api_docs/python/tf/io/decode_csv" target="_blank" rel="noopener">官方文档-decode_csv</a>里面参数介绍，一个recoder里面，所有格式必须相同，所以上面混着object/float/int的就不行了</p>
 <blockquote>
@@ -229,20 +229,24 @@
 </ul>
 </blockquote>
 <p>把不同的类型的先去了就可以了，之后再找解决方案吧。</p>
+<ul>
+<li><code>tf.data.experimental.make_csv_dataset</code>可以读混合类型的csv，可参考<a href="https://www.tensorflow.org/beta/tutorials/load_data/csv" target="_blank" rel="noopener">官方文档</a></li>
+</ul>
 <p>然后可以把这个代码封装起来，方便之后训练模型使用。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 利用dataset解析CSV文件</span></span><br><span class="line"></span><br><span class="line">_CSV_COLUMNS = [<span class="string">'field1'</span>, <span class="string">'field2'</span>, <span class="string">'field3'</span>, <span class="string">'field4'</span>]</span><br><span class="line"><span class="comment"># 必须是二维数组，否则报错</span></span><br><span class="line">_CSV_COLUMN_DEFAULTS = [[<span class="string">''</span>], [<span class="string">''</span>], [<span class="number">0.0</span>], [<span class="number">0.0</span>]]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">input_fn</span><span class="params">(data_file, shuffle=False, batch_size=<span class="number">64</span>, label_col=None, field_delim=<span class="string">'\t'</span>)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :param data_file:</span></span><br><span class="line"><span class="string">    :param shuffle:</span></span><br><span class="line"><span class="string">    :param batch_size:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_csv</span><span class="params">(value, label_col=label_col, field_delim=field_delim)</span>:</span></span><br><span class="line">        columns = tf.decode_csv(value, record_defaults=_CSV_COLUMN_DEFAULTS, field_delim=<span class="string">','</span>)</span><br><span class="line">        features = dict(zip(_CSV_COLUMNS, columns))</span><br><span class="line">        <span class="keyword">if</span> label_col:</span><br><span class="line">            labels = features.pop(label_col)</span><br><span class="line">            <span class="keyword">return</span> features, tf.equal(labels, <span class="number">1.0</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> features</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Extract lines from input files using the Dataset API.</span></span><br><span class="line">    dataset = tf.data.TextLineDataset(data_file)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> shuffle:</span><br><span class="line">        dataset = dataset.shuffle(buffer_size=<span class="number">100000</span>)</span><br><span class="line">    </span><br><span class="line">    dataset = dataset.map(parse_csv, num_parallel_calls=<span class="number">100</span>)</span><br><span class="line">    <span class="comment"># We call repeat after shuffling, rather than before, to prevent separate</span></span><br><span class="line">    <span class="comment"># epochs from blending together.</span></span><br><span class="line">    <span class="comment"># dataset = dataset.repeat()</span></span><br><span class="line">    dataset = dataset.batch(batch_size)</span><br><span class="line">    <span class="keyword">return</span> dataset</span><br><span class="line"></span><br><span class="line">dataset = input_fn(CSV_PATH2, field_delim=<span class="string">','</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> dataset.take(<span class="number">2</span>):</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 利用dataset解析CSV文件</span></span><br><span class="line"></span><br><span class="line">_CSV_COLUMNS = [<span class="string">'field1'</span>, <span class="string">'field2'</span>, <span class="string">'field3'</span>, <span class="string">'field4'</span>]</span><br><span class="line"><span class="comment"># 解析的摸版，必须是二维数组，否则报错</span></span><br><span class="line">_CSV_COLUMN_DEFAULTS = [[<span class="string">''</span>], [<span class="string">''</span>], [<span class="number">0.0</span>], [<span class="number">0.0</span>]]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">input_fn</span><span class="params">(data_file, shuffle=False, batch_size=<span class="number">64</span>, label_col=None, field_delim=<span class="string">'\t'</span>)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :param data_file:</span></span><br><span class="line"><span class="string">    :param shuffle:</span></span><br><span class="line"><span class="string">    :param batch_size:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_csv</span><span class="params">(value, label_col=label_col, field_delim=field_delim)</span>:</span></span><br><span class="line">        columns = tf.decode_csv(value, record_defaults=_CSV_COLUMN_DEFAULTS, field_delim=<span class="string">','</span>)</span><br><span class="line">        features = dict(zip(_CSV_COLUMNS, columns))</span><br><span class="line">        <span class="keyword">if</span> label_col:</span><br><span class="line">            labels = features.pop(label_col)</span><br><span class="line">            <span class="keyword">return</span> features, tf.equal(labels, <span class="number">1.0</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> features</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Extract lines from input files using the Dataset API.</span></span><br><span class="line">    dataset = tf.data.TextLineDataset(data_file)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> shuffle:</span><br><span class="line">        dataset = dataset.shuffle(buffer_size=<span class="number">100000</span>)</span><br><span class="line">    </span><br><span class="line">    dataset = dataset.map(parse_csv, num_parallel_calls=<span class="number">100</span>)</span><br><span class="line">    <span class="comment"># We call repeat after shuffling, rather than before, to prevent separate</span></span><br><span class="line">    <span class="comment"># epochs from blending together.</span></span><br><span class="line">    <span class="comment"># dataset = dataset.repeat()</span></span><br><span class="line">    dataset = dataset.batch(batch_size)</span><br><span class="line">    <span class="keyword">return</span> dataset</span><br><span class="line"></span><br><span class="line">dataset = input_fn(CSV_PATH2, field_delim=<span class="string">','</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> dataset.take(<span class="number">2</span>):</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
 <p><img src="/2019/08/26/TensorFlow高级API之Dataset/2019-08-26-TensorFlow高级API之Dataset/image-20190826232145189.png" alt="image-20190826232145189"></p>
 <p>那么回顾一下之前遇到混合类型数据的csv，如果再复杂一点的情况呢，比如里面某一列是个json数据，那么</p>
-<h1 id="3-读取数据"><a href="#3-读取数据" class="headerlink" title="3 读取数据"></a>3 读取数据</h1><p>之前是加载数据，当然也有读取看了一下里面的数据，这只是读取数据的其中一种方法。</p>
+<h1 id="3-读取数据"><a href="#3-读取数据" class="headerlink" title="3. 读取数据"></a>3. 读取数据</h1><p>之前是加载数据，当然也有读取看了一下里面的数据，这只是读取数据的其中一种方法。</p>
 <h2 id="3-1-One-shot"><a href="#3-1-One-shot" class="headerlink" title="3.1 One-shot"></a>3.1 One-shot</h2><p>one-shot很简单，就跟之前使用的一样</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">x = np.random.sample((<span class="number">100</span>,<span class="number">2</span>))</span><br><span class="line"><span class="comment"># make a dataset from a numpy array</span></span><br><span class="line">dataset = tf.data.Dataset.from_tensor_slices(x)</span><br><span class="line"><span class="comment"># create the iterator</span></span><br><span class="line">iter = dataset.make_one_shot_iterator()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 和正常的迭代器一样，可以用get_next()获取下一个</span></span><br><span class="line"><span class="comment"># create the iterator</span></span><br><span class="line">iter = dataset.make_one_shot_iterator()</span><br><span class="line">el = iter.get_next()</span><br></pre></td></tr></table></figure>
 <p><img src="/2019/08/26/TensorFlow高级API之Dataset/2019-08-26-TensorFlow高级API之Dataset/image-20190826233004125.png" alt="image-20190826233004125"></p>
 <h2 id="3-2-Initializable"><a href="#3-2-Initializable" class="headerlink" title="3.2 Initializable"></a>3.2 Initializable</h2><p>之前有提到，加载数据的时候也可以从placeholder中加载，但是并没有实际喂入数据，这边跟之前用feed_dict差不多。但是这里也和上面一样，placeholder不支持eager模式</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># using a placeholder</span></span><br><span class="line">x = tf.placeholder(tf.float32, shape=[<span class="literal">None</span>,<span class="number">2</span>])</span><br><span class="line">dataset = tf.data.Dataset.from_tensor_slices(x)</span><br><span class="line">data = np.random.sample((<span class="number">100</span>,<span class="number">2</span>))</span><br><span class="line">iter = dataset.make_initializable_iterator() <span class="comment"># create the iterator</span></span><br><span class="line">el = iter.get_next()</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="comment"># feed the placeholder with data</span></span><br><span class="line">    sess.run(iter.initializer, feed_dict=&#123; x: data &#125;) </span><br><span class="line">    print(sess.run(el)) <span class="comment"># output [ 0.52374458  0.71968478]</span></span><br></pre></td></tr></table></figure>
-<h2 id="3-3-Reinitializable"><a href="#3-3-Reinitializable" class="headerlink" title="3.3 Reinitializable"></a>3.3 Reinitializable</h2><h2 id="3-4-Feedable"><a href="#3-4-Feedable" class="headerlink" title="3.4 Feedable"></a>3.4 Feedable</h2><h1 id="4-使用数据"><a href="#4-使用数据" class="headerlink" title="4 使用数据"></a>4 使用数据</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># using two numpy arrays</span></span><br><span class="line">features, labels = (np.array([np.random.sample((<span class="number">100</span>,<span class="number">2</span>))]), </span><br><span class="line">                    np.array([np.random.sample((<span class="number">100</span>,<span class="number">1</span>))]))</span><br><span class="line">dataset = tf.data.Dataset.from_tensor_slices((features,labels)).repeat().batch(BATCH_SIZE)</span><br><span class="line"></span><br><span class="line">iter = dataset.make_one_shot_iterator()</span><br><span class="line">x, y = iter.get_next()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># make a simple model</span></span><br><span class="line">net = tf.layers.dense(x, <span class="number">8</span>) <span class="comment"># pass the first value from iter.get_next() as input</span></span><br><span class="line">net = tf.layers.dense(net, <span class="number">8</span>)</span><br><span class="line">prediction = tf.layers.dense(net, <span class="number">1</span>)</span><br><span class="line">loss = tf.losses.mean_squared_error(prediction, y) <span class="comment"># pass the second value from iter.get_net() as label</span></span><br><span class="line">train_op = tf.train.AdamOptimizer().minimize(loss)</span><br></pre></td></tr></table></figure>
-<h1 id="5-References"><a href="#5-References" class="headerlink" title="5 References"></a>5 References</h1><ul>
+<h2 id="3-3-Reinitializable"><a href="#3-3-Reinitializable" class="headerlink" title="3.3 Reinitializable"></a>3.3 Reinitializable</h2><h2 id="3-4-Feedable"><a href="#3-4-Feedable" class="headerlink" title="3.4 Feedable"></a>3.4 Feedable</h2><h1 id="4-使用数据"><a href="#4-使用数据" class="headerlink" title="4. 使用数据"></a>4. 使用数据</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># using two numpy arrays</span></span><br><span class="line">features, labels = (np.array([np.random.sample((<span class="number">100</span>,<span class="number">2</span>))]), </span><br><span class="line">                    np.array([np.random.sample((<span class="number">100</span>,<span class="number">1</span>))]))</span><br><span class="line">dataset = tf.data.Dataset.from_tensor_slices((features,labels)).repeat().batch(BATCH_SIZE)</span><br><span class="line"></span><br><span class="line">iter = dataset.make_one_shot_iterator()</span><br><span class="line">x, y = iter.get_next()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># make a simple model</span></span><br><span class="line">net = tf.layers.dense(x, <span class="number">8</span>) <span class="comment"># pass the first value from iter.get_next() as input</span></span><br><span class="line">net = tf.layers.dense(net, <span class="number">8</span>)</span><br><span class="line">prediction = tf.layers.dense(net, <span class="number">1</span>)</span><br><span class="line">loss = tf.losses.mean_squared_error(prediction, y) <span class="comment"># pass the second value from iter.get_net() as label</span></span><br><span class="line">train_op = tf.train.AdamOptimizer().minimize(loss)</span><br></pre></td></tr></table></figure>
+<h1 id="5-特征工程"><a href="#5-特征工程" class="headerlink" title="5. 特征工程"></a>5. 特征工程</h1><h1 id="5-References"><a href="#5-References" class="headerlink" title="5 References"></a>5 References</h1><ul>
 <li><a href="https://towardsdatascience.com/how-to-use-dataset-in-tensorflow-c758ef9e4428" target="_blank" rel="noopener">How to use Dataset in TensorFlow</a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/io/decode_csv" target="_blank" rel="noopener">tf.io.decode_csv</a></li>
+<li><a href="https://www.tensorflow.org/beta/tutorials/load_data/csv" target="_blank" rel="noopener">用 tf.data 加载 CSV 数据</a></li>
 </ul>
 
       
@@ -352,6 +356,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/11/21/test-post/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          test_post
+        
+      </div>
+    </a>
   
   
     <a href="/2019/08/25/TensorFlow分布式训练初探/" id="article-nav-older" class="article-nav-link-wrap">
@@ -508,6 +521,10 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -517,10 +534,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,15 +569,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">进程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -580,7 +597,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -600,10 +617,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
               </li>
              
@@ -620,6 +633,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -628,15 +645,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -656,10 +669,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -669,6 +678,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GPU</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">

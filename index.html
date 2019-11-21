@@ -156,6 +156,60 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-test-post" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/21/test-post/">test_post</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/21/test-post/" class="archive-article-date">
+  	<time datetime="2019-11-21T04:25:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Title"><a href="#1-Title" class="headerlink" title="1. Title"></a>1. Title</h3>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/21/test-post/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-TensorFlow高级API之Dataset" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -176,13 +230,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h1><p>上一篇主要介绍的是tf的Estimator，属于模型部分的。这里主要讲的是Dataset相关的内容，主要是加载数据，也会讲到一些特征工程相关的。</p>
+        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>上一篇主要介绍的是tf的Estimator，属于模型部分的。这里主要讲的是Dataset相关的内容，主要是加载数据，也会讲到一些特征工程相关的。</p>
 <p>为什么使用Dataset呢，主要考虑到以下几点</p>
 <ul>
-<li>之前都是placeholder+feed-dict，低级API。某篇博主里面说feed-dict是最慢的方式【存疑，待查证】</li>
+<li>之前都是placeholder+feed-dict，低级API。某篇博主里面说feed-dict是最慢的方式【存疑，待查证】。适用于从python将数据喂给后端。</li>
 <li>Dataset提供了pipeline的操作方式，方便，复用性和<strong>性能</strong>也比较高，也比较适合大批量，分布式的情况【原因】。</li>
 </ul>
-<h1 id="2-加载数据"><a href="#2-加载数据" class="headerlink" title="2 加载数据"></a>2 加载数据</h1><h2 id="2-1-从numpay加载"><a href="#2-1-从numpay加载" class="headerlink" title="2.1 从numpay加载"></a>2.1 从numpay加载</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开启</span></span><br><span class="line"><span class="comment"># 且需要以开始就开启，否则会报如下错误</span></span><br><span class="line"><span class="comment"># ValueError: tf.enable_eager_execution must be called at program startup.</span></span><br><span class="line">tf.enable_eager_execution()</span><br><span class="line"></span><br><span class="line">dataset = tf.data.Dataset.from_tensor_slices(np.array([<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>, <span class="number">4.0</span>, <span class="number">5.0</span>]))</span><br><span class="line">iterator = dataset.make_one_shot_iterator()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> iterator:</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
+<h1 id="2-加载数据"><a href="#2-加载数据" class="headerlink" title="2. 加载数据"></a>2. 加载数据</h1><h2 id="2-1-从numpay加载"><a href="#2-1-从numpay加载" class="headerlink" title="2.1 从numpay加载"></a>2.1 从numpay加载</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开启</span></span><br><span class="line"><span class="comment"># 且需要以开始就开启，否则会报如下错误</span></span><br><span class="line"><span class="comment"># ValueError: tf.enable_eager_execution must be called at program startup.</span></span><br><span class="line">tf.enable_eager_execution()</span><br><span class="line"></span><br><span class="line">dataset = tf.data.Dataset.from_tensor_slices(np.array([<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>, <span class="number">4.0</span>, <span class="number">5.0</span>]))</span><br><span class="line">iterator = dataset.make_one_shot_iterator()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> iterator:</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
         
       
 
@@ -794,82 +848,6 @@
 
 
   
-    <article id="post-遗传算法初探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/09/遗传算法初探/">遗传算法初探</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/09/遗传算法初探/" class="archive-article-date">
-  	<time datetime="2019-04-09T11:37:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-Genetic-Algorithm"><a href="#1-Genetic-Algorithm" class="headerlink" title="1. Genetic Algorithm"></a>1. Genetic Algorithm</h3><ul>
-<li><p>遗传算法 (genetic algorithm)</p>
-</li>
-<li><p>进化策略 (evolution strategy)</p>
-</li>
-<li><p>遗传规划 (genetic programming) / 进化规划 (evolution programming)</p>
-<p>GP常用于关于模型结构的自动化设计和优化的领域，如电路设计、机器结构设计和生物学中的药物分子设计等。</p>
-<p>在数据相关领域，常用于符号回归、特征提取和选择等。</p>
-</li>
-</ul>
-<p><img src="/2019/04/09/遗传算法初探/2019-04-09-遗传算法初探/v2-2e27991ceec71a1941c8cb3e4897486c_hd.jpg" alt="img"></p>
-<p><del>遗传算法并不是用来优化模型参数的</del></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Genetic Algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/09/遗传算法初探/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -991,6 +969,10 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -1000,10 +982,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1039,15 +1017,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">进程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1063,7 +1045,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1083,10 +1065,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
               </li>
              
@@ -1103,6 +1081,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -1111,15 +1093,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1139,10 +1117,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -1152,6 +1126,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GPU</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
