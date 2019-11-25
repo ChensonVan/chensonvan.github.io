@@ -411,18 +411,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-三要素"><a href="#1-三要素" class="headerlink" title="1. 三要素"></a>1. 三要素</h3><p>当一开始接触Andrew在Coursera上的ML公开课的时候，对线性回归和逻辑回归这两种模型有个大体的认识。但是在上完cs229的前三节课，初步了解了这两种模型背后的数学模型，Linear Regression和Logistic Regression背后的概率分布，了解到了这两种概率分布其实只是exponential family中的特例。但同时也开始对一些概念性的东西感觉很模糊，所以觉得有必要好好整理一下这部分的内容。</p>
-<h4 id="1-1-Hypothesis"><a href="#1-1-Hypothesis" class="headerlink" title="1. 1 Hypothesis"></a>1. 1 Hypothesis</h4><p>首先对于样本数据，输入x和输出y之间是通过Target function在转换的，也就是 Target function f(x) = y。但是我们并不知道这个f(x)都是怎样的，所以我们假设了这么一个Hypothesis function去模拟这个Target function，使得我们用同样的输入<strong>x</strong>会的一个预测值<strong>y’</strong>，使得这个<strong>y’</strong>不断逼近真实值<strong>y</strong>。</p>
-<ul>
-<li><p><strong>Linear Regression</strong> </p>
+        <h1 id="1-三要素"><a href="#1-三要素" class="headerlink" title="1. 三要素"></a>1. 三要素</h1><p>当一开始接触Andrew在Coursera上的ML公开课的时候，对线性回归和逻辑回归这两种模型有个大体的认识。但是在上完cs229的前三节课，初步了解了这两种模型背后的数学模型，Linear Regression和Logistic Regression背后的概率分布，了解到了这两种概率分布其实只是exponential family中的特例。但同时也开始对一些概念性的东西感觉很模糊，所以觉得有必要好好整理一下这部分的内容。</p>
+<h2 id="1-1-Hypothesis"><a href="#1-1-Hypothesis" class="headerlink" title="1. 1 Hypothesis"></a>1. 1 Hypothesis</h2><p>首先对于样本数据，输入x和输出$\hat y$之间是通过Target function在转换的，也就是 Target function f(x) = $\hat y$。但是我们并不知道这个f(x)都是怎样的，所以我们假设了这么一个Hypothesis function去模拟这个Target function，使得我们用同样的输入x会的一个预测值$\hat y$，使得这个不$\hat y$断逼近真实值y。</p>
+<h3 id="1-1-1-Linear-Regression"><a href="#1-1-1-Linear-Regression" class="headerlink" title="1.1.1 Linear Regression"></a>1.1.1 Linear Regression</h3><script type="math/tex; mode=display">
+H(x) = \sum_{i=0}^n \theta_i x_i = \theta^Tx</script><h3 id="1-1-2-Logistic-Regression"><a href="#1-1-2-Logistic-Regression" class="headerlink" title="1.1.2 Logistic Regression"></a>1.1.2 Logistic Regression</h3><script type="math/tex; mode=display">
+H(x) = g(\theta^Tx) = \frac 1 {1 + e^{-\theta^Tx}} \tag{1}</script><h4 id="Logit"><a href="#Logit" class="headerlink" title="Logit"></a>Logit</h4><p>上面公式(1)等价于（即log odds，<strong>logit</strong>）</p>
 <script type="math/tex; mode=display">
-H(x) = \sum_{i=0}^n \theta_i x_i = \theta^Tx</script></li>
-<li><p><strong>Logistic Regression</strong></p>
-<script type="math/tex; mode=display">
-H(x) = g(\theta^Tx) = \frac 1 {1 + e^{-\theta^Tx}}</script><p>等价于（即log odds，<strong>logit</strong>）</p>
-<script type="math/tex; mode=display">
-ln \frac y {1 - y} = \theta^T x = ln \frac {p(y=1| x; \theta)} {p(y=0| x; \theta)}</script></li>
-</ul>
+\ln \frac y {1 - y} = \theta^T x = \ln \frac {p(y=1| x; \theta)} {p(y=0| x; \theta)}  \tag{2}</script>
         
       
 
@@ -1038,6 +1033,10 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -1047,18 +1046,6 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1074,7 +1061,15 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1102,10 +1097,6 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
@@ -1115,6 +1106,10 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1134,10 +1129,6 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
@@ -1150,7 +1141,11 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1162,11 +1157,7 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1186,7 +1177,15 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1202,15 +1201,23 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1234,22 +1241,6 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
@@ -1263,6 +1254,10 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
             
             <div class="clearfix"></div>

@@ -44,7 +44,7 @@
 <meta property="og:image" content="http://p1.bqimg.com/567571/4cfa626219a53d63.png">
 <meta property="og:image" content="http://p1.bpimg.com/567571/cf422e75a9c888b6.png">
 <meta property="og:image" content="http://p1.bpimg.com/567571/2b3eb0efbd8d719a.png">
-<meta property="og:updated_time" content="2019-11-21T06:59:54.000Z">
+<meta property="og:updated_time" content="2019-11-24T15:55:41.060Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Machine Learning - Linear Regression and Logistic Regression">
 <meta name="twitter:description" content="1. 三要素当一开始接触Andrew在Coursera上的ML公开课的时候，对线性回归和逻辑回归这两种模型有个大体的认识。但是在上完cs229的前三节课，初步了解了这两种模型背后的数学模型，Linear Regression和Logistic Regression背后的概率分布，了解到了这两种概率分布其实只是exponential family中的特例。但同时也开始对一些概念性的东西感觉很模糊，所">
@@ -202,65 +202,123 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-三要素"><a href="#1-三要素" class="headerlink" title="1. 三要素"></a>1. 三要素</h3><p>当一开始接触Andrew在Coursera上的ML公开课的时候，对线性回归和逻辑回归这两种模型有个大体的认识。但是在上完cs229的前三节课，初步了解了这两种模型背后的数学模型，Linear Regression和Logistic Regression背后的概率分布，了解到了这两种概率分布其实只是exponential family中的特例。但同时也开始对一些概念性的东西感觉很模糊，所以觉得有必要好好整理一下这部分的内容。</p>
-<h4 id="1-1-Hypothesis"><a href="#1-1-Hypothesis" class="headerlink" title="1. 1 Hypothesis"></a>1. 1 Hypothesis</h4><p>首先对于样本数据，输入x和输出y之间是通过Target function在转换的，也就是 Target function f(x) = y。但是我们并不知道这个f(x)都是怎样的，所以我们假设了这么一个Hypothesis function去模拟这个Target function，使得我们用同样的输入<strong>x</strong>会的一个预测值<strong>y’</strong>，使得这个<strong>y’</strong>不断逼近真实值<strong>y</strong>。</p>
-<ul>
-<li><p><strong>Linear Regression</strong> </p>
+        <h1 id="1-三要素"><a href="#1-三要素" class="headerlink" title="1. 三要素"></a>1. 三要素</h1><p>当一开始接触Andrew在Coursera上的ML公开课的时候，对线性回归和逻辑回归这两种模型有个大体的认识。但是在上完cs229的前三节课，初步了解了这两种模型背后的数学模型，Linear Regression和Logistic Regression背后的概率分布，了解到了这两种概率分布其实只是exponential family中的特例。但同时也开始对一些概念性的东西感觉很模糊，所以觉得有必要好好整理一下这部分的内容。</p>
+<h2 id="1-1-Hypothesis"><a href="#1-1-Hypothesis" class="headerlink" title="1. 1 Hypothesis"></a>1. 1 Hypothesis</h2><p>首先对于样本数据，输入x和输出$\hat y$之间是通过Target function在转换的，也就是 Target function f(x) = $\hat y$。但是我们并不知道这个f(x)都是怎样的，所以我们假设了这么一个Hypothesis function去模拟这个Target function，使得我们用同样的输入x会的一个预测值$\hat y$，使得这个不$\hat y$断逼近真实值y。</p>
+<h3 id="1-1-1-Linear-Regression"><a href="#1-1-1-Linear-Regression" class="headerlink" title="1.1.1 Linear Regression"></a>1.1.1 Linear Regression</h3><script type="math/tex; mode=display">
+H(x) = \sum_{i=0}^n \theta_i x_i = \theta^Tx</script><h3 id="1-1-2-Logistic-Regression"><a href="#1-1-2-Logistic-Regression" class="headerlink" title="1.1.2 Logistic Regression"></a>1.1.2 Logistic Regression</h3><script type="math/tex; mode=display">
+H(x) = g(\theta^Tx) = \frac 1 {1 + e^{-\theta^Tx}} \tag{1}</script><h4 id="Logit"><a href="#Logit" class="headerlink" title="Logit"></a>Logit</h4><p>上面公式(1)等价于（即log odds，<strong>logit</strong>）</p>
 <script type="math/tex; mode=display">
-H(x) = \sum_{i=0}^n \theta_i x_i = \theta^Tx</script></li>
-<li><p><strong>Logistic Regression</strong></p>
+\ln \frac y {1 - y} = \theta^T x = \ln \frac {p(y=1| x; \theta)} {p(y=0| x; \theta)}  \tag{2}</script><a id="more"></a>
+<p>公式(1)的推导过程如下</p>
 <script type="math/tex; mode=display">
-H(x) = g(\theta^Tx) = \frac 1 {1 + e^{-\theta^Tx}}</script><p>等价于（即log odds，<strong>logit</strong>）</p>
+\begin{align}
+y =& \frac 1 {1 + e^{-\theta^Tx}}  \\ 
+=& \frac {1+e^{-\theta^Tx} - e^{-\theta^Tx}} {1+e^{-\theta^Tx}} \\
+=& 1 - \frac {e^{-\theta^Tx}} {1+e^{-\theta^Tx}}
+\end{align}</script><p>此时有</p>
 <script type="math/tex; mode=display">
-ln \frac y {1 - y} = \theta^T x = ln \frac {p(y=1| x; \theta)} {p(y=0| x; \theta)}</script></li>
-</ul>
-<a id="more"></a>
-<h4 id="1-2-Cost-function"><a href="#1-2-Cost-function" class="headerlink" title="1. 2 Cost function"></a>1. 2 Cost function</h4><p>Cost function呢，实际上也可以叫做Error function，就是用我们上面假设的Hypothe function所预测出来的值<strong>y’</strong>和真实值<strong>y</strong>之间的误差。而我们需要做的是根据假设出的Hypothesis function，取一个合适的权重值，即theta的值，使其取的一个较低的cost，也就是这预测值与真实值之间的误差最小。</p>
+1-y = \frac {e^{-\theta^Tx}} {1 + e^{-\theta^Tx}}</script><p>此时用$\frac {y} {1-y}$，且将上述的式子代入到里面，则有</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\frac {y} {1-y} =& \frac {\frac 1 {1 + e^{-\theta^Tx}}} {\frac {e^{-\theta^Tx}} {1 + e^{-\theta^Tx}}} \\
+=& \frac 1 {e^{-\theta^Tx}} \\
+=& e^{\theta^Tx}
+\end{align}</script><p>两边同时取以e为底的对数，此时有</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\ln {\frac y {1-y}} =&  \ln {e^{\theta^Tx}} \\
+=& \theta^Tx
+\end{align}</script><h4 id="似然函数"><a href="#似然函数" class="headerlink" title="似然函数"></a>似然函数</h4><p>根据上面公式，有如下假设</p>
+<script type="math/tex; mode=display">
+\begin{align}
+p(y^{(i)}=1|x^{(i)};\theta) =& h_{\theta}(x^{(i)}) \\
+p(y^{(i)}=0|x^{(i)};\theta) =& 1- h_{\theta}(x^{(i)}) \\
+p(y^{(i)}|x^{(i)};\theta) =& h_\theta(x^{(i)})^{y^{(i)}} \cdot (1-h_\theta(x^{(i)}))^{(1-y^{(i)})}
+\end{align}</script><p>当$y_i$ = 0 时候有</p>
+<script type="math/tex; mode=display">
+\begin{align}
+p(y^{(i)}=0|x^{(i)};\theta) =& h_\theta(x^{(i)})^{0} \cdot (1-h_\theta(x^{(i)}))^{(1-0)} \\
+=&1-h_\theta(x^{(i)})
+\end{align}</script><p>当$y_i$ = 1 时候有</p>
+<script type="math/tex; mode=display">
+\begin{align}p(y^{(i)}=1|x^{(i)};\theta) =& h_\theta(x^{(i)})^{1} \cdot (1-h_\theta(x^{(i)}))^{(1-1)} \\=& h_\theta(x^{(i)})\end{align}</script><p>此时可以写出对于所有样本的似然函数</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathcal L(\theta) =& \prod_{i=1}^m p(y^{(i)}|x^{(i)};\theta) \\
+=& \prod_{i=1}^m h_\theta(x^{(i)})^{y^{(i)}} \cdot (1-h_\theta(x^{(i)}))^{(1-y^{(i)})}
+\end{align}</script><p>两边同时取对数，此时有</p>
+<script type="math/tex; mode=display">
+\begin{align}
+L(\theta) =& \log(\mathcal L(\theta)) \\
+=& \log(\prod_{i=1}^m h_\theta(x^{(i)})^{y^{(i)}} \cdot (1-h_\theta(x^{(i)}))^{(1-y^{(i)})}) \\
+=& \sum_{i=1}^m \log(h_\theta(x^{(i)})^{y^{(i)}} + (1-h_\theta(x^{(i)}))^{(1-y^{(i)})}) \\
+=& \sum_{i=1}^m y^{(i)}\log(h_\theta(x^{(i)}) + (1-y^{(i)})(1-h_\theta(x^{(i)})))
+\end{align}</script><h2 id="1-2-Cost-function"><a href="#1-2-Cost-function" class="headerlink" title="1. 2 Cost function"></a>1. 2 Cost function</h2><p>Cost function呢，实际上也可以叫做Error function，就是用我们上面假设的Hypothe function所预测出来的值$\hat y$和真实值y之间的误差。而我们需要做的是根据假设出的Hypothesis function，取一个合适的权重值，即theta的值，使其取的一个较低的cost，也就是这预测值与真实值之间的误差最小。</p>
 <ul>
 <li><p><strong>Ordinary Least Squares</strong> (Square Loss Function)</p>
 <p>常用的方法是最小二乘法</p>
 </li>
 </ul>
 <script type="math/tex; mode=display">
-J(\theta) = \frac 1 2 \sum\_{i=i}^m (h\_\theta(x^{(i)}) - y^{(i)})^2</script><p>​    当然我们也可以从概率的角度来理解这个问题</p>
+J(\theta) = \frac 1 2 \sum_{i=i}^m (h_\theta(x^{(i)}) - y^{(i)})^2</script><p>​    当然我们也可以从概率的角度来理解这个问题</p>
 <script type="math/tex; mode=display">
-y^{(i)} = h_\theta(x^{(i)}) + \epsilon^{(i)}</script><p>​    这里的<strong>ϵ</strong>是我们预测值与实际值之间的误差，这个问题我们会留到后面<strong>重点讲解</strong>。    </p>
+y^{(i)} = h_\theta(x^{(i)}) + \epsilon^{(i)}</script><p>​    这里的$\epsilon$是我们预测值与实际值之间的误差，这个问题我们会留到后面<strong>重点讲解</strong>。    </p>
 <ul>
-<li><strong>0-1 Loss Function</strong></li>
-<li><strong>Absolute Loss Function</strong></li>
-<li><strong>Log Loss Function</strong></li>
+<li><p><strong>0-1 Loss Function</strong></p>
+<script type="math/tex; mode=display">
+l(h_\theta(x^{(i)}), y^{(i)}) = -y^{(i)}\log(h_\theta(x^{(i)})) - (1-y^{(i)})\log(1 - h_\theta(x^{(i)}))</script><p>当$y_i$ = 0 时候有</p>
+<script type="math/tex; mode=display">
+\begin {align}
+l(h_\theta(x^{(i)}), y^{(i)}=0) =& -0\log(h_\theta(x^{(i)})) - (1-0)\log(1 - h_\theta(x^{(i)}))\\
+=&\log(1-h_\theta(x^{(i)}))
+\end {align}</script><p>当$y_i$ = 1 时候有</p>
+<script type="math/tex; mode=display">
+\begin {align}
+l(h_\theta(x^{(i)}), y^{(i)}=0) =& -1\log(h_\theta(x^{(i)})) - (1-1)\log(1 - h_\theta(x^{(i)}))\\
+=&-\log(h_\theta(x^{(i)}))
+\end {align}</script><p>则对于全部样本的损失函数有</p>
+<script type="math/tex; mode=display">
+J(\theta) = -\frac 1 m\sum_{i=1}^m [y^{(i)}\log(h_\theta(x^{(i)})) + (1-y^{(i)})log(1-h_\theta(x^{(i)}))]</script><p><strong>仔细看看这公式，是不是和之前的最大似然函数基本一致？所以在这种情况下，有最大化似然函数和最小化损失函数是等下的。</strong></p>
+</li>
+<li><p><strong>Absolute Loss Function</strong></p>
+</li>
+<li><p><strong>Log Loss Function</strong></p>
+</li>
 </ul>
-<h4 id="1-3-Algorithm"><a href="#1-3-Algorithm" class="headerlink" title="1.3 Algorithm"></a>1.3 Algorithm</h4><p>至于怎么使得上面的cost function最小呢，因为对于某些数据，其features有成千上百个，我们很难去找到这个最小的极值点，使得cost function最下，所以这个Algorithm就是用来找cost function的最小值的。常用的方法有如下</p>
+<h2 id="1-3-Otimization-Algorithm"><a href="#1-3-Otimization-Algorithm" class="headerlink" title="1.3 Otimization Algorithm"></a>1.3 Otimization Algorithm</h2><p>至于怎么使得上面的cost function最小呢，因为对于某些数据，其features有成千上百个，我们很难去找到这个最小的极值点，使得cost function最下，所以这个Algorithm就是优化函数，用来找cost function的最小值的。常用的方法有如下</p>
 <ul>
 <li><p><strong>Gradient Descent</strong></p>
 <p>在梯度下降中，我们采用的是 <strong>LMS update rules</strong>(Least Mean Squares)</p>
 <script type="math/tex; mode=display">
-\theta\_j := \theta\_j + \alpha(y^{(i)} - h\_\theta(x^{(i)})) x\_j^{(i)} 
+\theta_j := \theta_j + \alpha(y^{(i)} - h_\theta(x^{(i)})) x_j^{(i)} 
 = \alpha  e^{(i)}  x^{(i)}</script><p><img src="http://i1.piimg.com/567571/3e44280c5f9a481a.png" alt></p>
 <p>当我们的预测值与实际值之前的误差<strong>ϵ</strong>很小时，我们就只需要对<strong>θ</strong>做出很小的调整，反之，说明当前的<strong>θ</strong>不对，需要调整的幅度比较大。直到最后收敛为止。</p>
 <p><img src="http://p1.bpimg.com/567571/4102a28822e8d82d.png" alt></p>
 <p>上面Repeat中的步骤实际是等同于cost function对<strong>θ</strong>求导的过程，所以为了保证收敛的效果，cost function应该是要 convex fuction，就不会导致停留在了local optim点。</p>
 <p>推导过程如下：</p>
 <p><img src="http://p1.bqimg.com/567571/ac365873a2c41db1.png" alt></p>
-<p>​</p>
-<p>可视化后大概的过程如下：</p>
-<p><img src="http://p1.bpimg.com/567571/df563668437f9cd2.png" alt></p>
-<p><img src="http://p1.bqimg.com/567571/4d973690738dbd07.png" alt></p>
-<p>根据对于哪些<strong>θ</strong>求导，Gradient Descent还可以继续分成不同的几种方法</p>
+</li>
+</ul>
+<p>  可视化后大概的过程如下：</p>
+<p>  <img src="http://p1.bpimg.com/567571/df563668437f9cd2.png" alt></p>
+<p>  <img src="http://p1.bqimg.com/567571/4d973690738dbd07.png" alt></p>
+<p>  根据对于哪些<strong>θ</strong>求导，Gradient Descent还可以继续分成不同的几种方法</p>
 <ul>
 <li>Batch Gradient Descent</li>
 <li>Stochastic Gradient Descent</li>
 <li>Mini Batch Gradient Descent</li>
-<li>SGD with mini-batch</li>
-</ul>
+<li><p>SGD with mini-batch</p>
 <p><strong>问题：为什么下降是 - ，θ大J一定大吗？</strong></p>
 </li>
+</ul>
+<ul>
 <li><p><strong>Normal Equation</strong> (linear regression)</p>
 <p>推导过程比较复杂，需要的数学知识比较多，这里只给出结论。想要看具体推导过程的还说看cs229的第二节课吧 ：）(cs229-notes-1, p11)</p>
 <script type="math/tex; mode=display">
 \theta = (X^TX)^{-1}X^T\vec y</script><p><img src="http://i1.piimg.com/567571/921bd4bf10e2c24d.png" alt></p>
-<p>​</p>
 </li>
+</ul>
+<ul>
 <li><p><strong>Newton </strong></p>
 </li>
 <li><p><strong>BGFS</strong></p>
@@ -616,6 +674,10 @@ L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)</script></li>
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -625,18 +687,6 @@ L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -652,7 +702,15 @@ L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -680,10 +738,6 @@ L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
@@ -693,6 +747,10 @@ L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -712,10 +770,6 @@ L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
@@ -728,7 +782,11 @@ L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -740,11 +798,7 @@ L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -764,7 +818,15 @@ L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -780,15 +842,23 @@ L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -812,22 +882,6 @@ L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
@@ -841,6 +895,10 @@ L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
             
             <div class="clearfix"></div>
