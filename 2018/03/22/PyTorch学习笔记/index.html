@@ -8,24 +8,24 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="http://chenson.com">
+  <link rel="dns-prefetch" href="http://chenson.cc">
   <title>PyTorch学习笔记 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="趁着公司最近不是很忙，认真学习一下这两年比较火的PyTorch，虽然没有实打实的、认认真真的学过深度学习，但也稍微懂一点。打算先简单学习一下基本操作，搭个简单的DNN、CNN之类的。看看后面有没有时间，然后再上个吴恩达或者李飞飞的课程，补充一下理论知识。所以这篇文章就记录一些简单的概念和上手过程中可能遇到的问题。 1. 损失函数1.1 二分类问题损失函数用 criterion = nn.BCELo">
 <meta name="keywords" content="PyTorch,Deep Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PyTorch学习笔记">
-<meta property="og:url" content="http://chenson.com/2018/03/22/PyTorch学习笔记/index.html">
+<meta property="og:url" content="http://chenson.cc/2018/03/22/PyTorch学习笔记/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="趁着公司最近不是很忙，认真学习一下这两年比较火的PyTorch，虽然没有实打实的、认认真真的学过深度学习，但也稍微懂一点。打算先简单学习一下基本操作，搭个简单的DNN、CNN之类的。看看后面有没有时间，然后再上个吴恩达或者李飞飞的课程，补充一下理论知识。所以这篇文章就记录一些简单的概念和上手过程中可能遇到的问题。 1. 损失函数1.1 二分类问题损失函数用 criterion = nn.BCELo">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://chenson.com/2018/03/22/PyTorch学习笔记/2018-03-22-PyTorch学习笔记/image-20181222185412267-5476052.png">
-<meta property="og:image" content="http://chenson.com/2018/03/22/PyTorch学习笔记/2018-03-22-PyTorch学习笔记/image-20181222192121197-5477681.png">
+<meta property="og:image" content="http://chenson.cc/2018/03/22/PyTorch学习笔记/2018-03-22-PyTorch学习笔记/image-20181222185412267-5476052.png">
+<meta property="og:image" content="http://chenson.cc/2018/03/22/PyTorch学习笔记/2018-03-22-PyTorch学习笔记/image-20181222192121197-5477681.png">
 <meta property="og:updated_time" content="2019-11-21T06:59:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PyTorch学习笔记">
 <meta name="twitter:description" content="趁着公司最近不是很忙，认真学习一下这两年比较火的PyTorch，虽然没有实打实的、认认真真的学过深度学习，但也稍微懂一点。打算先简单学习一下基本操作，搭个简单的DNN、CNN之类的。看看后面有没有时间，然后再上个吴恩达或者李飞飞的课程，补充一下理论知识。所以这篇文章就记录一些简单的概念和上手过程中可能遇到的问题。 1. 损失函数1.1 二分类问题损失函数用 criterion = nn.BCELo">
-<meta name="twitter:image" content="http://chenson.com/2018/03/22/PyTorch学习笔记/2018-03-22-PyTorch学习笔记/image-20181222185412267-5476052.png">
+<meta name="twitter:image" content="http://chenson.cc/2018/03/22/PyTorch学习笔记/2018-03-22-PyTorch学习笔记/image-20181222185412267-5476052.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -305,7 +305,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2018/03/22/PyTorch学习笔记/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.cc/2018/03/22/PyTorch学习笔记/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -344,7 +344,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="PyTorch学习笔记" data-title="PyTorch学习笔记" data-url="http://chenson.com/2018/03/22/PyTorch学习笔记/"></div>
+	<div class="ds-thread" data-thread-key="PyTorch学习笔记" data-title="PyTorch学习笔记" data-url="http://chenson.cc/2018/03/22/PyTorch学习笔记/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -483,10 +483,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -496,6 +492,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -511,15 +519,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -547,11 +547,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -559,7 +555,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -579,6 +579,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
@@ -591,11 +595,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -607,7 +607,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -627,15 +631,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -651,23 +647,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -691,6 +679,22 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
@@ -704,10 +708,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
             
             <div class="clearfix"></div>

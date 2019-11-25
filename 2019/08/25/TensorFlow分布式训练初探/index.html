@@ -8,28 +8,28 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="http://chenson.com">
+  <link rel="dns-prefetch" href="http://chenson.cc">
   <title>TensorFlow分布式训练初探 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="由于工作中可能会用到简单的深度学习模型，且由于数据量巨大，可能需要分布式训练。虽然用的平台可能有现成的框架，但还是了解一下。 1. 相关介绍1.1 深度学习模型训练过程 1.2 分布式训练策略">
 <meta name="keywords" content="TensorFlow,分布式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TensorFlow分布式训练初探">
-<meta property="og:url" content="http://chenson.com/2019/08/25/TensorFlow分布式训练初探/index.html">
+<meta property="og:url" content="http://chenson.cc/2019/08/25/TensorFlow分布式训练初探/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="由于工作中可能会用到简单的深度学习模型，且由于数据量巨大，可能需要分布式训练。虽然用的平台可能有现成的框架，但还是了解一下。 1. 相关介绍1.1 深度学习模型训练过程 1.2 分布式训练策略">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://chenson.com/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/v2-7abdf3c399c6d8ed220167e1c69ddd20_hd.jpg">
-<meta property="og:image" content="http://chenson.com/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/v2-0031a1ffae793a2554e968a8f9a62bdf_hd.jpg">
-<meta property="og:image" content="http://chenson.com/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/v2-f371e1011e6c16d8df7c91b704061efe_hd.jpg">
-<meta property="og:image" content="http://chenson.com/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/v2-17bafa95fe8bba61bd3052729cc309ae_hd.jpg">
-<meta property="og:image" content="http://chenson.com/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/v2-8b4e0d0620732abf8985bed497d75401_hd.jpg">
-<meta property="og:image" content="http://chenson.com/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/image-20190824122712554.png">
+<meta property="og:image" content="http://chenson.cc/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/v2-7abdf3c399c6d8ed220167e1c69ddd20_hd.jpg">
+<meta property="og:image" content="http://chenson.cc/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/v2-0031a1ffae793a2554e968a8f9a62bdf_hd.jpg">
+<meta property="og:image" content="http://chenson.cc/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/v2-f371e1011e6c16d8df7c91b704061efe_hd.jpg">
+<meta property="og:image" content="http://chenson.cc/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/v2-17bafa95fe8bba61bd3052729cc309ae_hd.jpg">
+<meta property="og:image" content="http://chenson.cc/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/v2-8b4e0d0620732abf8985bed497d75401_hd.jpg">
+<meta property="og:image" content="http://chenson.cc/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/image-20190824122712554.png">
 <meta property="og:updated_time" content="2019-11-21T06:59:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorFlow分布式训练初探">
 <meta name="twitter:description" content="由于工作中可能会用到简单的深度学习模型，且由于数据量巨大，可能需要分布式训练。虽然用的平台可能有现成的框架，但还是了解一下。 1. 相关介绍1.1 深度学习模型训练过程 1.2 分布式训练策略">
-<meta name="twitter:image" content="http://chenson.com/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/v2-7abdf3c399c6d8ed220167e1c69ddd20_hd.jpg">
+<meta name="twitter:image" content="http://chenson.cc/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/v2-7abdf3c399c6d8ed220167e1c69ddd20_hd.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -361,7 +361,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2019/08/25/TensorFlow分布式训练初探/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.cc/2019/08/25/TensorFlow分布式训练初探/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -400,7 +400,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="TensorFlow分布式训练初探" data-title="TensorFlow分布式训练初探" data-url="http://chenson.com/2019/08/25/TensorFlow分布式训练初探/"></div>
+	<div class="ds-thread" data-thread-key="TensorFlow分布式训练初探" data-title="TensorFlow分布式训练初探" data-url="http://chenson.cc/2019/08/25/TensorFlow分布式训练初探/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -539,10 +539,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -552,6 +548,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,15 +575,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -603,11 +603,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -615,7 +611,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -635,6 +635,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
@@ -647,11 +651,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -663,7 +663,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -683,15 +687,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -707,23 +703,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -747,6 +735,22 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
@@ -760,10 +764,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
             
             <div class="clearfix"></div>

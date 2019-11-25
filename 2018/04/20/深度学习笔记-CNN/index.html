@@ -8,39 +8,39 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="http://chenson.com">
+  <link rel="dns-prefetch" href="http://chenson.cc">
   <title>深度学习笔记-CNN | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="最近正在学习李沐沐神的动手学深度学习，目前听到了第五课，真的是非常好的课程。其实在学习之前也有断断续续的学过一些深度学习相关的东西，也会用PyTorch跑一些简单的模型，但仅限于此，对理论知识理解还是比较浅薄的，只是一个调包侠，所以这次学习打算认真学习一下相关的理论知识。 在学之前也有听了一下NG刚发布的深度学习课程，但对比了一下，还是觉得沐神的比较适合我，毕竟教学用的是中文，方便理解，且理论知识">
 <meta name="keywords" content="Deep Learning,CNN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深度学习笔记-CNN">
-<meta property="og:url" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/index.html">
+<meta property="og:url" content="http://chenson.cc/2018/04/20/深度学习笔记-CNN/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="最近正在学习李沐沐神的动手学深度学习，目前听到了第五课，真的是非常好的课程。其实在学习之前也有断断续续的学过一些深度学习相关的东西，也会用PyTorch跑一些简单的模型，但仅限于此，对理论知识理解还是比较浅薄的，只是一个调包侠，所以这次学习打算认真学习一下相关的理论知识。 在学之前也有听了一下NG刚发布的深度学习课程，但对比了一下，还是觉得沐神的比较适合我，毕竟教学用的是中文，方便理解，且理论知识">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/1.png">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/2.png">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/4.png">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/correlation.png">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/6.gif">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_pad.png">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_stride.png">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/v2-17708ef17113fc120b045db3de3dbaac_1200x500.jpg">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/pooling.png">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20181201152629273-3649189.png">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175210803.png">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175232881.png">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175253686.png">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175342237.png">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175357577.png">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_multi_in.png">
-<meta property="og:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_1x1.png">
+<meta property="og:image" content="http://chenson.cc/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/1.png">
+<meta property="og:image" content="http://chenson.cc/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/2.png">
+<meta property="og:image" content="http://chenson.cc/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/4.png">
+<meta property="og:image" content="http://chenson.cc/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/correlation.png">
+<meta property="og:image" content="http://chenson.cc/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/6.gif">
+<meta property="og:image" content="http://chenson.cc/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_pad.png">
+<meta property="og:image" content="http://chenson.cc/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_stride.png">
+<meta property="og:image" content="http://chenson.cc/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/v2-17708ef17113fc120b045db3de3dbaac_1200x500.jpg">
+<meta property="og:image" content="http://chenson.cc/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/pooling.png">
+<meta property="og:image" content="http://chenson.cc/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20181201152629273-3649189.png">
+<meta property="og:image" content="http://chenson.cc/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175210803.png">
+<meta property="og:image" content="http://chenson.cc/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175232881.png">
+<meta property="og:image" content="http://chenson.cc/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175253686.png">
+<meta property="og:image" content="http://chenson.cc/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175342237.png">
+<meta property="og:image" content="http://chenson.cc/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/image-20190120175357577.png">
+<meta property="og:image" content="http://chenson.cc/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_multi_in.png">
+<meta property="og:image" content="http://chenson.cc/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/conv_1x1.png">
 <meta property="og:updated_time" content="2019-11-21T06:59:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深度学习笔记-CNN">
 <meta name="twitter:description" content="最近正在学习李沐沐神的动手学深度学习，目前听到了第五课，真的是非常好的课程。其实在学习之前也有断断续续的学过一些深度学习相关的东西，也会用PyTorch跑一些简单的模型，但仅限于此，对理论知识理解还是比较浅薄的，只是一个调包侠，所以这次学习打算认真学习一下相关的理论知识。 在学之前也有听了一下NG刚发布的深度学习课程，但对比了一下，还是觉得沐神的比较适合我，毕竟教学用的是中文，方便理解，且理论知识">
-<meta name="twitter:image" content="http://chenson.com/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/1.png">
+<meta name="twitter:image" content="http://chenson.cc/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -497,7 +497,7 @@ output = 37 + 19 = 56</script><ul>
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2018/04/20/深度学习笔记-CNN/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.cc/2018/04/20/深度学习笔记-CNN/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -536,7 +536,7 @@ output = 37 + 19 = 56</script><ul>
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="深度学习笔记-CNN" data-title="深度学习笔记-CNN" data-url="http://chenson.com/2018/04/20/深度学习笔记-CNN/"></div>
+	<div class="ds-thread" data-thread-key="深度学习笔记-CNN" data-title="深度学习笔记-CNN" data-url="http://chenson.cc/2018/04/20/深度学习笔记-CNN/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -675,10 +675,6 @@ output = 37 + 19 = 56</script><ul>
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -688,6 +684,18 @@ output = 37 + 19 = 56</script><ul>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -703,15 +711,7 @@ output = 37 + 19 = 56</script><ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -739,11 +739,7 @@ output = 37 + 19 = 56</script><ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -751,7 +747,11 @@ output = 37 + 19 = 56</script><ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -771,6 +771,10 @@ output = 37 + 19 = 56</script><ul>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
@@ -783,11 +787,7 @@ output = 37 + 19 = 56</script><ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -799,7 +799,11 @@ output = 37 + 19 = 56</script><ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -819,15 +823,7 @@ output = 37 + 19 = 56</script><ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -843,23 +839,15 @@ output = 37 + 19 = 56</script><ul>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -883,6 +871,22 @@ output = 37 + 19 = 56</script><ul>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
@@ -896,10 +900,6 @@ output = 37 + 19 = 56</script><ul>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
             
             <div class="clearfix"></div>

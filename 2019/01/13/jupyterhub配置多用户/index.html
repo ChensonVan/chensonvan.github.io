@@ -8,31 +8,31 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="http://chenson.com">
+  <link rel="dns-prefetch" href="http://chenson.cc">
   <title>jupyterhub配置多用户 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="最近组里申请了一台带GPU的服务器，Nvidia的M40，虽然性能一般，但玩一玩也够用了。因为是Centos的系统，组里的小伙伴觉得安装不如Ubuntu方便，都不想鼓捣环境，然后就由我来安装了。之前已经安装了CUDA和显卡驱动，因为安装时候的笔记没整理好，就先整理安装jupyter多用户的教程。后续有空的时候再写前置的环境教程吧（其实如果一开始就给一个干净的环境，安装超简单的）。 1. 系统环境我">
 <meta name="keywords" content="jupyterhub">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jupyterhub配置多用户">
-<meta property="og:url" content="http://chenson.com/2019/01/13/jupyterhub配置多用户/index.html">
+<meta property="og:url" content="http://chenson.cc/2019/01/13/jupyterhub配置多用户/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="最近组里申请了一台带GPU的服务器，Nvidia的M40，虽然性能一般，但玩一玩也够用了。因为是Centos的系统，组里的小伙伴觉得安装不如Ubuntu方便，都不想鼓捣环境，然后就由我来安装了。之前已经安装了CUDA和显卡驱动，因为安装时候的笔记没整理好，就先整理安装jupyter多用户的教程。后续有空的时候再写前置的环境教程吧（其实如果一开始就给一个干净的环境，安装超简单的）。 1. 系统环境我">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://chenson.com/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113181425947.png">
-<meta property="og:image" content="http://chenson.com/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113181650765.png">
-<meta property="og:image" content="http://chenson.com/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113182204506.png">
-<meta property="og:image" content="http://chenson.com/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113220148769.png">
-<meta property="og:image" content="http://chenson.com/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113215008086.png">
-<meta property="og:image" content="http://chenson.com/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113215307158.png">
-<meta property="og:image" content="http://chenson.com/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113215206039.png">
-<meta property="og:image" content="http://chenson.com/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113215726845.png">
-<meta property="og:image" content="http://chenson.com/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113215906240.png">
+<meta property="og:image" content="http://chenson.cc/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113181425947.png">
+<meta property="og:image" content="http://chenson.cc/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113181650765.png">
+<meta property="og:image" content="http://chenson.cc/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113182204506.png">
+<meta property="og:image" content="http://chenson.cc/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113220148769.png">
+<meta property="og:image" content="http://chenson.cc/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113215008086.png">
+<meta property="og:image" content="http://chenson.cc/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113215307158.png">
+<meta property="og:image" content="http://chenson.cc/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113215206039.png">
+<meta property="og:image" content="http://chenson.cc/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113215726845.png">
+<meta property="og:image" content="http://chenson.cc/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113215906240.png">
 <meta property="og:updated_time" content="2019-11-21T06:59:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jupyterhub配置多用户">
 <meta name="twitter:description" content="最近组里申请了一台带GPU的服务器，Nvidia的M40，虽然性能一般，但玩一玩也够用了。因为是Centos的系统，组里的小伙伴觉得安装不如Ubuntu方便，都不想鼓捣环境，然后就由我来安装了。之前已经安装了CUDA和显卡驱动，因为安装时候的笔记没整理好，就先整理安装jupyter多用户的教程。后续有空的时候再写前置的环境教程吧（其实如果一开始就给一个干净的环境，安装超简单的）。 1. 系统环境我">
-<meta name="twitter:image" content="http://chenson.com/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113181425947.png">
+<meta name="twitter:image" content="http://chenson.cc/2019/01/13/jupyterhub配置多用户/2019-01-13-jupyterhub配置多用户/image-20190113181425947.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -358,7 +358,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.com/2019/01/13/jupyterhub配置多用户/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.cc/2019/01/13/jupyterhub配置多用户/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -397,7 +397,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="jupyterhub配置多用户" data-title="jupyterhub配置多用户" data-url="http://chenson.com/2019/01/13/jupyterhub配置多用户/"></div>
+	<div class="ds-thread" data-thread-key="jupyterhub配置多用户" data-title="jupyterhub配置多用户" data-url="http://chenson.cc/2019/01/13/jupyterhub配置多用户/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -536,10 +536,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -549,6 +545,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -564,15 +572,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -600,11 +600,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -612,7 +608,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -632,6 +632,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
@@ -644,11 +648,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -660,7 +660,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -680,15 +684,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -704,23 +700,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -744,6 +732,22 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
@@ -757,10 +761,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
             
             <div class="clearfix"></div>
