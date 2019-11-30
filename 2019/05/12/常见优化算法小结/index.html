@@ -25,7 +25,7 @@
 <meta property="og:image" content="http://chenson.cc/2019/05/12/常见优化算法小结/2019-05-12-常见优化算法小结/838ba61ea8d3fd1f498e3e4a324e251f95ca5f3e.jpg">
 <meta property="og:image" content="http://chenson.cc/2019/05/12/常见优化算法小结/2019-05-12-常见优化算法小结/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hvdURvdVpob3U=,size_16,color_FFFFFF,t_70.jpeg">
 <meta property="og:image" content="http://chenson.cc/2019/05/12/常见优化算法小结/2019-05-12-常见优化算法小结/image-20191130174655430.png">
-<meta property="og:updated_time" content="2019-11-30T09:53:03.825Z">
+<meta property="og:updated_time" content="2019-11-30T10:04:33.184Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见优化算法小结">
 <meta name="twitter:description" content="1. Preview 在References里面的第一篇文章里，对于优化算法的分类总结的挺好的，分为公式解、数值优化和其他方法。这里重点总结的是数值优化法。 举个例子，在机器学习中对于有监督学习而言，通常都会有一个假设的Hypothesis函数，通过这样一个函数，我们输入一个数据x，会输出一个预测值$\hat y$，且为了能够使得$\hat y$和真实值$y$之间的差距非常小，即通过损失函数$L(">
@@ -318,7 +318,8 @@ x_{t+1} =& x_t - \frac {\nabla f(x_t)} {\nabla^2 f(x_t)} \\
 \end {align}</script><p>沿着上述的迭代公式，函数会最终会到达函数的<strong>驻点处</strong>。其中$-H^{-1}g$称为<strong>牛顿方向</strong>。迭代终止的条件是梯度的模接近于0，或者函数值下降小于指定阈值。</p>
 <h3 id="直观理解"><a href="#直观理解" class="headerlink" title="直观理解"></a>直观理解</h3><p>以上是通过公式的推导，但是不够直观，可以从几何意义上理解一下</p>
 <p><img src="/2019/05/12/常见优化算法小结/2019-05-12-常见优化算法小结/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hvdURvdVpob3U=,size_16,color_FFFFFF,t_70.jpeg" alt="在这里插入图片描述"></p>
-<p>上面讲了牛顿法在每次迭代的时候，计算黑塞矩阵的逆，然后求解一个以该矩阵为系数矩阵的线性方程组，这需要大量的计算非常耗时，另外Hessian矩阵可能不可逆。</p>
+<p>【莫名其妙这里写的一大段就不见了，崩溃。下面就直接看Reference博客里的内容吧，下次复习的时候再补上吧:(】</p>
+<h2 id="3-2-拟牛顿法"><a href="#3-2-拟牛顿法" class="headerlink" title="3.2 拟牛顿法"></a>3.2 拟牛顿法</h2><p>上面讲了牛顿法在每次迭代的时候，计算黑塞矩阵的逆，然后求解一个以该矩阵为系数矩阵的线性方程组，这需要大量的计算非常耗时，另外Hessian矩阵可能不可逆。</p>
 <p>拟牛顿法的核心思想就是通过用一个$n$阶矩阵$G_k=G(x^{k})$来近似代替$H^{-1}(x^{k})$，即构造一个近似Hessian矩阵或其逆矩阵的正定对称矩阵。</p>
 <p>在公式推导牛顿法的时候令$x_0$为点$x_k$，下一个点为$x_{k+1}$，有如下公式（考虑忽略二次项以上的值，取$\approx$）</p>
 <script type="math/tex; mode=display">
@@ -740,15 +741,15 @@ y_k =& g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Typora</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -780,14 +781,6 @@ y_k =& g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -797,6 +790,14 @@ y_k =& g_{k+1} - g_k
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GPU</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
               </li>
              
               <li class="article-tag-list-item">
