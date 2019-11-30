@@ -11,21 +11,21 @@
   <link rel="dns-prefetch" href="http://chenson.cc">
   <title>常见降维算法小结 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. Introduction由于数学不是很好，经常对一些矩阵分解之类相关的算法理解得有些模糊，大致知道算法的核心思想，往往却没理解到其数学角度的本质区别，所以有必要好好整理一下相关的知识点。就以降维为起点，梳理一下相关的算法。（可能有些不能没有归类到降维相关的算法上，但最终却有着降维的效果）">
+  <meta name="description" content="1. Introduction由于数学不是很好，经常对一些矩阵分解之类相关的算法理解得有些模糊，大致知道算法的核心思想，往往却没理解到其数学角度的本质区别，所以有必要好好整理一下相关的知识点。就以降维为起点，梳理一下相关的算法。（可能有些并没有归类到降维相关的算法上，但最终却有着降维的效果）">
 <meta name="keywords" content="Machine Learning,PCA,LDA,SVD">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常见降维算法小结">
 <meta property="og:url" content="http://chenson.cc/2019/05/30/常见降维算法小结/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="1. Introduction由于数学不是很好，经常对一些矩阵分解之类相关的算法理解得有些模糊，大致知道算法的核心思想，往往却没理解到其数学角度的本质区别，所以有必要好好整理一下相关的知识点。就以降维为起点，梳理一下相关的算法。（可能有些不能没有归类到降维相关的算法上，但最终却有着降维的效果）">
+<meta property="og:description" content="1. Introduction由于数学不是很好，经常对一些矩阵分解之类相关的算法理解得有些模糊，大致知道算法的核心思想，往往却没理解到其数学角度的本质区别，所以有必要好好整理一下相关的知识点。就以降维为起点，梳理一下相关的算法。（可能有些并没有归类到降维相关的算法上，但最终却有着降维的效果）">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.cc/2019/05/30/常见降维算法小结/2019-05-30-常见降维算法小结/image-20191201003852739.png">
 <meta property="og:image" content="http://chenson.cc/2019/05/30/常见降维算法小结/2019-05-30-常见降维算法小结/svd.png">
 <meta property="og:image" content="http://chenson.cc/2019/05/30/常见降维算法小结/2019-05-30-常见降维算法小结/image-20191201000546620.png">
-<meta property="og:updated_time" content="2019-11-30T17:08:53.769Z">
+<meta property="og:updated_time" content="2019-11-30T17:13:41.095Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见降维算法小结">
-<meta name="twitter:description" content="1. Introduction由于数学不是很好，经常对一些矩阵分解之类相关的算法理解得有些模糊，大致知道算法的核心思想，往往却没理解到其数学角度的本质区别，所以有必要好好整理一下相关的知识点。就以降维为起点，梳理一下相关的算法。（可能有些不能没有归类到降维相关的算法上，但最终却有着降维的效果）">
+<meta name="twitter:description" content="1. Introduction由于数学不是很好，经常对一些矩阵分解之类相关的算法理解得有些模糊，大致知道算法的核心思想，往往却没理解到其数学角度的本质区别，所以有必要好好整理一下相关的知识点。就以降维为起点，梳理一下相关的算法。（可能有些并没有归类到降维相关的算法上，但最终却有着降维的效果）">
 <meta name="twitter:image" content="http://chenson.cc/2019/05/30/常见降维算法小结/2019-05-30-常见降维算法小结/image-20191201003852739.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
@@ -180,10 +180,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>由于数学不是很好，经常对一些矩阵分解之类相关的算法理解得有些模糊，大致知道算法的核心思想，往往却没理解到其数学角度的本质区别，所以有必要好好整理一下相关的知识点。就以降维为起点，梳理一下相关的算法。（可能有些不能没有归类到降维相关的算法上，但最终却有着降维的效果）</p>
+        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>由于数学不是很好，经常对一些矩阵分解之类相关的算法理解得有些模糊，大致知道算法的核心思想，往往却没理解到其数学角度的本质区别，所以有必要好好整理一下相关的知识点。就以降维为起点，梳理一下相关的算法。（可能有些并没有归类到降维相关的算法上，但最终却有着降维的效果）</p>
 <a id="more"></a>
-<h1 id="2-PCA-Principal-Components-Analysis"><a href="#2-PCA-Principal-Components-Analysis" class="headerlink" title="2. PCA - Principal Components Analysis"></a>2. PCA - Principal Components Analysis</h1><p>主成成分分析(PCA)属于<strong>线性、无监督的全局降维算法</strong>。</p>
-<h2 id="2-1-最大化投影方差"><a href="#2-1-最大化投影方差" class="headerlink" title="2.1 最大化投影方差"></a>2.1 最大化投影方差</h2><p>从最大方差角度理解PCA，就是将高维数据投影到了低维上，并保证了数据之间的的方差是尽可能最大的。因为从信号的角度上来看大方差往往具有<strong>较高的信噪比</strong>。</p>
+<h1 id="2-PCA-Principal-Components-Analysis"><a href="#2-PCA-Principal-Components-Analysis" class="headerlink" title="2. PCA - Principal Components Analysis"></a>2. PCA - Principal Components Analysis</h1><p>主成成分分析(PCA)属于<strong>线性、无监督的全局降维算法</strong></p>
+<h2 id="2-1-最大化投影方差"><a href="#2-1-最大化投影方差" class="headerlink" title="2.1 最大化投影方差"></a>2.1 最大化投影方差</h2><p>从最大方差角度理解PCA，就是将高维数据投影到了低维上，并保证了数据之间的的方差是尽可能最大的。因为从信号的角度上来看大方差往往具有<strong>较高的信噪比</strong></p>
 <p>假设数据的原始矩阵为$V = \{\overrightarrow {v_1}, \overrightarrow {v_2}, …, \overrightarrow {v_n}\}$，维度为$n\times m$，其均值为$\overrightarrow u = \frac 1 n \sum_{i=1}^n \overrightarrow {v_i}$</p>
 <p>算法步骤：</p>
 <h3 id="2-1-1-对样本数据进行中心化处理，得到处理后样本-X"><a href="#2-1-1-对样本数据进行中心化处理，得到处理后样本-X" class="headerlink" title="2.1.1 对样本数据进行中心化处理，得到处理后样本$X$"></a>2.1.1 对样本数据进行中心化处理，得到处理后样本$X$</h3><script type="math/tex; mode=display">
@@ -336,10 +336,8 @@ M \rarr M^TM , MM^T \rarr \lambda_i \rarr v_i, u_i \\
 <li><a href="https://zhuanlan.zhihu.com/p/23457712" target="_blank" rel="noopener">矩阵论笔记（5）——矩阵分析和应用</a></li>
 <li><a href="https://www.jianshu.com/p/b72fa32be819" target="_blank" rel="noopener">拉格朗日乘法子</a></li>
 <li><a href="https://www.cnblogs.com/pinard/p/6239403.html#4414913" target="_blank" rel="noopener">主成分分析（PCA）原理总结</a></li>
-<li><p><a href="https://www.cnblogs.com/pinard/p/6251584.html" target="_blank" rel="noopener">奇异值分解(SVD)原理与在降维中的应用</a></p>
-</li>
-<li><p><a href="https://zhuanlan.zhihu.com/p/59232702" target="_blank" rel="noopener">特征值分解 和 SVD分解</a></p>
-</li>
+<li><a href="https://www.cnblogs.com/pinard/p/6251584.html" target="_blank" rel="noopener">奇异值分解(SVD)原理与在降维中的应用</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/59232702" target="_blank" rel="noopener">特征值分解 和 SVD分解</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/42896542" target="_blank" rel="noopener">奇异值的物理意义</a></li>
 <li><a href="https://www.cnblogs.com/LeftNotEasy/archive/2011/01/19/svd-and-applications.html" target="_blank" rel="noopener">机器学习中的数学(5)-强大的矩阵奇异值分解(SVD)及其应用</a></li>
 </ul>
@@ -660,11 +658,11 @@ M \rarr M^TM , MM^T \rarr \lambda_i \rarr v_i, u_i \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -672,7 +670,15 @@ M \rarr M^TM , MM^T \rarr \lambda_i \rarr v_i, u_i \\
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -681,14 +687,6 @@ M \rarr M^TM , MM^T \rarr \lambda_i \rarr v_i, u_i \\
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">进程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -740,15 +738,15 @@ M \rarr M^TM , MM^T \rarr \lambda_i \rarr v_i, u_i \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -840,11 +838,11 @@ M \rarr M^TM , MM^T \rarr \lambda_i \rarr v_i, u_i \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
