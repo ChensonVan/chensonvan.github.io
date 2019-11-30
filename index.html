@@ -501,6 +501,137 @@
 
 
   
+    <article id="post-常见降维算法小结（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/08/常见降维算法小结（二）/">常见降维算法小结（二）</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/08/常见降维算法小结（二）/" class="archive-article-date">
+  	<time datetime="2019-06-08T02:49:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/08/常见降维算法小结（二）/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-常见降维算法小结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/30/常见降维算法小结/">常见降维算法小结</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/30/常见降维算法小结/" class="archive-article-date">
+  	<time datetime="2019-05-30T08:23:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>由于数学不是很好，经常对一些矩阵分解之类相关的算法理解得有些模糊，大致知道算法的核心思想，往往却没理解到其数学角度的本质区别，所以有必要好好整理一下相关的知识点。就以降维为起点，梳理一下相关的算法。（可能有些不能没有归类到降维相关的算法上，但最终却有着降维的效果）</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PCA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LDA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SVD</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/30/常见降维算法小结/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-机器学习与量化交易课程笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -596,7 +727,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-两个经纬度点之间的距离和方位角"><a href="#1-两个经纬度点之间的距离和方位角" class="headerlink" title="1. 两个经纬度点之间的距离和方位角"></a>1. 两个经纬度点之间的距离和方位角</h3><h4 id="1-1-计算距离"><a href="#1-1-计算距离" class="headerlink" title="1.1 计算距离"></a>1.1 计算距离</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> radians, cos, sin, asin, sqrt, atan, tan, acos, pi</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">haversine</span><span class="params">(lngA, latA, lngB, latB)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    计算给定A、B两点之间的距离</span></span><br><span class="line"><span class="string">    lng: 经度 -180~180</span></span><br><span class="line"><span class="string">    lat: 纬度 -90~90</span></span><br><span class="line"><span class="string">    返回单位为公里</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 地球平均半径，单位为公里</span></span><br><span class="line">    r = <span class="number">6370.99681</span> </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 将十进制度数转化为弧度</span></span><br><span class="line">    <span class="comment"># 如在Hive或MySQL中无radians函数，可手动计算 radiasn(lat) == lat / 180 * pi</span></span><br><span class="line">    lngA, latA, lngB, latB = map(radians, [lngA, latA, lngB, latB])</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> r * acos(sin(latA) * sin(latB) + cos(latA) * cos(latB) * cos(lngA - lngB))</span><br><span class="line"></span><br><span class="line">haversine(<span class="number">110.0123</span>, <span class="number">23</span>, <span class="number">110.0123</span>, <span class="number">23.02</span>)</span><br></pre></td></tr></table></figure>
+        <h1 id="1-两个经纬度点之间的距离和方位角"><a href="#1-两个经纬度点之间的距离和方位角" class="headerlink" title="1. 两个经纬度点之间的距离和方位角"></a>1. 两个经纬度点之间的距离和方位角</h1><h2 id="1-1-计算距离"><a href="#1-1-计算距离" class="headerlink" title="1.1 计算距离"></a>1.1 计算距离</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> radians, cos, sin, asin, sqrt, atan, tan, acos, pi</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">haversine</span><span class="params">(lngA, latA, lngB, latB)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    计算给定A、B两点之间的距离</span></span><br><span class="line"><span class="string">    lng: 经度 -180~180</span></span><br><span class="line"><span class="string">    lat: 纬度 -90~90</span></span><br><span class="line"><span class="string">    返回单位为公里</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 地球平均半径，单位为公里</span></span><br><span class="line">    r = <span class="number">6370.99681</span> </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 将十进制度数转化为弧度</span></span><br><span class="line">    <span class="comment"># 如在Hive或MySQL中无radians函数，可手动计算 radiasn(lat) == lat / 180 * pi</span></span><br><span class="line">    lngA, latA, lngB, latB = map(radians, [lngA, latA, lngB, latB])</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> r * acos(sin(latA) * sin(latB) + cos(latA) * cos(latB) * cos(lngA - lngB))</span><br><span class="line"></span><br><span class="line">haversine(<span class="number">110.0123</span>, <span class="number">23</span>, <span class="number">110.0123</span>, <span class="number">23.02</span>)</span><br></pre></td></tr></table></figure>
         
       
 
@@ -714,156 +845,9 @@
 
 
   
-    <article id="post-Metabase初探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/21/Metabase初探/">Metabase初探</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/21/Metabase初探/" class="archive-article-date">
-  	<time datetime="2019-04-21T07:22:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h3><h4 id="1-1-为什么选择Metabase"><a href="#1-1-为什么选择Metabase" class="headerlink" title="1.1 为什么选择Metabase"></a>1.1 为什么选择Metabase</h4><p><img src="/2019/04/21/Metabase初探/2019-04-21-Metabase初探/2016-05-02_1802.png" alt="Image result for metabase"></p>
-<p>Metabase是一款功能丰富、操作简单的BI工具，非常注重非技术人员（如产品、运营等）在使用这个工具时的体验，让他们能够自由探索数据，回答自己的<strong>问题</strong>，同时还是<strong>开源免费的</strong>，这点非常棒。而其他的BI工具要么是付费的（如Tableau），要么就只能看预先建好的Dashboard，对于不懂SQL或者数据库结构的他们来说，是很难自己去摸索的。同时对于技术人员来说，官网的文档写的挺棒的，比较全，然后设计也好看。</p>
-<p>当然了，还存在其他更加高大上的BI报表工具，只是这个这个对于我目前的需求来说，是最不费时效果还比较OK的一款。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Metabase</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">BI报表</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/21/Metabase初探/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-遗传算法初探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/09/遗传算法初探/">遗传算法初探</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/09/遗传算法初探/" class="archive-article-date">
-  	<time datetime="2019-04-09T11:37:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-Genetic-Algorithm"><a href="#1-Genetic-Algorithm" class="headerlink" title="1. Genetic Algorithm"></a>1. Genetic Algorithm</h3><ul>
-<li><p>遗传算法 (genetic algorithm)</p>
-</li>
-<li><p>进化策略 (evolution strategy)</p>
-</li>
-<li><p>遗传规划 (genetic programming) / 进化规划 (evolution programming)</p>
-<p>GP常用于关于模型结构的自动化设计和优化的领域，如电路设计、机器结构设计和生物学中的药物分子设计等。</p>
-<p>在数据相关领域，常用于符号回归、特征提取和选择等。</p>
-</li>
-</ul>
-<p><img src="/2019/04/09/遗传算法初探/2019-04-09-遗传算法初探/v2-2e27991ceec71a1941c8cb3e4897486c_hd.jpg" alt="img"></p>
-<p><del>遗传算法并不是用来优化模型参数的</del></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Genetic Algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/09/遗传算法初探/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1030,15 +1014,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">进程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1194,11 +1178,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Quant</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
               </li>
              
               <li class="article-tag-list-item">
