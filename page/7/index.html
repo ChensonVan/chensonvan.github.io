@@ -156,6 +156,232 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-字符串搜索算法-KMP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/15/字符串搜索算法-KMP/">字符串搜索算法 - KMP</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/15/字符串搜索算法-KMP/" class="archive-article-date">
+  	<time datetime="2017-03-15T06:48:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-理解一：部分匹配表-已匹配数字"><a href="#1-理解一：部分匹配表-已匹配数字" class="headerlink" title="1. 理解一：部分匹配表+已匹配数字"></a>1. 理解一：部分匹配表+已匹配数字</h3><h4 id="1-1-Partial-Match-Table"><a href="#1-1-Partial-Match-Table" class="headerlink" title="1.1 Partial Match Table"></a>1.1 Partial Match Table</h4><p><img src="http://p1.bpimg.com/567571/c8cfb90db5bdf1e6.png" alt></p>
+<p>上来先上个结论，这个先暂时不管怎么生成，用于KMP表的移动。</p>
+<blockquote>
+<p>移动位数 = 已匹配的字符数 - 对应的部分匹配值</p>
+</blockquote>
+<p><img src="http://p1.bpimg.com/567571/0ebcc136f30708e2.png" alt></p>
+<p>匹配到了第六个字符B，B在上表中的值是2，已经匹配的字符数是6</p>
+<p>所以移动的位数是 6 - 2 = 4，将搜索词向后移动4位。</p>
+<p><img src="http://p1.bpimg.com/567571/cbea8594445a6afe.png" alt></p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/15/字符串搜索算法-KMP/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Hadoop权威指南笔记（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/06/Hadoop权威指南笔记（一）/">Hadoop权威指南笔记（一）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/06/Hadoop权威指南笔记（一）/" class="archive-article-date">
+  	<time datetime="2017-03-06T13:44:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Hadoop"><a href="#1-Hadoop" class="headerlink" title="1. Hadoop"></a>1. Hadoop</h3><h4 id="1-1-初识Hadoop"><a href="#1-1-初识Hadoop" class="headerlink" title="1.1 初识Hadoop"></a>1.1 初识Hadoop</h4><p><a href="http://hadooptutorials.co.in/tutorials/hadoop/hadoop-fundamentals.html" target="_blank" rel="noopener">非常好的Tutorial</a> </p>
+<p>在学习hadoop之前，我觉得有必要了解一下hadoop的基本构成以及一些术语。</p>
+<ul>
+<li><p><strong>Block</strong></p>
+<blockquote>
+<p>HDFS blocks are large compared to disk blocks, and the reason is to minimize the cost<br>of seeks. By making a block large enough, the time to transfer the data from the disk<br>can be made to be significantly larger than the time to seek to the start of the block.<br>Thus the time to transfer a large file made of multiple blocks operates at the disk transfer<br>rate.<br>A quick calculation shows that if the seek time is around 10 ms, and the transfer rate<br>is 100 MB/s, then to make the seek time 1% of the transfer time, we need to make the<br>block size around 100 MB. The default is actually 64 MB, although many HDFS installations<br>use 128 MB blocks. This figure will continue to be revised upward as transfer<br>speeds grow with new generations of disk drives.<br>This argument shouldn’t be taken too far, however. Map tasks in MapReduce normally<br>operate on one block at a time, so if you have too few tasks (fewer than nodes in the<br>cluster), your jobs will run slower than they could otherwise.</p>
+</blockquote></li></ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/06/Hadoop权威指南笔记（一）/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Machine-Learning-Recommender-Systems" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/02/Machine-Learning-Recommender-Systems/">Machine Learning - Recommender Systems </a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/02/Machine-Learning-Recommender-Systems/" class="archive-article-date">
+  	<time datetime="2017-03-02T11:05:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-What-is-Recommender-Systems"><a href="#1-What-is-Recommender-Systems" class="headerlink" title="1. What is Recommender Systems"></a>1. What is Recommender Systems</h3><p>对于推荐系统的定义，我们先举几个例子来理解一下。</p>
+<ul>
+<li>电影网站给用户推荐电影，可以根据该用户以往的评分，比如给浪漫爱情电影评分高，给动作片评分较低，那么系统可以根据这些信息，给用户推荐偏向浪漫爱情的电影</li>
+<li>如果是新用户呢？我们没有该用户的评分信息。那么我们可以根据整个系统中，某些电影评分较高进行推荐</li>
+<li>那么如果是新网站，新用户呢？</li>
+</ul>
+<p>以上例子，我们可以把推荐系统分成两类。</p>
+<ul>
+<li><p><strong>Content-based systems</strong></p>
+<p>Content-based，就是基于已有的信息进行推荐。具体哪些信息呢？在上面的电影推荐系统中，有两类信息需要分析。</p>
+<p>第一，是User的评分信息，比如给爱情片评分高，给动作片评分低。</p>
+<p>第二，是Movie的特征信息，比如这部电影偏向爱情片多一些，但也有一部分搞笑。所以在A（爱情片）和B（搞笑片）中， A的权重更高，B的较低</p>
+<p>基于以上两部分信息，我们可以给用户推荐他所喜欢的电影。</p>
+<p><img src="http://p1.bpimg.com/567571/47a077979840183f.png" alt></p></li></ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/02/Machine-Learning-Recommender-Systems/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Machine-Learning-SVM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -533,11 +759,11 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,15 +771,11 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -562,6 +784,10 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">进程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -613,15 +839,15 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Typora</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -697,10 +923,6 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
@@ -709,15 +931,19 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LBS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -729,11 +955,39 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NLP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Bert</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Attention</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Embedding</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
             
             <div class="clearfix"></div>
