@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://chenson.cc/2018/11/18/Wide-and-Deep模型初探/2018-11-18-Wide-and-Deep模型初探/image-20181118184254279.png">
 <meta property="og:image" content="http://chenson.cc/2018/11/18/Wide-and-Deep模型初探/2018-11-18-Wide-and-Deep模型初探/image-20181118184319247.png">
 <meta property="og:image" content="http://chenson.cc/2018/11/18/Wide-and-Deep模型初探/2018-11-18-Wide-and-Deep模型初探/image-20181118184338158.png">
-<meta property="og:updated_time" content="2019-11-21T06:59:54.000Z">
+<meta property="og:updated_time" content="2019-12-07T16:50:29.351Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Wide_and_Deep模型初探">
 <meta name="twitter:description" content="1. BackgroundWide and Deep是Google在16年左右提出的模型，主要应用在了Google Play的应用推荐系统中，同时国内的一些大厂也在各自的业务中有使用到这一模型，比如美团。而该算法的核心主要在于结合了线性模型的记忆能力Memorization 和深度神经网络的泛化能力Generaization，且在训练过程中，同时优化这两个模型，即Jointly Training。">
@@ -181,13 +181,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-Background"><a href="#1-Background" class="headerlink" title="1. Background"></a>1. Background</h3><p><code>Wide and Deep</code>是Google在16年左右提出的模型，主要应用在了Google Play的应用推荐系统中，同时国内的一些大厂也在各自的业务中有使用到这一模型，比如美团。而该算法的核心主要在于结合了线性模型的记忆能力<code>Memorization</code> 和深度神经网络的泛化能力<code>Generaization</code>，且在训练过程中，同时优化这两个模型，即<code>Jointly Training</code>。</p>
-<h3 id="2-Overview"><a href="#2-Overview" class="headerlink" title="2. Overview"></a>2. Overview</h3><p><img src="/2018/11/18/Wide-and-Deep模型初探/2018-11-18-Wide-and-Deep模型初探/image-20181118184045240.png" alt="image-20181118184045240"></p>
+        <h1 id="1-Background"><a href="#1-Background" class="headerlink" title="1. Background"></a>1. Background</h1><p><code>Wide and Deep</code>是Google在16年左右提出的模型，主要应用在了Google Play的应用推荐系统中，同时国内的一些大厂也在各自的业务中有使用到这一模型，比如美团。而该算法的核心主要在于结合了线性模型的记忆能力<code>Memorization</code> 和深度神经网络的泛化能力<code>Generaization</code>，且在训练过程中，同时优化这两个模型，即<code>Jointly Training</code>。</p>
+<h1 id="2-Overview"><a href="#2-Overview" class="headerlink" title="2. Overview"></a>2. Overview</h1><p><img src="/2018/11/18/Wide-and-Deep模型初探/2018-11-18-Wide-and-Deep模型初探/image-20181118184045240.png" alt="image-20181118184045240"></p>
 <p>如上图所示，该模型的主要结构是中间<code>Wide&amp;Deep Models</code>那个部分，其主要由左边的<code>Wide Models</code> 和右边的<code>Deep Models</code>组成。</p>
  <a id="more"></a>
-<h3 id="3-Wide-Part"><a href="#3-Wide-Part" class="headerlink" title="3. Wide Part"></a>3. Wide Part</h3><p>最左端的就是一个普通的广义线性模型，不做过多的解释。</p>
+<h1 id="3-Wide-Part"><a href="#3-Wide-Part" class="headerlink" title="3. Wide Part"></a>3. Wide Part</h1><p>最左端的就是一个普通的广义线性模型，不做过多的解释。</p>
 <p>该部分的模型，输入的特征可以是连续特征，也可以是稀疏的离散特征。但该模型可以对离散特征之间做特征交叉，即<code>Cross-Product</code>，为了可以从历史数据中发现特征之间的相关信息，然后对交叉过后的特征做<code>One-Hot</code>处理。</p>
-<h3 id="4-Deep-Part"><a href="#4-Deep-Part" class="headerlink" title="4. Deep Part"></a>4. Deep Part</h3><p>最右部分是一个<code>DNN</code>模型，一个<strong>前馈的深度神经网络</strong>。</p>
+<h1 id="4-Deep-Part"><a href="#4-Deep-Part" class="headerlink" title="4. Deep Part"></a>4. Deep Part</h1><p>最右部分是一个<code>DNN</code>模型，一个<strong>前馈的深度神经网络</strong>。</p>
 <p>该部分的模型，输入的特征同样可以是连续特征，也可以是稀疏的离散特征。但和上面部分的离散特征处理方式不同，这里对离散特征做了<code>Embedding</code>，即将高维稀疏的离散特征转化为低纬的稠密特征。</p>
 <p><code>Embedding</code>的初始权重是随机赋予的，然后在训练过程中，不断参与优化。</p>
 <p>所以训练的过程大致是需要做<code>Embedding</code>的向量先转化成<code>Dense Vector</code>，然后和其他的连续型或者数值型的特征合并一起，喂给接下去的几层<code>DNN</code>。</p>
@@ -200,7 +200,7 @@ a^{l + 1} = f(W^{(l)}a^{(l)} + b^{(l)})</script><p>这里</p>
 <li><p><code>f</code>是激活函数，通常使用<code>ReLUs</code>作为激活函数</p>
 </li>
 </ul>
-<h3 id="5-Wide-amp-Deep-Part"><a href="#5-Wide-amp-Deep-Part" class="headerlink" title="5. Wide&amp;Deep Part"></a>5. Wide&amp;Deep Part</h3><p>如上图中间部分所示，两个模型最后是合并到一起训练的，并将两个模型的结果的加权和作为最终的预测结果（最终喂给了同一个LR模型去训练），具体如下公式所示。</p>
+<h1 id="5-Wide-amp-Deep-Part"><a href="#5-Wide-amp-Deep-Part" class="headerlink" title="5. Wide&amp;Deep Part"></a>5. Wide&amp;Deep Part</h1><p>如上图中间部分所示，两个模型最后是合并到一起训练的，并将两个模型的结果的加权和作为最终的预测结果（最终喂给了同一个LR模型去训练），具体如下公式所示。</p>
 <script type="math/tex; mode=display">
 P(Y=1 | x) = \sigma(w^T_{wide}[x, \phi(x)] + w^T_{deep}a^{(l_f)} + b)</script><p>这里$\sigma(·)$是<code>sigmoid</code>激活函数。</p>
 <p>在论文中作者也特别的提到，这里的<code>Joinly Training</code> 和<code>Ensemble</code>模型是不一样的。对于<code>Ensemble</code>模型，各个子模型是单独训练的，各自的预测结果不影响其他的子模型，只是最后大家的预测结果通过某一种方式，比如投票，加权等，最终得出一个预测结果。</p>
@@ -209,7 +209,7 @@ P(Y=1 | x) = \sigma(w^T_{wide}[x, \phi(x)] + w^T_{deep}a^{(l_f)} + b)</script><p
 <li><code>Wide Models</code>采用了<code>FTRL + L1正则</code></li>
 <li><code>Deep Models</code>采用了<code>AdaGrad</code></li>
 </ul>
-<h3 id="6-Conclusion"><a href="#6-Conclusion" class="headerlink" title="6. Conclusion"></a>6. Conclusion</h3><p>在最终的测试部分，我自己准备了一份数据用于测试该模型。</p>
+<h1 id="6-Conclusion"><a href="#6-Conclusion" class="headerlink" title="6. Conclusion"></a>6. Conclusion</h1><p>在最终的测试部分，我自己准备了一份数据用于测试该模型。</p>
 <ul>
 <li><p>Wide Part</p>
 <p><img src="/2018/11/18/Wide-and-Deep模型初探/2018-11-18-Wide-and-Deep模型初探/image-20181118184254279.png" alt="image-20181118184254279"></p>
@@ -228,7 +228,7 @@ P(Y=1 | x) = \sigma(w^T_{wide}[x, \phi(x)] + w^T_{deep}a^{(l_f)} + b)</script><p
 <li><code>Wide Models</code>训练数据</li>
 <li><del>训练参数</del></li>
 </ul>
-<h3 id="7-References"><a href="#7-References" class="headerlink" title="7. References"></a>7. References</h3><ul>
+<h1 id="7-References"><a href="#7-References" class="headerlink" title="7. References"></a>7. References</h1><ul>
 <li><a href="https://mp.weixin.qq.com/s/847h4ITQMtUlZcurJ9Vlvg?scene=25##" target="_blank" rel="noopener">深度学习在美团点评推荐平台排序中的运用</a></li>
 <li><a href="https://arxiv.org/abs/1606.07792" target="_blank" rel="noopener">Wide &amp; Deep Learning for Recommender Systems</a></li>
 <li><a href="https://blog.csdn.net/google19890102/article/details/78171283" target="_blank" rel="noopener">简单易学的深度学习算法——Wide &amp; Deep Learning</a></li>
@@ -706,15 +706,15 @@ P(Y=1 | x) = \sigma(w^T_{wide}[x, \phi(x)] + w^T_{deep}a^{(l_f)} + b)</script><p
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -738,6 +738,18 @@ P(Y=1 | x) = \sigma(w^T_{wide}[x, \phi(x)] + w^T_{deep}a^{(l_f)} + b)</script><p
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
@@ -754,19 +766,23 @@ P(Y=1 | x) = \sigma(w^T_{wide}[x, \phi(x)] + w^T_{deep}a^{(l_f)} + b)</script><p
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">SSD硬盘更换</a>
               </li>
              
               <li class="article-tag-list-item">

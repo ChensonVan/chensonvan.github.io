@@ -11,13 +11,13 @@
   <link rel="dns-prefetch" href="http://chenson.cc">
   <title>TensorFlow分布式训练初探 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="由于工作中可能会用到简单的深度学习模型，且由于数据量巨大，可能需要分布式训练。虽然用的平台可能有现成的框架，但还是了解一下。 1. 相关介绍1.1 深度学习模型训练过程 1.2 分布式训练策略">
+  <meta name="description" content="由于工作中可能会用到简单的深度学习模型，且由于数据量巨大，可能需要分布式训练。虽然用的平台可能有现成的框架，但还是了解一下。 1. Introduction1.1 深度学习模型训练过程 1.2 分布式训练策略">
 <meta name="keywords" content="TensorFlow,分布式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TensorFlow分布式训练初探">
 <meta property="og:url" content="http://chenson.cc/2019/08/25/TensorFlow分布式训练初探/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="由于工作中可能会用到简单的深度学习模型，且由于数据量巨大，可能需要分布式训练。虽然用的平台可能有现成的框架，但还是了解一下。 1. 相关介绍1.1 深度学习模型训练过程 1.2 分布式训练策略">
+<meta property="og:description" content="由于工作中可能会用到简单的深度学习模型，且由于数据量巨大，可能需要分布式训练。虽然用的平台可能有现成的框架，但还是了解一下。 1. Introduction1.1 深度学习模型训练过程 1.2 分布式训练策略">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.cc/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/v2-7abdf3c399c6d8ed220167e1c69ddd20_hd.jpg">
 <meta property="og:image" content="http://chenson.cc/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/v2-0031a1ffae793a2554e968a8f9a62bdf_hd.jpg">
@@ -25,10 +25,10 @@
 <meta property="og:image" content="http://chenson.cc/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/v2-17bafa95fe8bba61bd3052729cc309ae_hd.jpg">
 <meta property="og:image" content="http://chenson.cc/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/v2-8b4e0d0620732abf8985bed497d75401_hd.jpg">
 <meta property="og:image" content="http://chenson.cc/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/image-20190824122712554.png">
-<meta property="og:updated_time" content="2019-11-21T06:59:54.000Z">
+<meta property="og:updated_time" content="2019-12-07T16:31:02.116Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorFlow分布式训练初探">
-<meta name="twitter:description" content="由于工作中可能会用到简单的深度学习模型，且由于数据量巨大，可能需要分布式训练。虽然用的平台可能有现成的框架，但还是了解一下。 1. 相关介绍1.1 深度学习模型训练过程 1.2 分布式训练策略">
+<meta name="twitter:description" content="由于工作中可能会用到简单的深度学习模型，且由于数据量巨大，可能需要分布式训练。虽然用的平台可能有现成的框架，但还是了解一下。 1. Introduction1.1 深度学习模型训练过程 1.2 分布式训练策略">
 <meta name="twitter:image" content="http://chenson.cc/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/v2-7abdf3c399c6d8ed220167e1c69ddd20_hd.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
@@ -184,7 +184,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>由于工作中可能会用到简单的深度学习模型，且由于数据量巨大，可能需要分布式训练。虽然用的平台可能有现成的框架，但还是了解一下。</p>
-<h1 id="1-相关介绍"><a href="#1-相关介绍" class="headerlink" title="1. 相关介绍"></a>1. 相关介绍</h1><h2 id="1-1-深度学习模型训练过程"><a href="#1-1-深度学习模型训练过程" class="headerlink" title="1.1 深度学习模型训练过程"></a>1.1 深度学习模型训练过程</h2><p><img src="/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/v2-7abdf3c399c6d8ed220167e1c69ddd20_hd.jpg" alt="img"></p>
+<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><h2 id="1-1-深度学习模型训练过程"><a href="#1-1-深度学习模型训练过程" class="headerlink" title="1.1 深度学习模型训练过程"></a>1.1 深度学习模型训练过程</h2><p><img src="/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/v2-7abdf3c399c6d8ed220167e1c69ddd20_hd.jpg" alt="img"></p>
 <h2 id="1-2-分布式训练策略"><a href="#1-2-分布式训练策略" class="headerlink" title="1.2 分布式训练策略"></a>1.2 分布式训练策略</h2><p><img src="/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/v2-0031a1ffae793a2554e968a8f9a62bdf_hd.jpg" alt="img"></p>
 <a id="more"></a>
 <ul>
@@ -735,15 +735,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -767,6 +767,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
@@ -783,19 +795,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">SSD硬盘更换</a>
               </li>
              
               <li class="article-tag-list-item">

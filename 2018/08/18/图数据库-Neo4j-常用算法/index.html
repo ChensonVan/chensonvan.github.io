@@ -21,7 +21,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-8-18/88942165.jpg">
 <meta property="og:image" content="http://on8r6i4gg.bkt.clouddn.com/18-8-18/94277608.jpg">
-<meta property="og:updated_time" content="2019-11-21T06:59:54.000Z">
+<meta property="og:updated_time" content="2019-12-07T16:52:25.929Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图数据库-Neo4j-常用算法">
 <meta name="twitter:description" content="本次主要学习图数据库中常用到的一些算法，以及如何在Neo4j中调用，所以这一篇偏实战，每个算法的原理就简单的提一下。 1. 图数据库中常用的算法 PathFinding &amp;amp; Search 一般用来发现Nodes之间的最短路径，常用算法有如下几种 Google Search Results  Dijkstra - 边不能为负值 Folyd - 边可以为负值，有向图、无向图 Bellman-F">
@@ -180,7 +180,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>本次主要学习图数据库中常用到的一些算法，以及如何在<code>Neo4j</code>中调用，所以这一篇偏实战，每个算法的原理就简单的提一下。</p>
-<h3 id="1-图数据库中常用的算法"><a href="#1-图数据库中常用的算法" class="headerlink" title="1. 图数据库中常用的算法"></a>1. 图数据库中常用的算法</h3><ul>
+<h1 id="1-图数据库中常用的算法"><a href="#1-图数据库中常用的算法" class="headerlink" title="1. 图数据库中常用的算法"></a>1. 图数据库中常用的算法</h1><ul>
 <li><p>PathFinding &amp; Search</p>
 <p>一般用来发现Nodes之间的最短路径，常用算法有如下几种</p>
 <p><a href="https://www.google.com/search?newwindow=1&amp;ei=yKxrW77lH9mB-QbQ3ZWABA&amp;q=bellman_ford+%E7%AE%97%E6%B3%95+dijkstra+folyd&amp;oq=bellman_ford+%E7%AE%97%E6%B3%95+dijkstra+folyd&amp;gs_l=psy-ab.3..33i160k1.3896.6372.0.6588.6.6.0.0.0.0.164.729.1j5.6.0....0...1c.1.64.psy-ab..0.5.564...0i30k1.0.1ROtXHlgXdQ" target="_blank" rel="noopener">Google Search Results</a></p>
@@ -214,7 +214,7 @@
 <!--more-->
 </li>
 </ul>
-<h3 id="2-路径搜索算法"><a href="#2-路径搜索算法" class="headerlink" title="2. 路径搜索算法"></a>2. 路径搜索算法</h3><ul>
+<h1 id="2-路径搜索算法"><a href="#2-路径搜索算法" class="headerlink" title="2. 路径搜索算法"></a>2. 路径搜索算法</h1><ul>
 <li><p>Shortest Path</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MATCH (start:Loc&#123;name:&quot;A&quot;&#125;), (end:Loc&#123;name:&quot;F&quot;&#125;)</span><br><span class="line">CALL algo.shortestPath.stream(start, end, &quot;cost&quot;)</span><br><span class="line">YIELD nodeId, cost</span><br><span class="line"></span><br><span class="line">MATCH (other:Loc) </span><br><span class="line">WHERE id(other) = nodeId</span><br><span class="line">RETURN other.name AS name, cost</span><br></pre></td></tr></table></figure>
 <p><img src="http://on8r6i4gg.bkt.clouddn.com/18-8-18/88942165.jpg" alt></p>
@@ -232,7 +232,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">MERGE (a:Loc &#123;name:&quot;A&quot;&#125;)</span><br><span class="line">MERGE (b:Loc &#123;name:&quot;B&quot;&#125;)</span><br><span class="line">MERGE (c:Loc &#123;name:&quot;C&quot;&#125;)</span><br><span class="line">MERGE (d:Loc &#123;name:&quot;D&quot;&#125;)</span><br><span class="line">MERGE (e:Loc &#123;name:&quot;E&quot;&#125;)</span><br><span class="line">MERGE (f:Loc &#123;name:&quot;F&quot;&#125;)</span><br><span class="line">MERGE (a)-[:ROAD &#123;cost:50&#125;]-&gt;(b)</span><br><span class="line">MERGE (a)-[:ROAD &#123;cost:50&#125;]-&gt;(c)</span><br><span class="line">MERGE (a)-[:ROAD &#123;cost:100&#125;]-&gt;(d)</span><br><span class="line">MERGE (b)-[:ROAD &#123;cost:40&#125;]-&gt;(d)</span><br><span class="line">MERGE (c)-[:ROAD &#123;cost:40&#125;]-&gt;(d)</span><br><span class="line">MERGE (c)-[:ROAD &#123;cost:80&#125;]-&gt;(e)</span><br><span class="line">MERGE (d)-[:ROAD &#123;cost:30&#125;]-&gt;(e)</span><br><span class="line">MERGE (d)-[:ROAD &#123;cost:80&#125;]-&gt;(f)</span><br><span class="line">MERGE (e)-[:ROAD &#123;cost:40&#125;]-&gt;(f);</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="3-中心性算法"><a href="#3-中心性算法" class="headerlink" title="3. 中心性算法"></a>3. 中心性算法</h3><ul>
+<h1 id="3-中心性算法"><a href="#3-中心性算法" class="headerlink" title="3. 中心性算法"></a>3. 中心性算法</h1><ul>
 <li><p>PageRank</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CALL algo.pageRank.stream(&quot;Page&quot;, &quot;LINKS&quot;,</span><br><span class="line">&#123;iterations:20&#125;)</span><br><span class="line">YIELD nodeId, score</span><br><span class="line">MATCH (node) WHERE id(node) = nodeId</span><br><span class="line">RETURN node.name AS page,score</span><br><span class="line">ORDER BY score DESC</span><br></pre></td></tr></table></figure>
 <p><img src="http://on8r6i4gg.bkt.clouddn.com/18-8-18/94277608.jpg" alt></p>
@@ -249,7 +249,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">MERGE (home:Page &#123;name:&quot;Home&quot;&#125;)</span><br><span class="line">MERGE (about:Page &#123;name:&quot;About&quot;&#125;)</span><br><span class="line">MERGE (product:Page &#123;name:&quot;Product&quot;&#125;)</span><br><span class="line">MERGE (links:Page &#123;name:&quot;Links&quot;&#125;)</span><br><span class="line">MERGE (a:Page &#123;name:&quot;Site A&quot;&#125;)</span><br><span class="line">MERGE (b:Page &#123;name:&quot;Site B&quot;&#125;)</span><br><span class="line">MERGE (c:Page &#123;name:&quot;Site C&quot;&#125;)</span><br><span class="line">MERGE (d:Page &#123;name:&quot;Site D&quot;&#125;)</span><br><span class="line">MERGE (home)-[:LINKS]-&gt;(about)</span><br><span class="line">MERGE (about)-[:LINKS]-&gt;(home)</span><br><span class="line">MERGE (product)-[:LINKS]-&gt;(home)</span><br><span class="line">MERGE (home)-[:LINKS]-&gt;(product)</span><br><span class="line">MERGE (links)-[:LINKS]-&gt;(home)</span><br><span class="line">MERGE (home)-[:LINKS]-&gt;(links)</span><br><span class="line">MERGE (links)-[:LINKS]-&gt;(a)</span><br><span class="line">MERGE (a)-[:LINKS]-&gt;(home)</span><br><span class="line">MERGE (links)-[:LINKS]-&gt;(b)</span><br><span class="line">MERGE (b)-[:LINKS]-&gt;(home)</span><br><span class="line">MERGE (links)-[:LINKS]-&gt;(c)</span><br><span class="line">MERGE (c)-[:LINKS]-&gt;(home)</span><br><span class="line">MERGE (links)-[:LINKS]-&gt;(d)</span><br><span class="line">MERGE (d)-[:LINKS]-&gt;(home)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="4-社区发现算法"><a href="#4-社区发现算法" class="headerlink" title="4. 社区发现算法"></a>4. 社区发现算法</h3><ul>
+<h1 id="4-社区发现算法"><a href="#4-社区发现算法" class="headerlink" title="4. 社区发现算法"></a>4. 社区发现算法</h1><ul>
 <li><p>Strongly Connected Components</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CALL algo.scc.stream(&quot;User&quot;,&quot;FOLLOWS&quot;)</span><br><span class="line">YIELD nodeId, partition</span><br><span class="line">MATCH (u:User) WHERE id(u) = nodeId</span><br><span class="line">RETURN u.id AS name, partition</span><br></pre></td></tr></table></figure>
 </li>
@@ -266,7 +266,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CALL algo.triangle.stream(&quot;Person&quot;,&quot;KNOWS&quot;)</span><br><span class="line">YIELD nodeA,nodeB,nodeC</span><br><span class="line">MATCH (a:Person) WHERE id(a) = nodeA</span><br><span class="line">MATCH (b:Person) WHERE id(b) = nodeB</span><br><span class="line">MATCH (c:Person) WHERE id(c) = nodeC</span><br><span class="line">RETURN a.id AS nodeA, b.id AS nodeB, c.id AS node</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="5-References"><a href="#5-References" class="headerlink" title="5. References"></a>5. References</h3><ul>
+<h1 id="5-References"><a href="#5-References" class="headerlink" title="5. References"></a>5. References</h1><ul>
 <li><a href="https://www.slideshare.net/SamchuLi/neo4j-in-depth-session1" target="_blank" rel="noopener">Neo4j in deep</a></li>
 <li>官方文档：Comprehensive-Guide-to-Graph-Algorithms-in-Neo4j-ebook</li>
 </ul>
@@ -743,15 +743,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -775,6 +775,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
@@ -791,19 +803,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">SSD硬盘更换</a>
               </li>
              
               <li class="article-tag-list-item">

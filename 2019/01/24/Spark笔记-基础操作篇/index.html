@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://chenson.cc/2019/01/24/Spark笔记-基础操作篇/2019-01-24-Spark笔记-基础操作篇/image-20190226110720808-1150440.png">
 <meta property="og:image" content="http://chenson.cc/2019/01/24/Spark笔记-基础操作篇/2019-01-24-Spark笔记-基础操作篇/image-20190226142937108-1162577.png">
 <meta property="og:image" content="http://chenson.cc/2019/01/24/Spark笔记-基础操作篇/2019-01-24-Spark笔记-基础操作篇/image-20190226143102318-1162662.png">
-<meta property="og:updated_time" content="2019-11-21T06:59:54.000Z">
+<meta property="og:updated_time" content="2019-12-07T16:48:12.434Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark笔记-基础操作篇">
 <meta name="twitter:description" content="本篇主要是为了熟悉PySpark的基本操作，没啥特别的内容。 1. 准备工作 启动Hadoop  启动Spark  在Jupyter中测试PySpark 123456789101112131415161718import pysparkfrom pyspark import SparkContext as scfrom pyspark import SparkConffrom pyspark.sq">
@@ -188,7 +188,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>本篇主要是为了熟悉PySpark的基本操作，没啥特别的内容。</p>
-<h3 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h3><ul>
+<h1 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h1><ul>
 <li><p>启动Hadoop</p>
 </li>
 <li><p>启动Spark</p>
@@ -198,7 +198,7 @@
 </li>
 </ul>
 <a id="more"></a>
-<h3 id="2-RDD相关操作"><a href="#2-RDD相关操作" class="headerlink" title="2. RDD相关操作"></a>2. RDD相关操作</h3><h4 id="2-1-RDD的创建"><a href="#2-1-RDD的创建" class="headerlink" title="2.1 RDD的创建"></a>2.1 RDD的创建</h4><ul>
+<h1 id="2-RDD相关操作"><a href="#2-RDD相关操作" class="headerlink" title="2. RDD相关操作"></a>2. RDD相关操作</h1><h2 id="2-1-RDD的创建"><a href="#2-1-RDD的创建" class="headerlink" title="2.1 RDD的创建"></a>2.1 RDD的创建</h2><ul>
 <li><p>读取外部数据</p>
 <ul>
 <li><p>数据位于HDFS上</p>
@@ -221,7 +221,7 @@
 <p><img src="/2019/01/24/Spark笔记-基础操作篇/2019-01-24-Spark笔记-基础操作篇/image-20190225144611823-1077171.png" alt="image-20190225144611823"></p>
 </li>
 </ul>
-<h4 id="2-2-RDD常用操作"><a href="#2-2-RDD常用操作" class="headerlink" title="2.2 RDD常用操作"></a>2.2 RDD常用操作</h4><ul>
+<h2 id="2-2-RDD常用操作"><a href="#2-2-RDD常用操作" class="headerlink" title="2.2 RDD常用操作"></a>2.2 RDD常用操作</h2><ul>
 <li><p>Transformation</p>
 <ul>
 <li><p><code>map(func)</code>: 将每个元素传递到函数func中，并将结果返回为一个新的数据集</p>
@@ -263,7 +263,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="2-3-RDD持久化"><a href="#2-3-RDD持久化" class="headerlink" title="2.3 RDD持久化"></a>2.3 RDD持久化</h4><ul>
+<h2 id="2-3-RDD持久化"><a href="#2-3-RDD持久化" class="headerlink" title="2.3 RDD持久化"></a>2.3 RDD持久化</h2><ul>
 <li><p>非持久化</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">data = [<span class="string">"Hadoop"</span>, <span class="string">"Spark"</span>, <span class="string">"Hive"</span>]</span><br><span class="line">rdd = sc.parallelize(data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 非持久化，重复计算了</span></span><br><span class="line"><span class="comment">## 行动操作，触发一次真正从头到尾的计算</span></span><br><span class="line">print(rdd.count()) </span><br><span class="line"><span class="comment"># &gt;&gt; 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 行动操作，触发一次真正从头到尾的计算</span></span><br><span class="line">print(<span class="string">', '</span>.join(rdd.collect())) </span><br><span class="line"><span class="comment"># &gt;&gt;&gt; Hadoop, Spark, Hive</span></span><br></pre></td></tr></table></figure>
 </li>
@@ -291,7 +291,7 @@
 <p><img src="/2019/01/24/Spark笔记-基础操作篇/2019-01-24-Spark笔记-基础操作篇/image-20190224213724646.png" alt="image-20190224213724646"></p>
 </li>
 </ul>
-<h4 id="2-4-分区"><a href="#2-4-分区" class="headerlink" title="2.4 分区"></a>2.4 分区</h4><blockquote>
+<h2 id="2-4-分区"><a href="#2-4-分区" class="headerlink" title="2.4 分区"></a>2.4 分区</h2><blockquote>
 <p>RDD是弹性分布式数据集，通常RDD很大，会被分成很多个分区，分别保存在不同的节点上。RDD分区的一个分区原则是<strong>使得分区的个数尽量等于集群中的CPU核心(core)数目</strong>。</p>
 <p>对于不同的Spark部署模式而言(分别是<strong>本地模式</strong>、<strong>Standalone模式</strong>、<strong>YARN模式</strong>、<strong>Mesos模式</strong>)，都可以通过设置spark.default.parallelism这个参数的值，来配置默认的分区数目，一般而言：</p>
 <ul>
@@ -300,7 +300,7 @@
 <li>Standalone或YARN：在“集群中所有CPU核心数目总和”和“2”二者中取较大值作为默认值；</li>
 </ul>
 </blockquote>
-<h4 id="2-5-共享变量"><a href="#2-5-共享变量" class="headerlink" title="2.5 共享变量"></a>2.5 共享变量</h4><p>在Spark分布式计算中，不同的计算节点上的不同人物会调用同一个函数，里面会设计到一些数据的使用。</p>
+<h2 id="2-5-共享变量"><a href="#2-5-共享变量" class="headerlink" title="2.5 共享变量"></a>2.5 共享变量</h2><p>在Spark分布式计算中，不同的计算节点上的不同人物会调用同一个函数，里面会设计到一些数据的使用。</p>
 <ul>
 <li><p>如果每个节点只是进行<strong>读操作</strong>，那么可以将该份数据拷贝到每台节点的不同任务上。</p>
 </li>
@@ -329,7 +329,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="3-DataFrame相关操作"><a href="#3-DataFrame相关操作" class="headerlink" title="3. DataFrame相关操作"></a>3. DataFrame相关操作</h3><h4 id="3-1-Dataframe-v-s-RDD"><a href="#3-1-Dataframe-v-s-RDD" class="headerlink" title="3.1 Dataframe v.s. RDD"></a>3.1 Dataframe v.s. RDD</h4><p><img src="/2019/01/24/Spark笔记-基础操作篇/2019-01-24-Spark笔记-基础操作篇/DataFrame-RDD.jpg" alt="img"></p>
+<h1 id="3-DataFrame相关操作"><a href="#3-DataFrame相关操作" class="headerlink" title="3. DataFrame相关操作"></a>3. DataFrame相关操作</h1><h2 id="3-1-Dataframe-v-s-RDD"><a href="#3-1-Dataframe-v-s-RDD" class="headerlink" title="3.1 Dataframe v.s. RDD"></a>3.1 Dataframe v.s. RDD</h2><p><img src="/2019/01/24/Spark笔记-基础操作篇/2019-01-24-Spark笔记-基础操作篇/DataFrame-RDD.jpg" alt="img"></p>
 <ul>
 <li><p>RDD</p>
 <p>RDD是分布式的Java对象的集和，如上图的RDD是以为Person为类型参数，但Person类的内部结果对于RDD是不可知的(有校验机制么？)</p>
@@ -339,7 +339,7 @@
 <p>同时RDD也是惰性机制的，只记录了各种的逻辑转换的路线，即DAG图。等需要计算结果的时候，再计算。</p>
 </li>
 </ul>
-<h4 id="3-2-创建DataFrame"><a href="#3-2-创建DataFrame" class="headerlink" title="3.2 创建DataFrame"></a>3.2 创建DataFrame</h4><ul>
+<h2 id="3-2-创建DataFrame"><a href="#3-2-创建DataFrame" class="headerlink" title="3.2 创建DataFrame"></a>3.2 创建DataFrame</h2><ul>
 <li>直接创建</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">spark = SparkSession.builder \</span><br><span class="line">                    .appName(<span class="string">'spark-basic-oprations'</span>) \</span><br><span class="line">                    .master(<span class="string">'local[*]'</span>) \</span><br><span class="line">                    .config(<span class="string">'spark.some.config.option'</span>, <span class="string">'some-value'</span>) \</span><br><span class="line">                    .config(<span class="string">'spark.debug.maxToStringFields'</span>, <span class="string">'50'</span>) \</span><br><span class="line">                    .getOrCreate()</span><br><span class="line">                    </span><br><span class="line">                    </span><br><span class="line">df = spark.read.text(file)</span><br><span class="line">df.show()</span><br><span class="line"><span class="comment"># 和 Python 中的DataFrame很相似</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>+--------------------+</span><br><span class="line">    |               value|</span><br><span class="line">    +--------------------+</span><br><span class="line">    |As of <span class="number">2013</span>, Googl...|</span><br><span class="line">    |                    |</span><br><span class="line">    |The service cover...|</span><br><span class="line">    |                    |</span><br><span class="line">    |On December <span class="number">1</span>, <span class="number">20.</span>..|</span><br><span class="line">    |                    |</span><br><span class="line">    |The layout of Goo...|</span><br><span class="line">    |                    |</span><br><span class="line">    |On July <span class="number">14</span>, <span class="number">2011</span>,...|</span><br><span class="line">    |                    |</span><br><span class="line">    |Additionally <span class="keyword">in</span> J...|</span><br><span class="line">    |                    |</span><br><span class="line">    |In June <span class="number">2017</span>, the...|</span><br><span class="line">    +--------------------+</span><br></pre></td></tr></table></figure>
@@ -350,9 +350,9 @@
 </ul>
 </li>
 </ul>
-<h4 id="3-2-DataFrame常用操作"><a href="#3-2-DataFrame常用操作" class="headerlink" title="3.2 DataFrame常用操作"></a>3.2 DataFrame常用操作</h4><p>下面这些操作和Python中队DataFrame</p>
+<h2 id="3-2-DataFrame常用操作"><a href="#3-2-DataFrame常用操作" class="headerlink" title="3.2 DataFrame常用操作"></a>3.2 DataFrame常用操作</h2><p>下面这些操作和Python中队DataFrame</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打印模式信息</span></span><br><span class="line">df.printSchema()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>root</span><br><span class="line">     |-- age: long (nullable = true)</span><br><span class="line">     |-- name: string (nullable = true)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 选择多列</span></span><br><span class="line">df.select(df.name,df.age + <span class="number">1</span>).show()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>+-------+---------+</span><br><span class="line">    |   name|(age + <span class="number">1</span>)|</span><br><span class="line">    +-------+---------+</span><br><span class="line">    |Michael|     null|</span><br><span class="line">    |   Andy|       <span class="number">31</span>|</span><br><span class="line">    | Justin|       <span class="number">20</span>|</span><br><span class="line">    +-------+---------+</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 条件过滤</span></span><br><span class="line">df.filter(df.age &gt; <span class="number">20</span> ).show()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>+---+----+</span><br><span class="line">    |age|name|</span><br><span class="line">    +---+----+</span><br><span class="line">    | <span class="number">30</span>|Andy|</span><br><span class="line">    +---+----+</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 分组聚合</span></span><br><span class="line">df.groupBy(<span class="string">"age"</span>).count().show()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>+----+-----+</span><br><span class="line">    | age|count|</span><br><span class="line">    +----+-----+</span><br><span class="line">    |  <span class="number">19</span>|    <span class="number">1</span>|</span><br><span class="line">    |null|    <span class="number">1</span>|</span><br><span class="line">    |  <span class="number">30</span>|    <span class="number">1</span>|</span><br><span class="line">    +----+-----+</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 排序</span></span><br><span class="line">df.sort(df.age.desc()).show()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>+----+-------+</span><br><span class="line">    | age|   name|</span><br><span class="line">    +----+-------+</span><br><span class="line">    |  <span class="number">30</span>|   Andy|</span><br><span class="line">    |  <span class="number">19</span>| Justin|</span><br><span class="line">    |null|Michael|</span><br><span class="line">    +----+-------+</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 多列排序</span></span><br><span class="line">df.sort(df.age.desc(), df.name.asc()).show()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>+----+-------+</span><br><span class="line">    | age|   name|</span><br><span class="line">    +----+-------+</span><br><span class="line">    |  <span class="number">30</span>|   Andy|</span><br><span class="line">    |  <span class="number">19</span>| Justin|</span><br><span class="line">    |null|Michael|</span><br><span class="line">    +----+-------+</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 对列进行重命名</span></span><br><span class="line">df.select(df.name.alias(<span class="string">"username"</span>),df.age).show()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>+--------+----+</span><br><span class="line">    |username| age|</span><br><span class="line">    +--------+----+</span><br><span class="line">    | Michael|null|</span><br><span class="line">    |    Andy|  <span class="number">30</span>|</span><br><span class="line">    |  Justin|  <span class="number">19</span>|</span><br><span class="line">    +--------+----+</span><br></pre></td></tr></table></figure>
-<h3 id="4-Spark-Streaming"><a href="#4-Spark-Streaming" class="headerlink" title="4. Spark Streaming"></a>4. Spark Streaming</h3><blockquote>
+<h1 id="4-Spark-Streaming"><a href="#4-Spark-Streaming" class="headerlink" title="4. Spark Streaming"></a>4. Spark Streaming</h1><blockquote>
 <p>数据总体上可以分为<strong>静态数据和流数据</strong>。对静态数据和流数据的处理，对应着两种截然不同的计算模式：<strong>批量计算和实时计算</strong>。</p>
 <p>批量计算以“静态数据”为对象，可以在很充裕的时间内对海量数据进行批量处理，计算得到有价值的信息。Hadoop就是典型的批处理模型，由HDFS和HBase存放大量的静态数据，由MapReduce负责对海量数据执行批量计算。</p>
 <p>流数据必须采用实时计算，实时计算最重要的一个需求是能够实时得到计算结果，一般要求响应时间为秒级。当只需要处理少量数据时，实时计算并不是问题；但是，在大数据时代，不仅数据格式复杂、来源众多，而且数据量巨大，这就对实时计算提出了很大的挑战。因此，针对流数据的实时计算——流计算，应运而生。</p>
@@ -375,7 +375,7 @@
 </li>
 </ul>
 <p><img src="/2019/01/24/Spark笔记-基础操作篇/2019-01-24-Spark笔记-基础操作篇/streaming_process.jpg" alt="img"></p>
-<h4 id="4-1-创建StreamingContext对象"><a href="#4-1-创建StreamingContext对象" class="headerlink" title="4.1 创建StreamingContext对象"></a>4.1 创建StreamingContext对象</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在pyspark中创建</span></span><br><span class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkContext</span><br><span class="line"><span class="keyword">from</span> pyspark.streaming <span class="keyword">import</span> StreamingContext</span><br><span class="line"></span><br><span class="line">ssc = StreamingContext(sc, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编写一个独立的Spark Streaming程序，而不是在pyspark中运行</span></span><br><span class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkContext, SparkConf</span><br><span class="line"><span class="keyword">from</span> pyspark.streaming <span class="keyword">import</span> StreamingContext</span><br><span class="line"></span><br><span class="line">conf = SparkConf().setAppName(<span class="string">'spark-streaming'</span>).setMaster(<span class="string">'local[*]'</span>)</span><br><span class="line">    </span><br><span class="line">sc = SparkContext(conf=conf)</span><br><span class="line">ssc = StreamingContext(sc, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="4-1-创建StreamingContext对象"><a href="#4-1-创建StreamingContext对象" class="headerlink" title="4.1 创建StreamingContext对象"></a>4.1 创建StreamingContext对象</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在pyspark中创建</span></span><br><span class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkContext</span><br><span class="line"><span class="keyword">from</span> pyspark.streaming <span class="keyword">import</span> StreamingContext</span><br><span class="line"></span><br><span class="line">ssc = StreamingContext(sc, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编写一个独立的Spark Streaming程序，而不是在pyspark中运行</span></span><br><span class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkContext, SparkConf</span><br><span class="line"><span class="keyword">from</span> pyspark.streaming <span class="keyword">import</span> StreamingContext</span><br><span class="line"></span><br><span class="line">conf = SparkConf().setAppName(<span class="string">'spark-streaming'</span>).setMaster(<span class="string">'local[*]'</span>)</span><br><span class="line">    </span><br><span class="line">sc = SparkContext(conf=conf)</span><br><span class="line">ssc = StreamingContext(sc, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 <ul>
 <li>监听本地文件流</li>
 </ul>
@@ -870,15 +870,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -902,6 +902,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
@@ -918,19 +930,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">SSD硬盘更换</a>
               </li>
              
               <li class="article-tag-list-item">

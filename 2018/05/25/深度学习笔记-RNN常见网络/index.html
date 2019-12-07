@@ -20,7 +20,7 @@
 <meta property="og:description" content="说实话，只是大概了解一下这些常见的RNN模型，但是这些模型为什么这么设计，为什么能够抓取网络中可能有用的长短期信息其实我还是比较懵的。这一块以后也是需要去深入理解的一部分，先mark一下。 1. 循环神经网络 - RNN (Recurrent Neural Network)2. 门控循环单元 - GRN (Gated Recurrent Neural Networks)按时间顺序上来看，GRN是在">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.cc/2018/05/25/深度学习笔记-RNN常见网络/2018-05-25-深度学习笔记-RNN常见网络/image-20190223182723913.png">
-<meta property="og:updated_time" content="2019-11-21T06:59:54.000Z">
+<meta property="og:updated_time" content="2019-12-07T16:53:15.442Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深度学习笔记-RNN常见网络">
 <meta name="twitter:description" content="说实话，只是大概了解一下这些常见的RNN模型，但是这些模型为什么这么设计，为什么能够抓取网络中可能有用的长短期信息其实我还是比较懵的。这一块以后也是需要去深入理解的一部分，先mark一下。 1. 循环神经网络 - RNN (Recurrent Neural Network)2. 门控循环单元 - GRN (Gated Recurrent Neural Networks)按时间顺序上来看，GRN是在">
@@ -179,7 +179,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>说实话，只是大概了解一下这些常见的RNN模型，但是这些模型为什么这么设计，为什么能够抓取网络中可能有用的长短期信息其实我还是比较懵的。这一块以后也是需要去深入理解的一部分，先mark一下。</p>
-<h3 id="1-循环神经网络-RNN-Recurrent-Neural-Network"><a href="#1-循环神经网络-RNN-Recurrent-Neural-Network" class="headerlink" title="1. 循环神经网络 - RNN (Recurrent Neural Network)"></a>1. 循环神经网络 - RNN (Recurrent Neural Network)</h3><h3 id="2-门控循环单元-GRN-Gated-Recurrent-Neural-Networks"><a href="#2-门控循环单元-GRN-Gated-Recurrent-Neural-Networks" class="headerlink" title="2. 门控循环单元 - GRN (Gated Recurrent Neural Networks)"></a>2. 门控循环单元 - GRN (Gated Recurrent Neural Networks)</h3><p>按时间顺序上来看，GRN是在LSTM之后提出来的。但是这个相对来说可能没那么复杂，所以先总结这个，然后再总结LSTM。</p>
+<h1 id="1-循环神经网络-RNN-Recurrent-Neural-Network"><a href="#1-循环神经网络-RNN-Recurrent-Neural-Network" class="headerlink" title="1. 循环神经网络 - RNN (Recurrent Neural Network)"></a>1. 循环神经网络 - RNN (Recurrent Neural Network)</h1><h1 id="2-门控循环单元-GRN-Gated-Recurrent-Neural-Networks"><a href="#2-门控循环单元-GRN-Gated-Recurrent-Neural-Networks" class="headerlink" title="2. 门控循环单元 - GRN (Gated Recurrent Neural Networks)"></a>2. 门控循环单元 - GRN (Gated Recurrent Neural Networks)</h1><p>按时间顺序上来看，GRN是在LSTM之后提出来的。但是这个相对来说可能没那么复杂，所以先总结这个，然后再总结LSTM。</p>
 <p>门控循环单元，重点是在于<strong>门</strong>的，即Gated。<del>这里指的是 $\sigma$ = sigmod func.</del></p>
 <p>那么为什么要出现这些门呢，相比原先的RNN模型，这些门的出现能够解决什么样的问题？</p>
 <a id="more"></a>
@@ -223,7 +223,7 @@ Z_t = \sigma(X_t W_{xz} + H_{t-1}W_{hz} + b_z)</script><ul>
 <script type="math/tex; mode=display">
 H_t = Z_t\bigodot H_{t-1} + (1 - Z_t) \bigodot \tilde H_t</script></li>
 </ul>
-<h3 id="3-长短期记忆-LSTM-Long-and-Short-Term-Memory"><a href="#3-长短期记忆-LSTM-Long-and-Short-Term-Memory" class="headerlink" title="3. 长短期记忆 - LSTM (Long and Short-Term Memory)"></a>3. 长短期记忆 - LSTM (Long and Short-Term Memory)</h3><p>结构比之前的GRU更为复杂一些，LSTM的隐含层包含隐含层变量H和记忆细胞C，它们的设计和形状相同（可以看到后面的几个func设计上其实是一样的，ji。</p>
+<h1 id="3-长短期记忆-LSTM-Long-and-Short-Term-Memory"><a href="#3-长短期记忆-LSTM-Long-and-Short-Term-Memory" class="headerlink" title="3. 长短期记忆 - LSTM (Long and Short-Term Memory)"></a>3. 长短期记忆 - LSTM (Long and Short-Term Memory)</h1><p>结构比之前的GRU更为复杂一些，LSTM的隐含层包含隐含层变量H和记忆细胞C，它们的设计和形状相同（可以看到后面的几个func设计上其实是一样的，ji。</p>
 <ul>
 <li><p>输入门</p>
 <p>短期记忆</p>
@@ -245,7 +245,7 @@ C_t = F_t \bigodot C_{t-1} + I_t \bigodot \tilde C_t</script></li>
 <li><p>当前隐含状态</p>
 </li>
 </ul>
-<h3 id="4-深度循环神经网络"><a href="#4-深度循环神经网络" class="headerlink" title="4. 深度循环神经网络"></a>4. 深度循环神经网络</h3><h3 id="5-双向循环神经网络"><a href="#5-双向循环神经网络" class="headerlink" title="5. 双向循环神经网络"></a>5. 双向循环神经网络</h3><h3 id="6-References"><a href="#6-References" class="headerlink" title="6. References"></a>6. References</h3><ul>
+<h1 id="4-深度循环神经网络"><a href="#4-深度循环神经网络" class="headerlink" title="4. 深度循环神经网络"></a>4. 深度循环神经网络</h1><h1 id="5-双向循环神经网络"><a href="#5-双向循环神经网络" class="headerlink" title="5. 双向循环神经网络"></a>5. 双向循环神经网络</h1><h1 id="6-References"><a href="#6-References" class="headerlink" title="6. References"></a>6. References</h1><ul>
 <li><a href="https://zh.gluon.ai/chapter_recurrent-neural-networks" target="_blank" rel="noopener">动手学深度学习-循环神经网络</a></li>
 <li><a href="https://blog.csdn.net/softee/article/details/54292102" target="_blank" rel="noopener">RNN LSTM与GRU深度学习模型学习笔记</a></li>
 </ul>
@@ -722,15 +722,15 @@ C_t = F_t \bigodot C_{t-1} + I_t \bigodot \tilde C_t</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -754,6 +754,18 @@ C_t = F_t \bigodot C_{t-1} + I_t \bigodot \tilde C_t</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
@@ -770,19 +782,23 @@ C_t = F_t \bigodot C_{t-1} + I_t \bigodot \tilde C_t</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">SSD硬盘更换</a>
               </li>
              
               <li class="article-tag-list-item">

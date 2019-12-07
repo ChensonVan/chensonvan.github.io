@@ -177,7 +177,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>说实话，只是大概了解一下这些常见的RNN模型，但是这些模型为什么这么设计，为什么能够抓取网络中可能有用的长短期信息其实我还是比较懵的。这一块以后也是需要去深入理解的一部分，先mark一下。</p>
-<h3 id="1-循环神经网络-RNN-Recurrent-Neural-Network"><a href="#1-循环神经网络-RNN-Recurrent-Neural-Network" class="headerlink" title="1. 循环神经网络 - RNN (Recurrent Neural Network)"></a>1. 循环神经网络 - RNN (Recurrent Neural Network)</h3><h3 id="2-门控循环单元-GRN-Gated-Recurrent-Neural-Networks"><a href="#2-门控循环单元-GRN-Gated-Recurrent-Neural-Networks" class="headerlink" title="2. 门控循环单元 - GRN (Gated Recurrent Neural Networks)"></a>2. 门控循环单元 - GRN (Gated Recurrent Neural Networks)</h3><p>按时间顺序上来看，GRN是在LSTM之后提出来的。但是这个相对来说可能没那么复杂，所以先总结这个，然后再总结LSTM。</p>
+<h1 id="1-循环神经网络-RNN-Recurrent-Neural-Network"><a href="#1-循环神经网络-RNN-Recurrent-Neural-Network" class="headerlink" title="1. 循环神经网络 - RNN (Recurrent Neural Network)"></a>1. 循环神经网络 - RNN (Recurrent Neural Network)</h1><h1 id="2-门控循环单元-GRN-Gated-Recurrent-Neural-Networks"><a href="#2-门控循环单元-GRN-Gated-Recurrent-Neural-Networks" class="headerlink" title="2. 门控循环单元 - GRN (Gated Recurrent Neural Networks)"></a>2. 门控循环单元 - GRN (Gated Recurrent Neural Networks)</h1><p>按时间顺序上来看，GRN是在LSTM之后提出来的。但是这个相对来说可能没那么复杂，所以先总结这个，然后再总结LSTM。</p>
 <p>门控循环单元，重点是在于<strong>门</strong>的，即Gated。<del>这里指的是 $\sigma$ = sigmod func.</del></p>
 <p>那么为什么要出现这些门呢，相比原先的RNN模型，这些门的出现能够解决什么样的问题？</p>
         
@@ -248,7 +248,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-一些预备知识"><a href="#1-一些预备知识" class="headerlink" title="1. 一些预备知识"></a>1. 一些预备知识</h3><h4 id="1-1-Markov-Chain"><a href="#1-1-Markov-Chain" class="headerlink" title="1.1 Markov Chain"></a>1.1 Markov Chain</h4>
+        <h1 id="1-一些预备知识"><a href="#1-一些预备知识" class="headerlink" title="1. 一些预备知识"></a>1. 一些预备知识</h1><h2 id="1-1-Markov-Chain"><a href="#1-1-Markov-Chain" class="headerlink" title="1.1 Markov Chain"></a>1.1 Markov Chain</h2>
         
       
 
@@ -318,9 +318,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>上次笔记主要记录了卷积神经网络总卷积Block中的基本概念，本次笔记打算整理一下常见的CNN，从开山鼻祖的LeNet到目前比较流行的ResNet和DenseNet等。</p>
-<h3 id="1-LeNet"><a href="#1-LeNet" class="headerlink" title="1. LeNet"></a>1. LeNet</h3><p>LeNet是早起用来识别手写数字图像的卷积神经网络，算是卷积神经网络的开山鼻祖。</p>
+<h1 id="1-LeNet"><a href="#1-LeNet" class="headerlink" title="1. LeNet"></a>1. LeNet</h1><p>LeNet是早起用来识别手写数字图像的卷积神经网络，算是卷积神经网络的开山鼻祖。</p>
 <p>LeNet主要分为<strong>卷积层块</strong>和<strong>全连接层</strong>块两大部分。</p>
-<h4 id="1-1-卷积层块"><a href="#1-1-卷积层块" class="headerlink" title="1.1 卷积层块"></a>1.1 卷积层块</h4><p><strong>基本单位</strong>是卷积层后接最大池化层（实际上里面还可以额外的添加一些其他的模块），然后卷积层块就由这俩基本单位<strong>重复的堆叠</strong>构成。</p>
+<h2 id="1-1-卷积层块"><a href="#1-1-卷积层块" class="headerlink" title="1.1 卷积层块"></a>1.1 卷积层块</h2><p><strong>基本单位</strong>是卷积层后接最大池化层（实际上里面还可以额外的添加一些其他的模块），然后卷积层块就由这俩基本单位<strong>重复的堆叠</strong>构成。</p>
 <ul>
 <li><p>卷积层</p>
 <p>用来识别图像里的空间模式，识别一些<strong>局部的locally特征</strong>，比如线条和物体的局部。</p>
@@ -398,7 +398,7 @@
       
         <p>最近正在学习李沐沐神的<a href="https://space.bilibili.com/209599371/channel/detail?cid=23541" target="_blank" rel="noopener">动手学深度学习</a>，目前听到了第五课，真的是非常好的课程。其实在学习之前也有断断续续的学过一些深度学习相关的东西，也会用PyTorch跑一些简单的模型，但仅限于此，对理论知识理解还是比较浅薄的，只是一个调包侠，所以这次学习打算认真学习一下相关的理论知识。</p>
 <p>在学之前也有听了一下NG刚发布的深度学习课程，但对比了一下，还是觉得沐神的比较适合我，毕竟教学用的是中文，方便理解，且理论知识深度合适，所以打算先听完这门课，以后理论方面有需要的，再听NG相关的课程。</p>
-<h3 id="1-卷积神经网络-CNN-Convolutional-Neural-Network"><a href="#1-卷积神经网络-CNN-Convolutional-Neural-Network" class="headerlink" title="1. 卷积神经网络 CNN - (Convolutional Neural Network)"></a>1. 卷积神经网络 CNN - (Convolutional Neural Network)</h3><h4 id="1-1-神经网络-Neural-Network"><a href="#1-1-神经网络-Neural-Network" class="headerlink" title="1.1 神经网络 - Neural Network"></a>1.1 神经网络 - Neural Network</h4><ul>
+<h1 id="1-卷积神经网络-CNN-Convolutional-Neural-Network"><a href="#1-卷积神经网络-CNN-Convolutional-Neural-Network" class="headerlink" title="1. 卷积神经网络 CNN - (Convolutional Neural Network)"></a>1. 卷积神经网络 CNN - (Convolutional Neural Network)</h1><h2 id="1-1-神经网络-Neural-Network"><a href="#1-1-神经网络-Neural-Network" class="headerlink" title="1.1 神经网络 - Neural Network"></a>1.1 神经网络 - Neural Network</h2><ul>
 <li><p>单个神经元</p>
 <p><img src="/2018/04/20/深度学习笔记-CNN/2018-04-20-深度学习笔记-CNN/1.png" alt="单个神经元"></p></li></ul>
         
@@ -553,7 +553,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>趁着公司最近不是很忙，认真学习一下这两年比较火的<code>PyTorch</code>，虽然没有实打实的、认认真真的学过深度学习，但也稍微懂一点。打算先简单学习一下基本操作，搭个简单的<code>DNN</code>、<code>CNN</code>之类的。看看后面有没有时间，然后再上个吴恩达或者李飞飞的课程，补充一下理论知识。所以这篇文章就记录一些简单的概念和上手过程中可能遇到的问题。</p>
-<h3 id="1-损失函数"><a href="#1-损失函数" class="headerlink" title="1. 损失函数"></a>1. 损失函数</h3><h4 id="1-1-二分类问题"><a href="#1-1-二分类问题" class="headerlink" title="1.1 二分类问题"></a>1.1 二分类问题</h4><p>损失函数用</p>
+<h1 id="1-损失函数"><a href="#1-损失函数" class="headerlink" title="1. 损失函数"></a>1. 损失函数</h1><h2 id="1-1-二分类问题"><a href="#1-1-二分类问题" class="headerlink" title="1.1 二分类问题"></a>1.1 二分类问题</h2><p>损失函数用</p>
 <p>criterion = nn.BCELoss()</p>
 <p>此时，y的类型应该为float类型， 且y_pred用的时候需要在该层前面加上 <code>Sigmoid</code> 函数</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line">loss_fn = torch.nn.BCELoss(reduce=<span class="literal">False</span>, </span><br><span class="line">                           size_average=<span class="literal">False</span>)</span><br><span class="line">y_true = Variable(torch.randn(<span class="number">3</span>, <span class="number">4</span>)) <span class="comment"># 限制了target类型为float</span></span><br><span class="line">y_pred = Variable(torch.FloatTensor(<span class="number">3</span>, <span class="number">4</span>).random_(<span class="number">2</span>))</span><br><span class="line">loss = loss_fn(F.sigmoid(y_pred), y_true)</span><br></pre></td></tr></table></figure>
@@ -1218,15 +1218,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1250,6 +1250,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
@@ -1266,19 +1278,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">SSD硬盘更换</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="1. 经典类 / 新式类 经典类 (Python2.2之前的版本) 经典类是一种没有继承的类，实例类型都是type类型(???)。如果经典类被作为父类，子类在调用父类的构造函数时就会出错。这时候MRO的方法为DFS（深度优先搜索（子节点顺序：从左到右）） 1234import inspect # inspect.getmro（A）可以查看经典类的MRO顺序class A:	def __init__">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-21T06:59:54.000Z">
+<meta property="og:updated_time" content="2019-12-07T16:51:25.001Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Python的Mixin模式初探">
 <meta name="twitter:description" content="1. 经典类 / 新式类 经典类 (Python2.2之前的版本) 经典类是一种没有继承的类，实例类型都是type类型(???)。如果经典类被作为父类，子类在调用父类的构造函数时就会出错。这时候MRO的方法为DFS（深度优先搜索（子节点顺序：从左到右）） 1234import inspect # inspect.getmro（A）可以查看经典类的MRO顺序class A:	def __init__">
@@ -176,7 +176,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-经典类-新式类"><a href="#1-经典类-新式类" class="headerlink" title="1. 经典类 / 新式类"></a>1. 经典类 / 新式类</h3><ul>
+        <h1 id="1-经典类-新式类"><a href="#1-经典类-新式类" class="headerlink" title="1. 经典类 / 新式类"></a>1. 经典类 / 新式类</h1><ul>
 <li><p>经典类 (Python2.2之前的版本)</p>
 <p>经典类是一种没有继承的类，<strong>实例类型都是type类型</strong>(???)。如果经典类被作为父类，子类在调用父类的构造函数时就会出错。这时候MRO的方法为DFS<strong>（深度优先搜索（子节点顺序：从左到右））</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> inspect <span class="comment"># inspect.getmro（A）可以查看经典类的MRO顺序</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">		print(<span class="string">'This is a classic class.'</span>)</span><br></pre></td></tr></table></figure>
@@ -194,9 +194,8 @@
 </ul>
 <a id="more"></a>
   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">D</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">E</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">F</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span><span class="params">(D, F)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(E, D)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">(B, C)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">print</span> A.__mro__</span><br></pre></td></tr></table></figure>
-<h3 id="2-多重继承"><a href="#2-多重继承" class="headerlink" title="2. 多重继承"></a>2. 多重继承</h3><p>super</p>
-<p><a href="https://blog.csdn.net/qwertyupoiuytr/article/details/56439134" target="_blank" rel="noopener">https://blog.csdn.net/qwertyupoiuytr/article/details/56439134</a></p>
-<h3 id="3-Mix-in"><a href="#3-Mix-in" class="headerlink" title="3. Mix-in"></a>3. Mix-in</h3><p>Mixin表示的是Mix-in，表示这个类是作为功能添加到子类中，而不是作为父类，它的作用同Java中的接口。</p>
+<h1 id="2-多重继承"><a href="#2-多重继承" class="headerlink" title="2. 多重继承"></a>2. 多重继承</h1><p><a href="https://blog.csdn.net/qwertyupoiuytr/article/details/56439134" target="_blank" rel="noopener">python中的MRO与多继承</a></p>
+<h1 id="3-Mix-in"><a href="#3-Mix-in" class="headerlink" title="3. Mix-in"></a>3. Mix-in</h1><p>Mixin表示的是Mix-in，表示这个类是作为功能添加到子类中，而不是作为父类，它的作用同Java中的接口。</p>
 <ul>
 <li><p>普通类多重继承下，只能有一个普通父类和若干个Mixin类（保持主干单一）</p>
 </li>
@@ -681,15 +680,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -713,6 +712,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
@@ -729,19 +740,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">SSD硬盘更换</a>
               </li>
              
               <li class="article-tag-list-item">

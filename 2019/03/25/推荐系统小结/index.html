@@ -27,7 +27,7 @@
 <meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325204042713.png">
 <meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325203928751.png">
 <meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325203950839.png">
-<meta property="og:updated_time" content="2019-11-21T06:59:54.000Z">
+<meta property="og:updated_time" content="2019-12-07T16:27:52.908Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统小结">
 <meta name="twitter:description" content="1. Factorization Machine (FM) 出现背景 传统用的One-Hot编码会带来数据稀疏的问题。 比如数据如下（栗子来自美团技术博客）：  做了One-Hot编码后  当里面某些特征的维度比较高的时候，数据维度可能达到百万级别。 而传统的LR模型也并没考虑到特征之间的关联  y = w_0 + \sum_{i=1}^n w_i x_i">
@@ -206,9 +206,10 @@ y = w_0 + \sum_{i=1}^nw_ix_i + \sum_{i=1}^{n-1} \sum_{j=i+1}^n w_{ij}x_ix_j</scr
 </ul>
 <p>对于二阶特征的权重 $\hat W$，此时引入了辅助向量 $V$，有</p>
 <script type="math/tex; mode=display">
-\hat W = VV^T  \\ 
+\begin {align}
+\hat W &= VV^T  \\ 
 
-V = \left [ \begin{matrix}
+V &= \left [ \begin{matrix}
    \boldsymbol{v}_1 \\
    \boldsymbol{v}_2 \\
    ... \\
@@ -219,7 +220,9 @@ V = \left [ \begin{matrix}
    v_{21} & v_{22} & ... & v_{2k} \\
    ... & ... & ... & ... \\
    v_{n1} & v_{n2} & ... & v_{nk}
-  \end{matrix} \right ] _{n\times k}</script><p>此时就可以用分解后产生的$V$来表达$\hat W$，将参数由$n^2$降低到 $kn$个。其中$V$矩阵的每一行$v_i$就是第i维特征的隐向量，一个隐向量包含了k个描述第i维特征的因子，所以叫<strong>因子分解</strong>。</p>
+  \end{matrix} \right ] _{n\times k}
+
+\end {align}</script><p>此时就可以用分解后产生的$V$来表达$\hat W$，将参数由$n^2$降低到 $kn$个。其中$V$矩阵的每一行$v_i$就是第i维特征的隐向量，一个隐向量包含了k个描述第i维特征的因子，所以叫<strong>因子分解</strong>。</p>
 <ul>
 <li><p>问题</p>
 <p>和SVD奇异矩阵分解的区别？</p>
@@ -248,7 +251,9 @@ V = \left [ \begin{matrix}
 </ul>
 <pre><code>- 问题
 
-  [为什么FM能够解决参数训练的问题](https://blog.csdn.net/songbinxu/article/details/79662665)  ![image-20190325154016889](2019-03-25-推荐系统小结/image-20190325154016889.png)
+  [为什么FM能够解决参数训练的问题](https://blog.csdn.net/songbinxu/article/details/79662665)  
+
+  ![image-20190325154016889](2019-03-25-推荐系统小结/image-20190325154016889.png)
 </code></pre><ul>
 <li><p>模型结构</p>
 </li>
@@ -988,15 +993,15 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1020,6 +1025,18 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
@@ -1036,19 +1053,23 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">SSD硬盘更换</a>
               </li>
              
               <li class="article-tag-list-item">

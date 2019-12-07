@@ -21,7 +21,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.cc/2018/12/20/大数据数仓建设笔记/2018-12-20-大数据数仓建设笔记/image-20181222203909667-5482349.png">
 <meta property="og:image" content="http://chenson.cc/2018/12/20/大数据数仓建设笔记/2018-12-20-大数据数仓建设笔记/image-20181222203353548-5482033.png">
-<meta property="og:updated_time" content="2019-11-21T06:59:55.000Z">
+<meta property="og:updated_time" content="2019-12-07T16:49:08.650Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大数据数仓建设笔记">
 <meta name="twitter:description" content="虽然不是从事大数据开发的，但我觉得还是有必要对大数据这边有一些了解，简单的可能是如何使用大数据的一些工具，比如是Hive、Spark、Presto等，以及如何日更一张宽表。所以就按照我平常接触和了解的做了个简单的总结。 1. 为什么要建设数据仓库 数据集成 不同业务系统数据集中、统一管理  面向主题 对业务数据分主题建设—参与人、行为域、黑名单  时间维度 按天存储历史快照数据，数据可追溯  相对">
@@ -180,7 +180,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>虽然不是从事大数据开发的，但我觉得还是有必要对大数据这边有一些了解，简单的可能是如何使用大数据的一些工具，比如是Hive、Spark、Presto等，以及如何日更一张宽表。所以就按照我平常接触和了解的做了个简单的总结。</p>
-<h3 id="1-为什么要建设数据仓库"><a href="#1-为什么要建设数据仓库" class="headerlink" title="1. 为什么要建设数据仓库"></a>1. 为什么要建设数据仓库</h3><ul>
+<h1 id="1-为什么要建设数据仓库"><a href="#1-为什么要建设数据仓库" class="headerlink" title="1. 为什么要建设数据仓库"></a>1. 为什么要建设数据仓库</h1><ul>
 <li><p>数据集成</p>
 <p>不同业务系统数据集中、统一管理</p>
 </li>
@@ -200,7 +200,7 @@
 </li>
 </ul>
 <a id="more"></a>
-<h3 id="2-数据仓库规划"><a href="#2-数据仓库规划" class="headerlink" title="2. 数据仓库规划"></a>2. 数据仓库规划</h3><h4 id="2-1-数据仓库分层介绍"><a href="#2-1-数据仓库分层介绍" class="headerlink" title="2.1 数据仓库分层介绍"></a>2.1 数据仓库分层介绍</h4><p>为什么要对数据进行层次设计呢？主要有一下原因：</p>
+<h1 id="2-数据仓库规划"><a href="#2-数据仓库规划" class="headerlink" title="2. 数据仓库规划"></a>2. 数据仓库规划</h1><h2 id="2-1-数据仓库分层介绍"><a href="#2-1-数据仓库分层介绍" class="headerlink" title="2.1 数据仓库分层介绍"></a>2.1 数据仓库分层介绍</h2><p>为什么要对数据进行层次设计呢？主要有一下原因：</p>
 <ul>
 <li><strong>清晰数据结构</strong>：每一个数据分层都有它的作用域，这样我们在使用表的时候能更方便地定位和理解。</li>
 <li><strong>数据血缘追踪</strong>：简单来讲可以这样理解，我们最终给业务诚信的是一能直接使用的张业务表，但是它的来源有很多，如果有一张来源表出问题了，我们希望能够快速准确地定位到问题，并清楚它的危害范围。</li>
@@ -210,7 +210,7 @@
 <li>屏蔽业务的影响，不必改一次业务就需要重新接入数据</li>
 </ul>
 <p><img src="/2018/12/20/大数据数仓建设笔记/2018-12-20-大数据数仓建设笔记/image-20181222203909667-5482349.png" alt="image-20181222203909667"></p>
-<h4 id="2-2-简单介绍"><a href="#2-2-简单介绍" class="headerlink" title="2.2 简单介绍"></a>2.2 简单介绍</h4><p>这里主要简单介绍上面的分层架构，实际上对于大点的公司，可能数仓在设计上还更为详细一些，不会如上面那搬简单。这里可能就按照我平常工作中接触的架构来介绍了。</p>
+<h2 id="2-2-简单介绍"><a href="#2-2-简单介绍" class="headerlink" title="2.2 简单介绍"></a>2.2 简单介绍</h2><p>这里主要简单介绍上面的分层架构，实际上对于大点的公司，可能数仓在设计上还更为详细一些，不会如上面那搬简单。这里可能就按照我平常工作中接触的架构来介绍了。</p>
 <ul>
 <li><p>源数据层 - BDM</p>
 <p>这部分一般由数据网关去拉去数据，尽量保留最㡳的数据信息，一般为最原始的json数据。</p>
@@ -285,13 +285,13 @@
 </ul>
 </li>
 </ul>
-<h3 id="3-架构总览"><a href="#3-架构总览" class="headerlink" title="3. 架构总览"></a>3. 架构总览</h3><p>整个数仓就是根据上面的分层来设计的，从网关到ODS到DWD到DWS最后到DM。</p>
+<h1 id="3-架构总览"><a href="#3-架构总览" class="headerlink" title="3. 架构总览"></a>3. 架构总览</h1><p>整个数仓就是根据上面的分层来设计的，从网关到ODS到DWD到DWS最后到DM。</p>
 <p><img src="/2018/12/20/大数据数仓建设笔记/2018-12-20-大数据数仓建设笔记/image-20181222203353548-5482033.png" alt="image-20181222203353548"></p>
-<h3 id="4-DM层宽表设计与维护"><a href="#4-DM层宽表设计与维护" class="headerlink" title="4. DM层宽表设计与维护"></a>4. DM层宽表设计与维护</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="5-References"><a href="#5-References" class="headerlink" title="5. References"></a>5. References</h3><ul>
+<h1 id="4-DM层宽表设计与维护"><a href="#4-DM层宽表设计与维护" class="headerlink" title="4. DM层宽表设计与维护"></a>4. DM层宽表设计与维护</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="5-References"><a href="#5-References" class="headerlink" title="5. References"></a>5. References</h1><ul>
 <li><a href="https://zhuanlan.zhihu.com/p/27395332" target="_blank" rel="noopener">大数据环境下该如何优雅地设计数据分层</a></li>
 </ul>
-
+<h1 id><a href="#" class="headerlink" title=" "></a> </h1>
       
 
       
@@ -760,15 +760,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -792,6 +792,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
@@ -808,19 +820,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">SSD硬盘更换</a>
               </li>
              
               <li class="article-tag-list-item">

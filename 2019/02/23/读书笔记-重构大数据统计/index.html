@@ -11,19 +11,19 @@
   <link rel="dns-prefetch" href="http://chenson.cc">
   <title>读书笔记-重构大数据统计 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="评价：★★★☆☆1. 单变量基本统计量1.1 常见的数据统计量 均值  \overline X = \frac 1 n \sum_{i=1}^n X_i 方差  S_n^2 = \frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2分母为n-1，则称之为$S_n^2$的自由度(degree of freedom)    问题：不是很理解自由度这个概念">
+  <meta name="description" content="评价：★★★☆☆粗略看了一些，似乎数据设计到开发的内容比较多，很多都是java的代码，不过实用性估计不会很高。但是有些计算的思路不错，还是有些启发意义的。比如有些统计变量可以应用在特征工程中，基于RFM模型进行衍生等。 1. 单变量基本统计量1.1 常见的数据统计量 均值  \overline X = \frac 1 n \sum_{i=1}^n X_i 方差  S_n^2 = \frac 1 {">
 <meta name="keywords" content="Big Data,读书笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="读书笔记-重构大数据统计">
 <meta property="og:url" content="http://chenson.cc/2019/02/23/读书笔记-重构大数据统计/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="评价：★★★☆☆1. 单变量基本统计量1.1 常见的数据统计量 均值  \overline X = \frac 1 n \sum_{i=1}^n X_i 方差  S_n^2 = \frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2分母为n-1，则称之为$S_n^2$的自由度(degree of freedom)    问题：不是很理解自由度这个概念">
+<meta property="og:description" content="评价：★★★☆☆粗略看了一些，似乎数据设计到开发的内容比较多，很多都是java的代码，不过实用性估计不会很高。但是有些计算的思路不错，还是有些启发意义的。比如有些统计变量可以应用在特征工程中，基于RFM模型进行衍生等。 1. 单变量基本统计量1.1 常见的数据统计量 均值  \overline X = \frac 1 n \sum_{i=1}^n X_i 方差  S_n^2 = \frac 1 {">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.cc/2019/02/23/读书笔记-重构大数据统计/2019-02-23-读书笔记-重构大数据统计/image-20190222203555546.png">
-<meta property="og:updated_time" content="2019-11-21T06:59:55.000Z">
+<meta property="og:updated_time" content="2019-12-07T16:47:09.328Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="读书笔记-重构大数据统计">
-<meta name="twitter:description" content="评价：★★★☆☆1. 单变量基本统计量1.1 常见的数据统计量 均值  \overline X = \frac 1 n \sum_{i=1}^n X_i 方差  S_n^2 = \frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2分母为n-1，则称之为$S_n^2$的自由度(degree of freedom)    问题：不是很理解自由度这个概念">
+<meta name="twitter:description" content="评价：★★★☆☆粗略看了一些，似乎数据设计到开发的内容比较多，很多都是java的代码，不过实用性估计不会很高。但是有些计算的思路不错，还是有些启发意义的。比如有些统计变量可以应用在特征工程中，基于RFM模型进行衍生等。 1. 单变量基本统计量1.1 常见的数据统计量 均值  \overline X = \frac 1 n \sum_{i=1}^n X_i 方差  S_n^2 = \frac 1 {">
 <meta name="twitter:image" content="http://chenson.cc/2019/02/23/读书笔记-重构大数据统计/2019-02-23-读书笔记-重构大数据统计/image-20190222203555546.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
@@ -178,7 +178,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="评价：★★★☆☆"><a href="#评价：★★★☆☆" class="headerlink" title="评价：★★★☆☆"></a>评价：★★★☆☆</h1><h3 id="1-单变量基本统计量"><a href="#1-单变量基本统计量" class="headerlink" title="1. 单变量基本统计量"></a>1. 单变量基本统计量</h3><h4 id="1-1-常见的数据统计量"><a href="#1-1-常见的数据统计量" class="headerlink" title="1.1 常见的数据统计量"></a>1.1 常见的数据统计量</h4><ul>
+        <h1 id="评价：★★★☆☆"><a href="#评价：★★★☆☆" class="headerlink" title="评价：★★★☆☆"></a>评价：★★★☆☆</h1><p>粗略看了一些，似乎数据设计到开发的内容比较多，很多都是java的代码，不过实用性估计不会很高。但是有些计算的思路不错，还是有些启发意义的。比如有些统计变量可以应用在特征工程中，基于RFM模型进行衍生等。</p>
+<h1 id="1-单变量基本统计量"><a href="#1-单变量基本统计量" class="headerlink" title="1. 单变量基本统计量"></a>1. 单变量基本统计量</h1><h2 id="1-1-常见的数据统计量"><a href="#1-1-常见的数据统计量" class="headerlink" title="1.1 常见的数据统计量"></a>1.1 常见的数据统计量</h2><ul>
 <li><p>均值</p>
 <script type="math/tex; mode=display">
 \overline X = \frac 1 n \sum_{i=1}^n X_i</script></li>
@@ -225,10 +226,10 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
 \frac { n \sum_{i=1}^n(X_i - \overline X)^4} {[\sum_{i=1}^n(X_i - \overline X)^2]^{2}} - 3</script><p>峰度可以描述样本数据分布形态相对于正态分布的陡缓成都</p>
 <p>若 Kurotsis = 0，则与状态分布的相同陡缓程度相同；</p>
 <p>若 Kurotsis &gt; 0，则比状态分布的高峰更加陡峭，表现为尖顶峰；</p>
-<p>若 Kurotsis &gt; 0，则比状态分布的高峰显得平缓，表现为平顶峰。</p>
+<p>若 Kurotsis &lt; 0，则比状态分布的高峰显得平缓，表现为平顶峰。</p>
 </li>
 </ul>
-<h4 id="1-2-关于上面公式的思考-🤔"><a href="#1-2-关于上面公式的思考-🤔" class="headerlink" title="1.2 关于上面公式的思考 🤔"></a>1.2 关于上面公式的思考 🤔</h4><p>看到上面的一些公式，发现一个共同点，基本都是会用到均值 $\overline X$，这就意味着我们在计算这些数据的时候，得先扫描一遍所有数据，求出均值后再第二次扫描所有的数据，计算这些统计量。</p>
+<h2 id="1-2-关于上面公式的思考-🤔"><a href="#1-2-关于上面公式的思考-🤔" class="headerlink" title="1.2 关于上面公式的思考 🤔"></a>1.2 关于上面公式的思考 🤔</h2><p>看到上面的一些公式，发现一个共同点，基本都是会用到均值 $\overline X$，这就意味着我们在计算这些数据的时候，得先扫描一遍所有数据，求出均值后再第二次扫描所有的数据，计算这些统计量。</p>
 <p>如果我们想扫一次数据之后，就算出这些统计变量的话，就得实时计算出当前的均值，但很多的统计量都是需要实时将当前的变量与$\overline X$ 做差，如果我们能够在需要时候这些统计变量的时候，再计算出这些值的话，是不是就可以边X的均值边缓存所有的X就可扫描一遍计算出结果。但这是这样的代价就是得缓存所有的X，可以说是非常大的，特别是对数据量很大的时候。能不能有其他的方式呢？其实可以思考一下下面这个公式的变化</p>
 <script type="math/tex; mode=display">
 \sum_{i=1}^n = (X_i - \overline X)^2 \\
@@ -248,7 +249,7 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
   sum = \sum_{i=1}^n X_i \\
   sum2 = \sum_{i=1}^n X_i^2 \\
   sum3 = \sum_{i=1}^n X_i^3 \\
-  sum4 = \sum_{i=1}^n X_i^4</script><h4 id="1-3-不需要就可计算的次序统计量"><a href="#1-3-不需要就可计算的次序统计量" class="headerlink" title="1.3 不需要就可计算的次序统计量"></a>1.3 不需要就可计算的次序统计量</h4><ul>
+  sum4 = \sum_{i=1}^n X_i^4</script><h2 id="1-3-不需要就可计算的次序统计量"><a href="#1-3-不需要就可计算的次序统计量" class="headerlink" title="1.3 不需要就可计算的次序统计量"></a>1.3 不需要就可计算的次序统计量</h2><ul>
 <li><p>目的：读取一遍数据同时就获取最大的前K个值和最小的前K个值</p>
 </li>
 <li><p>解决方案：同时维护两个队列</p>
@@ -258,7 +259,7 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
 </ul>
 </li>
 </ul>
-<h4 id="1-4-基于频数信息计算次序统计量"><a href="#1-4-基于频数信息计算次序统计量" class="headerlink" title="1.4 基于频数信息计算次序统计量"></a>1.4 基于频数信息计算次序统计量</h4><ul>
+<h2 id="1-4-基于频数信息计算次序统计量"><a href="#1-4-基于频数信息计算次序统计量" class="headerlink" title="1.4 基于频数信息计算次序统计量"></a>1.4 基于频数信息计算次序统计量</h2><ul>
 <li><p>目的：统计某个数据的的频率（假设已经求出频率），并排序</p>
 </li>
 <li><p>例子：</p>
@@ -311,12 +312,12 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
 <li><p>对于要去的分位数，首先是计算出对应排好序的数列的位置k，利用cntScan，使用二分法搜索出对应的数据元素编号j，则items[j]即为所求。</p>
 </li>
 </ol>
-<h4 id="1-5-中位数、众数和均值之间的关系"><a href="#1-5-中位数、众数和均值之间的关系" class="headerlink" title="1.5 中位数、众数和均值之间的关系"></a>1.5 中位数、众数和均值之间的关系</h4><ul>
+<h2 id="1-5-中位数、众数和均值之间的关系"><a href="#1-5-中位数、众数和均值之间的关系" class="headerlink" title="1.5 中位数、众数和均值之间的关系"></a>1.5 中位数、众数和均值之间的关系</h2><ul>
 <li>当数据为对称分布的时候，这三个数是相同的</li>
 <li>当数据为单峰的偏态分布的时候，则在均值的两侧，数据的个数不同。中位数会在数据个数校对的一侧，均值位于平衡点。</li>
 </ul>
 <p>阅读中，持续更新 … …</p>
-<h3 id="2-References"><a href="#2-References" class="headerlink" title="2. References"></a>2. References</h3>
+<h1 id="2-References"><a href="#2-References" class="headerlink" title="2. References"></a>2. References</h1>
       
 
       
@@ -789,15 +790,15 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -821,6 +822,18 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
@@ -837,19 +850,23 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">SSD硬盘更换</a>
               </li>
              
               <li class="article-tag-list-item">

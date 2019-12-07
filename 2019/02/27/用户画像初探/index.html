@@ -20,7 +20,7 @@
 <meta property="og:description" content="1. 什么是用户画像从海量的用户数据中，建模抽象出每个用户的属性标签体系，这些标签体系通常要有一定的商业价值，有明确的层级划分和可理解性，能够直接指导商业运营。常见的标签包括但不限于：人口属性、行为轨迹、用户分群、生活场景、消费偏好等（如图）。通常根据不同的领域，不同的业务场景和不同的商业目标，用户画像的层级划分差异会比较大。 举个例子，以电商的用户画像和券商的用户画像为例，如图。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.cc/2019/02/27/用户画像初探/2019-02-27-用户画像初探/d728441c9ddc4893b9d2118917dde148.png">
-<meta property="og:updated_time" content="2019-11-21T06:59:54.000Z">
+<meta property="og:updated_time" content="2019-12-07T16:34:45.938Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用户画像初探">
 <meta name="twitter:description" content="1. 什么是用户画像从海量的用户数据中，建模抽象出每个用户的属性标签体系，这些标签体系通常要有一定的商业价值，有明确的层级划分和可理解性，能够直接指导商业运营。常见的标签包括但不限于：人口属性、行为轨迹、用户分群、生活场景、消费偏好等（如图）。通常根据不同的领域，不同的业务场景和不同的商业目标，用户画像的层级划分差异会比较大。 举个例子，以电商的用户画像和券商的用户画像为例，如图。">
@@ -178,11 +178,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-什么是用户画像"><a href="#1-什么是用户画像" class="headerlink" title="1. 什么是用户画像"></a>1. 什么是用户画像</h3><p>从海量的用户数据中，建模抽象出每个用户的属性标签体系，这些标签体系通常要有一定的商业价值，有明确的层级划分和可理解性，能够直接指导商业运营。常见的标签包括但不限于：人口属性、行为轨迹、用户分群、生活场景、消费偏好等（如图）。通常根据不同的领域，不同的业务场景和不同的商业目标，用户画像的层级划分差异会比较大。</p>
+        <h1 id="1-什么是用户画像"><a href="#1-什么是用户画像" class="headerlink" title="1. 什么是用户画像"></a>1. 什么是用户画像</h1><p>从海量的用户数据中，建模抽象出每个用户的属性标签体系，这些标签体系通常要有一定的商业价值，有明确的层级划分和可理解性，能够直接指导商业运营。常见的标签包括但不限于：人口属性、行为轨迹、用户分群、生活场景、消费偏好等（如图）。通常根据不同的领域，不同的业务场景和不同的商业目标，用户画像的层级划分差异会比较大。</p>
 <p>举个例子，以电商的用户画像和券商的用户画像为例，如图。</p>
 <p><img src="/2019/02/27/用户画像初探/2019-02-27-用户画像初探/d728441c9ddc4893b9d2118917dde148.png" alt="img"></p>
 <a id="more"></a>
-<h3 id="2-如何建立用户画像标签体系"><a href="#2-如何建立用户画像标签体系" class="headerlink" title="2. 如何建立用户画像标签体系"></a>2. 如何建立用户画像标签体系</h3><p>通常可以分为两类，第一类就是有<strong>明确的标签</strong>，然后进过策略的统计分析直接得到，最简单的例子，通常就是用户的人口属性这类的静态特征。另外一种是没有明确的数据标签，需要我们对用户的这些数据通过机器学习训练模型，然后基于模型做出预测得出用户的标签，比如说用户的兴趣爱好。</p>
+<h1 id="2-如何建立用户画像标签体系"><a href="#2-如何建立用户画像标签体系" class="headerlink" title="2. 如何建立用户画像标签体系"></a>2. 如何建立用户画像标签体系</h1><p>通常可以分为两类，第一类就是有<strong>明确的标签</strong>，然后进过策略的统计分析直接得到，最简单的例子，通常就是用户的人口属性这类的静态特征。另外一种是没有明确的数据标签，需要我们对用户的这些数据通过机器学习训练模型，然后基于模型做出预测得出用户的标签，比如说用户的兴趣爱好。</p>
 <p>如果说比较网站的讨论如何建立用户画像的标签体系，我觉得可能需要从数据的最上游说到最下游，可大致分成8个部分来说。</p>
 <ul>
 <li>数据收集，清洗，汇总到数仓</li>
@@ -192,7 +192,7 @@
 <li>应用接口</li>
 <li>商业应用</li>
 </ul>
-<h3 id="3-建立过程中可能遇到的问题"><a href="#3-建立过程中可能遇到的问题" class="headerlink" title="3. 建立过程中可能遇到的问题"></a>3. 建立过程中可能遇到的问题</h3><h4 id="3-1-如何选取用户的唯一标识"><a href="#3-1-如何选取用户的唯一标识" class="headerlink" title="3.1 如何选取用户的唯一标识"></a>3.1 如何选取用户的唯一标识</h4><h4 id="3-2-如何管理特征库"><a href="#3-2-如何管理特征库" class="headerlink" title="3.2 如何管理特征库"></a>3.2 如何管理特征库</h4><h4 id="3-3-如何计算特征"><a href="#3-3-如何计算特征" class="headerlink" title="3.3 如何计算特征"></a>3.3 如何计算特征</h4><ul>
+<h1 id="3-建立过程中可能遇到的问题"><a href="#3-建立过程中可能遇到的问题" class="headerlink" title="3. 建立过程中可能遇到的问题"></a>3. 建立过程中可能遇到的问题</h1><h2 id="3-1-如何选取用户的唯一标识"><a href="#3-1-如何选取用户的唯一标识" class="headerlink" title="3.1 如何选取用户的唯一标识"></a>3.1 如何选取用户的唯一标识</h2><h2 id="3-2-如何管理特征库"><a href="#3-2-如何管理特征库" class="headerlink" title="3.2 如何管理特征库"></a>3.2 如何管理特征库</h2><h2 id="3-3-如何计算特征"><a href="#3-3-如何计算特征" class="headerlink" title="3.3 如何计算特征"></a>3.3 如何计算特征</h2><ul>
 <li>离线特征<ul>
 <li>Spark + Hive</li>
 </ul>
@@ -206,7 +206,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="3-4-小样本问题"><a href="#3-4-小样本问题" class="headerlink" title="3.4 小样本问题"></a>3.4 小样本问题</h4><ul>
+<h2 id="3-4-小样本问题"><a href="#3-4-小样本问题" class="headerlink" title="3.4 小样本问题"></a>3.4 小样本问题</h2><ul>
 <li><p>采样</p>
 <ul>
 <li>下采样</li>
@@ -246,7 +246,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="3-5-根据不同业务需求，选择不同的模型"><a href="#3-5-根据不同业务需求，选择不同的模型" class="headerlink" title="3.5 根据不同业务需求，选择不同的模型"></a>3.5 根据不同业务需求，选择不同的模型</h4><p>同一个需求，可能可以用不同的模型来实现。</p>
+<h2 id="3-5-根据不同业务需求，选择不同的模型"><a href="#3-5-根据不同业务需求，选择不同的模型" class="headerlink" title="3.5 根据不同业务需求，选择不同的模型"></a>3.5 根据不同业务需求，选择不同的模型</h2><p>同一个需求，可能可以用不同的模型来实现。</p>
 <ul>
 <li>统计问题<ul>
 <li>平滑/归一</li>
@@ -303,7 +303,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="4-References"><a href="#4-References" class="headerlink" title="4. References"></a>4. References</h3><ul>
+<h1 id="4-References"><a href="#4-References" class="headerlink" title="4. References"></a>4. References</h1><ul>
 <li><a href="https://blog.csdn.net/lilanfeng1991/article/details/42969503" target="_blank" rel="noopener"><web 数据挖掘> - 数据挖掘之部分监督学习</web></a></li>
 <li><a href="http://www.voidcn.com/article/p-bflgtwuj-da.html" target="_blank" rel="noopener">社交平台舆情分析项目的总结和感想（LU学习，EM，KNN）(二)</a></li>
 </ul>
@@ -776,15 +776,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -808,6 +808,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
@@ -824,19 +836,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">SSD硬盘更换</a>
               </li>
              
               <li class="article-tag-list-item">
