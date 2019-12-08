@@ -156,6 +156,161 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Hive常用函数小结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/17/Hive常用函数小结/">Hive常用函数小结</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/17/Hive常用函数小结/" class="archive-article-date">
+  	<time datetime="2019-06-17T01:29:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-窗口函数"><a href="#1-窗口函数" class="headerlink" title="1. 窗口函数"></a>1. 窗口函数</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ROW_NUMBER()</td>
+<td>从1开始，按照顺序，生成分组内记录的序列，比如，按照pv降序排列，生成分组内每天的pv名次，ROW_NUMBER()的应用 场景非常多，再比如，获取分组内排序第一的记录，获取一个session中的第一条refer等</td>
+</tr>
+<tr>
+<td>RANK()</td>
+<td>生成数据项在分组中的排名，排名相等会在名次中留下空位</td>
+</tr>
+<tr>
+<td>DENSE_RANK()</td>
+<td>生成数据项在分组中的排名，排名相等会在名次中不会留下空位</td>
+</tr>
+<tr>
+<td>CUME_DIST()</td>
+<td>小于等于当前值的行数除以分组内总行数。比如，统计小于等于当前薪水的人数所占总人数的比例</td>
+</tr>
+<tr>
+<td>PERCENT_RANK()</td>
+<td>分组内当前行的RANK值-1/分组内 总行数-1</td>
+</tr>
+<tr>
+<td>NTILE(n)</td>
+<td>用于将分组数据按照顺序切分成n片，返回当前切片值，如果切片不均匀，默认增加第一个切片的分布。NTILE不支持ROWS BETWEEN,比如NTILE(2) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN 3 PERCEDING AND CURRENT ROW)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Hive窗口函数可以计算一定范围内、一定值域内、或者一段时间内的<strong>累积和以及移动平均值</strong>等；可以结合聚集函数SUM() 、AVG()等使用；可以结合FIRST_VALUE() 和LAST_VALUE()，返回窗口的第一个和最后一个值。</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hive</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/17/Hive常用函数小结/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-常见降维算法小结（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/08/常见降维算法小结（二）/">常见降维算法小结（二）</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/08/常见降维算法小结（二）/" class="archive-article-date">
+  	<time datetime="2019-06-08T02:49:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/08/常见降维算法小结（二）/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-常见降维算法小结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -753,163 +908,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
 
 
   
-    <article id="post-Mac-OSX安装Fiddler" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/07/Mac-OSX安装Fiddler/">Mac OSX安装Fiddler</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/07/Mac-OSX安装Fiddler/" class="archive-article-date">
-  	<time datetime="2019-03-07T09:59:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-安装Mono"><a href="#1-安装Mono" class="headerlink" title="1. 安装Mono"></a>1. 安装Mono</h1><p>首先，Mac下需要使用.Net编译后的程序，需要用到跨平台的方案Mono(现阶段微软已推出跨平台的方案.Net Core，不过暂时只支持控制台程序)。以上是网上的描述，给我感觉有点类似一个虚拟机或者docker一下的东西，这样就能在OSX的环境下，运行exe文件了。</p>
-<ul>
-<li><p>下载<a href="https://www.mono-project.com/download/stable/#download-win" target="_blank" rel="noopener">Mono</a>，并安装</p>
-</li>
-<li><p>安装完后，执行指令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> version == 5.16.0</span></span><br><span class="line">/Library/Frameworks/Mono.framework/Versions/5.16.0/bin/mozroots --import --sync</span><br><span class="line">/Library/Frameworks/Mono.framework/Versions/5.16.0/bin/cert-sync --import --sync</span><br><span class="line">/Library/Frameworks/Mono.framework/Versions/5.18.0/bin/cert-sync --import --sync</span><br><span class="line">/Library/Frameworks/Mono.framework/Versions/5.18.0/bin/mozroots --import --sync</span><br></pre></td></tr></table></figure>
-<p>此步是为了从Mozilla LXR上下载所有受信任的root证书，存于Mono的证书库里。root证书能用于请求https地址。</p></li></ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Mac</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Fiddler</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/07/Mac-OSX安装Fiddler/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Centos7安装Nvida驱动和显卡驱动" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/07/Centos7安装Nvida驱动和显卡驱动/">Centos7安装Nvida驱动和显卡驱动</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/07/Centos7安装Nvida驱动和显卡驱动/" class="archive-article-date">
-  	<time datetime="2019-03-07T09:54:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h1><h2 id="1-1-安装方式有三种"><a href="#1-1-安装方式有三种" class="headerlink" title="1.1 安装方式有三种"></a>1.1 安装方式有三种</h2><ul>
-<li><p><code>CUDA（.run）</code>下载以后安装带上显卡驱动， 下载如下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看显卡版本</span></span><br><span class="line">lspci | grep -i nvidia</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 下载</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> https://www.nvidia.cn/Download/index.aspx?lang=cn 可在这个网站看出对应的版本</span></span><br><span class="line">wget http://cn.download.nvidia.com/tesla/410.79/NVIDIA-Linux-x86_64-410.79.run</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装</span></span><br><span class="line">sh NVIDIA-Linux-x86_64-410.79.run</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 卸载</span></span><br><span class="line">sh NVIDIA-Linux-x86_64-410.79.run --uninstall</span><br><span class="line"></span><br><span class="line">nvidia-uninstall</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>显卡驱动<code>.run</code>文件安装</p>
-</li>
-<li><p>集成软件包安装（<code>yum</code>等）</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 确认是否为yum安装</span></span><br><span class="line">yum list installed | grep nvidia</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 卸载</span></span><br><span class="line">yum remove nvidia-detect.x86_64</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Centos7</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Nvida</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GPU</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/07/Centos7安装Nvida驱动和显卡驱动/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1043,23 +1041,15 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1072,6 +1062,14 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1099,15 +1097,15 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1139,10 +1137,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
@@ -1155,7 +1149,7 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1163,11 +1157,15 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1259,15 +1257,27 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sed</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">awk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1284,6 +1294,14 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script></li></ul>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Embedding</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">

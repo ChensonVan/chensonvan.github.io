@@ -156,6 +156,166 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-PostgreSQL复习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/24/PostgreSQL复习笔记/">PostgreSQL复习笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/24/PostgreSQL复习笔记/" class="archive-article-date">
+  	<time datetime="2017-03-23T23:38:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-常见问题"><a href="#1-常见问题" class="headerlink" title="1 常见问题"></a>1 常见问题</h3><h4 id="1-1-匹配一致的编码规则"><a href="#1-1-匹配一致的编码规则" class="headerlink" title="1.1 匹配一致的编码规则"></a>1.1 匹配一致的编码规则</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SET character_set_client=&apos;utf8&apos;;		-- gbk</span><br><span class="line">SET character_set_connection=&apos;utf8&apos;;	-- gbk</span><br><span class="line">SET character_set_results=&apos;utf8&apos;;		-- gbk</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 创建数据库时候设置</span><br><span class="line">CREATE DATABASE `test`</span><br><span class="line">CHARACTER SET &apos;utf8&apos;</span><br><span class="line">COLLATE &apos;utf8_general_ci&apos;;</span><br></pre></td></tr></table></figure>
+<h4 id="1-2-如何理解索引"><a href="#1-2-如何理解索引" class="headerlink" title="1.2 如何理解索引"></a>1.2 如何理解索引</h4><p>索引字面上理解就是对数据所建立<strong>目录</strong>，它可以<strong>加快我们的查询速度，但是同时也降低了增删改的速度。</strong></p>
+<ul>
+<li><p><strong>创建原则</strong></p>
+<ul>
+<li>不要过度使用索引</li>
+<li>最好在查询频繁的列上使用索引</li>
+<li>如果构建索引，这一列尽量是离散值，而不要过于连续的区间</li>
+</ul>
+</li>
+<li><p><strong>索引的类型</strong></p>
+<ul>
+<li><p>普通的索引 index</p>
+</li>
+<li><p>唯一的索引 unique index</p>
+<p>一张表上，只能有一个主键，但是可以有一个或是多个唯一索引</p>
+</li>
+<li><p>主键索引    primary key</p>
+<p>不能重复</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 查看一张表上的所有索引</span><br><span class="line">show index from TABLE_NAMES;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/24/PostgreSQL复习笔记/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Machine-Learning-Linear-Regression-and-Logistic-Regression" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/17/Machine-Learning-Linear-Regression-and-Logistic-Regression/">Machine Learning - Linear Regression and Logistic Regression</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/17/Machine-Learning-Linear-Regression-and-Logistic-Regression/" class="archive-article-date">
+  	<time datetime="2017-03-17T01:06:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-三要素"><a href="#1-三要素" class="headerlink" title="1. 三要素"></a>1. 三要素</h1><p>当一开始接触Andrew在Coursera上的ML公开课的时候，对线性回归和逻辑回归这两种模型有个大体的认识。但是在上完cs229的前三节课，初步了解了这两种模型背后的数学模型，Linear Regression和Logistic Regression背后的概率分布，了解到了这两种概率分布其实只是exponential family中的特例。但同时也开始对一些概念性的东西感觉很模糊，所以觉得有必要好好整理一下这部分的内容。</p>
+<h2 id="1-1-Hypothesis"><a href="#1-1-Hypothesis" class="headerlink" title="1. 1 Hypothesis"></a>1. 1 Hypothesis</h2><p>首先对于样本数据，输入x和输出$\hat y$之间是通过Target function在转换的，也就是 Target function f(x) = $\hat y$。但是我们并不知道这个f(x)都是怎样的，所以我们假设了这么一个Hypothesis function去模拟这个Target function，使得我们用同样的输入x会的一个预测值$\hat y$，使得这个不$\hat y$断逼近真实值y。</p>
+<h3 id="1-1-1-Linear-Regression"><a href="#1-1-1-Linear-Regression" class="headerlink" title="1.1.1 Linear Regression"></a>1.1.1 Linear Regression</h3><script type="math/tex; mode=display">
+H(x) = \sum_{i=0}^n \theta_i x_i = \theta^Tx</script><h3 id="1-1-2-Logistic-Regression"><a href="#1-1-2-Logistic-Regression" class="headerlink" title="1.1.2 Logistic Regression"></a>1.1.2 Logistic Regression</h3><script type="math/tex; mode=display">
+H(x) = g(\theta^Tx) = \frac 1 {1 + e^{-\theta^Tx}} \tag{1}</script><h4 id="Logit"><a href="#Logit" class="headerlink" title="Logit"></a>Logit</h4><p>上面公式(1)等价于（即log odds，<strong>logit</strong>）</p>
+<script type="math/tex; mode=display">
+\ln \frac y {1 - y} = \theta^T x = \ln \frac {p(y=1| x; \theta)} {p(y=0| x; \theta)}  \tag{2}</script>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/17/Machine-Learning-Linear-Regression-and-Logistic-Regression/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-字符串搜索算法-KMP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -739,23 +899,15 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -768,6 +920,14 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -795,15 +955,15 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -835,10 +995,6 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
@@ -851,7 +1007,7 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -859,11 +1015,15 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -955,15 +1115,27 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sed</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">awk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -980,6 +1152,14 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Embedding</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
