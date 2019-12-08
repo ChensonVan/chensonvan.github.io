@@ -11,26 +11,40 @@
   <link rel="dns-prefetch" href="http://chenson.cc">
   <title>推荐系统小结 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. Factorization Machine (FM) 出现背景 传统用的One-Hot编码会带来数据稀疏的问题。 比如数据如下（栗子来自美团技术博客）：  做了One-Hot编码后  当里面某些特征的维度比较高的时候，数据维度可能达到百万级别。 而传统的LR模型也并没考虑到特征之间的关联  y = w_0 + \sum_{i=1}^n w_i x_i">
+  <meta name="description" content="1. Factorization Machine (FM)1.1 Introduction传统用的One-Hot编码会带来数据稀疏的问题。 比如数据如下（栗子来自美团技术博客）：  做了One-Hot编码后  当里面某些特征的维度比较高的时候，数据维度可能达到百万级别。 而传统的LR模型也并没考虑到特征之间的关联  y = w_0 + \sum_{i=1}^n w_i x_i">
 <meta name="keywords" content="Wide&amp;Deep,推荐系统,FM,FFM,DeepFM,DCN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="推荐系统小结">
 <meta property="og:url" content="http://chenson.cc/2019/03/25/推荐系统小结/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="1. Factorization Machine (FM) 出现背景 传统用的One-Hot编码会带来数据稀疏的问题。 比如数据如下（栗子来自美团技术博客）：  做了One-Hot编码后  当里面某些特征的维度比较高的时候，数据维度可能达到百万级别。 而传统的LR模型也并没考虑到特征之间的关联  y = w_0 + \sum_{i=1}^n w_i x_i">
+<meta property="og:description" content="1. Factorization Machine (FM)1.1 Introduction传统用的One-Hot编码会带来数据稀疏的问题。 比如数据如下（栗子来自美团技术博客）：  做了One-Hot编码后  当里面某些特征的维度比较高的时候，数据维度可能达到百万级别。 而传统的LR模型也并没考虑到特征之间的关联  y = w_0 + \sum_{i=1}^n w_i x_i">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/275.png">
 <meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/700.png">
-<meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/413.png">
+<meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208163437498.png">
+<meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208163746252.png">
+<meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/full_fm_matrix.png">
+<meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/fm_sum_halved.png">
+<meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/fm_matrix_diagonal-20191208175238459.png">
+<meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325154016889.png">
+<meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208181833370.png">
+<meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208181854704.png">
+<meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208181926825.png">
+<meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208182103840.png">
+<meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208182936171.png">
+<meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208183047183.png">
+<meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208183119206.png">
+<meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208192138915.png">
+<meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208192449605.png">
 <meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/275.png">
 <meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325202412226.png">
 <meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325204042713.png">
 <meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325203928751.png">
 <meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325203950839.png">
-<meta property="og:updated_time" content="2019-12-07T16:27:52.908Z">
+<meta property="og:updated_time" content="2019-12-08T12:14:20.249Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统小结">
-<meta name="twitter:description" content="1. Factorization Machine (FM) 出现背景 传统用的One-Hot编码会带来数据稀疏的问题。 比如数据如下（栗子来自美团技术博客）：  做了One-Hot编码后  当里面某些特征的维度比较高的时候，数据维度可能达到百万级别。 而传统的LR模型也并没考虑到特征之间的关联  y = w_0 + \sum_{i=1}^n w_i x_i">
+<meta name="twitter:description" content="1. Factorization Machine (FM)1.1 Introduction传统用的One-Hot编码会带来数据稀疏的问题。 比如数据如下（栗子来自美团技术博客）：  做了One-Hot编码后  当里面某些特征的维度比较高的时候，数据维度可能达到百万级别。 而传统的LR模型也并没考虑到特征之间的关联  y = w_0 + \sum_{i=1}^n w_i x_i">
 <meta name="twitter:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/275.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
@@ -185,9 +199,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-Factorization-Machine-FM"><a href="#1-Factorization-Machine-FM" class="headerlink" title="1. Factorization Machine (FM)"></a>1. Factorization Machine (FM)</h1><ul>
-<li><p>出现背景</p>
-<p>传统用的One-Hot编码会带来数据稀疏的问题。</p>
+        <h1 id="1-Factorization-Machine-FM"><a href="#1-Factorization-Machine-FM" class="headerlink" title="1. Factorization Machine (FM)"></a>1. Factorization Machine (FM)</h1><h2 id="1-1-Introduction"><a href="#1-1-Introduction" class="headerlink" title="1.1 Introduction"></a>1.1 Introduction</h2><p>传统用的One-Hot编码会带来数据稀疏的问题。</p>
 <p>比如数据如下（栗子来自美团技术博客）：</p>
 <p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/275.png" alt="img"></p>
 <p>做了One-Hot编码后</p>
@@ -198,7 +210,7 @@
 y = w_0 + \sum_{i=1}^n w_i x_i</script><a id="more"></a>
 <p>如需要表述特征之间的相关性，可采用多项式模型 ( Poly2，只考虑两个特征之间的相互关系)</p>
 <script type="math/tex; mode=display">
-y = w_0 + \sum_{i=1}^nw_ix_i + \sum_{i=1}^{n-1} \sum_{j=i+1}^n w_{ij}x_ix_j</script><p>相比之前的单一特征，考虑特征之间的两两关系，此时多出了 $n * (n-1) / 2$ 个二阶特征。</p>
+y = w_0 + \sum_{i=1}^nw_ix_i + \sum_{i=1}^{n-1} \sum_{j=i+1}^n w_{ij}x_ix_j</script><p>相比之前的单一特征，考虑特征之间的两两关系，<strong>此时多出了 $n * (n-1) / 2$ 个二阶特征</strong>。</p>
 <p>这样会带了另外一些问题</p>
 <ul>
 <li>由于做了One-Hot编码，数据非常系数，$x_i * x_j$ 很多都是为0的，这样就会导致对应的权重 $w_{ij}$ 训练不出来，或者学出来的权重不靠谱</li>
@@ -216,64 +228,157 @@ V &= \left [ \begin{matrix}
    \pmb{v}_n
   \end{matrix} \right ] 
  = \left [ \begin{matrix}
-   v_{11} & v_{12} & ... & v_{1k}\\
-   v_{21} & v_{22} & ... & v_{2k} \\
+   v_{1,1} & v_{1,2} & ... & v_{1,k}\\
+   v_{2,1} & v_{2,2} & ... & v_{2,k} \\
    ... & ... & ... & ... \\
-   v_{n1} & v_{n2} & ... & v_{nk}
+   v_{n,1} & v_{n,2} & ... & v_{n,k}
   \end{matrix} \right ] _{n\times k}
 
-\end {align}</script><p>此时就可以用分解后产生的$V$来表达$\hat W$，将参数由$n^2$降低到 $kn$个。其中$V$矩阵的每一行$v_i$就是第i维特征的隐向量，一个隐向量包含了k个描述第i维特征的因子，所以叫<strong>因子分解</strong>。</p>
+\end {align}</script><p>此时就可以用分解后产生的$V$来表达$\hat W$，<strong>将参数由$n^2$降低到 $kn$个</strong>。其中$V$矩阵的每一行$v_i$就是第i维特征的隐向量，一个隐向量包含了k个描述第i维特征的因子，所以叫<strong>因子分解</strong>。</p>
 <ul>
 <li><p>问题</p>
-<p>和SVD奇异矩阵分解的区别？</p>
+<ul>
+<li>和SVD奇异矩阵分解的区别？</li>
+<li>和MF矩阵分解的区别？</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-2-公式推导（二阶表达式）"><a href="#1-2-公式推导（二阶表达式）" class="headerlink" title="1.2 公式推导（二阶表达式）"></a>1.2 公式推导（二阶表达式）</h2><ul>
+<li><p>矩阵分解</p>
+<blockquote>
+<p>It’s well known that for any ==positive definite matrix $W$==, there exists a matrix $V$ such that $W$ = $V$·$V^T$ provided that <strong>$k$ is sufficiently large</strong>. This shows that a <strong>$FM$ can express any interaction matrix $W$ if $k$ is chosen large enough</strong>. Nevertheless in sparse settings, typically a small $k$ should be chosen because there is not enough data to estimate complex interactions $W$. Restricting $k$ - and thus the expressiveness of the $FM$ - leads to better generalization and thus improved interaction matrices under sparsity. s</p>
+</blockquote>
+<p>即引用某<a href="https://blog.csdn.net/itplus/article/details/40534885" target="_blank" rel="noopener">博客</a>里面总结的：</p>
+<blockquote>
+<p>当k值足够大时，对于任意<strong>正定对称的实矩阵</strong>$\hat W \in \mathbb R^{n \times n}$，均存在实矩阵 $V \in \mathbb R^{n\times n}$，使得成立$\hat W = VV^T$</p>
+</blockquote>
+<p>这里有几个条件：</p>
+<ul>
+<li><p>对称矩阵：$A = A^T$</p>
+<p>对称矩阵（symmetric matrix）是一个方形矩阵，其转置矩阵和自身相等。</p>
+<p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208163437498.png" alt="image-20191208163437498" style="zoom: 50%;"></p>
+<p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208163746252.png" alt="image-20191208163746252" style="zoom:50%;"></p>
+</li>
+<li><p>正定【不理解，待深入了解】</p>
+<ul>
+<li><p>定义</p>
+<blockquote>
+<ul>
+<li>广义：设$M$为$N$阶方阵对任意非零向量$x$有$ xMx^T&gt;0$<br>则称$M$是正定矩阵</li>
+<li>狭义：对于$n$阶实对称矩阵$M$，当且仅当对于所有非零实系数向量$z$，都有$z^TMz&gt;0$</li>
+</ul>
+</blockquote>
 </li>
 </ul>
 </li>
-<li><p>公式推导</p>
-<ul>
-<li><p>矩阵分解</p>
-<blockquote>
-<p>It’s well known that for any ==positive definite matrix $W$==, there exists a matrix $V$ such that $W$ = $V$·$V^T$ provided that $k$ is sufficiently large. This shows that a $FM$ can express any interaction matrix $W$ if $k$ is chosen large enough. Nevertheless in sparse settings, typically a small $k$ should be chosen because there is not enough data to estimate complex interactions $W$. Restricting $k$ - and thus the expressiveness of the $FM$ - leads to better generalization and thus improved interaction matrices under sparsity. s</p>
-</blockquote>
+<li><p>k足够大</p>
+<p>但通常在高度稀疏矩阵的场景下，k值不会取得很大的，因为没有足够的样本去估计复杂的交互矩阵。且k值教小，可以一定程度上提高FM在稀疏场景下的泛化性。</p>
 </li>
-<li><p>求解向量V【不是很理解，需要深入了解】</p>
+</ul>
+</li>
+<li><p>求解向量V【需要深入了解】</p>
 <ul>
 <li><p>基本公式</p>
 <script type="math/tex; mode=display">
 ((a + b + c)^2 - a^2 - b^2 - c^2)</script></li>
-<li><p>具体过程</p>
-<p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/413.png" alt="img"></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>- 问题
+<li><p>推导过程</p>
+<script type="math/tex; mode=display">
+\begin {align}
+\sum_{i=1}^{n-1} \sum_{j=i+1}^n w_{ij}x_ix_j
+&= \sum_{i=1}^{n-1}\sum_{j=i+1}^n<v_i, v_j>x_i x_j \tag 1 \\
+&= \frac 1 2 \sum_{i=1}^{n}\sum_{j=1}^n<v_i, v_j>x_i x_j - \frac 1 2 \sum_{i=1}^n<v_i, v_j>x_i x_i \tag 2\\
+&= \frac 1 2 (\sum_{i=1}^{n}\sum_{j=1}^n\sum_{f=1}^k v_{i,f} v_{j,f}x_i x_j - 
+\sum_{i=1}^{n}\sum_{f=1}^k v_{i,f} v_{i,f}x_i x_j) \tag 3\\
+&= \frac 1 2 \sum_{f=1}^k((\sum_{i=1}^nv_{i,f}x_i)(\sum_{j=1}^nv_{j,f}x_j) - \sum_{i=1}^nv_{i,f}^2x_i^2) \tag 4\\
+&= \frac 1 2  \sum_{f=1}^k((\sum_{i=1}^n v_{i,f}x_i)^2 - \sum_{i=1}^nv_{i,f}^2 x_i^2) \tag 5
+\end {align}</script><p>公式（2）到（3）里面的k的是由$<v_i, v_j>$来的，因为之间已经有</v_i,></p>
+<script type="math/tex; mode=display">
+\begin {align}
+V &= \left [ \begin{matrix}
+   \boldsymbol{v}_1 \\
+   \boldsymbol{v}_2 \\
+   ... \\
+   \pmb{v}_n
+  \end{matrix} \right ] 
+ = \left [ \begin{matrix}
+   v_{1,1} & v_{1,2} & ... & v_{1,k}\\
+   v_{2,1} & v_{2,2} & ... & v_{2,k} \\
+   ... & ... & ... & ... \\
+   v_{n,1} & v_{n,2} & ... & v_{n,k}
+  \end{matrix} \right ] _{n\times k} \\
+  <\boldsymbol{v}_i, \boldsymbol{v}_j> &= (v_{i,1}v_{j,1} + v_{i,2}v_{j,2} + ... + v_{i,k}v_{j,k}) \\
+  &= \sum_{f=1}^kv_{i,f}v_{j,f}
 
-  [为什么FM能够解决参数训练的问题](https://blog.csdn.net/songbinxu/article/details/79662665)  
-
-  ![image-20190325154016889](2019-03-25-推荐系统小结/image-20190325154016889.png)
-</code></pre><ul>
-<li><p>模型结构</p>
+\end {align}</script><p>公式（3）到（5），是将公共项k相关的提取出来，然后化简里面的项，最终就得到一个和n相关的求和项，此时复杂度是$\mathcal O(kn)$，若未化简，在（1）的时候复杂度是$\mathcal O (kn^2)$</p>
+<p>以下是图解上述公式</p>
+<p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/full_fm_matrix.png" alt="FM Symmetric Matrix" style="zoom:50%;"></p>
+<p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/fm_sum_halved.png" alt="FM Symmetric Matrix" style="zoom:50%;"></p>
+<p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/fm_matrix_diagonal-20191208175238459.png" alt="FM Symmetric Matrix" style="zoom:50%;"></p>
 </li>
-<li><p>和其他模型对比</p>
-<ul>
-<li>二阶多项式的SVM</li>
-<li>MF模型</li>
-<li>SVD++模型</li>
+<li><p>问题：<a href="https://blog.csdn.net/songbinxu/article/details/79662665" target="_blank" rel="noopener">为什么FM能够解决参数训练的问题</a>  </p>
+<p>经过因子化后，组合特征$x_ix_j$和$x_jx_k$的权重系数分别为$&lt;\boldsymbol{v_i},\boldsymbol{v_j}&gt;$和$&lt;\boldsymbol{v_j},\boldsymbol{v_k}&gt;$，观察里面这俩个权重系数，里面有个相同的量$\boldsymbol{v_j}$，<strong>因此所有包含$x_j$特征的非零组合特征的样本都能拿来训练，学习隐向量$\boldsymbol v_j$。</strong></p>
+<p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325154016889.png" alt="image-20190325154016889"></p>
+<blockquote>
+<p>本质上是在对特征进行embedding化表征，和目前非常常见的各种实体embedding本质思想是一脉相承的。因为FM是学习单个特征的embedding，并不依赖某个特定的特征组合是否出现过，所以只要特征$x_i$和其它任意特征组合出现过，那么就可以学习自己对应的embedding向量。于是，尽管$<x_i, x_j>$这个特征组合没有看到过，但是在预测的时候，如果看到这个新的特征组合，因为$x_i$和$x_j$都能学会自己对应的embedding，所以可以<strong>通过内积算出这个新特征组合的权重</strong>。这是为何说FM模型泛化能力强的根本原因。其实本质上，这也是目前很多花样的embedding的最核心特点，就是从0/1这种二值硬核匹配，切换为<strong>向量软匹配</strong>，使得原先匹配不上的，现在能在一定程度上算密切程度了，具备很好的泛化性能。</x_i,></p>
+</blockquote>
+</li>
 </ul>
 </li>
-<li><p>代码实现</p>
+</ul>
+<h2 id="1-3-模型目标函数和优化算法"><a href="#1-3-模型目标函数和优化算法" class="headerlink" title="1.3 模型目标函数和优化算法"></a>1.3 模型目标函数和优化算法</h2><h3 id="1-3-1-目标函数"><a href="#1-3-1-目标函数" class="headerlink" title="1.3.1 目标函数"></a>1.3.1 目标函数</h3><script type="math/tex; mode=display">
+\hat y(X) = w_0 + \sum_{i=1}^nw_ix_i + \sum_{i=1}^{n-1}\sum_{j=i+1}^n<\boldsymbol v_i, \boldsymbol v_j>x_ix_j</script><p>根据上面的公式，FM需要学习的参数有如下（根据参数类型，可以分成三组不同的参数，即分组策略，为了是以后优化的时候<strong>方便考虑正则项，即模型的结构化风险</strong>）</p>
+<script type="math/tex; mode=display">
+\begin {align}
+\Theta &= (w_0, w_1, w_2, ..., w_n, v_{1,1}, v_{1,2}, ..., v_{1,k}, ..., v_{n,1})^T \\
+&= (w_0, \boldsymbol w, \boldsymbol V)
+\end {align}</script><p>此时，$\hat y$公式也可以根据参数的不同，有三种形式：</p>
 <ul>
+<li><p>$\theta = w_0$</p>
+<script type="math/tex; mode=display">
+\hat y(X) = \sum_{i=1}^nw_ix_i + \sum_{i=1}^{n-1}\sum_{j=i+1}^n<\boldsymbol v_i, \boldsymbol v_j>x_ix_j + w_0*1</script><p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208181833370.png" alt="image-20191208181833370" style="zoom:50%;"></p>
+</li>
+<li><p>$\theta = w_l(l=1,…,n)$</p>
+<script type="math/tex; mode=display">
+\hat y(X) = w_0+ \sum_{i=1,i\ne l}^nw_ix_i + \sum_{i=1}^{n-1}\sum_{j=i+1}^n<\boldsymbol v_i, \boldsymbol v_j>x_ix_j + w_l*x_l</script><p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208181854704.png" alt="image-20191208181854704" style="zoom:50%;"></p>
+</li>
+<li><p>$\theta = {v_{lm}}$</p>
+<script type="math/tex; mode=display">
+\hat y(X) = w_0 + \sum_{i=1}^nw_ix_i + \sum_{i=1}^{n-1}\sum_{j=i+1}^n<\boldsymbol v_i, \boldsymbol v_j>x_ix_j</script><p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208181926825.png" alt="image-20191208181926825" style="zoom:50%;"></p>
+</li>
+</ul>
+<p>当$\hat y$对$\theta$求导的时，有：</p>
+<p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208182103840.png" alt="image-20191208182103840" style="zoom: 50%;"></p>
+<p>即上面分情况讨论$\theta$取值时候蓝色的部分。</p>
+<p>所以FM的优化问题是</p>
+<script type="math/tex; mode=display">
+\Theta^* = \arg \min_{\Theta} {}\sum_{i=1}^N(loss(\hat y^{(i)}, y^{(i)}) + \sum_{\theta \in \Theta} \lambda_{\theta}\theta^2)</script><h3 id="1-3-2-优化算法"><a href="#1-3-2-优化算法" class="headerlink" title="1.3.2 优化算法"></a>1.3.2 优化算法</h3><ul>
+<li><p>SGD(Stochastic Gradietn Descent)</p>
+<p>以下内容取自<a href="https://blog.csdn.net/itplus/article/details/40536025" target="_blank" rel="noopener">博客</a>，这篇博客整理很系统。</p>
+<p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208182936171.png" alt="image-20191208182936171" style="zoom:50%;"></p>
+<p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208183047183.png" alt="image-20191208183047183" style="zoom:50%;"></p>
+<p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208183119206.png" alt="image-20191208183119206" style="zoom:50%;"></p>
+</li>
+<li><p>ALS(Alternating Least-Squares) - 交替最小二乘法，即最小二乘法</p>
+</li>
+<li><p>MCMC(Markov Chain Monte Carlo) - 马尔科夫链蒙特卡洛算法</p>
+</li>
+</ul>
+<h2 id="1-4-和其他模型对比"><a href="#1-4-和其他模型对比" class="headerlink" title="1.4 和其他模型对比"></a>1.4 和其他模型对比</h2><ul>
+<li><p>二阶多项式的SVM</p>
+</li>
+<li><p><strong>MF(Matrix Factorization)模型</strong></p>
+<p>MF方法可以看作是FM模型的一种特例，比如在MF版的推荐系统中，MF可以看作特征只有userId和itemId的FM模型。MF的核心思想是通过两个低维小矩阵（一个代表用户embedding矩阵，一个代表物品embedding矩阵）的乘积计算，来模拟真实用户点击或评分产生的大的协同信息稀疏矩阵，本质上是<strong>编码了用户和物品协同信息的降维模型</strong>。但是MF只能<strong>使用两个实体的二阶特征</strong>，而FM的优势是能够将更多的特征融入到这个框架中，并且<strong>可以同时使用一阶和二阶特征或者更高阶特征</strong>。</p>
+<p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208192138915.png" alt="image-20191208192138915" style="zoom: 50%;"></p>
+<p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208192449605.png" alt="image-20191208192449605" style="zoom:50%;"></p>
+</li>
+<li><p><strong>SVD(Singular Value Decomposition) 模型</strong></p>
+</li>
+</ul>
+<h2 id="1-5-代码实现"><a href="#1-5-代码实现" class="headerlink" title="1.5 代码实现"></a>1.5 代码实现</h2><ul>
 <li>手撸一遍</li>
 <li>调用xLearn包</li>
 </ul>
-</li>
-</ul>
-<h1 id="2-Field-aware-Factorization-Machine-FFM"><a href="#2-Field-aware-Factorization-Machine-FFM" class="headerlink" title="2. Field-aware Factorization Machine (FFM)"></a>2. Field-aware Factorization Machine (FFM)</h1><ul>
-<li><p>出现背景</p>
-<p>之前有提到在FM中，$V$矩阵的每一列$v_i$就是第i维特征的隐向量，一个隐向量包含了k个描述第i维特征的因子，此时$v_i$是个一维的隐向量。</p>
+<h1 id="2-Field-aware-Factorization-Machine-FFM"><a href="#2-Field-aware-Factorization-Machine-FFM" class="headerlink" title="2. Field-aware Factorization Machine (FFM)"></a>2. Field-aware Factorization Machine (FFM)</h1><h2 id="2-1-Introduction"><a href="#2-1-Introduction" class="headerlink" title="2.1 Introduction"></a>2.1 Introduction</h2><p>之前有提到在FM中，$\boldsymbol V$矩阵的每一列$\boldsymbol v_i$就是第i维特征的隐向量，一个隐向量包含了k个描述第i维特征的因子，此时$\boldsymbol v_i$是个一维的隐向量。</p>
 <p>FFM是在FM的基础上，进一步提出了<strong>Field</strong>的概念，即<strong>域/类别</strong>的概念。继续以FM中的例子理解</p>
 <p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/275.png" alt="img"></p>
 <p>对于这三个特征Country、Day和Ad_type</p>
@@ -285,12 +390,13 @@ V &= \left [ \begin{matrix}
 <p>这个很好理解，因为由一个特征衍生出来的One-Hot特征其实都是属于一类的，比如都是国家类型、日期和广告类型等。</p>
 <p>同时对于做完One-Hot的特征$x_i$，对每一个Field都会学习出一个隐向量$v_{i, f_j}$，不同的特征在跟同一个Field进行关联时，使用的是不同的隐向量。而在FM中，只有一个$v_i$的隐向量。这个是他们最大的不同。</p>
 <script type="math/tex; mode=display">
-\hat W = VV^T = <v_{i, f_j} ⋅ v_{j, f_i}></script></li>
-<li><p>继续之前的栗子</p>
+\begin {align}
+\hat W &= VV^T = <v_{i, f_j} ⋅ v_{j, f_i}> \\
+\hat y &= w_0 + \sum_{i=1}^nw_ix_i + \sum_{i=1}^{n-1}\sum_{j=i+1}^n<\boldsymbol v_{i,f_j}, \boldsymbol v_{j,f_i} >x_ix_j
+\end {align}</script><p>这里$f_j$ 是第$j$个特征所属的field。如果隐向量的长度为$k$，那么FFM的二次参数有$nfk$个，远多于FM模型的$ nk$个。此外，由于隐向量与field相关，<strong>FFM二次项并不能够化简</strong>，其预测复杂度是 $\mathcal O(kn^2)$。</p>
 <ul>
+<li>继续之前的栗子</li>
 <li>One-Hot</li>
-</ul>
-</li>
 </ul>
 <div class="table-container">
 <table>
@@ -421,23 +527,21 @@ w_{1, 6} ⋅ x_1 x_6 = <v_{1, f_3}, v_{6, f_1}> ⋅ x_1 x_6 \\
 w_{1, 7} ⋅ x_1 x_7 = <v_{1, f_3}, v_{7, f_1}> ⋅ x_1 x_7 \\
 w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看出来，一个特征$x_i$</p>
 <ul>
-<li>对于同一个Field的特征，使用的隐向量是一样的；</li>
-<li>对于不同的Field的特征，使用的隐向量是不同的。</li>
+<li><strong>对于同一个Field的特征，使用的隐向量是一样的</strong>；</li>
+<li><strong>对于不同的Field的特征，使用的隐向量是不同的</strong>。</li>
 </ul>
 </li>
 </ul>
-<ul>
-<li><p>模型结构</p>
-</li>
+<h2 id="2-2公式推导"><a href="#2-2公式推导" class="headerlink" title="2.2公式推导"></a>2.2公式推导</h2><h2 id="2-3-模型目标函数和优化算法"><a href="#2-3-模型目标函数和优化算法" class="headerlink" title="2.3 模型目标函数和优化算法"></a>2.3 模型目标函数和优化算法</h2><h2 id="2-4-其他"><a href="#2-4-其他" class="headerlink" title="2.4 其他"></a>2.4 其他</h2><ul>
 <li><p>特征处理细节</p>
 <blockquote>
-<p><strong>样本归一化</strong>：FFM默认是进行样本数据的归一化，即 为真；若此参数设置为假，很容易造成数据inf溢出，进而引起梯度计算的nan错误。因此，样本层面的数据是推荐进行归一化的。</p>
+<p><strong>样本归一化</strong>：FFM默认是进行==<strong>样本数据的归一化</strong>==，即 为真；若此参数设置为假，很容易造成数据inf溢出，进而引起梯度计算的nan错误。因此，样本层面的数据是推荐进行归一化的。</p>
 <p><strong>特征归一化</strong>：CTR/CVR模型采用了多种类型的源特征，包括数值型和categorical类型等。但是，categorical类编码后的特征取值只有0或1，较大的数值型特征会造成样本归一化后categorical类生成特征的值非常小，没有区分性。例如，一条用户-商品记录，用户为“男”性，商品的销量是5000个（假设其它特征的值为零），那么归一化后特征“sex=male”（性别为男）的值略小于0.0002，而“volume”（销量）的值近似为1。特征“sex=male”在这个样本中的作用几乎可以忽略不计，这是相当不合理的。因此，将源数值型特征的值归一化到 是非常必要的。</p>
 <p><strong>省略零值特征</strong>：从FFM模型的表达式可以看出，零值特征对模型完全没有贡献。包含零值特征的一次项和组合项均为零，对于训练模型参数或者目标值预估是没有作用的。因此，可以省去零值特征，提高FFM模型训练和预测的速度，这也是稀疏样本采用FFM的显著优势。</p>
 </blockquote>
 </li>
-<li><p>代码实现 </p>
-<ul>
+</ul>
+<h2 id="2-5-代码实现"><a href="#2-5-代码实现" class="headerlink" title="2.5 代码实现"></a>2.5 代码实现</h2><ul>
 <li><p><a href="https://github.com/alexeygrigorev/libffm-python" target="_blank" rel="noopener">手撸一遍- libffm-python</a></p>
 </li>
 <li><p>调用<a href="https://www.csie.ntu.edu.tw/~cjlin/libffm/" target="_blank" rel="noopener">libffm</a></p>
@@ -456,8 +560,6 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
 </li>
 <li><p>调用<a href="https://xlearn-doc-cn.readthedocs.io/en/latest/" target="_blank" rel="noopener">xLearn</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xlearn <span class="keyword">as</span> xl</span><br><span class="line"></span><br><span class="line"><span class="comment"># Training task</span></span><br><span class="line">ffm_model = xl.create_ffm()                <span class="comment"># Use field-aware factorization machine (ffm)</span></span><br><span class="line">ffm_model.setTrain(<span class="string">"./small_train.txt"</span>)    <span class="comment"># Set the path of training dataset</span></span><br><span class="line">ffm_model.setValidate(<span class="string">"./small_test.txt"</span>)  <span class="comment"># Set the path of validation dataset</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Parameters:</span></span><br><span class="line"><span class="comment">#  0. task: binary classification</span></span><br><span class="line"><span class="comment">#  1. learning rate: 0.2</span></span><br><span class="line"><span class="comment">#  2. regular lambda: 0.002</span></span><br><span class="line"><span class="comment">#  3. evaluation metric: accuracy</span></span><br><span class="line">param = &#123;<span class="string">'task'</span>:<span class="string">'binary'</span>, <span class="string">'lr'</span>:<span class="number">0.2</span>, <span class="string">'lambda'</span>:<span class="number">0.002</span>, <span class="string">'metric'</span>:<span class="string">'acc'</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Start to train</span></span><br><span class="line"><span class="comment"># The trained model will be stored in model.out</span></span><br><span class="line">ffm_model.fit(param, <span class="string">'./model.out'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Prediction task</span></span><br><span class="line">ffm_model.setTest(<span class="string">"./small_test.txt"</span>)  <span class="comment"># Set the path of test dataset</span></span><br><span class="line">ffm_model.setSigmoid()                 <span class="comment"># Convert output to 0-1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Start to predict</span></span><br><span class="line"><span class="comment"># The output result will be stored in output.txt</span></span><br><span class="line">ffm_model.predict(<span class="string">"./model.out"</span>, <span class="string">"./output.txt"</span>)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
 </li>
 </ul>
 <h1 id="3-DeepFM"><a href="#3-DeepFM" class="headerlink" title="3. DeepFM"></a>3. DeepFM</h1><ul>
@@ -489,11 +591,14 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
 <script type="math/tex; mode=display">
 \hat y =  sigmoid(y_{FM} + y_{DNN})</script></li>
 </ul>
-<h1 id="4-Wide-amp-Deep-Network-WDN"><a href="#4-Wide-amp-Deep-Network-WDN" class="headerlink" title="4. Wide &amp; Deep Network (WDN)"></a>4. Wide &amp; Deep Network (WDN)</h1><p><a href="https://chenson.cc/2018/11/18/Wide-and-Deep模型初探">Wide-and-Deep模型初探</a></p>
+<h1 id="4-Wide-amp-Deep-Network-WDN"><a href="#4-Wide-amp-Deep-Network-WDN" class="headerlink" title="4. Wide &amp; Deep Network (WDN)"></a>4. Wide &amp; Deep Network (WDN)</h1><p>之前博客有总结了一下，可参考<a href="https://chenson.cc/2018/11/18/Wide-and-Deep模型初探">Wide-and-Deep模型初探</a></p>
 <h1 id="5-Deep-amp-Cross-Network-DCN"><a href="#5-Deep-amp-Cross-Network-DCN" class="headerlink" title="5. Deep &amp; Cross Network (DCN)"></a>5. Deep &amp; Cross Network (DCN)</h1><p>DCN进阶版之<strong>xDeepFM</strong></p>
 <p><a href="https://www.jianshu.com/p/b4128bc79df0" target="_blank" rel="noopener">推荐系统遇上深度学习(二十二)—DeepFM升级版XDeepFM模型强势来袭</a></p>
 <h1 id="6-References"><a href="#6-References" class="headerlink" title="6. References"></a>6. References</h1><ul>
 <li><a href="https://blog.csdn.net/jiangjiang_jian/article/details/80630873" target="_blank" rel="noopener">推荐系统遇上深度学习(一)—FM模型理论和实践</a></li>
+<li><a href="https://blog.csdn.net/itplus/article/details/40534885" target="_blank" rel="noopener">Factorization Machines 学习笔记（一）预测任务</a></li>
+<li><a href="https://www.cnblogs.com/pinard/p/6370127.html" target="_blank" rel="noopener">分解机(Factorization Machines)推荐算法原理</a></li>
+<li><a href="https://www.jefkine.com/recsys/2017/03/27/factorization-machines/" target="_blank" rel="noopener">Factorization Machines</a></li>
 <li><a href="https://blog.csdn.net/tMb8Z9Vdm66wH68VX1/article/details/79091671" target="_blank" rel="noopener">一文读懂FM算法优势</a></li>
 <li><a href="https://blog.csdn.net/hiwallace/article/details/81333604" target="_blank" rel="noopener">FM系列算法解读（FM+FFM+DeepFM）</a></li>
 <li><a href="https://blog.csdn.net/songbinxu/article/details/79662665" target="_blank" rel="noopener">因子分解机（libffm+xlearn）</a></li>
@@ -503,6 +608,7 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
 <li><a href="https://github.com/alexeygrigorev/libffm-python" target="_blank" rel="noopener">libffm-python</a></li>
 <li><a href="https://github.com/guestwalk/libffm" target="_blank" rel="noopener">libffm-C++</a></li>
 <li><a href="https://arxiv.org/pdf/1703.04247.pdf" target="_blank" rel="noopener">DeepFM: A Factorization-Machine based Neural Network for CTR Prediction</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/58160982" target="_blank" rel="noopener">推荐系统召回四模型之：全能的FM模型</a></li>
 </ul>
 
       
@@ -809,15 +915,23 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -830,14 +944,6 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -905,6 +1011,10 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
@@ -917,7 +1027,7 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -925,15 +1035,11 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -942,10 +1048,6 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -958,6 +1060,10 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GPU</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
