@@ -44,7 +44,7 @@
 <meta property="og:image" content="http://p1.bqimg.com/567571/4cfa626219a53d63.png">
 <meta property="og:image" content="http://p1.bpimg.com/567571/cf422e75a9c888b6.png">
 <meta property="og:image" content="http://p1.bpimg.com/567571/2b3eb0efbd8d719a.png">
-<meta property="og:updated_time" content="2019-11-30T07:19:14.122Z">
+<meta property="og:updated_time" content="2019-12-09T04:56:42.959Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Machine Learning - Linear Regression and Logistic Regression">
 <meta name="twitter:description" content="1. 三要素当一开始接触Andrew在Coursera上的ML公开课的时候，对线性回归和逻辑回归这两种模型有个大体的认识。但是在上完cs229的前三节课，初步了解了这两种模型背后的数学模型，Linear Regression和Logistic Regression背后的概率分布，了解到了这两种概率分布其实只是exponential family中的特例。但同时也开始对一些概念性的东西感觉很模糊，所">
@@ -212,47 +212,47 @@ H(x) = g(\theta^Tx) = \frac 1 {1 + e^{-\theta^Tx}} \tag{1}</script><h4 id="Logit
 <p>公式(1)的推导过程如下</p>
 <script type="math/tex; mode=display">
 \begin{align}
-y =& \frac 1 {1 + e^{-\theta^Tx}}  \\ 
-=& \frac {1+e^{-\theta^Tx} - e^{-\theta^Tx}} {1+e^{-\theta^Tx}} \\
-=& 1 - \frac {e^{-\theta^Tx}} {1+e^{-\theta^Tx}}
+y &= \frac 1 {1 + e^{-\theta^Tx}}  \\ 
+&= \frac {1+e^{-\theta^Tx} - e^{-\theta^Tx}} {1+e^{-\theta^Tx}} \\
+&= 1 - \frac {e^{-\theta^Tx}} {1+e^{-\theta^Tx}}
 \end{align}</script><p>此时有</p>
 <script type="math/tex; mode=display">
 1-y = \frac {e^{-\theta^Tx}} {1 + e^{-\theta^Tx}}</script><p>此时用$\frac {y} {1-y}$，且将上述的式子代入到里面，则有</p>
 <script type="math/tex; mode=display">
 \begin{align}
-\frac {y} {1-y} =& \frac {\frac 1 {1 + e^{-\theta^Tx}}} {\frac {e^{-\theta^Tx}} {1 + e^{-\theta^Tx}}} \\
-=& \frac 1 {e^{-\theta^Tx}} \\
-=& e^{\theta^Tx}
+\frac {y} {1-y} &= \frac {\frac 1 {1 + e^{-\theta^Tx}}} {\frac {e^{-\theta^Tx}} {1 + e^{-\theta^Tx}}} \\
+&= \frac 1 {e^{-\theta^Tx}} \\
+&= e^{\theta^Tx}
 \end{align}</script><p>两边同时取以e为底的对数，此时有</p>
 <script type="math/tex; mode=display">
 \begin{align}
-\ln {\frac y {1-y}} =&  \ln {e^{\theta^Tx}} \\
-=& \theta^Tx
+\ln {\frac y {1-y}} &=  \ln {e^{\theta^Tx}} \\
+&= \theta^Tx
 \end{align}</script><h4 id="似然函数"><a href="#似然函数" class="headerlink" title="似然函数"></a>似然函数</h4><p>根据上面公式，有如下假设</p>
 <script type="math/tex; mode=display">
 \begin{align}
-p(y^{(i)}=1|x^{(i)};\theta) =& h_{\theta}(x^{(i)}) \\
-p(y^{(i)}=0|x^{(i)};\theta) =& 1- h_{\theta}(x^{(i)}) \\
-p(y^{(i)}|x^{(i)};\theta) =& h_\theta(x^{(i)})^{y^{(i)}} \cdot (1-h_\theta(x^{(i)}))^{(1-y^{(i)})}
+p(y^{(i)}=1|x^{(i)};\theta) &= h_{\theta}(x^{(i)}) \\
+p(y^{(i)}=0|x^{(i)};\theta) &= 1- h_{\theta}(x^{(i)}) \\
+p(y^{(i)}|x^{(i)};\theta) &= h_\theta(x^{(i)})^{y^{(i)}} \cdot (1-h_\theta(x^{(i)}))^{(1-y^{(i)})}
 \end{align}</script><p>当$y_i$ = 0 时候有</p>
 <script type="math/tex; mode=display">
 \begin{align}
-p(y^{(i)}=0|x^{(i)};\theta) =& h_\theta(x^{(i)})^{0} \cdot (1-h_\theta(x^{(i)}))^{(1-0)} \\
-=&1-h_\theta(x^{(i)})
+p(y^{(i)}=0|x^{(i)};\theta) &= h_\theta(x^{(i)})^{0} \cdot (1-h_\theta(x^{(i)}))^{(1-0)} \\
+&=1-h_\theta(x^{(i)})
 \end{align}</script><p>当$y_i$ = 1 时候有</p>
 <script type="math/tex; mode=display">
-\begin{align}p(y^{(i)}=1|x^{(i)};\theta) =& h_\theta(x^{(i)})^{1} \cdot (1-h_\theta(x^{(i)}))^{(1-1)} \\=& h_\theta(x^{(i)})\end{align}</script><p>此时可以写出对于所有样本的似然函数</p>
+\begin{align}p(y^{(i)}=1|x^{(i)};\theta) &= h_\theta(x^{(i)})^{1} \cdot (1-h_\theta(x^{(i)}))^{(1-1)} \\&= h_\theta(x^{(i)})\end{align}</script><p>此时可以写出对于所有样本的似然函数</p>
 <script type="math/tex; mode=display">
 \begin{align}
-\mathcal L(\theta) =& \prod_{i=1}^m p(y^{(i)}|x^{(i)};\theta) \\
-=& \prod_{i=1}^m h_\theta(x^{(i)})^{y^{(i)}} \cdot (1-h_\theta(x^{(i)}))^{(1-y^{(i)})}
+\mathcal L(\theta) &= \prod_{i=1}^m p(y^{(i)}|x^{(i)};\theta) \\
+&= \prod_{i=1}^m h_\theta(x^{(i)})^{y^{(i)}} \cdot (1-h_\theta(x^{(i)}))^{(1-y^{(i)})}
 \end{align}</script><p>两边同时取对数，此时有</p>
 <script type="math/tex; mode=display">
 \begin{align}
-L(\theta) =& \log(\mathcal L(\theta)) \\
-=& \log(\prod_{i=1}^m h_\theta(x^{(i)})^{y^{(i)}} \cdot (1-h_\theta(x^{(i)}))^{(1-y^{(i)})}) \\
-=& \sum_{i=1}^m \log(h_\theta(x^{(i)})^{y^{(i)}} + (1-h_\theta(x^{(i)}))^{(1-y^{(i)})}) \\
-=& \sum_{i=1}^m y^{(i)}\log(h_\theta(x^{(i)}) + (1-y^{(i)})(1-h_\theta(x^{(i)})))
+L(\theta) &= \log(\mathcal L(\theta)) \\
+&= \log(\prod_{i=1}^m h_\theta(x^{(i)})^{y^{(i)}} \cdot (1-h_\theta(x^{(i)}))^{(1-y^{(i)})}) \\
+&= \sum_{i=1}^m \log(h_\theta(x^{(i)})^{y^{(i)}} + (1-h_\theta(x^{(i)}))^{(1-y^{(i)})}) \\
+&= \sum_{i=1}^m y^{(i)}\log(h_\theta(x^{(i)}) + (1-y^{(i)})(1-h_\theta(x^{(i)})))
 \end{align}</script><h2 id="1-2-Cost-function"><a href="#1-2-Cost-function" class="headerlink" title="1. 2 Cost function"></a>1. 2 Cost function</h2><p>Cost function呢，实际上也可以叫做Error function，就是用我们上面假设的Hypothe function所预测出来的值$\hat y$和真实值y之间的误差。而我们需要做的是根据假设出的Hypothesis function，取一个合适的权重值，即theta的值，使其取的一个较低的cost，也就是这预测值与真实值之间的误差最小。</p>
 <ul>
 <li><p><strong>Ordinary Least Squares</strong> (Square Loss Function)</p>
@@ -269,13 +269,13 @@ y^{(i)} = h_\theta(x^{(i)}) + \epsilon^{(i)}</script><p>​    这里的$\epsilo
 l(h_\theta(x^{(i)}), y^{(i)}) = -y^{(i)}\log(h_\theta(x^{(i)})) - (1-y^{(i)})\log(1 - h_\theta(x^{(i)}))</script><p>当$y_i$ = 0 时候有</p>
 <script type="math/tex; mode=display">
 \begin {align}
-l(h_\theta(x^{(i)}), y^{(i)}=0) =& -0\log(h_\theta(x^{(i)})) - (1-0)\log(1 - h_\theta(x^{(i)}))\\
-=&\log(1-h_\theta(x^{(i)}))
+l(h_\theta(x^{(i)}), y^{(i)}=0) &= -0\log(h_\theta(x^{(i)})) - (1-0)\log(1 - h_\theta(x^{(i)}))\\
+&=\log(1-h_\theta(x^{(i)}))
 \end {align}</script><p>当$y_i$ = 1 时候有</p>
 <script type="math/tex; mode=display">
 \begin {align}
-l(h_\theta(x^{(i)}), y^{(i)}=0) =& -1\log(h_\theta(x^{(i)})) - (1-1)\log(1 - h_\theta(x^{(i)}))\\
-=&-\log(h_\theta(x^{(i)}))
+l(h_\theta(x^{(i)}), y^{(i)}=0) &= -1\log(h_\theta(x^{(i)})) - (1-1)\log(1 - h_\theta(x^{(i)}))\\
+&=-\log(h_\theta(x^{(i)}))
 \end {align}</script><p>则对于全部样本的损失函数有</p>
 <script type="math/tex; mode=display">
 J(\theta) = -\frac 1 m\sum_{i=1}^m [y^{(i)}\log(h_\theta(x^{(i)})) + (1-y^{(i)})log(1-h_\theta(x^{(i)}))]</script><p><strong>仔细看看这公式，是不是和之前的最大似然函数基本一致？所以在这种情况下，有最大化似然函数和最小化损失函数是等下的。</strong></p>
@@ -718,11 +718,11 @@ L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -786,10 +786,6 @@ L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -822,18 +818,6 @@ L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nvida</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GPU</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
@@ -843,6 +827,18 @@ L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nvida</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GPU</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -870,10 +866,6 @@ L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
@@ -882,7 +874,15 @@ L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -894,15 +894,15 @@ L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LDA</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SVD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -922,10 +922,6 @@ L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
@@ -942,11 +938,7 @@ L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -955,6 +947,14 @@ L(\theta) = L(\theta; X, \vec y) = p(\vec y | X; \theta)</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">

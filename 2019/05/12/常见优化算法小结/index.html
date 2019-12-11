@@ -20,12 +20,10 @@
 <meta property="og:description" content="1. Preview 在References里面的第一篇文章里，对于优化算法的分类总结的挺好的，分为公式解、数值优化和其他方法。这里重点总结的是数值优化法。 举个例子，在机器学习中对于有监督学习而言，通常都会有一个假设的Hypothesis函数，通过这样一个函数，我们输入一个数据x，会输出一个预测值$\hat y$，且为了能够使得$\hat y$和真实值$y$之间的差距非常小，即通过损失函数$L(">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.cc/2019/05/12/常见优化算法小结/2019-05-12-常见优化算法小结/image-20191130175246069.png">
-<meta property="og:image" content="http://chenson.cc/2019/05/12/常见优化算法小结/2019-05-12-常见优化算法小结/image-20190327210231781.png">
-<meta property="og:image" content="http://chenson.cc/2019/05/12/常见优化算法小结/2019-05-12-常见优化算法小结/image-20190327210302672.png">
 <meta property="og:image" content="http://chenson.cc/2019/05/12/常见优化算法小结/2019-05-12-常见优化算法小结/838ba61ea8d3fd1f498e3e4a324e251f95ca5f3e.jpg">
 <meta property="og:image" content="http://chenson.cc/2019/05/12/常见优化算法小结/2019-05-12-常见优化算法小结/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hvdURvdVpob3U=,size_16,color_FFFFFF,t_70.jpeg">
 <meta property="og:image" content="http://chenson.cc/2019/05/12/常见优化算法小结/2019-05-12-常见优化算法小结/image-20191130174655430.png">
-<meta property="og:updated_time" content="2019-11-30T10:04:33.184Z">
+<meta property="og:updated_time" content="2019-12-11T02:22:01.481Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见优化算法小结">
 <meta name="twitter:description" content="1. Preview 在References里面的第一篇文章里，对于优化算法的分类总结的挺好的，分为公式解、数值优化和其他方法。这里重点总结的是数值优化法。 举个例子，在机器学习中对于有监督学习而言，通常都会有一个假设的Hypothesis函数，通过这样一个函数，我们输入一个数据x，会输出一个预测值$\hat y$，且为了能够使得$\hat y$和真实值$y$之间的差距非常小，即通过损失函数$L(">
@@ -196,13 +194,22 @@
 <p>以下总结了机器学习中常见的优化算法。</p>
 <h1 id="2-梯度下降法"><a href="#2-梯度下降法" class="headerlink" title="2 梯度下降法"></a>2 梯度下降法</h1><h2 id="2-1-Hypothesis"><a href="#2-1-Hypothesis" class="headerlink" title="2.1 Hypothesis"></a>2.1 Hypothesis</h2><script type="math/tex; mode=display">
 h(x) = \sum_{i=0}^n \theta_i x_i = \theta^Tx</script><h2 id="2-2-评价函数"><a href="#2-2-评价函数" class="headerlink" title="2.2 评价函数"></a>2.2 评价函数</h2><script type="math/tex; mode=display">
-J(\theta) = \frac 1 2 \sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})^2</script><p>以上两个函数假设是引用自吴恩达老师课件的内容，其中$\theta$ 是模型的参数，$J(\theta)$可以看成关于$\theta$的多元函数。</p>
-<p>对于这样的一个多元函数，对函数进行求偏导，可得到该函数的梯度，<strong>沿着该梯度最大方向，函数的值增长最快；反之沿着负梯度的方向，该函数的值下降最快</strong>（后面会证明）。所以对于这样的一个多元函数，其迭代公式为</p>
+J(\theta) = \frac 1 2 \sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})^2</script><p>引用自吴恩达老师课件的内容，以最小平方误差为例子的评价函数为例，其中$\theta$ 是模型的参数，$J(\theta)$可以看成关于$\theta$ 的多元目标函数。</p>
+<p>对目标函数进行求偏导，可得到该函数的梯度，<strong>沿着该梯度最大方向，函数的值增长最快；反之沿着负梯度的方向，该函数的值下降最快</strong>（后面会证明）。所以对于这样的一个多元函数，其迭代公式为</p>
 <script type="math/tex; mode=display">
 \theta_j := \theta_j - \alpha \frac \partial {\partial\theta} J(\theta)</script><h2 id="2-3-迭代公式"><a href="#2-3-迭代公式" class="headerlink" title="2.3 迭代公式"></a>2.3 迭代公式</h2><p>代入上面的公式有</p>
-<p><img src="/2019/05/12/常见优化算法小结/2019-05-12-常见优化算法小结/image-20190327210231781.png" alt="image-20190327210231781"></p>
-<p><img src="/2019/05/12/常见优化算法小结/2019-05-12-常见优化算法小结/image-20190327210302672.png" alt="image-20190327210302672"></p>
-<p>可以看到上面在求偏导的时候，是求的函数的一阶导数信息，所以是属于<strong>一阶优化算法</strong>。根据函数的一阶泰勒展开，在负梯度方向，函数值是会下降的。</p>
+<script type="math/tex; mode=display">
+\begin {align}
+\frac {\partial} {\partial \theta_j} {J(\theta)} &= \frac {\partial} {\partial \theta_j} \frac 1 2(h_{\theta}(x) - y)^2 \\
+
+&= 2 \cdot \frac 1 2 (h_{\theta}(x) - y) \cdot \frac {\partial} {\partial \theta_j}(h_{\theta}(x) - y) \\
+
+&= (h_{\theta}(x) - y) \cdot \frac {\partial} {\partial \theta_j}(\sum_{i=0}^n \theta_i x_i - y) \\ 
+&= (h_{\theta}(x) - y)x_j \\
+\\
+\theta_j &:=  \theta_j - \alpha(h_{\theta}(x^{(i)}) - y^{(i)}) x^{(i)}
+
+\end {align}</script><p>可以看到上面在求偏导的时候，是求的函数的<strong>一阶导数</strong>信息，所以是属于<strong>一阶优化算法</strong>。根据函数的一阶泰勒展开，在负梯度方向，函数值是会下降的（后面有尝试证明）。</p>
 <ul>
 <li><p>泰勒展开式 [需要看王伟的PPT]</p>
 <p><a href="https://blog.csdn.net/u011310341/article/details/49496229" target="_blank" rel="noopener">机器学习笔记1—泰勒展开式和牛顿法</a></p>
@@ -249,10 +256,10 @@ f(x - \eta f'(x)) ≲ f(x)</script><p>所以通过$x := x - \eta f’(x)$来迭�
 \nabla_xf(x) = [\frac {\partial f(x)} {\partial x_1}, \frac {\partial f(x)} {\partial x_2},..., \frac {\partial f(x)} {\partial x_d}]</script><p>且目标函数$f(x)$在$x$上沿着$u$方向的方向导数为：</p>
 <script type="math/tex; mode=display">
 \begin{align}
-D_uf(x) =& \lim_{h\rightarrow 0} \frac {f(x + hu) - f(x)} {h} \\
- =& \nabla f(x) \cdot u \\
- =& ||\nabla f(x)|| \cdot ||u|| \cdot \cos(\theta) \\
- =& ||\nabla f(x)|| \cdot \cos(\theta)
+D_uf(x) &= \lim_{h\rightarrow 0} \frac {f(x + hu) - f(x)} {h} \\
+ &= \nabla f(x) \cdot u \\
+ &= ||\nabla f(x)|| \cdot ||u|| \cdot \cos(\theta) \\
+ &= ||\nabla f(x)|| \cdot \cos(\theta)
 \end{align}</script><ul>
 <li>这里$\nabla$是梯度算子, $u$是单位向量，且$||u|| = 1$</li>
 <li>方向导数$D_uf(x)$给出了$f$在$x$上沿着所有可能方向的变化率</li>
@@ -288,8 +295,8 @@ x := x - \eta \nabla f(x)</script><p>以下三种采用的基本思想都是GD�
 <h2 id="3-1-牛顿法"><a href="#3-1-牛顿法" class="headerlink" title="3.1 牛顿法"></a>3.1 牛顿法</h2><p>同上，这里我们先从一元函数开始推导理解，对一元的目标函数在$x_0$点出做泰勒展开，有</p>
 <script type="math/tex; mode=display">
 \begin {align}
-f(x) =& f(x_0) + f'(x_0)(x-x_0) + \frac 1 2 f''(x_0)(x-x_0)^2 + ... + \frac 1 n f^{(n)}(x_0)(x-x_0)^n \\
-=& f(x_0) + f'(x_0)(x-x_0) + \frac 1 2 f''(x_0)(x-x_0)^2
+f(x) &= f(x_0) + f'(x_0)(x-x_0) + \frac 1 2 f''(x_0)(x-x_0)^2 + ... + \frac 1 n f^{(n)}(x_0)(x-x_0)^n \\
+&= f(x_0) + f'(x_0)(x-x_0) + \frac 1 2 f''(x_0)(x-x_0)^2
 
 \end {align}</script><p>因为这里只用到二阶导数，上面公式忽略了二阶以上的项。因为目的是为了找到导数为0的方程，对上面的式子对$x$求导并等于0，有</p>
 <script type="math/tex; mode=display">
@@ -303,7 +310,7 @@ x_{t+1} = x_t - \frac {f'(x_t)} {f''(x_t)}</script><ul>
 <p>同理推广到多元函数上，有（忽略二阶以上的项）</p>
 <script type="math/tex; mode=display">
 \begin {align}
-f(x) =& f(x_0) + \nabla f(x_0)^T(x - x_0) + \frac 1 2 (x-x_0)^T\nabla^2f(x_0)(x-x_0)
+f(x) &= f(x_0) + \nabla f(x_0)^T(x - x_0) + \frac 1 2 (x-x_0)^T\nabla^2f(x_0)(x-x_0)
 \end {align}</script><p>同上，同时对上面式子两边对$x$求梯度，并令左右两边等于0，得到函数的导数（梯度向量）为</p>
 <script type="math/tex; mode=display">
 \nabla f(x) = \nabla f(x_0) + \nabla^2f(x_0)(x-x_0) = 0</script><p>这里$\nabla^2f(x_0)$就是这章的重点<a href="[https://baike.baidu.com/item/%E9%BB%91%E5%A1%9E%E7%9F%A9%E9%98%B5/2248782?fr=aladdin](https://baike.baidu.com/item/黑塞矩阵/2248782?fr=aladdin">黑塞矩阵</a>)，通常用$H$来表示，黑塞矩阵具体表示如下：</p>
@@ -311,9 +318,9 @@ f(x) =& f(x_0) + \nabla f(x_0)^T(x - x_0) + \frac 1 2 (x-x_0)^T\nabla^2f(x_0)(x-
 <p>简化上面的式子，有</p>
 <script type="math/tex; mode=display">
 \begin {align}
-x_{t+1} =& x_t - \frac {\nabla f(x_t)} {\nabla^2 f(x_t)} \\
-=& x_t - \frac {g(x_t)} {H(x_t)} \\
-=& x_t - H^{-1}g
+x_{t+1} &= x_t - \frac {\nabla f(x_t)} {\nabla^2 f(x_t)} \\
+&= x_t - \frac {g(x_t)} {H(x_t)} \\
+&= x_t - H^{-1}g
 
 \end {align}</script><p>沿着上述的迭代公式，函数会最终会到达函数的<strong>驻点处</strong>。其中$-H^{-1}g$称为<strong>牛顿方向</strong>。迭代终止的条件是梯度的模接近于0，或者函数值下降小于指定阈值。</p>
 <h3 id="直观理解"><a href="#直观理解" class="headerlink" title="直观理解"></a>直观理解</h3><p>以上是通过公式的推导，但是不够直观，可以从几何意义上理解一下</p>
@@ -330,8 +337,8 @@ g_{k+1} - g_k \approx& H_{k+1}(x_{k+1} - x_k)
 \end {align}</script><p>令</p>
 <script type="math/tex; mode=display">
 \begin {align}
-s_k =& x_{k+1} - x_k \\
-y_k =& g_{k+1} - g_k
+s_k &= x_{k+1} - x_k \\
+y_k &= g_{k+1} - g_k
 \end {align}</script><p>有$y_k \approx H_{k+1}s_k$ 或 $H^{-1}_{k+1}y_k \approx s_k$，且该等式称之为<strong>拟牛顿条件，用来近似代替Hessian矩阵的矩阵需要满足此条件。</strong>根据这个条件，有不同的拟牛顿解法，具体如下：</p>
 <p><img src="/2019/05/12/常见优化算法小结/2019-05-12-常见优化算法小结/image-20191130174655430.png" alt="image-20191130174655430"></p>
 <p>以上算法看着都挺复杂的，还是以后有时间再另起篇幅理解吧。</p>
@@ -673,11 +680,11 @@ y_k =& g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -741,10 +748,6 @@ y_k =& g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -777,18 +780,6 @@ y_k =& g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nvida</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GPU</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
@@ -798,6 +789,18 @@ y_k =& g_{k+1} - g_k
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nvida</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GPU</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -825,10 +828,6 @@ y_k =& g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
@@ -837,7 +836,15 @@ y_k =& g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -849,15 +856,15 @@ y_k =& g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LDA</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SVD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -877,10 +884,6 @@ y_k =& g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
@@ -897,11 +900,7 @@ y_k =& g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -910,6 +909,14 @@ y_k =& g_{k+1} - g_k
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
