@@ -156,6 +156,88 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Snippets-for-Python" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/28/Snippets-for-Python/">Snippets for Python</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/28/Snippets-for-Python/" class="archive-article-date">
+  	<time datetime="2019-06-28T02:07:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>收集平常遇到的各种不常用的Python技巧，持续更新ing。</p>
+<h3 id="1-窗口函数"><a href="#1-窗口函数" class="headerlink" title="1. 窗口函数"></a>1. 窗口函数</h3><p>滑窗函数平常还是用的很多的。细分的话可以分按时间维度、次数维度或是排序维度滑窗计算。</p>
+<h4 id="1-1-Codes"><a href="#1-1-Codes" class="headerlink" title="1.1 Codes"></a>1.1 Codes</h4><ul>
+<li><p>时间维度滑窗</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df = pd.Series(np.random.randn(<span class="number">600</span>), index=pd.date_range(<span class="string">'7/1/2018'</span>, freq=<span class="string">'D'</span>, periods=<span class="number">600</span>))</span><br><span class="line"></span><br><span class="line">r = df.rolling(window=<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/06/28/Snippets-for-Python/2019-06-28-Snippets-for-Python/image-20190422122040331.png" alt="image-20190422122040331"></p>
+<p>同时<strong>也支持自定义的聚合函数</strong></p>
+<p><img src="/2019/06/28/Snippets-for-Python/2019-06-28-Snippets-for-Python/image-20190422122133406.png" alt="image-20190422122133406"></p>
+</li>
+</ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Numpy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Pandas</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/28/Snippets-for-Python/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Hive常用函数小结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -841,71 +923,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
 
 
   
-    <article id="post-AutoML平台试用体验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/20/AutoML平台试用体验/">AutoML平台试用体验</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/20/AutoML平台试用体验/" class="archive-article-date">
-  	<time datetime="2019-03-20T10:44:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-蚂蚁金服-Morse"><a href="#1-蚂蚁金服-Morse" class="headerlink" title="1. 蚂蚁金服 Morse"></a>1. 蚂蚁金服 Morse</h1><h1 id="2-蚂蚁金服-Pi"><a href="#2-蚂蚁金服-Pi" class="headerlink" title="2. 蚂蚁金服 Pi"></a>2. 蚂蚁金服 Pi</h1><h1 id="3-百度天链"><a href="#3-百度天链" class="headerlink" title="3. 百度天链"></a>3. 百度天链</h1><p><img src="/2019/03/20/AutoML平台试用体验/2019-03-20-AutoML平台试用体验/image-20190426104951115.png" alt="image-20190426104951115"></p>
-<h1 id="4-第四范式"><a href="#4-第四范式" class="headerlink" title="4. 第四范式"></a>4. 第四范式</h1>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Auto-ML</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/20/AutoML平台试用体验/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1027,6 +1044,10 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -1036,14 +1057,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1059,6 +1072,10 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
@@ -1071,7 +1088,11 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">进程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1079,11 +1100,7 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">进程</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1095,7 +1112,7 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1103,11 +1120,11 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
+                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1143,19 +1160,19 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1179,18 +1196,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -1200,6 +1205,18 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GPU</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1235,15 +1252,15 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LBS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Quant</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1256,6 +1273,10 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1275,7 +1296,7 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1295,19 +1316,15 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1324,6 +1341,10 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
               </li>
             
             <div class="clearfix"></div>

@@ -156,6 +156,84 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-图数据库-关系网络设计" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/18/图数据库-关系网络设计/">图数据库-关系网络设计</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/18/图数据库-关系网络设计/" class="archive-article-date">
+  	<time datetime="2018-08-18T06:45:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1. 简单介绍"></a>1. 简单介绍</h3><p>目前知识图谱可以分成两大类：一类是开放领域的知识图谱，比如谷歌搜索引擎所建立的知识图谱。另一类是垂直领域的知识图谱，根据字面意思来看，就是特定某一个领域，比如金融风控领域。今天介绍一下关系网络在金融风控领域的应用。</p>
+<p>主要应用可以分成两大类。</p>
+<ul>
+<li><p>第一类</p>
+<p>网络特征的<strong>直接提取</strong>，提取出中心度或者一度/二度关联特征供上层规则系统或者风险评估模型使用。</p>
+<p>比如说在银行贷款申请的业务场景下，在贷款申请人中，第一度是联系人，则与目标申请共享相同联系人的申请数目是一度关联度，如果这些申请还与另外一些申请共享相同的住址或其他特征，这些申请就和目标申请形成二度关联。一些简单的指标，比如一度关联节点或者二度关联节点是否触黑/触黑个数，在实际的反欺诈实践中效果是非常显著的。如果特征不涉及深度的关系，传统的关系型数据库就能够满足需求，因为计算量是随着度数的增加呈指数增加。</p></li></ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">图数据库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Neo4j</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">关系网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/18/图数据库-关系网络设计/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-图数据库-Neo4j-常用算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -354,8 +432,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>说实话，只是大概了解一下这些常见的RNN模型，但是这些模型为什么这么设计，为什么能够抓取网络中可能有用的长短期信息其实我还是比较懵的。这一块以后也是需要去深入理解的一部分，先mark一下。</p>
-<h1 id="1-循环神经网络-RNN-Recurrent-Neural-Network"><a href="#1-循环神经网络-RNN-Recurrent-Neural-Network" class="headerlink" title="1. 循环神经网络 - RNN (Recurrent Neural Network)"></a>1. 循环神经网络 - RNN (Recurrent Neural Network)</h1><h1 id="2-门控循环单元-GRN-Gated-Recurrent-Neural-Networks"><a href="#2-门控循环单元-GRN-Gated-Recurrent-Neural-Networks" class="headerlink" title="2. 门控循环单元 - GRN (Gated Recurrent Neural Networks)"></a>2. 门控循环单元 - GRN (Gated Recurrent Neural Networks)</h1><p>按时间顺序上来看，GRN是在LSTM之后提出来的。但是这个相对来说可能没那么复杂，所以先总结这个，然后再总结LSTM。</p>
-<p>门控循环单元，重点是在于<strong>门</strong>的，即Gated。<del>这里指的是 $\sigma$ = sigmod func.</del></p>
+<h1 id="1-循环神经网络-RNN-Recurrent-Neural-Network"><a href="#1-循环神经网络-RNN-Recurrent-Neural-Network" class="headerlink" title="1. 循环神经网络 - RNN (Recurrent Neural Network)"></a>1. 循环神经网络 - RNN (Recurrent Neural Network)</h1><p><img src="/2018/05/25/深度学习笔记-RNN常见网络/2018-05-25-深度学习笔记-RNN常见网络/image-20191213165901226.png" alt="image-20191213165901226" style="zoom:40%;"></p>
+<script type="math/tex; mode=display">
+H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相关拓展网络的基础，基本都是用到了这个结构。</p>
+<h1 id="2-门控循环单元-GRN-Gated-Recurrent-Neural-Networks"><a href="#2-门控循环单元-GRN-Gated-Recurrent-Neural-Networks" class="headerlink" title="2. 门控循环单元 - GRN (Gated Recurrent Neural Networks)"></a>2. 门控循环单元 - GRN (Gated Recurrent Neural Networks)</h1><p>按时间顺序上来看，GRN是在LSTM之后提出来的。但是这个相对来说可能没那么复杂，所以先总结这个，然后再总结LSTM。</p>
+<p>门控循环单元，重点是在于<strong>门</strong>的，即Gated。这里指的是 $\sigma$ = sigmod func，通过$\sigma$制造出来。</p>
 <p>那么为什么要出现这些门呢，相比原先的RNN模型，这些门的出现能够解决什么样的问题？</p>
         
       
@@ -747,11 +828,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PyTorch</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PyTorch</a>
         		</li>
       		
 		</ul>
@@ -828,84 +909,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/03/13/Docker常用指令/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Hadoop2-7-4完全分布式集群搭建和测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/10/Hadoop2-7-4完全分布式集群搭建和测试/">Hadoop2.7.4完全分布式集群搭建和测试</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/10/Hadoop2-7-4完全分布式集群搭建和测试/" class="archive-article-date">
-  	<time datetime="2017-10-10T05:24:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-环境配置"><a href="#1-环境配置" class="headerlink" title="1. 环境配置"></a>1. 环境配置</h3><h5 id="1-1-环境说明"><a href="#1-1-环境说明" class="headerlink" title="1.1 环境说明"></a>1.1 环境说明</h5><p><img src="http://on8r6i4gg.bkt.clouddn.com/17-10-10/2122966.jpg" alt></p>
-<h5 id="1-2-修改机器名称和hosts等"><a href="#1-2-修改机器名称和hosts等" class="headerlink" title="1.2 修改机器名称和hosts等"></a>1.2 修改机器名称和<code>hosts</code>等</h5><ul>
-<li><code>vi /etc/sysconfig/network</code> </li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HOSTNAME=hadoop-master</span><br><span class="line">HOSTNAME=hadoop-salve1</span><br><span class="line">HOSTNAME=hadoop-salve2</span><br><span class="line">HOSTNAME=hadoop-salve3</span><br></pre></td></tr></table></figure>
-<p>执行 <code>reboot</code> 后生效</p>
-<ul>
-<li><code>sudo vi /etc/hostname</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 相应修改三台机器</span><br><span class="line">hadoop-master</span><br><span class="line">hadoop-slave1</span><br><span class="line">hadoop-slave2</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>sudo vi /etc/hosts</code></li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1  localhost  localhost.localdomain  VM-0-6-ubuntu</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> Hadoop Cluster</span><br><span class="line"><span class="meta">#</span> 【注意】：用内网IP，若用公网IP，则无法启动master上的9000监听端口</span><br><span class="line">172.17.6    hadoop-master</span><br><span class="line">172.17.11   hadoop-salve1 </span><br><span class="line">172.17.7    hadoop-salve2</span><br></pre></td></tr></table></figure>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/10/Hadoop2-7-4完全分布式集群搭建和测试/">MORE >></a>
         </p>
       
 
@@ -1047,6 +1050,10 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -1056,14 +1063,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1079,6 +1078,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
@@ -1091,7 +1094,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">进程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1099,11 +1106,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">进程</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1115,7 +1118,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1123,11 +1126,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
+                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1163,19 +1166,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1199,18 +1202,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -1220,6 +1211,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GPU</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1255,15 +1258,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LBS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Quant</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1276,6 +1279,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1295,7 +1302,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1315,19 +1322,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1344,6 +1347,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
               </li>
             
             <div class="clearfix"></div>
