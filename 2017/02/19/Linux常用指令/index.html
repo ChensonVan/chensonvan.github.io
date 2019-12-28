@@ -21,7 +21,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.cc/2017/02/19/Linux常用指令/2017-02-19-Linux常用指令/image-20190113164617305.png">
 <meta property="og:image" content="http://chenson.cc/2017/02/19/Linux常用指令/2017-02-19-Linux常用指令/image-20190113164500020.png">
-<meta property="og:updated_time" content="2019-11-30T06:07:19.147Z">
+<meta property="og:updated_time" content="2019-12-24T08:19:05.009Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux常用指令">
 <meta name="twitter:description" content="有时候记东西老是记不住，虽然是经常使用，所以对常用的linux指令做个简单记录，方便以后使用（不断更新… …）。 1. scp文件传输 (security copy)12# eg. scp chenson@127.0.0.1:~/Home/test .  ~/Home/local_test_pathscp PATH_OF_SRC PATH_OF_DST 2. 测内存的使用率12345678valg">
@@ -224,13 +224,26 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">nohup python main.py 80 &gt; ~/log/WeChatAccountLog.file 2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line">该命令的一般形式为：nohup command &amp;</span><br><span class="line">如果使用nohup命令提交作业，那么在缺省情况下该作业的所有输出都被重定向到一个名为nohup.out的文件中，除非另外指定了输出文件：</span><br><span class="line"></span><br><span class="line"><span class="meta">command&gt;</span>out.file是将command的输出重定向到out.file文件，即输出内容不打印到屏幕上，而是输出到out.file文件中。</span><br><span class="line"><span class="meta">2&gt;</span>&amp;1 是将标准出错重定向到标准输出，这里的标准输出已经重定向到了out.file文件，即将标准出错也输出到out.file文件中。最后一个&amp;， 是让该命令在后台执行。</span><br><span class="line">试想2&gt;1代表什么，2与&gt;结合代表错误重定向，而1则代表错误重定向到一个文件1，而不代表标准输出；换成2&gt;&amp;1，&amp;与1结合就代表标准输出了，就变成错误重定向到标准输出.</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 可以将一个正在前台执行的命令放到后台，并且处于暂停状态。</span><br><span class="line">ctrl + z </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 终止前台命令。</span><br><span class="line">Ctrl+c </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 查看当前有多少在后台运行的命令</span><br><span class="line">jobs </span><br><span class="line"></span><br><span class="line">使用 fg %n　关闭</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>screen</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+<p>和nohup不太一样的，screen是可以把整个会话的session保存起来，类似平常我们用界面的时候，最小化在后台，用的时候又调出来</p>
 </li>
 </ul>
 <h3 id="15-后台上传-下载数据"><a href="#15-后台上传-下载数据" class="headerlink" title="15. 后台上传/下载数据"></a>15. 后台上传/下载数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">另外有两个常用的ftp工具ncftpget和ncftpput，可以实现后台的ftp上传和下载，这样就可以利用这些命令在后台上传和下载文件了。</span><br></pre></td></tr></table></figure>
 <h3 id="16-Docker-加速器地址"><a href="#16-Docker-加速器地址" class="headerlink" title="16. Docker 加速器地址"></a>16. Docker 加速器地址</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://cr.console.aliyun.com/cn-qingdao/mirrors</span><br><span class="line">https://q90v31vp.mirror.aliyuncs.com</span><br></pre></td></tr></table></figure>
 <h3 id="17-查找指定内容"><a href="#17-查找指定内容" class="headerlink" title="17. 查找指定内容"></a>17. 查找指定内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . | xargs grep &quot;keyword&quot; | egrep &quot;keyword&quot; # 当前文件目录下</span><br></pre></td></tr></table></figure>
-<h3 id="18-查看系统glibc支持的版本"><a href="#18-查看系统glibc支持的版本" class="headerlink" title="18. 查看系统glibc支持的版本"></a>18. 查看系统glibc支持的版本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">strings /lib64/libc.so.6 |grep GLIBC_</span><br><span class="line"></span><br><span class="line">rpm -qa |grep glibc</span><br></pre></td></tr></table></figure>
+<h3 id="18-挂载数据盘-自动重启"><a href="#18-挂载数据盘-自动重启" class="headerlink" title="18. 挂载数据盘+自动重启"></a>18. 挂载数据盘+自动重启</h3><ul>
+<li><p>创建挂载脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">mount /dev/vdm /home/</span><br><span class="line">mount /dev/vdl /data1</span><br><span class="line">mount /dev/vdk /data2</span><br><span class="line">mount /dev/vdj /data3</span><br><span class="line">mount /dev/vdi /data4</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>往<code>/etc/rc.d/rc.local</code>里面添加启动上面脚本的代码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> mount disk</span><br><span class="line">bash /root/mount_disk.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>给上面脚本执行的权限</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chmod +x /etc/rc.d/rc.local</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 重启机器</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+<p>重启之后重新连该机器，数据盘已自动挂载了</p>
+</li>
+</ul>
+<h3 id="19-查看系统glibc支持的版本"><a href="#19-查看系统glibc支持的版本" class="headerlink" title="19. 查看系统glibc支持的版本"></a>19. 查看系统glibc支持的版本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">strings /lib64/libc.so.6 |grep GLIBC_</span><br><span class="line"></span><br><span class="line">rpm -qa |grep glibc</span><br></pre></td></tr></table></figure>
+<h3 id="20-开机启动"><a href="#20-开机启动" class="headerlink" title="20. 开机启动"></a>20. 开机启动</h3><p><a href="https://blog.csdn.net/qq_35440678/article/details/80489102" target="_blank" rel="noopener">linux设置开机自启动脚本的最佳方式</a></p>
 <p>vsftpd, kaiqi ftp fuwu</p>
 <p>choongqi dashuju taojian</p>
 <p>ambari-agent restart</p>
@@ -507,10 +520,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -520,6 +529,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -535,10 +548,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
@@ -551,11 +560,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">进程</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -563,7 +572,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">进程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -575,7 +588,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -587,11 +600,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -615,19 +624,11 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -636,6 +637,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -651,14 +664,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -671,11 +676,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -703,7 +704,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -715,7 +716,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -723,7 +736,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -735,31 +752,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sed</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">awk</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -779,11 +772,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -795,6 +784,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
               </li>
              
@@ -803,11 +800,31 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sed</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">awk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
             
             <div class="clearfix"></div>

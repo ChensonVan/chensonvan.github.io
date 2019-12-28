@@ -12,7 +12,7 @@
   <title>类别不平衡数据小结 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="1. Introduction之前在某银行的手机银行交易反欺诈项目中，遇到了样本比较偏的问题。然后这几天也是刚好看到一篇比较好的，有关于数据不平衡的文章，所以就做个笔记，顺便总结一下之前项目中遇到的问题，以及哪些方面可以改进的。 假设问题都是关于二分类的，正类为极少数的部分，负类为数据量大的一类。  如果更关注正类的分类能力，则是这里想要讨论的类别不平衡的问题； 如果更关注负类的分类能力，问题则变">
-<meta name="keywords" content="PU Learning,Class-Imbalance">
+<meta name="keywords" content="Class-Imbalance,PU Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="类别不平衡数据小结">
 <meta property="og:url" content="http://chenson.cc/2019/11/09/类别不平衡数据小结/index.html">
@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://chenson.cc/2019/11/09/类别不平衡数据小结/2019-11-09-类别不平衡数据小结/v2-cc9333fa92591d864ecb16b0ab8dadf9_hd.jpg">
 <meta property="og:image" content="http://chenson.cc/2019/11/09/类别不平衡数据小结/2019-11-09-类别不平衡数据小结/v2-306eb7b1d105049f3e4082ee78d0f4ca_hd.jpg">
 <meta property="og:image" content="http://chenson.cc/2019/11/09/类别不平衡数据小结/2019-11-09-类别不平衡数据小结/v2-bf7630b224476646d43f6628901d4f52_hd.jpg">
-<meta property="og:updated_time" content="2019-12-07T16:30:37.082Z">
+<meta property="og:updated_time" content="2019-12-17T10:11:01.730Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类别不平衡数据小结">
 <meta name="twitter:description" content="1. Introduction之前在某银行的手机银行交易反欺诈项目中，遇到了样本比较偏的问题。然后这几天也是刚好看到一篇比较好的，有关于数据不平衡的文章，所以就做个笔记，顺便总结一下之前项目中遇到的问题，以及哪些方面可以改进的。 假设问题都是关于二分类的，正类为极少数的部分，负类为数据量大的一类。  如果更关注正类的分类能力，则是这里想要讨论的类别不平衡的问题； 如果更关注负类的分类能力，问题则变">
@@ -234,7 +234,7 @@
 <p>或者结合Boosting的方法，比如在欠采样中，多数类可以分成几部分和少数类一起训练，然后再结合模型来使用。</p>
 <h2 id="2-3-数据-算法层面"><a href="#2-3-数据-算法层面" class="headerlink" title="2.3 数据+算法层面"></a>2.3 数据+算法层面</h2><p>大概就是借鉴了上面两种思路，比如周志华老师的BalanceCascade，结合了欠采样+Ensemble的方法。</p>
 <blockquote>
-<p>该方法是一种典型的undersampling + ensemble方法，基学习器为AdaBoost类决策树。BC在每一次迭代中从多数类采样空间中随机降采样得到一个1:1的训练集，以从该训练集得到的Adaboost模型输出为依据，每一次迭代都从多数类采样空间中丢弃一部分已经被很好地分类的多数类样本。<strong>该多次迭代过程在逐步缩小采样空间降低random undersampling的随机性的同时，在BC过程后期产生的学习器会更加关注不易分的样本，并通过ensemble的方式最终得到一个鲁棒的强分类器。</strong></p>
+<p>该方法是一种典型的undersampling + ensemble方法，基学习器为AdaBoost类决策树。BC在每一次迭代中从多数类采样空间中随机降采样得到一个1:1的训练集，以从该训练集得到的Adaboost模型输出为依据，每一次迭代都从多数类采样空间中丢弃一部分已经被很好地分类的多数类样本。<strong>该多次迭代过程在逐步缩小采样空间降低Random undersampling的随机性的同时，在BalanceCascade过程后期产生的学习器会更加关注不易分的样本，并通过ensemble的方式最终得到一个鲁棒的强分类器。</strong></p>
 </blockquote>
 <p><img src="/2019/11/09/类别不平衡数据小结/2019-11-09-类别不平衡数据小结/v2-306eb7b1d105049f3e4082ee78d0f4ca_hd.jpg" alt="img"></p>
 <p>这种方法有点类似我之前在工程中用到的，就是先通过采样训练一个baseline模型出来，然后丢弃一些可以非常好分类的大类，增加一些分数非常高的大类作为选定的样本，然后重复几次，即可选出一批比较特殊的样本了。</p>
@@ -252,7 +252,7 @@
 <h1 id="3-可改进之处"><a href="#3-可改进之处" class="headerlink" title="3. 可改进之处"></a>3. 可改进之处</h1><ul>
 <li>数据层面<ul>
 <li>采样方面其实还是可以在深入研究一下，包括用上面提到的几种算法试一下；</li>
-<li>由于样本是非常的不平衡，其实是可以尝试一下过采样的。但由于我之前接触的反欺诈项目，欺诈样本是和反欺诈不断抗衡的一个过程，不想其他不平衡项目中，相对比较稳定。所以过采样出来的样本还是得double check一下；</li>
+<li>由于样本是非常的不平衡，其实是可以尝试一下过采样的。但由于我之前接触的反欺诈项目，欺诈样本是和反欺诈不断抗衡的一个过程，不像其他不平衡项目中，相对比较稳定。所以过采样出来的样本还是得double check一下；</li>
 <li>正类样本中一些被选择的部分，也需要再检查一下，毕竟有一部分是遗漏了的欺诈样本，但这部分就比较耗时了。</li>
 </ul>
 </li>
@@ -304,11 +304,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">PU Learning</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Class-Imbalance</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Class-Imbalance</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">PU Learning</a>
         		</li>
       		
 		</ul>
@@ -542,10 +542,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -555,6 +551,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -570,10 +570,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
@@ -586,11 +582,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">进程</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -598,7 +594,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">进程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -610,7 +610,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -622,11 +622,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -650,19 +646,11 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -671,6 +659,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -686,14 +686,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -706,11 +698,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -738,7 +726,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -750,7 +738,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -758,7 +758,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -770,31 +774,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sed</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">awk</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -814,11 +794,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -830,6 +806,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
               </li>
              
@@ -838,11 +822,31 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sed</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">awk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
             
             <div class="clearfix"></div>

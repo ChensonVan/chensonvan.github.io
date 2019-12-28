@@ -41,7 +41,7 @@
 <meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325204042713.png">
 <meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325203928751.png">
 <meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325203950839.png">
-<meta property="og:updated_time" content="2019-12-08T12:14:20.249Z">
+<meta property="og:updated_time" content="2019-12-22T13:25:11.311Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统小结">
 <meta name="twitter:description" content="1. Factorization Machine (FM)1.1 Introduction传统用的One-Hot编码会带来数据稀疏的问题。 比如数据如下（栗子来自美团技术博客）：  做了One-Hot编码后  当里面某些特征的维度比较高的时候，数据维度可能达到百万级别。 而传统的LR模型也并没考虑到特征之间的关联  y = w_0 + \sum_{i=1}^n w_i x_i">
@@ -291,7 +291,7 @@ V &= \left [ \begin{matrix}
 \sum_{i=1}^{n}\sum_{f=1}^k v_{i,f} v_{i,f}x_i x_j) \tag 3\\
 &= \frac 1 2 \sum_{f=1}^k((\sum_{i=1}^nv_{i,f}x_i)(\sum_{j=1}^nv_{j,f}x_j) - \sum_{i=1}^nv_{i,f}^2x_i^2) \tag 4\\
 &= \frac 1 2  \sum_{f=1}^k((\sum_{i=1}^n v_{i,f}x_i)^2 - \sum_{i=1}^nv_{i,f}^2 x_i^2) \tag 5
-\end {align}</script><p>公式（2）到（3）里面的k的是由$<v_i, v_j>$来的，因为之间已经有</v_i,></p>
+\end {align}</script><p>公式（2）到（3）里面的k的是由$(v_i, v_j)$来的，因为之间已经有</p>
 <script type="math/tex; mode=display">
 \begin {align}
 V &= \left [ \begin{matrix}
@@ -319,7 +319,7 @@ V &= \left [ \begin{matrix}
 <p>经过因子化后，组合特征$x_ix_j$和$x_jx_k$的权重系数分别为$&lt;\boldsymbol{v_i},\boldsymbol{v_j}&gt;$和$&lt;\boldsymbol{v_j},\boldsymbol{v_k}&gt;$，观察里面这俩个权重系数，里面有个相同的量$\boldsymbol{v_j}$，<strong>因此所有包含$x_j$特征的非零组合特征的样本都能拿来训练，学习隐向量$\boldsymbol v_j$。</strong></p>
 <p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325154016889.png" alt="image-20190325154016889"></p>
 <blockquote>
-<p>本质上是在对特征进行embedding化表征，和目前非常常见的各种实体embedding本质思想是一脉相承的。因为FM是学习单个特征的embedding，并不依赖某个特定的特征组合是否出现过，所以只要特征$x_i$和其它任意特征组合出现过，那么就可以学习自己对应的embedding向量。于是，尽管$<x_i, x_j>$这个特征组合没有看到过，但是在预测的时候，如果看到这个新的特征组合，因为$x_i$和$x_j$都能学会自己对应的embedding，所以可以<strong>通过内积算出这个新特征组合的权重</strong>。这是为何说FM模型泛化能力强的根本原因。其实本质上，这也是目前很多花样的embedding的最核心特点，就是从0/1这种二值硬核匹配，切换为<strong>向量软匹配</strong>，使得原先匹配不上的，现在能在一定程度上算密切程度了，具备很好的泛化性能。</x_i,></p>
+<p>本质上是在对特征进行embedding化表征，和目前非常常见的各种实体embedding本质思想是一脉相承的。因为FM是学习单个特征的embedding，并不依赖某个特定的特征组合是否出现过，所以只要特征$x_i$和其它任意特征组合出现过，那么就可以学习自己对应的embedding向量。于是，尽管$(x_i, x_j)$这个特征组合没有看到过，但是在预测的时候，如果看到这个新的特征组合，因为$x_i$和$x_j$都能学会自己对应的embedding，所以可以<strong>通过内积算出这个新特征组合的权重</strong>。这是为何说FM模型泛化能力强的根本原因。其实本质上，这也是目前很多花样的embedding的最核心特点，就是从0/1这种二值硬核匹配，切换为<strong>向量软匹配</strong>，使得原先匹配不上的，现在能在一定程度上算密切程度了，具备很好的泛化性能。</p>
 </blockquote>
 </li>
 </ul>
@@ -393,9 +393,9 @@ V &= \left [ \begin{matrix}
 \begin {align}
 \hat W &= VV^T = <v_{i, f_j} ⋅ v_{j, f_i}> \\
 \hat y &= w_0 + \sum_{i=1}^nw_ix_i + \sum_{i=1}^{n-1}\sum_{j=i+1}^n<\boldsymbol v_{i,f_j}, \boldsymbol v_{j,f_i} >x_ix_j
-\end {align}</script><p>这里$f_j$ 是第$j$个特征所属的field。如果隐向量的长度为$k$，那么FFM的二次参数有$nfk$个，远多于FM模型的$ nk$个。此外，由于隐向量与field相关，<strong>FFM二次项并不能够化简</strong>，其预测复杂度是 $\mathcal O(kn^2)$。</p>
+\end {align}</script><p>这里==$f_j$ 是第$j$个特征所属的field==。如果隐向量的长度为$k$，那么FFM的二次参数有$nfk$个，远多于FM模型的$ nk$个。此外，由于隐向量与field相关，<strong>FFM二次项并不能够化简</strong>，其预测复杂度是 $\mathcal O(kn^2)$。</p>
+<p>继续之前的栗子</p>
 <ul>
-<li>继续之前的栗子</li>
 <li>One-Hot</li>
 </ul>
 <div class="table-container">
@@ -562,7 +562,8 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xlearn <span class="keyword">as</span> xl</span><br><span class="line"></span><br><span class="line"><span class="comment"># Training task</span></span><br><span class="line">ffm_model = xl.create_ffm()                <span class="comment"># Use field-aware factorization machine (ffm)</span></span><br><span class="line">ffm_model.setTrain(<span class="string">"./small_train.txt"</span>)    <span class="comment"># Set the path of training dataset</span></span><br><span class="line">ffm_model.setValidate(<span class="string">"./small_test.txt"</span>)  <span class="comment"># Set the path of validation dataset</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Parameters:</span></span><br><span class="line"><span class="comment">#  0. task: binary classification</span></span><br><span class="line"><span class="comment">#  1. learning rate: 0.2</span></span><br><span class="line"><span class="comment">#  2. regular lambda: 0.002</span></span><br><span class="line"><span class="comment">#  3. evaluation metric: accuracy</span></span><br><span class="line">param = &#123;<span class="string">'task'</span>:<span class="string">'binary'</span>, <span class="string">'lr'</span>:<span class="number">0.2</span>, <span class="string">'lambda'</span>:<span class="number">0.002</span>, <span class="string">'metric'</span>:<span class="string">'acc'</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Start to train</span></span><br><span class="line"><span class="comment"># The trained model will be stored in model.out</span></span><br><span class="line">ffm_model.fit(param, <span class="string">'./model.out'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Prediction task</span></span><br><span class="line">ffm_model.setTest(<span class="string">"./small_test.txt"</span>)  <span class="comment"># Set the path of test dataset</span></span><br><span class="line">ffm_model.setSigmoid()                 <span class="comment"># Convert output to 0-1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Start to predict</span></span><br><span class="line"><span class="comment"># The output result will be stored in output.txt</span></span><br><span class="line">ffm_model.predict(<span class="string">"./model.out"</span>, <span class="string">"./output.txt"</span>)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1 id="3-DeepFM"><a href="#3-DeepFM" class="headerlink" title="3. DeepFM"></a>3. DeepFM</h1><ul>
+<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">(base) [root@izwz9hxp0cmozj9nwrpbbqz criteo_ctr]<span class="comment"># python3 run_demo_ctr.py</span></span><br><span class="line">----------------------------------------------------------------------------------------------</span><br><span class="line">           _</span><br><span class="line">          | |</span><br><span class="line">     __  _| |     ___  __ _ _ __ _ __</span><br><span class="line">     \ \/ / |    / _ \/ _` | <span class="string">'__| '</span>_ \</span><br><span class="line">      &gt;  &lt;| |___|  __/ (_| | |  | | | |</span><br><span class="line">     /_/\_\_____/\___|\__,_|_|  |_| |_|</span><br><span class="line"></span><br><span class="line">        xLearn   -- 0.40 Version --</span><br><span class="line">----------------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">[------------] xLearn uses 32 threads <span class="keyword">for</span> training task.</span><br><span class="line">[ ACTION     ] Read Problem ...</span><br><span class="line">[------------] First check <span class="keyword">if</span> the text file has been already converted to binary format.</span><br><span class="line">[------------] Binary file (./small_train.txt.bin) found. Skip converting text to binary.</span><br><span class="line">[------------] First check <span class="keyword">if</span> the text file has been already converted to binary format.</span><br><span class="line">[------------] Binary file (./small_test.txt.bin) found. Skip converting text to binary.</span><br><span class="line">[------------] Number of Feature: 9991</span><br><span class="line">[------------] Number of Field: 18</span><br><span class="line">[------------] Time cost <span class="keyword">for</span> reading problem: 0.00 (sec)</span><br><span class="line">[ ACTION     ] Initialize model ...</span><br><span class="line">[------------] Model size: 5.56 MB</span><br><span class="line">[------------] Time cost <span class="keyword">for</span> model initial: 0.00 (sec)</span><br><span class="line">[ ACTION     ] Start to train ...</span><br><span class="line">[------------] Epoch      Train log_loss       Test log_loss       Test Accuarcy     Time cost (sec)</span><br><span class="line">[   10%      ]     1            0.603320            0.547672            0.770000                0.00</span><br><span class="line">[   20%      ]     2            0.542222            0.531491            0.770000                0.00</span><br><span class="line">[   30%      ]     3            0.524161            0.530445            0.770000                0.00</span><br><span class="line">[   40%      ]     4            0.506338            0.539100            0.770000                0.00</span><br><span class="line">[   50%      ]     5            0.491458            0.527948            0.770000                0.00</span><br><span class="line">[   60%      ]     6            0.486182            0.530082            0.775000                0.00</span><br><span class="line">[   70%      ]     7            0.474895            0.537433            0.775000                0.00</span><br><span class="line">[   80%      ]     8            0.465618            0.530379            0.775000                0.00</span><br><span class="line">[   90%      ]     9            0.458462            0.532626            0.775000                0.00</span><br><span class="line">[  100%      ]    10            0.451552            0.530528            0.775000                0.00</span><br><span class="line">[ ACTION     ] Start to save model ...</span><br><span class="line">[------------] Model file: ./model.out</span><br><span class="line">[------------] Time cost <span class="keyword">for</span> saving model: 0.00 (sec)</span><br><span class="line">[ ACTION     ] Finish training</span><br><span class="line">[ ACTION     ] Clear the xLearn environment ...</span><br><span class="line">[------------] Total time cost: 0.03 (sec)</span><br><span class="line">----------------------------------------------------------------------------------------------</span><br><span class="line">           _</span><br><span class="line">          | |</span><br><span class="line">     __  _| |     ___  __ _ _ __ _ __</span><br><span class="line">     \ \/ / |    / _ \/ _` | <span class="string">'__| '</span>_ \</span><br><span class="line">      &gt;  &lt;| |___|  __/ (_| | |  | | | |</span><br><span class="line">     /_/\_\_____/\___|\__,_|_|  |_| |_|</span><br><span class="line"></span><br><span class="line">        xLearn   -- 0.40 Version --</span><br><span class="line">----------------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">[------------] xLearn uses 32 threads <span class="keyword">for</span> prediction task.</span><br><span class="line">[ ACTION     ] Load model ...</span><br><span class="line">[------------] Load model from ./model.out</span><br><span class="line">[------------] Loss <span class="keyword">function</span>: cross-entropy</span><br><span class="line">[------------] Score <span class="keyword">function</span>: ffm</span><br><span class="line">[------------] Number of Feature: 9991</span><br><span class="line">[------------] Number of K: 4</span><br><span class="line">[------------] Number of field: 18</span><br><span class="line">[------------] Time cost <span class="keyword">for</span> loading model: 0.00 (sec)</span><br><span class="line">[ ACTION     ] Read Problem ...</span><br><span class="line">[------------] First check <span class="keyword">if</span> the text file has been already converted to binary format.</span><br><span class="line">[------------] Binary file (./small_test.txt.bin) found. Skip converting text to binary.</span><br><span class="line">[------------] Time cost <span class="keyword">for</span> reading problem: 0.00 (sec)</span><br><span class="line">[ ACTION     ] Start to predict ...</span><br><span class="line">[------------] The <span class="built_in">test</span> loss is: 0.530528</span><br><span class="line">[ ACTION     ] Clear the xLearn environment ...</span><br><span class="line">[------------] Total time cost: 0.01 (sec)</span><br></pre></td></tr></table></figure>
+</code></pre><h1 id="3-DeepFM"><a href="#3-DeepFM" class="headerlink" title="3. DeepFM"></a>3. DeepFM</h1><ul>
 <li><p>出现背景</p>
 <p>FM只计算了二阶特征组合，如需要考虑高阶特征的组合，可能采用DNN模型。但由于特征做了One-Hot，输入一般是非常高的维度，导致输入的参数太多了。</p>
 <p>考虑到用FFM中Field的概念，可以将同一个特征One-Hot出来的特征转换成一个Dense Vector，然后在再基于Field的Dense数据，再输入到DNN中学习不同特征之间的高阶组合。(那为啥不叫DeepFFM？)</p>
@@ -903,10 +904,6 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -916,6 +913,10 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -931,10 +932,6 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
@@ -947,11 +944,11 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">进程</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -959,7 +956,11 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">进程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -971,7 +972,7 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -983,11 +984,7 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1011,19 +1008,11 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1032,6 +1021,18 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1047,14 +1048,6 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -1067,11 +1060,7 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1099,7 +1088,7 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1111,7 +1100,19 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1119,7 +1120,11 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1131,31 +1136,7 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sed</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">awk</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1175,11 +1156,7 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1191,6 +1168,14 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
               </li>
              
@@ -1199,11 +1184,31 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sed</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">awk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
             
             <div class="clearfix"></div>

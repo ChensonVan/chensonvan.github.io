@@ -27,7 +27,7 @@
 <meta property="og:image" content="http://chenson.cc/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/1460000015575991.png">
 <meta property="og:image" content="http://chenson.cc/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/1460000015575997.png">
 <meta property="og:image" content="http://chenson.cc/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/transformer_resideual_layer_norm_2.png">
-<meta property="og:updated_time" content="2019-12-14T07:42:32.010Z">
+<meta property="og:updated_time" content="2019-12-24T04:13:02.637Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLP相关算法初探">
 <meta name="twitter:description" content="1. Introduction主要是想了解下NLP中Embedding的相关的，然后顺手就看了下最近比较火的Attention和Bert等算法，也正好丰富一下知识体系，了解了解。笔记做得很简单，之后再好好丰富吧。 Embedding在机器学习中应该地位比较重要，对于很多非结构化的数据或者半结构化的数据，往往都要用到Embedding，转化成机器容易识别的一个结构化的数据，比如向量和矩阵等，这么做的">
@@ -195,10 +195,10 @@
 <li><strong>TF-IDF</strong></li>
 <li><strong>语言模型</strong></li>
 <li><strong>分布式表示</strong></li>
-<li><strong>共现矩阵</strong></li>
-</ul>
-<ul>
-<li>NNLM - Neural Netword Language Model 神经网络语言模型</li>
+<li><p><strong>共现矩阵</strong></p>
+</li>
+<li><p>NNLM - Neural Netword Language Model 神经网络语言模型</p>
+</li>
 </ul>
 <h2 id="图像预训练"><a href="#图像预训练" class="headerlink" title="图像预训练"></a>图像预训练</h2><ul>
 <li>底层特征的可复用特性 $\to$  frozen</li>
@@ -594,10 +594,6 @@ y_i &= f(C_i, y_1, y_2, ..., y_{i-1}) \\
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -607,6 +603,10 @@ y_i &= f(C_i, y_1, y_2, ..., y_{i-1}) \\
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -622,10 +622,6 @@ y_i &= f(C_i, y_1, y_2, ..., y_{i-1}) \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
@@ -638,11 +634,11 @@ y_i &= f(C_i, y_1, y_2, ..., y_{i-1}) \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">进程</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -650,7 +646,11 @@ y_i &= f(C_i, y_1, y_2, ..., y_{i-1}) \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">进程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -662,7 +662,7 @@ y_i &= f(C_i, y_1, y_2, ..., y_{i-1}) \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -674,11 +674,7 @@ y_i &= f(C_i, y_1, y_2, ..., y_{i-1}) \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -702,19 +698,11 @@ y_i &= f(C_i, y_1, y_2, ..., y_{i-1}) \\
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -723,6 +711,18 @@ y_i &= f(C_i, y_1, y_2, ..., y_{i-1}) \\
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -738,14 +738,6 @@ y_i &= f(C_i, y_1, y_2, ..., y_{i-1}) \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -758,11 +750,7 @@ y_i &= f(C_i, y_1, y_2, ..., y_{i-1}) \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -790,7 +778,7 @@ y_i &= f(C_i, y_1, y_2, ..., y_{i-1}) \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -802,7 +790,19 @@ y_i &= f(C_i, y_1, y_2, ..., y_{i-1}) \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -810,7 +810,11 @@ y_i &= f(C_i, y_1, y_2, ..., y_{i-1}) \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -822,31 +826,7 @@ y_i &= f(C_i, y_1, y_2, ..., y_{i-1}) \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sed</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">awk</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -866,11 +846,7 @@ y_i &= f(C_i, y_1, y_2, ..., y_{i-1}) \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -882,6 +858,14 @@ y_i &= f(C_i, y_1, y_2, ..., y_{i-1}) \\
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
               </li>
              
@@ -890,11 +874,31 @@ y_i &= f(C_i, y_1, y_2, ..., y_{i-1}) \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sed</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">awk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
             
             <div class="clearfix"></div>

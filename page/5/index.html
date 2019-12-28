@@ -156,6 +156,156 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Wide-and-Deep模型初探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/18/Wide-and-Deep模型初探/">Wide_and_Deep模型初探</a>
+    </h1>
+  
+
+        
+        <a href="/2018/11/18/Wide-and-Deep模型初探/" class="archive-article-date">
+  	<time datetime="2018-11-18T06:01:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Background"><a href="#1-Background" class="headerlink" title="1. Background"></a>1. Background</h1><p><code>Wide and Deep</code>是Google在16年左右提出的模型，主要应用在了Google Play的应用推荐系统中，同时国内的一些大厂也在各自的业务中有使用到这一模型，比如美团。而该算法的核心主要在于结合了线性模型的记忆能力<code>Memorization</code> 和深度神经网络的泛化能力<code>Generaization</code>，且在训练过程中，同时优化这两个模型，即<code>Jointly Training</code>。</p>
+<h1 id="2-Overview"><a href="#2-Overview" class="headerlink" title="2. Overview"></a>2. Overview</h1><p><img src="/2018/11/18/Wide-and-Deep模型初探/2018-11-18-Wide-and-Deep模型初探/image-20181118184045240.png" alt="image-20181118184045240"></p>
+<p>如上图所示，该模型的主要结构是中间<code>Wide&amp;Deep Models</code>那个部分，其主要由左边的<code>Wide Models</code> 和右边的<code>Deep Models</code>组成。</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Wide&Deep</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Pytorch</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/18/Wide-and-Deep模型初探/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Neo4j数据导入笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/31/Neo4j数据导入笔记/">Neo4j数据导入笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/31/Neo4j数据导入笔记/" class="archive-article-date">
+  	<time datetime="2018-08-31T15:23:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-导入数据"><a href="#1-导入数据" class="headerlink" title="1. 导入数据"></a>1. 导入数据</h1><p>导入数据大概有以下几种方式</p>
+<ul>
+<li>Cypher的CREATE语句</li>
+<li>Cypher的LOAD CSV语句</li>
+<li><p>官方的Java API导入 - Batch Inserter</p>
+</li>
+<li><p>官方提供的neo4j-import工具</p>
+</li>
+<li>网友编写的Batch-import工具 </li>
+</ul>
+<p><img src="/2018/08/31/Neo4j数据导入笔记/2018-09-01-Neo4j数据导入笔记/image-20190701113827768.png" alt="image-20190701113827768"></p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">图数据库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Neo4j</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/31/Neo4j数据导入笔记/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-图数据库-关系网络设计" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -790,148 +940,9 @@ H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相�
 
 
   
-    <article id="post-PyTorch学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/22/PyTorch学习笔记/">PyTorch学习笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/22/PyTorch学习笔记/" class="archive-article-date">
-  	<time datetime="2018-03-22T07:52:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>趁着公司最近不是很忙，认真学习一下这两年比较火的<code>PyTorch</code>，虽然没有实打实的、认认真真的学过深度学习，但也稍微懂一点。打算先简单学习一下基本操作，搭个简单的<code>DNN</code>、<code>CNN</code>之类的。看看后面有没有时间，然后再上个吴恩达或者李飞飞的课程，补充一下理论知识。所以这篇文章就记录一些简单的概念和上手过程中可能遇到的问题。</p>
-<h1 id="1-损失函数"><a href="#1-损失函数" class="headerlink" title="1. 损失函数"></a>1. 损失函数</h1><h2 id="1-1-二分类问题"><a href="#1-1-二分类问题" class="headerlink" title="1.1 二分类问题"></a>1.1 二分类问题</h2><p>损失函数用</p>
-<p>criterion = nn.BCELoss()</p>
-<p>此时，y的类型应该为float类型， 且y_pred用的时候需要在该层前面加上 <code>Sigmoid</code> 函数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line">loss_fn = torch.nn.BCELoss(reduce=<span class="literal">False</span>, </span><br><span class="line">                           size_average=<span class="literal">False</span>)</span><br><span class="line">y_true = Variable(torch.randn(<span class="number">3</span>, <span class="number">4</span>)) <span class="comment"># 限制了target类型为float</span></span><br><span class="line">y_pred = Variable(torch.FloatTensor(<span class="number">3</span>, <span class="number">4</span>).random_(<span class="number">2</span>))</span><br><span class="line">loss = loss_fn(F.sigmoid(y_pred), y_true)</span><br></pre></td></tr></table></figure>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PyTorch</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/22/PyTorch学习笔记/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Docker常用指令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/13/Docker常用指令/">Docker常用指令</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/13/Docker常用指令/" class="archive-article-date">
-  	<time datetime="2018-03-13T05:12:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-docker镜像构建"><a href="#1-docker镜像构建" class="headerlink" title="1. docker镜像构建"></a>1. docker镜像构建</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd analyze-server</span><br><span class="line">docker build -t analyze-server .</span><br></pre></td></tr></table></figure>
-<h3 id="2-创建"><a href="#2-创建" class="headerlink" title="2. 创建"></a>2. 创建</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker create analyze-server # 创建容器，但处于停止状态</span><br><span class="line">docker run analyze-server    # 创建并启动容器</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 启动容器，并挂载文件</span><br><span class="line">docker run --name=analyze -p 5000:5000 -p 8888:8888 -p 6006:6006 -v /Users/Chenson/Github/analyze-server/app/:/analyze-server/app/ -v /Users/Chenson/:/home/ -d analyze-server</span><br></pre></td></tr></table></figure>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/13/Docker常用指令/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
     </nav>
   
 
@@ -1050,10 +1061,6 @@ H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相�
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -1063,6 +1070,10 @@ H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相�
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1078,10 +1089,6 @@ H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
@@ -1094,11 +1101,11 @@ H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">进程</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1106,7 +1113,11 @@ H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">进程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1118,7 +1129,7 @@ H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1130,11 +1141,7 @@ H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1158,19 +1165,11 @@ H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相�
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1179,6 +1178,18 @@ H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相�
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1194,14 +1205,6 @@ H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -1214,11 +1217,7 @@ H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1246,7 +1245,7 @@ H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1258,7 +1257,19 @@ H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1266,7 +1277,11 @@ H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1278,31 +1293,7 @@ H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sed</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">awk</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1322,11 +1313,7 @@ H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1338,6 +1325,14 @@ H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相�
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
               </li>
              
@@ -1346,11 +1341,31 @@ H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sed</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">awk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
             
             <div class="clearfix"></div>

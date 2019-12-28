@@ -12,7 +12,7 @@
   <title>半监督算法初探 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="1. Introduction在许多业务场景中，标签往往是非常难获取的，人工标注会花费大量的人力和金钱，且还不能保证百分百的准确性。这类情况可以分成两种：  完完全全的没有标签数据 有一小部分的正类标签样本和绝大部分的无标签样本  而这个也是最近刚好在项目中遇到的，在某银行的涉黑项目中，有好几w的带标签的黑名单标注样本，来自外部，然后想要主动识别行方内部用户（上亿）中是否还有这些用户（即没有被标注">
-<meta name="keywords" content="Semi-supervised Learning,PU Learning">
+<meta name="keywords" content="PU Learning,Semi-supervised Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="半监督算法初探">
 <meta property="og:url" content="http://chenson.cc/2019/09/19/半监督算法初探/index.html">
@@ -20,7 +20,7 @@
 <meta property="og:description" content="1. Introduction在许多业务场景中，标签往往是非常难获取的，人工标注会花费大量的人力和金钱，且还不能保证百分百的准确性。这类情况可以分成两种：  完完全全的没有标签数据 有一小部分的正类标签样本和绝大部分的无标签样本  而这个也是最近刚好在项目中遇到的，在某银行的涉黑项目中，有好几w的带标签的黑名单标注样本，来自外部，然后想要主动识别行方内部用户（上亿）中是否还有这些用户（即没有被标注">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.cc/2019/09/19/半监督算法初探/2019-09-19-半监督算法初探/image-20191201210848779.png">
-<meta property="og:updated_time" content="2019-12-01T13:33:06.539Z">
+<meta property="og:updated_time" content="2019-12-17T10:16:34.364Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="半监督算法初探">
 <meta name="twitter:description" content="1. Introduction在许多业务场景中，标签往往是非常难获取的，人工标注会花费大量的人力和金钱，且还不能保证百分百的准确性。这类情况可以分成两种：  完完全全的没有标签数据 有一小部分的正类标签样本和绝大部分的无标签样本  而这个也是最近刚好在项目中遇到的，在某银行的涉黑项目中，有好几w的带标签的黑名单标注样本，来自外部，然后想要主动识别行方内部用户（上亿）中是否还有这些用户（即没有被标注">
@@ -186,7 +186,7 @@
 <p>而这个也是最近刚好在项目中遇到的，在某银行的涉黑项目中，有好几w的带标签的黑名单标注样本，来自外部，然后想要主动识别行方内部用户（上亿）中是否还有这些用户（即没有被标注出来的涉黑用户），也就是上面提到的第二点，有部分的正类标签的样本和大量的无标签样本。这里介绍一下这个项目中用到的半监督算法- Two-Step PU Learning。</p>
 <a id="more"></a>
 <h1 id="2-PU-Learning"><a href="#2-PU-Learning" class="headerlink" title="2. PU Learning"></a>2. PU Learning</h1><blockquote>
-<p><strong>Two-Step PU Learning</strong>：假定我们面对的数据中，真实黑样本中的小部分已经被标记了出来，构成集合P(Positve)，剩下所有数据都无标记构成集合U(Unlabeled)，如何建设模型可以对未标注的样本进行黑白分类？</p>
+<p><strong>Two-Step PU Learning</strong>：假定我们面对的数据中，真实黑样本中的小部分已经被标记了出来，构成集合<strong>P(Positve)</strong>，剩下所有数据都无标记构成集合<strong>U(Unlabeled)</strong>，如何建设模型可以对未标注的样本进行黑白分类？</p>
 <p>把U中的样本标签视为缺失，那么我们便可以考虑使用EM(Expectation Maximization)的思想，EM可以理解为是存在隐变量时MLE(Maximum Likelihood Estimation)的一种改进方法，这里我们在E步对缺失值进行填充，M步基于上次填充结果进行迭代，如是多轮之后产出最终模型，这就是原始的PU。</p>
 </blockquote>
 <p>问题：如果一开始的P是有偏的，那么多轮的EM反而会有负向的效果</p>
@@ -285,11 +285,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Semi-supervised Learning</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">PU Learning</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">PU Learning</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Semi-supervised Learning</a>
         		</li>
       		
 		</ul>
@@ -523,10 +523,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -536,6 +532,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -551,10 +551,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
@@ -567,11 +563,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">进程</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -579,7 +575,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">进程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -591,7 +591,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -603,11 +603,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -631,19 +627,11 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -652,6 +640,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -667,14 +667,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -687,11 +679,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -719,7 +707,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -731,7 +719,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -739,7 +739,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -751,31 +755,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sed</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">awk</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -795,11 +775,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -811,6 +787,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
               </li>
              
@@ -819,11 +803,31 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sed</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">awk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
             
             <div class="clearfix"></div>

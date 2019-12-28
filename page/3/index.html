@@ -156,6 +156,175 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-遗传算法初探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/09/遗传算法初探/">遗传算法初探</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/09/遗传算法初探/" class="archive-article-date">
+  	<time datetime="2019-04-09T11:37:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><ul>
+<li><p>遗传算法 (genetic algorithm)</p>
+</li>
+<li><p>进化策略 (evolution strategy)</p>
+</li>
+<li><p>遗传规划 (genetic programming) / 进化规划 (evolution programming)</p>
+<p>GP常用于关于模型结构的自动化设计和优化的领域，如电路设计、机器结构设计和生物学中的药物分子设计等。</p>
+<p>在数据相关领域，常用于符号回归、特征提取和选择等。</p>
+</li>
+</ul>
+<p><img src="/2019/04/09/遗传算法初探/2019-04-09-遗传算法初探/v2-2e27991ceec71a1941c8cb3e4897486c_hd.jpg" alt="img"></p>
+<p><del>遗传算法并不是用来优化模型参数的</del></p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Genetic Algorithm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/09/遗传算法初探/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-推荐系统小结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/25/推荐系统小结/">推荐系统小结</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/25/推荐系统小结/" class="archive-article-date">
+  	<time datetime="2019-03-25T02:35:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Factorization-Machine-FM"><a href="#1-Factorization-Machine-FM" class="headerlink" title="1. Factorization Machine (FM)"></a>1. Factorization Machine (FM)</h1><h2 id="1-1-Introduction"><a href="#1-1-Introduction" class="headerlink" title="1.1 Introduction"></a>1.1 Introduction</h2><p>传统用的One-Hot编码会带来数据稀疏的问题。</p>
+<p>比如数据如下（栗子来自美团技术博客）：</p>
+<p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/275.png" alt="img"></p>
+<p>做了One-Hot编码后</p>
+<p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/700.png" alt="img"></p>
+<p>当里面某些特征的维度比较高的时候，数据维度可能达到百万级别。</p>
+<p>而传统的LR模型也并没考虑到特征之间的关联</p>
+<script type="math/tex; mode=display">
+y = w_0 + \sum_{i=1}^n w_i x_i</script>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Wide&Deep</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">推荐系统</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">FM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">FFM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">DeepFM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DCN</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/25/推荐系统小结/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-AutoML平台试用体验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -736,151 +905,9 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
 
 
   
-    <article id="post-Spark笔记-应用篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/24/Spark笔记-应用篇/">Spark笔记-应用篇</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/24/Spark笔记-应用篇/" class="archive-article-date">
-  	<time datetime="2019-01-24T09:36:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/24/Spark笔记-应用篇/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Spark笔记-基础操作篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/24/Spark笔记-基础操作篇/">Spark笔记-基础操作篇</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/24/Spark笔记-基础操作篇/" class="archive-article-date">
-  	<time datetime="2019-01-24T09:36:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本篇主要是为了熟悉PySpark的基本操作，没啥特别的内容。</p>
-<h1 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h1><ul>
-<li><p>启动Hadoop</p>
-</li>
-<li><p>启动Spark</p>
-</li>
-<li><p>在Jupyter中测试PySpark</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pyspark</span><br><span class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkContext <span class="keyword">as</span> sc</span><br><span class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkConf</span><br><span class="line"><span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> SparkSession</span><br><span class="line"></span><br><span class="line"><span class="comment"># </span></span><br><span class="line">conf = SparkConf().setAppName(<span class="string">'spark-basic-oprations'</span>) \</span><br><span class="line">                  .setMaster(<span class="string">'local[*]'</span>)</span><br><span class="line">sc = sc.getOrCreate(conf)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># </span></span><br><span class="line">spark = SparkSession.builder \</span><br><span class="line">                    .appName(<span class="string">'spark-basic-oprations'</span>) \</span><br><span class="line">                    .master(<span class="string">'local[*]'</span>) \</span><br><span class="line">                    .config(<span class="string">'spark.some.config.option'</span>, <span class="string">'some-value'</span>) \</span><br><span class="line">                    .config(<span class="string">'spark.debug.maxToStringFields'</span>, <span class="string">'50'</span>) \</span><br><span class="line">                    .getOrCreate()</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PySpark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/24/Spark笔记-基础操作篇/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
@@ -999,10 +1026,6 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -1012,6 +1035,10 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1027,10 +1054,6 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
@@ -1043,11 +1066,11 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">进程</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1055,7 +1078,11 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">进程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1067,7 +1094,7 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1079,11 +1106,7 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1107,19 +1130,11 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1128,6 +1143,18 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1143,14 +1170,6 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -1163,11 +1182,7 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1195,7 +1210,7 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1207,7 +1222,19 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1215,7 +1242,11 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1227,31 +1258,7 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sed</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">awk</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1271,11 +1278,7 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1287,6 +1290,14 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
               </li>
              
@@ -1295,11 +1306,31 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sed</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">awk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
             
             <div class="clearfix"></div>

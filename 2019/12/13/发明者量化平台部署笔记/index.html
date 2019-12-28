@@ -22,7 +22,11 @@
 <meta property="og:image" content="http://chenson.cc/2019/12/13/发明者量化平台部署笔记/2019-12-13-发明者量化平台部署笔记/image-20191213152546829.png">
 <meta property="og:image" content="http://chenson.cc/2019/12/13/发明者量化平台部署笔记/2019-12-13-发明者量化平台部署笔记/image-20191213153157775.png">
 <meta property="og:image" content="http://chenson.cc/2019/12/13/发明者量化平台部署笔记/2019-12-13-发明者量化平台部署笔记/image-20191213153453202.png">
-<meta property="og:updated_time" content="2019-12-13T07:36:42.226Z">
+<meta property="og:image" content="http://chenson.cc/2019/12/13/发明者量化平台部署笔记/2019-12-13-发明者量化平台部署笔记/image-20191228185126163.png">
+<meta property="og:image" content="http://chenson.cc/2019/12/13/发明者量化平台部署笔记/2019-12-13-发明者量化平台部署笔记/image-20191228184957158.png">
+<meta property="og:image" content="http://chenson.cc/2019/12/13/发明者量化平台部署笔记/2019-12-13-发明者量化平台部署笔记/image-20191228185444001.png">
+<meta property="og:image" content="http://chenson.cc/2019/12/13/发明者量化平台部署笔记/2019-12-13-发明者量化平台部署笔记/image-20191228185724935.png">
+<meta property="og:updated_time" content="2019-12-28T11:00:11.615Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="发明者量化平台部署笔记">
 <meta name="twitter:description" content="1. 托管者部署">
@@ -185,7 +189,30 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">(base) [root@izwz9hxp0cmozj9nwrpbbqz FMZ]# wget https://www.fmz.com/dist/robot_linux_amd64.tar.gz</span><br><span class="line">--2019-12-13 15:27:50--  https://www.fmz.com/dist/robot_linux_amd64.tar.gz</span><br><span class="line">Resolving www.fmz.com (www.fmz.com)... 121.41.115.19</span><br><span class="line">Connecting to www.fmz.com (www.fmz.com)|121.41.115.19|:443... connected.</span><br><span class="line">HTTP request sent, awaiting response... 200 OK</span><br><span class="line">Length: 11000453 (10M) [application/octet-stream]</span><br><span class="line">Saving to: ‘robot_linux_amd64.tar.gz’</span><br><span class="line"></span><br><span class="line"><span class="meta">100%</span><span class="bash">[====================================================================================================================&gt;] 11,000,453  1.65MB/s   <span class="keyword">in</span> 5.3s</span></span><br><span class="line"></span><br><span class="line">2019-12-13 15:27:56 (1.96 MB/s) - ‘robot_linux_amd64.tar.gz’ saved [11000453/11000453]</span><br><span class="line"></span><br><span class="line">(base) [root@izwz9hxp0cmozj9nwrpbbqz FMZ]# tar -xvf robot_linux_amd64.tar.gz</span><br><span class="line">robot</span><br><span class="line">(base) [root@izwz9hxp0cmozj9nwrpbbqz FMZ]# chmod +x robot</span><br><span class="line">(base) [root@izwz9hxp0cmozj9nwrpbbqz FMZ]# nohup ./robot -s node.fmz.com/******** -p ***************** &gt; fmz_nohup.log 2&gt;&amp;1 &amp;</span><br><span class="line">[1] 8338</span><br><span class="line">(base) [root@izwz9hxp0cmozj9nwrpbbqz FMZ]# cat fmz_nohup.log</span><br><span class="line">nohup: ignoring input</span><br><span class="line">2019/12/13 15:30:13 Login OK, SID: 99761, PID: 8338, Name: #####################</span><br></pre></td></tr></table></figure>
 <p><img src="/2019/12/13/发明者量化平台部署笔记/2019-12-13-发明者量化平台部署笔记/image-20191213153157775.png" alt="image-20191213153157775"></p>
 <p><img src="/2019/12/13/发明者量化平台部署笔记/2019-12-13-发明者量化平台部署笔记/image-20191213153453202.png" alt="image-20191213153453202"></p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1>
+<p><strong>注意在运行nohup指令的时候，需要添加在FMZ上的账号和密码，才能运行机器人</strong></p>
+<h1 id="2-添加交易所"><a href="#2-添加交易所" class="headerlink" title="2. 添加交易所"></a>2. 添加交易所</h1><ul>
+<li><p>注册SimNow账号，并注册好的账号，在win平台下，先把初始化密码改了后续才可以用</p>
+<p><img src="/2019/12/13/发明者量化平台部署笔记/2019-12-13-发明者量化平台部署笔记/image-20191228185126163.png" alt="image-20191228185126163"></p>
+</li>
+<li><p>进入交易所，点击添加交易所</p>
+<p><img src="/2019/12/13/发明者量化平台部署笔记/2019-12-13-发明者量化平台部署笔记/image-20191228184957158.png" alt="image-20191228184957158"></p>
+</li>
+<li><p>填写相关参数，添加即可</p>
+<ul>
+<li>下面的交易账号为上面注册的SimNow的账号</li>
+<li>右边的协议选择【期货CTP协议】，因为这里我是为了期货的仿真盘</li>
+<li><strong>注：不确定这里的行情服务器相关的是不是公开的，暂时未给出AppID的授权码</strong></li>
+</ul>
+<p><img src="/2019/12/13/发明者量化平台部署笔记/2019-12-13-发明者量化平台部署笔记/image-20191228185444001.png" alt="image-20191228185444001"></p>
+</li>
+</ul>
+<h1 id="3-部署机器人"><a href="#3-部署机器人" class="headerlink" title="3. 部署机器人"></a>3. 部署机器人</h1><p>策略代码调通之后，即可部署机器人了，具体如下，交易平台选用刚刚添加的交易所即可。</p>
+<p><img src="/2019/12/13/发明者量化平台部署笔记/2019-12-13-发明者量化平台部署笔记/image-20191228185724935.png" alt="image-20191228185724935"></p>
+<h1 id="4-References"><a href="#4-References" class="headerlink" title="4. References"></a>4. References</h1><ul>
+<li><a href="https://www.fmz.com/api" target="_blank" rel="noopener">FMZ平台API说明文档</a></li>
+<li><a href="http://simnow.com.cn/" target="_blank" rel="noopener">上期所模拟仿真系统</a></li>
+</ul>
+
       
 
       
@@ -297,6 +324,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/12/16/读书笔记-白话统计/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          读书笔记-白话统计
+        
+      </div>
+    </a>
   
   
     <a href="/2019/12/02/发明者量化平台入门笔记/" id="article-nav-older" class="article-nav-link-wrap">
@@ -453,10 +489,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -466,6 +498,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -481,10 +517,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
@@ -497,11 +529,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">进程</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -509,7 +541,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">进程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -521,7 +557,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -533,11 +569,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -561,19 +593,11 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -582,6 +606,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -597,14 +633,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -617,11 +645,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -649,7 +673,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -661,7 +685,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -669,7 +705,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -681,31 +721,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sed</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">awk</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -725,11 +741,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -741,6 +753,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">PU Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
               </li>
              
@@ -749,11 +769,31 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sed</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">awk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
             
             <div class="clearfix"></div>
