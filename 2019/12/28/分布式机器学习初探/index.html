@@ -11,13 +11,13 @@
   <link rel="dns-prefetch" href="http://chenson.cc">
   <title>分布式机器学习初探 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. Introduction随着数据量不断增大，单机往往需要花比较长的时间才能把模型训练完，所以需要有分布式机器学习系统来支撑，通过多台机器来共同完成模型的训练，缩短训练时间。这些多台机器，可以根据机器的性能，分别被串行/并行在一起，各自完成各自负责的那部分。 根据划分的内容，可以将并行计算可分为两种   模型并行 - Model Parallelism 从较为宏观的角度，将模型拆解成不同的几个">
+  <meta name="description" content="1. Introduction随着数据量不断增大，单机往往需要花比较长的时间才能把模型训练完，所以需要有分布式机器学习系统来支撑，通过多台机器来共同完成模型的训练，缩短训练时间。这些多台机器，可以根据机器的性能，分别被串行/并行在一起，各自完成各自负责的那部分。 根据划分的内容，可以将并行计算可分为两种">
 <meta name="keywords" content="分布式,机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分布式机器学习初探">
 <meta property="og:url" content="http://chenson.cc/2019/12/28/分布式机器学习初探/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="1. Introduction随着数据量不断增大，单机往往需要花比较长的时间才能把模型训练完，所以需要有分布式机器学习系统来支撑，通过多台机器来共同完成模型的训练，缩短训练时间。这些多台机器，可以根据机器的性能，分别被串行/并行在一起，各自完成各自负责的那部分。 根据划分的内容，可以将并行计算可分为两种   模型并行 - Model Parallelism 从较为宏观的角度，将模型拆解成不同的几个">
+<meta property="og:description" content="1. Introduction随着数据量不断增大，单机往往需要花比较长的时间才能把模型训练完，所以需要有分布式机器学习系统来支撑，通过多台机器来共同完成模型的训练，缩短训练时间。这些多台机器，可以根据机器的性能，分别被串行/并行在一起，各自完成各自负责的那部分。 根据划分的内容，可以将并行计算可分为两种">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.cc/2019/12/28/分布式机器学习初探/2019-12-28-分布式机器学习初探/SouthEast.png">
 <meta property="og:image" content="http://chenson.cc/2019/12/28/分布式机器学习初探/2019-12-28-分布式机器学习初探/v2-4b700e8950f816a6985394b783c1b67b_hd.jpg">
@@ -28,10 +28,10 @@
 <meta property="og:image" content="http://chenson.cc/2019/12/28/分布式机器学习初探/2019-12-28-分布式机器学习初探/image-20191228181619240.png">
 <meta property="og:image" content="http://chenson.cc/2019/12/28/分布式机器学习初探/2019-12-28-分布式机器学习初探/image-20191228183107644.png">
 <meta property="og:image" content="http://chenson.cc/2019/12/28/分布式机器学习初探/2019-12-28-分布式机器学习初探/image-20191228183303923.png">
-<meta property="og:updated_time" content="2019-12-28T10:46:44.686Z">
+<meta property="og:updated_time" content="2019-12-28T11:07:49.519Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式机器学习初探">
-<meta name="twitter:description" content="1. Introduction随着数据量不断增大，单机往往需要花比较长的时间才能把模型训练完，所以需要有分布式机器学习系统来支撑，通过多台机器来共同完成模型的训练，缩短训练时间。这些多台机器，可以根据机器的性能，分别被串行/并行在一起，各自完成各自负责的那部分。 根据划分的内容，可以将并行计算可分为两种   模型并行 - Model Parallelism 从较为宏观的角度，将模型拆解成不同的几个">
+<meta name="twitter:description" content="1. Introduction随着数据量不断增大，单机往往需要花比较长的时间才能把模型训练完，所以需要有分布式机器学习系统来支撑，通过多台机器来共同完成模型的训练，缩短训练时间。这些多台机器，可以根据机器的性能，分别被串行/并行在一起，各自完成各自负责的那部分。 根据划分的内容，可以将并行计算可分为两种">
 <meta name="twitter:image" content="http://chenson.cc/2019/12/28/分布式机器学习初探/2019-12-28-分布式机器学习初探/SouthEast.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
@@ -188,7 +188,8 @@
       
         <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>随着数据量不断增大，单机往往需要花比较长的时间才能把模型训练完，所以需要有分布式机器学习系统来支撑，通过多台机器来共同完成模型的训练，缩短训练时间。这些多台机器，可以根据机器的性能，分别被串行/并行在一起，各自完成各自负责的那部分。</p>
 <p>根据划分的内容，可以将并行计算可分为两种</p>
-<p><img src="/2019/12/28/分布式机器学习初探/2019-12-28-分布式机器学习初探/SouthEast.png" alt="这里写图片描述"></p>
+<p><img src="/2019/12/28/分布式机器学习初探/2019-12-28-分布式机器学习初探/SouthEast.png" alt></p>
+<a id="more"></a>
 <ul>
 <li><p>模型并行 - Model Parallelism</p>
 <p>从较为宏观的角度，将模型拆解成不同的几个部分，然后不同的机器负责模型中的一部分，如神经网络中，<strong>不同层可能会被分配给不同的机器，同一层的不同参数也有可能被分配到不同的机器上</strong>。通常这种方式是因为模型比较复杂，参数特别多，一台机器实在是hold不住的情况，就分配给多台机器来完成的。比如在推荐算法汇总，一个LR模型可能有几千万个维度，那么可以按万维为单位，将参数分给不同的机器来训练，具体如何实现，后面补充</p>
@@ -198,7 +199,6 @@
 </li>
 </ul>
 <p>当然，上述的模型并行和数据并行是也可以同时存在，目前先暂时关注数据并行相关方法，然后再介绍模型并行的相关方法。</p>
-<a id="more"></a>
 <h1 id="2-数据并行"><a href="#2-数据并行" class="headerlink" title="2. 数据并行"></a>2. 数据并行</h1><p>如上所述，采用数据并行的话，每台机器在开始训练前需要有一个模型的完整参数，然后用自己机器上的数据训练完成后，将相关结果以某种方式送出去等待汇总，然后再接收汇总后更新过后的参数。这里根据结果的汇总方式，可以将数据并行分成两种不同的架构，分别是P/S架构和Ring-All Reduce</p>
 <h2 id="2-1-P-S架构"><a href="#2-1-P-S架构" class="headerlink" title="2.1 P/S架构"></a>2.1 P/S架构</h2><p>在PS架构中，集群中的机器可以分成两类</p>
 <ul>
@@ -352,6 +352,7 @@ G_{c,t} &= \sum_{r=1}^m G_{(r,c),t} \\
 <li><a href="https://zhuanlan.zhihu.com/p/79030485" target="_blank" rel="noopener">腾讯机智团队分享—AllReduce算法的前世今生</a></li>
 <li><a href="https://www.zhihu.com/question/57799212" target="_blank" rel="noopener">ring allreduce和tree allreduce的具体区别是什么？</a></li>
 <li><a href="https://zhpmatrix.github.io/2017/03/14/logistic-method-classification-mpi-parallelism/" target="_blank" rel="noopener">逻辑回归并行化</a></li>
+<li><a href="https://blog.csdn.net/qq_32742009/article/details/81839071" target="_blank" rel="noopener">LR的分布式（并行化）实现</a></li>
 <li><a href="https://mpitutorial.com/tutorials/mpi-introduction/zh_cn/" target="_blank" rel="noopener">MPI教程介绍</a></li>
 </ul>
 
@@ -467,6 +468,15 @@ G_{c,t} &= \sum_{r=1}^m G_{(r,c),t} \\
   
 <nav id="article-nav">
   
+    <a href="/2019/12/30/在线学习算法初探/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          在线学习算法初探
+        
+      </div>
+    </a>
+  
   
     <a href="/2019/12/16/读书笔记-白话统计/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">读书笔记-白话统计</div>
@@ -516,7 +526,7 @@ G_{c,t} &= \sum_{r=1}^m G_{(r,c),t} \\
     <div id="footer-info">
 
     	<div class="footer-left">
-    		&copy; 2019 Chenson Van
+    		&copy; 2020 Chenson Van
     	</div>
       
       <div class="footer-right">
@@ -634,6 +644,10 @@ G_{c,t} &= \sum_{r=1}^m G_{(r,c),t} \\
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
@@ -659,10 +673,6 @@ G_{c,t} &= \sum_{r=1}^m G_{(r,c),t} \\
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -698,11 +708,15 @@ G_{c,t} &= \sum_{r=1}^m G_{(r,c),t} \\
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CNN</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -726,11 +740,7 @@ G_{c,t} &= \sum_{r=1}^m G_{(r,c),t} \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -742,15 +752,11 @@ G_{c,t} &= \sum_{r=1}^m G_{(r,c),t} \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -766,6 +772,14 @@ G_{c,t} &= \sum_{r=1}^m G_{(r,c),t} \\
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -778,7 +792,11 @@ G_{c,t} &= \sum_{r=1}^m G_{(r,c),t} \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -806,7 +824,7 @@ G_{c,t} &= \sum_{r=1}^m G_{(r,c),t} \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -818,15 +836,7 @@ G_{c,t} &= \sum_{r=1}^m G_{(r,c),t} \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -838,7 +848,11 @@ G_{c,t} &= \sum_{r=1}^m G_{(r,c),t} \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -846,11 +860,19 @@ G_{c,t} &= \sum_{r=1}^m G_{(r,c),t} \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
+                <a href="javascript:void(0)" class="js-tag color4">sed</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">awk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -882,7 +904,7 @@ G_{c,t} &= \sum_{r=1}^m G_{(r,c),t} \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -890,7 +912,7 @@ G_{c,t} &= \sum_{r=1}^m G_{(r,c),t} \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
+                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -902,23 +924,11 @@ G_{c,t} &= \sum_{r=1}^m G_{(r,c),t} \\
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sed</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">awk</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -926,7 +936,23 @@ G_{c,t} &= \sum_{r=1}^m G_{(r,c),t} \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Online Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CTR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Softmax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多分类</a>
               </li>
             
             <div class="clearfix"></div>
