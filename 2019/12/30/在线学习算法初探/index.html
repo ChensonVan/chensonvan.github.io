@@ -11,19 +11,19 @@
   <link rel="dns-prefetch" href="http://chenson.cc">
   <title>在线学习算法初探 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. Introduction">
+  <meta name="description" content="1. Introduction背景：CTR里面数据多，维度高，时效性短，故需要实时训练 带来的问题就是数据量大，单机可能无法求得最优解  什么是Online Learning  关于实时训练：先用前N天的数据训练，在实时训练 如何部署：在这样场景下的LR，其实模型就是一系列的w，把参数存在redis里面就ok了   Online Optimization 在线最优化问题">
 <meta name="keywords" content="FTRL,Online Learning,CTR">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在线学习算法初探">
 <meta property="og:url" content="http://chenson.cc/2019/12/30/在线学习算法初探/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="1. Introduction">
+<meta property="og:description" content="1. Introduction背景：CTR里面数据多，维度高，时效性短，故需要实时训练 带来的问题就是数据量大，单机可能无法求得最优解  什么是Online Learning  关于实时训练：先用前N天的数据训练，在实时训练 如何部署：在这样场景下的LR，其实模型就是一系列的w，把参数存在redis里面就ok了   Online Optimization 在线最优化问题">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.cc/2019/12/30/在线学习算法初探/2019-12-30-在线学习算法初探/image-20191231143514929.png">
-<meta property="og:updated_time" content="2020-01-02T14:45:27.300Z">
+<meta property="og:updated_time" content="2020-01-05T07:34:38.595Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在线学习算法初探">
-<meta name="twitter:description" content="1. Introduction">
+<meta name="twitter:description" content="1. Introduction背景：CTR里面数据多，维度高，时效性短，故需要实时训练 带来的问题就是数据量大，单机可能无法求得最优解  什么是Online Learning  关于实时训练：先用前N天的数据训练，在实时训练 如何部署：在这样场景下的LR，其实模型就是一系列的w，把参数存在redis里面就ok了   Online Optimization 在线最优化问题">
 <meta name="twitter:image" content="http://chenson.cc/2019/12/30/在线学习算法初探/2019-12-30-在线学习算法初探/image-20191231143514929.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
@@ -178,19 +178,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><a id="more"></a>
-<p>背景：CTR里面数据多，维度高，时效性短，故需要实时训练</p>
+        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>背景：CTR里面数据多，维度高，时效性短，故需要实时训练</p>
 <p>带来的问题就是数据量大，单机可能无法求得最优解</p>
 <ul>
-<li>什么是Online Learning<ul>
+<li><p>什么是Online Learning</p>
+<ul>
 <li>关于实时训练：先用前N天的数据训练，在实时训练</li>
 <li>如何部署：在这样场景下的LR，其实模型就是一系列的w，把参数存在redis里面就ok了</li>
 </ul>
 </li>
+<li><p>Online Optimization 在线最优化问题</p>
+</li>
 </ul>
-<ul>
-<li>Online Optimization 在线最优化问题</li>
-</ul>
+<a id="more"></a>
 <ul>
 <li><p>FTRL可以看做一种优化算法的改进，所以是一种优化算法，但可以等价于在线学习，因为算是为在线学习而生的。在线优化算法框架</p>
 </li>
@@ -569,10 +569,6 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
@@ -594,6 +590,10 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -625,6 +625,10 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
@@ -633,15 +637,7 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -657,6 +653,10 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
@@ -665,7 +665,15 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -674,14 +682,6 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Typora</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -717,18 +717,6 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
               </li>
              
@@ -749,7 +737,23 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -761,15 +765,11 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Quant</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -782,6 +782,10 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -801,7 +805,7 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -821,15 +825,11 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
+                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -837,7 +837,7 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -850,14 +850,6 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -878,6 +870,14 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">多分类</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
             
             <div class="clearfix"></div>
