@@ -42,7 +42,7 @@
 <meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325204042713.png">
 <meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325203928751.png">
 <meta property="og:image" content="http://chenson.cc/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325203950839.png">
-<meta property="og:updated_time" content="2020-01-08T11:45:47.878Z">
+<meta property="og:updated_time" content="2020-01-08T12:06:53.817Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统小结">
 <meta name="twitter:description" content="1. Factorization Machine (FM)1.1 Introduction传统用的One-Hot编码会带来数据稀疏的问题。 比如数据如下（栗子来自美团技术博客）：  做了One-Hot编码后  当里面某些特征的维度比较高的时候，数据维度可能达到百万级别。 而传统的LR模型也并没考虑到特征之间的关联  y = w_0 + \sum_{i=1}^n w_i x_i">
@@ -319,7 +319,7 @@ w_{i, j} &= <\boldsymbol{v}_i, \boldsymbol{v}_j> \\
     &= \sum_{f=1}^kv_{i,f}v_{j,f}
 
   \end {align}</script><p>  公式（3）到（5），是将公共项$k$相关的提取出来，然后化简里面的项，最终就得到一个和$n$相关的求和项，此时复杂度是$\mathcal O(kn)$，若未化简，在公式（1）的时候复杂度是$\mathcal O (kn^2)$</p>
-<p>  以下是图解上述公式</p>
+<p>  以下是图解上述公式（其实就是上面绿色矩阵那两幅图）</p>
 <p>  <img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/full_fm_matrix.png" alt="FM Symmetric Matrix" style="zoom:50%;"></p>
 <p>  <img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/fm_sum_halved.png" alt="FM Symmetric Matrix" style="zoom:50%;"></p>
 <p>  <img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/fm_matrix_diagonal-20191208175238459.png" alt="FM Symmetric Matrix" style="zoom:50%;"></p>
@@ -328,7 +328,7 @@ w_{i, j} &= <\boldsymbol{v}_i, \boldsymbol{v}_j> \\
 <p>经过因子化后，组合特征$x_ix_j$和$x_jx_k$的权重系数分别为$&lt;\boldsymbol{v_i},\boldsymbol{v_j}&gt;$和$&lt;\boldsymbol{v_j},\boldsymbol{v_k}&gt;$，观察里面这俩个权重系数，里面有个相同的量$\boldsymbol{v_j}$，<strong>因此所有包含$x_j$特征的非零组合特征的样本都能拿来训练，学习隐向量$\boldsymbol v_j$。</strong></p>
 <p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325154016889.png" alt="image-20190325154016889"></p>
 <blockquote>
-<p>本质上是在对特征进行embedding化表征，和目前非常常见的各种实体embedding本质思想是一脉相承的。因为FM是学习单个特征的embedding，并不依赖某个特定的特征组合是否出现过，所以只要特征$x_i$和其它任意特征组合出现过，那么就可以学习自己对应的embedding向量。于是，尽管$(x_i, x_j)$这个特征组合没有看到过，但是在预测的时候，如果看到这个新的特征组合，因为$x_i$和$x_j$都能学会自己对应的embedding，所以可以<strong>通过内积算出这个新特征组合的权重</strong>。这是为何说FM模型泛化能力强的根本原因。其实本质上，这也是目前很多花样的embedding的最核心特点，就是从0/1这种二值硬核匹配，切换为<strong>向量软匹配</strong>，使得原先匹配不上的，现在能在一定程度上算密切程度了，具备很好的泛化性能。</p>
+<p>本质上是在对特征进行<strong>embedding化表征</strong>，和目前非常常见的各种实体embedding本质思想是一脉相承的。因为FM是学习单个特征的embedding，并不依赖某个特定的特征组合是否出现过，所以只要特征$x_i$和其它任意特征组合出现过，那么就可以学习自己对应的embedding向量。于是，尽管$(x_i, x_j)$这个特征组合没有看到过，但是在预测的时候，如果看到这个新的特征组合，因为$x_i$和$x_j$都能学会自己对应的embedding，所以可以<strong>通过内积算出这个新特征组合的权重</strong>。这是为何说FM模型泛化能力强的根本原因。其实本质上，这也是目前很多花样的embedding的最核心特点，就是从0/1这种二值硬核匹配，切换为<strong>向量软匹配</strong>，使得原先匹配不上的，现在能在一定程度上算密切程度了，具备很好的泛化性能。</p>
 </blockquote>
 </li>
 </ul>
@@ -360,12 +360,18 @@ w_{i, j} &= <\boldsymbol{v}_i, \boldsymbol{v}_j> \\
 <p>即上面分情况讨论$\theta$取值时候蓝色的部分。</p>
 <p>所以FM的优化问题是</p>
 <script type="math/tex; mode=display">
-\Theta^* = \arg \min_{\Theta} {}\sum_{i=1}^N(loss(\hat y^{(i)}, y^{(i)}) + \sum_{\theta \in \Theta} \lambda_{\theta}\theta^2)</script><h3 id="1-3-2-优化算法"><a href="#1-3-2-优化算法" class="headerlink" title="1.3.2 优化算法"></a>1.3.2 优化算法</h3><ul>
+\Theta^* = \arg \min_{\Theta} {}\sum_{i=1}^N(loss(\hat y^{(i)}, y^{(i)}) + \sum_{\theta \in \Theta} \lambda_{\theta}\theta^2)</script><ul>
+<li>问题1：这里是用了$L_2$正则，如何保证稀疏性？并有利于分布式优化</li>
+</ul>
+<h3 id="1-3-2-优化算法"><a href="#1-3-2-优化算法" class="headerlink" title="1.3.2 优化算法"></a>1.3.2 优化算法</h3><ul>
 <li><p>SGD(Stochastic Gradient Descent)</p>
 <p>以下内容取自<a href="https://blog.csdn.net/itplus/article/details/40536025" target="_blank" rel="noopener">博客</a>，这篇博客整理很系统。</p>
 <p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208182936171.png" alt="image-20191208182936171" style="zoom:50%;"></p>
 <p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208183047183.png" alt="image-20191208183047183" style="zoom:50%;"></p>
 <p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20191208183119206.png" alt="image-20191208183119206" style="zoom:50%;"></p>
+<ul>
+<li>以上提到了两个超参数比较有意思，一个是$\lambda$另外一个则是矩阵$V$初始化d的时候正太分布的参数$\sigma$（有点类似NN中网络参数的初始化？）</li>
+</ul>
 </li>
 <li><p>ALS(Alternating Least-Squares) - 交替最小二乘法，即最小二乘法</p>
 </li>
@@ -387,7 +393,7 @@ w_{i, j} &= <\boldsymbol{v}_i, \boldsymbol{v}_j> \\
 <li>手撸一遍</li>
 <li>调用xLearn包</li>
 </ul>
-<h1 id="2-Field-aware-Factorization-Machine-FFM"><a href="#2-Field-aware-Factorization-Machine-FFM" class="headerlink" title="2. Field-aware Factorization Machine (FFM)"></a>2. Field-aware Factorization Machine (FFM)</h1><h2 id="2-1-Introduction"><a href="#2-1-Introduction" class="headerlink" title="2.1 Introduction"></a>2.1 Introduction</h2><p>之前有提到在FM中，$\boldsymbol V$矩阵的每一列$\boldsymbol v_i$就是第i维特征的隐向量，一个隐向量包含了k个描述第i维特征的因子，此时$\boldsymbol v_i$是个一维的隐向量。</p>
+<h1 id="2-Field-aware-Factorization-Machine-FFM"><a href="#2-Field-aware-Factorization-Machine-FFM" class="headerlink" title="2. Field-aware Factorization Machine (FFM)"></a>2. Field-aware Factorization Machine (FFM)</h1><h2 id="2-1-Introduction"><a href="#2-1-Introduction" class="headerlink" title="2.1 Introduction"></a>2.1 Introduction</h2><p>之前有提到在FM中，$\boldsymbol V$矩阵的每一列$\boldsymbol v_i$就是第i维特征的隐向量，一个隐向量包含了$k$个描述第i维特征的因子，此时$\boldsymbol v_i$是个一维的隐向量。</p>
 <p>FFM是在FM的基础上，进一步提出了<strong>Field</strong>的概念，即<strong>域/类别</strong>的概念。继续以FM中的例子理解</p>
 <p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/275.png" alt="img"></p>
 <p>对于这三个特征Country、Day和Ad_type</p>
@@ -544,7 +550,7 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
 <h2 id="2-2公式推导"><a href="#2-2公式推导" class="headerlink" title="2.2公式推导"></a>2.2公式推导</h2><h2 id="2-3-模型目标函数和优化算法"><a href="#2-3-模型目标函数和优化算法" class="headerlink" title="2.3 模型目标函数和优化算法"></a>2.3 模型目标函数和优化算法</h2><h2 id="2-4-其他"><a href="#2-4-其他" class="headerlink" title="2.4 其他"></a>2.4 其他</h2><ul>
 <li><p>特征处理细节</p>
 <blockquote>
-<p><strong>样本归一化</strong>：FFM默认是进行==<strong>样本数据的归一化</strong>==，即 为真；若此参数设置为假，很容易造成数据inf溢出，进而引起梯度计算的nan错误。因此，样本层面的数据是推荐进行归一化的。</p>
+<p><strong>样本归一化</strong>：FFM默认是进行==<strong>样本数据的归一化</strong>==，即为真；若此参数设置为假，很容易造成数据inf溢出，进而引起梯度计算的nan错误。因此，样本层面的数据是推荐进行归一化的。</p>
 <p><strong>特征归一化</strong>：CTR/CVR模型采用了多种类型的源特征，包括数值型和categorical类型等。但是，categorical类编码后的特征取值只有0或1，较大的数值型特征会造成样本归一化后categorical类生成特征的值非常小，没有区分性。例如，一条用户-商品记录，用户为“男”性，商品的销量是5000个（假设其它特征的值为零），那么归一化后特征“sex=male”（性别为男）的值略小于0.0002，而“volume”（销量）的值近似为1。特征“sex=male”在这个样本中的作用几乎可以忽略不计，这是相当不合理的。因此，将源数值型特征的值归一化到 是非常必要的。</p>
 <p><strong>省略零值特征</strong>：从FFM模型的表达式可以看出，零值特征对模型完全没有贡献。包含零值特征的一次项和组合项均为零，对于训练模型参数或者目标值预估是没有作用的。因此，可以省去零值特征，提高FFM模型训练和预测的速度，这也是稀疏样本采用FFM的显著优势。</p>
 </blockquote>
@@ -584,7 +590,7 @@ w_{3, 7} ⋅ x_3 x_7 = <v_{3, f_3}, v_{7, f_2}> ⋅ x_3 x_7</script><p>可以看
 <p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/image-20190325204042713.png" alt="image-20190325204042713"></p>
 <p>Embedding层的输出为</p>
 <script type="math/tex; mode=display">
-a^{(0)}=[e_1, e_2, ..., e_m]</script><p>其中$e_i$是嵌入的第i个filed，m是field的个数，前向过程将嵌入层的输出，输入到隐藏层为</p>
+a^{(0)}=[e_1, e_2, ..., e_m]</script><p>其中$e_i$是嵌入的第i个filed，$m$是field的个数，前向过程将嵌入层的输出，输入到隐藏层为</p>
 <script type="math/tex; mode=display">
 a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
 </ul>
@@ -929,6 +935,10 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
@@ -946,10 +956,6 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -981,10 +987,6 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
@@ -993,7 +995,15 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1009,10 +1019,6 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
@@ -1021,15 +1027,7 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1041,11 +1039,19 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1054,10 +1060,6 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1070,6 +1072,22 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GPU</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1093,23 +1111,7 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1121,11 +1123,15 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1138,10 +1144,6 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hive</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1161,7 +1163,7 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
+                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1181,11 +1183,15 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1193,7 +1199,7 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
+                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1206,6 +1212,14 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1226,14 +1240,6 @@ a^{(l+1)} = \sigma (W^{(l)}a^{(l)} + b^{(l)})</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">多分类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
             
             <div class="clearfix"></div>
