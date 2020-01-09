@@ -156,150 +156,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-常见优化算法小结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/12/常见优化算法小结/">常见优化算法小结</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/12/常见优化算法小结/" class="archive-article-date">
-  	<time datetime="2019-05-12T01:02:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-Preview"><a href="#1-Preview" class="headerlink" title="1. Preview"></a>1. Preview</h1><p><img src="/2019/05/12/常见优化算法小结/2019-05-12-常见优化算法小结/image-20191130175246069.png" alt="image-20191130175246069"></p>
-<p>在References里面的第一篇文章里，对于优化算法的分类总结的挺好的，分为<strong>公式解、数值优化</strong>和其他方法。这里重点总结的是数值优化法。</p>
-<p>举个例子，在机器学习中对于有监督学习而言，通常都会有一个假设的Hypothesis函数，通过这样一个函数，我们输入一个数据x，会输出一个预测值$\hat y$，且为了能够使得$\hat y$和真实值$y$之间的差距非常小，即通过损失函数$L(w, x_i, y_i)$来计算。且需要考虑到整体的情况。会需要计算某一批量数据的预测值与真实值之间的误差，且需要不断最小化这个误差（降低训练误差）。即有了如下公式</p>
-<script type="math/tex; mode=display">
-\min_w \frac 1 N \sum_{i=1}^N L(w, x_i, y_i) + \lambda ||w||_2^2</script>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">优化算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/12/常见优化算法小结/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Metabase初探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/21/Metabase初探/">Metabase初探</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/21/Metabase初探/" class="archive-article-date">
-  	<time datetime="2019-04-21T07:22:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><h2 id="1-1-为什么选择Metabase"><a href="#1-1-为什么选择Metabase" class="headerlink" title="1.1 为什么选择Metabase"></a>1.1 为什么选择Metabase</h2><p><img src="/2019/04/21/Metabase初探/2019-04-21-Metabase初探/2016-05-02_1802.png" alt="Image result for metabase"></p>
-<p>Metabase是一款功能丰富、操作简单的BI工具，非常注重非技术人员（如产品、运营等）在使用这个工具时的体验，让他们能够自由探索数据，回答自己的<strong>问题</strong>，同时还是<strong>开源免费的</strong>，这点非常棒。而其他的BI工具要么是付费的（如Tableau），要么就只能看预先建好的Dashboard，对于不懂SQL或者数据库结构的他们来说，是很难自己去摸索的。同时对于技术人员来说，官网的文档写的挺棒的，比较全，然后设计也好看。</p>
-<p>当然了，还存在其他更加高大上的BI报表工具，只是这个这个对于我目前的需求来说，是最不费时效果还比较OK的一款。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Metabase</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">BI报表</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/21/Metabase初探/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-遗传算法初探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -691,6 +547,80 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
 
 
   
+    <article id="post-Softmax理解笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/05/Softmax理解笔记/">Softmax理解笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/05/Softmax理解笔记/" class="archive-article-date">
+  	<time datetime="2019-03-05T04:28:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>目前工作中，一直没接触过多分类，所以对于多分类也不是很了解。所以这里稍微整理一下多分类的Softmax函数，加深理解。</p>
+<p><img src="/2019/03/05/Softmax理解笔记/2019-03-05-Softmax理解笔记/70.jpeg" alt="img"></p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Softmax</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多分类</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/05/Softmax理解笔记/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-用户画像初探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -894,6 +824,75 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
 
 
   
+    <article id="post-读书笔记-数据挖掘与数据化运营实战" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/23/读书笔记-数据挖掘与数据化运营实战/">读书笔记-数据挖掘与数据化运营实战</a>
+    </h1>
+  
+
+        
+        <a href="/2019/02/23/读书笔记-数据挖掘与数据化运营实战/" class="archive-article-date">
+  	<time datetime="2019-02-23T05:15:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="评价：★★★★☆"><a href="#评价：★★★★☆" class="headerlink" title="评价：★★★★☆"></a>评价：★★★★☆</h1><p>整体还是偏运营一些，通过一些经典的案例（如用户流失预警、目标用户特征分析等），介绍了一些经典算法在这些案例中的应用。但是这些案例给我感觉还是太模糊了点，太多地方都是点到为止，不够深入，虽然有些确实是涉及到了一些业务上的东西。另外就是从技术的角度，觉得内容有些陈旧，好像是14年的书了吧。不知这些年大数据的积累，深度学习能否在<strong>数据化运营</strong>上也有些应用呢？不过从算法的角度，这个本书确实还比较适合作为<strong>数据化运营</strong>的入门书籍，具有一定的启发意义，整体还是比较推荐的。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能营销</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/02/23/读书笔记-数据挖掘与数据化运营实战/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1027,10 +1026,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
@@ -1048,6 +1043,10 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1079,10 +1078,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
@@ -1096,6 +1091,10 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1115,6 +1114,14 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CTR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
@@ -1131,10 +1138,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CTR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
@@ -1148,10 +1151,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1199,30 +1198,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
               </li>
              
@@ -1240,6 +1215,38 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">DCN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Softmax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多分类</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1328,14 +1335,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Softmax</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多分类</a>
               </li>
             
             <div class="clearfix"></div>

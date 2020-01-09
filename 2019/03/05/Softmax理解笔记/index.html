@@ -15,19 +15,19 @@
 <meta name="keywords" content="Machine Learning,Softmax,多分类">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Softmax理解笔记">
-<meta property="og:url" content="http://chenson.cc/2020/01/05/Softmax理解笔记/index.html">
+<meta property="og:url" content="http://chenson.cc/2019/03/05/Softmax理解笔记/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="1. Introduction目前工作中，一直没接触过多分类，所以对于多分类也不是很了解。所以这里稍微整理一下多分类的Softmax函数，加深理解。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://chenson.cc/2020/01/05/Softmax理解笔记/2020-01-05-Softmax理解笔记/70.jpeg">
-<meta property="og:image" content="http://chenson.cc/2020/01/05/Softmax理解笔记/2020-01-05-Softmax理解笔记/70.gif">
-<meta property="og:image" content="http://chenson.cc/2020/01/05/Softmax理解笔记/2020-01-05-Softmax理解笔记/image-20200105144619733.png">
-<meta property="og:image" content="http://chenson.cc/2020/01/05/Softmax理解笔记/2020-01-05-Softmax理解笔记/v2-b5af5bcf799835d1543ea5ecb3afe59e_hd.jpg">
-<meta property="og:updated_time" content="2020-01-05T07:32:52.718Z">
+<meta property="og:image" content="http://chenson.cc/2019/03/05/Softmax理解笔记/2019-03-05-Softmax理解笔记/70.jpeg">
+<meta property="og:image" content="http://chenson.cc/2019/03/05/Softmax理解笔记/2019-03-05-Softmax理解笔记/70.gif">
+<meta property="og:image" content="http://chenson.cc/2019/03/05/Softmax理解笔记/2019-03-05-Softmax理解笔记/image-20200105144619733.png">
+<meta property="og:image" content="http://chenson.cc/2019/03/05/Softmax理解笔记/2019-03-05-Softmax理解笔记/v2-b5af5bcf799835d1543ea5ecb3afe59e_hd.jpg">
+<meta property="og:updated_time" content="2020-01-09T09:42:03.688Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Softmax理解笔记">
 <meta name="twitter:description" content="1. Introduction目前工作中，一直没接触过多分类，所以对于多分类也不是很了解。所以这里稍微整理一下多分类的Softmax函数，加深理解。">
-<meta name="twitter:image" content="http://chenson.cc/2020/01/05/Softmax理解笔记/2020-01-05-Softmax理解笔记/70.jpeg">
+<meta name="twitter:image" content="http://chenson.cc/2019/03/05/Softmax理解笔记/2019-03-05-Softmax理解笔记/70.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -173,8 +173,8 @@
   
 
         
-        <a href="/2020/01/05/Softmax理解笔记/" class="archive-article-date">
-  	<time datetime="2020-01-05T04:28:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-05</time>
+        <a href="/2019/03/05/Softmax理解笔记/" class="archive-article-date">
+  	<time datetime="2019-03-05T04:28:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-05</time>
 </a>
         
       </header>
@@ -182,12 +182,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>目前工作中，一直没接触过多分类，所以对于多分类也不是很了解。所以这里稍微整理一下多分类的Softmax函数，加深理解。</p>
-<p><img src="/2020/01/05/Softmax理解笔记/2020-01-05-Softmax理解笔记/70.jpeg" alt="img"></p>
+<p><img src="/2019/03/05/Softmax理解笔记/2019-03-05-Softmax理解笔记/70.jpeg" alt="img"></p>
 <a id="more"></a>
 <h1 id="2-Softmax"><a href="#2-Softmax" class="headerlink" title="2. Softmax"></a>2. Softmax</h1><script type="math/tex; mode=display">
 \begin {align}
 Softmax(x_j, x_1, x_2, ..., x_n) = \frac {e^{x_j}} {\sum_{i=1}^ne^{x_i}} \tag 1
-\end {align}</script><p><img src="/2020/01/05/Softmax理解笔记/2020-01-05-Softmax理解笔记/70.gif" alt="img"></p>
+\end {align}</script><p><img src="/2019/03/05/Softmax理解笔记/2019-03-05-Softmax理解笔记/70.gif" alt="img"></p>
 <p>以上动图是一个三分类的例子，经过Softmax之后，输出的就是一个概率值了，此时对这个三个类别输出的是一个概率分布，<strong>之后可以用交叉熵的概念，来计算真实分布和输出的预测概率分布之间的距离</strong></p>
 <h1 id="3-LogSumExp"><a href="#3-LogSumExp" class="headerlink" title="3. LogSumExp"></a>3. LogSumExp</h1><script type="math/tex; mode=display">
 \begin {align}
@@ -280,7 +280,7 @@ H(p,q) &= \sum_{i=1}^Cp_i \log\frac 1 q_i \\
 <li>Sol1：似乎可以理解为引入了一定的m，增加泛化性</li>
 <li>问题2：公式(7)中的max是如何体现在公式(9)中的</li>
 </ul>
-<h1 id="7-常见问题"><a href="#7-常见问题" class="headerlink" title="7. 常见问题"></a>7. 常见问题</h1><h2 id="7-1-Softmax和Sigmoid的区别"><a href="#7-1-Softmax和Sigmoid的区别" class="headerlink" title="7.1 Softmax和Sigmoid的区别"></a>7.1 Softmax和Sigmoid的区别</h2><p><img src="/2020/01/05/Softmax理解笔记/2020-01-05-Softmax理解笔记/image-20200105144619733.png" alt="image-20200105144619733" style="zoom:50%;"></p>
+<h1 id="7-常见问题"><a href="#7-常见问题" class="headerlink" title="7. 常见问题"></a>7. 常见问题</h1><h2 id="7-1-Softmax和Sigmoid的区别"><a href="#7-1-Softmax和Sigmoid的区别" class="headerlink" title="7.1 Softmax和Sigmoid的区别"></a>7.1 Softmax和Sigmoid的区别</h2><p><img src="/2019/03/05/Softmax理解笔记/2019-03-05-Softmax理解笔记/image-20200105144619733.png" alt="image-20200105144619733" style="zoom:50%;"></p>
 <p>Softmax-CrossEntropy重点在于前面有一个Softmax的操作，将C个类别的输出转换成了一组概率值，从结构上来看，应该是和Sigmoid那部分是等价的，都是到类似激活的作用，输出的[0,1]之间的概率值。只是二分类的情况下，只需要输出一个概率值即可，另外一类的概率由$1-p$可得到。至于后续部分，都是引入了CrossEntropy来计算真实概率和预测概率之间的差异，然后再优化</p>
 <p>如果将上面的三分类例子，用Softmax二分类来表示的话，则</p>
 <script type="math/tex; mode=display">
@@ -340,7 +340,7 @@ p_i \qquad i \neq y
 <li><p>$\sum_{i=1}^n |\frac {\partial \cal L_s} {\partial z_i}| = 2|\frac {\partial \cal L_s} {\partial z_y}|$</p>
 </li>
 <li><p>图示表示如下</p>
-<p><img src="/2020/01/05/Softmax理解笔记/2020-01-05-Softmax理解笔记/v2-b5af5bcf799835d1543ea5ecb3afe59e_hd.jpg" alt="img"></p>
+<p><img src="/2019/03/05/Softmax理解笔记/2019-03-05-Softmax理解笔记/v2-b5af5bcf799835d1543ea5ecb3afe59e_hd.jpg" alt="img"></p>
 </li>
 </ul>
 </li>
@@ -455,7 +455,7 @@ p_i \qquad i \neq y
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.cc/2020/01/05/Softmax理解笔记/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.cc/2019/03/05/Softmax理解笔记/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -469,18 +469,18 @@ p_i \qquad i \neq y
   
 <nav id="article-nav">
   
-    <a href="/2020/01/06/MLR算法初探/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/03/07/Centos7安装Nvida驱动和显卡驱动/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          MLR算法初探
+          Centos7安装Nvida驱动和显卡驱动
         
       </div>
     </a>
   
   
-    <a href="/2019/12/28/分布式机器学习初探/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">分布式机器学习初探</div>
+    <a href="/2019/02/27/用户画像初探/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">用户画像初探</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -494,7 +494,7 @@ p_i \qquad i \neq y
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Softmax理解笔记" data-title="Softmax理解笔记" data-url="http://chenson.cc/2020/01/05/Softmax理解笔记/"></div>
+	<div class="ds-thread" data-thread-key="Softmax理解笔记" data-title="Softmax理解笔记" data-url="http://chenson.cc/2019/03/05/Softmax理解笔记/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -645,10 +645,6 @@ p_i \qquad i \neq y
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
@@ -666,6 +662,10 @@ p_i \qquad i \neq y
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -697,10 +697,6 @@ p_i \qquad i \neq y
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
@@ -714,6 +710,10 @@ p_i \qquad i \neq y
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -733,6 +733,14 @@ p_i \qquad i \neq y
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CTR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
@@ -749,10 +757,6 @@ p_i \qquad i \neq y
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CTR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
@@ -766,10 +770,6 @@ p_i \qquad i \neq y
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -817,30 +817,6 @@ p_i \qquad i \neq y
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
               </li>
              
@@ -858,6 +834,38 @@ p_i \qquad i \neq y
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">DCN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Softmax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多分类</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -946,14 +954,6 @@ p_i \qquad i \neq y
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Softmax</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多分类</a>
               </li>
             
             <div class="clearfix"></div>
