@@ -15,16 +15,16 @@
 <meta name="keywords" content="FTRL,Online Learning,CTR">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在线学习算法初探">
-<meta property="og:url" content="http://chenson.cc/2019/12/30/在线学习算法初探/index.html">
+<meta property="og:url" content="http://chenson.cc/2018/11/18/在线学习算法初探/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="1. Introduction背景：CTR里面数据多，维度高，时效性短，故需要实时训练 带来的问题就是数据量大，单机可能无法求得最优解  什么是Online Learning  关于实时训练：先用前N天的数据训练，在实时训练 如何部署：在这样场景下的LR，其实模型就是一系列的w，把参数存在redis里面就ok了   Online Optimization 在线最优化问题">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://chenson.cc/2019/12/30/在线学习算法初探/2019-12-30-在线学习算法初探/image-20191231143514929.png">
-<meta property="og:updated_time" content="2020-01-05T07:34:38.595Z">
+<meta property="og:image" content="http://chenson.cc/2018/11/18/在线学习算法初探/2018-11-18-在线学习算法初探/image-20191231143514929.png">
+<meta property="og:updated_time" content="2020-01-09T09:32:12.397Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在线学习算法初探">
 <meta name="twitter:description" content="1. Introduction背景：CTR里面数据多，维度高，时效性短，故需要实时训练 带来的问题就是数据量大，单机可能无法求得最优解  什么是Online Learning  关于实时训练：先用前N天的数据训练，在实时训练 如何部署：在这样场景下的LR，其实模型就是一系列的w，把参数存在redis里面就ok了   Online Optimization 在线最优化问题">
-<meta name="twitter:image" content="http://chenson.cc/2019/12/30/在线学习算法初探/2019-12-30-在线学习算法初探/image-20191231143514929.png">
+<meta name="twitter:image" content="http://chenson.cc/2018/11/18/在线学习算法初探/2018-11-18-在线学习算法初探/image-20191231143514929.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -170,8 +170,8 @@
   
 
         
-        <a href="/2019/12/30/在线学习算法初探/" class="archive-article-date">
-  	<time datetime="2019-12-30T06:36:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-30</time>
+        <a href="/2018/11/18/在线学习算法初探/" class="archive-article-date">
+  	<time datetime="2018-11-18T06:36:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-18</time>
 </a>
         
       </header>
@@ -225,7 +225,7 @@
 <ul>
 <li>Bloom Filter，过滤到一些频次很低次等，可以回顾9313里面的算法，针对特征分布的长尾效应</li>
 </ul>
-<h1 id="2-Compare"><a href="#2-Compare" class="headerlink" title="2. Compare"></a>2. Compare</h1><p><img src="/2019/12/30/在线学习算法初探/2019-12-30-在线学习算法初探/image-20191231143514929.png" alt="image-20191231143514929"></p>
+<h1 id="2-Compare"><a href="#2-Compare" class="headerlink" title="2. Compare"></a>2. Compare</h1><p><img src="/2018/11/18/在线学习算法初探/2018-11-18-在线学习算法初探/image-20191231143514929.png" alt="image-20191231143514929"></p>
 <p>这几个算法大体可以分成三大部分</p>
 <ul>
 <li><p>A部分：loss-func，根据梯度来计算的，其中FOBOS、FTRL-Proximal这里计算的是累积梯度？？【==不是RDA才是累积梯度么==】</p>
@@ -379,7 +379,7 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.cc/2019/12/30/在线学习算法初探/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.cc/2018/11/18/在线学习算法初探/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -393,18 +393,18 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
   
 <nav id="article-nav">
   
-    <a href="/2020/01/05/Softmax理解笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/11/20/关于Python的Mixin模式初探/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Softmax理解笔记
+          关于Python的Mixin模式初探
         
       </div>
     </a>
   
   
-    <a href="/2019/12/28/分布式机器学习初探/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">分布式机器学习初探</div>
+    <a href="/2018/11/18/Wide-and-Deep模型初探/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Wide_and_Deep模型初探</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -418,7 +418,7 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="在线学习算法初探" data-title="在线学习算法初探" data-url="http://chenson.cc/2019/12/30/在线学习算法初探/"></div>
+	<div class="ds-thread" data-thread-key="在线学习算法初探" data-title="在线学习算法初探" data-url="http://chenson.cc/2018/11/18/在线学习算法初探/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -569,11 +569,11 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -665,6 +665,18 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Online Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CTR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
@@ -685,11 +697,11 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -698,6 +710,10 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -713,10 +729,6 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
@@ -726,6 +738,30 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -746,30 +782,6 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">DCN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -858,18 +870,6 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Online Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CTR</a>
               </li>
              
               <li class="article-tag-list-item">

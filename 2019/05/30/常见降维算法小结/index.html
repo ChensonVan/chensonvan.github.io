@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://chenson.cc/2019/05/30/常见降维算法小结/2019-05-30-常见降维算法小结/image-20191201003852739.png">
 <meta property="og:image" content="http://chenson.cc/2019/05/30/常见降维算法小结/2019-05-30-常见降维算法小结/svd.png">
 <meta property="og:image" content="http://chenson.cc/2019/05/30/常见降维算法小结/2019-05-30-常见降维算法小结/image-20191201000546620.png">
-<meta property="og:updated_time" content="2019-12-08T12:19:35.247Z">
+<meta property="og:updated_time" content="2020-01-09T06:25:35.413Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见降维算法小结">
 <meta name="twitter:description" content="1. Introduction由于数学不是很好，经常对一些矩阵分解之类相关的算法理解得有些模糊，大致知道算法的核心思想，往往却没理解到其数学角度的本质区别，所以有必要好好整理一下相关的知识点。就以降维为起点，梳理一下相关的算法。（可能有些并没有归类到降维相关的算法上，但最终却有着降维的效果）">
@@ -220,7 +220,7 @@ J(w) = w^T\Sigma w - \lambda(w^Tw - 1) \tag 2</script><p>将上述公式(2)对$w
 <script type="math/tex; mode=display">
 \Sigma w - \lambda w = 0</script><p>即有$\lambda$为$\Sigma$的特征值，此时有</p>
 <script type="math/tex; mode=display">
-w^T\Sigma w = w^T\lambda w = \lambda w^Tw = \lambda</script><p>即有$x$投影后的方差就是协方差矩阵的特征值$\rarr$最大化方差就是<strong>最大化协方差矩阵最大的特征值</strong> $\rarr$最佳投影方向就是<strong>最大特征值所对应的特征向量</strong>。</p>
+w^T\Sigma w = w^T\lambda w = \lambda w^Tw = \lambda</script><p>即有$x$投影后的方差就是协方差矩阵的特征值$\to$最大化方差就是<strong>最大化协方差矩阵最大的特征值</strong> $\to$最佳投影方向就是<strong>最大特征值所对应的特征向量</strong>。</p>
 <h4 id="特征值和特征向量"><a href="#特征值和特征向量" class="headerlink" title="特征值和特征向量"></a>特征值和特征向量</h4><ul>
 <li>数学表示$Mv_i = \lambda_i v_i$，这里$M$是个$n\times n$的方阵，$v_i$是个n维的特征向量，<strong>$\lambda_i$是方阵$M$的一个特征值，而$v_i$是方阵$M$的特征值$\lambda_i$所对应的特征向量</strong></li>
 <li>特征值分解主要将一个方阵分解成左边格式$M=Q\Sigma  Q^{-1}$<ul>
@@ -324,8 +324,8 @@ M^TM U &= U\Sigma^2U^TU \tag {10}\\
 &=  U\Sigma^2
 \end {align}</script><p>所以梳理一下求解步骤</p>
 <script type="math/tex; mode=display">
-M \rarr M^TM , MM^T \rarr \lambda_i \rarr v_i, u_i \\
-\lambda_i \rarr \sigma_i \rarr \Sigma</script><p>具体计算例子，在博客<a href="https://www.cnblogs.com/pinard/p/6251584.html" target="_blank" rel="noopener">奇异值分解(SVD)原理与在降维中的应用</a>里有，就不举例了。</p>
+M \to M^TM , MM^T \to \lambda_i \to v_i, u_i \\
+\lambda_i \to \sigma_i \to \Sigma</script><p>具体计算例子，在博客<a href="https://www.cnblogs.com/pinard/p/6251584.html" target="_blank" rel="noopener">奇异值分解(SVD)原理与在降维中的应用</a>里有，就不举例了。</p>
 <h2 id="3-3-SVD常见用途"><a href="#3-3-SVD常见用途" class="headerlink" title="3.3 SVD常见用途"></a>3.3 SVD常见用途</h2><p>上面的计算推导公式中，最后得到了奇异值矩阵$\Sigma$，这和矩阵分解中的特征值很像，代表了这个特征的重要性，且值从左上到右下是降序的，经常前top 10%的值就占了奇异值的99%，也就是说可以用这10%替代整个矩阵了。根据这一特性，SVD常见用途如下。</p>
 <h3 id="3-3-1-推荐算法"><a href="#3-3-1-推荐算法" class="headerlink" title="3.3.1 推荐算法"></a>3.3.1 推荐算法</h3><p>以前的博客里面有提到过，选取奇异值前k个，具体应用如下图</p>
 <p><img src="/2019/05/30/常见降维算法小结/2019-05-30-常见降维算法小结/image-20191201000546620.png" alt="image-20191201000546620" style="zoom: 50%;"></p>
@@ -642,11 +642,11 @@ M \rarr M^TM , MM^T \rarr \lambda_i \rarr v_i, u_i \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -738,6 +738,18 @@ M \rarr M^TM , MM^T \rarr \lambda_i \rarr v_i, u_i \\
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Online Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CTR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
@@ -758,11 +770,11 @@ M \rarr M^TM , MM^T \rarr \lambda_i \rarr v_i, u_i \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -771,6 +783,10 @@ M \rarr M^TM , MM^T \rarr \lambda_i \rarr v_i, u_i \\
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -786,10 +802,6 @@ M \rarr M^TM , MM^T \rarr \lambda_i \rarr v_i, u_i \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
@@ -799,6 +811,30 @@ M \rarr M^TM , MM^T \rarr \lambda_i \rarr v_i, u_i \\
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -819,30 +855,6 @@ M \rarr M^TM , MM^T \rarr \lambda_i \rarr v_i, u_i \\
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">DCN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -931,18 +943,6 @@ M \rarr M^TM , MM^T \rarr \lambda_i \rarr v_i, u_i \\
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Online Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CTR</a>
               </li>
              
               <li class="article-tag-list-item">
