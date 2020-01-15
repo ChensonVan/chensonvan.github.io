@@ -525,26 +525,51 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
 
 
   
-    <article id="post-Mixed-Logistic-Regression模型初探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-MLR算法初探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/22/Mixed-Logistic-Regression模型初探/">Mixed-Logistic-Regression模型初探</a>
+      <a class="article-title" href="/2018/12/22/MLR算法初探/">MLR算法初探</a>
     </h1>
   
 
         
-        <a href="/2018/12/22/Mixed-Logistic-Regression模型初探/" class="archive-article-date">
-  	<time datetime="2018-12-22T09:05:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-22</time>
+        <a href="/2018/12/22/MLR算法初探/" class="archive-article-date">
+  	<time datetime="2018-12-22T04:51:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
+        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>目前面临的问题</p>
+<ul>
+<li>样本多</li>
+<li>维度高</li>
+<li>特征之间存在内在关系</li>
+</ul>
+<p>常见做法</p>
+<ul>
+<li>低维度强特征+GBDT<ul>
+<li>数据丧失了分辨率</li>
+<li>数据是仍然是对历史行为的记忆，缺乏推广性</li>
+</ul>
+</li>
+<li>细粒度高维度特征+LR【模型能力有限，依赖人工特征工程】</li>
+<li>自动学习高阶特征-FM/FFM<ul>
+<li>FM只能拟合特定的非线性模型，如2阶FM只能拟合特征之间的线性关系和二次关系</li>
+</ul>
+</li>
+<li>深度神经网络<ul>
+<li>大规模工业级稀疏数据，难度较大</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2018/12/22/MLR算法初探/2018-12-22-MLR算法初探/v2-97484e4994b9ea34899daeeb778cc718_hd.jpg" alt="img"></p>
+<p>所以就以上几个问题，主要需要解决的是【大规模】和【非线性】</p>
         
       
 
@@ -558,6 +583,14 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTR</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MLR</a>
         		</li>
       		
@@ -568,7 +601,7 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/22/Mixed-Logistic-Regression模型初探/">MORE >></a>
+          <a class="article-more-a" href="/2018/12/22/MLR算法初探/">MORE >></a>
         </p>
       
 
@@ -765,7 +798,7 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
     <div class="article-entry" itemprop="articleBody">
       
         <p>由于最近正在参与的自动化建模平台需要用到这一算法，但sklearn里面的聚类算法只支持数值型的，无法用到类别型的特征上，所以就研究了K-Modes和K-Prototypes这两个算法。具体算法的思想和源码如下。</p>
-<h3 id="1-k-Means"><a href="#1-k-Means" class="headerlink" title="1. k-Means"></a>1. k-Means</h3><ul>
+<h1 id="1-k-Means"><a href="#1-k-Means" class="headerlink" title="1. k-Means"></a>1. k-Means</h1><ul>
 <li><strong>Algorightm</strong><ul>
 <li>K-Means</li>
 <li>K-Means++</li>
@@ -784,6 +817,10 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        		</li>
+      		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Cluster</a>
         		</li>
@@ -1033,6 +1070,10 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
@@ -1045,15 +1086,11 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1081,6 +1118,14 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
@@ -1089,19 +1134,7 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1113,11 +1146,19 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Online Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1133,15 +1174,11 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Online Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1153,7 +1190,7 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1170,6 +1207,14 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Softmax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多分类</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1225,14 +1270,6 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Softmax</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多分类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
@@ -1245,11 +1282,11 @@ S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
               </li>
              
               <li class="article-tag-list-item">

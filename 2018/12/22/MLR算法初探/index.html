@@ -12,28 +12,28 @@
   <title>MLR算法初探 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="1. Introduction目前面临的问题  样本多 维度高 特征之间存在内在关系  常见做法  低维度强特征+GBDT 数据丧失了分辨率 数据是仍然是对历史行为的记忆，缺乏推广性   细粒度高维度特征+LR【模型能力有限，依赖人工特征工程】 自动学习高阶特征-FM/FFM FM只能拟合特定的非线性模型，如2阶FM只能拟合特征之间的线性关系和二次关系   深度神经网络 大规模工业级稀疏数据，难度">
-<meta name="keywords" content="Machine Learning,MLR,CTR">
+<meta name="keywords" content="Machine Learning,CTR,MLR">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MLR算法初探">
-<meta property="og:url" content="http://chenson.cc/2018/10/19/MLR算法初探/index.html">
+<meta property="og:url" content="http://chenson.cc/2018/12/22/MLR算法初探/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="1. Introduction目前面临的问题  样本多 维度高 特征之间存在内在关系  常见做法  低维度强特征+GBDT 数据丧失了分辨率 数据是仍然是对历史行为的记忆，缺乏推广性   细粒度高维度特征+LR【模型能力有限，依赖人工特征工程】 自动学习高阶特征-FM/FFM FM只能拟合特定的非线性模型，如2阶FM只能拟合特征之间的线性关系和二次关系   深度神经网络 大规模工业级稀疏数据，难度">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://chenson.cc/2018/10/19/MLR算法初探/2018-10-19-MLR算法初探/v2-97484e4994b9ea34899daeeb778cc718_hd.jpg">
-<meta property="og:image" content="http://chenson.cc/2018/10/19/MLR算法初探/2018-10-19-MLR算法初探/image-20200106161641503.png">
-<meta property="og:image" content="http://chenson.cc/2018/10/19/MLR算法初探/2018-10-19-MLR算法初探/image-20200106193219562.png">
-<meta property="og:image" content="http://chenson.cc/2018/10/19/MLR算法初探/2018-10-19-MLR算法初探/v2-1acf601a44a74852ae3cf781a0d4c41f_hd.jpg">
-<meta property="og:image" content="http://chenson.cc/2018/10/19/MLR算法初探/2018-10-19-MLR算法初探/image-20200106200017119.png">
-<meta property="og:image" content="http://chenson.cc/2018/10/19/MLR算法初探/2018-10-19-MLR算法初探/image-20200106174810854.png">
-<meta property="og:image" content="http://chenson.cc/2018/10/19/MLR算法初探/2018-10-19-MLR算法初探/v2-bddf85da55425f2b3bb5b8f367b9c948_hd.jpg">
-<meta property="og:image" content="http://chenson.cc/2018/10/19/MLR算法初探/2018-10-19-MLR算法初探/image-20200107163032647.png">
-<meta property="og:image" content="http://chenson.cc/2018/10/19/MLR算法初探/2018-10-19-MLR算法初探/image-20200107163641623.png">
-<meta property="og:image" content="http://chenson.cc/2018/10/19/MLR算法初探/2018-10-19-MLR算法初探/image-20200107164955879.png">
-<meta property="og:updated_time" content="2020-01-09T09:40:48.582Z">
+<meta property="og:image" content="http://chenson.cc/2018/12/22/MLR算法初探/2018-12-22-MLR算法初探/v2-97484e4994b9ea34899daeeb778cc718_hd.jpg">
+<meta property="og:image" content="http://chenson.cc/2018/12/22/MLR算法初探/2018-12-22-MLR算法初探/image-20200106161641503.png">
+<meta property="og:image" content="http://chenson.cc/2018/12/22/MLR算法初探/2018-12-22-MLR算法初探/image-20200106193219562.png">
+<meta property="og:image" content="http://chenson.cc/2018/12/22/MLR算法初探/2018-12-22-MLR算法初探/v2-1acf601a44a74852ae3cf781a0d4c41f_hd.jpg">
+<meta property="og:image" content="http://chenson.cc/2018/12/22/MLR算法初探/2018-12-22-MLR算法初探/image-20200106200017119.png">
+<meta property="og:image" content="http://chenson.cc/2018/12/22/MLR算法初探/2018-12-22-MLR算法初探/image-20200106174810854.png">
+<meta property="og:image" content="http://chenson.cc/2018/12/22/MLR算法初探/2018-12-22-MLR算法初探/v2-bddf85da55425f2b3bb5b8f367b9c948_hd.jpg">
+<meta property="og:image" content="http://chenson.cc/2018/12/22/MLR算法初探/2018-12-22-MLR算法初探/image-20200107163032647.png">
+<meta property="og:image" content="http://chenson.cc/2018/12/22/MLR算法初探/2018-12-22-MLR算法初探/image-20200107163641623.png">
+<meta property="og:image" content="http://chenson.cc/2018/12/22/MLR算法初探/2018-12-22-MLR算法初探/image-20200107164955879.png">
+<meta property="og:updated_time" content="2020-01-09T09:49:38.955Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MLR算法初探">
 <meta name="twitter:description" content="1. Introduction目前面临的问题  样本多 维度高 特征之间存在内在关系  常见做法  低维度强特征+GBDT 数据丧失了分辨率 数据是仍然是对历史行为的记忆，缺乏推广性   细粒度高维度特征+LR【模型能力有限，依赖人工特征工程】 自动学习高阶特征-FM/FFM FM只能拟合特定的非线性模型，如2阶FM只能拟合特征之间的线性关系和二次关系   深度神经网络 大规模工业级稀疏数据，难度">
-<meta name="twitter:image" content="http://chenson.cc/2018/10/19/MLR算法初探/2018-10-19-MLR算法初探/v2-97484e4994b9ea34899daeeb778cc718_hd.jpg">
+<meta name="twitter:image" content="http://chenson.cc/2018/12/22/MLR算法初探/2018-12-22-MLR算法初探/v2-97484e4994b9ea34899daeeb778cc718_hd.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -179,8 +179,8 @@
   
 
         
-        <a href="/2018/10/19/MLR算法初探/" class="archive-article-date">
-  	<time datetime="2018-10-19T04:51:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-19</time>
+        <a href="/2018/12/22/MLR算法初探/" class="archive-article-date">
+  	<time datetime="2018-12-22T04:51:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-22</time>
 </a>
         
       </header>
@@ -210,7 +210,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/2018/10/19/MLR算法初探/2018-10-19-MLR算法初探/v2-97484e4994b9ea34899daeeb778cc718_hd.jpg" alt="img"></p>
+<p><img src="/2018/12/22/MLR算法初探/2018-12-22-MLR算法初探/v2-97484e4994b9ea34899daeeb778cc718_hd.jpg" alt="img"></p>
 <p>所以就以上几个问题，主要需要解决的是【大规模】和【非线性】</p>
 <a id="more"></a>
 <h1 id="2-MLR-Mixed-Logistic-Regression"><a href="#2-MLR-Mixed-Logistic-Regression" class="headerlink" title="2. MLR(Mixed Logistic Regression)"></a>2. MLR(Mixed Logistic Regression)</h1><h2 id="2-1-模型结构"><a href="#2-1-模型结构" class="headerlink" title="2.1 模型结构"></a>2.1 模型结构</h2><p>MLR混合逻辑斯特回归，全称是Large Scale Piecewise Linear Model，即LS-PLM大规模分片线性模型，可以看做是LR的一个推广，采用分治的思想，将数据分成不同的多个区域（通过领域知识先验将整个空间划分成多个区域，如何的？），每个区域里面训练一个线性模型，<strong>不同的区域之间做了平滑的连接</strong>（这里不是很理解如何做的平滑链接），最终拟合了高维空间的非线性分类面，目标函数的数学表达式如下</p>
@@ -224,7 +224,7 @@ arg \min_{\Theta} f(\Theta) &= loss(\Theta) + \lambda||\Theta||_{2, 1} + \beta||
 loss(\Theta) &=-\sum_{t=1}^n[y_t\log(p(y_t=1|x_t, \Theta)) + (1-y_t)\log(p(y_t=0|x_t, \Theta))] \tag 3
 
 \end {align}</script><p>以上数学公式用神经网络的架构表示如下</p>
-<p><img src="/2018/10/19/MLR算法初探/2018-10-19-MLR算法初探/image-20200106161641503.png" alt="image-20200106161641503"></p>
+<p><img src="/2018/12/22/MLR算法初探/2018-12-22-MLR算法初探/image-20200106161641503.png" alt="image-20200106161641503"></p>
 <ul>
 <li>这里$\Theta = \{u_1, u_2, …, u_m, w_1, w_2, …, w_m\} \in \Bbb R^{d\times 2m}$表示的是模型的参数</li>
 <li>超参数$m$表示的是区块的分片数量，当$m=1$时候MLR退化为普通的LR，且模型的非线性拟合能力随着$m$的增大变强</li>
@@ -274,7 +274,7 @@ loss(\Theta) &=-\sum_{t=1}^n[y_t\log(p(y_t=1|x_t, \Theta)) + (1-y_t)\log(p(y_t=0
 f'(x_0) = \lim_{\Delta x \to 0} \frac {\Delta y} {\Delta x} = \lim_{\Delta x \to 0} \frac {f(x_0 + \Delta x) - f(x_0)} {\Delta x}</script><ul>
 <li>几何意义：表示的函数曲线上的某一点$P_0$的切线，</li>
 </ul>
-<p><img src="/2018/10/19/MLR算法初探/2018-10-19-MLR算法初探/image-20200106193219562.png" alt="image-20200106193219562"></p>
+<p><img src="/2018/12/22/MLR算法初探/2018-12-22-MLR算法初探/image-20200106193219562.png" alt="image-20200106193219562"></p>
 <ul>
 <li>一元函数中只有一个自变量，也就是只存在一个方向上的变化，没有偏导数</li>
 <li>如果函数在$P_0$处可导，那么在该点处一定是<strong>连续</strong>的，且在该点的左右极限存在且相等（即左导数和右导数相等）</li>
@@ -291,7 +291,7 @@ f'(x_0) = \lim_{\Delta x \to 0} \frac {\Delta y} {\Delta x} = \lim_{\Delta x \to
 <li><p>$f_y(x, y)$指的是函数在在$x$方向不变，函数值沿着$y$轴方向的变化率</p>
 </li>
 <li><p>具体如下图</p>
-<p><img src="/2018/10/19/MLR算法初探/2018-10-19-MLR算法初探/v2-1acf601a44a74852ae3cf781a0d4c41f_hd.jpg" alt="img"></p>
+<p><img src="/2018/12/22/MLR算法初探/2018-12-22-MLR算法初探/v2-1acf601a44a74852ae3cf781a0d4c41f_hd.jpg" alt="img"></p>
 <p>偏导数$f_x(x, y_0)$表示的几何意义为：曲线被平面$y=y_0$所截得的曲面在点$M_0$处的切线$M_0T_x$对$x$轴的斜率</p>
 <ul>
 <li>问题：如果从二元升级到三元、四元等高维数据呢？</li>
@@ -300,7 +300,7 @@ f'(x_0) = \lim_{\Delta x \to 0} \frac {\Delta y} {\Delta x} = \lim_{\Delta x \to
 </li>
 </ul>
 <h3 id="3-1-3-方向导数"><a href="#3-1-3-方向导数" class="headerlink" title="3.1.3 方向导数"></a>3.1.3 方向导数</h3><p>之前提到的偏导数，之的是多元函数沿着坐标轴的变化率，这里重点是<strong>坐标轴</strong>，已经把变化的方向限制在了坐标轴这几个方向上。如果是<strong>任意方向</strong>的话，则需要引入<strong>方向导数</strong>的概念，以下图为例</p>
-<p><img src="/2018/10/19/MLR算法初探/2018-10-19-MLR算法初探/image-20200106200017119.png" alt="image-20200106200017119"></p>
+<p><img src="/2018/12/22/MLR算法初探/2018-12-22-MLR算法初探/image-20200106200017119.png" alt="image-20200106200017119"></p>
 <p>按照偏微分的定义，此时只有$x$和$y$两个方向可以变化，如果此时需要向方向$u$变化的话，需要根据$f_x(x, y)$和$f_y(x, y)$两个偏导数合成第三个偏导数$f_u(x, y)$，感觉很向量很接近，可以用两个单位向量，合成任意方向的向量一样。同时对于方向$u$的导数，记为</p>
 <script type="math/tex; mode=display">
 D_uf = \lim_{t \to 0} \frac {f(x_0 + t\cos \theta, y_0 + t \sin \theta) - f(x_0, y_0)} {t}</script><p>这样就可以计算曲面沿着任意方向的变化率了，用偏微分表达的话，则是</p>
@@ -337,15 +337,15 @@ D_uf(x,y) &= f_x(x, y)\cos \theta + f_y(x,y)\sin \theta \\
 </ul>
 </li>
 </ul>
-<p><img src="/2018/10/19/MLR算法初探/2018-10-19-MLR算法初探/image-20200106174810854.png" alt="image-20200106174810854"></p>
+<p><img src="/2018/12/22/MLR算法初探/2018-12-22-MLR算法初探/image-20200106174810854.png" alt="image-20200106174810854"></p>
 <p>对于一个存在梯度的函数$f(x, y)$，其具有一阶连续偏导数，即可微，<strong>就意味着函数$f(x,y)$在某个点$(x_0, y_0)$处的所有方向导数在一个平面上</strong>。以下图为例，红色平面即为所有方向导数构成的平面【这里的红色平面是紫色和黑色构成平面】</p>
-<p><img src="/2018/10/19/MLR算法初探/2018-10-19-MLR算法初探/v2-bddf85da55425f2b3bb5b8f367b9c948_hd.jpg" alt="img"></p>
-<p><img src="/2018/10/19/MLR算法初探/2018-10-19-MLR算法初探/image-20200107163032647.png" alt="image-20200107163032647"></p>
+<p><img src="/2018/12/22/MLR算法初探/2018-12-22-MLR算法初探/v2-bddf85da55425f2b3bb5b8f367b9c948_hd.jpg" alt="img"></p>
+<p><img src="/2018/12/22/MLR算法初探/2018-12-22-MLR算法初探/image-20200107163032647.png" alt="image-20200107163032647"></p>
 <p>论文中提到了，对于目标函数由一个光滑的损失函数和$L1/L_{2,1}$正则，如上面的公式(2)，对于所有的参数$\Theta$就一定存在一个方向导数$f’(\Theta; d)$，其方向为$d$（论文的附页里证明这个方向导数一定存在），可分为三种情况</p>
-<p><img src="/2018/10/19/MLR算法初探/2018-10-19-MLR算法初探/image-20200107163641623.png" alt="image-20200107163641623"></p>
+<p><img src="/2018/12/22/MLR算法初探/2018-12-22-MLR算法初探/image-20200107163641623.png" alt="image-20200107163641623"></p>
 <p>这里$s$和$v$里面的值需要参考一下附页的证明公式</p>
 <h3 id="3-2-2-参数更新"><a href="#3-2-2-参数更新" class="headerlink" title="3.2.2 参数更新"></a>3.2.2 参数更新</h3><p>计算出方向导数之后，参数的更新公式如下</p>
-<p><img src="/2018/10/19/MLR算法初探/2018-10-19-MLR算法初探/image-20200107164955879.png" alt="image-20200107164955879" style="zoom:80%;"></p>
+<p><img src="/2018/12/22/MLR算法初探/2018-12-22-MLR算法初探/image-20200107164955879.png" alt="image-20200107164955879" style="zoom:80%;"></p>
 <p>更新思路主要用到了拟牛顿法，使用了LBFGS的框架，借鉴了OWLQN算法的思路</p>
 <p>顺便提一下和拟牛顿法相关的一些算法</p>
 <ul>
@@ -438,11 +438,11 @@ x_{n+1}= x_n - \alpha(\bf {H_n^{-1}} \bf {g_n})</script></li>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MLR</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTR</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTR</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MLR</a>
         		</li>
       		
 		</ul>
@@ -498,7 +498,7 @@ x_{n+1}= x_n - \alpha(\bf {H_n^{-1}} \bf {g_n})</script></li>
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.cc/2018/10/19/MLR算法初探/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.cc/2018/12/22/MLR算法初探/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -512,18 +512,18 @@ x_{n+1}= x_n - \alpha(\bf {H_n^{-1}} \bf {g_n})</script></li>
   
 <nav id="article-nav">
   
-    <a href="/2018/11/18/Wide-and-Deep模型初探/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/01/13/jupyterhub配置多用户/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Wide_and_Deep模型初探
+          jupyterhub配置多用户
         
       </div>
     </a>
   
   
-    <a href="/2018/08/31/Neo4j数据导入笔记/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Neo4j数据导入笔记</div>
+    <a href="/2018/12/20/大数据数仓建设笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">大数据数仓建设笔记</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -537,7 +537,7 @@ x_{n+1}= x_n - \alpha(\bf {H_n^{-1}} \bf {g_n})</script></li>
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="MLR算法初探" data-title="MLR算法初探" data-url="http://chenson.cc/2018/10/19/MLR算法初探/"></div>
+	<div class="ds-thread" data-thread-key="MLR算法初探" data-title="MLR算法初探" data-url="http://chenson.cc/2018/12/22/MLR算法初探/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -692,6 +692,10 @@ x_{n+1}= x_n - \alpha(\bf {H_n^{-1}} \bf {g_n})</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
@@ -704,15 +708,11 @@ x_{n+1}= x_n - \alpha(\bf {H_n^{-1}} \bf {g_n})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -740,6 +740,14 @@ x_{n+1}= x_n - \alpha(\bf {H_n^{-1}} \bf {g_n})</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
@@ -748,19 +756,7 @@ x_{n+1}= x_n - \alpha(\bf {H_n^{-1}} \bf {g_n})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -772,11 +768,19 @@ x_{n+1}= x_n - \alpha(\bf {H_n^{-1}} \bf {g_n})</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Online Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -792,15 +796,11 @@ x_{n+1}= x_n - \alpha(\bf {H_n^{-1}} \bf {g_n})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Online Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -812,7 +812,7 @@ x_{n+1}= x_n - \alpha(\bf {H_n^{-1}} \bf {g_n})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -829,6 +829,14 @@ x_{n+1}= x_n - \alpha(\bf {H_n^{-1}} \bf {g_n})</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Softmax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多分类</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -884,14 +892,6 @@ x_{n+1}= x_n - \alpha(\bf {H_n^{-1}} \bf {g_n})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Softmax</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多分类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
@@ -904,11 +904,11 @@ x_{n+1}= x_n - \alpha(\bf {H_n^{-1}} \bf {g_n})</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -12,14 +12,14 @@
   <title>聚类算法：K-Means及扩展算法K-Modes、K-Prototype初探 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="由于最近正在参与的自动化建模平台需要用到这一算法，但sklearn里面的聚类算法只支持数值型的，无法用到类别型的特征上，所以就研究了K-Modes和K-Prototypes这两个算法。具体算法的思想和源码如下。 1. k-Means Algorightm K-Means K-Means++">
-<meta name="keywords" content="Cluster">
+<meta name="keywords" content="Machine Learning,Cluster">
 <meta property="og:type" content="article">
 <meta property="og:title" content="聚类算法：K-Means及扩展算法K-Modes、K-Prototype初探">
 <meta property="og:url" content="http://chenson.cc/2018/11/27/聚类算法：K-Means及扩展算法K-Modes、K-Prototype初探/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="由于最近正在参与的自动化建模平台需要用到这一算法，但sklearn里面的聚类算法只支持数值型的，无法用到类别型的特征上，所以就研究了K-Modes和K-Prototypes这两个算法。具体算法的思想和源码如下。 1. k-Means Algorightm K-Means K-Means++">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-21T06:59:54.000Z">
+<meta property="og:updated_time" content="2020-01-09T11:17:48.761Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="聚类算法：K-Means及扩展算法K-Modes、K-Prototype初探">
 <meta name="twitter:description" content="由于最近正在参与的自动化建模平台需要用到这一算法，但sklearn里面的聚类算法只支持数值型的，无法用到类别型的特征上，所以就研究了K-Modes和K-Prototypes这两个算法。具体算法的思想和源码如下。 1. k-Means Algorightm K-Means K-Means++">
@@ -177,7 +177,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>由于最近正在参与的自动化建模平台需要用到这一算法，但sklearn里面的聚类算法只支持数值型的，无法用到类别型的特征上，所以就研究了K-Modes和K-Prototypes这两个算法。具体算法的思想和源码如下。</p>
-<h3 id="1-k-Means"><a href="#1-k-Means" class="headerlink" title="1. k-Means"></a>1. k-Means</h3><ul>
+<h1 id="1-k-Means"><a href="#1-k-Means" class="headerlink" title="1. k-Means"></a>1. k-Means</h1><ul>
 <li><strong>Algorightm</strong><ul>
 <li>K-Means</li>
 <li>K-Means++</li>
@@ -201,13 +201,15 @@
 <li><strong>_kmeans_single_elkan</strong></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_kmeans_single_elkan</span><span class="params">(X, sample_weight, n_clusters, max_iter=<span class="number">300</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                         init=<span class="string">'k-means++'</span>, verbose=False, x_squared_norms=None,</span></span></span><br><span class="line"><span class="function"><span class="params">                         random_state=None, tol=<span class="number">1e-4</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                         precompute_distances=True)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> sp.issparse(X):</span><br><span class="line">        <span class="keyword">raise</span> TypeError(<span class="string">"algorithm='elkan' not supported for sparse input X"</span>)</span><br><span class="line">    random_state = check_random_state(random_state)</span><br><span class="line">    <span class="keyword">if</span> x_squared_norms <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        x_squared_norms = row_norms(X, squared=<span class="literal">True</span>)</span><br><span class="line">    <span class="comment"># init</span></span><br><span class="line">    centers = _init_centroids(X, n_clusters, init, random_state=random_state,</span><br><span class="line">                              x_squared_norms=x_squared_norms)</span><br><span class="line">    centers = np.ascontiguousarray(centers)</span><br><span class="line">    <span class="keyword">if</span> verbose:</span><br><span class="line">        print(<span class="string">'Initialization complete'</span>)</span><br><span class="line"></span><br><span class="line">    checked_sample_weight = _check_sample_weight(X, sample_weight)</span><br><span class="line">    centers, labels, n_iter = k_means_elkan(X, checked_sample_weight,</span><br><span class="line">                                            n_clusters, centers, tol=tol,</span><br><span class="line">                                            max_iter=max_iter, verbose=verbose)</span><br><span class="line">    <span class="keyword">if</span> sample_weight <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        inertia = np.sum((X - centers[labels]) ** <span class="number">2</span>, dtype=np.float64)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        sq_distances = np.sum((X - centers[labels]) ** <span class="number">2</span>, axis=<span class="number">1</span>,</span><br><span class="line">                              dtype=np.float64) * checked_sample_weight</span><br><span class="line">        inertia = np.sum(sq_distances, dtype=np.float64)</span><br><span class="line">    <span class="keyword">return</span> labels, inertia, centers, n_iter</span><br></pre></td></tr></table></figure>
-<h3 id="2-K-Modes"><a href="#2-K-Modes" class="headerlink" title="2. K-Modes"></a>2. K-Modes</h3><ul>
+<h1 id="2-K-Modes"><a href="#2-K-Modes" class="headerlink" title="2. K-Modes"></a>2. K-Modes</h1><ul>
 <li><p><strong>Algorithm</strong></p>
 <ul>
 <li>step1：随机确定k个聚类中心$C_1$, $C_2$ … $C_k$，$C_i$是长度为M的向量，$C_i$ = [$C_{1i}$,  $C_{2i}$,  … ,  $C_{mi}$]</li>
 <li><p>step2：对于样本$x_j$ (j=1,2,…,N)，分别比较其与k个中心之间的距离</p>
-<pre><code>   这里的**距离为不同属性值的个数**，假如$x_1$=[1, 2, 1, 3], $C_1$=[1, 2, 3, 4]，那么x1与C1之间的距离为2
-</code></pre></li>
+<blockquote>
+<p>这里的<strong>距离为不同属性值的个数</strong>，假如$x_1$=[1, 2, 1, 3], $C_1$=[1, 2, 3, 4]，那么x1与C1之间的距离为2</p>
+</blockquote>
+</li>
 <li>step3：将$x_j$划分到距离最小的簇，在全部的样本都被划分完毕之后，重新确定簇中心，向量$C_i$中的每一个分量都更新为簇i中的众数</li>
 <li>step4：重复步骤二和三，直到总距离（各个簇中样本与各自簇中心距离之和）不再降低，返回最后的聚类结果</li>
 </ul>
@@ -225,7 +227,7 @@
 <li><strong>k_modes_single</strong></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">k_modes_single</span><span class="params">(X, n_clusters, n_points, n_attrs, max_iter, dissim, init, init_no,</span></span></span><br><span class="line"><span class="function"><span class="params">                   verbose, random_state)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    X            : </span></span><br><span class="line"><span class="string">    n_clusters   : </span></span><br><span class="line"><span class="string">    n_points     : n_points, n_attrs = X.shape</span></span><br><span class="line"><span class="string">    n_attrs      :</span></span><br><span class="line"><span class="string">    max_iter     : Maximum number of iterations of the k-modes algorithm for a single run.</span></span><br><span class="line"><span class="string">    dissim       : func, default: matching_dissim, &#123;matching_dissim, ng_dissim&#125;</span></span><br><span class="line"><span class="string">        Dissimilarity function used by the k-modes algorithm for categorical variables.</span></span><br><span class="line"><span class="string">        Defaults to the matching dissimilarity function. </span></span><br><span class="line"><span class="string">    init         :</span></span><br><span class="line"><span class="string">    inti_no      :</span></span><br><span class="line"><span class="string">    verbose      :</span></span><br><span class="line"><span class="string">    random_state :</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    random_state = check_random_state(random_state)</span><br><span class="line">    <span class="comment"># _____ INIT _____</span></span><br><span class="line">    <span class="comment"># 初始化，选取中心点</span></span><br><span class="line">    <span class="keyword">if</span> verbose:</span><br><span class="line">        print(<span class="string">"Init: initializing centroids"</span>)</span><br><span class="line">    <span class="comment"># 1. method huang</span></span><br><span class="line">    <span class="keyword">if</span> isinstance(init, str) <span class="keyword">and</span> init.lower() == <span class="string">'huang'</span>:</span><br><span class="line">        centroids = init_huang(X, n_clusters, dissim, random_state)</span><br><span class="line">    <span class="comment"># 2. method cao</span></span><br><span class="line">    <span class="keyword">elif</span> isinstance(init, str) <span class="keyword">and</span> init.lower() == <span class="string">'cao'</span>:</span><br><span class="line">        centroids = init_cao(X, n_clusters, dissim)</span><br><span class="line">    <span class="comment"># 3. 随机选取</span></span><br><span class="line">    <span class="keyword">elif</span> isinstance(init, str) <span class="keyword">and</span> init.lower() == <span class="string">'random'</span>:</span><br><span class="line">        seeds = random_state.choice(range(n_points), n_clusters)</span><br><span class="line">        centroids = X[seeds]</span><br><span class="line">    <span class="comment"># 4. 使用提供好的array</span></span><br><span class="line">    <span class="keyword">elif</span> hasattr(init, <span class="string">'__array__'</span>):</span><br><span class="line">        <span class="comment"># Make sure init is a 2D array.</span></span><br><span class="line">        <span class="keyword">if</span> len(init.shape) == <span class="number">1</span>:</span><br><span class="line">            init = np.atleast_2d(init).T</span><br><span class="line">        <span class="keyword">assert</span> init.shape[<span class="number">0</span>] == n_clusters, \</span><br><span class="line">            <span class="string">"Wrong number of initial centroids in init (&#123;&#125;, should be &#123;&#125;)."</span> \</span><br><span class="line">                .format(init.shape[<span class="number">0</span>], n_clusters)</span><br><span class="line">        <span class="keyword">assert</span> init.shape[<span class="number">1</span>] == n_attrs, \</span><br><span class="line">            <span class="string">"Wrong number of attributes in init (&#123;&#125;, should be &#123;&#125;)."</span> \</span><br><span class="line">                .format(init.shape[<span class="number">1</span>], n_attrs)</span><br><span class="line">        centroids = np.asarray(init, dtype=np.uint16)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">raise</span> NotImplementedError</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> verbose:</span><br><span class="line">        print(<span class="string">"Init: initializing clusters"</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># rows : n_clusters, cols : n_points</span></span><br><span class="line">    membship = np.zeros((n_clusters, n_points), dtype=np.uint8)</span><br><span class="line">    <span class="comment"># cl_attr_freq is a list of lists with dictionaries that contain the</span></span><br><span class="line">    <span class="comment"># frequencies of values per cluster and attribute.</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># rows : n_clusters, cols : n_attrs</span></span><br><span class="line">    cl_attr_freq = [[defaultdict(int) <span class="keyword">for</span> _ <span class="keyword">in</span> range(n_attrs)]</span><br><span class="line">                    <span class="keyword">for</span> _ <span class="keyword">in</span> range(n_clusters)]</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">for</span> ipoint, curpoint <span class="keyword">in</span> enumerate(X):</span><br><span class="line">        <span class="comment"># Initial assignment to clusters</span></span><br><span class="line">        <span class="comment"># 返回距离最近的中心点</span></span><br><span class="line">        clust = np.argmin(dissim(centroids, curpoint, X=X, membship=membship))</span><br><span class="line">        membship[clust, ipoint] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Count attribute values per cluster.</span></span><br><span class="line">        <span class="keyword">for</span> iattr, curattr <span class="keyword">in</span> enumerate(curpoint):</span><br><span class="line">            cl_attr_freq[clust][iattr][curattr] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Perform an initial centroid update.</span></span><br><span class="line">    <span class="keyword">for</span> ik <span class="keyword">in</span> range(n_clusters):</span><br><span class="line">        <span class="keyword">for</span> iattr <span class="keyword">in</span> range(n_attrs):</span><br><span class="line">            <span class="keyword">if</span> sum(membship[ik]) == <span class="number">0</span>:</span><br><span class="line">                <span class="comment"># Empty centroid, choose randomly</span></span><br><span class="line">                centroids[ik, iattr] = random_state.choice(X[:, iattr])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                centroids[ik, iattr] = get_max_value_key(cl_attr_freq[ik][iattr])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># _____ ITERATION _____</span></span><br><span class="line">    <span class="keyword">if</span> verbose:</span><br><span class="line">        print(<span class="string">"Starting iterations..."</span>)</span><br><span class="line">    itr = <span class="number">0</span></span><br><span class="line">    labels = <span class="literal">None</span></span><br><span class="line">    converged = <span class="literal">False</span></span><br><span class="line">    cost = np.Inf</span><br><span class="line">    <span class="keyword">while</span> itr &lt;= max_iter <span class="keyword">and</span> <span class="keyword">not</span> converged:</span><br><span class="line">        itr += <span class="number">1</span></span><br><span class="line">        centroids, moves = _k_modes_iter(X, centroids, cl_attr_freq, membship, dissim, random_state)</span><br><span class="line">        <span class="comment"># All points seen in this iteration</span></span><br><span class="line">        labels, ncost = _labels_cost(X, centroids, dissim, membship)</span><br><span class="line">        converged = (moves == <span class="number">0</span>) <span class="keyword">or</span> (ncost &gt;= cost)</span><br><span class="line">        cost = ncost</span><br><span class="line">        <span class="keyword">if</span> verbose:</span><br><span class="line">            print(<span class="string">"Run &#123;&#125;, iteration: &#123;&#125;/&#123;&#125;, moves: &#123;&#125;, cost: &#123;&#125;"</span></span><br><span class="line">                  .format(init_no + <span class="number">1</span>, itr, max_iter, moves, cost))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> centroids, labels, cost, itr</span><br></pre></td></tr></table></figure>
-<h3 id="3-K-prototype"><a href="#3-K-prototype" class="headerlink" title="3. K-prototype"></a>3. K-prototype</h3><ul>
+<h1 id="3-K-prototype"><a href="#3-K-prototype" class="headerlink" title="3. K-prototype"></a>3. K-prototype</h1><ul>
 <li><strong>Algorithm</strong></li>
 <li><strong>KPrototypes</strong></li>
 </ul>
@@ -275,6 +277,10 @@
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        		</li>
+      		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Cluster</a>
         		</li>
@@ -526,6 +532,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
@@ -538,15 +548,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -574,6 +580,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
@@ -582,19 +596,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -606,11 +608,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Online Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -626,15 +636,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Online Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -646,7 +652,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -663,6 +669,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Softmax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多分类</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -718,14 +732,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Softmax</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多分类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
@@ -738,11 +744,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -21,8 +21,9 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.cc/2019/05/30/常见降维算法小结/2019-05-30-常见降维算法小结/image-20191201003852739.png">
 <meta property="og:image" content="http://chenson.cc/2019/05/30/常见降维算法小结/2019-05-30-常见降维算法小结/svd.png">
+<meta property="og:image" content="http://chenson.cc/2019/05/30/常见降维算法小结/2019-05-30-常见降维算法小结/image-20200113144359506.png">
 <meta property="og:image" content="http://chenson.cc/2019/05/30/常见降维算法小结/2019-05-30-常见降维算法小结/image-20191201000546620.png">
-<meta property="og:updated_time" content="2020-01-09T06:25:35.413Z">
+<meta property="og:updated_time" content="2020-01-14T10:03:22.864Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见降维算法小结">
 <meta name="twitter:description" content="1. Introduction由于数学不是很好，经常对一些矩阵分解之类相关的算法理解得有些模糊，大致知道算法的核心思想，往往却没理解到其数学角度的本质区别，所以有必要好好整理一下相关的知识点。就以降维为起点，梳理一下相关的算法。（可能有些并没有归类到降维相关的算法上，但最终却有着降维的效果）">
@@ -206,24 +207,23 @@ D(x) &= \frac 1 n \sum_{i=1}^n (x_i^Tw)^2  \\
 &= w^T(\frac 1 n \sum_{i=1}^n x_ix_i^T)w \tag 1
 \end {align}</script><p><strong>公式(1)的括号内部其实是样本协方差矩阵</strong>，将其简化写作$\Sigma$，则有</p>
 <script type="math/tex; mode=display">
-\left\{
-    \begin{array}{}
-        \max\{w^T\Sigma w\}  \\
-        s.t \space\space\space\space w^Tw=1
-    \end{array}
-    \right.</script><p>以上问题就变成了<strong>带约束的最大化问题</strong>，之前整理的常见优化算法时提到<strong>拉格朗日乘子</strong>就是用来解这样问题的。</p>
+\begin{cases}
+\max\{w^T\Sigma w\}  \\
+s.t \space\space\space\space w^Tw=1
+\end{cases}</script><p>以上问题就变成了<strong>带约束的最大化问题（因为$w$是单位向量）</strong>，之前整理的常见优化算法时提到<strong>拉格朗日乘子</strong>就是用来解这样问题的。</p>
 <h4 id="拉格朗日-Lagrangian-函数"><a href="#拉格朗日-Lagrangian-函数" class="headerlink" title="拉格朗日(Lagrangian)函数"></a>拉格朗日(Lagrangian)函数</h4><script type="math/tex; mode=display">
-L(x, y, \lambda) = f(x, y) - \lambda(g(x, y) - c)</script><p>这里$f(x, y)$是目标函数，$g(x, y) = c$是约束条件。</p>
-<p>将上面的式子代入到拉格朗日函数，有（这里$\lambda$是拉格朗日乘子）</p>
+L(x, y, \lambda) = f(x, y) - \lambda(g(x, y) - c)</script><p>这里$f(x, y)$是目标函数，<strong>$g(x, y) = c$是约束条件</strong>。</p>
+<p>将上面的式子代入到拉格朗日函数，有（这里<strong>$\lambda$是拉格朗日乘子</strong>）</p>
 <script type="math/tex; mode=display">
 J(w) = w^T\Sigma w - \lambda(w^Tw - 1) \tag 2</script><p>将上述公式(2)对$w$求导，并令其为0，则有</p>
 <script type="math/tex; mode=display">
 \Sigma w - \lambda w = 0</script><p>即有$\lambda$为$\Sigma$的特征值，此时有</p>
 <script type="math/tex; mode=display">
 w^T\Sigma w = w^T\lambda w = \lambda w^Tw = \lambda</script><p>即有$x$投影后的方差就是协方差矩阵的特征值$\to$最大化方差就是<strong>最大化协方差矩阵最大的特征值</strong> $\to$最佳投影方向就是<strong>最大特征值所对应的特征向量</strong>。</p>
-<h4 id="特征值和特征向量"><a href="#特征值和特征向量" class="headerlink" title="特征值和特征向量"></a>特征值和特征向量</h4><ul>
-<li>数学表示$Mv_i = \lambda_i v_i$，这里$M$是个$n\times n$的方阵，$v_i$是个n维的特征向量，<strong>$\lambda_i$是方阵$M$的一个特征值，而$v_i$是方阵$M$的特征值$\lambda_i$所对应的特征向量</strong></li>
-<li>特征值分解主要将一个方阵分解成左边格式$M=Q\Sigma  Q^{-1}$<ul>
+<h4 id="特征分解：特征值和特征向量"><a href="#特征分解：特征值和特征向量" class="headerlink" title="特征分解：特征值和特征向量"></a>特征分解：特征值和特征向量</h4><ul>
+<li>数学表示$Mv_i = \lambda_i v_i$，这里$M$是个$n\times n$的<strong>方阵</strong>，$v_i$是个n维的特征向量，<strong>$\lambda_i$是方阵$M$的一个特征值，而$v_i$是方阵$M$的特征值$\lambda_i$所对应的特征向量</strong></li>
+<li><p><strong>特征值分解主要将一个方阵分解成左边格式</strong>$M=Q\Sigma  Q^{-1}$</p>
+<ul>
 <li>这里$Q$是方阵$M$的特征向量组成的矩阵</li>
 <li>$\Sigma$是一个对角矩阵，每一个对角线上的元素就是一个特征值</li>
 </ul>
@@ -251,20 +251,23 @@ y \end{array}
 </li>
 </ul>
 <h2 id="2-2-最小回归误差"><a href="#2-2-最小回归误差" class="headerlink" title="2.2 最小回归误差"></a>2.2 最小回归误差</h2><h3 id="2-1-3-对协方差矩阵进行特征值分解，将特征值从大到小排列"><a href="#2-1-3-对协方差矩阵进行特征值分解，将特征值从大到小排列" class="headerlink" title="2.1.3 对协方差矩阵进行特征值分解，将特征值从大到小排列"></a>2.1.3 对协方差矩阵进行特征值分解，将特征值从大到小排列</h3><h3 id="2-1-4-取特征值前d大对应的特征向量，将n维数据投影到d维上"><a href="#2-1-4-取特征值前d大对应的特征向量，将n维数据投影到d维上" class="headerlink" title="2.1.4 取特征值前d大对应的特征向量，将n维数据投影到d维上"></a>2.1.4 取特征值前d大对应的特征向量，将n维数据投影到d维上</h3><h2 id="2-2-最小平方误差"><a href="#2-2-最小平方误差" class="headerlink" title="2.2 最小平方误差"></a>2.2 最小平方误差</h2><h1 id="3-SVD-Singular-Value-Decomposition"><a href="#3-SVD-Singular-Value-Decomposition" class="headerlink" title="3. SVD - Singular Value Decomposition"></a>3. SVD - Singular Value Decomposition</h1><h2 id="3-1-图解SVD"><a href="#3-1-图解SVD" class="headerlink" title="3.1 图解SVD"></a>3.1 图解SVD</h2><p>之前在讲PCA的时候，有提到特征值和特征值分解，这些都是针对<strong>行与列值相等的方阵而言的</strong>。但么对于非方阵，就可以用奇异值分解(SVD)来分解，<strong>分解出来的奇异值相当于方阵中的特征值</strong>。</p>
-<p>奇异值分解即对任意矩阵M表示为下面这种形式</p>
+<p><strong>奇异值分解即对任意矩阵M</strong>表示为下面这种形式（<strong>若是特征分解值，则要求矩阵M必为方阵</strong>）</p>
 <script type="math/tex; mode=display">
 M = U\Sigma V^T \tag 3</script><p>这里有</p>
 <ul>
 <li>$U$是左奇异(singular)矩阵，$m \times m$的正交阵，<strong>表示原始域的标准正交基</strong></li>
 <li>V是右奇异矩阵$n \times n$的正交阵，<strong>表示经过M 变换后的co-domain的标准正交基</strong></li>
-<li>$\Sigma$是$m \times n$的对角矩阵，除了主对角线上的元素以外全为0，主对角线上的每个元素都称为奇异值(降序排列)<strong>。表示了V 中的向量与u中相对应向量之间的关系</strong></li>
+<li>$\Sigma$是$m \times n$的对角矩阵，<strong>除了主对角线上的元素以外全为0，主对角线上的每个元素都称为奇异值(降序排列)**</strong>。表示了$V$中的向量与$U$中相对应向量之间的关系**</li>
 </ul>
 <p><img src="/2019/05/30/常见降维算法小结/2019-05-30-常见降维算法小结/svd.png" alt="img" style="zoom:50%;"></p>
+<p>举个实际点的例子，如下</p>
+<p><img src="/2019/05/30/常见降维算法小结/2019-05-30-常见降维算法小结/image-20200113144359506.png" alt="image-20200113144359506"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>ship = [<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>boat = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ocean = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>wood = [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>tree = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>C = [ship, boat, ocean, wood, tree]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>mc = np.matrix(C)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>mc</span><br><span class="line">matrix([[<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>mc * mc.T</span><br><span class="line"><span class="comment"># 对角线上表示该词在所有文档中出现的次数</span></span><br><span class="line"><span class="comment"># 非对角线上表示的是横纵两个词，共同出现在不同文档中的次数</span></span><br><span class="line">matrix([[<span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>], </span><br><span class="line">        [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>mc.T * mc</span><br><span class="line"><span class="comment"># 对角线上表示该文档包含了整个词库中词的个数</span></span><br><span class="line"><span class="comment"># 非对角线上表示的是横纵两个文档的交集，包含了整个词库中词的个数</span></span><br><span class="line">matrix([[<span class="number">3</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">1</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">        [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br></pre></td></tr></table></figure>
 <h2 id="3-2-求解-U-Sigma-V-三个矩阵"><a href="#3-2-求解-U-Sigma-V-三个矩阵" class="headerlink" title="3.2 求解$U, \Sigma, V$三个矩阵"></a>3.2 求解$U, \Sigma, V$三个矩阵</h2><ul>
-<li><p>V</p>
+<li><p>$V$（右奇异矩阵）</p>
 <p>根据之前提到的$M^TMv_i = \lambda_i v_i$，此时即可求出矩阵V = {$v_1, v_2, …, v_n$}</p>
 </li>
-<li><p>U</p>
+<li><p>$U$（左奇异矩阵）</p>
 <p>将矩阵$M$和$M$的转置做矩阵乘法，会的到一个$m \times m$的方阵$MM^T$，此时有$MM^Tu_i = \lambda_i u_i$，矩阵U={$u_1, u_2, …, u_m$}</p>
 <ul>
 <li>问题1：<strong>为什么$M^TM$对应的是矩阵$M$，$MM^T$对应的是矩阵$U$?仅仅根据对应矩阵的大小么？</strong></li>
@@ -273,7 +276,7 @@ M = U\Sigma V^T \tag 3</script><p>这里有</p>
 </li>
 <li><p>$\Sigma$</p>
 <p>由于$\Sigma$除了对角线上是奇异值其他位置都是0，那我们只需要求出每个奇异值$\sigma$可以了。</p>
-<p>将上面的等式(3)两边同时乘以矩阵V，则有（V的转置矩阵$V^T$等于V的逆矩阵$V^{-1}$，$VV^T=I$，对角线值为1的单位矩阵，单位矩阵$I$×任意矩阵$A$=$A$）</p>
+<p>将上面的等式(3)两边同时乘以矩阵$V$，则有（$V$的转置矩阵$V^T$等于V的逆矩阵$V^{-1}$，$VV^T=I$，对角线值为1的单位矩阵，单位矩阵$I$×任意矩阵$A$=$A$）</p>
 <script type="math/tex; mode=display">
 \begin {align}
 MV &= U \Sigma V^TV \\
@@ -282,12 +285,23 @@ MV &= U \Sigma V^TV \\
  \sigma_i &= \frac {M v_i} {u_i}
 \end {align}</script><p>这里将矩阵V表示为{$v_1, v_2, …, v_n$}，矩阵U表示为{$Av_1, Av_2, …, Av_n$} </p>
 <ul>
-<li>问题：矩阵U大小为$m\times m$，这里似乎$m \times n$，不对？</li>
+<li>问题：矩阵$U$大小为$m\times m$，这里似乎$m \times n$，不对？</li>
 </ul>
 <p>之前就已经求出了$V$和$U$了，即可以求出奇异值矩阵$\Sigma$ </p>
 </li>
 </ul>
-<p>这里证明一下之前提出的问题，为什么<strong>为什么$M^TM$对应的是矩阵$M$，$MM^T$对应的是矩阵$U$</strong>。</p>
+<p>这里证明一下之前提出的问题，<strong>为什么$M^TM$对应的是矩阵$M$，$MM^T$对应的是矩阵$U$</strong>。</p>
+<ul>
+<li><p>$MM^T$，最终出来的是$m \times m$大小的矩阵，即描述的是词与词之间的关系，对角线上的某个元素表示的是自身变量的变化情况，非对角线上的某个元素表示的是两个词之间的共现程度，也就是相似性。</p>
+</li>
+<li><p>$M^TM$，同上，出来是$n \times n$大小的矩阵，描述的是文档与文档之间的关系，最终要求$M^TM$的特征值和特征向量。其中特征向量表某个主体维度方向，特征值表示该维度的权重。</p>
+</li>
+<li><blockquote>
+<p>从几何意义上讲，上述的两个对称矩阵表示的是一个<strong>线性变换</strong>，求该对称矩阵的特征向量几何，即是寻找一组正交基来表示这个线性变换，这个正交基中的每一个基向量可以看做是一个语义维度，即一个topic。这组特征向量所表示的方向即是经矩阵变化后方向保持不变的方向而只做一定的拉伸。先找到最大的一个特征值，表示在相应语义维度的重要性，即先找到一个最重要的语义维度，然后找次大的。每个语义维度之间的关联竟可能小，因为特征向量集是正交的，表示完全不同的语义方向，因此形成不同的语义空间。最后，自己的语义空间中相似度得到提高，不同语义之间的相似度得以减小加大区分度。</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>所以对矩阵$M$进行奇异值分解，即可同时得到上述两个矩阵的特征向量</strong></p>
 <p>先证明前者，根据之前的公式</p>
 <script type="math/tex; mode=display">
 \begin {align}
@@ -300,9 +314,9 @@ M^TM V &= V\Sigma^2V^TV \tag 7\\
 &=  V\Sigma^2
 \end {align}</script><p>将公式(4)(5)相乘可得公式(6)，两边同时乘以矩阵$V$，得到公式(7)</p>
 <ul>
-<li><p>问题：关于公式里面的$\Sigma^2$是怎么来的，以及和上面提到的$\lambda_i$的关系？</p>
+<li><p>问题1：关于公式里面的$\Sigma^2$是怎么来的，以及和上面提到的$\lambda_i$的关系？</p>
 </li>
-<li><p>回答：$\Sigma$是奇异值矩阵，$\lambda_i$是特征值，两者关系如下</p>
+<li><p>回答1：$\Sigma$是奇异值矩阵，$\lambda_i$是特征值，两者关系如下</p>
 <script type="math/tex; mode=display">
 \begin {align}
 M^TMV &= V\Sigma^2  \\
@@ -329,7 +343,19 @@ M \to M^TM , MM^T \to \lambda_i \to v_i, u_i \\
 <h2 id="3-3-SVD常见用途"><a href="#3-3-SVD常见用途" class="headerlink" title="3.3 SVD常见用途"></a>3.3 SVD常见用途</h2><p>上面的计算推导公式中，最后得到了奇异值矩阵$\Sigma$，这和矩阵分解中的特征值很像，代表了这个特征的重要性，且值从左上到右下是降序的，经常前top 10%的值就占了奇异值的99%，也就是说可以用这10%替代整个矩阵了。根据这一特性，SVD常见用途如下。</p>
 <h3 id="3-3-1-推荐算法"><a href="#3-3-1-推荐算法" class="headerlink" title="3.3.1 推荐算法"></a>3.3.1 推荐算法</h3><p>以前的博客里面有提到过，选取奇异值前k个，具体应用如下图</p>
 <p><img src="/2019/05/30/常见降维算法小结/2019-05-30-常见降维算法小结/image-20191201000546620.png" alt="image-20191201000546620" style="zoom: 50%;"></p>
-<h3 id="3-3-2-PCA降维"><a href="#3-3-2-PCA降维" class="headerlink" title="3.3.2 PCA降维"></a>3.3.2 PCA降维</h3><h3 id="3-3-3-NLP-潜在语义索引（LSI）"><a href="#3-3-3-NLP-潜在语义索引（LSI）" class="headerlink" title="3.3.3 NLP-潜在语义索引（LSI）"></a>3.3.3 NLP-潜在语义索引（LSI）</h3><h3 id="3-3-4-CV中用于图像压缩"><a href="#3-3-4-CV中用于图像压缩" class="headerlink" title="3.3.4 CV中用于图像压缩"></a>3.3.4 CV中用于图像压缩</h3><p>具体例子见知乎专栏<a href="https://zhuanlan.zhihu.com/p/42896542" target="_blank" rel="noopener">奇异值的物理意义</a>，还挺有意思的。并且这篇文章后面关于SVD的几何含义也写得很不错，值得一看。</p>
+<h3 id="3-3-2-PCA降维"><a href="#3-3-2-PCA降维" class="headerlink" title="3.3.2 PCA降维"></a>3.3.2 PCA降维</h3><p>上面公式(1)中可看出，PCA降维需要先找出样本的协方差矩阵$XX^T$的最大的$d$个特征向量，然后用这个最大的$d$个特征向量张成的矩阵来做地位投影降维。所在在计算$XX^T$协方差矩阵过程中，可以利用SVD来近似计算，减少计算量。因为SVD可以在不先求出协方差矩阵$XX^T$的情况下，求出<strong>右奇异矩阵</strong>。具体用法如下</p>
+<p>假设样本矩阵$X$的大小为$m \times n$，根据3.2提到的，可以通过$X^TX$求出矩阵$V$，此时有</p>
+<script type="math/tex; mode=display">
+X'_{m \times d} = X_{m \times n}^T V_{n \times d}</script><p>此时可以看到将特征的个数从$n$降到了$d$，起到了PCA降维的效果。</p>
+<p>如果再公国$XX^T$求出矩阵$U$的话，此时有</p>
+<script type="math/tex; mode=display">
+X'_{d \times n} = U_{d\times m}^T X_{m \times n}</script><p>此时可以看到样本的个数从$m$降到了$d$，对行数进行了压缩，并不想PCA需要的效果。</p>
+<p>综上，也可以看出</p>
+<ul>
+<li><strong>左奇异矩阵$U$可以用于行数的压缩</strong></li>
+<li><strong>右奇异矩阵$V$可以用于列数的压缩</strong></li>
+</ul>
+<h3 id="3-3-3-NLP-潜在语义索引（LSI）"><a href="#3-3-3-NLP-潜在语义索引（LSI）" class="headerlink" title="3.3.3 NLP-潜在语义索引（LSI）"></a>3.3.3 NLP-潜在语义索引（LSI）</h3><h3 id="3-3-4-CV中用于图像压缩"><a href="#3-3-4-CV中用于图像压缩" class="headerlink" title="3.3.4 CV中用于图像压缩"></a>3.3.4 CV中用于图像压缩</h3><p>具体例子见知乎专栏<a href="https://zhuanlan.zhihu.com/p/42896542" target="_blank" rel="noopener">奇异值的物理意义</a>，还挺有意思的。并且这篇文章后面关于SVD的几何含义也写得很不错，值得一看。</p>
 <h2 id="3-4-SVD的几何含义"><a href="#3-4-SVD的几何含义" class="headerlink" title="3.4 SVD的几何含义"></a>3.4 SVD的几何含义</h2><h2 id="3-5-SVD改进"><a href="#3-5-SVD改进" class="headerlink" title="3.5 SVD改进"></a>3.5 SVD改进</h2><p>一下几种算法主要是SVD应用在推荐系统中的一些改进</p>
 <h3 id="3-5-1-SVD"><a href="#3-5-1-SVD" class="headerlink" title="3.5.1 SVD++"></a>3.5.1 SVD++</h3><h3 id="3-5-2-BiasSVD"><a href="#3-5-2-BiasSVD" class="headerlink" title="3.5.2 BiasSVD"></a>3.5.2 BiasSVD</h3><h3 id="3-5-3-FunkSVD"><a href="#3-5-3-FunkSVD" class="headerlink" title="3.5.3 FunkSVD"></a>3.5.3 FunkSVD</h3><h1 id="4-LDA-Linear-Discriminant-Analysis"><a href="#4-LDA-Linear-Discriminant-Analysis" class="headerlink" title="4. LDA - Linear Discriminant Analysis"></a>4. LDA - Linear Discriminant Analysis</h1><blockquote>
 <p>将带上标签的数据/点（有监督学习），通过投影的方法，投影到维度更低的空间中，使得投影后的点，会形成按类别区分，一簇一簇的情况，相同类别的点，将会在投影后的空间中更接近。</p>
@@ -646,6 +672,10 @@ M \to M^TM , MM^T \to \lambda_i \to v_i, u_i \\
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
@@ -658,15 +688,11 @@ M \to M^TM , MM^T \to \lambda_i \to v_i, u_i \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -694,6 +720,14 @@ M \to M^TM , MM^T \to \lambda_i \to v_i, u_i \\
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
@@ -702,19 +736,7 @@ M \to M^TM , MM^T \to \lambda_i \to v_i, u_i \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -726,11 +748,19 @@ M \to M^TM , MM^T \to \lambda_i \to v_i, u_i \\
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Online Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -746,15 +776,11 @@ M \to M^TM , MM^T \to \lambda_i \to v_i, u_i \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Online Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -766,7 +792,7 @@ M \to M^TM , MM^T \to \lambda_i \to v_i, u_i \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -783,6 +809,14 @@ M \to M^TM , MM^T \to \lambda_i \to v_i, u_i \\
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Softmax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多分类</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -838,14 +872,6 @@ M \to M^TM , MM^T \to \lambda_i \to v_i, u_i \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Softmax</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多分类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
               </li>
              
@@ -858,11 +884,11 @@ M \to M^TM , MM^T \to \lambda_i \to v_i, u_i \\
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
               </li>
              
               <li class="article-tag-list-item">
