@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://chenson.cc/2018/05/25/深度学习笔记-RNN常见网络/2018-05-25-深度学习笔记-RNN常见网络/image-20190223182723913.png">
 <meta property="og:image" content="http://chenson.cc/2018/05/25/深度学习笔记-RNN常见网络/2018-05-25-深度学习笔记-RNN常见网络/image-20191213165746152.png">
 <meta property="og:image" content="http://chenson.cc/2018/05/25/深度学习笔记-RNN常见网络/2018-05-25-深度学习笔记-RNN常见网络/image-20191213174807551.png">
-<meta property="og:updated_time" content="2019-12-13T10:11:07.431Z">
+<meta property="og:updated_time" content="2020-02-01T14:45:50.041Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深度学习笔记-RNN常见网络">
 <meta name="twitter:description" content="说实话，只是大概了解一下这些常见的RNN模型，但是这些模型为什么这么设计，为什么能够抓取网络中可能有用的长短期信息其实我还是比较懵的。这一块以后也是需要去深入理解的一部分，先mark一下。 1. 循环神经网络 - RNN (Recurrent Neural Network)  H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)上面的公式是RNN相关拓展网络的基础">
@@ -261,9 +261,11 @@ O_t= \sigma(X_t W_{xo} + H_{t-1}W_{ho} + b_o)</script></li>
 <script type="math/tex; mode=display">
 H_t = O_t \bigodot \tanh(C_t)</script></li>
 <li><p>问题：候选记忆细胞的激活函数为什么用<code>tanh</code>函数 (-1, 1) 之间？</p>
-<p><img src="/2018/05/25/深度学习笔记-RNN常见网络/2018-05-25-深度学习笔记-RNN常见网络/image-20191213174807551.png" alt="image-20191213174807551" style="zoom: 33%;"></p>
+<p><code>tanh</code>是以0为中心的，并且在0附近梯度比较大，收敛速度快。理论上其他激活函数如果符合上述原则，也可以。</p>
+<p> 补充一下激活函数的大致选取原则：非线性，可导，计算方便，有效梯度区域广（在参数的常见取值的情况下，梯度不会过大或过小），激活后的取值范围合适。</p>
 </li>
 </ul>
+<p>  <img src="/2018/05/25/深度学习笔记-RNN常见网络/2018-05-25-深度学习笔记-RNN常见网络/image-20191213174807551.png" alt="image-20191213174807551" style="zoom: 33%;"></p>
 <h1 id="4-深度循环神经网络"><a href="#4-深度循环神经网络" class="headerlink" title="4. 深度循环神经网络"></a>4. 深度循环神经网络</h1><h1 id="5-双向循环神经网络"><a href="#5-双向循环神经网络" class="headerlink" title="5. 双向循环神经网络"></a>5. 双向循环神经网络</h1><h1 id="6-References"><a href="#6-References" class="headerlink" title="6. References"></a>6. References</h1><ul>
 <li><a href="https://zh.gluon.ai/chapter_recurrent-neural-networks" target="_blank" rel="noopener">动手学深度学习-循环神经网络</a></li>
 <li><a href="https://blog.csdn.net/softee/article/details/54292102" target="_blank" rel="noopener">RNN LSTM与GRU深度学习模型学习笔记</a></li>
@@ -557,15 +559,11 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -577,11 +575,15 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -613,7 +615,11 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -621,11 +627,7 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -637,11 +639,19 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">关系网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Pytorch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -657,18 +667,6 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Pytorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
@@ -678,6 +676,10 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -701,15 +703,15 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Softmax</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">多分类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -722,18 +724,6 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GPU</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -757,7 +747,27 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -769,15 +779,7 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Quant</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -786,10 +788,6 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SVD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -809,7 +807,19 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -829,14 +839,6 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
@@ -849,11 +851,11 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
+                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">SSD硬盘更换</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -861,11 +863,11 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
+                <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">SSD硬盘更换</a>
               </li>
             
             <div class="clearfix"></div>
