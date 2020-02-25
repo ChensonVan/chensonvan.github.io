@@ -33,7 +33,7 @@
 <meta property="og:image" content="http://chenson.cc/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/1460000015575991.png">
 <meta property="og:image" content="http://chenson.cc/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/1460000015575997.png">
 <meta property="og:image" content="http://chenson.cc/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/transformer_resideual_layer_norm_2.png">
-<meta property="og:updated_time" content="2020-02-25T04:31:21.851Z">
+<meta property="og:updated_time" content="2020-02-25T04:35:14.807Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLP相关算法初探">
 <meta name="twitter:description" content="1. Introduction主要是想了解下NLP中Embedding的相关的，然后顺手就看了下最近比较火的Attention和Bert等算法，也正好丰富一下知识体系，了解了解。笔记做得很简单，之后再好好丰富吧。 Embedding在机器学习中应该地位比较重要，对于很多非结构化的数据或者半结构化的数据，往往都要用到Embedding，转化成机器容易识别的一个结构化的数据，比如向量和矩阵等，这么做的">
@@ -191,7 +191,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. <mark>Introduction</mark></h1><p>主要是想了解下NLP中Embedding的相关的，然后顺手就看了下最近比较火的Attention和Bert等算法，也正好丰富一下知识体系，了解了解。笔记做得很简单，之后再好好丰富吧。</p>
+        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>主要是想了解下NLP中Embedding的相关的，然后顺手就看了下最近比较火的Attention和Bert等算法，也正好丰富一下知识体系，了解了解。笔记做得很简单，之后再好好丰富吧。</p>
 <p>Embedding在机器学习中应该地位比较重要，对于很多非结构化的数据或者半结构化的数据，往往都要用到Embedding，转化成机器容易识别的一个结构化的数据，比如向量和矩阵等，这么做的同时，还可以提高模型的泛化能力，不仅仅是限制在历史出现过的样本。</p>
 <p>介绍Embedding之前，先简单介绍一下初始阶段常见的概念</p>
 <ul>
@@ -218,12 +218,12 @@
 <li>缺点是无法解释多义词</li>
 </ul>
 <h1 id="3-Transformer"><a href="#3-Transformer" class="headerlink" title="3. Transformer"></a>3. Transformer</h1><p><img src="/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/v2-26f3e9cd3679956dab33486c83dd0088_hd-20200218215503208.jpg" alt="img" style="zoom:50%;"></p>
-<p>Transformer是一种不同于RNN和CNN的新的网络结构，这里强调的是一种<strong>==网络结构==</strong>，Transformer包含了<code>Encoder</code>和<code>Decoder</code>(基本Seq2Seq的模型都在这么一种架构)</p>
+<p>Transformer是一种不同于RNN和CNN的新的网络结构，这里强调的是一种<strong><mark>网络结构</mark></strong>，Transformer包含了<code>Encoder</code>和<code>Decoder</code>(基本Seq2Seq的模型都在这么一种架构)</p>
 <p>以文本领域里的<code>Encoder-Decoder</code>框架为例</p>
 <ul>
 <li>比如机器学习的分类问题中，训练数据通常是一个 (X, y) pari，其中$X = (x_1, x_2, … …, x_m)$, y是类别，可以是0/1，或者是一个ont-hot的向量</li>
 <li>那么文本领域里常常是(Source, Target)，这里Source和Target可以是一篇文章、一个句子等，可以是同一种语言也可以是不同的语言，对应的任务可以是翻译，或者总结等；<ul>
-<li>$Source = (x_1, x_2, … …, x_m)$, Encoder顾名思义就是对输入句子Source进行编码，将输入句子通过<strong>非线性变换转化为==中间语义表示$C$(即Context Vector，上下文向量)==</strong>，其中<ul>
+<li>$Source = (x_1, x_2, … …, x_m)$, Encoder顾名思义就是对输入句子Source进行编码，将输入句子通过<strong>非线性变换转化为中<mark>间语义表示C(即Context Vector，上下文向量)</mark></strong>，其中<ul>
 <li>$C = F(x_1, x_2, … …, x_m)$</li>
 </ul>
 </li>
@@ -259,7 +259,7 @@ y_i &= f(C, y_1, y_2, ..., y_{i-1})
 </ol>
 <p>其中<strong>$f$是Decoder的非线性变换函数</strong>。从这里可以看出，在生成目标句子的单词时，不论生成哪个单词，它们使用的输入句子Source的语义编码$C$都是一样的，没有任何区别<br>这里，在生成$C$的时候，所有的输入单词$(x_1, x_2, …, x_m)$的影响力都是一样的，但是实际生活中，我们的都知道有些单词是比较重要，有些可以忽略，即需要给这些输入分配一个概率权重，有了这个概率信息，意味着在生成每个单词yi的时候，<strong>原先都是相同的中间语义表示$C$会被替换成根据当前生成单词而不断变化的$C_i$</strong>。</p>
 </li>
-<li><p>这个就是Attention的关键，即==由固定的中间语义表示$C$换成了根据当前输出单词来调整成加入注意力模型的变化的$C_i$==，具体如下</p>
+<li><p>这个就是Attention的关键，即<mark>由固定的中间语义表示C换成了根据当前输出单词来调整成加入注意力模型的变化的C_i</mark>，具体如下</p>
 <script type="math/tex; mode=display">
 \begin {align}
 y_1 &= f(C_1) \\
@@ -644,15 +644,27 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -700,14 +712,6 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
@@ -716,11 +720,11 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -729,6 +733,10 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -772,11 +780,11 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -789,14 +797,6 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -853,6 +853,10 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">DCN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -961,10 +965,6 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
             
             <div class="clearfix"></div>
