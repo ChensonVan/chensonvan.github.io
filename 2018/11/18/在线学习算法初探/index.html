@@ -9,22 +9,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://chenson.cc">
-  <title>在线学习算法初探 | Vane&#39;s Blog</title>
+  <title>Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="1. Introduction背景：CTR里面数据多，维度高，时效性短，故需要实时训练 带来的问题就是数据量大，单机可能无法求得最优解  什么是Online Learning  关于实时训练：先用前N天的数据训练，在实时训练 如何部署：在这样场景下的LR，其实模型就是一系列的w，把参数存在redis里面就ok了   Online Optimization 在线最优化问题">
 <meta name="keywords" content="FTRL,Online Learning,CTR">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在线学习算法初探">
+<meta property="og:title" content="Vane&#39;s Blog">
 <meta property="og:url" content="http://chenson.cc/2018/11/18/在线学习算法初探/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="1. Introduction背景：CTR里面数据多，维度高，时效性短，故需要实时训练 带来的问题就是数据量大，单机可能无法求得最优解  什么是Online Learning  关于实时训练：先用前N天的数据训练，在实时训练 如何部署：在这样场景下的LR，其实模型就是一系列的w，把参数存在redis里面就ok了   Online Optimization 在线最优化问题">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://chenson.cc/2018/11/18/在线学习算法初探/2018-11-18-在线学习算法初探/image-20200227135748112.png">
+<meta property="og:image" content="http://chenson.cc/2018/11/18/在线学习算法初探/2018-11-18-在线学习算法初探/image-20200227171230257.png">
+<meta property="og:image" content="http://chenson.cc/2018/11/18/在线学习算法初探/2018-11-18-在线学习算法初探/image-20200227172604359.png">
 <meta property="og:image" content="http://chenson.cc/2018/11/18/在线学习算法初探/2018-11-18-在线学习算法初探/image-20191231143514929.png">
-<meta property="og:updated_time" content="2020-01-09T09:32:12.397Z">
+<meta property="og:updated_time" content="2020-02-27T09:34:47.200Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在线学习算法初探">
+<meta name="twitter:title" content="Vane&#39;s Blog">
 <meta name="twitter:description" content="1. Introduction背景：CTR里面数据多，维度高，时效性短，故需要实时训练 带来的问题就是数据量大，单机可能无法求得最优解  什么是Online Learning  关于实时训练：先用前N天的数据训练，在实时训练 如何部署：在这样场景下的LR，其实模型就是一系列的w，把参数存在redis里面就ok了   Online Optimization 在线最优化问题">
-<meta name="twitter:image" content="http://chenson.cc/2018/11/18/在线学习算法初探/2018-11-18-在线学习算法初探/image-20191231143514929.png">
+<meta name="twitter:image" content="http://chenson.cc/2018/11/18/在线学习算法初探/2018-11-18-在线学习算法初探/image-20200227135748112.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -161,21 +164,6 @@
             <article id="post-在线学习算法初探" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      在线学习算法初探
-    </h1>
-  
-
-        
-        <a href="/2018/11/18/在线学习算法初探/" class="archive-article-date">
-  	<time datetime="2018-11-18T06:36:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-18</time>
-</a>
-        
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>背景：CTR里面数据多，维度高，时效性短，故需要实时训练</p>
@@ -192,7 +180,7 @@
 </ul>
 <a id="more"></a>
 <ul>
-<li><p>FTRL可以看做一种优化算法的改进，所以是一种优化算法，但可以等价于在线学习，因为算是为在线学习而生的。在线优化算法框架</p>
+<li><p>FTRL可以看做一种优化算法的改进，所以是一种优化算法，但可以等价于在线学习，因为算是为在线学习而生的<mark>在线优化算法框架</mark></p>
 </li>
 <li><p>腾讯开源的PS angle支持，后期可以看一下</p>
 </li>
@@ -201,52 +189,181 @@
 <li>一个是随着样本的到来，学习一个样本的最优解，即类似SGD。无法保证权重最优解，只能优化单个样本的Regret【定义和Loss基本一致，只是针对一个样本一个样本累计的损失】，叫做Online GD（OGD），缺点是无法保证稀疏性。所以问题变得了最优化问题的求解？</li>
 </ul>
 </li>
-<li>要认识到稀疏性在CTR领域里面的重要性，理解知乎某个回答里面的5%的稀疏性，30%稀疏性等，为什么，有什么好处？—》稀疏解<ul>
+<li><p>要认识到稀疏性在CTR领域里面的重要性，理解知乎某个回答里面的5%的稀疏性，30%稀疏性等，为什么，有什么好处？—》稀疏解</p>
+<ul>
 <li>为什么没有稀疏解：可能认为是浮点型计算，导致没有完全的0的稀疏解。sol是clip一下，turncated一下</li>
 </ul>
 </li>
-</ul>
-<ul>
 <li><p>和优化相关的</p>
 <ul>
-<li>无约束优化问题，比如说没有正则项</li>
-<li>有等式约束的问题，比如加入正则并限制正则的大小</li>
+<li>无约束优化问题，比如说没有正则项<ul>
+<li>光滑的凸函数：GD</li>
+<li>非光滑的凸函数：subject-GD</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>有等式约束的问题，比如加入正则并限制正则的大小<ul>
+<li>解决方案：拉格朗日乘子<ul>
 <li>不等式约束的优化问题</li>
 </ul>
-<p>其中有等式约束优化问题和不等式约束问题分别可以使用拉格朗日乘子和KKT条件来转换为无约束问题</p>
+</li>
+<li>解决方案：KKT</li>
+</ul>
 </li>
 </ul>
 <ul>
-<li>次梯度<ul>
+<li><p>次梯度</p>
+<ul>
 <li>什么是次梯度？</li>
 </ul>
 </li>
+<li><p>Bloom Filter，过滤到一些频次很低次等，可以回顾9313里面的算法，针对特征分布的长尾效应</p>
+</li>
 </ul>
+<h1 id="2-常见优化算法介绍"><a href="#2-常见优化算法介绍" class="headerlink" title="2. 常见优化算法介绍"></a>2. 常见优化算法介绍</h1><h2 id="2-1-截断法（TG）"><a href="#2-1-截断法（TG）" class="headerlink" title="2.1 截断法（TG）"></a>2.1 截断法（TG）</h2><h3 id="2-1-1-L1正则法"><a href="#2-1-1-L1正则法" class="headerlink" title="2.1.1 L1正则法"></a>2.1.1 L1正则法</h3><script type="math/tex; mode=display">
+W^{(t+1)} = W^{(t)} + \eta^{(t)}G^{(t)} - \eta^{(t)}\lambda sgn(W^{(t)})</script><p>这里</p>
 <ul>
-<li>Bloom Filter，过滤到一些频次很低次等，可以回顾9313里面的算法，针对特征分布的长尾效应</li>
+<li>$\lambda \in \Bbb R, \lambda \ge 0$，为正则化的一个参数</li>
+<li>sgn(𝑣)为符号函数 </li>
+<li>$\eta$为学习率，具体策略为$\eta^{(t)} = \frac 1 {\sqrt t}$</li>
 </ul>
-<h1 id="2-Compare"><a href="#2-Compare" class="headerlink" title="2. Compare"></a>2. Compare</h1><p><img src="/2018/11/18/在线学习算法初探/2018-11-18-在线学习算法初探/image-20191231143514929.png" alt="image-20191231143514929"></p>
+<p>以上就是常见的L1正则法，但比较难得到稀疏解（具体原因可能因为样本数量不够？或者计算的时候很难得到0）</p>
+<h3 id="2-1-2-简单截断法"><a href="#2-1-2-简单截断法" class="headerlink" title="2.1.2 简单截断法"></a>2.1.2 简单截断法</h3><p>Online-Learning的过程中，以$k$为窗口，当第$t$轮迭代时</p>
+<ul>
+<li><p>$t/k$不为整数时，采用标准的SGD进行迭代更新</p>
+</li>
+<li><p>$t/k$为整数时，采用如下权重更新方式</p>
+<script type="math/tex; mode=display">
+\begin {align}
+W^{(t+1)} &= T_0(W^{(t)} - \eta^{(t)}G^{(t)}, \theta) \\
+T_0(v_i, \theta) &= \begin {cases} 
+0 \qquad \;\text{if}\; |v_i| \le \theta \\
+v_i \qquad \text{otherwise}
+
+\end {cases}
+\end {align}</script><ul>
+<li>这里$\theta \in \Bbb R, \theta \ge 0$，是一个标量</li>
+<li>即权重$v_i \le \theta$时候，则返回0，否则返回$v_i$，做了截断处理</li>
+<li>$\eta$为学习率</li>
+<li>$G^{(t)}$代表了第$t$次迭代中损失函数的梯度 （仅用了一个样本的梯度）</li>
+</ul>
+</li>
+</ul>
+<p>以上做法就是比较简单，也同时比较 too aggressive（某维度系数比较小可能是由于该维度的训练样本太少，训练不足产生的），且$\theta$的值比较难确定，需要人为的经验来设定</p>
+<h3 id="2-1-3-截断梯度法（TG）"><a href="#2-1-3-截断梯度法（TG）" class="headerlink" title="2.1.3 截断梯度法（TG）"></a>2.1.3 截断梯度法（TG）</h3><p>TG是对简答截断法的改进（由原先的两段式截断，改成三段式截断）</p>
+<script type="math/tex; mode=display">
+\begin {align}
+W^{(t+1)} &= T_1(W^{(t)} - \eta^{(t)}G^{(t)}, \eta^{(t)} \lambda^{(t)},\theta) \\
+T_1(v_i, \alpha,\theta) &= \begin {cases} 
+\max(0, v_i - \alpha) \qquad \text{if}\; |v_i| \in [0, \theta]\\
+\min(0, v_i + \alpha) \qquad \;\text{if}\; |v_i| \in [-\theta, 0]\\
+v_i \qquad\qquad\qquad\;\;\;\;\;\; \text{otherwise} 
+
+\end {cases}
+\end {align}</script><p>这里同简单截断法，以$k$为窗口，每$k$步进行一次截断</p>
+<ul>
+<li>$t/k$不为整数时，$\lambda^{(t)} = 0$</li>
+<li>$t/k$为整数时，$\lambda^{(t)} = k\lambda$</li>
+<li>这里$\lambda$和$\theta$决定了W的稀疏程度，这俩值越大，则稀疏性越强</li>
+<li>问题：这里$\lambda$是怎么起到作用了？是$\alpha = \eta^{(t)}\lambda^{(t)}$这边吗？</li>
+</ul>
+<p>$T_0$和$T_1$曲线对比</p>
+<p><img src="/2018/11/18/在线学习算法初探/2018-11-18-在线学习算法初探/image-20200227135748112.png" alt="image-20200227135748112" style="zoom:50%;"></p>
+<p>当TG里面的参数取特殊值时，可以退化成L1正则法或者简单截断法</p>
+<ul>
+<li>当$\alpha = 0$时，就不做截断了</li>
+<li>当$\alpha = \theta$时，就退化成简单截断法</li>
+<li><p>令$\theta = \infty, k = 1 $时，退化成L1正则法</p>
+</li>
+<li><p>问题：怎么看出这种截断方法的优势？（相比简答截断法）</p>
+</li>
+<li><p>答案：可能截断出来的w值相对更平滑？</p>
+</li>
+</ul>
+<h2 id="2-2-FOBOS-Forward-Backward-Splitting"><a href="#2-2-FOBOS-Forward-Backward-Splitting" class="headerlink" title="2.2 FOBOS - Forward-Backward Splitting"></a>2.2 FOBOS - Forward-Backward Splitting</h2><p>前向后向切分，这里将权重的更新分成两个步骤：</p>
+<script type="math/tex; mode=display">
+\begin {align}
+W^{(t + \frac 1 2)} &= W^{(t)} - \eta^{(t)}G^{(t)} \tag 1 \\
+W^{(t+1)} &= \arg \min_W [\frac 1 2 ||W - W^{(t + \frac 1 2)}||^2 + \eta^{(t + \frac 1 2)}\Psi(W)] \tag 2 \\
+
+W^{(t+1)} &= \arg \min_W [\frac 1 2 ||W - W^{(t)} + \eta^{(t)}G^{(t)}||^2 + \eta^{(t + \frac 1 2)}\Psi(W)] \tag 3 
+\end {align}</script><p>步骤（1）里面就是一个标准的GD，步骤（2）可以看做是一个微调的操作，具体包含了两部分</p>
+<ul>
+<li>前部分带有平方的那块，<strong>保证了微调的$W^{(t+1)}$在梯度下降的结果$W^{(t + \frac 1 2)}$的附近</strong></li>
+<li>后部分是一个正则项（可以为L1正则么），保证了结果的稀疏性</li>
+</ul>
+<p>将步骤（1）（2）合并一起看，就是步骤（3）了，且可以优化公式如下（冯扬的文章里有推导证明）</p>
+<script type="math/tex; mode=display">
+W^{(t+1)} = W^{(t)} - \eta^{(t)}G^{(t)} + \eta^{(t+\frac 1 2)}\Psi(W^{(t+1)})</script><p>可看出$W^{(t+1)}$的取值和$W^(t)$以及本身$W^(t+1)$有关，即是Backward和Forward的思想？</p>
+<p>将后面部分的正则项用L1替换的话，可化简公式（不推导，直接用结论），得到L1-FOBOS</p>
+<p><img src="/2018/11/18/在线学习算法初探/2018-11-18-在线学习算法初探/image-20200227171230257.png" alt="image-20200227171230257"></p>
+<p>这里</p>
+<ul>
+<li>下标$i$为特征的维度</li>
+<li><mark>当一条样本产生的梯度</mark>不足以令对应维度上的权重发生足够大的改变（上述公式有阈值）时，认为本次更新过程中该维度不够重要，应当令其权重为0<ul>
+<li>问题1：这里是对该维度的权重直接置0么？会不会也too aggressive了？</li>
+<li>问题2：<mark>如果只是本次噪声样本导致的误差为，以后如何消除这类的误差，因为该维度已经被置零了</mark></li>
+<li>问题3：这个算法的具体优势体现在哪里？（对比GD和TG）<ul>
+<li>跟GD对比：也算是基于GD的一类变种算法（高级版本的TG？）</li>
+<li>跟TG对比：算是TG的特殊条件，只是截断的判定条件不一样。当$\theta = \infty, k = 1, \lambda_{(TG)}^{(t)} = \eta^{(t + \frac 1 2)\lambda}$时候，退化成TG</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-3-RDA-Regularized-Dual-Averaging"><a href="#2-3-RDA-Regularized-Dual-Averaging" class="headerlink" title="2.3 RDA - Regularized Dual Averaging"></a>2.3 RDA - Regularized Dual Averaging</h2><p>正则对偶平均，权重更新策略为</p>
+<script type="math/tex; mode=display">
+W^{(t+1)} = \arg \min_W [\frac 1 t \sum_{r=1}^t<G^{(r)}, W> + \Psi(W) + \frac {\beta^{(t)}} {t}h(W)]</script><p>这里</p>
+<ul>
+<li><p>$\frac 1 t \sum_{r=1}^t<g^{(r)}, w>$为线性函数，包含了之前所有梯度/次梯度的平均值(dual average)，里面表示的是$G^{(r)}$对$W$的积分平均值（积分中值）</g^{(r)},></p>
+</li>
+<li><p>$\Psi(W)$是一个正则项</p>
+</li>
+<li>$h(W)$是一个辅助的严格凸函数，$\frac {\beta^{(t)}} {t}h(W)$是一个额外的正则项，$\{\beta^{(t)}|t \ge1\}$是y一个非负且非自减序列</li>
+</ul>
+<p>将L1正则代入上述公式中，经过化简有</p>
+<p><img src="/2018/11/18/在线学习算法初探/2018-11-18-在线学习算法初探/image-20200227172604359.png" alt="image-20200227172604359"></p>
+<p>这里</p>
+<ul>
+<li>下标$i$为特征的维度</li>
+<li>当$\overline g_i^{(t)} &lt; \lambda$时，该维度的特征权重被置0（即产生了特征的稀疏性，且这里是累积均值，和L1-FOBOS的单个样本的梯度不一样）<ul>
+<li>问题1：如何高效的保留所有特征所有维度的历史梯度均值？（均值x个数？）</li>
+<li>问题2：除了取均值外，和L1-FOBOS还有什么区别？<ul>
+<li>权重更新方式不一样</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>当$\overline g_i^{(t)} \ge \lambda$时，更新梯度所采用的也任是<mark>累积的均值</mark>（我觉得这里体现了该算法的Average）</li>
+</ul>
+<h2 id="2-4-FTRL-Follow-the-Regularized-Leader"><a href="#2-4-FTRL-Follow-the-Regularized-Leader" class="headerlink" title="2.4 FTRL - Follow the Regularized Leader"></a>2.4 FTRL - Follow the Regularized Leader</h2><p>从形式上将L1-FOBOS和L1-RDA进行统一，具体更新公式如下</p>
+<script type="math/tex; mode=display">
+W^{(t+1)} = \arg \min_W [\{G^{(1:t)}·W + \lambda_1||W||_1 + \lambda_2||W||_2^2 + \frac 1 2 \sum_{s=1}^t\sigma^{(s)}||W-W^{(s)}||^2_2]</script><h1 id="3-常见优化算法对比"><a href="#3-常见优化算法对比" class="headerlink" title="3. 常见优化算法对比"></a>3. 常见优化算法对比</h1><p><img src="/2018/11/18/在线学习算法初探/2018-11-18-在线学习算法初探/image-20191231143514929.png" alt="image-20191231143514929"></p>
 <p>这几个算法大体可以分成三大部分</p>
 <ul>
-<li><p>A部分：loss-func，根据梯度来计算的，其中FOBOS、FTRL-Proximal这里计算的是累积梯度？？【==不是RDA才是累积梯度么==】</p>
+<li><p>A部分：loss-func，根据梯度来计算的，其中FOBOS、FTRL-Proximal这里计算的是累积梯度？？</p>
+<ul>
+<li>问题：<mark>不是RDA才是累积梯度么</mark>？</li>
+<li>答案：前者计算的是累积梯度，后者对累积梯度做了累加处理？这里很是模糊，因为有些地方写法似乎不太一样</li>
+</ul>
 <blockquote>
 <p>(A) an approximation to $\mathcal l_{1:t}$based on the gradients  $g_t = ▽ \mathcal l_{t}(x_t)$ </p>
 </blockquote>
 </li>
 <li><p>B部分：正则项，这里$\Psi$是正则项, $\phi$ 则是正则项$\psi$的次梯度（因为对于L1，在0处是不可导的）</p>
 </li>
-<li><p>C部分：==限制条件，限制了想的变化不能离过去太远，或者离0点太远，这里x可以理解成模型的weight==</p>
+<li><p>C部分：<mark>限制条件（必须为严格凸函数？），限制了想的变化不能离过去太远，或者离0点太远，这里x可以理解成模型的weight</mark></p>
+<ul>
+<li>也就是FOBOS是在GD之后，微调，且不能离GD之后的值太远</li>
+<li>RDA则是限制了权重$x$不能离0太远，对$x$的大小做了一个惩罚项？</li>
+</ul>
 <blockquote>
-<p>(C) additional strong convexity to stabilize the algorithm, needed to guarantee low regret (the matrices $Q_s$ are generalized learning rates) </p>
+<p>(C) additional <mark><strong>strong convexity</strong> </mark>to stabilize the algorithm, needed to guarantee low regret (the matrices $Q_s$ are generalized learning rates) </p>
 </blockquote>
 </li>
 </ul>
-<p>根据以上几个公式，可以提取两个问题</p>
-<ul>
-<li>how the $\Psi$ function is handled</li>
-<li>where additional strong convexity is centered</li>
-</ul>
-<h2 id="2-1-相关定义"><a href="#2-1-相关定义" class="headerlink" title="2.1 相关定义"></a>2.1 相关定义</h2><ul>
+<h1 id="4-相关定义"><a href="#4-相关定义" class="headerlink" title="4. 相关定义"></a>4. 相关定义</h1><ul>
 <li><p>loss function</p>
 <script type="math/tex; mode=display">
 f_t(x) = l_t(x) + \Psi(x) \\
@@ -269,12 +386,12 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
 <li><p>FTRL-Proximal</p>
 <script type="math/tex; mode=display">
 x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}^{\frac 1 2}(x - x_s)||^2_2</script></li>
-<li></li>
 </ul>
 <h1 id="5-References"><a href="#5-References" class="headerlink" title="5. References"></a>5. References</h1><ul>
 <li><a href="https://zhuanlan.zhihu.com/p/36410780" target="_blank" rel="noopener">在线学习（Online Learning）导读</a></li>
 <li><a href="https://plushunter.github.io/2017/07/26/机器学习算法系列（31）：在线最优化求解（online Optimization）/" target="_blank" rel="noopener">机器学习算法系列（31）：在线最优化求解（online Optimization）</a></li>
 <li><a href="https://plushunter.github.io/page/13/" target="_blank" rel="noopener">布隆过滤器</a></li>
+<li><a href>冯扬-在线最优化求解(Online Optimization)</a></li>
 </ul>
 
       
@@ -418,7 +535,7 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="在线学习算法初探" data-title="在线学习算法初探" data-url="http://chenson.cc/2018/11/18/在线学习算法初探/"></div>
+	<div class="ds-thread" data-thread-key="在线学习算法初探" data-title data-url="http://chenson.cc/2018/11/18/在线学习算法初探/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -557,6 +674,14 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -569,15 +694,7 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -593,11 +710,11 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -625,7 +742,7 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -633,11 +750,15 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
+                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -646,10 +767,6 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -665,6 +782,14 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
               </li>
              
@@ -677,23 +802,7 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -701,7 +810,7 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -713,15 +822,19 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
+                <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Softmax</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多分类</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -737,15 +850,51 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sed</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">awk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -769,59 +918,11 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
+                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hive</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sed</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">awk</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -841,11 +942,27 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Softmax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多分类</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -861,19 +978,19 @@ x_{t+1}= \arg \min _x g_t·x + t\lambda ||x||_1 + \frac 1 2 \sum_{s=1}^t ||Q_{s}
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">SSD硬盘更换</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">SSD硬盘更换</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -33,7 +33,7 @@
 <meta property="og:image" content="http://chenson.cc/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/1460000015575991.png">
 <meta property="og:image" content="http://chenson.cc/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/1460000015575997.png">
 <meta property="og:image" content="http://chenson.cc/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/transformer_resideual_layer_norm_2.png">
-<meta property="og:updated_time" content="2020-02-25T04:35:14.807Z">
+<meta property="og:updated_time" content="2020-02-25T06:25:56.030Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLP相关算法初探">
 <meta name="twitter:description" content="1. Introduction主要是想了解下NLP中Embedding的相关的，然后顺手就看了下最近比较火的Attention和Bert等算法，也正好丰富一下知识体系，了解了解。笔记做得很简单，之后再好好丰富吧。 Embedding在机器学习中应该地位比较重要，对于很多非结构化的数据或者半结构化的数据，往往都要用到Embedding，转化成机器容易识别的一个结构化的数据，比如向量和矩阵等，这么做的">
@@ -223,7 +223,7 @@
 <ul>
 <li>比如机器学习的分类问题中，训练数据通常是一个 (X, y) pari，其中$X = (x_1, x_2, … …, x_m)$, y是类别，可以是0/1，或者是一个ont-hot的向量</li>
 <li>那么文本领域里常常是(Source, Target)，这里Source和Target可以是一篇文章、一个句子等，可以是同一种语言也可以是不同的语言，对应的任务可以是翻译，或者总结等；<ul>
-<li>$Source = (x_1, x_2, … …, x_m)$, Encoder顾名思义就是对输入句子Source进行编码，将输入句子通过<strong>非线性变换转化为中<mark>间语义表示C(即Context Vector，上下文向量)</mark></strong>，其中<ul>
+<li>$Source = (x_1, x_2, … …, x_m)$, Encoder顾名思义就是对输入句子Source进行编码，将输入句子通过<strong>非线性变换转化为<mark>中间语义表示C(即Context Vector，上下文向量)</mark></strong>，其中<ul>
 <li>$C = F(x_1, x_2, … …, x_m)$</li>
 </ul>
 </li>
@@ -273,12 +273,17 @@ C_i &= \sum_{j=1}^{T_x}\alpha_{ij} h_j \tag 2 \\
 e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
 \end {align}</script><p><img src="/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/v2-163c0c3dda50d1fe7a4f7a64ba728d27_hd.jpg" alt="img" style="zoom:60%;"></p>
 <ul>
-<li>这里$i$表示Decoder端第$i$个单词，表示Decoder step</li>
-<li>这里$j$表示Encoder端第$j$个单词，表示Encoder step</li>
-<li>$h_j$表示Encoder端第$j$个次输出的隐向量，也就是Encoder中第$j$ Step所产生的隐向量，又称作<strong>Value</strong>或者<strong>Memory</strong></li>
+<li><p>这里$i$表示Decoder端第$i$个单词，表示Decoder step</p>
+</li>
+<li><p>这里$j$表示Encoder端第$j$个单词，表示Encoder step</p>
+</li>
+<li><p>$h_j$表示Encoder端第$j$个次输出的隐向量，也就是Encoder中第$j$ Step所产生的隐向量，又称作<strong>Value</strong>或者<strong>Memory</strong></p>
+</li>
 <li><p>$\alpha_{ij}$表示Encoder端的第$j$个词与Decoder端第$i$个词之间的权重（又称作<strong>Alignment</strong>），即源端第$j$个词对目标端第$i$个词的影响程度</p>
 </li>
 <li><p>上面的公式(3)是一个Softmax输出$\alpha_{ij}$的概率值和为1，即原始端的所有单词对当前Decoder端第$j$个单词总影响和为1</p>
+</li>
+<li><p><mark></mark></p>
 </li>
 <li><p>==$e_{ij}$表示一个<strong>对齐模型</strong>，用于衡量Encoder端的位置$j$个词，对于Decoder端的位置$i$个词的对齐程度（影响程度）==，即Decoder​端生成位置$i$的词时，有多少程度受Encoder端的位置$j$的词影响，==也就是$s_{i-1}$和$h_j$的相关程度==</p>
 </li>
@@ -644,6 +649,14 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -656,15 +669,7 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -680,11 +685,11 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -712,7 +717,7 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -720,11 +725,15 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
+                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -733,10 +742,6 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -752,6 +757,14 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
               </li>
              
@@ -764,23 +777,7 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -788,7 +785,7 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -800,15 +797,19 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
+                <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Softmax</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多分类</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -824,15 +825,51 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+                <a href="javascript:void(0)" class="js-tag color5">用户画像</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sed</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">awk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -856,59 +893,11 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
+                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hive</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sed</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">awk</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">xargs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -928,11 +917,27 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Softmax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多分类</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -948,19 +953,19 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">SSD硬盘更换</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">SSD硬盘更换</a>
               </li>
              
               <li class="article-tag-list-item">
