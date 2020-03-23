@@ -19,10 +19,13 @@
 <meta property="og:site_name" content="Vane&#39;s Blog">
 <meta property="og:description" content="1. 相关基础知识 抽样：统计学是利用样本数据来推断总体结果，即用样本的统计量来推断总体参数  抽样误差：由于抽样误差的存在，用样本的统计量来推断总体参数，会有一定误差的。所以估计的时候需要考虑这样的误差存在，即需要置信区间（confidence interval）来估计总体参数  标准误（standard error）：根据一次样本结算抽样误差的大小  概率密度函数$f(x)$，类似常见的Log">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://chenson.cc/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/image-20200228165354099.jpg">
-<meta property="og:image" content="http://chenson.cc/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/image-20200228165313219.jpg">
 <meta property="og:image" content="http://chenson.cc/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/image-20200228165903859.jpg">
 <meta property="og:image" content="http://chenson.cc/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/image-20200228165941375.jpg">
+<meta property="og:image" content="http://chenson.cc/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/image-20200228165354099.jpg">
+<meta property="og:image" content="http://chenson.cc/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/image-20200228165313219.jpg">
+<meta property="og:image" content="http://chenson.cc/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/0-20200302160149805.jpeg">
+<meta property="og:image" content="http://chenson.cc/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/0.jpeg">
+<meta property="og:image" content="http://chenson.cc/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/3-s2.0-B9780128051634000049-u04-08-9780128051634.jpg">
 <meta property="og:image" content="http://chenson.cc/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/4711583048766.jpg">
 <meta property="og:image" content="http://chenson.cc/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/image-20200301165720928.jpg">
 <meta property="og:image" content="http://chenson.cc/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/image-20200301165853116.jpg">
@@ -31,11 +34,11 @@
 <meta property="og:image" content="http://chenson.cc/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/image-20200301172106151.jpg">
 <meta property="og:image" content="http://chenson.cc/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/image-20200301173315927.jpg">
 <meta property="og:image" content="http://chenson.cc/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/image-20200301174308460.jpg">
-<meta property="og:updated_time" content="2020-03-01T09:57:07.169Z">
+<meta property="og:updated_time" content="2020-03-02T10:35:25.134Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="读书笔记-白话统计">
 <meta name="twitter:description" content="1. 相关基础知识 抽样：统计学是利用样本数据来推断总体结果，即用样本的统计量来推断总体参数  抽样误差：由于抽样误差的存在，用样本的统计量来推断总体参数，会有一定误差的。所以估计的时候需要考虑这样的误差存在，即需要置信区间（confidence interval）来估计总体参数  标准误（standard error）：根据一次样本结算抽样误差的大小  概率密度函数$f(x)$，类似常见的Log">
-<meta name="twitter:image" content="http://chenson.cc/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/image-20200228165354099.jpg">
+<meta name="twitter:image" content="http://chenson.cc/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/image-20200228165903859.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -240,45 +243,25 @@
 </li>
 <li><p>答案：分子往往是我们有限的样本，所以是通过样本的方差求得总体的方差，只有当分母为$n-1$得到的才是总体方差的无偏估计（暂时不清楚为什么才是这样，这里的$n-1$就是自由度（degree of freedom））</p>
 </li>
-<li><p>自由度（degree of freedom）</p>
-<p>字面意思，计算样本统计量的时候，能够自由取值的数值的个数（可以以$x+y+z=100$为例），基本每估计一个参数的时候，要消耗一个自由度</p>
+<li><p><mark>自由度（degree of freedom）</mark></p>
+<p>字面意思，计算样本统计量的时候，能够自由取值的数值的个数（可以以$x+y+z=100$为例），基本每估计一个参数的时候，要消耗一个自由度。具体可以参考References里的<a href="https://blog.minitab.com/blog/statistics-and-quality-data-analysis/what-are-degrees-of-freedom-in-statistics" target="_blank" rel="noopener">What Are Degrees of Freedom in Statistics?</a>，讲得挺好的</p>
 <ul>
 <li>单样本$t$检验中，需要估计一个参数均值，所以消耗一个参数，所以自由度是$n-1$</li>
 <li>两组比较的$t$检验中，需要估计两组的均值，消耗两个参数，所以自由度是$n_1 + n_2 - 2$</li>
 <li>同理，多组（k）的情况下，自由度是$n_1 + …+n_k - k$</li>
+<li>在两个类别型特征的卡方检验中，自由度为$(n_{row} - 1) * (n_{cell} -1)$，也就是（行数-1）和（列数-1）的乘积</li>
 <li>回归分析中，假设有$m$个自变量，就需要估计$m+1$个权重（含bias权重），此时自由度为$n-(m+1)$，这里$n$为样本的个数，所以通常我们训练模型的时候，样本个数都会大于参数的个数，否则自由度不够的情况下，导致有效估计例数不足，从而导致结果不可靠</li>
 </ul>
 </li>
 </ul>
-<h1 id="2-常见分布"><a href="#2-常见分布" class="headerlink" title="2. 常见分布"></a>2. 常见分布</h1><ul>
-<li><p>Weibull分布：常用于生存数据的拟合（横轴是时间，纵轴是什么？和为1）</p>
-</li>
-<li><p>Logistic分布：常用于描述物种的生命周期演变规律，如生长曲线、人口变化等</p>
-</li>
-<li><p>二项分布：</p>
-</li>
-<li><p>正态分布：常用于描述某些比较稳定但又受一些偶然因素影响的现象</p>
-<ul>
-<li>标准正态分布：将原始数据标准化（均值为0，标准差为1），再拟合正态分布</li>
+<h1 id="2-常见分布"><a href="#2-常见分布" class="headerlink" title="2. 常见分布"></a>2. 常见分布</h1><h2 id="2-1-Weibull分布"><a href="#2-1-Weibull分布" class="headerlink" title="2.1 Weibull分布"></a>2.1 Weibull分布</h2><p>常用于生存数据的拟合（横轴是时间，纵轴是什么？和为1）</p>
+<h3 id="2-1-1-应用案例-Weibull分布分析生存案例"><a href="#2-1-1-应用案例-Weibull分布分析生存案例" class="headerlink" title="2.1.1 应用案例 - Weibull分布分析生存案例"></a>2.1.1 应用案例 - Weibull分布分析生存案例</h3><ul>
+<li>问题：不是很理解下图Weibull分布的纵轴概率，对应的黑点似乎不是累积占比，反而是上限蓝色的线看着像是，黑点和下限是如何确定？</li>
 </ul>
-</li>
-<li><p>t分布簇：<mark>小样本的正态分布</mark></p>
-<p>主要用来<mark>与均值相关</mark>的抽样分布，常用于<mark>两个均数是否相等</mark>的统计检验、回归模型中的回归系数是否为0的统计检验</p>
-<ul>
-<li>当<mark>自由度</mark>越小，t分布于标准正态分布偏离越大</li>
-<li>当自由度很大（30-50），t分布接近标准正态分布</li>
-<li>问题：如何理解自由度（degree of freedom）这个概念？</li>
-<li>答案：白话统计C5.3有介绍，常见自由度是$n-1$，为什么这么取呢，可以以$x+y+z = 100$为例</li>
-</ul>
-</li>
-<li><p>$\chi^2$分布簇：一个服从标准正态分布的随机变量Z，它的平方服从$\chi^2$分布</p>
-<p>与方差有关的抽样分布，主要用于描述<strong>分类资料</strong>的实际频数与理论频数之间的抽样误差，但其本身是一种连续性分布，当用于分类自交，只有在大样本情况下才近似$\chi^2$分布，但样本比较少的时候，需要对其进行校正</p>
-</li>
-<li><p>F分布：方差平方比的分布</p>
-<p><mark>与方差有关</mark>的抽样分布，常用于方差齐性检验、方差分析（组间/内方差）以及回归模型检验（模型方差/残差方差）</p>
-</li>
-</ul>
-<h1 id="3-常见分布的应用案例"><a href="#3-常见分布的应用案例" class="headerlink" title="3. 常见分布的应用案例"></a>3. 常见分布的应用案例</h1><h2 id="3-1-Logistic分布分析Sars传染病案例"><a href="#3-1-Logistic分布分析Sars传染病案例" class="headerlink" title="3.1 Logistic分布分析Sars传染病案例"></a>3.1 Logistic分布分析Sars传染病案例</h2><p>以Logistic分布（生长曲线）拟合03年SARS传染病的规律，具体步骤如下：</p>
+<p><img src="/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/image-20200228165903859.jpg" alt="image-20200228165903859" style="zoom: 31.4%;"></p>
+<p><img src="/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/image-20200228165941375.jpg" alt="image-20200228165941375" style="zoom:30%;"></p>
+<h2 id="2-2-Logistic分布"><a href="#2-2-Logistic分布" class="headerlink" title="2.2 Logistic分布"></a>2.2 Logistic分布</h2><p>常用于描述物种的生命周期演变规律，如生长曲线、人口变化等</p>
+<h3 id="2-2-1-应用案例-Logistic分布分析Sars传染病案例"><a href="#2-2-1-应用案例-Logistic分布分析Sars传染病案例" class="headerlink" title="2.2.1 应用案例 - Logistic分布分析Sars传染病案例"></a>2.2.1 应用案例 - Logistic分布分析Sars传染病案例</h3><p>以Logistic分布（生长曲线）拟合03年SARS传染病的规律，具体步骤如下：</p>
 <ol>
 <li>先拟合累积分布$F(X)$</li>
 <li>再根据$F(X)$求其概率密度函数$f(x)$</li>
@@ -287,14 +270,45 @@
 </ol>
 <p><img src="/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/image-20200228165354099.jpg" alt="image-20200228165354099" style="zoom:33%;"></p>
 <p><img src="/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/image-20200228165313219.jpg" alt="image-20200228165313219" style="zoom:32.1%;"></p>
-<h2 id="3-2-Weibull分布分析生存案例"><a href="#3-2-Weibull分布分析生存案例" class="headerlink" title="3.2 Weibull分布分析生存案例"></a>3.2 Weibull分布分析生存案例</h2><ul>
-<li>问题：不是很理解下图Weibull分布的纵轴概率，对应的黑点似乎不是累积占比，反而是上限蓝色的线看着像是，黑点和下限是如何确定？</li>
+<h2 id="2-3-二项分布"><a href="#2-3-二项分布" class="headerlink" title="2.3 二项分布"></a>2.3 二项分布</h2><h2 id="2-4-正态分布"><a href="#2-4-正态分布" class="headerlink" title="2.4 正态分布"></a>2.4 正态分布</h2><p>常用于描述某些比较稳定但又受一些偶然因素影响的现象</p>
+<p><strong>标准正态分布</strong>：将原始数据标准化（均值为0，标准差为1），再拟合正态分布</p>
+<h2 id="2-5-t-分布"><a href="#2-5-t-分布" class="headerlink" title="2.5 $t$分布"></a>2.5 $t$分布</h2><p><mark>小样本的正态分布</mark>，主要用来<mark>与均值相关</mark>的抽样分布，常用于<mark>两个均数是否相等</mark>的统计检验、回归模型中的回归系数是否为0的统计检验；其主要特点就是<mark>温良宽厚，即峰部相对比正态分布宽一些，尾部比正态分布厚一些。在统计意义上，厚尾对于小样本相对是比较友好的，因为小样本常由于数据量不够大，出现个别异常值，而厚尾则允许这些异常值出现在尾部（后尾即允许相对大概率出现，而正态分布则尽量留在峰部的中间），所以相对来说t检验更适合小样本一些，适合排除异常值的干扰，<strong>准确把握住数据的特征</strong>（集中趋势和离散趋势）</mark>，具体如下图</p>
+<p><img src="/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/0-20200302160149805.jpeg" alt="img"></p>
+<p>常见$t$分布的特性</p>
+<ul>
+<li><p>当<mark>自由度</mark>越小，t分布于标准正态分布偏离越大</p>
+</li>
+<li><p>当自由度很大（30-50），t分布接近标准正态分布</p>
+<ul>
+<li>问题：如何理解自由度（degree of freedom）这个概念？</li>
+<li>答案：白话统计C5.3有介绍，常见自由度是$n-1$，为什么这么取呢，可以以$x+y+z = 100$为例</li>
 </ul>
-<p><img src="/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/image-20200228165903859.jpg" alt="image-20200228165903859" style="zoom: 31.4%;"></p>
-<p><img src="/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/image-20200228165941375.jpg" alt="image-20200228165941375" style="zoom:30%;"></p>
-<h1 id="4-假设检验"><a href="#4-假设检验" class="headerlink" title="4. 假设检验"></a>4. 假设检验</h1><p>以“女士品茶”为例，介绍了“假设检验”的这种思想，重点一直在强调“<mark>如果这位女士不具备这种能力</mark>”（即猜对的概率为随机的50%），此时有：猜对1杯的概率是50%，2杯的概率是25%，5杯的概率是3.125%，8杯的概率是0.3906%</p>
+</li>
+<li><p>具体图例如下图（蓝线为正态分布，红线为自由度=10的t分布，绿线为自由度=1-9的t分布），也就是随着自由度的增大，t分布不断在逼近正态分布</p>
+<p><img src="/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/0.jpeg" alt="img"></p>
+</li>
+</ul>
+<h2 id="2-6-chi-2-分布（卡方分布）"><a href="#2-6-chi-2-分布（卡方分布）" class="headerlink" title="2.6 $\chi^2$分布（卡方分布）"></a>2.6 $\chi^2$分布（卡方分布）</h2><p>具体定义：n个相互独立的随机变量$x_1, x_2, … x_n$，均服从<strong>标准正态分布</strong>，则这n个服从标准正态分布的随机变量的平方和（$Q = \sum_{i=1}^nx_i^2$）构成一个新的随机变量，且服从$\chi^2$分布，所以说卡方分布是由正态分布构成的一个分布，当自由度很大的时候，卡方分布近似正态分布，具体如下图</p>
+<p><img src="/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/3-s2.0-B9780128051634000049-u04-08-9780128051634.jpg" alt="Image result for chi-square Distribution"></p>
+<p><mark>与方差有关的抽样分布</mark>，主要用于描述<mark><strong>分类特征的实际频数与理论频数之间的抽样误差</strong></mark>，但其本身是一种连续性分布，当用于<strong>分类自交</strong>，只有在大样本情况下才近似$\chi^2$分布，但样本比较少的时候，需要对其进行校正</p>
+<p>常见$\chi^2$分布的特性</p>
+<ul>
+<li>卡方分布在第一象限，即卡方值为正值，呈正偏态（右偏态），且随着自由度$v$的增大，趋近于正态分布</li>
+<li>不同的自由度决定不同的卡方分布，自由度越小，分布越偏斜</li>
+<li>卡方分布下的面积和为1</li>
+</ul>
+<h3 id="2-6-1-应用案例-用卡方检验分析两组儿童回答问题的正确性"><a href="#2-6-1-应用案例-用卡方检验分析两组儿童回答问题的正确性" class="headerlink" title="2.6.1 应用案例 - 用卡方检验分析两组儿童回答问题的正确性"></a>2.6.1 应用案例 - 用卡方检验分析两组儿童回答问题的正确性</h3><p>背景：有一个硬币，需要检查是否是个正常硬币（即丢硬币正反面是五五开的）。假设现在丢了50次，</p>
+<p>卡方检验的公式如下</p>
+<script type="math/tex; mode=display">
+\chi^2 = \sum \frac {(O-E)^2} {E}</script><p>这里</p>
+<ul>
+<li>O是观察值</li>
+<li>E是预期值</li>
+</ul>
+<h2 id="2-7-F-分布"><a href="#2-7-F-分布" class="headerlink" title="2.7 $F$分布"></a>2.7 $F$分布</h2><p>方差平方比的分布，<mark>与方差有关</mark>的抽样分布，常用于方差齐性检验、方差分析（组间/内方差）以及回归模型检验（模型方差/残差方差）</p>
+<h1 id="3-假设检验"><a href="#3-假设检验" class="headerlink" title="3. 假设检验"></a>3. 假设检验</h1><p>以“女士品茶”为例，介绍了“假设检验”的这种思想，重点一直在强调“<mark>如果这位女士不具备这种能力</mark>”（即猜对的概率为随机的50%），此时有：猜对1杯的概率是50%，2杯的概率是25%，5杯的概率是3.125%，8杯的概率是0.3906%</p>
 <p>基于一开始的假设“<mark>如果这位女士不具备这种能力</mark>”，根据女士的最终结果，如果只猜对了2杯（概率为25%），有理由相信一开始假设；如果猜对了8倍（概率为0.3906%），这么小的概率情况下，那么就需要怀疑一开始的假设了</p>
-<h2 id="4-1-零假设和备择假设"><a href="#4-1-零假设和备择假设" class="headerlink" title="4.1 零假设和备择假设"></a>4.1 零假设和备择假设</h2><p>假设检验，字面意思就是先做出一个假设，然后根据数据的统计结果，检验一下做出的假设对不对。</p>
+<h2 id="3-1-零假设和备择假设"><a href="#3-1-零假设和备择假设" class="headerlink" title="3.1 零假设和备择假设"></a>3.1 零假设和备择假设</h2><p>假设检验，字面意思就是先做出一个假设，然后根据数据的统计结果，检验一下做出的假设对不对。</p>
 <ul>
 <li><p>零假设$H_0$（无效假设）- Null Hypothesis</p>
 <p>通常会用<mark>反证法</mark>，从正面做出一个假设（比如这位女士不具备这种能力，两种药效的治疗效果没有差别）</p>
@@ -316,7 +330,7 @@ H_0:\beta = 0</script></li>
 <p><mark>通常零假设是我们想要推翻的假设，备择假设是我们想要证实的</mark></p>
 <p>问题：为什么要通过发正法来证实我们的结论，而不是直接证明备择假设？</p>
 <p>答案：</p>
-<h2 id="4-2-常见概念"><a href="#4-2-常见概念" class="headerlink" title="4.2 常见概念"></a>4.2 常见概念</h2><h3 id="4-2-1-I型错误与II型错误"><a href="#4-2-1-I型错误与II型错误" class="headerlink" title="4.2.1 I型错误与II型错误"></a>4.2.1 I型错误与II型错误</h3><p>依旧以女士品茶为例</p>
+<h2 id="2-常见概念"><a href="#2-常见概念" class="headerlink" title=".2 常见概念"></a>.2 常见概念</h2><h3 id="3-2-1-I型错误与II型错误"><a href="#3-2-1-I型错误与II型错误" class="headerlink" title="3.2.1 I型错误与II型错误"></a>3.2.1 I型错误与II型错误</h3><p>依旧以女士品茶为例</p>
 <div class="table-container">
 <table>
 <thead>
@@ -351,8 +365,8 @@ H_0:\beta = 0</script></li>
 </table>
 </div>
 <p>这里$\alpha$就是我们通常将的P值，而$\alpha$的阈值设定通常会和$\beta$相关，如果$\alpha$的阈值设置很低的话，可能会导致$\beta$的升高</p>
-<h3 id="4-2-2-把握度（Power）"><a href="#4-2-2-把握度（Power）" class="headerlink" title="4.2.2 把握度（Power）"></a>4.2.2 把握度（Power）</h3><p>通常为$1-\beta$，即1-II型错误的概率</p>
-<h3 id="4-2-3-P-value"><a href="#4-2-3-P-value" class="headerlink" title="4.2.3 P-value"></a>4.2.3 <mark>P-value</mark></h3><p>来源于于<mark>六西格玛管理</mark>，是关于数据计算结果的概率，大致是<mark>在零假设成立的前提下，计算出至少这么大的统计量，这种情况有多大可能是偶然发生的概率</mark>，我的理解是：<mark>零假设成立的情况下，数据的统计结果推翻零假设，这种情况偶然发生的概率</mark></p>
+<h3 id="3-2-2-把握度（Power）"><a href="#3-2-2-把握度（Power）" class="headerlink" title="3.2.2 把握度（Power）"></a>3.2.2 把握度（Power）</h3><p>通常为$1-\beta$，即1-II型错误的概率</p>
+<h3 id="3-2-3-P-value"><a href="#3-2-3-P-value" class="headerlink" title="3.2.3 P-value"></a>3.2.3 <mark>P-value</mark></h3><p>来源于于<mark>六西格玛管理</mark>，是关于数据计算结果的概率，大致是<mark>在零假设成立的前提下，计算出至少这么大的统计量，这种情况有多大可能是偶然发生的概率</mark>，我的理解是：<mark>零假设成立的情况下，数据的统计结果推翻零假设，这种情况偶然发生的概率</mark>&gt;，通常是用来判断$H_0$假设是否成立的依据</p>
 <ul>
 <li><p>在女生品茶的例子里，零假设是女士不具备这种能力，统计结果是有5杯被正确品出（概率为3.125%），也就是这种情况下偶然发生的概率是3.125%，低于常见的<mark>显著性水平阈值5%</mark></p>
 </li>
@@ -369,14 +383,14 @@ H_0:\beta = 0</script></li>
 <p><img src="/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/4711583048766.jpg" alt="4711583048766" style="zoom:15%;"></p>
 </li>
 </ul>
-<h3 id="4-2-4-95-的置信区间"><a href="#4-2-4-95-的置信区间" class="headerlink" title="4.2.4 95%的置信区间"></a>4.2.4 95%的置信区间</h3><h1 id="5-参数估计"><a href="#5-参数估计" class="headerlink" title="5. 参数估计"></a>5. 参数估计</h1><p>与样本有关的指标称之为<mark>统计量</mark>，与总体有关的指标称之为<mark>参数</mark>，<mark>根据样本统计量来估计总体参数，就是参数估计</mark></p>
-<h2 id="5-1-常见估计法"><a href="#5-1-常见估计法" class="headerlink" title="5.1 常见估计法"></a>5.1 常见估计法</h2><ul>
+<h3 id="3-2-4-95-的置信区间"><a href="#3-2-4-95-的置信区间" class="headerlink" title="3.2.4 95%的置信区间"></a>3.2.4 95%的置信区间</h3><h1 id="4-参数估计"><a href="#4-参数估计" class="headerlink" title="4. 参数估计"></a>4. 参数估计</h1><p>与样本有关的指标称之为<mark>统计量</mark>，与总体有关的指标称之为<mark>参数</mark>，<mark>根据样本统计量来估计总体参数，就是参数估计</mark></p>
+<h2 id="4-1-常见估计法"><a href="#4-1-常见估计法" class="headerlink" title="4.1 常见估计法"></a>4.1 常见估计法</h2><ul>
 <li>点估计</li>
 <li>最小二乘估计</li>
 <li>最大似然估计</li>
 <li>贝叶斯估计</li>
 </ul>
-<h1 id="6-置信区间估计"><a href="#6-置信区间估计" class="headerlink" title="6. 置信区间估计"></a>6. 置信区间估计</h1><h1 id="7-常用统计方法"><a href="#7-常用统计方法" class="headerlink" title="7. 常用统计方法"></a>7. 常用统计方法</h1><h2 id="7-1-一般线性模型-方差分析与线性回归的统一"><a href="#7-1-一般线性模型-方差分析与线性回归的统一" class="headerlink" title="7.1 一般线性模型 - 方差分析与线性回归的统一"></a>7.1 一般线性模型 - 方差分析与线性回归的统一</h2><p>通常的（这里比较的因变量是一个连续值）</p>
+<h1 id="5-置信区间估计"><a href="#5-置信区间估计" class="headerlink" title="5. 置信区间估计"></a>5. 置信区间估计</h1><h1 id="6-常用统计方法"><a href="#6-常用统计方法" class="headerlink" title="6. 常用统计方法"></a>6. 常用统计方法</h1><h2 id="6-1-一般线性模型-方差分析与线性回归的统一"><a href="#6-1-一般线性模型-方差分析与线性回归的统一" class="headerlink" title="6.1 一般线性模型 - 方差分析与线性回归的统一"></a>6.1 一般线性模型 - 方差分析与线性回归的统一</h2><p>通常的（这里比较的因变量是一个连续值）</p>
 <ul>
 <li>两组数据的比较，会考虑用$t$检验（下图最左边）</li>
 <li>多组数据的比较，会考虑方差分析（下图中间）</li>
@@ -409,7 +423,7 @@ y = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p + \varepsilon</script><p>当然上
 <p>以第二组数据为例，具体分析如下</p>
 <p><img src="/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/image-20200301172106151.jpg" alt="image-20200301172106151" style="zoom:40%;"></p>
 <p>所以，<mark>一般线性模型到目前，统一了几种不同类型的自变量，因变量仍然限制为连续变量</mark></p>
-<h2 id="7-2-广义线性模型-线性回归与Logistic回归的统一"><a href="#7-2-广义线性模型-线性回归与Logistic回归的统一" class="headerlink" title="7.2 广义线性模型 - 线性回归与Logistic回归的统一"></a>7.2 广义线性模型 - 线性回归与Logistic回归的统一</h2><p>相对一般线性模型，广义线性模型进一步<mark>把不同类型的因变量也进行了统一</mark>，具体数学表示如下</p>
+<h2 id="6-2-广义线性模型-线性回归与Logistic回归的统一"><a href="#6-2-广义线性模型-线性回归与Logistic回归的统一" class="headerlink" title="6.2 广义线性模型 - 线性回归与Logistic回归的统一"></a>6.2 广义线性模型 - 线性回归与Logistic回归的统一</h2><p>相对一般线性模型，广义线性模型进一步<mark>把不同类型的因变量也进行了统一</mark>，具体数学表示如下</p>
 <script type="math/tex; mode=display">
 g(\mu) = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p + \varepsilon</script><p>这里</p>
 <ul>
@@ -429,12 +443,17 @@ g(\mu) = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p + \varepsilon</script><p>这�
 </ul>
 </li>
 </ul>
-<h2 id="7-3-广义可加模型-脱离线性的束缚"><a href="#7-3-广义可加模型-脱离线性的束缚" class="headerlink" title="7.3 广义可加模型 - 脱离线性的束缚"></a>7.3 广义可加模型 - 脱离线性的束缚</h2><p>根据广义线性模型的名字和数学表示，都可以看出自变量$x$和$y$始终是存在线性关系的。如果在拟合广义线性模型之前，对自变量$x$做一些处理的话（比如$x$的二次项$x^2$、对数关系、指数关系等），可以找出$x$和$y$的非线性关系</p>
-<h2 id="7-4-多水平模型-打破独立条件"><a href="#7-4-多水平模型-打破独立条件" class="headerlink" title="7.4 多水平模型 - 打破独立条件"></a>7.4 多水平模型 - 打破独立条件</h2><p>​    这里重点强调的是打破自变量之间的独立条件，这种情况在实际中是非常常见的，自变量之间是非独立的。<mark>具备这种非独立性的数据，称之为多水平数据</mark>，将这类数据用树形表示的话，如下</p>
+<h2 id="6-3-广义可加模型-脱离线性的束缚"><a href="#6-3-广义可加模型-脱离线性的束缚" class="headerlink" title="6.3 广义可加模型 - 脱离线性的束缚"></a>6.3 广义可加模型 - 脱离线性的束缚</h2><p>根据广义线性模型的名字和数学表示，都可以看出自变量$x$和$y$始终是存在线性关系的。如果在拟合广义线性模型之前，对自变量$x$做一些处理的话（比如$x$的二次项$x^2$、对数关系、指数关系等），可以找出$x$和$y$的非线性关系</p>
+<h2 id="6-4-多水平模型-打破独立条件"><a href="#6-4-多水平模型-打破独立条件" class="headerlink" title="6.4 多水平模型 - 打破独立条件"></a>6.4 多水平模型 - 打破独立条件</h2><p>​    这里重点强调的是打破自变量之间的独立条件，这种情况在实际中是非常常见的，自变量之间是非独立的。<mark>具备这种非独立性的数据，称之为多水平数据</mark>，将这类数据用树形表示的话，如下</p>
 <p><img src="/2019/12/16/读书笔记-白话统计/2019-12-16-读书笔记-白话统计/image-20200301174308460.jpg" alt="image-20200301174308460" style="zoom:40%;"></p>
-<h1 id="8-References"><a href="#8-References" class="headerlink" title="8. References"></a>8. References</h1><ul>
+<h1 id="7-References"><a href="#7-References" class="headerlink" title="7. References"></a>7. References</h1><ul>
 <li><a href="https://www.zhihu.com/question/23149768/answer/282842210" target="_blank" rel="noopener">知乎-统计学假设检验中 p 值的含义具体是什么？</a></li>
 <li><a href="https://www.guokr.com/article/438043/" target="_blank" rel="noopener">果壳-统计学里“P”的故事：蚊子、皇帝的新衣和不育的风流才子</a></li>
+<li><a href="https://www.cnblogs.com/lijingblog/p/11043513.html" target="_blank" rel="noopener">浅谈p值（p-value是什么）</a></li>
+<li><a href="https://blog.minitab.com/blog/statistics-and-quality-data-analysis/what-are-degrees-of-freedom-in-statistics" target="_blank" rel="noopener">What Are Degrees of Freedom in Statistics?</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/42136925" target="_blank" rel="noopener">F分布、t分布、正太分布与卡方分布的联系与区别</a></li>
+<li><a href="https://www.cnblogs.com/baiboy/p/tjx11.html" target="_blank" rel="noopener">【程序员眼中的统计学（11）】卡方分布的应用</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/69888032" target="_blank" rel="noopener">结合日常生活的例子，了解什么是卡方检验</a></li>
 </ul>
 
       
@@ -713,6 +732,18 @@ g(\mu) = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p + \varepsilon</script><p>这�
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -725,15 +756,11 @@ g(\mu) = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p + \varepsilon</script><p>这�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -745,23 +772,15 @@ g(\mu) = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p + \varepsilon</script><p>这�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -797,15 +816,15 @@ g(\mu) = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p + \varepsilon</script><p>这�
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -833,10 +852,6 @@ g(\mu) = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p + \varepsilon</script><p>这�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -849,11 +864,15 @@ g(\mu) = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p + \varepsilon</script><p>这�
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -881,14 +900,6 @@ g(\mu) = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p + \varepsilon</script><p>这�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -901,31 +912,15 @@ g(\mu) = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p + \varepsilon</script><p>这�
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">FM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">FFM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">DeepFM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DCN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -941,23 +936,11 @@ g(\mu) = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p + \varepsilon</script><p>这�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Quant</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -977,7 +960,15 @@ g(\mu) = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p + \varepsilon</script><p>这�
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -997,14 +988,6 @@ g(\mu) = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p + \varepsilon</script><p>这�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
@@ -1013,7 +996,15 @@ g(\mu) = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p + \varepsilon</script><p>这�
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1025,11 +1016,15 @@ g(\mu) = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p + \varepsilon</script><p>这�
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1037,7 +1032,11 @@ g(\mu) = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p + \varepsilon</script><p>这�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
               </li>
             
             <div class="clearfix"></div>

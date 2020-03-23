@@ -232,99 +232,6 @@
 
 
   
-    <article id="post-推荐系统小结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/25/推荐系统小结/">推荐系统小结</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/25/推荐系统小结/" class="archive-article-date">
-  	<time datetime="2019-03-25T02:35:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-Factorization-Machine-FM"><a href="#1-Factorization-Machine-FM" class="headerlink" title="1. Factorization Machine (FM)"></a>1. Factorization Machine (FM)</h1><h2 id="1-1-Introduction"><a href="#1-1-Introduction" class="headerlink" title="1.1 Introduction"></a>1.1 Introduction</h2><p>传统用的One-Hot编码会带来数据稀疏的问题。</p>
-<p>比如数据如下（栗子来自美团技术博客）：</p>
-<p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/275.png" alt="img"></p>
-<p>做了One-Hot编码后</p>
-<p><img src="/2019/03/25/推荐系统小结/2019-03-25-推荐系统小结/700.png" alt="img"></p>
-<p>当里面某些特征的维度比较高的时候，数据维度可能达到百万级别。</p>
-<p>而传统的LR模型也并没考虑到特征之间的关联</p>
-<script type="math/tex; mode=display">
-y = w_0 + \sum_{i=1}^n w_i x_i</script>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Wide&Deep</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">推荐系统</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">FM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">FFM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">DeepFM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DCN</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/25/推荐系统小结/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-AutoML平台试用体验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -893,6 +800,92 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
 
 
   
+    <article id="post-读书笔记-重构大数据统计" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/23/读书笔记-重构大数据统计/">读书笔记-重构大数据统计</a>
+    </h1>
+  
+
+        
+        <a href="/2019/02/23/读书笔记-重构大数据统计/" class="archive-article-date">
+  	<time datetime="2019-02-23T04:41:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="评价：★★★☆☆"><a href="#评价：★★★☆☆" class="headerlink" title="评价：★★★☆☆"></a>评价：★★★☆☆</h1><p>粗略看了一些，似乎数据设计到开发的内容比较多，很多都是java的代码，不过实用性估计不会很高。但是有些计算的思路不错，还是有些启发意义的。比如有些统计变量可以应用在特征工程中，基于RFM模型进行衍生等。</p>
+<h1 id="1-单变量基本统计量"><a href="#1-单变量基本统计量" class="headerlink" title="1. 单变量基本统计量"></a>1. 单变量基本统计量</h1><h2 id="1-1-常见的数据统计量"><a href="#1-1-常见的数据统计量" class="headerlink" title="1.1 常见的数据统计量"></a>1.1 常见的数据统计量</h2><ul>
+<li><p>均值</p>
+<script type="math/tex; mode=display">
+\overline X = \frac 1 n \sum_{i=1}^n X_i</script></li>
+<li><p>方差</p>
+<script type="math/tex; mode=display">
+S_n^2 = \frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2</script><p>分母为n-1，则称之为$S_n^2$的自由度(degree of freedom)  </p>
+<ul>
+<li>问题：不是很理解自由度这个概念</li>
+</ul>
+</li>
+<li><p>标准差 - Standard Deviation</p>
+<script type="math/tex; mode=display">
+S_n = \sqrt {\frac 1 {n-1} \sum_{i=1}^n (X_i - \overline X)^2}</script></li>
+<li><p>变异系数 - Coefficient of Variation, CV</p>
+<script type="math/tex; mode=display">
+\frac {S_n} {\overline X}</script><p>标准差和均值的比值，一个无量纲的量，用来刻画数据的相对分散性</p></li></ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Big Data</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/02/23/读书笔记-重构大数据统计/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1014,6 +1007,18 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -1026,15 +1031,11 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1046,23 +1047,15 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1098,15 +1091,15 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1134,10 +1127,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -1150,11 +1139,15 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1182,14 +1175,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -1202,31 +1187,15 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">FM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">FFM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">DeepFM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DCN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1242,23 +1211,11 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Quant</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1278,7 +1235,15 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1298,14 +1263,6 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
@@ -1314,7 +1271,15 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1326,11 +1291,15 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1338,7 +1307,11 @@ y = w_0 + \sum_{i=1}^n w_i x_i</script>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
               </li>
             
             <div class="clearfix"></div>

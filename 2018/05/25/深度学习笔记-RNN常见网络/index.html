@@ -11,22 +11,23 @@
   <link rel="dns-prefetch" href="http://chenson.cc">
   <title>深度学习笔记-RNN常见网络 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="说实话，只是大概了解一下这些常见的RNN模型，但是这些模型为什么这么设计，为什么能够抓取网络中可能有用的长短期信息其实我还是比较懵的。这一块以后也是需要去深入理解的一部分，先mark一下。 1. 循环神经网络 - RNN (Recurrent Neural Network)  H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)上面的公式是RNN相关拓展网络的基础">
+  <meta name="description" content="说实话，只是大概了解一下这些常见的RNN模型，但是这些模型为什么这么设计，为什么能够抓取网络中可能有用的长短期信息其实我还是比较懵的。这一块以后也是需要去深入理解的一部分，先mark一下。 1. 循环神经网络 - RNN (Recurrent Neural Network)1.1 模型结构  H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)上面的公式是RNN相">
 <meta name="keywords" content="Deep Learning,RNN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深度学习笔记-RNN常见网络">
 <meta property="og:url" content="http://chenson.cc/2018/05/25/深度学习笔记-RNN常见网络/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="说实话，只是大概了解一下这些常见的RNN模型，但是这些模型为什么这么设计，为什么能够抓取网络中可能有用的长短期信息其实我还是比较懵的。这一块以后也是需要去深入理解的一部分，先mark一下。 1. 循环神经网络 - RNN (Recurrent Neural Network)  H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)上面的公式是RNN相关拓展网络的基础">
+<meta property="og:description" content="说实话，只是大概了解一下这些常见的RNN模型，但是这些模型为什么这么设计，为什么能够抓取网络中可能有用的长短期信息其实我还是比较懵的。这一块以后也是需要去深入理解的一部分，先mark一下。 1. 循环神经网络 - RNN (Recurrent Neural Network)1.1 模型结构  H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)上面的公式是RNN相">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.cc/2018/05/25/深度学习笔记-RNN常见网络/2018-05-25-深度学习笔记-RNN常见网络/image-20191213165901226.png">
+<meta property="og:image" content="http://chenson.cc/2018/05/25/深度学习笔记-RNN常见网络/2018-05-25-深度学习笔记-RNN常见网络/1042406-20170306142253375-175971779.png">
 <meta property="og:image" content="http://chenson.cc/2018/05/25/深度学习笔记-RNN常见网络/2018-05-25-深度学习笔记-RNN常见网络/image-20190223182723913.png">
 <meta property="og:image" content="http://chenson.cc/2018/05/25/深度学习笔记-RNN常见网络/2018-05-25-深度学习笔记-RNN常见网络/image-20191213165746152.png">
 <meta property="og:image" content="http://chenson.cc/2018/05/25/深度学习笔记-RNN常见网络/2018-05-25-深度学习笔记-RNN常见网络/image-20191213174807551.png">
-<meta property="og:updated_time" content="2020-02-01T14:45:50.041Z">
+<meta property="og:updated_time" content="2020-03-22T10:06:09.261Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深度学习笔记-RNN常见网络">
-<meta name="twitter:description" content="说实话，只是大概了解一下这些常见的RNN模型，但是这些模型为什么这么设计，为什么能够抓取网络中可能有用的长短期信息其实我还是比较懵的。这一块以后也是需要去深入理解的一部分，先mark一下。 1. 循环神经网络 - RNN (Recurrent Neural Network)  H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)上面的公式是RNN相关拓展网络的基础">
+<meta name="twitter:description" content="说实话，只是大概了解一下这些常见的RNN模型，但是这些模型为什么这么设计，为什么能够抓取网络中可能有用的长短期信息其实我还是比较懵的。这一块以后也是需要去深入理解的一部分，先mark一下。 1. 循环神经网络 - RNN (Recurrent Neural Network)1.1 模型结构  H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)上面的公式是RNN相">
 <meta name="twitter:image" content="http://chenson.cc/2018/05/25/深度学习笔记-RNN常见网络/2018-05-25-深度学习笔记-RNN常见网络/image-20191213165901226.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
@@ -182,10 +183,74 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>说实话，只是大概了解一下这些常见的RNN模型，但是这些模型为什么这么设计，为什么能够抓取网络中可能有用的长短期信息其实我还是比较懵的。这一块以后也是需要去深入理解的一部分，先mark一下。</p>
-<h1 id="1-循环神经网络-RNN-Recurrent-Neural-Network"><a href="#1-循环神经网络-RNN-Recurrent-Neural-Network" class="headerlink" title="1. 循环神经网络 - RNN (Recurrent Neural Network)"></a>1. 循环神经网络 - RNN (Recurrent Neural Network)</h1><p><img src="/2018/05/25/深度学习笔记-RNN常见网络/2018-05-25-深度学习笔记-RNN常见网络/image-20191213165901226.png" alt="image-20191213165901226" style="zoom:40%;"></p>
+<h1 id="1-循环神经网络-RNN-Recurrent-Neural-Network"><a href="#1-循环神经网络-RNN-Recurrent-Neural-Network" class="headerlink" title="1. 循环神经网络 - RNN (Recurrent Neural Network)"></a>1. 循环神经网络 - RNN (Recurrent Neural Network)</h1><h2 id="1-1-模型结构"><a href="#1-1-模型结构" class="headerlink" title="1.1 模型结构"></a>1.1 模型结构</h2><p><img src="/2018/05/25/深度学习笔记-RNN常见网络/2018-05-25-深度学习笔记-RNN常见网络/image-20191213165901226.png" alt="image-20191213165901226" style="zoom:40%;"></p>
 <script type="math/tex; mode=display">
 H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相关拓展网络的基础，基本都是用到了这个结构。</p>
-<h1 id="2-门控循环单元-GRN-Gated-Recurrent-Neural-Networks"><a href="#2-门控循环单元-GRN-Gated-Recurrent-Neural-Networks" class="headerlink" title="2. 门控循环单元 - GRN (Gated Recurrent Neural Networks)"></a>2. 门控循环单元 - GRN (Gated Recurrent Neural Networks)</h1><p>按时间顺序上来看，GRN是在LSTM之后提出来的。但是这个相对来说可能没那么复杂，所以先总结这个，然后再总结LSTM。</p>
+<h2 id="1-2-前向传播"><a href="#1-2-前向传播" class="headerlink" title="1.2 前向传播"></a>1.2 前向传播</h2><p>接着看一下RNN模型相关的细节部分</p>
+<p><img src="/2018/05/25/深度学习笔记-RNN常见网络/2018-05-25-深度学习笔记-RNN常见网络/1042406-20170306142253375-175971779.png" alt="img"></p>
+<p>这里</p>
+<ul>
+<li>$x^{(t)}$代表在序列索引号t时训练样本的输入</li>
+<li>$h^{(t)}$代表在序列索引号t时模型的隐藏状态</li>
+<li>$o^{(t)}$代表在序列索引号t时模型的输出，只由模型当前的隐藏状态$h^{(t)}$决定<ul>
+<li>$o^{(t)}=Vh^{(t)} + c$</li>
+</ul>
+</li>
+<li>$L^{(t)}$代表在序列索引号t时模型的损失函数</li>
+<li>$y^{(t)}$代表在序列索引号t时训练样本的真实输出</li>
+<li>$\hat y^{(t)}$代表在序列索引号t时训练样本的模型输出<ul>
+<li>$\hat y^{(t)} = \sigma(o^{(t)}) = \sigma(Vh^{(t)}+c)$</li>
+</ul>
+</li>
+<li>$U,W,V$这三个矩阵是模型相关的参数，在整个RNN网络中是共享的，体现了RNN的Recurrent循环的思想<ul>
+<li>这里$U=W_{xh}, W=W_{hh}$，矩阵$V$是输出时的权重</li>
+</ul>
+</li>
+</ul>
+<p>问题</p>
+<ul>
+<li>如果NN部分是多层的话，是只将上一个时间(t-1)的隐藏层$h_{(t-1)}$输入到当前时刻t，NN部分的一层么？</li>
+</ul>
+<h2 id="1-3-反向传播"><a href="#1-3-反向传播" class="headerlink" title="1.3 反向传播"></a>1.3 反向传播</h2><p>BPTT (Back-Propagation Through Time)</p>
+<p>假设损失函数为Log-Loss</p>
+<script type="math/tex; mode=display">
+\begin {align}
+L^{(t)} &= y^{(t)}\log {\hat y^{(t)}} + (1 - y^{(t)})\log(1- {\hat y^{(t)}})
+
+\end {align}</script><p>对于在序列的每个位置，即时间$\tau$，都有</p>
+<script type="math/tex; mode=display">
+L = \sum_{t=1}^{\tau}L^{(t)}</script><p>其中$V,c$的梯度计算如下</p>
+<script type="math/tex; mode=display">
+\begin {align}
+\frac {\partial L} {\partial c} &= \sum_{t=1}^{\tau} \frac {\partial L^{(t)}} {\partial c} = \sum_{t=1}^{\tau}(\hat y^{(t)} - y^{(t)}) \\
+
+\frac {\partial L} {\partial V} &= \sum_{t=1}^{\tau} \frac {\partial L^{(t)}} {\partial V} = \sum_{t=1}^{\tau}(\hat y^{(t)} - y^{(t)})(h^{(t)})^T \\
+\end {align}</script><p>其中$W, U, b$的梯度计算如下</p>
+<p>根据RNN模型结构，对于任意时刻t的隐含层输出$h^{(t)}$，有两个地方用到了</p>
+<ul>
+<li>一个是当前时刻t的输出$o^{(t)}=Vh^{(t)} + c$</li>
+<li>一个是下一时刻(t+1)计算隐藏层$h^{(t+1)} = \sigma(Ux^{(t)} + Wh^{(t)} + b)$</li>
+</ul>
+<p>所以在对时刻t的隐含层$h^{(t)}$求梯度时，需要考虑到上面提到的<mark>两个时刻</mark></p>
+<script type="math/tex; mode=display">
+\begin {align}
+\delta^{(t)} &=  \frac {\partial L} {\partial h^{(t)}}\\
+
+\delta^{(t)} &= (\frac{\partial o^{(t)}} {\partial h^{(t)}})^T \frac {\partial L} {\partial o^{(t)}} + (\frac{\partial h^{(t+1)}} {\partial h^{(t)}})^T \frac {\partial L} {\partial h^{(t+1)}} \\
+&= V^T(\hat y^{(t)} - y^{(t)}) + W^T diag(1 - (h^{(t+1)})^2)\delta^{(t+1)} \\
+
+\delta^{\tau} &= (\frac {\partial o^{(\tau)}} {\partial h^{(\tau)}})^T \frac {\partial L} {\partial o^{(\tau)}} \\
+&= V^T(\hat y^{(\tau)} - y^{(\tau)})
+\end {align}</script><p>此时计算$W, U, b$具体如下</p>
+<script type="math/tex; mode=display">
+\begin {align}
+\frac {\partial L} {\partial W} &= \sum_{t=1}^{\tau}diag(1-(h^{(t)})^2)\delta^{(t)}(h^{(t-1)})^T \\
+
+\frac {\partial L} {\partial U} &= \sum_{t=1}^{\tau}diag(1-(h^{(t)})^2)\delta^{(t)}(x^{(t)})^T \\
+
+\frac {\partial L} {\partial b} &= \sum_{t=1}^{\tau}diag(1-(h^{(t)})^2)\delta^{(t)}
+
+\end {align}</script><h1 id="2-门控循环单元-GRN-Gated-Recurrent-Neural-Networks"><a href="#2-门控循环单元-GRN-Gated-Recurrent-Neural-Networks" class="headerlink" title="2. 门控循环单元 - GRN (Gated Recurrent Neural Networks)"></a>2. 门控循环单元 - GRN (Gated Recurrent Neural Networks)</h1><p>按时间顺序上来看，GRN是在LSTM之后提出来的。但是这个相对来说可能没那么复杂，所以先总结这个，然后再总结LSTM。</p>
 <p>门控循环单元，重点是在于<strong>门</strong>的，即Gated。这里指的是 $\sigma$ = sigmod func，通过$\sigma$制造出来。</p>
 <p>那么为什么要出现这些门呢，相比原先的RNN模型，这些门的出现能够解决什么样的问题？</p>
 <a id="more"></a>
@@ -262,13 +327,17 @@ O_t= \sigma(X_t W_{xo} + H_{t-1}W_{ho} + b_o)</script></li>
 H_t = O_t \bigodot \tanh(C_t)</script></li>
 <li><p>问题：候选记忆细胞的激活函数为什么用<code>tanh</code>函数 (-1, 1) 之间？</p>
 <p><code>tanh</code>是以0为中心的，并且在0附近梯度比较大，收敛速度快。理论上其他激活函数如果符合上述原则，也可以。</p>
-<p> 补充一下激活函数的大致选取原则：非线性，可导，计算方便，有效梯度区域广（在参数的常见取值的情况下，梯度不会过大或过小），激活后的取值范围合适。</p>
+<p> 补充一下激活函数的大致选取原则：<mark>非线性，可导，计算方便，有效梯度区域广（在参数的常见取值的情况下，梯度不会过大或过小），激活后的取值范围合适</mark>。</p>
 </li>
 </ul>
 <p>  <img src="/2018/05/25/深度学习笔记-RNN常见网络/2018-05-25-深度学习笔记-RNN常见网络/image-20191213174807551.png" alt="image-20191213174807551" style="zoom: 33%;"></p>
 <h1 id="4-深度循环神经网络"><a href="#4-深度循环神经网络" class="headerlink" title="4. 深度循环神经网络"></a>4. 深度循环神经网络</h1><h1 id="5-双向循环神经网络"><a href="#5-双向循环神经网络" class="headerlink" title="5. 双向循环神经网络"></a>5. 双向循环神经网络</h1><h1 id="6-References"><a href="#6-References" class="headerlink" title="6. References"></a>6. References</h1><ul>
 <li><a href="https://zh.gluon.ai/chapter_recurrent-neural-networks" target="_blank" rel="noopener">动手学深度学习-循环神经网络</a></li>
 <li><a href="https://blog.csdn.net/softee/article/details/54292102" target="_blank" rel="noopener">RNN LSTM与GRU深度学习模型学习笔记</a></li>
+<li><p><a href="https://www.cnblogs.com/pinard/p/6422831.html" target="_blank" rel="noopener">深度神经网络(DNN)反向传播算法(BP)</a></p>
+</li>
+<li><p><a href="https://www.cnblogs.com/pinard/p/6509630.html" target="_blank" rel="noopener">循环神经网络(RNN)模型与前向反向传播算法</a></p>
+</li>
 </ul>
 
       
@@ -547,6 +616,18 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -559,15 +640,11 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -579,23 +656,15 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -631,15 +700,15 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -667,10 +736,6 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -683,11 +748,15 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -715,14 +784,6 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -735,31 +796,15 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">FM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">FFM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">DeepFM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DCN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -775,23 +820,11 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Quant</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -811,7 +844,15 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -831,14 +872,6 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
@@ -847,7 +880,15 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -859,11 +900,15 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -871,7 +916,11 @@ H_t = O_t \bigodot \tanh(C_t)</script></li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
               </li>
             
             <div class="clearfix"></div>

@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://chenson.cc/2019/05/12/常见优化算法小结/2019-05-12-常见优化算法小结/838ba61ea8d3fd1f498e3e4a324e251f95ca5f3e.jpg">
 <meta property="og:image" content="http://chenson.cc/2019/05/12/常见优化算法小结/2019-05-12-常见优化算法小结/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hvdURvdVpob3U=,size_16,color_FFFFFF,t_70.jpeg">
 <meta property="og:image" content="http://chenson.cc/2019/05/12/常见优化算法小结/2019-05-12-常见优化算法小结/image-20191130174655430.png">
-<meta property="og:updated_time" content="2020-01-07T07:42:52.959Z">
+<meta property="og:updated_time" content="2020-03-11T11:16:34.620Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见优化算法小结">
 <meta name="twitter:description" content="1. Preview 在References里面的第一篇文章里，对于优化算法的分类总结的挺好的，分为公式解、数值优化和其他方法。这里重点总结的是数值优化法。 举个例子，在机器学习中对于有监督学习而言，通常都会有一个假设的Hypothesis函数，通过这样一个函数，我们输入一个数据x，会输出一个预测值$\hat y$，且为了能够使得$\hat y$和真实值$y$之间的差距非常小，即通过损失函数$L(">
@@ -288,7 +288,69 @@ x := x - \eta \nabla f(x)</script><p>以下三种采用的基本思想都是GD�
 <li><p>优缺点</p>
 </li>
 </ul>
-<h1 id="2-基于梯度下降法衍生的算法"><a href="#2-基于梯度下降法衍生的算法" class="headerlink" title="2. 基于梯度下降法衍生的算法"></a>2. 基于梯度下降法衍生的算法</h1><h2 id="2-1-动量法"><a href="#2-1-动量法" class="headerlink" title="2.1 动量法"></a>2.1 动量法</h2><h2 id="2-2-AdaGrad算法"><a href="#2-2-AdaGrad算法" class="headerlink" title="2.2 AdaGrad算法"></a>2.2 AdaGrad算法</h2><h2 id="2-3-RMSProp算法"><a href="#2-3-RMSProp算法" class="headerlink" title="2.3 RMSProp算法"></a>2.3 RMSProp算法</h2><h2 id="2-4-AdaDelta算法"><a href="#2-4-AdaDelta算法" class="headerlink" title="2.4 AdaDelta算法"></a>2.4 AdaDelta算法</h2><h2 id="2-5-Adam算法"><a href="#2-5-Adam算法" class="headerlink" title="2.5 Adam算法"></a>2.5 Adam算法</h2><h1 id="3-牛顿法"><a href="#3-牛顿法" class="headerlink" title="3. 牛顿法"></a>3. 牛顿法</h1><p>牛顿法和梯度下降法一样，也是利用导数的思想，<strong>不断迭代</strong>来找到目标函数的极值点。不同的是，梯度下降法中，我们用到的是函数的<strong>一阶导数</strong>，而牛顿法用到了函数的<strong>二阶导数</strong>。牛顿法的核心思想是</p>
+<h1 id="2-基于梯度下降法衍生的算法"><a href="#2-基于梯度下降法衍生的算法" class="headerlink" title="2. 基于梯度下降法衍生的算法"></a>2. 基于梯度下降法衍生的算法</h1><h2 id="2-1-动量法-Momentum"><a href="#2-1-动量法-Momentum" class="headerlink" title="2.1 动量法 - Momentum"></a>2.1 动量法 - Momentum</h2><p><mark>模拟物理里动量的概念，累积之前的梯度来替代真正的梯度</mark>，公式如下</p>
+<script type="math/tex; mode=display">
+\begin {align}
+m_t &= \mu * m_{t-1} + g_t \\
+\Delta \theta_t &= -\eta * m_t \\
+& = -\eta * \mu * m_{t-1}  - \eta *  g_t
+\end {align}</script><p>这里$\mu$是动量因子</p>
+<p>特点</p>
+<ul>
+<li>下降初期，本次的梯度和上一次的梯度比较一致，下降方向一致，乘上较大的$\mu$能够进行较好的加速</li>
+<li>下降后期，在局部最下值来回震荡的时候，$g_t \to 0$，$\mu$使得更新幅度加大，跳出陷阱</li>
+<li>在震荡的时候，梯度经常改变，$\mu$能够缓解减少本次$g_t$的反向更新，抑制震荡</li>
+</ul>
+<h2 id="2-2-动量法-NAG-Nesterov-Accelerate-Gradient"><a href="#2-2-动量法-NAG-Nesterov-Accelerate-Gradient" class="headerlink" title="2.2 动量法 - NAG(Nesterov Accelerate Gradient)"></a>2.2 动量法 - NAG(Nesterov Accelerate Gradient)</h2><p>回顾一下Momentum公式</p>
+<script type="math/tex; mode=display">
+\Delta \theta _t = -\eta * \mu * m_{t-1}  - \eta *  g_t</script><p>可以看出，该方法不是直接影响本次的梯度$g_t$，而Nesterov的方法，是对本次梯度$g_t$做出直接的影响，具体公式如下</p>
+<script type="math/tex; mode=display">
+\begin {align}
+g_t &= \nabla_{\theta_{t-1}}f(\theta_{t-1} - \eta * \mu * m_{t-1}) \tag 1\\ 
+m_t &= \mu * m_{t-1} + g_t \\
+\Delta \theta_t &= -\eta * m_t \\
+ &= -\eta * \mu * m_{t-1} - \eta * g_t
+
+\end {align}</script><p>相比Momentum方法，多了公式(1)的那一步</p>
+<h2 id="2-3-AdaGrad算法"><a href="#2-3-AdaGrad算法" class="headerlink" title="2.3 AdaGrad算法"></a>2.3 AdaGrad算法</h2><p><mark>之前介绍的两种动量算法，都是为了梯度更新的时候更加灵活，但是不涉及到梯度的学习率自动调整和各自调整（不同维度有不同的学习率）</mark></p>
+<p>这里介绍的AdaGrad算法，其实是对学习率的一个优化约束，具体公式如下</p>
+<script type="math/tex; mode=display">
+\begin {align}
+n_t &= n_{t-1} + g_t^2 \tag 2 \\
+\Delta \theta_t &= -\frac {\eta} {\sqrt {n_t + \epsilon}} * g_t
+\end {align}</script><p>这里，在$\Delta \theta_t$更新的时候，相比之前，分母多了$\frac {1} {\sqrt{n_t + \epsilon}}$，即Regularizer，是从1到t累积起来递推形成的一个约束项（$g_t^2$的累积和）;</p>
+<p>$\epsilon$是拉普拉斯平滑，避免分母为零</p>
+<p>特点</p>
+<ul>
+<li>前期$g_t$较小的时候，Regularizer较大，能够放大梯度</li>
+<li>后期$g_t$较大的时候，Regularizer较小，能够约束梯度（这里指的是累积和$n_t$么）</li>
+<li><mark>适合处理稀疏梯度</mark></li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>依赖全局的学习率$\eta$，如果过大的话，Regularizer会很敏感，对梯度影响较大</li>
+<li>中后期，分母上梯度平方的累加将会越来越大，使得分母基本为零，导致本次的gradient $\to 0$，提前结束训练</li>
+</ul>
+<h2 id="2-4-AdaDelta算法"><a href="#2-4-AdaDelta算法" class="headerlink" title="2.4 AdaDelta算法"></a>2.4 AdaDelta算法</h2><p>是对AdaGrad的拓展，对学习率进行自适应约束，但进行计算上的优化，具体区别如下</p>
+<ul>
+<li>AdaGrad会累积1到t的所有梯度平方和</li>
+<li>AdaDelta<mark>只累积固定大小的项</mark>（不直接存储这些项，仅近似计算对应的平均值）<ul>
+<li>对照了公式，不是很理解这里，以及$v$代表的含义（应该是某个小于1的参数）</li>
+</ul>
+</li>
+</ul>
+<p>具体公式如下</p>
+<script type="math/tex; mode=display">
+\begin {align}
+n_t &= v * n_{t-1} + (1-v)*g_t^2 \tag 3 \\
+\Delta \theta_t &= -\frac {\eta} {\sqrt {n_t + \epsilon}} * g_t
+\end {align}</script><p>对比AdaGrad，这里公式（2）和（3）的区别，但是更新$\Delta\theta_t$的时候，还是依赖全局的学习率$\eta$。所以有个优化的版本，具体公式如下</p>
+<script type="math/tex; mode=display">
+\begin {align}
+E|g^2|_t &= v * E|g^2|_{t-1} + (1-v)*g_t^2 \tag 3 \\
+\Delta x_t &= \frac {\sqrt{\sum_{r=1}^{t-1}\Delta x_r}} {\sqrt {E|g^2|_t + \epsilon}}
+\end {align}</script><p>这里$E$代表了求期望</p>
+<h2 id="2-5-RMSProp算法"><a href="#2-5-RMSProp算法" class="headerlink" title="2.5 RMSProp算法"></a>2.5 RMSProp算法</h2><h2 id="2-6-Adam算法（Adaptive-Moment-Estimation）"><a href="#2-6-Adam算法（Adaptive-Moment-Estimation）" class="headerlink" title="2.6 Adam算法（Adaptive Moment Estimation）"></a>2.6 Adam算法（Adaptive Moment Estimation）</h2><h1 id="3-牛顿法"><a href="#3-牛顿法" class="headerlink" title="3. 牛顿法"></a>3. 牛顿法</h1><p>牛顿法和梯度下降法一样，也是利用导数的思想，<strong>不断迭代</strong>来找到目标函数的极值点。不同的是，梯度下降法中，我们用到的是函数的<strong>一阶导数</strong>，而牛顿法用到了函数的<strong>二阶导数</strong>。牛顿法的核心思想是</p>
 <blockquote>
 <p>在某点处<strong>用二次函数来近似目标函数</strong>，得到导数为0的方程，求解该方程，得到下一个迭代点。因为是用二次函数近似，因此可能会有误差，需要反复这样迭代，直到到达导数为0的点处。</p>
 </blockquote>
@@ -359,6 +421,7 @@ y_k &= g_{k+1} - g_k
 <li><a href="https://zhuanlan.zhihu.com/p/36902908" target="_blank" rel="noopener">理解梯度下降法</a></li>
 <li><a href="https://mp.weixin.qq.com/s/x3Zq5xsS8cCCufThwOvQoA" target="_blank" rel="noopener">理解牛顿法</a></li>
 <li><a href="https://blog.csdn.net/HouDouZhou/article/details/85988847" target="_blank" rel="noopener">牛顿法及其几何意义理解</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/22252270" target="_blank" rel="noopener">深度学习最全优化方法总结比较</a></li>
 </ul>
 
       
@@ -637,6 +700,18 @@ y_k &= g_{k+1} - g_k
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -649,15 +724,11 @@ y_k &= g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -669,23 +740,15 @@ y_k &= g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -721,15 +784,15 @@ y_k &= g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -757,10 +820,6 @@ y_k &= g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -773,11 +832,15 @@ y_k &= g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -805,14 +868,6 @@ y_k &= g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -825,31 +880,15 @@ y_k &= g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">FM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">FFM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">DeepFM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DCN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -865,23 +904,11 @@ y_k &= g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Quant</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -901,7 +928,15 @@ y_k &= g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -921,14 +956,6 @@ y_k &= g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
@@ -937,7 +964,15 @@ y_k &= g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -949,11 +984,15 @@ y_k &= g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -961,7 +1000,11 @@ y_k &= g_{k+1} - g_k
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
               </li>
             
             <div class="clearfix"></div>

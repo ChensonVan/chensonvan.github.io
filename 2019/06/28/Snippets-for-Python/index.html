@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://chenson.cc/2019/06/28/Snippets-for-Python/2019-06-28-Snippets-for-Python/image-20190523111948287.png">
 <meta property="og:image" content="http://chenson.cc/2019/06/28/Snippets-for-Python/2019-06-28-Snippets-for-Python/image-20190627235109358.png">
 <meta property="og:image" content="http://chenson.cc/2019/06/28/Snippets-for-Python/2019-06-28-Snippets-for-Python/image-20190627235056773.png">
-<meta property="og:updated_time" content="2019-08-25T12:20:05.000Z">
+<meta property="og:updated_time" content="2020-03-16T09:42:46.594Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Snippets for Python">
 <meta name="twitter:description" content="收集平常遇到的各种不常用的Python技巧，持续更新ing。 1. 窗口函数滑窗函数平常还是用的很多的。细分的话可以分按时间维度、次数维度或是排序维度滑窗计算。 1.1 Codes 时间维度滑窗 123df = pd.Series(np.random.randn(600), index=pd.date_range(&apos;7/1/2018&apos;, freq=&apos;D&apos;, periods=600))r = df.">
@@ -231,9 +231,15 @@
 <h4 id="6-2-References"><a href="#6-2-References" class="headerlink" title="6.2 References"></a>6.2 References</h4><ul>
 <li><a href="https://stackoverflow.com/questions/25772289/python-multiprocessing-within-mpi" target="_blank" rel="noopener">Python multiprocessing within mpi</a></li>
 </ul>
-<h3 id="7-自定聚合函数"><a href="#7-自定聚合函数" class="headerlink" title="7. 自定聚合函数"></a>7. 自定聚合函数</h3><h4 id="7-1-Codes"><a href="#7-1-Codes" class="headerlink" title="7.1 Codes"></a>7.1 Codes</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="2-2-References-1"><a href="#2-2-References-1" class="headerlink" title="2.2 References"></a>2.2 References</h4><h3 id="8-自定聚合函数"><a href="#8-自定聚合函数" class="headerlink" title="8. 自定聚合函数"></a>8. 自定聚合函数</h3><h4 id="8-1-Codes"><a href="#8-1-Codes" class="headerlink" title="8.1 Codes"></a>8.1 Codes</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="8-2-References"><a href="#8-2-References" class="headerlink" title="8.2 References"></a>8.2 References</h4><h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
+<h3 id="7-某列值为list转行"><a href="#7-某列值为list转行" class="headerlink" title="7. 某列值为list转行"></a>7. 某列值为list转行</h3><h4 id="7-1-Codes"><a href="#7-1-Codes" class="headerlink" title="7.1 Codes"></a>7.1 Codes</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># https://stackoverflow.com/questions/42012152/unstack-a-pandas-column-containing-lists-into-multiple-rows</span></span><br><span class="line">df2 = df[[<span class="string">'aadhaar_no'</span>, <span class="string">'bank_card_names'</span>]]</span><br><span class="line">df3 = pd.DataFrame(&#123;<span class="string">'aadhaar_no'</span>: np.repeat(df2.aadhaar_no.values, df2.bank_card_names.str.len()),</span><br><span class="line">                    <span class="string">'bank_card_names'</span>: np.concatenate(df2.bank_card_names.values)&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="7-2-References"><a href="#7-2-References" class="headerlink" title="7.2 References"></a>7.2 References</h4><ul>
+<li><a href="https://stackoverflow.com/questions/46743624/create-a-pivot-table-that-lists-out-values" target="_blank" rel="noopener">“unstack” a pandas column containing lists into multiple rows [duplicate]</a></li>
+</ul>
+<h3 id="8-多行转list"><a href="#8-多行转list" class="headerlink" title="8. 多行转list"></a>8. 多行转list</h3><h4 id="8-1-Codes"><a href="#8-1-Codes" class="headerlink" title="8.1 Codes"></a>8.1 Codes</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># https://stackoverflow.com/questions/46743624/create-a-pivot-table-that-lists-out-values</span></span><br><span class="line">pd.pivot_table(df, index=[<span class="string">'Test point'</span>], values=[<span class="string">'Experiment'</span>], aggfunc=<span class="keyword">lambda</span> x:list(x))</span><br></pre></td></tr></table></figure>
+<h4 id="8-2-References"><a href="#8-2-References" class="headerlink" title="8.2 References"></a>8.2 References</h4><ul>
+<li><a href="https://stackoverflow.com/questions/46743624/create-a-pivot-table-that-lists-out-values" target="_blank" rel="noopener">create-a-pivot-table-that-lists-out-values</a></li>
+</ul>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
 <li><a href="https://python-book.readthedocs.io/zh_CN/latest/index.html" target="_blank" rel="noopener">Python语言小册</a></li>
 </ul>
 
@@ -517,6 +523,18 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -529,15 +547,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,23 +563,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -601,15 +607,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图数据库</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -637,10 +643,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -653,11 +655,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -685,14 +691,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -705,31 +703,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">FM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">FFM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">DeepFM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DCN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -745,23 +727,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Quant</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -781,7 +751,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -801,14 +779,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
@@ -817,7 +787,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -829,11 +807,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -841,7 +823,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
               </li>
             
             <div class="clearfix"></div>
