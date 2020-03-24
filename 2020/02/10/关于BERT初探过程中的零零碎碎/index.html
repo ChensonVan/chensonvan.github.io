@@ -9,18 +9,33 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://chenson.cc">
-  <title>Tag: DeepFM | Vane&#39;s Blog</title>
+  <title>关于BERT初探过程中的零零碎碎 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Stay Hungry. Stay Foolish">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Vane&#39;s Blog">
-<meta property="og:url" content="http://chenson.cc/tags/DeepFM/index.html">
+  <meta name="description" content="1. Introduction记录一下BERT学习过程中的一些零零碎碎 2. Questions2.1 什么是编码器，什么又是解码器 2.1.1 编码器 编码器的作用是把一个不定长的输入序列变成一个定长的背景向量$c$，并在该背景变量中输入序列信息。常用的编码器是循环神经网络。   c = q(h_1, h_2, ..., h_t)这里$q$是自定义函数，用来生成对应的背景向量$c$的（这里为了简">
+<meta name="keywords" content="NLP,Attention,BERT,Transformer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于BERT初探过程中的零零碎碎">
+<meta property="og:url" content="http://chenson.cc/2020/02/10/关于BERT初探过程中的零零碎碎/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="Stay Hungry. Stay Foolish">
+<meta property="og:description" content="1. Introduction记录一下BERT学习过程中的一些零零碎碎 2. Questions2.1 什么是编码器，什么又是解码器 2.1.1 编码器 编码器的作用是把一个不定长的输入序列变成一个定长的背景向量$c$，并在该背景变量中输入序列信息。常用的编码器是循环神经网络。   c = q(h_1, h_2, ..., h_t)这里$q$是自定义函数，用来生成对应的背景向量$c$的（这里为了简">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://chenson.cc/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/image-20200223175856520.png">
+<meta property="og:image" content="http://chenson.cc/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/image-20200224154629183.png">
+<meta property="og:image" content="http://chenson.cc/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/self-attention-output.png">
+<meta property="og:image" content="http://chenson.cc/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/v2-26f3e9cd3679956dab33486c83dd0088_hd-20200218215503208.jpg">
+<meta property="og:image" content="http://chenson.cc/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/v2-857da74b2e6bc948b5c6dccb769c0928_1200x500.jpg">
+<meta property="og:image" content="http://chenson.cc/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/bert-base-bert-large-encoders.png">
+<meta property="og:image" content="http://chenson.cc/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/image-20200324175641492.png">
+<meta property="og:image" content="http://chenson.cc/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/v2-6fb44c5865abbb2403fa2058f6a20209_hd.jpg">
+<meta property="og:image" content="http://chenson.cc/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/bert-transfer-learning.png">
+<meta property="og:image" content="http://chenson.cc/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/image-20200225180545412.png">
+<meta property="og:image" content="http://chenson.cc/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/bert-output-vector.png">
+<meta property="og:image" content="http://chenson.cc/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/bert-classifier.png">
+<meta property="og:updated_time" content="2020-03-24T10:39:43.737Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vane&#39;s Blog">
-<meta name="twitter:description" content="Stay Hungry. Stay Foolish">
+<meta name="twitter:title" content="关于BERT初探过程中的零零碎碎">
+<meta name="twitter:description" content="1. Introduction记录一下BERT学习过程中的一些零零碎碎 2. Questions2.1 什么是编码器，什么又是解码器 2.1.1 编码器 编码器的作用是把一个不定长的输入序列变成一个定长的背景向量$c$，并在该背景变量中输入序列信息。常用的编码器是循环神经网络。   c = q(h_1, h_2, ..., h_t)这里$q$是自定义函数，用来生成对应的背景向量$c$的（这里为了简">
+<meta name="twitter:image" content="http://chenson.cc/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/image-20200223175856520.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
   
@@ -154,80 +169,318 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-关于BERT初探过程中的零零碎碎" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/25/推荐系统小结/" class="archive-article-date">
-  	<time datetime="2019-03-25T02:35:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-25</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/25/推荐系统小结/">推荐系统小结</a>
+    <h1 class="article-title" itemprop="name">
+      关于BERT初探过程中的零零碎碎
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/02/10/关于BERT初探过程中的零零碎碎/" class="archive-article-date">
+  	<time datetime="2020-02-10T07:24:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>记录一下BERT学习过程中的一些零零碎碎</p>
+<h1 id="2-Questions"><a href="#2-Questions" class="headerlink" title="2. Questions"></a>2. Questions</h1><h2 id="2-1-什么是编码器，什么又是解码器"><a href="#2-1-什么是编码器，什么又是解码器" class="headerlink" title="2.1 什么是编码器，什么又是解码器"></a>2.1 什么是编码器，什么又是解码器</h2><p><img src="/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/image-20200223175856520.png" alt="image-20200223175856520" style="zoom:50%;"></p>
+<h3 id="2-1-1-编码器"><a href="#2-1-1-编码器" class="headerlink" title="2.1.1 编码器"></a>2.1.1 编码器</h3><blockquote>
+<p>编码器的作用是把一个不定长的输入序列变成一个定长的背景向量$c$，并在该背景变量中输入序列信息。常用的编码器是循环神经网络。</p>
+</blockquote>
+<script type="math/tex; mode=display">
+c = q(h_1, h_2, ..., h_t)</script><p>这里$q$是自定义函数，用来生成对应的背景向量$c$的（这里为了简单理解，最终的背景向量先假定为一个固定的$c$）</p>
+<ul>
+<li><p>单向神经网络编码器</p>
+<p>即每个时间步的隐藏状态只取决于该时间步及之前的输入子序列</p>
+</li>
+<li><p>双向神经网络编码器</p>
+<p>如字面意思，每个时间步的隐藏状态可以同时取决于之前和之后的子序列（包含了当前时间步的输入）</p>
+</li>
+</ul>
+<a id="more"></a>
+<h3 id="2-1-2-解码器"><a href="#2-1-2-解码器" class="headerlink" title="2.1.2 解码器"></a>2.1.2 解码器</h3><p>也是一个循环神经网络。</p>
+<p>假设当前输出序列的时间步为$t’$，解码器将上一个时间步的输出$y_{t’-1}$，背景向量$c$作为输入，和解码器中上一步的隐藏状态$s_{t’-1}$变换为当前的隐藏状态$s_{t’}$，具体公式如下</p>
+<script type="math/tex; mode=display">
+s_{t'}= g(y_{t'-1},c,s_{t'-1})</script><h2 id="2-2-什么是注意力机制"><a href="#2-2-什么是注意力机制" class="headerlink" title="2.2 什么是注意力机制"></a>2.2 什么是注意力机制</h2><blockquote>
+<p>注意力机制通过对编码器所有时间步的隐藏状态做加权平均拉力得到背景向量$c$，解码器在每一个时间步调整这些权重，即注意力权重，从而能够在不同时间步分别关注输入序列中的不同部分，并编码进相应时间步的背景向量。</p>
+</blockquote>
+<p>上面说的是，在解码器解码过程中，==<strong>每一步使用的背景向量$c$不再是固定的，而是有各自的背景向量$c_{t’}$</strong>==，所以此时解码器的公式表示如下</p>
+<script type="math/tex; mode=display">
+s_{t'}= g(y_{t'-1},c_{t'},s_{t'-1})</script><p>所以问题的关键是，如何计算背景向量$c_{t’}$，以及如何利用该向量来更新隐藏状态$s_{t’}$</p>
+<ul>
+<li><p>计算背景向量</p>
+<p>具体步骤如下图（假设现在是处于解码器$t’_2$步骤）</p>
+<p><img src="/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/image-20200224154629183.png" alt="image-20200224154629183" style="zoom:50%;"></p>
+<ol>
+<li><p>此时有解码器在$t’_1$时候的输出$s_1$</p>
+</li>
+<li><p>==$s_1$会和编码器1~t所有的输出$h_1$-$h_t$，用函数$a$计算得到一个输出$e_{t’t}$（这里应该是$e_{21}、e_{22}、e_{23}$），输出的结果汇合到一起做$softmax$运算，的得到结果$\alpha_{21}、\alpha_{22}、\alpha_{23}$，这三个值是1~t的一个概率分布，结果相当于一个对步骤1~t带权重了的向量，也就是注意力机制==</p>
+<ul>
+<li>注：这里函数$a$不要和后面的概率分布$\alpha$搞混了</li>
+</ul>
+</li>
+<li><p>步骤2里softmax的概率分布输出，会和对应的$h_1$-$h_t$做加权平均，此时得到解码器$t’_2$的背景向量$c_2$</p>
+</li>
+<li><p>所以总结一下1-3步的内容，可以用下面公式表示</p>
+<script type="math/tex; mode=display">
+\begin {align}
+c_{t'} &= \sum_{t=1}^T\alpha_{t't}h_t \\
+
+\alpha_{t't} &= \frac {\exp(e_{t't})} {\sum_{k=1}^T \exp(e_{t'k})}, \quad t=1, 2, ...,T \\
+e_{t't} &= a(s_{t'-1}, h_t)
+\end {align}</script><ul>
+<li>注：这里先暂时忽略$e_{t’t}$里的alignment函数，计算方式有多种，不同的计算类型代表了不同的Attention类别，这里具体的暂时忽略</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>怎么理解Attention机制中的矢量化计算？（==结合上面的注意力图来理解==）</p>
+<p>通常在学习Attention的过程中，都会看到如下公式和图</p>
+<script type="math/tex; mode=display">
+softmax(QK^T)V</script><p><img src="/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/self-attention-output.png" alt="img" style="zoom:60%;"></p>
+</li>
+</ul>
+<h2 id="2-3-关于Seq2Seq模式中，训练数据长什么样？"><a href="#2-3-关于Seq2Seq模式中，训练数据长什么样？" class="headerlink" title="2.3 关于Seq2Seq模式中，训练数据长什么样？"></a>2.3 <del>关于Seq2Seq模式中，训练数据长什么样？</del></h2><h2 id="2-4-怎么理解Attention、Transformer和BERT三者之间的关系"><a href="#2-4-怎么理解Attention、Transformer和BERT三者之间的关系" class="headerlink" title="2.4 怎么理解Attention、Transformer和BERT三者之间的关系"></a>2.4 怎么理解Attention、Transformer和BERT三者之间的关系</h2><h3 id="2-4-1-Attention（Self-Attention）"><a href="#2-4-1-Attention（Self-Attention）" class="headerlink" title="2.4.1 Attention（Self-Attention）"></a>2.4.1 Attention（Self-Attention）</h3><p>Transformer里面用到了Attention，且是Self-Attention。如字面意思，Self-Attention没用到外部信息，只是对应时间步的向量和所有时间步向量相乘，即三个向量Q、K、和V均是同一个向量。</p>
+<h3 id="2-4-2-Transformer"><a href="#2-4-2-Transformer" class="headerlink" title="2.4.2 Transformer"></a>2.4.2 Transformer</h3><p>这里Transformer是一种<mark>不同于RNN和CNN的新的网络结构，这里强调的是一种网络结构，包含了Encoder和Decoder（Seq2Seq模型的一种架构）</mark></p>
+<p>如下图所示，Encoder部分由6个相同的Block相连，每个Block由Multi-Head Attention和FCN组成，同时还加了残差结构，且做了Normalization</p>
+<p>Decoder部分的时候结构也和Encoder类似，但有两个Multi-Head Attention存在，且第二个Multi-Head Attention加入了Encoder的输出向量，加入了类似背景向量C的存在</p>
+<p><img src="/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/v2-26f3e9cd3679956dab33486c83dd0088_hd-20200218215503208.jpg" alt="img" style="zoom:50%;"></p>
+<h3 id="2-4-3-BERT"><a href="#2-4-3-BERT" class="headerlink" title="2.4.3 BERT"></a>2.4.3 BERT</h3><h2 id="2-5-BERT模型结构"><a href="#2-5-BERT模型结构" class="headerlink" title="2.5 BERT模型结构"></a>2.5 BERT模型结构</h2><p>BERT的全称是<code>Bidirectional Encoder Representation from Transformer</code>，如字面意思，是双向Transformer的Encoder</p>
+<ul>
+<li>问题1：为什么不用Decoder?（不能获取要预测的信息）</li>
+</ul>
+<p>下图有三个模型，分别是Bert、GPT和ELMo，可以看出BERT并不是第一个使用Trm的模型，具体差异如下</p>
+<ul>
+<li>BERT vs GPT<ul>
+<li>两者都用了Trm</li>
+<li>BERT用了双向的Trm，而GPT只用了单向链接的Trm</li>
+</ul>
+</li>
+<li>BERT vs ELMo<ul>
+<li>BERT模型里的block是Trm，ELMo用的是LSTM</li>
+<li>两者都是双向链接（但实现方式不同，决定了其目标函数的不同）<ul>
+<li>BERT的目标函数是$P(w_i|w_1,…,w_{i-1},w_{i+1},…,w_n)$</li>
+<li>ELMo的目标函数分别是$P(w_i|w_1,…,w_{i-1})$和$P(w_i|w_{i+1},…,w_n)$，独立训练出两个representation（如下图，左右两边分别训练出一个），然后concat在一起成一个</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/v2-857da74b2e6bc948b5c6dccb769c0928_1200x500.jpg" alt="NLP必读：十分钟读懂谷歌BERT模型"></p>
+<p>且BERT可以根据其Encoder堆叠的数量，分成BERT-Base和BERT-Large</p>
+<p><img src="/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/bert-base-bert-large-encoders.png" alt="img"></p>
+<p>上图一里的Trm是Transformer，可以看出Bert是基于Transformer的Encoder搭建的，主要模型结构是<mark><strong>由Transformer的Encoder的堆叠</strong></mark>。输入的Token（N个字符对应了$E_1$…$E_N$）会从输入端喂给Bert，每一层的Transformer层会输出对应的Hidden Vector，然后一层层传递下去，直到最后输出。其输入端结构具体如下</p>
+<p><img src="/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/image-20200324175641492.png" alt="image-20200324175641492" style="zoom:50%;"></p>
+<p>这里</p>
+<ul>
+<li>Token Embeddings是词向量，第一个单词是CLS标志，可以用于之后的分类任务</li>
+<li>Segment Embeddings用来区别两种句子，因为预训练不光做LM还要做以两个句子为输入的分类任务</li>
+<li><mark>Position Embeddings和之前文章中的Transformer不一样，不是三角函数而是学习出来的</mark></li>
+</ul>
+<h2 id="2-6-BERT训练过程中，pre-traing和fine-tuning是如何进行的？"><a href="#2-6-BERT训练过程中，pre-traing和fine-tuning是如何进行的？" class="headerlink" title="2.6 BERT训练过程中，pre-traing和fine-tuning是如何进行的？"></a>2.6 BERT训练过程中，pre-traing和fine-tuning是如何进行的？</h2><p><img src="/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/v2-6fb44c5865abbb2403fa2058f6a20209_hd.jpg" alt="img"></p>
+<p><img src="/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/bert-transfer-learning.png" alt="img"></p>
+<h3 id="2-6-1-Pre-Training"><a href="#2-6-1-Pre-Training" class="headerlink" title="2.6.1 Pre-Training"></a>2.6.1 Pre-Training</h3><p>通常是unsupervised/semi-supervised的，训练出一个通用的语言模型</p>
+<p>为什么要做预训练呢？如果没有预训练的话，模型初始化完之后，就直接进入到训练阶段，由于模型结构的复杂性，且样本可能不会说非常多，所以会考虑用已有的语料样本，类似CBOW的做法，先训练出一个比较可用的权重。且这个过程中，有如下几点的改进</p>
+<ul>
+<li>ELMo是由前向和后向训练出的预训练模型组合在一起，而BERT直接就是双向的，和CBOW做法差不多</li>
+<li>但和CBOW做法不同的是，这里不会对语料里的所有词都预测一遍，而是会随机选一部分（15%）token进行masked，然后再做训练，且被选中某个词masked的时候，又有10%的概率不会被替换，10%的概率会被替换成其他的词，80%的概率会被替换成【MASK】这样的符号</li>
+</ul>
+<p>除此之外，还在增加了Next Sentence Prediction的预训练任务，即对下一句的预测。这样是为了让模型学习到句与句之间的关系。其训练的输入是两个句子A和B，且B有一定的概率（50%）是A的下一句，然后让模型预测句子B是否为A的下一句。在准备句子A、B语料的时候，需要选取document-level的而不是sentence-level的</p>
+<h3 id="2-6-2-Fine-Tuning"><a href="#2-6-2-Fine-Tuning" class="headerlink" title="2.6.2 Fine-Tuning"></a>2.6.2 Fine-Tuning</h3><p>根据具体的应用任务，对之前预训练好的模型，用supervised训练数据，精加工模型，使之适用于具体的应用</p>
+<h2 id="2-7-关于BERT的数据输入与输出"><a href="#2-7-关于BERT的数据输入与输出" class="headerlink" title="2.7 关于BERT的数据输入与输出"></a>2.7 关于BERT的数据输入与输出</h2><ul>
+<li><p>输入</p>
+<p><img src="/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/image-20200225180545412.png" alt="image-20200225180545412"></p>
+<ul>
+<li>1-512是对应输入句子的每一个词</li>
+<li>以[cls]开头</li>
+</ul>
+</li>
+<li><p>输出</p>
+<p><img src="/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/bert-output-vector.png" alt="img"></p>
+<p><img src="/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/bert-classifier.png" alt="img"></p>
+<ul>
+<li>1-512的时间步骤t中，对应了一个hidden vector（在Bert Base中是768），这里重点关注第一个输出的hidden vector，即[cls]对应的那个</li>
+<li>然后输出的hidden vector会作为输入，到一个FNN网络做分类（这里以分类为例）</li>
+</ul>
+</li>
+</ul>
+<h1 id="5-References"><a href="#5-References" class="headerlink" title="5. References"></a>5. References</h1><ul>
+<li><p><a href="https://zhuanlan.zhihu.com/p/51413773" target="_blank" rel="noopener">NLP必读：十分钟读懂谷歌BERT模型</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/43493999" target="_blank" rel="noopener">【NLP】Attention原理和源码解析</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/44121378" target="_blank" rel="noopener">【NLP】Transformer详解</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/46652512" target="_blank" rel="noopener">【NLP】Google BERT详解</a></p>
+</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>Thanks for your donate.<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/alipay.jpeg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Wide&Deep</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NLP</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">推荐系统</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Attention</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">FM</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">BERT</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">FFM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">DeepFM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DCN</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Transformer</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://chenson.cc/2020/02/10/关于BERT初探过程中的零零碎碎/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/12/28/分布式机器学习初探/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">分布式机器学习初探</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="关于BERT初探过程中的零零碎碎" data-title="关于BERT初探过程中的零零碎碎" data-url="http://chenson.cc/2020/02/10/关于BERT初探过程中的零零碎碎/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-    
+
+
+
+
 
 
           </div>
@@ -263,9 +516,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
@@ -360,11 +613,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -412,10 +665,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
@@ -424,7 +673,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -433,10 +690,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Neo4j</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -464,10 +717,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -492,6 +741,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
              
@@ -512,14 +765,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -532,35 +777,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">FM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">FFM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">DeepFM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DCN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,6 +798,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -656,11 +889,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
+                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+                <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -669,6 +902,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BERT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Transformer</a>
               </li>
             
             <div class="clearfix"></div>
