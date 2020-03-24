@@ -24,7 +24,6 @@
 <meta property="og:image" content="http://chenson.cc/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/v2-163c0c3dda50d1fe7a4f7a64ba728d27_hd.jpg">
 <meta property="og:image" content="http://chenson.cc/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/v2-967a85861b81e81ac9f08067234e7dc4_hd.jpg">
 <meta property="og:image" content="http://chenson.cc/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/v2-016f8210eb05fb1b32bc75f4131a7dbf_hd.jpg">
-<meta property="og:image" content="http://chenson.cc/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/u=3883992606,3840987159&fm=26&gp=0.jpg">
 <meta property="og:image" content="http://chenson.cc/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/self-attention-output.png">
 <meta property="og:image" content="http://chenson.cc/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/transformer_multi-headed_self-attention-recap.png">
 <meta property="og:image" content="http://chenson.cc/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/1460000015575992.png">
@@ -33,7 +32,8 @@
 <meta property="og:image" content="http://chenson.cc/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/1460000015575991.png">
 <meta property="og:image" content="http://chenson.cc/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/1460000015575997.png">
 <meta property="og:image" content="http://chenson.cc/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/transformer_resideual_layer_norm_2.png">
-<meta property="og:updated_time" content="2020-02-25T06:25:56.030Z">
+<meta property="og:image" content="http://chenson.cc/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/u=3883992606,3840987159&fm=26&gp=0.jpg">
+<meta property="og:updated_time" content="2020-03-24T09:32:57.644Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLP相关算法初探">
 <meta name="twitter:description" content="1. Introduction主要是想了解下NLP中Embedding的相关的，然后顺手就看了下最近比较火的Attention和Bert等算法，也正好丰富一下知识体系，了解了解。笔记做得很简单，之后再好好丰富吧。 Embedding在机器学习中应该地位比较重要，对于很多非结构化的数据或者半结构化的数据，往往都要用到Embedding，转化成机器容易识别的一个结构化的数据，比如向量和矩阵等，这么做的">
@@ -259,7 +259,7 @@ y_i &= f(C, y_1, y_2, ..., y_{i-1})
 </ol>
 <p>其中<strong>$f$是Decoder的非线性变换函数</strong>。从这里可以看出，在生成目标句子的单词时，不论生成哪个单词，它们使用的输入句子Source的语义编码$C$都是一样的，没有任何区别<br>这里，在生成$C$的时候，所有的输入单词$(x_1, x_2, …, x_m)$的影响力都是一样的，但是实际生活中，我们的都知道有些单词是比较重要，有些可以忽略，即需要给这些输入分配一个概率权重，有了这个概率信息，意味着在生成每个单词yi的时候，<strong>原先都是相同的中间语义表示$C$会被替换成根据当前生成单词而不断变化的$C_i$</strong>。</p>
 </li>
-<li><p>这个就是Attention的关键，即<mark>由固定的中间语义表示C换成了根据当前输出单词来调整成加入注意力模型的变化的C_i</mark>，具体如下</p>
+<li><p>这个就是Attention的关键，即==由固定的中间语义表示$C$换成了根据当前输出单词来调整成加入注意力模型的变化的$C_i$==，具体如下</p>
 <script type="math/tex; mode=display">
 \begin {align}
 y_1 &= f(C_1) \\
@@ -283,19 +283,21 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
 </li>
 <li><p>上面的公式(3)是一个Softmax输出$\alpha_{ij}$的概率值和为1，即原始端的所有单词对当前Decoder端第$j$个单词总影响和为1</p>
 </li>
-<li><p><mark></mark></p>
-</li>
 <li><p>==$e_{ij}$表示一个<strong>对齐模型</strong>，用于衡量Encoder端的位置$j$个词，对于Decoder端的位置$i$个词的对齐程度（影响程度）==，即Decoder​端生成位置$i$的词时，有多少程度受Encoder端的位置$j$的词影响，==也就是$s_{i-1}$和$h_j$的相关程度==</p>
 </li>
 <li><p>对齐模型$e_{ij}$的计算方式有很多种，不同的计算方式，代表不同的Attention模型，最简单且最常用的的对齐模型是dot product乘积矩阵，即把target端的输出隐状态$h_t$与source端的输出隐状态进行矩阵乘，其他常见的对齐关系计算方式有，点乘（Dot product），权值网络映射（General）和concat映射几种方式。</p>
 <p><img src="/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/v2-967a85861b81e81ac9f08067234e7dc4_hd.jpg" alt="img"></p>
 <p>以加法关系为例，具体看一下$e_{ij} = \alpha(s_{i-1}, h_j)$是如何计算的（为什么是$i-1$?）</p>
 <ol>
-<li>对$s_{i-1}$做一个<strong>线性映射</strong>，得到向量query，记做$q_i$，这里$s_{i-1}$为Decoder中上一个时刻的hidden state</li>
-<li>对$h_j$做一个<strong>线性映射</strong>，得到向量key，记做$k_j$</li>
+<li>对$s_{i-1}$做一个<mark><strong>线性映射</strong></mark>，得到向量Q，记做$q_i$，这里$s_{i-1}$为Decoder中上一个时刻的hidden state</li>
+<li>对$h_j$做一个<mark><strong>线性映射</strong></mark>，得到向量K，记做$k_j$</li>
 <li>$e_{ij}=v^T·(q_i+k_j)$，这里$q_i$和$k_j$的维度均为$d$，$v$为$d \times 1$的向量</li>
 </ol>
-<p>（问题：就是普通的线性映射吗？向量$v$是怎么来的？）</p>
+<ul>
+<li>问题1：就是普通的线性映射吗？</li>
+</ul>
+</li>
+<li><p>问题2：向量$v$是怎么来的？<mark>根据李沐书里的图，似乎是encoder时隐藏层h的线性映射，可能k ==v</mark></p>
 <p>当然$q_i$和$k_j$可以有其他形式的组合，比如上面提到乘法等，不同的组合形式代表了不同的Attention模型</p>
 </li>
 </ul>
@@ -305,7 +307,56 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
 <p><img src="/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/v2-016f8210eb05fb1b32bc75f4131a7dbf_hd.jpg" alt="img"></p>
 </li>
 </ul>
-<h1 id="5-Transformer和Attention"><a href="#5-Transformer和Attention" class="headerlink" title="5. Transformer和Attention"></a>5. Transformer和Attention</h1><p><img src="/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/u=3883992606,3840987159&amp;fm=26&amp;gp=0.jpg" alt="img"></p>
+<h1 id="5-Self-Attention"><a href="#5-Self-Attention" class="headerlink" title="5. Self-Attention"></a>5. Self-Attention</h1><p><img src="/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/self-attention-output.png" alt="img" style="zoom:60%;"></p>
+<p><img src="/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/transformer_multi-headed_self-attention-recap.png" alt="img"></p>
+<blockquote>
+<p>可以将Attention机制看做一种Query机制，即用一个Query（Decoder端的隐向量）来检索一个Memory（Encoder端的隐向量）区域。我们将Query表示为$key_q$。这里memory是一个键值对集合（a set of key-value pairs），共有M项（M为词库的大小？），其中的第i项，即第i个词，表示为($key_{m[i]}$, $value_{m[i]}$)。通过计算$key_q$和$key_{m[i]}$的相关度，来决定查询结果中，$value_{m[i]}$所占的权重比例。注意，这里的$key_q$，$key_m$，$value_m$都是同一个vector，所以才叫self-attention。</p>
+<p>Attention的计算概括起来分三步：</p>
+<p>1）计算query和memory中每个key_m的相关度。</p>
+<p>2）对所有的相关度结果使用softmax函数进行概率归一化处理。</p>
+<p>3）根据概率归一化结果对memory中的所有value_m进行加权平均，得到最终的查询结果。</p>
+<p>计算过程，形式化为：</p>
+<p><img src="/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/1460000015575992.png" alt="img" style="zoom:85%;"></p>
+<p><img src="/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/1460000015575993.png" alt="img" style="zoom:50%;"></p>
+<p><img src="/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/1460000015575994.png" alt="img" style="zoom:50%;"></p>
+<p>==注：==</p>
+<ul>
+<li>key_q指的是上图中的vector q</li>
+<li>key_m~i~指的是上图中的vector k~i~</li>
+<li>value_m~i~指的是上图中的vector v~i~</li>
+</ul>
+<p><mark>在self-attention中，Q = K = V，是一个由所有词的词向量构成的一个矩阵</mark>。</p>
+<p>综上，self-attention是一种序列建模的方式，在对句子进行分布式表示的时候，句子中的<strong>所有的词都会发生直接的交互关系</strong>，相对于RNN/双向RNN和CNN而言，更能够捕获长距离依赖知识。</p>
+<p><img src="/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/1460000015575991.png" alt="img" style="zoom:80%;"></p>
+</blockquote>
+<ul>
+<li>Q-matrix, K-matrix, V-matrix 是如何初始化，保证Q是Query, K是Key和V是Value?或者后期是如何向最佳方向优化的？</li>
+</ul>
+<pre><code>    - 具体可见下面的的实现代码，这里是初始化了三个线性kernel权重，对x做了简单的线性变换
+</code></pre><ul>
+<li><p><mark>位置向量是如何初始化以及优化的</mark></p>
+<ul>
+<li>左半部分的值由一个函数(使用正弦)生成，而右半部分由另一个函数(使用余弦)生成。然后将它们拼在一起而得到每一个位置编码向量</li>
+<li>可以在 <code>get_timing_signal_1d()</code>中看到生成位置编码的代码。这不是唯一可能的位置编码方法。然而，它的优点是能够扩展到未知的序列长度(例如，当我们训练出的模型需要翻译远比训练集里的句子更长的句子时)。</li>
+<li><img src="/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/1460000015575997.png" alt="img" style="zoom:40%;"></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>残差模块</p>
+<p><img src="/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/transformer_resideual_layer_norm_2.png" alt="img" style="zoom:50%;"></p>
+</li>
+<li><p>损失函数</p>
+</li>
+</ul>
+<pre><code>  - [交叉熵](https://colah.github.io/posts/2015-09-Visual-Information/)
+ - [KL离散度](https://www.countbayesie.com/blog/2017/5/9/kullback-leibler-divergence-explained)
+</code></pre><ul>
+<li><p>代码实现</p>
+   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> backend <span class="keyword">as</span> K</span><br><span class="line"><span class="keyword">from</span> keras.preprocessing <span class="keyword">import</span> sequence</span><br><span class="line"><span class="keyword">from</span> keras.datasets <span class="keyword">import</span> imdb</span><br><span class="line"><span class="keyword">from</span> keras.engine.topology <span class="keyword">import</span> Layer</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SelfAttention</span><span class="params">(Layer)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, output_dim, **kwargs)</span>:</span></span><br><span class="line">        self.output_dim = output_dim</span><br><span class="line">        super(SelfAttention, self).__init__(**kwargs)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self, input_shape)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        为该层创建一个可训练的权重，即三个线性变换的函数，用于初始化Q、K和V</span></span><br><span class="line"><span class="string">        :param input_shape: (batch_size, time_steps, seq_len)</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.kernel = self.add_weight(name=<span class="string">'kernel'</span>,</span><br><span class="line">                                      shape=(<span class="number">3</span>, input_shape[<span class="number">2</span>], self.output_dim),</span><br><span class="line">                                      initializer=<span class="string">'uniform'</span>,</span><br><span class="line">                                      trainable=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">        super(SelfAttention, self).build(input_shape) <span class="comment"># 继承父类的build，需要在最后来调用</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        计算Attention，先是根据x和kernel初始化了三个矩阵向量，然后根据Self-Attentino公式，计算对应的Attention输出</span></span><br><span class="line"><span class="string">        :param x:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        WQ = K.dot(x, self.kernel[<span class="number">0</span>])</span><br><span class="line">        WK = K.dot(x, self.kernel[<span class="number">1</span>])</span><br><span class="line">        WV = K.dot(x, self.kernel[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line">        print(<span class="string">"INFO : WQ.shape ="</span>, WQ.shape)</span><br><span class="line">        print(<span class="string">"INFO : K.permute_dimensions(WK, [0, 2, 1]).shape ="</span>, K.permute_dimensions(WK, [<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>]).shape)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 用batch_dot是由于input_shape是包含batch_size项的</span></span><br><span class="line">        QK = K.batch_dot(WQ, K.permute_dimensions(WK, [<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>]))</span><br><span class="line">        QK = QK / (<span class="number">64</span> ** <span class="number">0.5</span>)</span><br><span class="line">        QK = K.softmax(QK)</span><br><span class="line"></span><br><span class="line">        print(<span class="string">"INFO : QK.shape ="</span>, QK.shape)</span><br><span class="line"></span><br><span class="line">        V = k.batch_dot(QK, WV)</span><br><span class="line">        <span class="keyword">return</span> V</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">compute_output_shape</span><span class="params">(self, input_shape)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> (input_shape[<span class="number">0</span>], input_shape[<span class="number">1</span>], self.output_dim)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="6-Transformer"><a href="#6-Transformer" class="headerlink" title="6. Transformer"></a>6. Transformer</h1><p><img src="/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/u=3883992606,3840987159&amp;fm=26&amp;gp=0.jpg" alt="img"></p>
 <p>上图依旧是Transformer的网络结构，其左边是一个Encoder，右边是一个Decoder。该模型的拆解步骤如图所示，具体挑几个核心步骤讲解一下</p>
 <ul>
 <li><p><strong>Position Encoding</strong></p>
@@ -316,45 +367,7 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
 <li><p><strong>Feed Forward Network (FNN)</strong></p>
 </li>
 </ul>
-<h1 id="6-Self-Attention"><a href="#6-Self-Attention" class="headerlink" title="6. Self-Attention"></a>6. Self-Attention</h1><p><img src="/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/self-attention-output.png" alt="img" style="zoom:60%;"></p>
-<p><img src="/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/transformer_multi-headed_self-attention-recap.png" alt="img"></p>
-<blockquote>
-<p>可以将Attention机制看做一种Query机制，即用一个Query（Decoder端的隐向量）来检索一个Memory（Encoder端的隐向量）区域。我们将Query表示为key_q。这里memory是一个键值对集合（a set of key-value pairs），共有M项（M为词库的大小？），其中的第i项，即第i个词，表示为<key_m[i], value_m[i]>。通过计算query和key_m[i]的相关度，来决定查询结果中，value_m[i]所占的权重比例。注意，这里的key_q，key_m，value_m都是vector。</key_m[i],></p>
-<p>Attention的计算概括起来分三步：1）计算query和memory中每个key_m的相关度。2）对所有的相关度结果使用softmax函数进行概率归一化处理。3）根据概率归一化结果对memory中的所有value_m进行加权平均，得到最终的查询结果。计算过程，形式化为：</p>
-<p><img src="/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/1460000015575992.png" alt="img"></p>
-<p><img src="/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/1460000015575993.png" alt="img"></p>
-<p><img src="/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/1460000015575994.png" alt="img"></p>
-<p>==注：==</p>
-<ul>
-<li>key_q指的是上图中的vector q</li>
-<li>key_m~i~指的是上图中的vector k~i~</li>
-<li>value_m~i~指的是上图中的vector v~i~</li>
-</ul>
-<p>在self-attention中，Q=K=V，是一个由所有词的词向量构成的一个矩阵。</p>
-<p>综上，self-attention是一种序列建模的方式，在对句子进行分布式表示的时候，句子中的<strong>所有的词都会发生直接的交互关系</strong>，相对于RNN/双向RNN和CNN而言，更能够捕获长距离依赖知识。</p>
-<p><img src="/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/1460000015575991.png" alt="img"></p>
-</blockquote>
-<ul>
-<li><p>Q-matrix, K-matrix, V-matrix 是如何初始化，保证Q是Query, K是Key和V是Value?或者后期是如何向最佳方向优化的？</p>
-</li>
-<li><p>位置向量是如何初始化以及优化的</p>
-<ul>
-<li>左半部分的值由一个函数(使用正弦)生成，而右半部分由另一个函数(使用余弦)生成。然后将它们拼在一起而得到每一个位置编码向量</li>
-<li>可以在 <code>get_timing_signal_1d()</code>中看到生成位置编码的代码。这不是唯一可能的位置编码方法。然而，它的优点是能够扩展到未知的序列长度(例如，当我们训练出的模型需要翻译远比训练集里的句子更长的句子时)。</li>
-<li><img src="/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/1460000015575997.png" alt="img"></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>残差模块</p>
-<p><img src="/2019/08/11/NLP相关算法初探/2019-08-11-NLP相关算法初探/transformer_resideual_layer_norm_2.png" alt="img"></p>
-</li>
-<li><p>损失函数</p>
-</li>
-</ul>
-<pre><code> - [交叉熵](https://colah.github.io/posts/2015-09-Visual-Information/)
-   - [KL离散度](https://www.countbayesie.com/blog/2017/5/9/kullback-leibler-divergence-explained)
-</code></pre><h1 id="6-Positional-Encoding"><a href="#6-Positional-Encoding" class="headerlink" title="6. Positional Encoding"></a>6. Positional Encoding</h1><h1 id="7-TODO：在tf中实现word-embedding"><a href="#7-TODO：在tf中实现word-embedding" class="headerlink" title="7. TODO：在tf中实现word-embedding"></a>7. TODO：在tf中实现word-embedding</h1><h1 id="8-References"><a href="#8-References" class="headerlink" title="8. References"></a>8. References</h1><ul>
+<h1 id="7-TODO：在tf中实现相关代码"><a href="#7-TODO：在tf中实现相关代码" class="headerlink" title="7. TODO：在tf中实现相关代码"></a>7. TODO：在tf中实现相关代码</h1><h1 id="8-References"><a href="#8-References" class="headerlink" title="8. References"></a>8. References</h1><ul>
 <li><a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Paper: Attention Is All You Need</a></li>
 <li><a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener">The Illustrated Transformer</a></li>
 <li><a href="https://www.jiqizhixin.com/articles/2019-01-09-18" target="_blank" rel="noopener">The Illustrated Transformer【译】</a></li>
@@ -649,15 +662,7 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -673,11 +678,23 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -689,15 +706,11 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -769,6 +782,10 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -781,15 +798,11 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -817,6 +830,14 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -829,19 +850,11 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -853,11 +866,27 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Quant</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -877,15 +906,7 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -905,6 +926,14 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
@@ -913,15 +942,7 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -933,7 +954,7 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -941,19 +962,15 @@ e_{ij} &= \alpha(s_{i-1}, h_j) \tag 4
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">白话统计</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
+                <a href="javascript:void(0)" class="js-tag color5">BERT</a>
               </li>
             
             <div class="clearfix"></div>

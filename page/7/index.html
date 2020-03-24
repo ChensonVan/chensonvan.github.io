@@ -156,6 +156,79 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Machine-Learning-Recommender-Systems-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/15/Machine-Learning-Recommender-Systems-2/">Machine Learning - Recommender Systems(2)</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/15/Machine-Learning-Recommender-Systems-2/" class="archive-article-date">
+  	<time datetime="2017-05-15T08:43:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-协同过滤，给用户推荐物品"><a href="#1-协同过滤，给用户推荐物品" class="headerlink" title="1. 协同过滤，给用户推荐物品"></a>1. 协同过滤，给用户推荐物品</h3><h4 id="1-1-基于用户的协同过滤算法"><a href="#1-1-基于用户的协同过滤算法" class="headerlink" title="1.1 基于用户的协同过滤算法"></a>1.1 基于用户的协同过滤算法</h4><p>UserCF 主要通过<strong>分析用户的行为记录</strong>，<strong>计算物品之间的相似度</strong></p>
+<p>该算法认为物品A和物品B具有很大的相似度是因为喜欢物品A的用户大部分也喜欢物品B</p>
+<h5 id="1-1-1-步骤"><a href="#1-1-1-步骤" class="headerlink" title="1.1.1 步骤"></a>1.1.1 步骤</h5><ul>
+<li>找到和目标用户相似的用户集合</li>
+<li>找到这个集合中的用户喜欢，且和<strong>目标用户没有听说过的</strong>的物品推荐给目标用户</li>
+</ul>
+<h5 id="1-1-2-计算相似度"><a href="#1-1-2-计算相似度" class="headerlink" title="1.1.2 计算相似度"></a>1.1.2 计算相似度</h5><p><img src="http://i2.muimg.com/567571/b95f545d611e3a2e.png" alt></p>
+<p><strong>得到用户之间的兴趣相似度之后，寻找最相近的K个用户</strong></p>
+<p><img src="http://i4.buimg.com/567571/4fb60f6ed242f07b.png" alt></p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/15/Machine-Learning-Recommender-Systems-2/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Hadoop权威指南笔记（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -935,79 +1008,6 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
 
 
   
-    <article id="post-Linux常用指令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/19/Linux常用指令/">Linux常用指令</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/19/Linux常用指令/" class="archive-article-date">
-  	<time datetime="2017-02-19T01:16:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>有时候记东西老是记不住，虽然是经常使用，所以对常用的<code>linux</code>指令做个简单记录，方便以后使用（不断更新… …）。</p>
-<h3 id="1-scp文件传输-security-copy"><a href="#1-scp文件传输-security-copy" class="headerlink" title="1. scp文件传输 (security copy)"></a>1. scp文件传输 (security copy)</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> eg. scp chenson@127.0.0.1:~/Home/test .  ~/Home/local_test_path</span><br><span class="line">scp PATH_OF_SRC PATH_OF_DST</span><br></pre></td></tr></table></figure>
-<h3 id="2-测内存的使用率"><a href="#2-测内存的使用率" class="headerlink" title="2. 测内存的使用率"></a>2. 测内存的使用率</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">valgrind --tool=massif --pages-as-heap=yes</span><br><span class="line"></span><br><span class="line">ms_print massif 文件名</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">valgrind --tool=massif --pages-as-heap=yes ./bwtsearch testfiles/shopping.bwt l.idx "system"</span><br><span class="line"></span><br><span class="line">ms_print massif.out.3116</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find &lt;PATH TO FOLDER&gt; -ls | tr -s &apos; &apos;|cut -d&apos; &apos; -f 7| paste -sd+ | bc</span><br></pre></td></tr></table></figure>
-<h3 id="3-强制写入"><a href="#3-强制写入" class="headerlink" title="3. 强制写入"></a>3. 强制写入</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> vii commond model, Try the below command</span><br><span class="line"></span><br><span class="line">:w !sudo tee %</span><br><span class="line">Explanation</span><br><span class="line"></span><br><span class="line">:w – write</span><br><span class="line">!sudo – call shell sudo command</span><br><span class="line">tee – the output of write (:w) command is redirected using tee</span><br><span class="line"><span class="meta">%</span> – current file name</span><br></pre></td></tr></table></figure>
-<h3 id="4-查看二进制文件"><a href="#4-查看二进制文件" class="headerlink" title="4. 查看二进制文件"></a>4. 查看二进制文件</h3><p><code>vim</code>下 </p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:%!xxd</span><br></pre></td></tr></table></figure>
-<p><code>linux</code>下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xxd -b file_name</span><br></pre></td></tr></table></figure>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/19/Linux常用指令/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
@@ -1129,15 +1129,7 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1153,11 +1145,23 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1169,15 +1173,11 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1249,6 +1249,10 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -1261,15 +1265,11 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+                <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1297,6 +1297,14 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -1309,19 +1317,11 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1333,11 +1333,27 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Genetic Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Quant</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1357,15 +1373,7 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Anti-Fraud</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1385,6 +1393,14 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Semi-supervised Learning</a>
               </li>
              
@@ -1393,15 +1409,7 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1413,7 +1421,7 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1421,19 +1429,15 @@ z = -\theta^Tx</script><p><img src="http://p1.bqimg.com/567571/ccebe58b8c408be2.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">白话统计</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
+                <a href="javascript:void(0)" class="js-tag color5">BERT</a>
               </li>
             
             <div class="clearfix"></div>
