@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://chenson.cc/2019/03/05/Softmax理解笔记/2019-03-05-Softmax理解笔记/70.gif">
 <meta property="og:image" content="http://chenson.cc/2019/03/05/Softmax理解笔记/2019-03-05-Softmax理解笔记/image-20200105144619733.png">
 <meta property="og:image" content="http://chenson.cc/2019/03/05/Softmax理解笔记/2019-03-05-Softmax理解笔记/v2-b5af5bcf799835d1543ea5ecb3afe59e_hd.jpg">
-<meta property="og:updated_time" content="2020-01-09T09:42:03.688Z">
+<meta property="og:updated_time" content="2020-03-31T04:36:07.551Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Softmax理解笔记">
 <meta name="twitter:description" content="1. Introduction目前工作中，一直没接触过多分类，所以对于多分类也不是很了解。所以这里稍微整理一下多分类的Softmax函数，加深理解。">
@@ -188,7 +188,7 @@
 \begin {align}
 Softmax(x_j, x_1, x_2, ..., x_n) = \frac {e^{x_j}} {\sum_{i=1}^ne^{x_i}} \tag 1
 \end {align}</script><p><img src="/2019/03/05/Softmax理解笔记/2019-03-05-Softmax理解笔记/70.gif" alt="img"></p>
-<p>以上动图是一个三分类的例子，经过Softmax之后，输出的就是一个概率值了，此时对这个三个类别输出的是一个概率分布，<strong>之后可以用交叉熵的概念，来计算真实分布和输出的预测概率分布之间的距离</strong></p>
+<p>以上动图是一个三分类的例子，经过Softmax之后，输出的就是一个概率值了，此时对这个三个类别输出的是一个概率分布，<mark><strong>之后可以用交叉熵的概念，来计算真实分布和输出的预测概率分布之间的距离</strong></mark></p>
 <h1 id="3-LogSumExp"><a href="#3-LogSumExp" class="headerlink" title="3. LogSumExp"></a>3. LogSumExp</h1><script type="math/tex; mode=display">
 \begin {align}
 LogSumExp(x_1, x_2, ..., x_n) &= \log(\sum_{i=1}^n e^{x_i}) \\
@@ -262,10 +262,10 @@ H(p) &= \sum_{i=1}^Cp_i \log\frac 1 p_i \\
 H(p,q) &= \sum_{i=1}^Cp_i \log\frac 1 q_i \\
 &= -\sum_{i=1}^Cp_i \log q_i \tag {11}
 \end {align}</script><ul>
-<li>公式(10)表示的是用样本的真实分布$p$来衡量识别一个样本所需要的编码长度的期望</li>
+<li>公式(10)表示的是用样本的真实分布$p$来衡量识别一个样本所需要的<mark>编码长度</mark>的期望</li>
 <li>公式(11)表示的是估计分布$q$来表示真是分布$p$的平均编码长度的期望</li>
 <li>公式(9)表示的只是公式(11)中的$\log q_i$这部分</li>
-<li>至于为什么要用交叉熵而不用MSE等其他的损失函数，是由于在分类的场景下，MSE版的loss是一个非凸函数（因为只有当损失函数为凸函数时，梯度下降算法才能保证达到全局最优解），而Cross Entropy版的loss则是一个凸函数，具体可以参考博客<a href="https://blog.csdn.net/weixin_37567451/article/details/80895309" target="_blank" rel="noopener">经典损失函数：交叉熵</a></li>
+<li>至于为什么要用交叉熵而不用MSE等其他的损失函数，是由于在分类的场景下，<mark>MSE版的loss是一个非凸函数（因为只有当损失函数为凸函数时，梯度下降算法才能保证达到全局最优解），而Cross Entropy版的loss则是一个凸函数</mark>，具体可以参考博客<a href="https://blog.csdn.net/weixin_37567451/article/details/80895309" target="_blank" rel="noopener">经典损失函数：交叉熵</a></li>
 </ul>
 <h1 id="6-Softmax-CrossEntropy"><a href="#6-Softmax-CrossEntropy" class="headerlink" title="6. Softmax-CrossEntropy"></a>6. Softmax-CrossEntropy</h1><p>对于公式(9)是怎么来的，看着有点头晕，需要仔细推导一下</p>
 <p>首先介绍一下softplus函数，即$\log(1 + e^x)$，然后将公式(7)代入到$x$中（这里只考虑$\cal L_{lse}$中大于0的部分），此时即有了公式(9)中的第一步，化简一下，即有了完整的公式(9)</p>
@@ -276,8 +276,10 @@ H(p,q) &= \sum_{i=1}^Cp_i \log\frac 1 q_i \\
 &= \log \frac {\sum_{i=1}^C e^{z_i}} {e^{z_y}} \\
 &= -\log \frac {e^{z_y}} {\sum_{i=1}^C e^{z_i}} \tag 9
 \end {align}</script><ul>
-<li>问题1：为什么要引入softplus</li>
-<li>Sol1：似乎可以理解为引入了一定的m，增加泛化性</li>
+<li>问题1：为什么要引入softplus<ul>
+<li>似乎可以理解为引入了一定的m，增加泛化性</li>
+</ul>
+</li>
 <li>问题2：公式(7)中的max是如何体现在公式(9)中的</li>
 </ul>
 <h1 id="7-常见问题"><a href="#7-常见问题" class="headerlink" title="7. 常见问题"></a>7. 常见问题</h1><h2 id="7-1-Softmax和Sigmoid的区别"><a href="#7-1-Softmax和Sigmoid的区别" class="headerlink" title="7.1 Softmax和Sigmoid的区别"></a>7.1 Softmax和Sigmoid的区别</h2><p><img src="/2019/03/05/Softmax理解笔记/2019-03-05-Softmax理解笔记/image-20200105144619733.png" alt="image-20200105144619733" style="zoom:50%;"></p>
@@ -633,14 +635,6 @@ p_i \qquad i \neq y
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -650,6 +644,18 @@ p_i \qquad i \neq y
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -665,15 +671,23 @@ p_i \qquad i \neq y
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -685,15 +699,15 @@ p_i \qquad i \neq y
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -705,15 +719,7 @@ p_i \qquad i \neq y
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">RNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -729,19 +735,11 @@ p_i \qquad i \neq y
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Pytorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -757,6 +755,10 @@ p_i \qquad i \neq y
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -769,6 +771,14 @@ p_i \qquad i \neq y
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
@@ -778,14 +788,6 @@ p_i \qquad i \neq y
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -829,7 +831,11 @@ p_i \qquad i \neq y
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -841,19 +847,7 @@ p_i \qquad i \neq y
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -877,6 +871,14 @@ p_i \qquad i \neq y
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
@@ -897,7 +899,7 @@ p_i \qquad i \neq y
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -909,7 +911,7 @@ p_i \qquad i \neq y
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -921,11 +923,11 @@ p_i \qquad i \neq y
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -945,7 +947,7 @@ p_i \qquad i \neq y
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
             
             <div class="clearfix"></div>

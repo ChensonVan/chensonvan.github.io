@@ -11,19 +11,19 @@
   <link rel="dns-prefetch" href="http://chenson.cc">
   <title>半监督算法初探 | Vane&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. Introduction在许多业务场景中，标签往往是非常难获取的，人工标注会花费大量的人力和金钱，且还不能保证百分百的准确性。这类情况可以分成两种：  完完全全的没有标签数据 有一小部分的正类标签样本和绝大部分的无标签样本  而这个也是最近刚好在项目中遇到的，在某银行的涉黑项目中，有好几w的带标签的黑名单标注样本，来自外部，然后想要主动识别行方内部用户（上亿）中是否还有这些用户（即没有被标注">
+  <meta name="description" content="1. Introduction在许多业务场景中，标签往往是非常难获取的，人工标注会花费大量的人力和金钱，且还不能保证百分百的准确性，有些场景可能就缺少主动的外部反馈机制，比如涉黑、套现等。这类情况可以分成两种：  完完全全的没有标签数据 有一小部分的正类标签样本和绝大部分的无标签样本  而这个也是最近刚好在项目中遇到的，在某银行的涉黑项目中，有好几万的带标签的黑名单标注样本，来自外部（公安等系统）">
 <meta name="keywords" content="Semi-supervised Learning,PU Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="半监督算法初探">
 <meta property="og:url" content="http://chenson.cc/2019/09/19/半监督算法初探/index.html">
 <meta property="og:site_name" content="Vane&#39;s Blog">
-<meta property="og:description" content="1. Introduction在许多业务场景中，标签往往是非常难获取的，人工标注会花费大量的人力和金钱，且还不能保证百分百的准确性。这类情况可以分成两种：  完完全全的没有标签数据 有一小部分的正类标签样本和绝大部分的无标签样本  而这个也是最近刚好在项目中遇到的，在某银行的涉黑项目中，有好几w的带标签的黑名单标注样本，来自外部，然后想要主动识别行方内部用户（上亿）中是否还有这些用户（即没有被标注">
+<meta property="og:description" content="1. Introduction在许多业务场景中，标签往往是非常难获取的，人工标注会花费大量的人力和金钱，且还不能保证百分百的准确性，有些场景可能就缺少主动的外部反馈机制，比如涉黑、套现等。这类情况可以分成两种：  完完全全的没有标签数据 有一小部分的正类标签样本和绝大部分的无标签样本  而这个也是最近刚好在项目中遇到的，在某银行的涉黑项目中，有好几万的带标签的黑名单标注样本，来自外部（公安等系统）">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://chenson.cc/2019/09/19/半监督算法初探/2019-09-19-半监督算法初探/image-20191201210848779.png">
-<meta property="og:updated_time" content="2019-12-17T10:16:34.364Z">
+<meta property="og:updated_time" content="2020-03-31T15:50:34.810Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="半监督算法初探">
-<meta name="twitter:description" content="1. Introduction在许多业务场景中，标签往往是非常难获取的，人工标注会花费大量的人力和金钱，且还不能保证百分百的准确性。这类情况可以分成两种：  完完全全的没有标签数据 有一小部分的正类标签样本和绝大部分的无标签样本  而这个也是最近刚好在项目中遇到的，在某银行的涉黑项目中，有好几w的带标签的黑名单标注样本，来自外部，然后想要主动识别行方内部用户（上亿）中是否还有这些用户（即没有被标注">
+<meta name="twitter:description" content="1. Introduction在许多业务场景中，标签往往是非常难获取的，人工标注会花费大量的人力和金钱，且还不能保证百分百的准确性，有些场景可能就缺少主动的外部反馈机制，比如涉黑、套现等。这类情况可以分成两种：  完完全全的没有标签数据 有一小部分的正类标签样本和绝大部分的无标签样本  而这个也是最近刚好在项目中遇到的，在某银行的涉黑项目中，有好几万的带标签的黑名单标注样本，来自外部（公安等系统）">
 <meta name="twitter:image" content="http://chenson.cc/2019/09/19/半监督算法初探/2019-09-19-半监督算法初探/image-20191201210848779.png">
   
     <link rel="alternative" href="/atom.xml" title="Vane&#39;s Blog" type="application/atom+xml">
@@ -178,19 +178,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>在许多业务场景中，标签往往是非常难获取的，人工标注会花费大量的人力和金钱，且还不能保证百分百的准确性。这类情况可以分成两种：</p>
+        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>在许多业务场景中，标签往往是非常难获取的，人工标注会花费大量的人力和金钱，且还不能保证百分百的准确性，有些场景可能就缺少主动的外部反馈机制，比如涉黑、套现等。这类情况可以分成两种：</p>
 <ul>
 <li>完完全全的没有标签数据</li>
 <li>有一小部分的正类标签样本和绝大部分的无标签样本</li>
 </ul>
-<p>而这个也是最近刚好在项目中遇到的，在某银行的涉黑项目中，有好几w的带标签的黑名单标注样本，来自外部，然后想要主动识别行方内部用户（上亿）中是否还有这些用户（即没有被标注出来的涉黑用户），也就是上面提到的第二点，有部分的正类标签的样本和大量的无标签样本。这里介绍一下这个项目中用到的半监督算法- Two-Step PU Learning。</p>
+<p>而这个也是最近刚好在项目中遇到的，在某银行的涉黑项目中，有好几万的带标签的黑名单标注样本，来自外部（公安等系统），然后想要主动识别行方内部用户（上亿）中是否还有这些用户（即没有被标注出来的涉黑用户），也就是上面提到的第二点，有部分的正类标签的样本和大量的无标签样本。这里介绍一下这个项目中用到的半监督算法 <code>Two-Step PU Learning</code>（Postive and Unlabled Learning）</p>
 <a id="more"></a>
 <h1 id="2-PU-Learning"><a href="#2-PU-Learning" class="headerlink" title="2. PU Learning"></a>2. PU Learning</h1><blockquote>
-<p><strong>Two-Step PU Learning</strong>：假定我们面对的数据中，真实黑样本中的小部分已经被标记了出来，构成集合<strong>P(Positve)</strong>，剩下所有数据都无标记构成集合<strong>U(Unlabeled)</strong>，如何建设模型可以对未标注的样本进行黑白分类？</p>
-<p>把U中的样本标签视为缺失，那么我们便可以考虑使用EM(Expectation Maximization)的思想，EM可以理解为是存在隐变量时MLE(Maximum Likelihood Estimation)的一种改进方法，这里我们在E步对缺失值进行填充，M步基于上次填充结果进行迭代，如是多轮之后产出最终模型，这就是原始的PU。</p>
+<p><strong>Two-Step PU Learning</strong>：假定我们面对的数据中，真实黑样本中的小部分已经被标记了出来，构成集合<strong>P(Positve)</strong>，剩下所有数据都无标记构成集合<strong>U(Unlabled)</strong>，如何建设模型可以对未标注的样本进行黑白分类？</p>
+<p>把U中的样本标签视为缺失，那么我们便可以考虑使用EM(Expectation Maximization)的思想，EM可以理解为是存在隐变量时MLE(Maximum Likelihood Estimation)的一种改进方法，这里我们在E步对缺失值进行填充，M步基于上次填充结果进行迭代，如是多轮之后产出最终模型，这就是原始的PU</p>
 </blockquote>
-<p>问题：如果一开始的P是有偏的，那么多轮的EM反而会有负向的效果</p>
-<p>方案：引入spy【哨兵】机制，提高生成的白样本可靠性</p>
+<ul>
+<li>问题：如果一开始的P是有偏的，那么多轮的EM反而会有负向的效果<ul>
+<li><mark>引入spy【哨兵】机制，提高生成的白样本可靠性</mark></li>
+</ul>
+</li>
+</ul>
 <h2 id="2-1-算法步骤"><a href="#2-1-算法步骤" class="headerlink" title="2.1 算法步骤"></a>2.1 算法步骤</h2><blockquote>
 <ol>
 <li><p>生成样本池：选取问题所需的样本集，并根据其他领域迁移而来的知识给<strong>部分样本</strong>打上正例标签</p>
@@ -200,7 +204,7 @@
 <li>采样：基于特定的采样方法，在采样环节选取出待标注的样本</li>
 <li>标注：对待标注样本进行人工标注【仅保留专家100%的正类】<ol>
 <li>更新样本：采用特定的方法更新样本库</li>
-<li>更新模型：使用<strong>two-step PU Learning方法更新模型</strong>【重点】</li>
+<li>更新模型：<mark>使用<strong>two-step PU Learning方法更新模型</strong></mark>【重点】</li>
 </ol>
 </li>
 </ol>
@@ -210,34 +214,53 @@
 </ol>
 </blockquote>
 <h3 id="2-1-1-采样"><a href="#2-1-1-采样" class="headerlink" title="2.1.1 采样"></a>2.1.1 采样</h3><ul>
-<li><p>采用min-batch的方法批量采用，即每次采样多个记录，采样全都标注完成后算法才更新，在相同标注数量下<strong>显著减少了时间成本。</strong></p>
+<li><p>采用min-batch的方法批量采用，即每次采样多个记录，采样全都标注完成后算法才更新，在相同标注数量下<strong>显著减少了时间成本</strong></p>
 </li>
 <li><p>采样的样式基于Uncertainty &amp; Diversity标准，即<strong>尽量选取出当前模型最不确定同时又有着丰富的多样性的样本集</strong>。具体流程为：</p>
 <ol>
-<li><p>对新的数据集$D_{new}$，使用当前模型打分</p>
-</li>
-<li><p>选取出若干个模型最不确定的<strong>白样本</strong>构成$D_{uncertain}$，不确定性的衡量基准基于模型打分而来</p>
-</li>
-<li><p>对$D_{uncertain}$进行K-means聚类，在每个类中取出最不确定的若干个样本，构造最终待标注的样本</p>
-</li>
+<li>对新的数据集$D_{new}$，使用当前模型打分</li>
 </ol>
 </li>
 </ul>
-<h3 id="2-1-2-标注"><a href="#2-1-2-标注" class="headerlink" title="2.1.2 标注"></a>2.1.2 标注</h3><p>专家进行标注，由于我们的方法对于P集合的信息会充分的信赖与利用，因此要求专家判断时，仅把具有充分信心的样本标注为1，<strong>保证P集合的正确性。</strong></p>
+<ol>
+<li>选取出若干个模型最不确定的<strong>白样本</strong>构成$D_{uncertain}$，不确定性的衡量基准基于模型打分而来<ol>
+<li>对$D_{uncertain}$进行K-means聚类，在每个类中取出最不确定的若干个样本，构造最终待标注的样本</li>
+</ol>
 <ul>
-<li>问题：这里标注的是1么，单么对于非1d部分，是标注为0么？</li>
+<li>这个最不确定是根据专家评估的吗？如何确定k类样本的个数？</li>
 </ul>
-<h3 id="2-1-3-更新样本"><a href="#2-1-3-更新样本" class="headerlink" title="2.1.3 更新样本"></a>2.1.3 更新样本</h3><p>在这一环节，由于<strong>对于专家标注的0无法完全信任，因此会选择将标为0的部分放入U集合中，假装没有标注过。而对于标注为1的部分，则进行多倍的上采样后全都放入P集合，以强化这批样本在下一轮模型更新中的作用</strong>。</p>
+</li>
+</ol>
+<h3 id="2-1-2-标注"><a href="#2-1-2-标注" class="headerlink" title="2.1.2 标注"></a>2.1.2 标注</h3><p>采用Activate Learning结构，专家进行标注，由于我们的方法对于P集合的信息会充分的信赖与利用，因此要求专家判断时，<mark><strong>仅把具有充分信心的样本标注为1，保证P集合的正确性</strong></mark></p>
+<ul>
+<li>问题：这里标注的是1么，那么对于标注为非1的部分，是直接标注为0么？<ul>
+<li>对于标注为非1的数据，依旧作为为标注的样本放到原先未标注的样本池U集合里</li>
+<li>同时对于标注为1的数据，会进行多倍的上采样，放到P集合里，强化这批样本在下轮模型更新中的作用</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-1-3-更新样本"><a href="#2-1-3-更新样本" class="headerlink" title="2.1.3 更新样本"></a>2.1.3 更新样本</h3><p>在这一环节，由于<mark><strong>对于专家标注的0无法完全信任，因此会选择将标为0的部分放入U集合中，假装没有标注过。而对于标注为1的部分，则进行多倍的上采样后全都放入P集合，以强化这批样本在下一轮模型更新中的作用</strong></mark></p>
 <h3 id="2-1-4-更新模型"><a href="#2-1-4-更新模型" class="headerlink" title="2.1.4 更新模型"></a>2.1.4 更新模型</h3><p>常规的Active Learning通常如图二左边所示，专家会多次标注，逐渐扩充L(Labeled)集合，Active learner则会在多次学习L集合时不停提升自己的性能，我们称之为LU setting。</p>
 <p>然而在本场景，<strong>我们更像是一个PU setting，专家多次标注，扩充P(Positive)集合，Learner则在每次迭代的时候，基于PU Learning进行学习。</strong></p>
 <p><img src="/2019/09/19/半监督算法初探/2019-09-19-半监督算法初探/image-20191201210848779.png" alt="image-20191201210848779" style="zoom:50%;"></p>
 <p>PU Learning这里选用的Two-Step PU Learning，具体步骤如下：</p>
 <ol>
-<li>将P集合中部分样本作为Spy【哨兵】混入到U集合中，并进行多轮EM迭代</li>
-<li>考场Spy样本的分值分布，<strong>将U集合中所有分值小于Spy中10%分为模型分值的样本标注为0，生成N(Negative)集合</strong>，并基于此进行多伦EM迭代。</li>
+<li><mark>将P集合中部分样本作为Spy【哨兵】混入到U集合中</mark>，并进行多轮EM迭代</li>
+<li>考虑Spy样本的分值分布，<strong>将U集合中所有分值小于Spy中10%分为模型分值的样本标注为0，生成N(Negative)集合</strong>，并基于此进行多伦EM迭代。</li>
 </ol>
 <p>EM迭代的思路在Two-Step PU 过程中都是一致的，将P集合的样本score标注为1，U集合的样本score继承上一轮模型打分，训练新的模型拟合样本score，并给出新的模型打分，即完成一轮迭代。</p>
-<p><strong>这里Active Learing的基分类器为GBRT(Gradient Boosting Regression Tree)</strong></p>
+<p><strong><mark>这里Active Learing的基分类器为GBRT(Gradient Boosting Regression Tree)</mark></strong></p>
+<h3 id="2-1-5-two-step-PU-Learning"><a href="#2-1-5-two-step-PU-Learning" class="headerlink" title="2.1.5 two-step PU Learning"></a>2.1.5 two-step PU Learning</h3><p>如字面意思，分成两步</p>
+<ol>
+<li>从已标注的P集合里面，选出部分的样本，作为spy【哨兵】加入到未标注的U集合里面，此时U集合暂时作为0的存在，进行多轮的EM迭代</li>
+<li>考察spy【哨兵】样本的分值分布情况，将U集合中所有分值小于spy中10%分位模型分值的样本标注为0，生成N集合（负样本），并基于此进行多轮的EM迭代</li>
+</ol>
+<h2 id="2-2-算法评估"><a href="#2-2-算法评估" class="headerlink" title="2.2 算法评估"></a>2.2 算法评估</h2><p>需要评估 two-step PU Learning的有效性，可用同样的样本训练几个模型对比，蚂蚁金服的文章里面训练了如下三个模型</p>
+<ul>
+<li>无监督IF（Isolation Forest）</li>
+<li>有监督GBDT模型</li>
+<li>two-step PU Learning生成的GBRT模型</li>
+</ul>
 <h1 id="5-References"><a href="#5-References" class="headerlink" title="5. References"></a>5. References</h1><ul>
 <li><a href="https://zhuanlan.zhihu.com/p/33468825" target="_blank" rel="noopener">Positive Unlabeled Learning</a></li>
 <li><p><a href="https://zhuanlan.zhihu.com/p/89157127" target="_blank" rel="noopener">无偏PU Learning</a></p>
@@ -523,14 +546,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -540,6 +555,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -555,15 +582,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -575,15 +610,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -595,15 +630,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">RNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -619,19 +646,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Pytorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -647,6 +666,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -659,6 +682,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
@@ -668,14 +699,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -719,7 +742,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -731,19 +758,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -767,6 +782,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
@@ -787,7 +810,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -799,7 +822,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -811,11 +834,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -835,7 +858,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
             
             <div class="clearfix"></div>

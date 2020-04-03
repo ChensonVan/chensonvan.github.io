@@ -33,7 +33,7 @@
 <meta property="og:image" content="http://chenson.cc/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/image-20200225180545412.png">
 <meta property="og:image" content="http://chenson.cc/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/bert-output-vector.png">
 <meta property="og:image" content="http://chenson.cc/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/bert-classifier.png">
-<meta property="og:updated_time" content="2020-03-25T02:56:06.237Z">
+<meta property="og:updated_time" content="2020-04-02T07:38:10.028Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于BERT初探过程中的零零碎碎">
 <meta name="twitter:description" content="1. Introduction记录一下BERT学习过程中的一些零零碎碎 2. Questions2.1 什么是编码器，什么又是解码器 2.1.1 编码器 编码器的作用是把一个不定长的输入序列变成一个定长的背景向量$c$，并在该背景变量中输入序列信息。常用的编码器是循环神经网络。   c = q(h_1, h_2, ..., h_t)这里$q$是自定义函数，用来生成对应的背景向量$c$的（这里为了简">
@@ -256,17 +256,20 @@ softmax(QK^T)V</script><p><img src="/2020/02/10/关于BERT初探过程中的零�
 <p><img src="/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/v2-26f3e9cd3679956dab33486c83dd0088_hd-20200218215503208.jpg" alt="img" style="zoom:50%;"></p>
 <h3 id="2-4-3-BERT"><a href="#2-4-3-BERT" class="headerlink" title="2.4.3 BERT"></a>2.4.3 BERT</h3><h2 id="2-5-BERT模型结构"><a href="#2-5-BERT模型结构" class="headerlink" title="2.5 BERT模型结构"></a>2.5 BERT模型结构</h2><p>BERT的全称是<code>Bidirectional Encoder Representation from Transformer</code>，如字面意思，是双向Transformer的Encoder</p>
 <ul>
-<li>问题1：为什么不用Decoder?（不能获取要预测的信息）</li>
+<li>问题1：为什么不用Decoder?<ul>
+<li>因为decoder不能获取要预测的信息，获取到的是句子的部分信息，而encoder里面有完整句子的信息</li>
+</ul>
+</li>
 </ul>
 <p>下图有三个模型，分别是Bert、GPT和ELMo，可以看出BERT并不是第一个使用Trm的模型，具体差异如下</p>
 <ul>
 <li>BERT vs GPT<ul>
-<li>两者都用了Trm</li>
+<li><mark>两者都用了Trm</mark></li>
 <li>BERT用了双向的Trm，而GPT只用了单向链接的Trm</li>
 </ul>
 </li>
 <li>BERT vs ELMo<ul>
-<li>BERT模型里的block是Trm，ELMo用的是LSTM</li>
+<li><mark>BERT模型里的block是Trm，ELMo用的是LSTM</mark></li>
 <li>两者都是双向链接（但实现方式不同，决定了其目标函数的不同）<ul>
 <li>BERT的目标函数是$P(w_i|w_1,…,w_{i-1},w_{i+1},…,w_n)$</li>
 <li>ELMo的目标函数分别是$P(w_i|w_1,…,w_{i-1})$和$P(w_i|w_{i+1},…,w_n)$，独立训练出两个representation（如下图，左右两边分别训练出一个），然后concat在一起成一个</li>
@@ -299,11 +302,16 @@ softmax(QK^T)V</script><p><img src="/2020/02/10/关于BERT初探过程中的零�
 <h4 id="Next-Sentence-Prediction-NSP"><a href="#Next-Sentence-Prediction-NSP" class="headerlink" title="Next Sentence Prediction - NSP"></a>Next Sentence Prediction - NSP</h4><p>除此之外，还在增加了Next Sentence Prediction的预训练任务，即对下一句的预测。这样是为了让模型学习到句与句之间的关系。其训练的输入是两个句子A和B，且B有一定的概率（50%）是A的下一句，然后让模型预测句子B是否为A的下一句。在准备句子A、B语料的时候，需要选取document-level的而不是sentence-level的</p>
 <h3 id="2-6-2-Fine-Tuning"><a href="#2-6-2-Fine-Tuning" class="headerlink" title="2.6.2 Fine-Tuning"></a>2.6.2 Fine-Tuning</h3><p>根据具体的应用任务，对之前预训练好的模型，用supervised训练数据，精加工模型，使之适用于具体的应用</p>
 <h2 id="2-7-关于BERT的数据输入与输出"><a href="#2-7-关于BERT的数据输入与输出" class="headerlink" title="2.7 关于BERT的数据输入与输出"></a>2.7 关于BERT的数据输入与输出</h2><ul>
-<li><p>输入（可以是单句或是句对）</p>
+<li><p>输入 - <mark>可以是单句或是句对</mark></p>
 <p><img src="/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/image-20200225180545412.png" alt="image-20200225180545412"></p>
 <ul>
 <li>1-512是对应输入句子的每一个词</li>
-<li>以[cls]开头</li>
+<li>除此了每个词本身的向量Token Embedding外，还有文本向量Segment Embedding和位置向量Position Embedding，三者向量的加和，即为最后的输入向量<ul>
+<li>Transformer中Position Embedding由三角函数生成</li>
+<li>BERT中三个向量均是随机生成</li>
+</ul>
+</li>
+<li>以[CLS]标识开头（Next Sentence Prediction中有），两个句子的尾部都有[SEP]标识</li>
 </ul>
 </li>
 <li><p>输出</p>
@@ -311,7 +319,8 @@ softmax(QK^T)V</script><p><img src="/2020/02/10/关于BERT初探过程中的零�
 <p><img src="/2020/02/10/关于BERT初探过程中的零零碎碎/2020-02-10-关于BERT初探过程中的零零碎碎/bert-classifier.png" alt="img"></p>
 <ul>
 <li>1-512的时间步骤t中，对应了一个hidden vector（在Bert Base中是768），这里重点关注第一个输出的hidden vector，即[cls]对应的那个</li>
-<li>然后输出的hidden vector会作为输入，到一个FNN网络做分类（这里以分类为例）</li>
+<li>然后输出的hidden vector会作为输入，到一个FCN网络做分类（这里以分类为例）</li>
+<li>每个时间步骤t中输出的hidden vector，都是对应输入token融合全文语义信息后输出的向量表示</li>
 </ul>
 </li>
 </ul>
@@ -321,6 +330,7 @@ softmax(QK^T)V</script><p><img src="/2020/02/10/关于BERT初探过程中的零�
 <li><a href="https://zhuanlan.zhihu.com/p/44121378" target="_blank" rel="noopener">【NLP】Transformer详解</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/46652512" target="_blank" rel="noopener">【NLP】Google BERT详解</a></li>
 <li><a href="https://mp.weixin.qq.com/s/qfluRDWfL40E5Lrp5BdhFw" target="_blank" rel="noopener">美团BERT的探索和实践</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/95594311" target="_blank" rel="noopener">关于BERT的若干问题整理记录</a></li>
 </ul>
 
       
@@ -598,14 +608,6 @@ softmax(QK^T)V</script><p><img src="/2020/02/10/关于BERT初探过程中的零�
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -615,6 +617,18 @@ softmax(QK^T)V</script><p><img src="/2020/02/10/关于BERT初探过程中的零�
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -630,15 +644,23 @@ softmax(QK^T)V</script><p><img src="/2020/02/10/关于BERT初探过程中的零�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -650,15 +672,15 @@ softmax(QK^T)V</script><p><img src="/2020/02/10/关于BERT初探过程中的零�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -670,15 +692,7 @@ softmax(QK^T)V</script><p><img src="/2020/02/10/关于BERT初探过程中的零�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">RNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -694,19 +708,11 @@ softmax(QK^T)V</script><p><img src="/2020/02/10/关于BERT初探过程中的零�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Pytorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -722,6 +728,10 @@ softmax(QK^T)V</script><p><img src="/2020/02/10/关于BERT初探过程中的零�
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -734,6 +744,14 @@ softmax(QK^T)V</script><p><img src="/2020/02/10/关于BERT初探过程中的零�
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
@@ -743,14 +761,6 @@ softmax(QK^T)V</script><p><img src="/2020/02/10/关于BERT初探过程中的零�
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -794,7 +804,11 @@ softmax(QK^T)V</script><p><img src="/2020/02/10/关于BERT初探过程中的零�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -806,19 +820,7 @@ softmax(QK^T)V</script><p><img src="/2020/02/10/关于BERT初探过程中的零�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -842,6 +844,14 @@ softmax(QK^T)V</script><p><img src="/2020/02/10/关于BERT初探过程中的零�
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
@@ -862,7 +872,7 @@ softmax(QK^T)V</script><p><img src="/2020/02/10/关于BERT初探过程中的零�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -874,7 +884,7 @@ softmax(QK^T)V</script><p><img src="/2020/02/10/关于BERT初探过程中的零�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -886,11 +896,11 @@ softmax(QK^T)V</script><p><img src="/2020/02/10/关于BERT初探过程中的零�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -910,7 +920,7 @@ softmax(QK^T)V</script><p><img src="/2020/02/10/关于BERT初探过程中的零�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
             
             <div class="clearfix"></div>

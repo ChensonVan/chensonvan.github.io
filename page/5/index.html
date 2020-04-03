@@ -395,12 +395,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1. 简单介绍"></a>1. 简单介绍</h3><p>目前知识图谱可以分成两大类：一类是开放领域的知识图谱，比如谷歌搜索引擎所建立的知识图谱。另一类是垂直领域的知识图谱，根据字面意思来看，就是特定某一个领域，比如金融风控领域。今天介绍一下关系网络在金融风控领域的应用。</p>
-<p>主要应用可以分成两大类。</p>
+        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>目前知识图谱可以分成两大类：</p>
+<ul>
+<li>一类是<mark>开放领域的知识图谱</mark>，比如谷歌搜索引擎所建立的知识图谱</li>
+<li>另一类是<mark>垂直领域的知识图谱</mark>，根据字面意思来看，就是特定某一个领域，比如金融风控领域。今天介绍一下关系网络在金融风控领域的应用</li>
+</ul>
+<p>主要应用可以分成三大类</p>
 <ul>
 <li><p>第一类</p>
-<p>网络特征的<strong>直接提取</strong>，提取出中心度或者一度/二度关联特征供上层规则系统或者风险评估模型使用。</p>
-<p>比如说在银行贷款申请的业务场景下，在贷款申请人中，第一度是联系人，则与目标申请共享相同联系人的申请数目是一度关联度，如果这些申请还与另外一些申请共享相同的住址或其他特征，这些申请就和目标申请形成二度关联。一些简单的指标，比如一度关联节点或者二度关联节点是否触黑/触黑个数，在实际的反欺诈实践中效果是非常显著的。如果特征不涉及深度的关系，传统的关系型数据库就能够满足需求，因为计算量是随着度数的增加呈指数增加。</p></li></ul>
+<p><mark>网络特征的<strong>直接提取</strong>，提取出中心度或者一度/二度关联特征供上层规则系统或者风险评估模型使用</mark></p>
+<p>比如说在银行贷款申请的业务场景下，在贷款申请人中，第一度是联系人，则与目标申请共享相同联系人的申请数目是一度关联度，如果这些申请还与另外一些申请共享相同的住址或其他特征，这些申请就和目标申请形成二度关联。一些简单的指标，比如一度关联节点或者二度关联节点是否触黑/触黑个数，在实际的反欺诈实践中效果是非常显著的。如果特征不涉及深度的关系，传统的关系型数据库就能够满足需求，因为计算量是随着度数的增加呈指数增加</p></li></ul>
         
       
 
@@ -650,7 +654,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>说实话，只是大概了解一下这些常见的RNN模型，但是这些模型为什么这么设计，为什么能够抓取网络中可能有用的长短期信息其实我还是比较懵的。这一块以后也是需要去深入理解的一部分，先mark一下。</p>
+        <p>说实话，只是大概了解一下这些常见的RNN模型，但是这些模型为什么这么设计，为什么能够抓取网络中可能有用的长短期信息其实我还是比较懵的。这一块以后也是需要去深入理解的一部分，先mark一下</p>
 <h1 id="1-循环神经网络-RNN-Recurrent-Neural-Network"><a href="#1-循环神经网络-RNN-Recurrent-Neural-Network" class="headerlink" title="1. 循环神经网络 - RNN (Recurrent Neural Network)"></a>1. 循环神经网络 - RNN (Recurrent Neural Network)</h1><h2 id="1-1-模型结构"><a href="#1-1-模型结构" class="headerlink" title="1.1 模型结构"></a>1.1 模型结构</h2><p><img src="/2018/05/25/深度学习笔记-RNN常见网络/2018-05-25-深度学习笔记-RNN常见网络/image-20191213165901226.png" alt="image-20191213165901226" style="zoom:40%;"></p>
 <script type="math/tex; mode=display">
 H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相关拓展网络的基础，基本都是用到了这个结构。</p>
@@ -659,7 +663,13 @@ H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相�
 <p>这里</p>
 <ul>
 <li>$x^{(t)}$代表在序列索引号t时训练样本的输入</li>
-<li>$h^{(t)}$代表在序列索引号t时模型的隐藏状态</li>
+<li>$h^{(t)}$代表在序列索引号t时模型的隐藏状态<ul>
+<li>$h^{(t)} = \phi(Ux^t + Wh^{(t-1)} + b)$<ul>
+<li>这里$\phi$为激活函数，一般选tanh函数</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>$o^{(t)}$代表在序列索引号t时模型的输出，只由模型当前的隐藏状态$h^{(t)}$决定<ul>
 <li>$o^{(t)}=Vh^{(t)} + c$</li>
 </ul>
@@ -675,7 +685,15 @@ H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h)</script><p>上面的公式是RNN相�
 </ul>
 </li>
 </ul>
-<p>问题</p>
+<p>以上公式整理到一起的话，具体如下</p>
+<script type="math/tex; mode=display">
+\begin {align}
+h^{(t)} &= \phi(Ux^{(t)} + Wh^{(t-1)} + b) \\
+o^{(t)} &= Vh^{(t)} \\
+\hat y &= \sigma(o^{(t)}) \\
+&= \sigma(Vh^{(t)}) \\
+&= \sigma(V\phi(Ux^{(t)} + Wh^{(t-1)} + b))
+\end {align}</script><p>问题</p>
 <ul>
 <li>如果NN部分是多层的话，是只将上一个时间(t-1)的隐藏层$h_{(t-1)}$输入到当前时刻t，NN部分的一层么？</li>
 </ul>
@@ -1111,14 +1129,6 @@ L = \sum_{t=1}^{\tau}L^{(t)}</script><p>其中$V,c$的梯度计算如下</p>
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -1128,6 +1138,18 @@ L = \sum_{t=1}^{\tau}L^{(t)}</script><p>其中$V,c$的梯度计算如下</p>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1143,15 +1165,23 @@ L = \sum_{t=1}^{\tau}L^{(t)}</script><p>其中$V,c$的梯度计算如下</p>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1163,15 +1193,15 @@ L = \sum_{t=1}^{\tau}L^{(t)}</script><p>其中$V,c$的梯度计算如下</p>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1183,15 +1213,7 @@ L = \sum_{t=1}^{\tau}L^{(t)}</script><p>其中$V,c$的梯度计算如下</p>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PCA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">RNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PyTorch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1207,19 +1229,11 @@ L = \sum_{t=1}^{\tau}L^{(t)}</script><p>其中$V,c$的梯度计算如下</p>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Pytorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1235,6 +1249,10 @@ L = \sum_{t=1}^{\tau}L^{(t)}</script><p>其中$V,c$的梯度计算如下</p>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -1247,6 +1265,14 @@ L = \sum_{t=1}^{\tau}L^{(t)}</script><p>其中$V,c$的梯度计算如下</p>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
               </li>
              
@@ -1256,14 +1282,6 @@ L = \sum_{t=1}^{\tau}L^{(t)}</script><p>其中$V,c$的梯度计算如下</p>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能营销</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1307,7 +1325,11 @@ L = \sum_{t=1}^{\tau}L^{(t)}</script><p>其中$V,c$的梯度计算如下</p>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1319,19 +1341,7 @@ L = \sum_{t=1}^{\tau}L^{(t)}</script><p>其中$V,c$的梯度计算如下</p>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Quant</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LBS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1355,6 +1365,14 @@ L = \sum_{t=1}^{\tau}L^{(t)}</script><p>其中$V,c$的梯度计算如下</p>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
@@ -1375,7 +1393,7 @@ L = \sum_{t=1}^{\tau}L^{(t)}</script><p>其中$V,c$的梯度计算如下</p>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1387,7 +1405,7 @@ L = \sum_{t=1}^{\tau}L^{(t)}</script><p>其中$V,c$的梯度计算如下</p>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1399,11 +1417,11 @@ L = \sum_{t=1}^{\tau}L^{(t)}</script><p>其中$V,c$的梯度计算如下</p>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
+                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1423,7 +1441,7 @@ L = \sum_{t=1}^{\tau}L^{(t)}</script><p>其中$V,c$的梯度计算如下</p>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
             
             <div class="clearfix"></div>
