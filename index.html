@@ -156,6 +156,77 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-YouTube推荐系统笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/13/YouTube推荐系统笔记/">YouTube推荐系统笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/13/YouTube推荐系统笔记/" class="archive-article-date">
+  	<time datetime="2020-02-13T00:23:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><h2 id="发展历程"><a href="#发展历程" class="headerlink" title="发展历程"></a>发展历程</h2><blockquote>
+<p>作为【推荐系统系列文章】的第一讲，我们将以YouTube在2016年发表的论文《Deep Neural Networks for YouTube Recommendations》为背景进行YouTube的深度神经网络推荐模型的介绍。在此这之前YouTube还有三篇介绍YouTube视频推荐的论文，如果将这四篇串在一起，也就组成了YouTube推荐系统不断发展改进的一个缩影。</p>
+<p><strong>2008年</strong>：论文《Video Suggestion and Discovery for YouTube》是由Shumeet Baluja，Shumeet Baluja等人在2008年发表在 the International World Wide Web Conference Committee (IW3C2)上。文章花了大量篇幅讲了吸附算法（ADSORPTION），该算法的目的就是为了解决视频标签的扩散。所以就大胆推测当时YouTube推荐系统应该就是根据用户曾经看过的视频给用户推荐同类视频，也就是拥有相同标签的视频。</p>
+<p><strong>2010年</strong>：论文《The YouTube Video Recommendation System》是由Davidson J, Liebald B, Liu J等人在2010年发表在第四届ACM RecSys上。当时YouTube推荐系统的核心算法就是基于Item-CF的协同过滤算法，换句话说就是对于一个用户当前场景下和历史兴趣中喜欢的视频，找出它们相关的视频，并从这些视频中过滤掉已经看过的，剩下就是可以用户极有可能喜欢看的视频。这里的视频相关性是用共同点击个数来描述的。</p>
+<p><strong>2013年</strong>：论文《Label Partitioning For Sublinear Ranking》是由Jason Weston，Jason Weston等人在2013年发表在第三十届国际机器学习大会上。该论文将推荐问题变成了一个多分类的问题，并解决了在神经网络中如何从最后一层输出层中共找到概率最大的输出节点。</p>
+<p>到了2016年，YouTube开始迈向了以深度学习算法为主导的推荐系统阶段，虽然看似离2020比较久远，但这篇论文应该作为推荐系统入门必看论文，文中的推荐系统架构设计也是非常的经典，是很多推荐系统架构的基础。</p>
+</blockquote>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">推荐系统</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/13/YouTube推荐系统笔记/">MORE >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-关于BERT初探过程中的零零碎碎" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -847,77 +918,6 @@ c = q(h_1, h_2, ..., h_t)</script><p>这里$q$是自定义函数，用来生成�
 
 
   
-    <article id="post-TensorFlow分布式训练初探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/25/TensorFlow分布式训练初探/">TensorFlow分布式训练初探</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/25/TensorFlow分布式训练初探/" class="archive-article-date">
-  	<time datetime="2019-08-25T09:21:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>由于工作中可能会用到简单的深度学习模型，且由于数据量巨大，可能需要分布式训练。虽然用的平台可能有现成的框架，但还是了解一下。</p>
-<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><h2 id="1-1-深度学习模型训练过程"><a href="#1-1-深度学习模型训练过程" class="headerlink" title="1.1 深度学习模型训练过程"></a>1.1 深度学习模型训练过程</h2><p><img src="/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/v2-7abdf3c399c6d8ed220167e1c69ddd20_hd.jpg" alt="img"></p>
-<h2 id="1-2-分布式训练策略"><a href="#1-2-分布式训练策略" class="headerlink" title="1.2 分布式训练策略"></a>1.2 分布式训练策略</h2><p><img src="/2019/08/25/TensorFlow分布式训练初探/2019-08-25-TensorFlow分布式训练初探/v2-0031a1ffae793a2554e968a8f9a62bdf_hd.jpg" alt="img"></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">TensorFlow</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分布式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/25/TensorFlow分布式训练初探/">MORE >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1055,11 +1055,11 @@ c = q(h_1, h_2, ..., h_t)</script><p>这里$q$是自定义函数，用来生成�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1075,6 +1075,10 @@ c = q(h_1, h_2, ..., h_t)</script><p>这里$q$是自定义函数，用来生成�
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
@@ -1087,14 +1091,6 @@ c = q(h_1, h_2, ..., h_t)</script><p>这里$q$是自定义函数，用来生成�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
              
@@ -1103,7 +1099,7 @@ c = q(h_1, h_2, ..., h_t)</script><p>这里$q$是自定义函数，用来生成�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color2">同步异步IO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1116,6 +1112,10 @@ c = q(h_1, h_2, ..., h_t)</script><p>这里$q$是自定义函数，用来生成�
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1139,14 +1139,6 @@ c = q(h_1, h_2, ..., h_t)</script><p>这里$q$是自定义函数，用来生成�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Pytorch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">FTRL</a>
               </li>
              
@@ -1159,7 +1151,11 @@ c = q(h_1, h_2, ..., h_t)</script><p>这里$q$是自定义函数，用来生成�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+                <a href="javascript:void(0)" class="js-tag color5">Wide&Deep</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Pytorch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1171,19 +1167,23 @@ c = q(h_1, h_2, ..., h_t)</script><p>这里$q$是自定义函数，用来生成�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Cluster</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MLR</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">jupyterhub</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">PySpark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1207,6 +1207,14 @@ c = q(h_1, h_2, ..., h_t)</script><p>这里$q$是自定义函数，用来生成�
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Centos7</a>
               </li>
              
@@ -1219,14 +1227,6 @@ c = q(h_1, h_2, ..., h_t)</script><p>这里$q$是自定义函数，用来生成�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Fiddler</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auto-ML</a>
               </li>
              
@@ -1235,7 +1235,19 @@ c = q(h_1, h_2, ..., h_t)</script><p>这里$q$是自定义函数，用来生成�
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LBS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1243,11 +1255,11 @@ c = q(h_1, h_2, ..., h_t)</script><p>这里$q$是自定义函数，用来生成�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Metabase</a>
+                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BI报表</a>
+                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1275,14 +1287,6 @@ c = q(h_1, h_2, ..., h_t)</script><p>这里$q$是自定义函数，用来生成�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LDA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
@@ -1303,7 +1307,7 @@ c = q(h_1, h_2, ..., h_t)</script><p>这里$q$是自定义函数，用来生成�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优化算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1315,7 +1319,7 @@ c = q(h_1, h_2, ..., h_t)</script><p>这里$q$是自定义函数，用来生成�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1327,15 +1331,19 @@ c = q(h_1, h_2, ..., h_t)</script><p>这里$q$是自定义函数，用来生成�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Class-Imbalance</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">量化交易</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">量化平台</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">白话统计</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1347,11 +1355,7 @@ c = q(h_1, h_2, ..., h_t)</script><p>这里$q$是自定义函数，用来生成�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">白话统计</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
               </li>
             
             <div class="clearfix"></div>
